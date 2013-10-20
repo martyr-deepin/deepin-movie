@@ -106,6 +106,35 @@ Item {
 				anchors.verticalCenter: parent.verticalCenter
 				anchors.leftMargin: 20
 			}
+
+			Rectangle {
+				id: tabEffect
+				width: 300
+				height: parent.height
+				color: Qt.rgba(0, 0, 0, 0)
+				
+				RadialGradient {
+					anchors.fill: parent
+					horizontalRadius: 150
+					horizontalOffset: -40
+					verticalRadius: 150
+					verticalOffset: -70
+					
+					gradient: Gradient {
+						GradientStop { position: 0.0; color: Qt.rgba(33 / 255.0, 91 / 255.0, 210 / 255.0, 0.8)}
+						GradientStop { position: 0.5; color: Qt.rgba(19 / 255.0, 48 / 255.0, 104 / 255.0, 0.5)}
+						GradientStop { position: 0.8; color: Qt.rgba(6 / 255.0, 7 / 255.0, 9 / 255.0, 0.0)}
+					}
+					
+				}
+				
+				Behavior on x {
+					NumberAnimation {
+						duration: 300
+						easing.type: Easing.OutQuint
+					}
+				}
+			}
 			
 			Row {
 				height: parent.height
@@ -117,21 +146,31 @@ Item {
 				TabButton {
 					id: tabMoive
 					text: "深度影院"
+					
+					onPressed: tabEffect.x = x + width / 2
+					
+					Component.onCompleted: tabEffect.x = x + width / 2
 				}
 
 				TabButton {
 					id: tabPlay
 					text: "视频播放"
+					
+					onPressed: tabEffect.x = x + width / 2
 				}
 
 				TabButton {
 					id: tabSearch
 					text: "电影搜索"
+					
+					onPressed: tabEffect.x = x + width / 2
 				}
 
 				TabButton {
 					id: tabFavorite
 					text: "我的收藏"
+					
+					onPressed: tabEffect.x = x + width / 2
 				}
 			}
 			
