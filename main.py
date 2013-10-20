@@ -34,9 +34,9 @@ if __name__ == "__main__":
     
     view = QQuickView()
     
-    surfaceFormat = QSurfaceFormat()
-    surfaceFormat.setAlphaBufferSize(8)
-    view.setFormat(surfaceFormat)
+    surface_format = QSurfaceFormat()
+    surface_format.setAlphaBufferSize(8)
+    view.setFormat(surface_format)
     
     view.setColor(QColor(0, 0, 0, 0))
     view.setFlags(QtCore.Qt.FramelessWindowHint)
