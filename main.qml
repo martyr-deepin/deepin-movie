@@ -69,6 +69,11 @@ Item {
 			}
 
 			ImageButton {
+				id: menuButton
+				imageName: "image/window_menu"
+			}
+
+			ImageButton {
 				id: minButton
 				imageName: "image/window_min"
 				onClicked: {windowView.showMinimized()}
