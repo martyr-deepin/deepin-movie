@@ -56,6 +56,7 @@ Item {
 					anchors.fill: parent
 					onEntered: {parent.source = "image/window_theme_hover.png"}
 					onPressed: {parent.source = "image/window_theme_press.png"}
+					onReleased: {parent.source = "image/window_theme_hover.png"}
 					onExited: {parent.source = "image/window_theme_normal.png"}
 				}
 			}
@@ -68,6 +69,7 @@ Item {
 					anchors.fill: parent
 					onEntered: {parent.source = "image/window_min_hover.png"}
 					onPressed: {parent.source = "image/window_min_press.png"}
+					onReleased: {parent.source = "image/window_min_hover.png"}
 					onExited: {parent.source = "image/window_min_normal.png"}
 				}
 			}
@@ -80,6 +82,7 @@ Item {
 					anchors.fill: parent
 					onEntered: {parent.source = "image/window_max_hover.png"}
 					onPressed: {parent.source = "image/window_max_press.png"}
+					onReleased: {parent.source = "image/window_max_hover.png"}
 					onExited: {parent.source = "image/window_max_normal.png"}
 				}
 			}
@@ -92,6 +95,7 @@ Item {
 					anchors.fill: parent
 					onEntered: {parent.source = "image/window_close_hover.png"}
 					onPressed: {parent.source = "image/window_close_press.png"}
+					onReleased: {parent.source = "image/window_close_hover.png"}
 					onExited: {parent.source = "image/window_close_normal.png"}
 				}
 			}
