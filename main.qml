@@ -11,10 +11,11 @@ Item {
 
 	property bool isMax: false
 	
-	function toggleWindow() {
+	function toggleMaxWindow() {
 		isMax ? windowView.showNormal() : windowView.showMaximized()
-		isMax ? maxButton.imageName = "image/window_max" : maxButton.imageName = "image/window_unmax" 
+		isMax ? maxButton.imageName = "image/window_max" : maxButton.imageName = "image/window_unmax"
 		isMax ? shadow.visible = true : shadow.visible = false
+		
 		isMax = !isMax
 	}
 
@@ -52,7 +53,7 @@ Item {
         }
         onMouseXChanged: windowView.x += (mouseX - lastMouseX)
         onMouseYChanged: windowView.y += (mouseY - lastMouseY)
-		onDoubleClicked: {toggleWindow()}
+		onDoubleClicked: {toggleMaxWindow()}
 		
 		Row {
 			anchors {right: parent.right}
@@ -72,7 +73,7 @@ Item {
 			ImageButton {
 				id: maxButton
 				imageName: "image/window_max"
-				onClicked: {toggleWindow()}
+				onClicked: {toggleMaxWindow()}
 			}
 
 			ImageButton {
