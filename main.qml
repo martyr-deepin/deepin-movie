@@ -15,6 +15,8 @@ Item {
 		isMax ? windowView.showNormal() : windowView.showMaximized()
 		isMax ? maxButton.imageName = "image/window_max" : maxButton.imageName = "image/window_unmax"
 		isMax ? shadow.visible = true : shadow.visible = false
+		isMax ? frame.border.width = shadowRadius * shadowMultiplier : frame.border.width = 0
+		isMax ? frame.radius = frameRadius : frame.radius = 0
 		
 		isMax = !isMax
 	}
@@ -24,8 +26,8 @@ Item {
         anchors.fill: frame
         glowRadius: shadowRadius
         spread: 0.2
-        /* color: Qt.rgba(0, 0, 0, 0.3) */
-        color: Qt.rgba(200, 0, 0, 0.8)
+        color: Qt.rgba(0, 0, 0, 0.3)
+        /* color: Qt.rgba(200, 0, 0, 0.8) /\* this code just for test shadow *\/ */
         cornerRadius: frame.radius + shadowRadius
 		visible: true
     }
@@ -35,9 +37,11 @@ Item {
 		opacity: 0.5
         color: Qt.rgba(200, 200, 200, 1)
         anchors.centerIn: parent
-        width: Math.round(window.width - shadowRadius * shadowMultiplier)
-        height: Math.round(window.height - shadowRadius * shadowMultiplier)
         radius: frameRadius
+		border.width: shadowRadius * shadowMultiplier
+		border.color: Qt.rgba(0, 0, 0, 0)
+		width: window.width - border.width
+		height: window.height - border.width
     }
 	
 	MouseArea {
