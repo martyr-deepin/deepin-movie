@@ -99,6 +99,42 @@ Item {
 				endColor: "#060709"
 			}
 			
+			Image {
+				id: appIcon
+				source: "image/logo.png"
+				anchors.left: parent.left
+				anchors.verticalCenter: parent.verticalCenter
+				anchors.leftMargin: 20
+			}
+			
+			Row {
+				height: parent.height
+				anchors.left: appIcon.right
+				anchors.leftMargin: 60
+				id: tabButtonArea
+				spacing: 40
+				
+				TabButton {
+					id: tabMoive
+					text: "深度影院"
+				}
+
+				TabButton {
+					id: tabPlay
+					text: "视频播放"
+				}
+
+				TabButton {
+					id: tabSearch
+					text: "电影搜索"
+				}
+
+				TabButton {
+					id: tabFavorite
+					text: "我的收藏"
+				}
+			}
+			
 			Row {
 				anchors {right: parent.right}
 				id: windowButtonArea
