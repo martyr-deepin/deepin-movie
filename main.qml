@@ -2,6 +2,7 @@ import QtQuick 2.1
 import QtGraphicalEffects 1.0
 import ImageCanvas 1.0
 import TopRoundRect 1.0
+import QtWebKit 3.0
 
 Item {
 	id: window
@@ -131,8 +132,18 @@ Item {
 				}
 			}
 		}
+		
     }
 
+	WebView {
+		id: webview
+		url: "http://pianku.xmp.kankan.com/moviestore_index.html"
+		anchors.top: titlebar.bottom
+		anchors.bottom: frame.bottom
+		anchors.left: titlebar.left
+		anchors.right: titlebar.right
+	}
+	
 	Rectangle {
 		id: frameBorder
 		anchors.fill: frame
