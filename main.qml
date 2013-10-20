@@ -42,6 +42,60 @@ Item {
         }
         onMouseXChanged: windowView.x += (mouseX - lastMouseX)
         onMouseYChanged: windowView.y += (mouseY - lastMouseY)
+		
+		
+		Row {
+			anchors {right: parent.right}
+			id: windowButtonArea
+			
+			Image {
+				id: themeButton
+				source: "image/window_theme_normal.png"
+				
+				MouseArea {
+					anchors.fill: parent
+					onEntered: {parent.source = "image/window_theme_hover.png"}
+					onPressed: {parent.source = "image/window_theme_press.png"}
+					onExited: {parent.source = "image/window_theme_normal.png"}
+				}
+			}
+			
+			Image {
+				id: minButton
+				source: "image/window_min_normal.png"
+
+				MouseArea {
+					anchors.fill: parent
+					onEntered: {parent.source = "image/window_min_hover.png"}
+					onPressed: {parent.source = "image/window_min_press.png"}
+					onExited: {parent.source = "image/window_min_normal.png"}
+				}
+			}
+			
+			Image {
+				id: maxButton
+				source: "image/window_max_normal.png"
+
+				MouseArea {
+					anchors.fill: parent
+					onEntered: {parent.source = "image/window_max_hover.png"}
+					onPressed: {parent.source = "image/window_max_press.png"}
+					onExited: {parent.source = "image/window_max_normal.png"}
+				}
+			}
+			
+			Image {
+				id: closeButton
+				source: "image/window_close_normal.png"
+
+				MouseArea {
+					anchors.fill: parent
+					onEntered: {parent.source = "image/window_close_hover.png"}
+					onPressed: {parent.source = "image/window_close_press.png"}
+					onExited: {parent.source = "image/window_close_normal.png"}
+				}
+			}
+		}
     }
 }
 
