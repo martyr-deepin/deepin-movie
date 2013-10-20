@@ -6,6 +6,7 @@ Item {
     width: 600
     height: 400
 	
+	property int titlebarHeight: 26
 	property int frameRadius: 3
 	property int shadowRadius: 5
 
@@ -32,7 +33,7 @@ Item {
         id: titlebar
         anchors.top: frame.top
 		width: frame.width
-        height: 26
+        height: titlebarHeight
 		property real lastMouseX: 0
         property real lastMouseY: 0
         onPressed: {
