@@ -22,16 +22,72 @@
 
 from PyQt5.QtWidgets import QApplication, qApp
 from PyQt5.QtQuick import QQuickView
-from PyQt5.QtGui import QSurfaceFormat
+from PyQt5.QtQml import qmlRegisterType
+from PyQt5.QtGui import QSurfaceFormat, QImage, QPainter, QPainterPath
 from PyQt5 import QtCore, QtQuick
-from PyQt5.QtCore import QSize
+from PyQt5.QtCore import QSize, pyqtProperty, pyqtSignal
 from PyQt5.Qt import QColor
+from PyQt5.QtQuick import QQuickPaintedItem
 import os
 import sys
 import signal
+from contextlib import contextmanager 
+import traceback
+
+@contextmanager
+def painter_state(painter):
+    painter.save()
+    try:  
+        yield  
+    except Exception, e:  
+        print 'function cairo_state got error: %s' % e  
+        traceback.print_exc(file=sys.stdout)
+    else:  
+        painter.restore()
+
+class ImageCanvas(QQuickPaintedItem):
+    @pyqtProperty(str)
+    def imageFile(self):
+        return self._imageFile
+    
+    @imageFile.setter
+    def imageFile(self, imageFile):
+        self._imageFile = imageFile
+        self._image = QImage(self._imageFile)
+        
+    radiusChanged = pyqtSignal()    
+        
+    @pyqtProperty(float, notify=radiusChanged)
+    def radius(self):
+        return self._radius
+    
+    @radius.setter
+    def radius(self, radius):
+        self._radius = radius
+        self.update()
+        self.radiusChanged.emit()
+        
+    def __init__(self, parent=None):
+        super(ImageCanvas, self).__init__(parent)
+        
+        self._imageFile = ''
+        self._image = None
+        self._radius = 0
+        
+    def paint(self, painter):
+        if self._image:
+            with painter_state(painter):
+                path = QPainterPath()
+                if self._radius > 0:
+                    path.addRoundedRect(0, 0, self.width(), self.height(), self._radius, self._radius)
+                    painter.setRenderHint(QPainter.Antialiasing)
+                    painter.setClipPath(path)
+                painter.drawImage(0, 0, self._image)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+    
+    qmlRegisterType(ImageCanvas, "ImageCanvas", 1, 0, "ImageCanvas")
     
     view = QQuickView()
     

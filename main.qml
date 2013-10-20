@@ -1,5 +1,6 @@
 import QtQuick 2.1
 import QtGraphicalEffects 1.0
+import ImageCanvas 1.0
 
 Item {
 	id: window
@@ -16,6 +17,7 @@ Item {
 		isMax ? shadow.visible = true : shadow.visible = false
 		isMax ? frame.border.width = (shadowRadius + frameRadius) * 2 : frame.border.width = 0
 		isMax ? frame.radius = frameRadius : frame.radius = 0
+		isMax ? skinBackground.radius = frameRadius : skinBackground.radius = 0
 		
 		isMax = !isMax
 	}
@@ -43,43 +45,12 @@ Item {
 		width: window.width - border.width
 		height: window.height - border.width
 		
-		Canvas {
-			/* visible: false */
-			id: canvas
+		ImageCanvas {
+			id: skinBackground
 			anchors.fill: parent
-			antialiasing: true
-			property int radius: 3
-			property int rectx: 0
-			property int recty: 0
-			property int rectWidth: parent.width
-			property int rectHeight: parent.height
-			property int lineWidth: 1
-			property string imagefile: "skin/4.jpg"
-			
-			Component.onCompleted: loadImage(canvas.imagefile)
-			onImageLoaded: requestPaint()	
-			onWidthChanged: requestPaint()
-			onHeightChanged: requestPaint()
-			onRectxChanged: requestPaint()
-			onRectyChanged: requestPaint()
-			onRectWidthChanged: requestPaint()
-			onRectHeightChanged: requestPaint()
-			onRadiusChanged: requestPaint()
-			onLineWidthChanged: requestPaint()
-
-			onPaint: {
-				var ctx = getContext("2d");
-				ctx.save();
-				ctx.clearRect(0, 0, canvas.width, canvas.height);
-				ctx.lineWidth = canvas.lineWidth
-				ctx.globalAlpha = 1
-				ctx.roundedRect(rectx, recty, rectWidth, rectHeight, radius, radius)
-				ctx.clip()
-				ctx.drawImage(canvas.imagefile, rectx, recty)
-				
-				ctx.restore();
-			}
-		}		
+			imageFile: "skin/4.jpg"
+			radius: frameRadius
+		}
     }
 	
 	MouseArea {
