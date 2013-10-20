@@ -27,8 +27,8 @@ Item {
         anchors.fill: frame
         glowRadius: shadowRadius
         spread: 0.2
-        /* color: Qt.rgba(0, 0, 0, 0.3) */
-        color: Qt.rgba(200, 0, 0, 0.8) /* this code just for test shadow */
+        color: Qt.rgba(0, 0, 0, 0.3)
+        /* color: Qt.rgba(200, 0, 0, 0.8) /\* this code just for test shadow *\/ */
         cornerRadius: frame.radius + shadowRadius
 		visible: true
     }
@@ -49,6 +49,16 @@ Item {
 			id: skinBackground
 			anchors.fill: parent
 			imageFile: "skin/4.jpg"
+			radius: frameRadius
+		}
+		
+		Rectangle {
+			id: frameBorder
+			anchors.fill: parent
+			color: Qt.rgba(0, 0, 0, 0)
+			border.color: Qt.rgba(200, 200, 200, 0.3)
+			border.width: 1
+			smooth: true
 			radius: frameRadius
 		}
     }
