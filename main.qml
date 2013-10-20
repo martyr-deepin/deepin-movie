@@ -51,6 +51,7 @@ Item {
 			anchors.fill: parent
 			imageFile: "skin/4.jpg"
 			radius: frameRadius
+		    /* visible: false */
 		}
 		
 		Rectangle {
