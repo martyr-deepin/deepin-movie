@@ -6,8 +6,7 @@ Item {
 	
 	property int titlebarHeight: 26
 	property int frameRadius: 3
-	property int shadowRadius: 5
-	property double shadowMultiplier: 2.5
+	property int shadowRadius: 10
 
 	property bool isMax: false
 	
@@ -15,7 +14,7 @@ Item {
 		isMax ? windowView.showNormal() : windowView.showMaximized()
 		isMax ? maxButton.imageName = "image/window_max" : maxButton.imageName = "image/window_unmax"
 		isMax ? shadow.visible = true : shadow.visible = false
-		isMax ? frame.border.width = shadowRadius * shadowMultiplier : frame.border.width = 0
+		isMax ? frame.border.width = (shadowRadius + frameRadius) * 2 : frame.border.width = 0
 		isMax ? frame.radius = frameRadius : frame.radius = 0
 		
 		isMax = !isMax
@@ -26,22 +25,61 @@ Item {
         anchors.fill: frame
         glowRadius: shadowRadius
         spread: 0.2
-        color: Qt.rgba(0, 0, 0, 0.3)
-        /* color: Qt.rgba(200, 0, 0, 0.8) /\* this code just for test shadow *\/ */
+        /* color: Qt.rgba(0, 0, 0, 0.3) */
+        color: Qt.rgba(200, 0, 0, 0.8) /* this code just for test shadow */
         cornerRadius: frame.radius + shadowRadius
 		visible: true
     }
 	
     Rectangle {
         id: frame
-		opacity: 0.5
-        color: Qt.rgba(200, 200, 200, 1)
+		opacity: 1				/* frame transparent */
+        color: Qt.rgba(0, 0, 0, 0)
+        /* color: Qt.rgba(0, 0, 0, 1) /\* this code just for test frame *\/ */
         anchors.centerIn: parent
         radius: frameRadius
-		border.width: shadowRadius * shadowMultiplier
+		border.width: (shadowRadius + frameRadius) * 2
 		border.color: Qt.rgba(0, 0, 0, 0)
 		width: window.width - border.width
 		height: window.height - border.width
+		
+		Canvas {
+			/* visible: false */
+			id: canvas
+			anchors.fill: parent
+			antialiasing: true
+			property int radius: 3
+			property int rectx: 0
+			property int recty: 0
+			property int rectWidth: parent.width
+			property int rectHeight: parent.height
+			property int lineWidth: 1
+			property string imagefile: "skin/4.jpg"
+			
+			Component.onCompleted: loadImage(canvas.imagefile)
+			onImageLoaded: requestPaint()	
+			onWidthChanged: requestPaint()
+			onHeightChanged: requestPaint()
+			onRectxChanged: requestPaint()
+			onRectyChanged: requestPaint()
+			onRectWidthChanged: requestPaint()
+			onRectHeightChanged: requestPaint()
+			onRadiusChanged: requestPaint()
+			onLineWidthChanged: requestPaint()
+
+			onPaint: {
+				var ctx = getContext("2d");
+				ctx.save();
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+				ctx.lineWidth = canvas.lineWidth
+				ctx.globalAlpha = 1
+				ctx.roundedRect(rectx, recty, rectWidth, rectHeight, radius, radius)
+				ctx.clip()
+				ctx.drawImage(canvas.imagefile, rectx, recty)
+				
+				ctx.restore();
+			}
+		}		
     }
 	
 	MouseArea {
