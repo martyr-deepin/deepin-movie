@@ -48,56 +48,20 @@ Item {
 			anchors {right: parent.right}
 			id: windowButtonArea
 			
-			Image {
-				id: themeButton
-				source: "image/window_theme_normal.png"
-				
-				MouseArea {
-					anchors.fill: parent
-					onEntered: {parent.source = "image/window_theme_hover.png"}
-					onPressed: {parent.source = "image/window_theme_press.png"}
-					onReleased: {parent.source = "image/window_theme_hover.png"}
-					onExited: {parent.source = "image/window_theme_normal.png"}
-				}
+			ImageButton {
+				imageName: "image/window_theme"
 			}
-			
-			Image {
-				id: minButton
-				source: "image/window_min_normal.png"
 
-				MouseArea {
-					anchors.fill: parent
-					onEntered: {parent.source = "image/window_min_hover.png"}
-					onPressed: {parent.source = "image/window_min_press.png"}
-					onReleased: {parent.source = "image/window_min_hover.png"}
-					onExited: {parent.source = "image/window_min_normal.png"}
-				}
+			ImageButton {
+				imageName: "image/window_min"
 			}
-			
-			Image {
-				id: maxButton
-				source: "image/window_max_normal.png"
 
-				MouseArea {
-					anchors.fill: parent
-					onEntered: {parent.source = "image/window_max_hover.png"}
-					onPressed: {parent.source = "image/window_max_press.png"}
-					onReleased: {parent.source = "image/window_max_hover.png"}
-					onExited: {parent.source = "image/window_max_normal.png"}
-				}
+			ImageButton {
+				imageName: "image/window_max"
 			}
-			
-			Image {
-				id: closeButton
-				source: "image/window_close_normal.png"
 
-				MouseArea {
-					anchors.fill: parent
-					onEntered: {parent.source = "image/window_close_hover.png"}
-					onPressed: {parent.source = "image/window_close_press.png"}
-					onReleased: {parent.source = "image/window_close_hover.png"}
-					onExited: {parent.source = "image/window_close_normal.png"}
-				}
+			ImageButton {
+				imageName: "image/window_close"
 			}
 		}
     }
