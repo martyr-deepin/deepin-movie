@@ -67,6 +67,8 @@ Item {
 	MouseArea {
         id: titlebar
         anchors.top: frame.top
+        anchors.left: frame.left
+        anchors.right: frame.right
 		width: frame.width
         height: titlebarHeight
 		property real lastMouseX: 0
