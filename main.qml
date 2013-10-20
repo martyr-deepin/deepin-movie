@@ -1,11 +1,12 @@
 import QtQuick 2.1
 import QtGraphicalEffects 1.0
 import ImageCanvas 1.0
+import TopRoundRect 1.0
 
 Item {
 	id: window
 	
-	property int titlebarHeight: 26
+	property int titlebarHeight: 45
 	property int frameRadius: 3
 	property int shadowRadius: 10
 
@@ -17,7 +18,9 @@ Item {
 		isMax ? shadow.visible = true : shadow.visible = false
 		isMax ? frame.border.width = (shadowRadius + frameRadius) * 2 : frame.border.width = 0
 		isMax ? frame.radius = frameRadius : frame.radius = 0
-		isMax ? skinBackground.radius = frameRadius : skinBackground.radius = 0
+		/* isMax ? skinBackground.radius = frameRadius : skinBackground.radius = 0 */
+		isMax ? frameBackground.radius = frameRadius : frameBackground.radius = 0
+		isMax ? titlebarGradient.radius = frameRadius : titlebarGradient.radius = 0
 		isMax ? frameBorder.visible = true : frameBorder.visible = false
 		
 		isMax = !isMax
@@ -46,23 +49,21 @@ Item {
 		width: window.width - border.width
 		height: window.height - border.width
 		
-		ImageCanvas {
-			id: skinBackground
+		Rectangle {
+			id: frameBackground
+			color: "black"
 			anchors.fill: parent
-			imageFile: "skin/4.jpg"
 			radius: frameRadius
-		    /* visible: false */
 		}
 		
-		Rectangle {
-			id: frameBorder
-			anchors.fill: parent
-			color: Qt.rgba(0, 0, 0, 0)
-			border.color: Qt.rgba(200, 200, 200, 0.3)
-			border.width: 1
-			smooth: true
-			radius: frameRadius
-		}
+		/* ImageCanvas { */
+		/* 	id: skinBackground */
+		/* 	anchors.fill: parent */
+		/* 	imageFile: "skin/4.jpg" */
+		/* 	radius: frameRadius */
+		/*     /\* visible: false *\/ */
+		/* } */
+		
     }
 	
 	MouseArea {
@@ -82,38 +83,64 @@ Item {
         onMouseYChanged: windowView.y += (mouseY - lastMouseY)
 		onDoubleClicked: {toggleMaxWindow()}
 		
-		Row {
-			anchors {right: parent.right}
-			id: windowButtonArea
+		Rectangle {
+			id: titlebarBackground
+			anchors.fill: parent
+			color: Qt.rgba(0, 0, 0, 0)
 			
-			ImageButton {
-				id: themeButton
-				imageName: "image/window_theme"
+			TopRoundRect {
+				id: titlebarGradient
+				anchors.fill: parent
+				radius: frameRadius
+				radialRadius: parent.width * 2
+				vOffset: -parent.width
+				startColor: "#0F4196"
+				endColor: "#060709"
 			}
+			
+			Row {
+				anchors {right: parent.right}
+				id: windowButtonArea
+				
+				/* ImageButton { */
+				/* 	id: themeButton */
+				/* 	imageName: "image/window_theme" */
+				/* } */
 
-			ImageButton {
-				id: menuButton
-				imageName: "image/window_menu"
-			}
+				/* ImageButton { */
+				/* 	id: menuButton */
+				/* 	imageName: "image/window_menu" */
+				/* } */
 
-			ImageButton {
-				id: minButton
-				imageName: "image/window_min"
-				onClicked: {windowView.showMinimized()}
-			}
+				ImageButton {
+					id: minButton
+					imageName: "image/window_min"
+					onClicked: {windowView.showMinimized()}
+				}
 
-			ImageButton {
-				id: maxButton
-				imageName: "image/window_max"
-				onClicked: {toggleMaxWindow()}
-			}
+				ImageButton {
+					id: maxButton
+					imageName: "image/window_max"
+					onClicked: {toggleMaxWindow()}
+				}
 
-			ImageButton {
-				id: closeButton
-				imageName: "image/window_close"
-				onClicked: {qApp.quit()}
+				ImageButton {
+					id: closeButton
+					imageName: "image/window_close"
+					onClicked: {qApp.quit()}
+				}
 			}
 		}
     }
+
+	Rectangle {
+		id: frameBorder
+		anchors.fill: frame
+		color: Qt.rgba(0, 0, 0, 0)
+		border.color: Qt.rgba(200, 200, 200, 0.5)
+		border.width: 1
+		smooth: true
+		radius: frameRadius
+	}
 }
 

@@ -23,10 +23,9 @@
 from PyQt5.QtWidgets import QApplication, qApp
 from PyQt5.QtQuick import QQuickView
 from PyQt5.QtQml import qmlRegisterType
-from PyQt5.QtGui import QSurfaceFormat, QImage, QPainter, QPainterPath
+from PyQt5.QtGui import QSurfaceFormat, QImage, QPainter, QPainterPath, QColor, QRadialGradient
 from PyQt5 import QtCore, QtQuick
 from PyQt5.QtCore import QSize, pyqtProperty, pyqtSignal
-from PyQt5.Qt import QColor
 from PyQt5.QtQuick import QQuickPaintedItem
 import os
 import sys
@@ -45,6 +44,94 @@ def painter_state(painter):
     else:  
         painter.restore()
 
+class TopRoundRect(QQuickPaintedItem):
+    
+    radiusChanged = pyqtSignal()    
+        
+    @pyqtProperty(float, notify=radiusChanged)
+    def radius(self):
+        return self._radius
+    
+    @radius.setter
+    def radius(self, radius):
+        self._radius = radius
+        self.update()
+        self.radiusChanged.emit()
+        
+    radialRadiusChanged = pyqtSignal()    
+        
+    @pyqtProperty(float, notify=radialRadiusChanged)
+    def radialRadius(self):
+        return self._radialRadius
+    
+    @radialRadius.setter
+    def radialRadius(self, radialRadius):
+        self._radialRadius = radialRadius
+        self.update()
+        self.radialRadiusChanged.emit()
+        
+    vOffsetChanged = pyqtSignal()    
+        
+    @pyqtProperty(float, notify=vOffsetChanged)
+    def vOffset(self):
+        return self._vOffset
+    
+    @vOffset.setter
+    def vOffset(self, vOffset):
+        self._vOffset = vOffset
+        self.update()
+        self.vOffsetChanged.emit()
+        
+    startColorChanged = pyqtSignal()    
+        
+    @pyqtProperty(str, notify=startColorChanged)
+    def startColor(self):
+        return self._startColor
+    
+    @startColor.setter
+    def startColor(self, startColor):
+        self._startColor = startColor
+        self.update()
+        self.startColorChanged.emit()
+
+    endColorChanged = pyqtSignal()    
+        
+    @pyqtProperty(str, notify=endColorChanged)
+    def endColor(self):
+        return self._endColor
+    
+    @endColor.setter
+    def endColor(self, endColor):
+        self._endColor = endColor
+        self.update()
+        self.endColorChanged.emit()
+        
+    def __init__(self, parent=None):
+        super(TopRoundRect, self).__init__(parent)
+        
+        self._radius = 0
+        self._radialRadius = 0
+        self._vOffset = 0
+        self._startColor = None
+        self._endColor = None
+        
+    def paint(self, painter):
+        with painter_state(painter):
+            painter.setRenderHints(QPainter.Antialiasing, True)
+            
+            if self._radius > 0:
+                path = QPainterPath()
+                path.addRoundedRect(0, 0, self.width(), self._radius, self._radius, self._radius)
+                path.addRoundedRect(0, self._radius, self.width(), self.height() - self._radius, 0, 0)
+                painter.setClipPath(path)
+                
+            radialGrad = QRadialGradient(self.width() / 2, self._vOffset, self._radialRadius)
+            radialGrad.setColorAt(0, QColor(self._startColor))
+            radialGrad.setColorAt(0.55, QColor(self._endColor))
+            
+            painter.setBrush(radialGrad)
+            painter.drawRoundedRect(0, 0, self.width(), self.height(), self._radius, self._radius)
+        
 class ImageCanvas(QQuickPaintedItem):
     @pyqtProperty(str)
     def imageFile(self):
@@ -77,10 +164,10 @@ class ImageCanvas(QQuickPaintedItem):
     def paint(self, painter):
         if self._image:
             with painter_state(painter):
-                path = QPainterPath()
+                painter.setRenderHint(QPainter.Antialiasing, True)
                 if self._radius > 0:
+                    path = QPainterPath()
                     path.addRoundedRect(0, 0, self.width(), self.height(), self._radius, self._radius)
-                    painter.setRenderHint(QPainter.Antialiasing)
                     painter.setClipPath(path)
                 painter.drawImage(0, 0, self._image)
 
@@ -88,6 +175,7 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     
     qmlRegisterType(ImageCanvas, "ImageCanvas", 1, 0, "ImageCanvas")
+    qmlRegisterType(TopRoundRect, "TopRoundRect", 1, 0, "TopRoundRect")
     
     view = QQuickView()
     
@@ -96,7 +184,7 @@ if __name__ == "__main__":
     qml_context.setContextProperty("qApp", qApp)
     
     view.setResizeMode(QtQuick.QQuickView.SizeRootObjectToView)
-    view.setMinimumSize(QSize(600, 400))
+    view.setMinimumSize(QSize(900, 600))
     
     surface_format = QSurfaceFormat()
     surface_format.setAlphaBufferSize(8)
