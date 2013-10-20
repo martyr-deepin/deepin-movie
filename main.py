@@ -20,10 +20,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from PyQt5.QtWidgets import QApplication
+from PyQt5.QtWidgets import QApplication, qApp
 from PyQt5.QtQuick import QQuickView
 from PyQt5.QtGui import QSurfaceFormat
-from PyQt5 import QtCore
+from PyQt5 import QtCore, QtQuick
+from PyQt5.QtCore import QSize
 from PyQt5.Qt import QColor
 import os
 import sys
@@ -36,6 +37,10 @@ if __name__ == "__main__":
     
     qml_context = view.rootContext()
     qml_context.setContextProperty("windowView", view)
+    qml_context.setContextProperty("qApp", qApp)
+    
+    view.setResizeMode(QtQuick.QQuickView.SizeRootObjectToView)
+    view.setMinimumSize(QSize(600, 400))
     
     surface_format = QSurfaceFormat()
     surface_format.setAlphaBufferSize(8)
