@@ -18,6 +18,7 @@ Item {
 		isMax ? frame.border.width = (shadowRadius + frameRadius) * 2 : frame.border.width = 0
 		isMax ? frame.radius = frameRadius : frame.radius = 0
 		isMax ? skinBackground.radius = frameRadius : skinBackground.radius = 0
+		isMax ? frameBorder.visible = true : frameBorder.visible = false
 		
 		isMax = !isMax
 	}
