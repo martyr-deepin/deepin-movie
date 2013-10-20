@@ -34,6 +34,9 @@ if __name__ == "__main__":
     
     view = QQuickView()
     
+    qml_context = view.rootContext()
+    qml_context.setContextProperty("windowView", view)
+    
     surface_format = QSurfaceFormat()
     surface_format.setAlphaBufferSize(8)
     view.setFormat(surface_format)
