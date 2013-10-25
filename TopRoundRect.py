@@ -20,29 +20,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from PyQt5.QtWidgets import QApplication, qApp
-from PyQt5.QtQuick import QQuickView
-from PyQt5.QtQml import qmlRegisterType
-from PyQt5.QtGui import QSurfaceFormat, QImage, QPainter, QPainterPath, QColor, QRadialGradient
-from PyQt5 import QtCore, QtQuick
-from PyQt5.QtCore import QSize, pyqtProperty, pyqtSignal
 from PyQt5.QtQuick import QQuickPaintedItem
-import os
-import sys
-import signal
-from contextlib import contextmanager 
-import traceback
-
-@contextmanager
-def painter_state(painter):
-    painter.save()
-    try:  
-        yield  
-    except Exception, e:  
-        print 'function cairo_state got error: %s' % e  
-        traceback.print_exc(file=sys.stdout)
-    else:  
-        painter.restore()
+from PyQt5.QtCore import pyqtProperty, pyqtSignal
+from PyQt5.QtGui import QPainter, QPainterPath
+from PyQt5.QtGui import QColor, QRadialGradient
+from Utils import painter_state
 
 class TopRoundRect(QQuickPaintedItem):
     
@@ -132,68 +114,3 @@ class TopRoundRect(QQuickPaintedItem):
             painter.setBrush(radialGrad)
             painter.drawRoundedRect(0, 0, self.width(), self.height(), self._radius, self._radius)
         
-class ImageCanvas(QQuickPaintedItem):
-    @pyqtProperty(str)
-    def imageFile(self):
-        return self._imageFile
-    
-    @imageFile.setter
-    def imageFile(self, imageFile):
-        self._imageFile = imageFile
-        self._image = QImage(self._imageFile)
-        
-    radiusChanged = pyqtSignal()    
-        
-    @pyqtProperty(float, notify=radiusChanged)
-    def radius(self):
-        return self._radius
-    
-    @radius.setter
-    def radius(self, radius):
-        self._radius = radius
-        self.update()
-        self.radiusChanged.emit()
-        
-    def __init__(self, parent=None):
-        super(ImageCanvas, self).__init__(parent)
-        
-        self._imageFile = ''
-        self._image = None
-        self._radius = 0
-        
-    def paint(self, painter):
-        if self._image:
-            with painter_state(painter):
-                painter.setRenderHint(QPainter.Antialiasing, True)
-                if self._radius > 0:
-                    path = QPainterPath()
-                    path.addRoundedRect(0, 0, self.width(), self.height(), self._radius, self._radius)
-                    painter.setClipPath(path)
-                painter.drawImage(0, 0, self._image)
-
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    
-    qmlRegisterType(ImageCanvas, "ImageCanvas", 1, 0, "ImageCanvas")
-    qmlRegisterType(TopRoundRect, "TopRoundRect", 1, 0, "TopRoundRect")
-    
-    view = QQuickView()
-    
-    qml_context = view.rootContext()
-    qml_context.setContextProperty("windowView", view)
-    qml_context.setContextProperty("qApp", qApp)
-    
-    view.setResizeMode(QtQuick.QQuickView.SizeRootObjectToView)
-    view.setMinimumSize(QSize(900, 600))
-    
-    surface_format = QSurfaceFormat()
-    surface_format.setAlphaBufferSize(8)
-    view.setFormat(surface_format)
-    
-    view.setColor(QColor(0, 0, 0, 0))
-    view.setFlags(QtCore.Qt.FramelessWindowHint)
-    view.setSource(QtCore.QUrl.fromLocalFile(os.path.join(os.path.dirname(__file__), 'main.qml')))
-    view.show()
-    
-    signal.signal(signal.SIGINT, signal.SIG_DFL)
-    sys.exit(app.exec_())

@@ -178,16 +178,6 @@ Item {
 				anchors {right: parent.right}
 				id: windowButtonArea
 				
-				/* ImageButton { */
-				/* 	id: themeButton */
-				/* 	imageName: "image/window_theme" */
-				/* } */
-
-				/* ImageButton { */
-				/* 	id: menuButton */
-				/* 	imageName: "image/window_menu" */
-				/* } */
-
 				ImageButton {
 					id: minButton
 					imageName: "image/window_min"
