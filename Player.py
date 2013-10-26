@@ -24,8 +24,7 @@ from PyQt5 import QtGui
 from PyQt5.QtWidgets import QMainWindow, QApplication, QFrame
 
 class Player(QMainWindow):
-    """A simple Media Player using VLC and Qt
-    """
+    
     def __init__(self):
         QMainWindow.__init__(self)
         self.instance = vlc.Instance()
@@ -37,16 +36,16 @@ class Player(QMainWindow):
         self.videoframe.setAutoFillBackground(True)
         self.setCentralWidget(self.videoframe)
 
-    def OpenFile(self, filename):
+    def openFile(self, filename):
         self.media = self.instance.media_new(unicode(filename))
         self.mediaplayer.set_media(self.media)
         self.mediaplayer.set_xwindow(self.videoframe.winId())
         self.mediaplayer.play()
-
+        
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     player = Player()
     player.show()
     player.resize(640, 480)
-    player.OpenFile("/space/data/Video/DoctorWho/1.rmvb")
+    player.openFile("/space/data/Video/DoctorWho/1.rmvb")
     sys.exit(app.exec_())

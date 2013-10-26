@@ -15,6 +15,7 @@ Item {
 	default property alias tabPages: pages.children
 	property int currentTab: 0
 	
+	
 	function toggleMaxWindow() {
 		isMax ? windowView.showNormal() : windowView.showMaximized()
 		isMax ? maxButton.imageName = "image/window_max" : maxButton.imageName = "image/window_unmax"
@@ -58,6 +59,8 @@ Item {
 		width: window.width - border.width
 		height: window.height - border.width
 		
+		/* Component.onCompleted: {console.log(frame.x, frame.y)} */
+		
 		Rectangle {
 			id: frameBackground
 			color: "black"
@@ -88,8 +91,12 @@ Item {
             lastMouseX = mouseX
             lastMouseY = mouseY
         }
-        onMouseXChanged: windowView.x += (mouseX - lastMouseX)
-        onMouseYChanged: windowView.y += (mouseY - lastMouseY)
+        onMouseXChanged: {
+			windowView.x += (mouseX - lastMouseX)
+		}
+        onMouseYChanged: {
+			windowView.y += (mouseY - lastMouseY)
+		}
 		onDoubleClicked: {toggleMaxWindow()}
 		
 		Rectangle {
@@ -198,10 +205,12 @@ Item {
 	
 	Rectangle {
 		id: pages
+		objectName: "pages"
 		anchors.top: titlebar.bottom
 		anchors.bottom: frame.bottom
 		anchors.left: titlebar.left
 		anchors.right: titlebar.right
+		color: Qt.rgba(0, 0, 0, 0)
 		
 		WebView {
 			id: movieStorePage
@@ -216,6 +225,7 @@ Item {
 			anchors.fill: parent
 			property string name: "视频播放"
 			text: name
+			color: "white"
 		}
 
 		Text {
@@ -223,6 +233,7 @@ Item {
 			anchors.fill: parent
 			property string name: "视频搜索"
 			text: name
+			color: "white"
 		}
 
 		Text {
@@ -230,6 +241,7 @@ Item {
 			anchors.fill: parent
 			property string name: "我的收藏"
 			text: name
+			color: "white"
 		}
 	}
 
