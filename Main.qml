@@ -10,8 +10,10 @@ Item {
 	property int titlebarHeight: 45
 	property int frameRadius: 3
 	property int shadowRadius: 10
-
 	property bool isMax: false
+	
+	default property alias tabPages: pages.children
+	property int currentTab: 0
 	
 	function toggleMaxWindow() {
 		isMax ? windowView.showNormal() : windowView.showMaximized()
@@ -27,6 +29,12 @@ Item {
 		isMax = !isMax
 	}
 
+	function setOpacities() {
+		for (var i = 0; i < tabPages.length; ++i) {
+			tabPages[i].opacity = tabButtonArea.children[i].tabIndex == currentTab
+		}
+	}
+			
     RectangularGlow {
         id: shadow
         anchors.fill: frame
@@ -137,40 +145,28 @@ Item {
 			}
 			
 			Row {
+				id: tabButtonArea
 				height: parent.height
 				anchors.left: appIcon.right
 				anchors.leftMargin: 60
-				id: tabButtonArea
 				spacing: 40
 				
-				TabButton {
-					id: tabMoive
-					text: "深度影院"
-					
-					onPressed: tabEffect.x = x + width / 2
-					
-					Component.onCompleted: tabEffect.x = x + width / 2
+				Component.onCompleted: {
+					tabEffect.x = tabButtonArea.children[0].x + tabButtonArea.children[0].width / 2
+					setOpacities()
 				}
-
-				TabButton {
-					id: tabPlay
-					text: "视频播放"
-					
-					onPressed: tabEffect.x = x + width / 2
-				}
-
-				TabButton {
-					id: tabSearch
-					text: "电影搜索"
-					
-					onPressed: tabEffect.x = x + width / 2
-				}
-
-				TabButton {
-					id: tabFavorite
-					text: "我的收藏"
-					
-					onPressed: tabEffect.x = x + width / 2
+				
+				Repeater {
+					model: tabPages.length
+					delegate: TabButton {
+						text: tabPages[index].name
+						tabIndex: index
+						onPressed: {
+							tabEffect.x = x + width / 2
+							currentTab = index
+							setOpacities()
+						}
+					}
 				}
 			}
 			
@@ -199,16 +195,44 @@ Item {
 		}
 		
     }
-
-	WebView {
-		id: webview
-		url: "http://pianku.xmp.kankan.com/moviestore_index.html"
+	
+	Rectangle {
+		id: pages
 		anchors.top: titlebar.bottom
 		anchors.bottom: frame.bottom
 		anchors.left: titlebar.left
 		anchors.right: titlebar.right
+		
+		WebView {
+			id: movieStorePage
+			url: "http://pianku.xmp.kankan.com/moviestore_index.html"
+			anchors.fill: parent
+			
+			property string name: "深度影院"
+		}
+		
+		Text {
+			id: playPage
+			anchors.fill: parent
+			property string name: "视频播放"
+			text: name
+		}
+
+		Text {
+			id: searchPage
+			anchors.fill: parent
+			property string name: "视频搜索"
+			text: name
+		}
+
+		Text {
+			id: favouritePage
+			anchors.fill: parent
+			property string name: "我的收藏"
+			text: name
+		}
 	}
-	
+
 	Rectangle {
 		id: frameBorder
 		anchors.fill: frame
