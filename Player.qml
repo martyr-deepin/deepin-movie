@@ -10,6 +10,30 @@ Video {
 	/* width: 800 */
 	/* height: 400 */
 	/* source: "/space/data/Video/DoctorWho/1.rmvb" */
+	
+	property string timeTotal: ""
+	property string timeCurrent: ""
+	
+	Component.onCompleted: {
+		timeTotal = formatTime(video.duration)
+	}
+	
+	onPositionChanged: {
+		timeCurrent = formatTime(video.position)
+	}
+	
+	 function formatTime(millseconds) {
+		 var secs = Math.floor(millseconds / 1000)
+         var hr = Math.floor(secs / 3600);
+         var min = Math.floor((secs - (hr * 3600))/60);
+         var sec = secs - (hr * 3600) - (min * 60);
+ 		 
+         if (hr < 10) {hr = "0" + hr; }
+         if (min < 10) {min = "0" + min;}
+         if (sec < 10) {sec = "0" + sec;}
+         if (hr) {hr = "00";}
+         return hr + ':' + min + ':' + sec;
+    }
 
 	function toggle() {
 		video.playbackState == MediaPlayer.PlayingState ? video.pause() : video.play()
@@ -77,6 +101,13 @@ Video {
 				id: playerList
 				imageName: "image/player_list"
 				anchors.verticalCenter: parent.verticalCenter
+			}
+			
+			Text {
+				id: playTime
+				anchors.verticalCenter: parent.verticalCenter
+				text: timeCurrent + " / " + timeTotal
+				color: Qt.rgba(100, 100, 100, 1)
 			}
 		}
 		
