@@ -55,7 +55,7 @@ Video {
 	}
 
 	Rectangle {
-		id: playPanel
+		id: bottomPanel
 		color: Qt.rgba(0, 0, 0, 0.9)
 		height: 60
 		anchors.left: video.left
@@ -138,9 +138,9 @@ Video {
 		alwaysRunToEnd: true
 		
 		PropertyAnimation { 
-			target: playPanel
+			target: bottomPanel
 			property: "opacity"
-			to: playPanel.showOpacity
+			to: bottomPanel.showOpacity
 			duration: 200
 			easing.type: Easing.OutBack
 		}		
@@ -151,9 +151,9 @@ Video {
 		alwaysRunToEnd: true
 		
 		PropertyAnimation { 
-			target: playPanel
+			target: bottomPanel
 			property: "opacity"
-			to: playPanel.hideOpacity
+			to: bottomPanel.hideOpacity
 			duration: 200
 			easing.type: Easing.InBack
 		}		
