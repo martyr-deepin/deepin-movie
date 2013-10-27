@@ -69,7 +69,7 @@ Video {
 		Row {
 			id: leftButtonArea
 			anchors.left: parent.left
-			anchors.leftMargin: 5
+			anchors.leftMargin: 10
 			anchors.verticalCenter: parent.verticalCenter
 			spacing: 5
 			
@@ -110,6 +110,20 @@ Video {
 				id: playerForward
 				imageName: "image/player_forward"
 				anchors.verticalCenter: playerPlay.verticalCenter
+			}
+		}
+
+		Row {
+			id: rightButtonArea
+			anchors.right: parent.right
+			anchors.rightMargin: 10
+			anchors.verticalCenter: parent.verticalCenter
+			spacing: 5
+			
+			ImageButton {
+				id: playerVolume
+				imageName: "image/player_volume"
+				anchors.verticalCenter: parent.verticalCenter
 			}
 		}
 	}
