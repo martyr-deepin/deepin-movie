@@ -31,9 +31,10 @@ Item {
 		isMax = !isMax
 	}
 
-	function setOpacities() {
+	function setVisibles() {
 		for (var i = 0; i < tabPages.length; ++i) {
-			tabPages[i].opacity = tabButtonArea.children[i].tabIndex == currentTab
+			/* Don't set opacity, otherwise 'opacity 0' widget will eat othersise widget's event */
+			tabPages[i].visible = tabButtonArea.children[i].tabIndex == currentTab
 		}
 	}
 			
@@ -98,7 +99,9 @@ Item {
         onMouseYChanged: {
 			windowView.y += (mouseY - lastMouseY)
 		}
-		onDoubleClicked: {toggleMaxWindow()}
+		onDoubleClicked: {
+			toggleMaxWindow()
+		}
 		
 		Rectangle {
 			id: titlebarBackground
@@ -161,7 +164,7 @@ Item {
 				
 				Component.onCompleted: {
 					tabEffect.x = tabButtonArea.children[0].x + tabButtonArea.children[0].width / 2
-					setOpacities()
+					setVisibles()
 				}
 				
 				Repeater {
@@ -172,7 +175,7 @@ Item {
 						onPressed: {
 							tabEffect.x = x + width / 2
 							currentTab = index
-							setOpacities()
+							setVisibles()
 						}
 					}
 				}

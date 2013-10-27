@@ -22,6 +22,7 @@ Video {
 	}
 	
     MouseArea {
+		id: videoArea
 		anchors.fill: parent
 		hoverEnabled: true
 		
@@ -92,11 +93,6 @@ Video {
     Keys.onLeftPressed: backward()
     Keys.onRightPressed: forward()
 
-    function setSource(s) {
-        pause()
-        source: s
-    }
-	
 	ParallelAnimation{
 		id: showingAnimation
 		alwaysRunToEnd: true
