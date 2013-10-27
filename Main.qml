@@ -213,13 +213,6 @@ Item {
 		anchors.right: titlebar.right
 		color: Qt.rgba(0, 0, 0, 0)
 		
-		WebView {
-			id: movieStorePage
-			url: "http://pianku.xmp.kankan.com/moviestore_index.html"
-			anchors.fill: parent
-			property string name: "深度影院"
-		}
-		
 		Rectangle {
 			id: playPage
 			anchors.fill: parent
@@ -282,20 +275,25 @@ Item {
 			Keys.onRightPressed: player.seek(player.position + 5000)
 		}
 		
-		Text {
+		WebView {
+			id: movieStorePage
+			url: "http://pianku.xmp.kankan.com/moviestore_index.html"
+			anchors.fill: parent
+			property string name: "深度影院"
+		}
+		
+		WebView {
 			id: searchPage
+			url: "http://search.xmp.kankan.com/lndex4xmp.shtml"
 			anchors.fill: parent
 			property string name: "视频搜索"
-			text: name
-			color: "white"
 		}
 
-		Text {
+		WebView {
 			id: favouritePage
+			url: "http://search.xmp.kankan.com/lndex4xmp.shtml"
 			anchors.fill: parent
 			property string name: "我的收藏"
-			text: name
-			color: "white"
 		}
 	}
 
