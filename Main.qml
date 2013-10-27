@@ -245,6 +245,36 @@ Item {
 					player.play()
 				}
 			}
+			
+			Rectangle {
+				id: playPanel
+				color: Qt.rgba(0, 0, 0, 0.9)
+				height: 60
+				anchors.left: playPage.left
+				anchors.right: playPage.right
+				anchors.bottom: playPage.bottom
+				
+				Row {
+					anchors.horizontalCenter: parent.horizontalCenter
+					anchors.verticalCenter: parent.verticalCenter
+					spacing: 5
+					
+					ImageButton {
+						id: playerBackward
+						imageName: "image/player_backward"
+						anchors.verticalCenter: playerPlay.verticalCenter
+					}
+					ImageButton {
+						id: playerPlay
+						imageName: "image/player_play"
+					}
+					ImageButton {
+						id: playerForward
+						imageName: "image/player_forward"
+						anchors.verticalCenter: playerPlay.verticalCenter
+					}
+				}
+			}
 
 			focus: true
 			Keys.onSpacePressed: player.playbackState == MediaPlayer.PlayingState ? player.pause() : player.play()
