@@ -67,6 +67,21 @@ Video {
 		property double hideOpacity: 0
 		
 		Row {
+			id: leftButtonArea
+			anchors.left: parent.left
+			anchors.leftMargin: 5
+			anchors.verticalCenter: parent.verticalCenter
+			spacing: 5
+			
+			ImageButton {
+				id: playerList
+				imageName: "image/player_list"
+				anchors.verticalCenter: parent.verticalCenter
+			}
+		}
+		
+		Row {
+			id: middleButtonArea
 			anchors.horizontalCenter: parent.horizontalCenter
 			anchors.verticalCenter: parent.verticalCenter
 			spacing: 5
