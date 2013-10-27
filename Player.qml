@@ -111,6 +111,11 @@ Video {
 				imageName: "image/player_forward"
 				anchors.verticalCenter: playerPlay.verticalCenter
 			}
+			ImageButton {
+				id: playerOpen
+				imageName: "image/player_open"
+				anchors.verticalCenter: playerPlay.verticalCenter
+			}
 		}
 
 		Row {
