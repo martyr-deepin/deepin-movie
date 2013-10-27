@@ -5,9 +5,9 @@ Video {
     id: video
     autoPlay: true
 	
-	width: 800
-	height: 400
-	source: "/space/data/Video/DoctorWho/1.rmvb"
+	/* width: 800 */
+	/* height: 400 */
+	/* source: "/space/data/Video/DoctorWho/1.rmvb" */
 
 	function toggle() {
 		video.playbackState == MediaPlayer.PlayingState ? video.pause() : video.play()
