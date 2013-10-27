@@ -21,9 +21,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from PyQt5.QtWidgets import QApplication, qApp
-from PyQt5.QtQuick import QQuickView, QQuickItem
+from PyQt5.QtQuick import QQuickView
 from PyQt5.QtQml import qmlRegisterType
-from PyQt5.QtGui import QSurfaceFormat, QColor, QCloseEvent
+from PyQt5.QtGui import QSurfaceFormat, QColor
 from PyQt5 import QtCore, QtQuick
 from PyQt5.QtCore import QSize
 import os
@@ -31,7 +31,6 @@ import sys
 import signal
 from ImageCanvas import ImageCanvas
 from TopRoundRect import TopRoundRect
-from Player import Player
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
@@ -41,43 +40,15 @@ if __name__ == "__main__":
     
     view = QQuickView()
     
-    player = Player()
-    player.setWindowFlags(QtCore.Qt.FramelessWindowHint)
-    player.openFile("/space/data/Video/DoctorWho/1.rmvb")
-    player.resize(900, 600)
-    
     qml_context = view.rootContext()
     qml_context.setContextProperty("windowView", view)
     qml_context.setContextProperty("qApp", qApp)
     
-    def adjustPlayer():
-        pages = view.rootObject().findChild(QQuickItem, "pages")
-        player.move(
-            view.x() + pages.x() + 1,
-            view.y() + pages.y(),
-            )
-        player.resize(
-            pages.width() - 2,
-            pages.height() - 1,
-            )
-        
     def quitApp(*args):
         qApp.quit()
         
-    def viewEvent(event):
-        super(QQuickView, view).event(event)
-        
-        if event.type() == QCloseEvent().type():
-            quitApp()
-        
-        return False
-        
-    view.xChanged.connect(lambda x: adjustPlayer())    
-    view.yChanged.connect(lambda y: adjustPlayer())
     view.destroyed.connect(quitApp)
-    view.event = viewEvent
     
-    player.show()
     view.setResizeMode(QtQuick.QQuickView.SizeRootObjectToView)
     view.setMinimumSize(QSize(900, 600))
     
@@ -85,12 +56,10 @@ if __name__ == "__main__":
     surface_format.setAlphaBufferSize(8)
     view.setFormat(surface_format)
     
-    print "***: ", app.allWidgets(), type(app.allWidgets())
     view.setColor(QColor(0, 0, 0, 0))
     view.setFlags(QtCore.Qt.FramelessWindowHint)
     view.setSource(QtCore.QUrl.fromLocalFile(os.path.join(os.path.dirname(__file__), 'Main.qml')))
     view.show()
-    
     
     signal.signal(signal.SIGINT, signal.SIG_DFL)
     sys.exit(app.exec_())

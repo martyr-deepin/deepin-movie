@@ -3,6 +3,7 @@ import QtGraphicalEffects 1.0
 import ImageCanvas 1.0
 import TopRoundRect 1.0
 import QtWebKit 3.0
+import QtMultimedia 5.0
 
 Item {
 	id: window
@@ -220,12 +221,23 @@ Item {
 			property string name: "深度影院"
 		}
 		
-		Text {
+		Rectangle {
 			id: playPage
 			anchors.fill: parent
 			property string name: "视频播放"
-			text: name
-			color: "white"
+			color: Qt.rgba(0, 0, 0, 0)
+
+			MediaPlayer {
+				id: player
+				source: "file:///space/data/Video/DoctorWho/1.rmvb"
+				autoPlay: true
+			}
+
+			VideoOutput {
+				id: videoOutput
+				source: player
+				anchors.fill: parent
+			}
 		}
 
 		Text {
