@@ -75,7 +75,7 @@ if __name__ == "__main__":
     view.xChanged.connect(lambda x: adjustPlayer())    
     view.yChanged.connect(lambda y: adjustPlayer())
     view.destroyed.connect(quitApp)
-    # view.event = viewEvent
+    view.event = viewEvent
     
     player.show()
     
