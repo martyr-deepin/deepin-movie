@@ -93,6 +93,7 @@ Video {
 	
 	ParallelAnimation{
 		id: showPanel
+		alwaysRunToEnd: true
 		
 		PropertyAnimation { 
 			target: playPanel
@@ -112,6 +113,7 @@ Video {
 
 	ParallelAnimation{
 		id: hidePanel
+		alwaysRunToEnd: true
 		
 		PropertyAnimation { 
 			target: playPanel
