@@ -44,11 +44,6 @@ if __name__ == "__main__":
     qml_context.setContextProperty("windowView", view)
     qml_context.setContextProperty("qApp", qApp)
     
-    def quitApp(*args):
-        qApp.quit()
-        
-    view.destroyed.connect(quitApp)
-    
     view.setResizeMode(QtQuick.QQuickView.SizeRootObjectToView)
     view.setMinimumSize(QSize(900, 600))
     
