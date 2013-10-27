@@ -35,13 +35,12 @@ Video {
 		onPositionChanged: {
 			showingAnimation.restart()
 			hidingTimer.restart()
+
+			videoArea.cursorShape = Qt.ArrowCursor
 		}
 		
 		onExited: {
-			showingAnimation.stop()
-			hidingTimer.stop()
-			
-			hidingAnimation.restart()
+			videoArea.cursorShape = Qt.ArrowCursor
 		}
 		
 		Timer {
@@ -50,6 +49,7 @@ Video {
 			repeat: false
 			onTriggered: {
 				hidingAnimation.restart()
+				videoArea.cursorShape = Qt.BlankCursor
 			}
 		}
 	}
