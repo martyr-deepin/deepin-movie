@@ -45,7 +45,7 @@ if __name__ == "__main__":
     qml_context.setContextProperty("qApp", qApp)
     
     view.setResizeMode(QtQuick.QQuickView.SizeRootObjectToView)
-    view.setMinimumSize(QSize(900, 600))
+    view.setMinimumSize(QSize(900, 560))
     
     surface_format = QSurfaceFormat()
     surface_format.setAlphaBufferSize(8)

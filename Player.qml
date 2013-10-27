@@ -56,11 +56,11 @@ Video {
 
 	Rectangle {
 		id: bottomPanel
-		color: Qt.rgba(0, 0, 0, 0.9)
+		color: Qt.rgba(0, 0, 0, 0.95)
 		height: 60
 		anchors.left: video.left
 		anchors.right: video.right
-		y: video.height - height - 2
+		y: video.height - height
 		opacity: hideOpacity
 		
 		property double showOpacity: 0.9
