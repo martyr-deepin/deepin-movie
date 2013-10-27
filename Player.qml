@@ -130,6 +130,12 @@ Video {
 				imageName: "image/player_volume"
 				anchors.verticalCenter: parent.verticalCenter
 			}
+
+			ImageButton {
+				id: playerConfig
+				imageName: "image/player_config"
+				anchors.verticalCenter: parent.verticalCenter
+			}
 		}
 	}
 			
