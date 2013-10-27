@@ -217,7 +217,6 @@ Item {
 			id: movieStorePage
 			url: "http://pianku.xmp.kankan.com/moviestore_index.html"
 			anchors.fill: parent
-			
 			property string name: "深度影院"
 		}
 		
@@ -226,11 +225,12 @@ Item {
 			anchors.fill: parent
 			property string name: "视频播放"
 			color: Qt.rgba(0, 0, 0, 0)
-
+			
 			MediaPlayer {
 				id: player
 				source: "file:///space/data/Video/DoctorWho/1.rmvb"
 				autoPlay: true
+
 			}
 
 			VideoOutput {
@@ -238,8 +238,20 @@ Item {
 				source: player
 				anchors.fill: parent
 			}
-		}
 
+			MouseArea {
+				anchors.fill: parent
+				onClicked: {
+					player.play()
+				}
+			}
+
+			focus: true
+			Keys.onSpacePressed: player.playbackState == MediaPlayer.PlayingState ? player.pause() : player.play()
+			Keys.onLeftPressed: player.seek(player.position - 5000)
+			Keys.onRightPressed: player.seek(player.position + 5000)
+		}
+		
 		Text {
 			id: searchPage
 			anchors.fill: parent

@@ -7,7 +7,6 @@ Rectangle {
 	height: parent.height
     smooth: true
     radius: 2
-	/* color: Qt.rgba(1, 0, 0, 0.5) */
 	color: Qt.rgba(1, 0, 0, 0)
 	
 	property int tabIndex: 0
