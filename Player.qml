@@ -6,7 +6,7 @@ Video {
     autoPlay: true
 	
 	width: 800
-	height: 600
+	height: 400
 	source: "/space/data/Video/DoctorWho/1.rmvb"
 
 	function toggle() {
@@ -22,13 +22,21 @@ Video {
 	}
 	
     MouseArea {
-        anchors.fill: parent
-        onClicked: {
+		anchors.fill: parent
+		hoverEnabled: true
+		
+		onClicked: {
 			toggle()
-				
-			console.log("*****************")	
-        }
-    }
+		}
+		
+		onEntered: {
+			showPanel.start()
+		}
+		
+		onExited: {
+			hidePanel.start()
+		}
+	}
 
 	Rectangle {
 		id: playPanel
@@ -36,8 +44,11 @@ Video {
 		height: 60
 		anchors.left: video.left
 		anchors.right: video.right
-		anchors.bottom: video.bottom
-		/* visible: false */
+		
+		Component.onCompleted: {
+			y = video.height
+			opacity = 0
+		}
 		
 		Row {
 			anchors.horizontalCenter: parent.horizontalCenter
@@ -79,4 +90,42 @@ Video {
         pause()
         source: s
     }
+	
+	ParallelAnimation{
+		id: showPanel
+		
+		PropertyAnimation { 
+			target: playPanel
+			property: "y"
+			to: video.height - playPanel.height
+			duration: 200
+			easing.type: Easing.OutBack
+		}		
+		PropertyAnimation { 
+			target: playPanel
+			property: "opacity"
+			to: 0.9
+			duration: 200
+			easing.type: Easing.OutBack
+		}		
+	}	
+
+	ParallelAnimation{
+		id: hidePanel
+		
+		PropertyAnimation { 
+			target: playPanel
+			property: "y"
+			to: video.height
+			duration: 200
+			easing.type: Easing.InBack
+		}		
+		PropertyAnimation { 
+			target: playPanel
+			property: "opacity"
+			to: 0
+			duration: 200
+			easing.type: Easing.InBack
+		}		
+	}	
 }
