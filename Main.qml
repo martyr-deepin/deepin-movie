@@ -213,66 +213,11 @@ Item {
 		anchors.right: titlebar.right
 		color: Qt.rgba(0, 0, 0, 0)
 		
-		Rectangle {
+		Player {
 			id: playPage
-			anchors.fill: parent
 			property string name: "视频播放"
-			color: Qt.rgba(0, 0, 0, 0)
-			
-			MediaPlayer {
-				id: player
-				source: "file:///space/data/Video/DoctorWho/1.rmvb"
-				autoPlay: true
-
-			}
-
-			VideoOutput {
-				id: videoOutput
-				source: player
-				anchors.fill: parent
-			}
-
-			MouseArea {
-				anchors.fill: parent
-				onClicked: {
-					player.play()
-				}
-			}
-			
-			Rectangle {
-				id: playPanel
-				color: Qt.rgba(0, 0, 0, 0.9)
-				height: 60
-				anchors.left: playPage.left
-				anchors.right: playPage.right
-				anchors.bottom: playPage.bottom
-				
-				Row {
-					anchors.horizontalCenter: parent.horizontalCenter
-					anchors.verticalCenter: parent.verticalCenter
-					spacing: 5
-					
-					ImageButton {
-						id: playerBackward
-						imageName: "image/player_backward"
-						anchors.verticalCenter: playerPlay.verticalCenter
-					}
-					ImageButton {
-						id: playerPlay
-						imageName: "image/player_play"
-					}
-					ImageButton {
-						id: playerForward
-						imageName: "image/player_forward"
-						anchors.verticalCenter: playerPlay.verticalCenter
-					}
-				}
-			}
-
-			focus: true
-			Keys.onSpacePressed: player.playbackState == MediaPlayer.PlayingState ? player.pause() : player.play()
-			Keys.onLeftPressed: player.seek(player.position - 5000)
-			Keys.onRightPressed: player.seek(player.position + 5000)
+			anchors.fill: parent
+			source: "/space/data/Video/DoctorWho/1.rmvb"
 		}
 		
 		WebView {
