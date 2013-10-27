@@ -4,14 +4,27 @@ import QtMultimedia 5.0
 Video {
     id: video
     autoPlay: true
+	
+	width: 800
+	height: 600
+	source: "/space/data/Video/DoctorWho/1.rmvb"
 
+	function toggle() {
+		video.playbackState == MediaPlayer.PlayingState ? video.pause() : video.play()
+	}
+	
+	function forward() {
+		video.seek(video.position + 5000)
+	}
+	
+	function backward() {
+		video.seek(video.position - 5000)
+	}
+	
     MouseArea {
         anchors.fill: parent
         onClicked: {
-            if (playbackState == MediaPlayer.PlayingState)
-                pause()
-            else
-                play()
+			toggle()
 				
 			console.log("*****************")	
         }
@@ -21,9 +34,9 @@ Video {
 		id: playPanel
 		color: Qt.rgba(0, 0, 0, 0.9)
 		height: 60
-		anchors.left: playPage.left
-		anchors.right: playPage.right
-		anchors.bottom: playPage.bottom
+		anchors.left: video.left
+		anchors.right: video.right
+		anchors.bottom: video.bottom
 		/* visible: false */
 		
 		Row {
@@ -35,23 +48,32 @@ Video {
 				id: playerBackward
 				imageName: "image/player_backward"
 				anchors.verticalCenter: playerPlay.verticalCenter
+				onClicked: {
+					backward()
+				}
 			}
 			ImageButton {
 				id: playerPlay
-				imageName: "image/player_play"
+				imageName: video.playbackState == MediaPlayer.PlayingState ? "image/player_pause" : "image/player_play"
+				onClicked: {
+					toggle()
+				}
 			}
 			ImageButton {
 				id: playerForward
 				imageName: "image/player_forward"
 				anchors.verticalCenter: playerPlay.verticalCenter
+				onClicked: {
+					forward()
+				}
 			}
 		}
 	}
 			
     focus: true
-    Keys.onSpacePressed: video.paused = !video.paused
-    Keys.onLeftPressed: video.position -= 5000
-    Keys.onRightPressed: video.position += 5000
+    Keys.onSpacePressed: toggle()
+    Keys.onLeftPressed: backward()
+    Keys.onRightPressed: forward()
 
     function setSource(s) {
         pause()
