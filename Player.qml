@@ -29,12 +29,18 @@ Video {
 			toggle()
 		}
 		
-		onEntered: {
-			showPanel.start()
+		onPositionChanged: {
+			showingAnimation.restart()
+			hidingTimer.restart()
 		}
 		
-		onExited: {
-			hidePanel.start()
+		Timer {
+			id: hidingTimer
+			interval: 2000  // hide after 2s
+			repeat: false
+			onTriggered: {
+				hidingAnimation.restart()
+			}
 		}
 	}
 
@@ -92,7 +98,7 @@ Video {
     }
 	
 	ParallelAnimation{
-		id: showPanel
+		id: showingAnimation
 		alwaysRunToEnd: true
 		
 		PropertyAnimation { 
@@ -112,7 +118,7 @@ Video {
 	}	
 
 	ParallelAnimation{
-		id: hidePanel
+		id: hidingAnimation
 		alwaysRunToEnd: true
 		
 		PropertyAnimation { 
