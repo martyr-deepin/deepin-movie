@@ -249,7 +249,7 @@ Item {
 		id: frameBorder
 		anchors.fill: frame
 		color: Qt.rgba(0, 0, 0, 0)
-		border.color: Qt.rgba(200, 200, 200, 0.5)
+		border.color: Qt.rgba(100, 100, 100, 0.3)
 		border.width: 1
 		smooth: true
 		radius: frameRadius

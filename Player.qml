@@ -4,6 +4,8 @@ import QtMultimedia 5.0
 Video {
     id: video
     autoPlay: true
+	anchors.leftMargin: 1
+	anchors.rightMargin: 1
 	
 	/* width: 800 */
 	/* height: 400 */
@@ -35,6 +37,13 @@ Video {
 			hidingTimer.restart()
 		}
 		
+		onExited: {
+			showingAnimation.stop()
+			hidingTimer.stop()
+			
+			hidingAnimation.restart()
+		}
+		
 		Timer {
 			id: hidingTimer
 			interval: 2000  // hide after 2s
@@ -51,14 +60,11 @@ Video {
 		height: 60
 		anchors.left: video.left
 		anchors.right: video.right
+		y: video.height - height - 2
+		opacity: hideOpacity
 		
-		property int showY: video.height - height - 2
-		property int hideY: video.height - 2
-		
-		Component.onCompleted: {
-			y = hideY
-			opacity = 0
-		}
+		property double showOpacity: 0.9
+		property double hideOpacity: 0
 		
 		Row {
 			anchors.horizontalCenter: parent.horizontalCenter
@@ -69,9 +75,6 @@ Video {
 				id: playerBackward
 				imageName: "image/player_backward"
 				anchors.verticalCenter: playerPlay.verticalCenter
-				onClicked: {
-					backward()
-				}
 			}
 			ImageButton {
 				id: playerPlay
@@ -84,9 +87,6 @@ Video {
 				id: playerForward
 				imageName: "image/player_forward"
 				anchors.verticalCenter: playerPlay.verticalCenter
-				onClicked: {
-					forward()
-				}
 			}
 		}
 	}
@@ -100,17 +100,10 @@ Video {
 		id: showingAnimation
 		alwaysRunToEnd: true
 		
-		PropertyAnimation {
-			target: playPanel
-			property: "y"
-			to: playPanel.showY
-			duration: 200
-			easing.type: Easing.OutBack
-		}
 		PropertyAnimation { 
 			target: playPanel
 			property: "opacity"
-			to: 0.9
+			to: playPanel.showOpacity
 			duration: 200
 			easing.type: Easing.OutBack
 		}		
@@ -123,16 +116,9 @@ Video {
 		PropertyAnimation { 
 			target: playPanel
 			property: "opacity"
-			to: 0
+			to: playPanel.hideOpacity
 			duration: 200
 			easing.type: Easing.InBack
 		}		
-		PropertyAnimation {
-			target: playPanel
-			property: "y"
-			to: playPanel.hideY
-			duration: 200
-			easing.type: Easing.InBack
-		}
 	}	
 }
