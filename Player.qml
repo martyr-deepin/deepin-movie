@@ -52,8 +52,11 @@ Video {
 		anchors.left: video.left
 		anchors.right: video.right
 		
+		property int showY: video.height - height - 2
+		property int hideY: video.height - 2
+		
 		Component.onCompleted: {
-			y = video.height
+			y = hideY
 			opacity = 0
 		}
 		
@@ -97,13 +100,13 @@ Video {
 		id: showingAnimation
 		alwaysRunToEnd: true
 		
-		PropertyAnimation { 
+		PropertyAnimation {
 			target: playPanel
 			property: "y"
-			to: video.height - playPanel.height
+			to: playPanel.showY
 			duration: 200
 			easing.type: Easing.OutBack
-		}		
+		}
 		PropertyAnimation { 
 			target: playPanel
 			property: "opacity"
@@ -119,17 +122,17 @@ Video {
 		
 		PropertyAnimation { 
 			target: playPanel
-			property: "y"
-			to: video.height
-			duration: 200
-			easing.type: Easing.InBack
-		}		
-		PropertyAnimation { 
-			target: playPanel
 			property: "opacity"
 			to: 0
 			duration: 200
 			easing.type: Easing.InBack
 		}		
+		PropertyAnimation {
+			target: playPanel
+			property: "y"
+			to: playPanel.hideY
+			duration: 200
+			easing.type: Easing.InBack
+		}
 	}	
 }
