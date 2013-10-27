@@ -72,6 +72,14 @@ Video {
 			spacing: 5
 			
 			ImageButton {
+				id: playerStop
+				imageName: "image/player_stop"
+				anchors.verticalCenter: playerPlay.verticalCenter
+				onClicked: {
+					video.stop()
+				}
+			}
+			ImageButton {
 				id: playerBackward
 				imageName: "image/player_backward"
 				anchors.verticalCenter: playerPlay.verticalCenter
