@@ -1,4 +1,6 @@
 Deepin Movie:
 
-PyQt5: http://jianshu.io/p/7mqAmr
-PyVLC: http://liris.cnrs.fr/advene/download/python-ctypes/
+* Install PyQt5: http://jianshu.io/p/7mqAmr
+
+  Add below command when you make failed with pyqt5:
+    sudo ln -s /usr/include/python2.7 /usr/local/include/python2.7
