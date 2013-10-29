@@ -220,7 +220,7 @@ Item {
 			id: playPage
 			property string name: "视频播放"
 			anchors.fill: parent
-			source: "/space/data/Video/DoctorWho/1.rmvb"
+			source: move_file
 		}
 		
 		WebView {

@@ -33,6 +33,8 @@ from ImageCanvas import ImageCanvas
 from TopRoundRect import TopRoundRect
 
 if __name__ == "__main__":
+    movie_file = sys.argv[1]
+    
     app = QApplication(sys.argv)
     
     qmlRegisterType(ImageCanvas, "ImageCanvas", 1, 0, "ImageCanvas")
@@ -43,6 +45,7 @@ if __name__ == "__main__":
     qml_context = view.rootContext()
     qml_context.setContextProperty("windowView", view)
     qml_context.setContextProperty("qApp", qApp)
+    qml_context.setContextProperty("move_file", movie_file)
     
     view.setResizeMode(QtQuick.QQuickView.SizeRootObjectToView)
     view.setMinimumSize(QSize(900, 560))
