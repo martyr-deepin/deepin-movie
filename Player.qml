@@ -1,5 +1,6 @@
-import QtQuick 2.0
+import QtQuick 2.1
 import QtMultimedia 5.0
+import QtGraphicalEffects 1.0
 
 Video {
     id: video
@@ -13,6 +14,7 @@ Video {
 	
 	property string timeTotal: ""
 	property string timeCurrent: ""
+	property double timePosition: 0
 	
 	Component.onCompleted: {
 		timeTotal = formatTime(video.duration)
@@ -20,6 +22,7 @@ Video {
 	
 	onPositionChanged: {
 		timeCurrent = formatTime(video.position)
+		timePosition = video.position / video.duration
 	}
 	
 	function formatTime(millseconds) {
@@ -54,6 +57,7 @@ Video {
 		
 		onClicked: {
 			toggle()
+			/* video.seek(1781477) */
 		}
 		
 		onPositionChanged: {
@@ -90,86 +94,135 @@ Video {
 		property double showOpacity: 0.9
 		property double hideOpacity: 0
 		
-		Row {
-			id: leftButtonArea
-			anchors.left: parent.left
-			anchors.leftMargin: 10
-			anchors.verticalCenter: parent.verticalCenter
-			spacing: 5
+		Column {
+			anchors.fill: parent
 			
-			ImageButton {
-				id: playerList
-				imageName: "image/player_list"
-				anchors.verticalCenter: parent.verticalCenter
-			}
-			
-			Text {
-				id: playTime
-				anchors.verticalCenter: parent.verticalCenter
-				text: timeCurrent + " / " + timeTotal
-				color: Qt.rgba(100, 100, 100, 1)
-			}
-		}
-		
-		Row {
-			id: middleButtonArea
-			anchors.horizontalCenter: parent.horizontalCenter
-			anchors.verticalCenter: parent.verticalCenter
-			spacing: 5
-			
-			ImageButton {
-				id: playerStop
-				imageName: "image/player_stop"
-				anchors.verticalCenter: playerPlay.verticalCenter
-				onClicked: {
-					video.stop()
+			Item {
+				id: progressbar
+				anchors.top: parent.top
+				anchors.left: parent.left
+				anchors.right: parent.right
+				height: 3
+
+				Rectangle {
+					id: progressbarBackground
+					anchors.top: parent.top
+					anchors.left: parent.left
+					anchors.right: parent.right
+					height: 3
+					color: Qt.rgba(100, 100, 100, 0.2)
+					
+					LinearGradient {
+						id: progressbarForeground
+						anchors.left: parent.left
+						anchors.top: parent.top
+						height: parent.height
+						width: timePosition * parent.width
+						start: Qt.point(0, 0)
+						end: Qt.point(10, 0)
+						gradient: Gradient {
+							GradientStop { id: progressStopStart; position: 0.0; color: Qt.rgba(19 / 255.0, 48 / 255.0, 104 / 255.0, 0.5)}
+							GradientStop { id: progressStopPoint; position: 1.0; color: Qt.rgba(33 / 255.0, 91 / 255.0, 210 / 255.0, 0.8)}
+						}
+					}
 				}
 			}
-			ImageButton {
-				id: playerBackward
-				imageName: "image/player_backward"
-				anchors.verticalCenter: playerPlay.verticalCenter
-			}
-			ImageButton {
-				id: playerPlay
-				imageName: video.playbackState == MediaPlayer.PlayingState ? "image/player_pause" : "image/player_play"
-				onClicked: {
-					toggle()
-				}
-			}
-			ImageButton {
-				id: playerForward
-				imageName: "image/player_forward"
-				anchors.verticalCenter: playerPlay.verticalCenter
-			}
-			ImageButton {
-				id: playerOpen
-				imageName: "image/player_open"
-				anchors.verticalCenter: playerPlay.verticalCenter
-			}
-		}
-
-		Row {
-			id: rightButtonArea
-			anchors.right: parent.right
-			anchors.rightMargin: 10
-			anchors.verticalCenter: parent.verticalCenter
-			spacing: 5
 			
-			ImageButton {
-				id: playerVolume
-				imageName: "image/player_volume"
-				anchors.verticalCenter: parent.verticalCenter
+			Row {
+				anchors.top: progressbar.bottom
+				
+				Text {
+					id: playTime
+					anchors.left: parent.left
+					anchors.right: parent.right
+					anchors.leftMargin: 10
+					text: timeCurrent + " / " + timeTotal
+					color: Qt.rgba(100, 100, 100, 1)
+					font.pixelSize: 10
+				}			
 			}
+			
+			Item {
+				id: buttonArea
+				anchors.left: parent.left
+				anchors.right: parent.right
+				anchors.verticalCenter: parent.verticalCenter
+				
+				Row {
+					id: leftButtonArea
+					anchors.left: parent.left
+					anchors.leftMargin: 10
+					anchors.verticalCenter: parent.verticalCenter
+					spacing: 5
+					
+					ImageButton {
+						id: playerList
+						imageName: "image/player_list"
+						anchors.verticalCenter: parent.verticalCenter
+					}
+				}
+				
+				Row {
+					id: middleButtonArea
+					anchors.horizontalCenter: parent.horizontalCenter
+					anchors.verticalCenter: parent.verticalCenter
+					spacing: 5
+					
+					ImageButton {
+						id: playerStop
+						imageName: "image/player_stop"
+						anchors.verticalCenter: playerPlay.verticalCenter
+						onClicked: {
+							video.stop()
+						}
+					}
+					ImageButton {
+						id: playerBackward
+						imageName: "image/player_backward"
+						anchors.verticalCenter: playerPlay.verticalCenter
+					}
+					ImageButton {
+						id: playerPlay
+						imageName: video.playbackState == MediaPlayer.PlayingState ? "image/player_pause" : "image/player_play"
+						onClicked: {
+							toggle()
+						}
+					}
+					ImageButton {
+						id: playerForward
+						imageName: "image/player_forward"
+						anchors.verticalCenter: playerPlay.verticalCenter
+					}
+					ImageButton {
+						id: playerOpen
+						imageName: "image/player_open"
+						anchors.verticalCenter: playerPlay.verticalCenter
+					}
+				}
 
-			ImageButton {
-				id: playerConfig
-				imageName: "image/player_config"
-				anchors.verticalCenter: parent.verticalCenter
-			}
+				Row {
+					id: rightButtonArea
+					anchors.right: parent.right
+					anchors.rightMargin: 10
+					anchors.verticalCenter: parent.verticalCenter
+					spacing: 5
+					
+					ImageButton {
+						id: playerVolume
+						imageName: "image/player_volume"
+						anchors.verticalCenter: parent.verticalCenter
+					}
+
+					ImageButton {
+						id: playerConfig
+						imageName: "image/player_config"
+						anchors.verticalCenter: parent.verticalCenter
+					}
+				}
+			}		
 		}
 	}
-			
+	
     focus: true
     Keys.onSpacePressed: toggle()
     Keys.onLeftPressed: backward()
