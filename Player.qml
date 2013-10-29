@@ -282,7 +282,7 @@ Video {
 			target: bottomPanel
 			property: "opacity"
 			to: bottomPanel.hideOpacity
-			duration: 200
+			duration: 400
 			easing.type: Easing.InBack
 		}		
 	}	
