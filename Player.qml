@@ -56,8 +56,8 @@ Video {
 		hoverEnabled: true
 		
 		onClicked: {
-			/* toggle() */
-			video.seek(1700000)
+			toggle()
+			/* video.seek(1700000) */
 		}
 		
 		onPositionChanged: {
@@ -142,6 +142,11 @@ Video {
 						id: progressbarArea
 						anchors.fill: parent
 						hoverEnabled: true
+						
+						onClicked: {
+							video.seek(video.duration * mouseX / (progressbarBackground.width - progressbarBackground.x))
+						}
+						
 						onPositionChanged: {
 							progressbarBackground.height = progressbarBackground.handleHeight
 							
@@ -160,10 +165,11 @@ Video {
 						height: parent.height
 						width: timePosition * parent.width
 						start: Qt.point(0, 0)
-						end: Qt.point(10, 0)
+						end: Qt.point(width, 0)
 						gradient: Gradient {
-							GradientStop { id: progressStopStart; position: 0.0; color: Qt.rgba(19 / 255.0, 48 / 255.0, 104 / 255.0, 0.5)}
-							GradientStop { id: progressStopPoint; position: 1.0; color: Qt.rgba(33 / 255.0, 91 / 255.0, 210 / 255.0, 0.8)}
+							GradientStop { position: 0.0; color: Qt.rgba(19 / 255.0, 48 / 255.0, 104 / 255.0, 0.5)}
+							GradientStop { position: 0.95; color: Qt.rgba(33 / 255.0, 91 / 255.0, 210 / 255.0, 0.8)}
+							GradientStop { position: 1.0; color: Qt.rgba(33 / 255.0, 91 / 255.0, 210 / 255.0, 0.5)}
 						}
 					}
 				}
