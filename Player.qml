@@ -56,8 +56,8 @@ Video {
 		hoverEnabled: true
 		
 		onClicked: {
-			toggle()
-			/* video.seek(1781477) */
+			/* toggle() */
+			video.seek(1700000)
 		}
 		
 		onPositionChanged: {
@@ -65,6 +65,8 @@ Video {
 			hidingTimer.restart()
 
 			videoArea.cursorShape = Qt.ArrowCursor
+			
+			console.log("$$$$$$$$$$$$$$$$$$$")
 		}
 		
 		onExited: {
@@ -94,6 +96,16 @@ Video {
 		property double showOpacity: 0.9
 		property double hideOpacity: 0
 		
+		MouseArea {
+			id: bottomPanelArea
+			anchors.fill: parent
+			hoverEnabled: true
+			
+			onPositionChanged: {
+				hidingTimer.stop()
+			}
+		}
+		
 		Column {
 			anchors.fill: parent
 			
@@ -102,15 +114,40 @@ Video {
 				anchors.top: parent.top
 				anchors.left: parent.left
 				anchors.right: parent.right
-				height: 3
 
 				Rectangle {
 					id: progressbarBackground
 					anchors.top: parent.top
 					anchors.left: parent.left
 					anchors.right: parent.right
-					height: 3
+					height: normalHeight
 					color: Qt.rgba(100, 100, 100, 0.2)
+					
+					property int normalHeight: 3
+					property int handleHeight: 6
+					
+					Text {
+						id: playTime
+						anchors.left: parent.left
+						anchors.top: progressbarBackground.bottom
+						anchors.leftMargin: 10
+						text: timeCurrent + " / " + timeTotal
+						color: Qt.rgba(100, 100, 100, 1)
+						font.pixelSize: 10
+					}			
+					
+					MouseArea {
+						id: progressbarArea
+						anchors.fill: parent
+						hoverEnabled: true
+						onPositionChanged: {
+							progressbarBackground.height = progressbarBackground.handleHeight
+						}
+						
+						onExited: {
+							progressbarBackground.height = progressbarBackground.normalHeight
+						}
+					}
 					
 					LinearGradient {
 						id: progressbarForeground
@@ -126,20 +163,6 @@ Video {
 						}
 					}
 				}
-			}
-			
-			Row {
-				anchors.top: progressbar.bottom
-				
-				Text {
-					id: playTime
-					anchors.left: parent.left
-					anchors.right: parent.right
-					anchors.leftMargin: 10
-					text: timeCurrent + " / " + timeTotal
-					color: Qt.rgba(100, 100, 100, 1)
-					font.pixelSize: 10
-				}			
 			}
 			
 			Item {
