@@ -65,8 +65,6 @@ Video {
 			hidingTimer.restart()
 
 			videoArea.cursorShape = Qt.ArrowCursor
-			
-			console.log("$$$$$$$$$$$$$$$$$$$")
 		}
 		
 		onExited: {
@@ -104,6 +102,10 @@ Video {
 			onPositionChanged: {
 				hidingTimer.stop()
 			}
+			
+			onExited: {
+				hidingTimer.restart()
+			}
 		}
 		
 		Column {
@@ -124,7 +126,7 @@ Video {
 					color: Qt.rgba(100, 100, 100, 0.2)
 					
 					property int normalHeight: 3
-					property int handleHeight: 6
+					property int handleHeight: 10
 					
 					Text {
 						id: playTime
@@ -142,6 +144,8 @@ Video {
 						hoverEnabled: true
 						onPositionChanged: {
 							progressbarBackground.height = progressbarBackground.handleHeight
+							
+							hidingTimer.stop()
 						}
 						
 						onExited: {
