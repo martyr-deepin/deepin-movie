@@ -122,11 +122,11 @@ Video {
 					anchors.top: parent.top
 					anchors.left: parent.left
 					anchors.right: parent.right
-					height: normalHeight
+					height: shrinkHeight
 					color: Qt.rgba(100, 100, 100, 0.2)
 					
-					property int normalHeight: 3
-					property int handleHeight: 10
+					property int shrinkHeight: 3
+					property int expandHeight: 10
 					
 					Text {
 						id: playTime
@@ -148,13 +148,13 @@ Video {
 						}
 						
 						onPositionChanged: {
-							progressbarBackground.height = progressbarBackground.handleHeight
+							expandProgressBar.restart()
 							
 							hidingTimer.stop()
 						}
 						
 						onExited: {
-							progressbarBackground.height = progressbarBackground.normalHeight
+							shrinkProgressBar.restart()
 						}
 					}
 					
@@ -284,6 +284,32 @@ Video {
 			to: bottomPanel.hideOpacity
 			duration: 200
 			easing.type: Easing.InBack
+		}		
+	}	
+	
+	ParallelAnimation{
+		id: expandProgressBar
+		alwaysRunToEnd: true
+		
+		PropertyAnimation { 
+			target: progressbarBackground
+			property: "height"
+			to: progressbarBackground.expandHeight
+			duration: 100
+			easing.type: Easing.OutBack
+		}		
+	}	
+
+	ParallelAnimation{
+		id: shrinkProgressBar
+		alwaysRunToEnd: true
+		
+		PropertyAnimation { 
+			target: progressbarBackground
+			property: "height"
+			to: progressbarBackground.shrinkHeight
+			duration: 100
+			easing.type: Easing.OutBack
 		}		
 	}	
 }
