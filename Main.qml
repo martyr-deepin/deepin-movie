@@ -222,6 +222,11 @@ Item {
 			anchors.fill: parent
 			source: movie_file
 			videoPreview.video.source: movie_file
+			
+			Component.onCompleted: {
+				// Pause preview when player complete.
+				videoPreview.video.pause()
+			}
 		}
 		
 		WebView {
