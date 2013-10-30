@@ -168,13 +168,16 @@ Video {
 							
 							videoPreview.videoTime.text = formatTime(videoPosition)
 							
-							/* if (mouseX < videoPreview.width / 2) { */
-							/* 	videoPreview.triangleArea.anchors.leftMargin = mouseX */
-							/* 	videoPreview.triangleArea.anchors.rightMargin = videoPreview.previewRectangle.width - videoPreview.triangleWidth - mouseX */
-							/* } else { */
-							/* 	videoPreview.triangleArea.anchors.leftMargin = mouseX */
-							/* 	videoPreview.triangleArea.anchors.rightMargin = videoPreview.previewRectangle.width - videoPreview.triangleWidth - mouseX */
-							/* } */
+							var minOffsetX = 10
+							
+							if (mouseX < videoPreview.width / 2) {
+								videoPreview.triangleArea.drawOffsetX = Math.max(mouseX, minOffsetX)
+							} else if (mouseX > progressbarArea.width - videoPreview.width / 2) {
+								var offsetX = Math.max(mouseX - (progressbarArea.width - videoPreview.width / 2))
+								videoPreview.triangleArea.drawOffsetX = videoPreview.triangleArea.defaultOffsetX + offsetX
+							} else {
+								videoPreview.triangleArea.drawOffsetX = videoPreview.triangleArea.defaultOffsetX
+							}
 						}
 						
 						onExited: {

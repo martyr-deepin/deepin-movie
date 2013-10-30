@@ -6,7 +6,7 @@ Rectangle {
 	width: 150
 	height: 117
 	color: Qt.rgba(0, 0, 0, 0.0)
-	property int triangleWidth: 22
+	property int triangleWidth: 20
 	property int triangleHeight: 10
 	property int previewPadding: 3
 	property int previewTimeHeight: 20
@@ -52,27 +52,38 @@ Rectangle {
 		id: previewTriangleArea
 		anchors.fill: parent
 		anchors.topMargin: parent.height - triangleHeight - 1
-		anchors.leftMargin: (parent.width - triangleWidth) / 2
-		anchors.rightMargin: (parent.width - triangleWidth) / 2
 		color: Qt.rgba(0, 0, 0, 0)
-		antialiasing: true
 		
 		Canvas {
 			id: triangleArea
 			anchors.fill: parent
+			antialiasing: true
 			
+			property int defaultOffsetX: (width - triangleWidth) / 2
+			property int drawOffsetX: defaultOffsetX
+			property int drawY: 0
+			property int drawWidth: triangleWidth
+			property int drawHeight: triangleHeight
+			
+			onDrawOffsetXChanged: requestPaint()
+				
 			onPaint: {
 				var ctx = getContext("2d")
+
+				ctx.clearRect(x, y, width, height)
 				
 				ctx.save()
 				
 				ctx.fillStyle = Qt.rgba(0, 0, 0, 1)
 				
+				
 				ctx.beginPath()
-				ctx.moveTo(x, y)
-				ctx.lineTo(x + width, y)
-				ctx.lineTo(x + width / 2, y + height)
-				ctx.lineTo(x, y)
+				
+				ctx.moveTo(x + drawOffsetX, y + drawY)
+				ctx.lineTo(x + drawOffsetX + triangleWidth, y + drawY)
+				ctx.lineTo(x + drawOffsetX + triangleWidth / 2, y + drawY + drawHeight)
+				ctx.lineTo(x + drawOffsetX, y + drawY)
+				
 				ctx.closePath()
 				ctx.fill()
 				
@@ -84,10 +95,18 @@ Rectangle {
 				ctx.strokeStyle = Qt.rgba(10, 10, 10, 0.7)
 				
 				ctx.beginPath()
-				ctx.moveTo(x, y)
-				ctx.lineTo(x + width, y)
-				ctx.lineTo(x + width / 2, y + height)
-				ctx.lineTo(x, y)
+				
+				ctx.moveTo(x + drawOffsetX + triangleWidth / 2, y + drawY + drawHeight)
+				ctx.lineTo(x + drawOffsetX, y + drawY)
+				
+				ctx.closePath()
+				ctx.stroke()
+
+				ctx.beginPath()
+				
+				ctx.moveTo(x + drawOffsetX + triangleWidth / 2, y + drawY + drawHeight)
+				ctx.lineTo(x + drawOffsetX + triangleWidth, y + drawY)
+				
 				ctx.closePath()
 				ctx.stroke()
 				
