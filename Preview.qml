@@ -4,12 +4,15 @@ import QtGraphicalEffects 1.0
 
 Rectangle {
 	width: 150
-	height: 97
+	height: 117
 	color: Qt.rgba(0, 0, 0, 0.0)
 	property int triangleWidth: 22
 	property int triangleHeight: 10
 	
 	property alias video: video
+	property alias videoTime: videoTime
+	property alias triangleArea: triangleArea
+	property alias previewRectangle: previewRectangle
 	
 	Rectangle {
 		id: previewRectangle
@@ -27,9 +30,17 @@ Rectangle {
 			anchors.leftMargin: previewPadding
 			anchors.rightMargin: previewPadding
 			anchors.topMargin: previewPadding
-			anchors.bottomMargin: previewPadding
+			anchors.bottomMargin: previewPadding + previewTimeHeight
 			
 			property int previewPadding: 3
+			property int previewTimeHeight: 20
+		}
+
+		Text {
+			id: videoTime
+			text: "00:00:00"
+			color: Qt.rgba(10, 10, 10, 0.8)
+			anchors.fill: parent
 		}
 	}
 	
@@ -40,10 +51,10 @@ Rectangle {
 		anchors.leftMargin: (parent.width - triangleWidth) / 2
 		anchors.rightMargin: (parent.width - triangleWidth) / 2
 		color: Qt.rgba(0, 0, 0, 0)
-		height: triangleWidth
 		antialiasing: true
 		
 		Canvas {
+			id: triangleArea
 			anchors.fill: parent
 			
 			onPaint: {
@@ -66,7 +77,7 @@ Rectangle {
 				ctx.save()
 
 				ctx.lineWidth = 1
-				ctx.strokeStyle = Qt.rgba(10, 10, 10, 0.5)
+				ctx.strokeStyle = Qt.rgba(10, 10, 10, 0.7)
 				
 				ctx.beginPath()
 				ctx.moveTo(x, y)

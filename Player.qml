@@ -162,8 +162,19 @@ Video {
 							videoPreview.x = Math.max(Math.min(mouseX - videoPreview.width / 2, progressbarArea.width - videoPreview.width), 0)
 							videoPreview.y = progressbarArea.y - videoPreview.height
 							
-							videoPreview.video.seek(video.duration * mouseX / (progressbarBackground.width - progressbarBackground.x))
+							var videoPosition = video.duration * mouseX / (progressbarBackground.width - progressbarBackground.x)
+							videoPreview.video.seek(videoPosition)
 							videoPreview.video.pause()
+							
+							videoPreview.videoTime.text = formatTime(videoPosition)
+							
+							/* if (mouseX < videoPreview.width / 2) { */
+							/* 	videoPreview.triangleArea.anchors.leftMargin = mouseX */
+							/* 	videoPreview.triangleArea.anchors.rightMargin = videoPreview.previewRectangle.width - videoPreview.triangleWidth - mouseX */
+							/* } else { */
+							/* 	videoPreview.triangleArea.anchors.leftMargin = mouseX */
+							/* 	videoPreview.triangleArea.anchors.rightMargin = videoPreview.previewRectangle.width - videoPreview.triangleWidth - mouseX */
+							/* } */
 						}
 						
 						onExited: {
