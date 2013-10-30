@@ -15,6 +15,7 @@ Video {
 	property string timeTotal: ""
 	property string timeCurrent: ""
 	property double timePosition: 0
+	property double videoPosition: 0
 	
 	property bool showBottomPanel: false
 	
@@ -162,9 +163,9 @@ Video {
 							videoPreview.x = Math.max(Math.min(mouseX - videoPreview.width / 2, progressbarArea.width - videoPreview.width), 0)
 							videoPreview.y = progressbarArea.y - videoPreview.height
 							
-							var videoPosition = video.duration * mouseX / (progressbarBackground.width - progressbarBackground.x)
-							videoPreview.video.seek(videoPosition)
-							videoPreview.video.pause()
+							videoPosition = video.duration * mouseX / (progressbarBackground.width - progressbarBackground.x)
+							
+							updatePreviewTimer.restart()
 							
 							videoPreview.videoTime.text = formatTime(videoPosition)
 							
@@ -173,7 +174,8 @@ Video {
 							if (mouseX < videoPreview.width / 2) {
 								videoPreview.triangleArea.drawOffsetX = Math.max(mouseX, minOffsetX)
 							} else if (mouseX > progressbarArea.width - videoPreview.width / 2) {
-								var offsetX = Math.max(mouseX - (progressbarArea.width - videoPreview.width / 2))
+								var offsetX = Math.min(mouseX - (progressbarArea.width - videoPreview.width / 2),
+													  videoPreview.triangleArea.width / 2 - minOffsetX * 2)
 								videoPreview.triangleArea.drawOffsetX = videoPreview.triangleArea.defaultOffsetX + offsetX
 							} else {
 								videoPreview.triangleArea.drawOffsetX = videoPreview.triangleArea.defaultOffsetX
@@ -182,6 +184,16 @@ Video {
 						
 						onExited: {
 							videoPreview.visible = false
+						}
+						
+						Timer {
+							id: updatePreviewTimer
+							interval: 50
+							repeat: false
+							onTriggered: {
+								videoPreview.video.seek(videoPosition)
+								videoPreview.video.pause()
+							}
 						}
 					}
 					

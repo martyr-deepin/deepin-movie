@@ -114,11 +114,4 @@ Rectangle {
 			}
 		}
 	}
-	
-	Behavior on x {
-		NumberAnimation {
-			duration: 500
-			easing.type: Easing.OutQuint
-		}
-	}
 }
