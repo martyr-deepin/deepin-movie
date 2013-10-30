@@ -45,7 +45,7 @@ if __name__ == "__main__":
     qml_context = view.rootContext()
     qml_context.setContextProperty("windowView", view)
     qml_context.setContextProperty("qApp", qApp)
-    qml_context.setContextProperty("move_file", movie_file)
+    qml_context.setContextProperty("movie_file", movie_file)
     
     view.setResizeMode(QtQuick.QQuickView.SizeRootObjectToView)
     view.setMinimumSize(QSize(900, 560))

@@ -220,7 +220,8 @@ Item {
 			id: playPage
 			property string name: "视频播放"
 			anchors.fill: parent
-			source: move_file
+			source: movie_file
+			videoPreview.video.source: movie_file
 		}
 		
 		WebView {

@@ -18,6 +18,8 @@ Video {
 	
 	property bool showBottomPanel: false
 	
+	property alias videoPreview: videoPreview
+	
 	Component.onCompleted: {
 		timeTotal = formatTime(video.duration)
 	}
@@ -128,7 +130,8 @@ Video {
 					anchors.top: parent.top
 					anchors.left: parent.left
 					anchors.right: parent.right
-					height: 3
+					/* height: 3 */
+					height: 10
 					color: Qt.rgba(100, 100, 100, 0.2)
 					visible: showBottomPanel ? 1 : 0
 					
@@ -154,7 +157,23 @@ Video {
 						
 						onPositionChanged: {
 							hidingTimer.stop()
+							
+							videoPreview.visible = true
+							videoPreview.x = Math.max(Math.min(mouseX - videoPreview.width / 2, progressbarArea.width - videoPreview.width), 0)
+							videoPreview.y = progressbarArea.y - videoPreview.height
+							
+							videoPreview.video.seek(video.duration * mouseX / (progressbarBackground.width - progressbarBackground.x))
+							videoPreview.video.pause()
 						}
+						
+						onExited: {
+							videoPreview.visible = false
+						}
+					}
+					
+					Preview {
+						id: videoPreview
+						visible: false
 					}
 					
 					LinearGradient {
