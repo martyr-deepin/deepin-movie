@@ -16,6 +16,8 @@ Video {
 	property string timeCurrent: ""
 	property double timePosition: 0
 	
+	property bool showBottomPanel: false
+	
 	Component.onCompleted: {
 		timeTotal = formatTime(video.duration)
 	}
@@ -73,7 +75,7 @@ Video {
 		
 		Timer {
 			id: hidingTimer
-			interval: 2000  // hide after 2s
+			interval: 2000
 			repeat: false
 			onTriggered: {
 				hidingAnimation.restart()
@@ -85,11 +87,15 @@ Video {
 	Rectangle {
 		id: bottomPanel
 		color: Qt.rgba(0, 0, 0, 0.95)
-		height: 60
+		height: hideHeight
 		anchors.left: video.left
 		anchors.right: video.right
 		y: video.height - height
-		opacity: hideOpacity
+		/* opacity: hideOpacity */
+		opacity: 1
+		
+		property double showHeight: 60
+		property double hideHeight: 0
 		
 		property double showOpacity: 0.9
 		property double hideOpacity: 0
@@ -122,11 +128,9 @@ Video {
 					anchors.top: parent.top
 					anchors.left: parent.left
 					anchors.right: parent.right
-					height: shrinkHeight
+					height: 3
 					color: Qt.rgba(100, 100, 100, 0.2)
-					
-					property int shrinkHeight: 3
-					property int expandHeight: 10
+					visible: showBottomPanel ? 1 : 0
 					
 					Text {
 						id: playTime
@@ -136,7 +140,8 @@ Video {
 						text: timeCurrent + " / " + timeTotal
 						color: Qt.rgba(100, 100, 100, 1)
 						font.pixelSize: 10
-					}			
+						visible: showBottomPanel ? 1 : 0
+					}
 					
 					MouseArea {
 						id: progressbarArea
@@ -148,13 +153,7 @@ Video {
 						}
 						
 						onPositionChanged: {
-							expandProgressBar.restart()
-							
 							hidingTimer.stop()
-						}
-						
-						onExited: {
-							shrinkProgressBar.restart()
 						}
 					}
 					
@@ -171,6 +170,7 @@ Video {
 							GradientStop { position: 0.95; color: Qt.rgba(33 / 255.0, 91 / 255.0, 210 / 255.0, 0.8)}
 							GradientStop { position: 1.0; color: Qt.rgba(33 / 255.0, 91 / 255.0, 210 / 255.0, 0.5)}
 						}
+						visible: showBottomPanel ? 1 : 0
 					}
 				}
 			}
@@ -192,6 +192,7 @@ Video {
 						id: playerList
 						imageName: "image/player_list"
 						anchors.verticalCenter: parent.verticalCenter
+						visible: showBottomPanel ? 1 : 0
 					}
 				}
 				
@@ -208,11 +209,13 @@ Video {
 						onClicked: {
 							video.stop()
 						}
+						visible: showBottomPanel ? 1 : 0
 					}
 					ImageButton {
 						id: playerBackward
 						imageName: "image/player_backward"
 						anchors.verticalCenter: playerPlay.verticalCenter
+						visible: showBottomPanel ? 1 : 0
 					}
 					ImageButton {
 						id: playerPlay
@@ -220,16 +223,19 @@ Video {
 						onClicked: {
 							toggle()
 						}
+						visible: showBottomPanel ? 1 : 0
 					}
 					ImageButton {
 						id: playerForward
 						imageName: "image/player_forward"
 						anchors.verticalCenter: playerPlay.verticalCenter
+						visible: showBottomPanel ? 1 : 0
 					}
 					ImageButton {
 						id: playerOpen
 						imageName: "image/player_open"
 						anchors.verticalCenter: playerPlay.verticalCenter
+						visible: showBottomPanel ? 1 : 0
 					}
 				}
 
@@ -244,15 +250,17 @@ Video {
 						id: playerVolume
 						imageName: "image/player_volume"
 						anchors.verticalCenter: parent.verticalCenter
+						visible: showBottomPanel ? 1 : 0
 					}
 
 					ImageButton {
 						id: playerConfig
 						imageName: "image/player_config"
 						anchors.verticalCenter: parent.verticalCenter
+						visible: showBottomPanel ? 1 : 0
 					}
 				}
-			}		
+			}
 		}
 	}
 	
@@ -265,51 +273,37 @@ Video {
 		id: showingAnimation
 		alwaysRunToEnd: true
 		
-		PropertyAnimation { 
+		PropertyAnimation {
 			target: bottomPanel
-			property: "opacity"
-			to: bottomPanel.showOpacity
-			duration: 200
+			property: "height"
+			to: bottomPanel.showHeight
+			duration: 100
 			easing.type: Easing.OutBack
-		}		
+		}
+
+		onRunningChanged: {
+			if (!showingAnimation.running) {
+				showBottomPanel = true
+			}
+		}
 	}	
 
 	ParallelAnimation{
 		id: hidingAnimation
 		alwaysRunToEnd: true
 		
-		PropertyAnimation { 
+		PropertyAnimation {
 			target: bottomPanel
-			property: "opacity"
-			to: bottomPanel.hideOpacity
-			duration: 400
-			easing.type: Easing.InBack
-		}		
-	}	
-	
-	ParallelAnimation{
-		id: expandProgressBar
-		alwaysRunToEnd: true
-		
-		PropertyAnimation { 
-			target: progressbarBackground
 			property: "height"
-			to: progressbarBackground.expandHeight
+			to: bottomPanel.hideHeight
 			duration: 100
 			easing.type: Easing.OutBack
-		}		
-	}	
-
-	ParallelAnimation{
-		id: shrinkProgressBar
-		alwaysRunToEnd: true
+		}
 		
-		PropertyAnimation { 
-			target: progressbarBackground
-			property: "height"
-			to: progressbarBackground.shrinkHeight
-			duration: 100
-			easing.type: Easing.OutBack
-		}		
+		onRunningChanged: {
+			if (!showingAnimation.running) {
+				showBottomPanel = false
+			}
+		}
 	}	
 }
