@@ -8,6 +8,8 @@ Rectangle {
 	color: Qt.rgba(0, 0, 0, 0.0)
 	property int triangleWidth: 22
 	property int triangleHeight: 10
+	property int previewPadding: 3
+	property int previewTimeHeight: 20
 	
 	property alias video: video
 	property alias videoTime: videoTime
@@ -23,24 +25,26 @@ Rectangle {
 		radius: 3
 		antialiasing: true
 		
-		Video {
-			id: video
-			autoPlay: true
+		Column {
 			anchors.fill: parent
-			anchors.leftMargin: previewPadding
-			anchors.rightMargin: previewPadding
-			anchors.topMargin: previewPadding
-			anchors.bottomMargin: previewPadding + previewTimeHeight
 			
-			property int previewPadding: 3
-			property int previewTimeHeight: 20
-		}
+			Video {
+				id: video
+				autoPlay: true
+				anchors.fill: parent
+				anchors.topMargin: previewPadding
+				anchors.leftMargin: previewPadding
+				anchors.rightMargin: previewPadding
+				anchors.bottomMargin: previewPadding + previewTimeHeight
+			}
 
-		Text {
-			id: videoTime
-			text: "00:00:00"
-			color: Qt.rgba(10, 10, 10, 0.8)
-			anchors.fill: parent
+			Text {
+				id: videoTime
+				text: "00:00:00"
+				color: Qt.rgba(10, 10, 10, 0.8)
+				anchors.top: video.bottom
+				anchors.horizontalCenter: video.horizontalCenter
+			}
 		}
 	}
 	
