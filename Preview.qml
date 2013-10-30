@@ -28,30 +28,26 @@ Rectangle {
 		radius: 3
 		antialiasing: true
 		
-		Column {
+		Video {
+			id: video
+			autoPlay: true
 			anchors.fill: parent
+			anchors.topMargin: previewPadding
+			anchors.leftMargin: previewPadding
+			anchors.rightMargin: previewPadding
+			anchors.bottomMargin: previewPadding + previewTimeHeight
 			
-			Video {
-				id: video
-				autoPlay: true
-				anchors.fill: parent
-				anchors.topMargin: previewPadding
-				anchors.leftMargin: previewPadding
-				anchors.rightMargin: previewPadding
-				anchors.bottomMargin: previewPadding + previewTimeHeight
-				
-				onPositionChanged: {
-					preview.positionChanged()
-				}
+			onPositionChanged: {
+				preview.positionChanged()
 			}
+		}
 
-			Text {
-				id: videoTime
-				text: "00:00:00"
-				color: Qt.rgba(10, 10, 10, 0.8)
-				anchors.top: video.bottom
-				anchors.horizontalCenter: video.horizontalCenter
-			}
+		Text {
+			id: videoTime
+			text: "00:00:00"
+			color: Qt.rgba(10, 10, 10, 0.8)
+			anchors.top: video.bottom
+			anchors.horizontalCenter: video.horizontalCenter
 		}
 	}
 	
