@@ -165,7 +165,9 @@ Video {
 							
 							videoPosition = video.duration * mouseX / (progressbarBackground.width - progressbarBackground.x)
 							
-							updatePreviewTimer.restart()
+							videoPreview.video.visible = false
+							videoPreview.video.seek(videoPosition)
+							/* updatePreviewTimer.restart() */
 							
 							videoPreview.videoTime.text = formatTime(videoPosition)
 							
@@ -192,7 +194,6 @@ Video {
 							repeat: false
 							onTriggered: {
 								videoPreview.video.seek(videoPosition)
-								videoPreview.video.pause()
 							}
 						}
 					}
@@ -200,6 +201,10 @@ Video {
 					Preview {
 						id: videoPreview
 						visible: false
+						
+						onPositionChanged: {
+							videoPreview.video.visible = true
+						}
 					}
 					
 					LinearGradient {

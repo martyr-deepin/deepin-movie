@@ -3,6 +3,7 @@ import QtMultimedia 5.0
 import QtGraphicalEffects 1.0
 
 Rectangle {
+	id: preview
 	width: 150
 	height: 117
 	color: Qt.rgba(0, 0, 0, 0.0)
@@ -15,6 +16,8 @@ Rectangle {
 	property alias videoTime: videoTime
 	property alias triangleArea: triangleArea
 	property alias previewRectangle: previewRectangle
+	
+	signal positionChanged 
 	
 	Rectangle {
 		id: previewRectangle
@@ -36,6 +39,10 @@ Rectangle {
 				anchors.leftMargin: previewPadding
 				anchors.rightMargin: previewPadding
 				anchors.bottomMargin: previewPadding + previewTimeHeight
+				
+				onPositionChanged: {
+					preview.positionChanged()
+				}
 			}
 
 			Text {
