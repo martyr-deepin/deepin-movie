@@ -166,8 +166,7 @@ Video {
 							videoPosition = video.duration * mouseX / (progressbarBackground.width - progressbarBackground.x)
 							
 							videoPreview.video.visible = false
-							videoPreview.video.seek(videoPosition)
-							/* updatePreviewTimer.restart() */
+							updatePreviewTimer.restart()
 							
 							videoPreview.videoTime.text = formatTime(videoPosition)
 							
