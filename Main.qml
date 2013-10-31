@@ -223,9 +223,7 @@ Item {
 			
 			Rectangle {
 				id: playlist
-				anchors.left: parent.left
-				anchors.top: parent.top
-				anchors.bottom: parent.bottom
+				height: parent.height
 				width: 0
 				color: Qt.rgba(10, 10, 10, 0.2)
 				
@@ -239,10 +237,8 @@ Item {
 			
 			Player {
 				id: playPage
-				anchors.left: playlist.right
-				anchors.top: parent.top
-				anchors.bottom: parent.bottom
-				anchors.right: parent.right
+				width: parent.width - playlist.width
+				height: parent.height
 				source: movie_file
 				videoPreview.video.source: movie_file
 				
@@ -251,7 +247,7 @@ Item {
 				}
 				
 				onPlaylistButtonClicked: {
-					playlist.width == 0 ? playlist.width = 250 : playlist.width = 0
+					playlist.width == 0 ? playlist.width = 200 : playlist.width = 0
 				}
 			}
 		}
