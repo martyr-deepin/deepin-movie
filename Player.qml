@@ -5,7 +5,7 @@ import QtGraphicalEffects 1.0
 Video {
     id: video
     autoPlay: true
-	muted: true
+	/* muted: true */
 	anchors.leftMargin: 1
 	anchors.rightMargin: 1
 	
@@ -269,12 +269,10 @@ Video {
 						}
 					}
 					
-					Text {
-						id: playTime
+					ImageButton {
+						id: playerConfig
+						imageName: "image/player_config"
 						anchors.verticalCenter: parent.verticalCenter
-						text: timeCurrent + " / " + timeTotal
-						color: Qt.rgba(100, 100, 100, 1)
-						font.pixelSize: 12
 						visible: showBottomPanel ? 1 : 0
 					}
 				}
@@ -333,10 +331,12 @@ Video {
 					anchors.verticalCenter: parent.verticalCenter
 					spacing: 5
 					
-					ImageButton {
-						id: playerConfig
-						imageName: "image/player_config"
+					Text {
+						id: playTime
 						anchors.verticalCenter: parent.verticalCenter
+						text: timeCurrent + " / " + timeTotal
+						color: Qt.rgba(100, 100, 100, 1)
+						font.pixelSize: 12
 						visible: showBottomPanel ? 1 : 0
 					}
 				}
