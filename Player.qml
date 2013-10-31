@@ -363,7 +363,6 @@ Video {
 
 		onStarted: {
 			video.bottomPanelShow()
-			console.log("show")
 		}
 		
 		onRunningChanged: {
@@ -387,7 +386,6 @@ Video {
 		
 		onStarted: {
 			video.bottomPanelHide()
-			console.log("hide")
 		}
 		
 		onRunningChanged: {

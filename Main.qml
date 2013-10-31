@@ -14,6 +14,7 @@ Item {
 	property bool isMax: false
 	
 	default property alias tabPages: pages.children
+	property alias playPage: playPage
 	property alias playlist: playlist
 	property int currentTab: 0
 	
@@ -33,11 +34,22 @@ Item {
 		isMax = !isMax
 	}
 
-	function setVisibles() {
+	function selectPlayPage() {
+		for (var i = 0; i < tabPages.length; ++i) {
+			/* Don't set opacity, otherwise 'opacity 0' widget will eat othersise widget's event */
+			tabPages[i].visible = false
+		}
+		
+		playPage.visible = true
+	}
+	
+	function selectTabPage() {
 		for (var i = 0; i < tabPages.length; ++i) {
 			/* Don't set opacity, otherwise 'opacity 0' widget will eat othersise widget's event */
 			tabPages[i].visible = tabButtonArea.children[i].tabIndex == currentTab
 		}
+		
+		playPage.visible = false
 	}
 			
     RectangularGlow {
@@ -82,6 +94,95 @@ Item {
 		
     }
 	
+	
+	Rectangle {
+		id: pages
+		objectName: "pages"
+		anchors.top: titlebar.bottom
+		anchors.bottom: frame.bottom
+		anchors.left: titlebar.left
+		anchors.right: titlebar.right
+		color: Qt.rgba(0, 0, 0, 0)
+		
+		WebView {
+			id: movieStorePage
+			url: "http://pianku.xmp.kankan.com/moviestore_index.html"
+			anchors.fill: parent
+			property string name: "深度影院"
+			visible: false
+		}
+		
+		WebView {
+			id: searchPage
+			url: "http://search.xmp.kankan.com/lndex4xmp.shtml"
+			anchors.fill: parent
+			property string name: "视频搜索"
+			visible: false
+		}
+
+		WebView {
+			id: favouritePage
+			url: "http://search.xmp.kankan.com/lndex4xmp.shtml"
+			anchors.fill: parent
+			property string name: "我的收藏"
+			visible: false
+		}
+	}
+
+	Rectangle {
+		id: playPage
+		anchors.top: titlebar.top
+		anchors.bottom: pages.bottom
+		anchors.left: pages.left
+		anchors.right: pages.right
+		color: Qt.rgba(0, 0, 0, 1)
+		
+		Row {
+			anchors.fill: parent
+			
+			Rectangle {
+				id: playlist
+				height: parent.height
+				width: 0
+				color: Qt.rgba(10, 10, 10, 0.05)
+				
+				Behavior on width {
+					NumberAnimation {
+						duration: 100
+						easing.type: Easing.OutQuint
+					}
+				}
+			}
+			
+			Player {
+				width: parent.width - playlist.width
+				height: parent.height
+				source: movie_file
+				videoPreview.video.source: movie_file
+				
+				Component.onCompleted: {
+					videoPreview.video.pause()
+				}
+				
+				onPlaylistButtonClicked: {
+					playlist.width == 0 ? playlist.width = 200 : playlist.width = 0
+				}
+				
+				onBottomPanelShow: {
+					/* titlebar.visible = true */
+					showingTitlebarAnimation.restart()
+				}
+
+				onBottomPanelHide: {
+					if (playPage.visible) {
+						/* titlebar.visible = false */
+						hidingTitlebarAnimation.restart()
+					}
+				}
+			}
+		}	
+	}
+		
 	MouseArea {
         id: titlebar
         anchors.top: frame.top
@@ -158,17 +259,28 @@ Item {
 				}
 			}
 			
+			TabButton {
+				id: playPageTab
+				text: "视频播放"
+				anchors.left: appIcon.right
+				width: 160
+				visible: showTitlebar ? 1 : 0
+
+				onPressed: {
+					tabEffect.x = x - 40
+					selectPlayPage()
+				}
+				
+				Component.onCompleted: {
+					tabEffect.x = x - 40
+				}
+			}
+				
 			Row {
 				id: tabButtonArea
 				height: parent.height
-				anchors.left: appIcon.right
-				anchors.leftMargin: 60
+				anchors.left: playPageTab.right
 				spacing: 40
-				
-				Component.onCompleted: {
-					tabEffect.x = tabButtonArea.children[0].x + tabButtonArea.children[0].width / 2
-					setVisibles()
-				}
 				
 				Repeater {
 					model: tabPages.length
@@ -178,9 +290,9 @@ Item {
 						visible: showTitlebar ? 1 : 0
 						
 						onPressed: {
-							tabEffect.x = x + width / 2
+							tabEffect.x = x + width / 2 + 100
 							currentTab = index
-							setVisibles()
+							selectTabPage()
 						}
 					}
 				}
@@ -215,84 +327,6 @@ Item {
 		
     }
 	
-	Rectangle {
-		id: pages
-		objectName: "pages"
-		anchors.top: titlebar.bottom
-		anchors.bottom: frame.bottom
-		anchors.left: titlebar.left
-		anchors.right: titlebar.right
-		color: Qt.rgba(0, 0, 0, 0)
-		
-		Row {
-			id: playPage
-			anchors.fill: parent
-			property string name: "视频播放"
-			
-			Rectangle {
-				id: playlist
-				height: parent.height
-				width: 0
-				color: Qt.rgba(10, 10, 10, 0.05)
-				
-				Behavior on width {
-					NumberAnimation {
-						duration: 100
-						easing.type: Easing.OutQuint
-					}
-				}
-			}
-			
-			Player {
-				width: parent.width - playlist.width
-				height: parent.height
-				source: movie_file
-				videoPreview.video.source: movie_file
-				
-				Component.onCompleted: {
-					videoPreview.video.pause()
-				}
-				
-				onPlaylistButtonClicked: {
-					playlist.width == 0 ? playlist.width = 200 : playlist.width = 0
-				}
-				
-				onBottomPanelShow: {
-					/* titlebar.visible = true */
-					showingTitlebarAnimation.restart()
-				}
-
-				onBottomPanelHide: {
-					if (playPage.visible) {
-						/* titlebar.visible = false */
-						hidingTitlebarAnimation.restart()
-					}
-				}
-			}
-		}
-		
-		WebView {
-			id: movieStorePage
-			url: "http://pianku.xmp.kankan.com/moviestore_index.html"
-			anchors.fill: parent
-			property string name: "深度影院"
-		}
-		
-		WebView {
-			id: searchPage
-			url: "http://search.xmp.kankan.com/lndex4xmp.shtml"
-			anchors.fill: parent
-			property string name: "视频搜索"
-		}
-
-		WebView {
-			id: favouritePage
-			url: "http://search.xmp.kankan.com/lndex4xmp.shtml"
-			anchors.fill: parent
-			property string name: "我的收藏"
-		}
-	}
-
 	Rectangle {
 		id: frameBorder
 		anchors.fill: frame
