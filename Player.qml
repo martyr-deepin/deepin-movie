@@ -23,6 +23,8 @@ Video {
 	property alias videoPreview: videoPreview
 	
 	signal playlistButtonClicked
+	signal bottomPanelShow
+	signal bottomPanelHide
 	
 	Component.onCompleted: {
 		timeTotal = formatTime(video.duration)
@@ -80,7 +82,9 @@ Video {
 		}
 		
 		onPositionChanged: {
-			showingAnimation.restart()
+			if (!showingAnimation.running) {
+				showingAnimation.restart()
+			}
 			hidingTimer.restart()
 
 			isHover = true
@@ -108,7 +112,9 @@ Video {
 			interval: 2000
 			repeat: false
 			onTriggered: {
-				hidingAnimation.restart()
+				if (!hidingAnimation.running) {
+					hidingAnimation.restart()
+				}
 				videoArea.cursorShape = Qt.BlankCursor
 			}
 		}
@@ -355,6 +361,11 @@ Video {
 			easing.type: Easing.OutBack
 		}
 
+		onStarted: {
+			video.bottomPanelShow()
+			console.log("show")
+		}
+		
 		onRunningChanged: {
 			if (!showingAnimation.running) {
 				showBottomPanel = true
@@ -372,6 +383,11 @@ Video {
 			to: bottomPanel.hideHeight
 			duration: 100
 			easing.type: Easing.OutBack
+		}
+		
+		onStarted: {
+			video.bottomPanelHide()
+			console.log("hide")
 		}
 		
 		onRunningChanged: {

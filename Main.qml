@@ -17,6 +17,7 @@ Item {
 	property alias playlist: playlist
 	property int currentTab: 0
 	
+	property bool showTitlebar: true
 	
 	function toggleMaxWindow() {
 		isMax ? windowView.showNormal() : windowView.showMaximized()
@@ -125,6 +126,7 @@ Item {
 				anchors.left: parent.left
 				anchors.verticalCenter: parent.verticalCenter
 				anchors.leftMargin: 20
+				visible: showTitlebar ? 1 : 0
 			}
 
 			Rectangle {
@@ -173,6 +175,8 @@ Item {
 					delegate: TabButton {
 						text: tabPages[index].name
 						tabIndex: index
+						visible: showTitlebar ? 1 : 0
+						
 						onPressed: {
 							tabEffect.x = x + width / 2
 							currentTab = index
@@ -190,18 +194,21 @@ Item {
 					id: minButton
 					imageName: "image/window_min"
 					onClicked: {windowView.showMinimized()}
+					visible: showTitlebar ? 1 : 0
 				}
 
 				ImageButton {
 					id: maxButton
 					imageName: "image/window_max"
 					onClicked: {toggleMaxWindow()}
+					visible: showTitlebar ? 1 : 0
 				}
 
 				ImageButton {
 					id: closeButton
 					imageName: "image/window_close"
 					onClicked: {qApp.quit()}
+					visible: showTitlebar ? 1 : 0
 				}
 			}
 		}
@@ -218,6 +225,7 @@ Item {
 		color: Qt.rgba(0, 0, 0, 0)
 		
 		Row {
+			id: playPage
 			anchors.fill: parent
 			property string name: "视频播放"
 			
@@ -236,7 +244,6 @@ Item {
 			}
 			
 			Player {
-				id: playPage
 				width: parent.width - playlist.width
 				height: parent.height
 				source: movie_file
@@ -248,6 +255,18 @@ Item {
 				
 				onPlaylistButtonClicked: {
 					playlist.width == 0 ? playlist.width = 200 : playlist.width = 0
+				}
+				
+				onBottomPanelShow: {
+					/* titlebar.visible = true */
+					showingTitlebarAnimation.restart()
+				}
+
+				onBottomPanelHide: {
+					if (playPage.visible) {
+						/* titlebar.visible = false */
+						hidingTitlebarAnimation.restart()
+					}
 				}
 			}
 		}
@@ -283,5 +302,43 @@ Item {
 		smooth: true
 		radius: frameRadius
 	}
+
+	ParallelAnimation{
+		id: showingTitlebarAnimation
+		alwaysRunToEnd: true
+		
+		PropertyAnimation {
+			target: titlebar
+			property: "height"
+			to: titlebarHeight
+			duration: 100
+			easing.type: Easing.OutBack
+		}
+		
+		onRunningChanged: {
+			if (!showingTitlebarAnimation.running) {
+				showTitlebar = true
+			}
+		}
+	}	
+
+	ParallelAnimation{
+		id: hidingTitlebarAnimation
+		alwaysRunToEnd: true
+		
+		PropertyAnimation {
+			target: titlebar
+			property: "height"
+			to: 0
+			duration: 100
+			easing.type: Easing.OutBack
+		}
+		
+		onRunningChanged: {
+			if (!showingTitlebarAnimation.running) {
+				showTitlebar = false
+			}
+		}
+	}	
 }
 
