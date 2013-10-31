@@ -8,13 +8,14 @@ ImageButton {
 	imageName: "image/player_volume"
 	
 	property alias volumebar: volumebar
-	property double volume: 0.0
+	property double volume: 1.0
 	property int hideWidth: 0.0
 	property int showWidth: 60.0
 	property int hidePosition: hideWidth
 	property int showPosition: volume * showWidth
 	
 	signal inVolumebar
+	signal changeVolume
 	
 	MouseArea {
 		anchors.fill: parent
@@ -37,7 +38,6 @@ ImageButton {
 		anchors.leftMargin: 5
 		width: hideWidth
 		height: 5
-		/* height: 10 */
 		color: Qt.rgba(2, 2, 2, 0.2)
 		
 		LinearGradient {
@@ -45,7 +45,7 @@ ImageButton {
 			anchors.left: parent.left
 			anchors.top: parent.top
 			height: parent.height
-			width: showPosition
+			width: hidePosition
 			start: Qt.point(0, 0)
 			end: Qt.point(width, 0)
 			gradient: Gradient {
@@ -62,35 +62,40 @@ ImageButton {
 			}
 		}
 		
-		MouseArea {
-			id: volumebarArea
-			anchors.fill: parent
-			hoverEnabled: true
-			z: volumePositionBar.z + 1
-
-			onClicked: {
-				volume = mouseX / showWidth
-			}
-			
-			onPositionChanged: {
-				volumeButton.inVolumebar()
-			
-				volumebar.width = showWidth
-				volumePositionBar.width = showPosition
-				
-				hideVolumebarTimer.stop()
-			}
-			
-			onExited: {
-				hideVolumebarTimer.start()
-			}
-		}
 		
 		Behavior on width {
 			NumberAnimation {
 				duration: 300
 				easing.type: Easing.OutQuint
 			}
+		}
+	}
+	
+	MouseArea {
+		id: volumebarArea
+		anchors.top: volumebar.top
+		anchors.bottom: volumebar.bottom
+		anchors.left: volumebar.left
+		anchors.right: volumebar.right
+		hoverEnabled: true
+
+		onClicked: {
+			volume = mouseX / showWidth
+			volumePositionBar.width = showPosition
+			volumeButton.changeVolume()
+		}
+		
+		onPositionChanged: {
+			volumeButton.inVolumebar()
+			
+			volumebar.width = showWidth
+			volumePositionBar.width = showPosition
+			
+			hideVolumebarTimer.stop()
+		}
+		
+		onExited: {
+			hideVolumebarTimer.start()
 		}
 	}
 

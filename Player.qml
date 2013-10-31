@@ -285,6 +285,10 @@ Video {
 						onInVolumebar: {
 							hidingTimer.stop()
 						}
+						
+						onChangeVolume: {
+							video.volume = playerVolume.volume
+						}
 					}
 				}
 
