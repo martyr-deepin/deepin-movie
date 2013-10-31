@@ -31,6 +31,7 @@ Rectangle {
 		Video {
 			id: video
 			autoPlay: true
+			muted: true
 			anchors.fill: parent
 			anchors.topMargin: previewPadding
 			anchors.leftMargin: previewPadding
