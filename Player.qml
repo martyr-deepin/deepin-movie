@@ -21,6 +21,8 @@ Video {
 	
 	property alias videoPreview: videoPreview
 	
+	signal playlistButtonClicked
+	
 	Component.onCompleted: {
 		timeTotal = formatTime(video.duration)
 	}
@@ -94,7 +96,6 @@ Video {
 		anchors.left: video.left
 		anchors.right: video.right
 		y: video.height - height
-		/* opacity: hideOpacity */
 		opacity: 1
 		
 		property double showHeight: 60
@@ -231,6 +232,10 @@ Video {
 						imageName: "image/player_list"
 						anchors.verticalCenter: parent.verticalCenter
 						visible: showBottomPanel ? 1 : 0
+						
+						onClicked: {
+							video.playlistButtonClicked()
+						}
 					}
 					
 					Text {

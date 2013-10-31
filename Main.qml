@@ -14,6 +14,7 @@ Item {
 	property bool isMax: false
 	
 	default property alias tabPages: pages.children
+	property alias playlist: playlist
 	property int currentTab: 0
 	
 	
@@ -216,16 +217,42 @@ Item {
 		anchors.right: titlebar.right
 		color: Qt.rgba(0, 0, 0, 0)
 		
-		Player {
-			id: playPage
-			property string name: "视频播放"
+		Row {
 			anchors.fill: parent
-			source: movie_file
-			videoPreview.video.source: movie_file
+			property string name: "视频播放"
 			
-			Component.onCompleted: {
-				// Pause preview when player complete.
-				videoPreview.video.pause()
+			Rectangle {
+				id: playlist
+				anchors.left: parent.left
+				anchors.top: parent.top
+				anchors.bottom: parent.bottom
+				width: 0
+				color: Qt.rgba(10, 10, 10, 0.2)
+				
+				Behavior on width {
+					NumberAnimation {
+						duration: 100
+						easing.type: Easing.OutQuint
+					}
+				}
+			}
+			
+			Player {
+				id: playPage
+				anchors.left: playlist.right
+				anchors.top: parent.top
+				anchors.bottom: parent.bottom
+				anchors.right: parent.right
+				source: movie_file
+				videoPreview.video.source: movie_file
+				
+				Component.onCompleted: {
+					videoPreview.video.pause()
+				}
+				
+				onPlaylistButtonClicked: {
+					playlist.width == 0 ? playlist.width = 250 : playlist.width = 0
+				}
 			}
 		}
 		
