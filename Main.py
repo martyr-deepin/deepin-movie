@@ -48,7 +48,7 @@ if __name__ == "__main__":
     qml_context.setContextProperty("movie_file", movie_file)
     
     view.setResizeMode(QtQuick.QQuickView.SizeRootObjectToView)
-    view.setMinimumSize(QSize(900, 560))
+    view.setMinimumSize(QSize(900, 518))
     
     surface_format = QSurfaceFormat()
     surface_format.setAlphaBufferSize(8)

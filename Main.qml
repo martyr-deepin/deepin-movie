@@ -83,15 +83,6 @@ Item {
 			anchors.fill: parent
 			radius: frameRadius
 		}
-		
-		/* ImageCanvas { */
-		/* 	id: skinBackground */
-		/* 	anchors.fill: parent */
-		/* 	imageFile: "skin/4.jpg" */
-		/* 	radius: frameRadius */
-		/*     /\* visible: false *\/ */
-		/* } */
-		
     }
 	
 	
@@ -135,6 +126,10 @@ Item {
 		anchors.bottom: pages.bottom
 		anchors.left: pages.left
 		anchors.right: pages.right
+		anchors.topMargin: 1
+		anchors.bottomMargin: 1
+		anchors.leftMargin: 1
+		anchors.rightMargin: 1
 		color: Qt.rgba(0, 0, 0, 1)
 		
 		Row {
