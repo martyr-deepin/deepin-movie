@@ -252,12 +252,9 @@ Video {
 					spacing: 5
 					
 					ImageButton {
-						id: playerStop
-						imageName: "image/player_stop"
+						id: playerOpen
+						imageName: "image/player_open"
 						anchors.verticalCenter: playerPlay.verticalCenter
-						onClicked: {
-							video.stop()
-						}
 						visible: showBottomPanel ? 1 : 0
 					}
 					ImageButton {
@@ -281,11 +278,12 @@ Video {
 						visible: showBottomPanel ? 1 : 0
 					}
 					ImageButton {
-						id: playerOpen
-						imageName: "image/player_open"
-						anchors.verticalCenter: playerPlay.verticalCenter
+						id: playerVolume
+						imageName: "image/player_volume"
+						anchors.verticalCenter: parent.verticalCenter
 						visible: showBottomPanel ? 1 : 0
 					}
+
 				}
 
 				Row {
@@ -295,13 +293,6 @@ Video {
 					anchors.verticalCenter: parent.verticalCenter
 					spacing: 5
 					
-					ImageButton {
-						id: playerVolume
-						imageName: "image/player_volume"
-						anchors.verticalCenter: parent.verticalCenter
-						visible: showBottomPanel ? 1 : 0
-					}
-
 					ImageButton {
 						id: playerConfig
 						imageName: "image/player_config"
