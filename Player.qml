@@ -75,9 +75,11 @@ Video {
         property real lastMouseY: 0
 
 		property bool isHover: false
+		property bool isDoubleClick: false
 		
         onPressed: {
 			isHover = false
+			isDoubleClick = false
 			
 			lastMouseX = mouseX
 			lastMouseY = mouseY
@@ -85,8 +87,13 @@ Video {
 		
 		onClicked: {
 			if (!isHover) {
-				toggle()
+				clickTimer.restart()
 			}
+		}
+		
+		onDoubleClicked: {
+			isDoubleClick = true
+			console.log("fullscreen")
 		}
 		
 		onPositionChanged: {
@@ -124,6 +131,17 @@ Video {
 					hidingAnimation.restart()
 				}
 				video.hideCursor()
+			}
+		}
+		
+		Timer {
+			id: clickTimer
+			interval: 200
+			repeat: false
+			onTriggered: {
+				if (!videoArea.isDoubleClick) {
+					toggle()
+				}
 			}
 		}
 	}
