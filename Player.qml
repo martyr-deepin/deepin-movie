@@ -65,14 +65,19 @@ Video {
 		anchors.fill: parent
 		hoverEnabled: true
 		
+		property real windowViewX: 0
+        property real windowViewY: 0
+
 		property real lastMouseX: 0
         property real lastMouseY: 0
+
 		property bool isHover: false
 		
         onPressed: {
-            lastMouseX = mouseX
-            lastMouseY = mouseY
 			isHover = false
+			
+			lastMouseX = mouseX
+			lastMouseY = mouseY
         }
 		
 		onClicked: {
@@ -93,13 +98,13 @@ Video {
 
         onMouseXChanged: {
 			if (pressed) {
-				windowView.x += (mouseX - lastMouseX)
+				windowView.x += mouseX - lastMouseX
 			}
 		}
 		
         onMouseYChanged: {
-			if (pressed) {
-				windowView.y += (mouseY - lastMouseY)
+			if (pressed) { 
+				windowView.y += mouseY - lastMouseY
 			}
 		}
 		

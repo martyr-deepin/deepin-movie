@@ -179,16 +179,20 @@ Item {
         height: 0
 		property real lastMouseX: 0
         property real lastMouseY: 0
+		
         onPressed: {
             lastMouseX = mouseX
             lastMouseY = mouseY
         }
+		
         onMouseXChanged: {
-			windowView.x += (mouseX - lastMouseX)
+			windowView.x += mouseX - lastMouseX
 		}
+		
         onMouseYChanged: {
-			windowView.y += (mouseY - lastMouseY)
+			windowView.y += mouseY - lastMouseY
 		}
+		
 		onDoubleClicked: {
 			toggleMaxWindow()
 		}
