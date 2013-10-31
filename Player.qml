@@ -136,17 +136,6 @@ Video {
 					color: Qt.rgba(100, 100, 100, 0.2)
 					visible: showBottomPanel ? 1 : 0
 					
-					Text {
-						id: playTime
-						anchors.left: parent.left
-						anchors.top: progressbarBackground.bottom
-						anchors.leftMargin: 10
-						text: timeCurrent + " / " + timeTotal
-						color: Qt.rgba(100, 100, 100, 1)
-						font.pixelSize: 10
-						visible: showBottomPanel ? 1 : 0
-					}
-					
 					MouseArea {
 						id: progressbarArea
 						anchors.fill: parent
@@ -241,6 +230,15 @@ Video {
 						id: playerList
 						imageName: "image/player_list"
 						anchors.verticalCenter: parent.verticalCenter
+						visible: showBottomPanel ? 1 : 0
+					}
+					
+					Text {
+						id: playTime
+						anchors.verticalCenter: parent.verticalCenter
+						text: timeCurrent + " / " + timeTotal
+						color: Qt.rgba(100, 100, 100, 1)
+						font.pixelSize: 12
 						visible: showBottomPanel ? 1 : 0
 					}
 				}
