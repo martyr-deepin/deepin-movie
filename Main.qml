@@ -18,7 +18,7 @@ Item {
 	property alias playlist: playlist
 	property int currentTab: 0
 	
-	property bool showTitlebar: true
+	property bool showTitlebar: false
 	
 	function toggleMaxWindow() {
 		isMax ? windowView.showNormal() : windowView.showMaximized()
@@ -74,8 +74,6 @@ Item {
 		border.color: Qt.rgba(0, 0, 0, 0)
 		width: window.width - border.width
 		height: window.height - border.width
-		
-		/* Component.onCompleted: {console.log(frame.x, frame.y)} */
 		
 		Rectangle {
 			id: frameBackground
@@ -164,13 +162,11 @@ Item {
 				}
 				
 				onBottomPanelShow: {
-					/* titlebar.visible = true */
 					showingTitlebarAnimation.restart()
 				}
 
 				onBottomPanelHide: {
 					if (playPage.visible) {
-						/* titlebar.visible = false */
 						hidingTitlebarAnimation.restart()
 					}
 				}
@@ -184,7 +180,7 @@ Item {
         anchors.left: frame.left
         anchors.right: frame.right
 		width: frame.width
-        height: titlebarHeight
+        height: 0
 		property real lastMouseX: 0
         property real lastMouseY: 0
         onPressed: {
