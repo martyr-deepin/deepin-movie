@@ -5,6 +5,7 @@ import QtGraphicalEffects 1.0
 Video {
     id: video
     autoPlay: true
+	muted: true
 	anchors.leftMargin: 1
 	anchors.rightMargin: 1
 	
