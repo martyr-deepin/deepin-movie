@@ -277,13 +277,15 @@ Video {
 						anchors.verticalCenter: playerPlay.verticalCenter
 						visible: showBottomPanel ? 1 : 0
 					}
-					ImageButton {
+					VolumeButton {
 						id: playerVolume
-						imageName: "image/player_volume"
 						anchors.verticalCenter: parent.verticalCenter
 						visible: showBottomPanel ? 1 : 0
+						
+						onInVolumebar: {
+							hidingTimer.stop()
+						}
 					}
-
 				}
 
 				Row {
