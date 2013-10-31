@@ -62,16 +62,40 @@ Video {
 		anchors.fill: parent
 		hoverEnabled: true
 		
+		property real lastMouseX: 0
+        property real lastMouseY: 0
+		property bool isHover: false
+		
+        onPressed: {
+            lastMouseX = mouseX
+            lastMouseY = mouseY
+			isHover = false
+        }
+		
 		onClicked: {
-			toggle()
-			/* video.seek(1700000) */
+			if (!isHover) {
+				toggle()
+			}
 		}
 		
 		onPositionChanged: {
 			showingAnimation.restart()
 			hidingTimer.restart()
 
+			isHover = true
 			videoArea.cursorShape = Qt.ArrowCursor
+		}
+
+        onMouseXChanged: {
+			if (pressed) {
+				windowView.x += (mouseX - lastMouseX)
+			}
+		}
+		
+        onMouseYChanged: {
+			if (pressed) {
+				windowView.y += (mouseY - lastMouseY)
+			}
 		}
 		
 		onExited: {
