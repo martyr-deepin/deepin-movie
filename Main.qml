@@ -225,7 +225,7 @@ Item {
 				id: playlist
 				height: parent.height
 				width: 0
-				color: Qt.rgba(10, 10, 10, 0.2)
+				color: Qt.rgba(10, 10, 10, 0.05)
 				
 				Behavior on width {
 					NumberAnimation {
