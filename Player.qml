@@ -21,10 +21,13 @@ Video {
 	property bool showBottomPanel: false
 	
 	property alias videoPreview: videoPreview
+	property alias videoArea: videoArea
 	
 	signal playlistButtonClicked
 	signal bottomPanelShow
 	signal bottomPanelHide
+	signal hideCursor
+	signal showCursor
 	
 	Component.onCompleted: {
 		timeTotal = formatTime(video.duration)
@@ -93,7 +96,7 @@ Video {
 			hidingTimer.restart()
 
 			isHover = true
-			videoArea.cursorShape = Qt.ArrowCursor
+			video.showCursor()
 		}
 
         onMouseXChanged: {
@@ -109,7 +112,7 @@ Video {
 		}
 		
 		onExited: {
-			videoArea.cursorShape = Qt.ArrowCursor
+			video.showCursor()
 		}
 		
 		Timer {
@@ -120,7 +123,7 @@ Video {
 				if (!hidingAnimation.running) {
 					hidingAnimation.restart()
 				}
-				videoArea.cursorShape = Qt.BlankCursor
+				video.hideCursor()
 			}
 		}
 	}

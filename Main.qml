@@ -144,6 +144,7 @@ Item {
 			}
 			
 			Player {
+				id: player
 				width: parent.width - playlist.width
 				height: parent.height
 				source: movie_file
@@ -163,7 +164,19 @@ Item {
 
 				onBottomPanelHide: {
 					if (playPage.visible) {
-						hidingTitlebarAnimation.restart()
+						if (!titlebar.pressed) {
+							hidingTitlebarAnimation.restart()
+						}
+					}
+				}
+				
+				onShowCursor: {
+					player.videoArea.cursorShape = Qt.ArrowCursor
+				}
+
+				onHideCursor: {
+					if (!titlebar.pressed) {
+						player.videoArea.cursorShape = Qt.BlankCursor
 					}
 				}
 			}
@@ -179,6 +192,7 @@ Item {
         height: 0
 		property real lastMouseX: 0
         property real lastMouseY: 0
+		hoverEnabled: true
 		
         onPressed: {
             lastMouseX = mouseX
@@ -186,11 +200,15 @@ Item {
         }
 		
         onMouseXChanged: {
-			windowView.x += mouseX - lastMouseX
+			if (pressed) {
+				windowView.x += mouseX - lastMouseX
+			}
 		}
 		
         onMouseYChanged: {
-			windowView.y += mouseY - lastMouseY
+			if (pressed) {
+				windowView.y += mouseY - lastMouseY
+			}
 		}
 		
 		onDoubleClicked: {
