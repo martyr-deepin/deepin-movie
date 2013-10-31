@@ -9,16 +9,13 @@ Video {
 	anchors.leftMargin: 1
 	anchors.rightMargin: 1
 	
-	/* width: 800 */
-	/* height: 400 */
-	/* source: "/space/data/Video/DoctorWho/1.rmvb" */
-	
 	property string timeTotal: ""
 	property string timeCurrent: ""
 	property double timePosition: 0
 	property double videoPosition: 0
 	
 	property bool showBottomPanel: false
+	
 	
 	property alias videoPreview: videoPreview
 	property alias videoArea: videoArea
@@ -38,6 +35,10 @@ Video {
 	onPositionChanged: {
 		timeCurrent = formatTime(video.position)
 		timePosition = video.position / video.duration
+	}
+	
+	onToggleFullscreen: {
+		indicatorArea.visible = windowView.getState() != Qt.WindowFullScreen
 	}
 	
 	function formatTime(millseconds) {
@@ -63,6 +64,52 @@ Video {
 	
 	function backward() {
 		video.seek(video.position - 5000)
+	}
+	
+	Rectangle {
+		id: indicatorArea
+		anchors.top: parent.top
+		anchors.right: parent.right
+		anchors.topMargin: 10
+		visible: false
+		width: 80
+		
+		Text {
+			id: timeIndicator
+			anchors.horizontalCenter: parent.horizontalCenter
+			text: ""
+			font.pixelSize: 20
+			color: "#80999999"
+			style: Text.Outline
+			styleColor: "#FF333333"
+			
+			Timer {
+				interval: 1000;
+				running: true;
+				repeat: true
+				onTriggered: {
+					timeIndicator.text = Qt.formatDateTime(new Date(), "hh:mm")
+				}
+			}
+		}
+
+		Row {
+			id: positionIndicator
+			spacing: 2
+			anchors.horizontalCenter: parent.horizontalCenter
+			anchors.top: timeIndicator.bottom
+			
+			property int dotSize: 3
+			
+			Repeater {
+				model: 10
+				delegate: Rectangle {
+					color: video.position / video.duration * 10 > index ? "#80DDDDDD" : "#80666666"
+					width: positionIndicator.dotSize
+					height: positionIndicator.dotSize
+				}
+			}
+		}
 	}
 	
     MouseArea {
