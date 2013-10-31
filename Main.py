@@ -25,12 +25,21 @@ from PyQt5.QtQuick import QQuickView
 from PyQt5.QtQml import qmlRegisterType
 from PyQt5.QtGui import QSurfaceFormat, QColor
 from PyQt5 import QtCore, QtQuick
-from PyQt5.QtCore import QSize
+from PyQt5.QtCore import QSize, pyqtSlot
 import os
 import sys
 import signal
 from ImageCanvas import ImageCanvas
 from TopRoundRect import TopRoundRect
+
+class Window(QQuickView):
+
+    def __init__(self):
+        QQuickView.__init__(self)
+        
+    @pyqtSlot(result=int)    
+    def getState(self):
+        return self.windowState()
 
 if __name__ == "__main__":
     movie_file = sys.argv[1]
@@ -40,7 +49,7 @@ if __name__ == "__main__":
     qmlRegisterType(ImageCanvas, "ImageCanvas", 1, 0, "ImageCanvas")
     qmlRegisterType(TopRoundRect, "TopRoundRect", 1, 0, "TopRoundRect")
     
-    view = QQuickView()
+    view = Window()
     
     qml_context = view.rootContext()
     qml_context.setContextProperty("windowView", view)

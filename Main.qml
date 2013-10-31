@@ -11,7 +11,6 @@ Item {
 	property int titlebarHeight: 45
 	property int frameRadius: 3
 	property int shadowRadius: 10
-	property bool isMax: false
 	
 	default property alias tabPages: pages.children
 	property alias playPage: playPage
@@ -21,17 +20,29 @@ Item {
 	property bool showTitlebar: false
 	
 	function toggleMaxWindow() {
-		isMax ? windowView.showNormal() : windowView.showMaximized()
-		isMax ? maxButton.imageName = "image/window_max" : maxButton.imageName = "image/window_unmax"
-		isMax ? shadow.visible = true : shadow.visible = false
-		isMax ? frame.border.width = (shadowRadius + frameRadius) * 2 : frame.border.width = 0
-		isMax ? frame.radius = frameRadius : frame.radius = 0
-		/* isMax ? skinBackground.radius = frameRadius : skinBackground.radius = 0 */
-		isMax ? frameBackground.radius = frameRadius : frameBackground.radius = 0
-		isMax ? titlebarGradient.radius = frameRadius : titlebarGradient.radius = 0
-		isMax ? frameBorder.visible = true : frameBorder.visible = false
+		windowView.getState() == Qt.WindowMaximized ? maxButton.imageName = "image/window_max" : maxButton.imageName = "image/window_unmax"
+		windowView.getState() == Qt.WindowMaximized ? shadow.visible = true : shadow.visible = false
+		windowView.getState() == Qt.WindowMaximized ? frame.border.width = (shadowRadius + frameRadius) * 2 : frame.border.width = 0
+		windowView.getState() == Qt.WindowMaximized ? frame.radius = frameRadius : frame.radius = 0
+		windowView.getState() == Qt.WindowMaximized ? frameBackground.radius = frameRadius : frameBackground.radius = 0
+		windowView.getState() == Qt.WindowMaximized ? titlebarGradient.radius = frameRadius : titlebarGradient.radius = 0
+		windowView.getState() == Qt.WindowMaximized ? frameBorder.visible = true : frameBorder.visible = false
+		windowView.getState() == Qt.WindowMaximized ? windowView.showNormal() : windowView.showMaximized()
+	}
+	
+	function toggleFullWindow() {
+		windowView.getState() == Qt.WindowFullScreen ? shadow.visible = true : shadow.visible = false
+		windowView.getState() == Qt.WindowFullScreen ? frame.border.width = (shadowRadius + frameRadius) * 2 : frame.border.width = 0
+		windowView.getState() == Qt.WindowFullScreen ? frame.radius = frameRadius : frame.radius = 0
+		windowView.getState() == Qt.WindowFullScreen ? frameBackground.radius = frameRadius : frameBackground.radius = 0
+		windowView.getState() == Qt.WindowFullScreen ? titlebarGradient.radius = frameRadius : titlebarGradient.radius = 0
+		windowView.getState() == Qt.WindowFullScreen ? frameBorder.visible = true : frameBorder.visible = false
+		windowView.getState() == Qt.WindowFullScreen ? windowView.showNormal() : windowView.showFullScreen()
 		
-		isMax = !isMax
+		if (windowView.getState() == Qt.WindowFullScreen) {
+			hidingTitlebarAnimation.restart()
+			player.hidingBottomPanelAnimation.restart()
+		}
 	}
 
 	function selectPlayPage() {
@@ -178,6 +189,10 @@ Item {
 					if (!titlebar.pressed) {
 						player.videoArea.cursorShape = Qt.BlankCursor
 					}
+				}
+				
+				onToggleFullscreen: {
+					toggleFullWindow()
 				}
 			}
 		}	

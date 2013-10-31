@@ -22,12 +22,14 @@ Video {
 	
 	property alias videoPreview: videoPreview
 	property alias videoArea: videoArea
+	property alias hidingBottomPanelAnimation: hidingBottomPanelAnimation
 	
 	signal playlistButtonClicked
 	signal bottomPanelShow
 	signal bottomPanelHide
 	signal hideCursor
 	signal showCursor
+	signal toggleFullscreen
 	
 	Component.onCompleted: {
 		timeTotal = formatTime(video.duration)
@@ -93,12 +95,12 @@ Video {
 		
 		onDoubleClicked: {
 			isDoubleClick = true
-			console.log("fullscreen")
+			video.toggleFullscreen()
 		}
 		
 		onPositionChanged: {
-			if (!showingAnimation.running) {
-				showingAnimation.restart()
+			if (!showingBottomPanelAnimation.running) {
+				showingBottomPanelAnimation.restart()
 			}
 			hidingTimer.restart()
 
@@ -127,8 +129,8 @@ Video {
 			interval: 2000
 			repeat: false
 			onTriggered: {
-				if (!hidingAnimation.running) {
-					hidingAnimation.restart()
+				if (!hidingBottomPanelAnimation.running) {
+					hidingBottomPanelAnimation.restart()
 				}
 				video.hideCursor()
 			}
@@ -374,9 +376,14 @@ Video {
     Keys.onSpacePressed: toggle()
     Keys.onLeftPressed: backward()
     Keys.onRightPressed: forward()
+	Keys.onEscapePressed: {
+		if (windowView.getState() == Qt.WindowFullScreen) {
+			video.toggleFullscreen()
+		}
+	}
 
 	ParallelAnimation{
-		id: showingAnimation
+		id: showingBottomPanelAnimation
 		alwaysRunToEnd: true
 		
 		PropertyAnimation {
@@ -392,14 +399,14 @@ Video {
 		}
 		
 		onRunningChanged: {
-			if (!showingAnimation.running) {
+			if (!showingBottomPanelAnimation.running) {
 				showBottomPanel = true
 			}
 		}
 	}	
 
 	ParallelAnimation{
-		id: hidingAnimation
+		id: hidingBottomPanelAnimation
 		alwaysRunToEnd: true
 		
 		PropertyAnimation {
@@ -415,7 +422,7 @@ Video {
 		}
 		
 		onRunningChanged: {
-			if (!showingAnimation.running) {
+			if (!showingBottomPanelAnimation.running) {
 				showBottomPanel = false
 			}
 		}
