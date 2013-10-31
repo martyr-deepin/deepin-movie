@@ -62,7 +62,6 @@ ImageButton {
 			}
 		}
 		
-		
 		Behavior on width {
 			NumberAnimation {
 				duration: 300
@@ -96,6 +95,12 @@ ImageButton {
 		
 		onExited: {
 			hideVolumebarTimer.start()
+		}
+		
+		onWheel: {
+			volume = Math.max(Math.min(volume + (wheel.angleDelta.y / 120 * 0.05), 1.0), 0.0)
+			volumePositionBar.width = showPosition
+			volumeButton.changeVolume()
 		}
 	}
 
