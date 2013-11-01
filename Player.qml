@@ -30,16 +30,6 @@ Video {
 	signal showCursor
 	signal toggleFullscreen
 	
-	onBottomPanelShow: {
-		topMask.visible = true
-		bottomMask.visible = true
-	}
-
-	onBottomPanelHide: {
-		topMask.visible = false
-		bottomMask.visible = false
-	}
-	
 	Component.onCompleted: {
 		timeTotal = formatTime(video.duration)
 	}
@@ -211,49 +201,6 @@ Video {
 			onTriggered: {
 				if (!videoArea.isDoubleClick) {
 					toggle()
-				}
-			}
-		}
-		
-		
-		Rectangle {
-			id: topMask
-			anchors.left: parent.left
-			anchors.right: parent.right
-			anchors.top: parent.top
-			anchors.topMargin: titlebarHeight
-			height: videoArea.maskHeight
-			color: Qt.rgba(0, 0, 0, 0)
-			visible: false
-			
-			LinearGradient {
-				anchors.fill: parent
-				start: Qt.point(0, 0)
-				end: Qt.point(0, height)
-				gradient: Gradient {
-					GradientStop { position: 0.0; color: Qt.rgba(0, 0, 0, 1)}
-					GradientStop { position: 1.0; color: Qt.rgba(10, 10, 10, 0)}
-				}
-			}
-		}
-
-		Rectangle {
-			id: bottomMask
-			anchors.left: parent.left
-			anchors.right: parent.right
-			anchors.bottom: parent.bottom
-			anchors.bottomMargin: showHeight
-			height: videoArea.maskHeight
-			color: Qt.rgba(0, 0, 0, 0)
-			visible: false
-			
-			LinearGradient {
-				anchors.fill: parent
-				start: Qt.point(0, 0)
-				end: Qt.point(0, height)
-				gradient: Gradient {
-					GradientStop { position: 0.0; color: Qt.rgba(10, 10, 10, 0)}
-					GradientStop { position: 1.0; color: Qt.rgba(0, 0, 0, 1)}
 				}
 			}
 		}
