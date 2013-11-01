@@ -222,7 +222,26 @@ Video {
 			id: bottomPanelArea
 			anchors.fill: parent
 			hoverEnabled: true
+			property real lastMouseX: 0
+			property real lastMouseY: 0
 			
+			onPressed: {
+				lastMouseX = mouseX
+				lastMouseY = mouseY
+			}
+			
+			onMouseXChanged: {
+				if (pressed) {
+					windowView.x += mouseX - lastMouseX
+				}
+			}
+		
+			onMouseYChanged: {
+				if (pressed) {
+					windowView.y += mouseY - lastMouseY
+				}
+			}
+		
 			onPositionChanged: {
 				hidingTimer.stop()
 			}
