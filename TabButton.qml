@@ -20,20 +20,10 @@ Rectangle {
 		color: "white"
     }
 	
-	MouseArea {
+	InteractiveArea {
 		anchors.fill: parent
 		hoverEnabled: true
 		
 		onPressed: {parent.pressed()}
-		
-		onEntered: {
-			inInteractiveArea = true
-		}
-		
-		onExited: {
-			inInteractiveArea = false
-			
-			window.exitMouseArea()
-		}
 	}
 }

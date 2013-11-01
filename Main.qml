@@ -217,7 +217,7 @@ Item {
 		}	
 	}
 		
-	MouseArea {
+	InteractiveArea {
         id: titlebar
         anchors.top: frame.top
         anchors.left: frame.left
@@ -227,16 +227,6 @@ Item {
 		property real lastMouseX: 0
         property real lastMouseY: 0
 		hoverEnabled: true
-		
-		onEntered: {
-			inInteractiveArea = true
-		}
-		
-		onExited: {
-			inInteractiveArea = false
-			
-			window.exitMouseArea()
-		}
 		
         onPressed: {
             lastMouseX = mouseX

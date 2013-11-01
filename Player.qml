@@ -114,7 +114,7 @@ Video {
 		}
 	}
 	
-    MouseArea {
+    InteractiveArea {
 		id: videoArea
 		anchors.fill: parent
 		hoverEnabled: true
@@ -171,15 +171,8 @@ Video {
 			}
 		}
 		
-		onEntered: {
-			inInteractiveArea = true
-		}
-		
 		onExited: {
 			video.showCursor()
-			inInteractiveArea = false
-			
-			window.exitMouseArea()
 		}
 		
 		Timer {
@@ -218,7 +211,7 @@ Video {
 		property double showOpacity: 0.9
 		property double hideOpacity: 0
 		
-		MouseArea {
+		InteractiveArea {
 			id: bottomPanelArea
 			anchors.fill: parent
 			hoverEnabled: true
@@ -246,15 +239,8 @@ Video {
 				hidingTimer.stop()
 			}
 			
-			onEntered: {
-				inInteractiveArea = true
-			}
-		
 			onExited: {
 				hidingTimer.restart()
-				inInteractiveArea = false
-				
-				window.exitMouseArea()
 			}
 		}
 		
@@ -277,7 +263,7 @@ Video {
 					color: Qt.rgba(100, 100, 100, 0.2)
 					visible: showBottomPanel ? 1 : 0
 					
-					MouseArea {
+					InteractiveArea {
 						id: progressbarArea
 						anchors.fill: parent
 						hoverEnabled: true
@@ -313,15 +299,8 @@ Video {
 							}
 						}
 						
-						onEntered: {
-							inInteractiveArea = true
-							
-							window.exitMouseArea()
-						}
-		
 						onExited: {
 							videoPreview.visible = false
-							inInteractiveArea = false
 						}
 						
 						Timer {

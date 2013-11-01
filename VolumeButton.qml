@@ -17,7 +17,7 @@ ImageButton {
 	signal inVolumebar
 	signal changeVolume
 	
-	MouseArea {
+	InteractiveArea {
 		anchors.fill: parent
 		hoverEnabled: true
 		
@@ -28,16 +28,6 @@ ImageButton {
 			volumePositionBar.width = showPosition
 			
 			hideVolumebarTimer.start()
-		}
-		
-		onEntered: {
-			inInteractiveArea = true
-		}
-		
-		onExited: {
-			inInteractiveArea = false
-			
-			window.exitMouseArea()
 		}
 	}
 	
@@ -80,7 +70,7 @@ ImageButton {
 		}
 	}
 	
-	MouseArea {
+	InteractiveArea {
 		id: volumebarArea
 		anchors.top: volumebar.top
 		anchors.bottom: volumebar.bottom
@@ -103,15 +93,8 @@ ImageButton {
 			hideVolumebarTimer.stop()
 		}
 		
-		onEntered: {
-			inInteractiveArea = true
-		}
-		
 		onExited: {
 			hideVolumebarTimer.start()
-			inInteractiveArea = false
-			
-			window.exitMouseArea()
 		}
 		
 		onWheel: {
