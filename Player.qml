@@ -16,6 +16,8 @@ Video {
 	
 	property bool showBottomPanel: false
 	
+	property double showHeight: 60
+	property double hideHeight: 0
 	
 	property alias videoPreview: videoPreview
 	property alias videoArea: videoArea
@@ -147,7 +149,9 @@ Video {
 		
 		onPositionChanged: {
 			if (!showingBottomPanelAnimation.running) {
-				showingBottomPanelAnimation.restart()
+				if (mouseY > height - showHeight || mouseY < titlebarHeight) {
+					showingBottomPanelAnimation.restart()
+				}
 			}
 			hidingTimer.restart()
 
@@ -203,9 +207,6 @@ Video {
 		anchors.right: video.right
 		y: video.height - height
 		opacity: 1
-		
-		property double showHeight: 60
-		property double hideHeight: 0
 		
 		property double showOpacity: 0.9
 		property double hideOpacity: 0
@@ -436,7 +437,7 @@ Video {
 		PropertyAnimation {
 			target: bottomPanel
 			property: "height"
-			to: bottomPanel.showHeight
+			to: showHeight
 			duration: 100
 			easing.type: Easing.OutBack
 		}
@@ -459,7 +460,7 @@ Video {
 		PropertyAnimation {
 			target: bottomPanel
 			property: "height"
-			to: bottomPanel.hideHeight
+			to: hideHeight
 			duration: 100
 			easing.type: Easing.OutBack
 		}
