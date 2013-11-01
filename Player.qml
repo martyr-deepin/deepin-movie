@@ -149,9 +149,7 @@ Video {
 		
 		onPositionChanged: {
 			if (!showingBottomPanelAnimation.running) {
-				if (mouseY > height - showHeight || mouseY < titlebarHeight) {
-					showingBottomPanelAnimation.restart()
-				}
+				showingBottomPanelAnimation.restart()
 			}
 			hidingTimer.restart()
 
