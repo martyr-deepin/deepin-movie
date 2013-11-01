@@ -22,7 +22,18 @@ Rectangle {
 	
 	MouseArea {
 		anchors.fill: parent
+		hoverEnabled: true
 		
 		onPressed: {parent.pressed()}
+		
+		onEntered: {
+			inInteractiveArea = true
+		}
+		
+		onExited: {
+			inInteractiveArea = false
+			
+			window.exitMouseArea()
+		}
 	}
 }

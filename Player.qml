@@ -171,8 +171,15 @@ Video {
 			}
 		}
 		
+		onEntered: {
+			inInteractiveArea = true
+		}
+		
 		onExited: {
 			video.showCursor()
+			inInteractiveArea = false
+			
+			window.exitMouseArea()
 		}
 		
 		Timer {
@@ -220,8 +227,15 @@ Video {
 				hidingTimer.stop()
 			}
 			
+			onEntered: {
+				inInteractiveArea = true
+			}
+		
 			onExited: {
 				hidingTimer.restart()
+				inInteractiveArea = false
+				
+				window.exitMouseArea()
 			}
 		}
 		
@@ -280,8 +294,15 @@ Video {
 							}
 						}
 						
+						onEntered: {
+							inInteractiveArea = true
+							
+							window.exitMouseArea()
+						}
+		
 						onExited: {
 							videoPreview.visible = false
+							inInteractiveArea = false
 						}
 						
 						Timer {

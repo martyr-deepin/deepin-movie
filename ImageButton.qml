@@ -10,8 +10,16 @@ Image {
 		anchors.fill: parent
 		hoverEnabled: true
 		
-		onEntered: {parent.source = imageName + "_hover.png"}
-		onExited: {parent.source = imageName + "_normal.png"}
+		onEntered: {
+			parent.source = imageName + "_hover.png"
+			inInteractiveArea = true
+		}
+		onExited: {
+			parent.source = imageName + "_normal.png"
+			inInteractiveArea = false
+			
+			window.exitMouseArea()
+		}
 		onPressed: {parent.source = imageName + "_press.png"}
 		onReleased: {parent.source = imageName + "_hover.png"}
 		onClicked: {parent.clicked()}

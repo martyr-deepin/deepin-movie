@@ -15,9 +15,28 @@ Item {
 	default property alias tabPages: pages.children
 	property alias playPage: playPage
 	property alias playlist: playlist
+	property alias player: player
 	property int currentTab: 0
 	
 	property bool showTitlebar: false
+	property bool inInteractiveArea: false
+	
+	signal exitMouseArea
+	
+	Timer {
+		id: outWindowTimer
+		interval: 50
+		repeat: false
+		onTriggered: {
+			if (!inInteractiveArea) {
+				player.hidingBottomPanelAnimation.restart()
+			}
+		}
+	}
+	
+	onExitMouseArea: {
+		outWindowTimer.restart()
+	}
 	
 	function toggleMaxWindow() {
 		windowView.getState() == Qt.WindowMaximized ? maxButton.imageName = "image/window_max" : maxButton.imageName = "image/window_unmax"
@@ -62,7 +81,7 @@ Item {
 		
 		playPage.visible = false
 	}
-			
+	
     RectangularGlow {
         id: shadow
         anchors.fill: frame
@@ -72,7 +91,7 @@ Item {
         /* color: Qt.rgba(200, 0, 0, 0.8) /\* this code just for test shadow *\/ */
         cornerRadius: frame.radius + shadowRadius
 		visible: true
-    }
+	}
 	
     Rectangle {
         id: frame
@@ -208,6 +227,16 @@ Item {
 		property real lastMouseX: 0
         property real lastMouseY: 0
 		hoverEnabled: true
+		
+		onEntered: {
+			inInteractiveArea = true
+		}
+		
+		onExited: {
+			inInteractiveArea = false
+			
+			window.exitMouseArea()
+		}
 		
         onPressed: {
             lastMouseX = mouseX

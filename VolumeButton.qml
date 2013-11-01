@@ -29,6 +29,16 @@ ImageButton {
 			
 			hideVolumebarTimer.start()
 		}
+		
+		onEntered: {
+			inInteractiveArea = true
+		}
+		
+		onExited: {
+			inInteractiveArea = false
+			
+			window.exitMouseArea()
+		}
 	}
 	
 	Rectangle {
@@ -93,8 +103,15 @@ ImageButton {
 			hideVolumebarTimer.stop()
 		}
 		
+		onEntered: {
+			inInteractiveArea = true
+		}
+		
 		onExited: {
 			hideVolumebarTimer.start()
+			inInteractiveArea = false
+			
+			window.exitMouseArea()
 		}
 		
 		onWheel: {
