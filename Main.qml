@@ -233,14 +233,9 @@ Item {
             lastMouseY = mouseY
         }
 		
-        onMouseXChanged: {
+		onPositionChanged: {
 			if (pressedButtons == Qt.LeftButton) {
 				windowView.x += mouseX - lastMouseX
-			}
-		}
-		
-        onMouseYChanged: {
-			if (pressedButtons == Qt.LeftButton) {
 				windowView.y += mouseY - lastMouseY
 			}
 		}

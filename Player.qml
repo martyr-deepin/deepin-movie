@@ -157,20 +157,13 @@ Video {
 
 			isHover = true
 			video.showCursor()
-		}
-
-        onMouseXChanged: {
+			
 			if (pressedButtons == Qt.LeftButton) {
 				windowView.x += mouseX - lastMouseX
-			}
-		}
-		
-        onMouseYChanged: {
-			if (pressedButtons == Qt.LeftButton) { 
 				windowView.y += mouseY - lastMouseY
 			}
 		}
-		
+
 		onExited: {
 			video.showCursor()
 		}
@@ -223,20 +216,13 @@ Video {
 				lastMouseY = mouseY
 			}
 			
-			onMouseXChanged: {
-				if (pressedButtons == Qt.LeftButton) {
-					windowView.x += mouseX - lastMouseX
-				}
-			}
-		
-			onMouseYChanged: {
-				if (pressedButtons == Qt.LeftButton) {
-					windowView.y += mouseY - lastMouseY
-				}
-			}
-		
 			onPositionChanged: {
 				hidingTimer.stop()
+				
+				if (pressedButtons == Qt.LeftButton) {
+					windowView.x += mouseX - lastMouseX
+					windowView.y += mouseY - lastMouseY
+				}
 			}
 			
 			onExited: {
