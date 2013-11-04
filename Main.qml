@@ -88,10 +88,45 @@ Item {
         glowRadius: shadowRadius
         spread: 0.2
         color: Qt.rgba(0, 0, 0, 0.3)
-        /* color: Qt.rgba(200, 0, 0, 0.8) /\* this code just for test shadow *\/ */
         cornerRadius: frame.radius + shadowRadius
 		visible: true
 	}
+	
+	MouseArea {
+		id: resizeArea
+		anchors.fill: parent
+		hoverEnabled: true
+		
+		onPositionChanged: {
+			if (mouseX < frame.x) {
+				if (mouseY < frame.y) {
+					resizeArea.cursorShape = Qt.SizeFDiagCursor
+				} else if (mouseY > frame.y + frame.height) {
+					resizeArea.cursorShape = Qt.SizeBDiagCursor
+				} else {
+					resizeArea.cursorShape = Qt.SizeHorCursor
+				}
+			} else if (mouseX > frame.x + frame.width) {
+				if (mouseY < frame.y) {
+					resizeArea.cursorShape = Qt.SizeBDiagCursor
+				} else if (mouseY > frame.y + frame.height) {
+					resizeArea.cursorShape = Qt.SizeFDiagCursor
+				} else {
+					resizeArea.cursorShape = Qt.SizeHorCursor
+				}
+			} else {
+				if (mouseY < frame.y) {
+					resizeArea.cursorShape = Qt.SizeVerCursor
+				} else {
+					resizeArea.cursorShape = Qt.SizeVerCursor
+				}
+			}
+		}
+		
+		onExited: {
+			resizeArea.cursorShape = Qt.ArrowCursor
+		}
+	}	
 	
     Rectangle {
         id: frame
