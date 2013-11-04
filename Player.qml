@@ -9,6 +9,8 @@ Video {
 	anchors.leftMargin: 1
 	anchors.rightMargin: 1
 	
+	property bool continuePlay: false
+	
 	property string timeTotal: ""
 	property string timeCurrent: ""
 	property double timePosition: 0
@@ -41,6 +43,24 @@ Video {
 	
 	onToggleFullscreen: {
 		indicatorArea.visible = windowView.getState() != Qt.WindowFullScreen
+	}
+	
+	function tryPauseVideo() {
+		if (video.playbackState == MediaPlayer.PlayingState) {
+			video.pause()
+			video.continuePlay = true
+		} else {
+			video.continuePlay = false
+		}
+	}
+	
+	function tryPlayVideo() {
+		if (video.playbackState != MediaPlayer.PlayingState) {
+			if (video.continuePlay) {
+				video.play()
+				video.continuePlay = false
+			}
+		}
 	}
 	
 	function formatTime(millseconds) {

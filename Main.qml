@@ -248,6 +248,14 @@ Item {
 				onToggleFullscreen: {
 					toggleFullWindow()
 				}
+				
+				onVisibleChanged: {
+					if (!player.visible) {
+						player.tryPauseVideo()
+					} else {
+						player.tryPlayVideo()
+					}
+				}
 			}
 		}	
 	}
