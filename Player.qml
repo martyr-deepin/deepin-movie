@@ -49,12 +49,14 @@ Video {
 		if (video.playbackState == MediaPlayer.PlayingState) {
 			video.pause()
 			video.continuePlay = true
+			console.log("####", video.continuePlay)
 		} else {
 			video.continuePlay = false
 		}
 	}
 	
 	function tryPlayVideo() {
+		console.log(video.playbackState != MediaPlayer.PlayingState, video.continuePlay)
 		if (video.playbackState != MediaPlayer.PlayingState) {
 			if (video.continuePlay) {
 				video.play()

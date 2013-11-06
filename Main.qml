@@ -17,6 +17,7 @@ Item {
 	property alias playlist: playlist
 	property alias player: player
 	property int currentTab: 0
+	property int windowLastState: 0
 	
 	property bool showTitlebar: false
 	property bool inInteractiveArea: false
@@ -36,6 +37,20 @@ Item {
 	
 	onExitMouseArea: {
 		outWindowTimer.restart()
+	}
+	
+	function monitorWindowState(state) {
+		console.log("***** ", state)
+		if (windowLastState != state) {
+			if (state == Qt.WindowMinimized) {
+				console.log("min")
+				player.tryPauseVideo()
+			} else {
+				console.log("restore")
+				player.tryPlayVideo()
+			}
+			windowLastState = state
+		}
 	}
 	
 	function toggleMaxWindow() {
@@ -386,7 +401,10 @@ Item {
 				ImageButton {
 					id: minButton
 					imageName: "image/window_min"
-					onClicked: {windowView.showMinimized()}
+					onClicked: {
+						windowView.showMinimized()
+						console.log("I'm here")
+					}
 					visible: showTitlebar ? 1 : 0
 				}
 
