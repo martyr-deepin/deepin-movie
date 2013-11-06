@@ -23,12 +23,15 @@ Video {
     
     property double showWidth: 200
     property double hideWidth: 0
+    property double triggerPlaylistX: 50
+    property double triggerButtonWidth: 20
+    property double triggerButtonHeight: 80
+    property bool inTriggerButton: false
     
     property alias videoPreview: videoPreview
     property alias videoArea: videoArea
     property alias hidingBottomPanelAnimation: hidingBottomPanelAnimation
     
-    /* signal playlistButtonClicked */
     signal bottomPanelShow
     signal bottomPanelHide
     signal hideCursor
@@ -175,10 +178,22 @@ Video {
         }
         
         onPositionChanged: {
-            if (!showingBottomPanelAnimation.running) {
-                showingBottomPanelAnimation.restart()
+            if (playlistPanel.width == showWidth && mouseX < showWidth) {
+                
+            } else {
+                if (mouseX < triggerPlaylistX) {
+                    if (!showingPlaylistPanelAnimation.running) {
+                        showingPlaylistPanelAnimation.restart()
+                    }
+                } else if (hidePlaylistButton.containsMouse) {
+                    
+                } else {
+                    if (!showingBottomPanelAnimation.running) {
+                        showingBottomPanelAnimation.restart()
+                    }
+                    hidingTimer.restart()
+                }
             }
-            hidingTimer.restart()
 
             isHover = true
             video.showCursor()
@@ -223,6 +238,41 @@ Video {
         height: video.height
         width: hideWidth
         opacity: 1
+        
+        MouseArea {
+            anchors.fill: parent
+            
+            onClicked: {
+                console.log("Click on playlist.")
+            }
+        }
+        
+        Rectangle {
+            id: hidePlaylistButton
+            color: Qt.rgba(0, 0, 0, 0.95)
+            width: triggerButtonWidth
+            height: triggerButtonHeight
+            anchors.left: playlistPanel.right
+            anchors.verticalCenter: playlistPanel.verticalCenter
+            visible: playlistPanel.width == showWidth
+            
+            MouseArea {
+                anchors.fill: parent
+                hoverEnabled: true
+                
+                onClicked: {
+                    hidingPlaylistPanelAnimation.restart()
+                }
+                
+                onEntered: {
+                    inTriggerButton = true
+                }
+            
+                onExited: {
+                    inTriggerButton = false
+                }
+            }
+        }
     }
     
     Rectangle {
@@ -383,7 +433,6 @@ Video {
                                 hidingPlaylistPanelAnimation.restart()
                             } else {
                                 showingPlaylistPanelAnimation.restart()
-                                hidingBottomPanelAnimation.restart()
                             }
                         }
                     }
@@ -529,6 +578,12 @@ Video {
             to: showWidth
             duration: 100
             easing.type: Easing.OutBack
+        }
+        
+        onRunningChanged: {
+            if (!showingPlaylistPanelAnimation.running) {
+                hidingBottomPanelAnimation.restart()
+            }
         }
     }    
 
