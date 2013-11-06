@@ -21,11 +21,14 @@ Video {
     property double showHeight: 60
     property double hideHeight: 0
     
+    property double showWidth: 200
+    property double hideWidth: 0
+    
     property alias videoPreview: videoPreview
     property alias videoArea: videoArea
     property alias hidingBottomPanelAnimation: hidingBottomPanelAnimation
     
-    signal playlistButtonClicked
+    /* signal playlistButtonClicked */
     signal bottomPanelShow
     signal bottomPanelHide
     signal hideCursor
@@ -215,6 +218,14 @@ Video {
     }
 
     Rectangle {
+        id: playlistPanel
+        color: Qt.rgba(0, 0, 0, 0.95)
+        height: video.height
+        width: hideWidth
+        opacity: 1
+    }
+    
+    Rectangle {
         id: bottomPanel
         color: Qt.rgba(0, 0, 0, 0.95)
         height: hideHeight
@@ -368,7 +379,12 @@ Video {
                         visible: showBottomPanel ? 1 : 0
                         
                         onClicked: {
-                            video.playlistButtonClicked()
+                            if (playlistPanel.width == showWidth) {
+                                hidingPlaylistPanelAnimation.restart()
+                            } else {
+                                showingPlaylistPanelAnimation.restart()
+                                hidingBottomPanelAnimation.restart()
+                            }
                         }
                     }
                     
@@ -500,6 +516,32 @@ Video {
             if (!showingBottomPanelAnimation.running) {
                 showBottomPanel = false
             }
+        }
+    }    
+
+    ParallelAnimation{
+        id: showingPlaylistPanelAnimation
+        alwaysRunToEnd: true
+        
+        PropertyAnimation {
+            target: playlistPanel
+            property: "width"
+            to: showWidth
+            duration: 100
+            easing.type: Easing.OutBack
+        }
+    }    
+
+    ParallelAnimation{
+        id: hidingPlaylistPanelAnimation
+        alwaysRunToEnd: true
+        
+        PropertyAnimation {
+            target: playlistPanel
+            property: "width"
+            to: hideWidth
+            duration: 100
+            easing.type: Easing.OutBack
         }
     }    
 }

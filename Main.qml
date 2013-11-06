@@ -14,7 +14,6 @@ Item {
     
     default property alias tabPages: pages.children
     property alias playPage: playPage
-    property alias playlist: playlist
     property alias player: player
     property int currentTab: 0
     property int windowLastState: 0
@@ -206,70 +205,48 @@ Item {
         anchors.right: pages.right
         color: Qt.rgba(0, 0, 0, 0)
         
-        Row {
-            anchors.fill: parent
+        Player {
+            id: player
+            width: parent.width
+            height: parent.height
+            source: movie_file
+            videoPreview.video.source: movie_file
             
-            Rectangle {
-                id: playlist
-                height: parent.height
-                width: 0
-                color: Qt.rgba(10, 10, 10, 0.05)
-                
-                Behavior on width {
-                    NumberAnimation {
-                        duration: 100
-                        easing.type: Easing.OutQuint
+            Component.onCompleted: {
+                videoPreview.video.pause()
+            }
+            
+            onBottomPanelShow: {
+                showingTitlebarAnimation.restart()
+            }
+
+            onBottomPanelHide: {
+                if (playPage.visible) {
+                    if (!titlebar.pressed) {
+                        hidingTitlebarAnimation.restart()
                     }
                 }
             }
             
-            Player {
-                id: player
-                width: parent.width - playlist.width
-                height: parent.height
-                source: movie_file
-                videoPreview.video.source: movie_file
-                
-                Component.onCompleted: {
-                    videoPreview.video.pause()
-                }
-                
-                onPlaylistButtonClicked: {
-                    playlist.width == 0 ? playlist.width = 200 : playlist.width = 0
-                }
-                
-                onBottomPanelShow: {
-                    showingTitlebarAnimation.restart()
-                }
+            onShowCursor: {
+                player.videoArea.cursorShape = Qt.ArrowCursor
+            }
 
-                onBottomPanelHide: {
-                    if (playPage.visible) {
-                        if (!titlebar.pressed) {
-                            hidingTitlebarAnimation.restart()
-                        }
-                    }
+            onHideCursor: {
+                if (!titlebar.pressed) {
+                    player.videoArea.cursorShape = Qt.BlankCursor
                 }
-                
-                onShowCursor: {
-                    player.videoArea.cursorShape = Qt.ArrowCursor
-                }
-
-                onHideCursor: {
-                    if (!titlebar.pressed) {
-                        player.videoArea.cursorShape = Qt.BlankCursor
-                    }
-                }
-                
-                onToggleFullscreen: {
-                    toggleFullWindow()
-                }
-                
-                onVisibleChanged: {
-                    if (!player.visible) {
-                        player.tryPauseVideo()
-                    } else {
-                        player.tryPlayVideo()
-                    }
+            }
+            
+            onToggleFullscreen: {
+                toggleFullWindow()
+            }
+            
+            onVisibleChanged: {
+                if (!player.visible) {
+                    player.tryPauseVideo()
+                } else {
+                    player.tryPlayVideo()
                 }
             }
         }    
