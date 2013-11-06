@@ -22,6 +22,7 @@ Deepin Movie:
    And then:
    > tar -xzvf ./PyQt-gpl-5.1.1.tar.gz
    > cd ./PyQt-gpl-.5.1.1
+   > sudo apt-get install libgl1-mesa-dev libglu1-mesa-dev
    > python configure.py --qmake /opt/Qt5.1.1/5.1.1/gcc_64/bin/qmake 
    > sudo ln -s /usr/include/python2.7 /usr/local/include/python2.7
    > make
