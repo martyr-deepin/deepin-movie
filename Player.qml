@@ -26,6 +26,7 @@ Video {
     property double triggerPlaylistX: 50
     property double triggerButtonWidth: 20
     property double triggerButtonHeight: 80
+    property double triggerPlaylistProtectedWidth: 50
     property bool inTriggerButton: false
     
     property alias videoPreview: videoPreview
@@ -179,15 +180,13 @@ Video {
         }
         
         onPositionChanged: {
-            if (playlistPanel.width == showWidth && mouseX < showWidth) {
+            if (playlistPanel.width == showWidth && mouseX < showWidth + triggerPlaylistProtectedWidth) {
                 
             } else {
                 if (mouseX < triggerPlaylistX) {
                     if (!showingPlaylistPanelAnimation.running) {
                         showingPlaylistPanelAnimation.restart()
                     }
-                } else if (hidePlaylistButtonArea.containsMouse) {
-                    
                 } else {
                     if (!showingBottomPanelAnimation.running) {
                         showingBottomPanelAnimation.restart()
