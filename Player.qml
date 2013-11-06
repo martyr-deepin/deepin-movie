@@ -79,9 +79,6 @@ Video {
     }
 
     function toggle() {
-        if (video.playbackState != MediaPlayer.PlayingState) {
-            video.playlistButtonClicked()
-        }
         video.playbackState == MediaPlayer.PlayingState ? video.pause() : video.play()
     }
     
@@ -372,7 +369,6 @@ Video {
                         
                         onClicked: {
                             video.playlistButtonClicked()
-                            video.pause()
                         }
                     }
                     
