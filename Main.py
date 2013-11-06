@@ -41,6 +41,16 @@ class Window(QQuickView):
     def getState(self):
         return self.windowState()
     
+    @pyqtSlot()
+    def doMinimized(self):
+        # NOTE: This is bug of Qt5 that showMinimized() just can work once after restore window.
+        # I change window state before set it as WindowMinimized to fixed this bug!
+        self.setWindowState(QtCore.Qt.WindowMaximized)
+        
+        # Do minimized.
+        self.setWindowState(QtCore.Qt.WindowMinimized)
+        self.setVisible(True)
+    
 if __name__ == "__main__":
     movie_file = sys.argv[1]
     
@@ -68,7 +78,7 @@ if __name__ == "__main__":
     view.setSource(QtCore.QUrl.fromLocalFile(os.path.join(os.path.dirname(__file__), 'Main.qml')))
     view.show()
     
-    # view.windowStateChanged.connect(view.rootObject().monitorWindowState)
+    view.windowStateChanged.connect(view.rootObject().monitorWindowState)
     
     signal.signal(signal.SIGINT, signal.SIG_DFL)
     sys.exit(app.exec_())

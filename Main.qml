@@ -39,13 +39,10 @@ Item {
     }
     
     function monitorWindowState(state) {
-        console.log("***** ", state)
         if (windowLastState != state) {
             if (state == Qt.WindowMinimized) {
-                console.log("min")
                 player.tryPauseVideo()
             } else {
-                console.log("restore")
                 player.tryPlayVideo()
             }
             windowLastState = state
@@ -379,8 +376,7 @@ Item {
                     id: minButton
                     imageName: "image/window_min"
                     onClicked: {
-                        windowView.showMinimized()
-                        console.log("I'm here")
+                        windowView.doMinimized()
                     }
                     visible: showTitlebar ? 1 : 0
                 }
