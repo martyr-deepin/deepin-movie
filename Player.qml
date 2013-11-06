@@ -31,6 +31,7 @@ Video {
     property alias videoPreview: videoPreview
     property alias videoArea: videoArea
     property alias hidingBottomPanelAnimation: hidingBottomPanelAnimation
+    property alias playlistPanelArea: playlistPanelArea
     
     signal bottomPanelShow
     signal bottomPanelHide
@@ -185,7 +186,7 @@ Video {
                     if (!showingPlaylistPanelAnimation.running) {
                         showingPlaylistPanelAnimation.restart()
                     }
-                } else if (hidePlaylistButton.containsMouse) {
+                } else if (hidePlaylistButtonArea.containsMouse) {
                     
                 } else {
                     if (!showingBottomPanelAnimation.running) {
@@ -216,7 +217,10 @@ Video {
                 if (!hidingBottomPanelAnimation.running) {
                     hidingBottomPanelAnimation.restart()
                 }
-                video.hideCursor()
+                
+                if (!playlistPanelArea.containsMouse && !hidePlaylistButton.containsMouse) {
+                    video.hideCursor()
+                } 
             }
         }
         
@@ -240,10 +244,27 @@ Video {
         opacity: 1
         
         MouseArea {
+            id: playlistPanelArea
             anchors.fill: parent
+            hoverEnabled: true
+            
+            property real lastMouseX: 0
+            property real lastMouseY: 0
+            
+            onPressed: {
+                lastMouseX = mouseX
+                lastMouseY = mouseY
+            }
             
             onClicked: {
                 console.log("Click on playlist.")
+            }
+            
+            onPositionChanged: {
+                if (pressedButtons == Qt.LeftButton) {
+                    windowView.x += mouseX - lastMouseX
+                    windowView.y += mouseY - lastMouseY
+                }
             }
         }
         
@@ -257,6 +278,7 @@ Video {
             visible: playlistPanel.width == showWidth
             
             MouseArea {
+                id: hidePlaylistButtonArea
                 anchors.fill: parent
                 hoverEnabled: true
                 
@@ -266,10 +288,12 @@ Video {
                 
                 onEntered: {
                     inTriggerButton = true
+                    hidePlaylistButton.color = Qt.rgba(10, 0, 0, 0.8)
                 }
             
                 onExited: {
                     inTriggerButton = false
+                    hidePlaylistButton.color = Qt.rgba(0, 0, 0, 0.95)
                 }
             }
         }
