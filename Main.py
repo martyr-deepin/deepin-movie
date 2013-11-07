@@ -21,11 +21,11 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from PyQt5.QtWidgets import QApplication, qApp
-from PyQt5.QtQuick import QQuickView, QQuickItem
+from PyQt5.QtQuick import QQuickView
 from PyQt5.QtQml import qmlRegisterType
 from PyQt5.QtGui import QSurfaceFormat, QColor
 from PyQt5 import QtCore, QtQuick
-from PyQt5.QtCore import QSize, pyqtSlot, QObject
+from PyQt5.QtCore import QSize, pyqtSlot
 import os
 import sys
 import signal
