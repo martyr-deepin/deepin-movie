@@ -17,7 +17,6 @@ Item {
     property alias player: player
     property int currentTab: 0
     property int windowLastState: 0
-    property bool windowLastActive: true
     
     property bool showTitlebar: false
     property bool inInteractiveArea: false
@@ -47,27 +46,6 @@ Item {
                 player.tryPlayVideo()
             }
             windowLastState = state
-        }
-    }
-    
-    function monitorActive() {
-        var windowCurrentActive = windowView.getActive()
-        if (windowLastActive != windowCurrentActive) {
-            windowActiveTimer.restart()
-            windowLastActive = windowCurrentActive
-        }
-    }
-    
-    Timer {
-        id: windowActiveTimer
-        interval: 200
-        repeat: false
-        onTriggered: {
-            if (windowLastActive) {
-                player.tryPlayVideo()
-            } else {
-                player.tryPauseVideo()
-            }
         }
     }
     

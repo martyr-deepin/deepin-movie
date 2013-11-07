@@ -21,11 +21,11 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from PyQt5.QtWidgets import QApplication, qApp
-from PyQt5.QtQuick import QQuickView
+from PyQt5.QtQuick import QQuickView, QQuickItem
 from PyQt5.QtQml import qmlRegisterType
 from PyQt5.QtGui import QSurfaceFormat, QColor
 from PyQt5 import QtCore, QtQuick
-from PyQt5.QtCore import QSize, pyqtSlot
+from PyQt5.QtCore import QSize, pyqtSlot, QObject
 import os
 import sys
 import signal
@@ -40,10 +40,6 @@ class Window(QQuickView):
     @pyqtSlot(result=int)    
     def getState(self):
         return self.windowState()
-    
-    @pyqtSlot(result=bool)
-    def getActive(self):
-        return self.isActive()
     
     @pyqtSlot()
     def doMinimized(self):
@@ -83,7 +79,6 @@ if __name__ == "__main__":
     view.show()
     
     view.windowStateChanged.connect(view.rootObject().monitorWindowState)
-    view.activeChanged.connect(view.rootObject().monitorActive)
     
     signal.signal(signal.SIGINT, signal.SIG_DFL)
     sys.exit(app.exec_())
