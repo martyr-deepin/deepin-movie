@@ -193,8 +193,8 @@ Video {
                         if (!showingBottomPanelAnimation.running) {
                             showingBottomPanelAnimation.restart()
                         }
-                        hidingTimer.restart()
                     }
+                    hidingTimer.restart()
                 }
             }
 
