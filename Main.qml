@@ -18,7 +18,7 @@ Item {
     property int currentTab: 0
     property int windowLastState: 0
     
-    property bool showTitlebar: false
+    property bool showTitlebar: true
     property bool inInteractiveArea: false
     
     signal exitMouseArea
@@ -255,7 +255,7 @@ Item {
         anchors.left: frame.left
         anchors.right: frame.right
         width: frame.width
-        height: 0
+        height: titlebarHeight
         property real lastMouseX: 0
         property real lastMouseY: 0
         hoverEnabled: true

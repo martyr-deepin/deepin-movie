@@ -16,7 +16,7 @@ Video {
     property double timePosition: 0
     property double videoPosition: 0
     
-    property bool showBottomPanel: false
+    property bool showBottomPanel: true
     
     property double showHeight: 60
     property double hideHeight: 0
@@ -26,8 +26,11 @@ Video {
     property double triggerPlaylistX: 50
     property double triggerButtonWidth: 20
     property double triggerButtonHeight: 80
-    property double triggerPlaylistProtectedWidth: 50
     property bool inTriggerButton: false
+    
+    property double triggerTopPanelHeight: 50
+    property double triggerBottomPanelHeight: 50
+    property double triggerPlaylistProtectedWidth: 50
     
     property alias videoPreview: videoPreview
     property alias videoArea: videoArea
@@ -42,6 +45,8 @@ Video {
     
     Component.onCompleted: {
         timeTotal = formatTime(video.duration)
+        
+        hidingTimer.restart()
     }
     
     onPositionChanged: {
@@ -178,18 +183,18 @@ Video {
         }
         
         onPositionChanged: {
-            if (playlistPanel.width == showWidth && mouseX < showWidth + triggerPlaylistProtectedWidth) {
-                
-            } else {
+            if (playlistPanel.width != showWidth || mouseX >= showWidth + triggerPlaylistProtectedWidth) {
                 if (mouseX < triggerPlaylistX) {
                     if (!showingPlaylistPanelAnimation.running) {
                         showingPlaylistPanelAnimation.restart()
                     }
                 } else {
-                    if (!showingBottomPanelAnimation.running) {
-                        showingBottomPanelAnimation.restart()
+                    if (mouseY < triggerTopPanelHeight || mouseY > videoArea.height - triggerBottomPanelHeight) {
+                        if (!showingBottomPanelAnimation.running) {
+                            showingBottomPanelAnimation.restart()
+                        }
+                        hidingTimer.restart()
                     }
-                    hidingTimer.restart()
                 }
             }
 
@@ -299,7 +304,7 @@ Video {
     Rectangle {
         id: bottomPanel
         color: Qt.rgba(0, 0, 0, 0.95)
-        height: hideHeight
+        height: showHeight
         anchors.left: video.left
         anchors.right: video.right
         y: video.height - height
