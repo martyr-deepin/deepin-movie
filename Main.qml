@@ -38,6 +38,10 @@ Item {
         outWindowTimer.restart()
     }
     
+    function monitorWindowClose() {
+        console.log("Got it")
+    }
+    
     function monitorWindowState(state) {
         if (windowLastState != state) {
             if (state == Qt.WindowMinimized) {
@@ -391,7 +395,7 @@ Item {
                 ImageButton {
                     id: closeButton
                     imageName: "image/window_close"
-                    onClicked: {qApp.quit()}
+                    onClicked: {windowView.close()}
                     visible: showTitlebar ? 1 : 0
                 }
             }

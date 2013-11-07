@@ -55,6 +55,7 @@ if __name__ == "__main__":
     movie_file = sys.argv[1]
     
     app = QApplication(sys.argv)
+    app.quitOnLastWindowClosed = True
     
     qmlRegisterType(ImageCanvas, "ImageCanvas", 1, 0, "ImageCanvas")
     qmlRegisterType(TopRoundRect, "TopRoundRect", 1, 0, "TopRoundRect")
@@ -79,6 +80,7 @@ if __name__ == "__main__":
     view.show()
     
     view.windowStateChanged.connect(view.rootObject().monitorWindowState)
+    app.lastWindowClosed.connect(view.rootObject().monitorWindowClose)
     
     signal.signal(signal.SIGINT, signal.SIG_DFL)
     sys.exit(app.exec_())
