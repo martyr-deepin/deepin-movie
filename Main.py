@@ -55,7 +55,6 @@ if __name__ == "__main__":
     movie_file = sys.argv[1]
     
     app = QApplication(sys.argv)
-    app.quitOnLastWindowClosed = True
     
     qmlRegisterType(ImageCanvas, "ImageCanvas", 1, 0, "ImageCanvas")
     qmlRegisterType(TopRoundRect, "TopRoundRect", 1, 0, "TopRoundRect")

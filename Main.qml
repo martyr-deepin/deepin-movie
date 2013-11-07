@@ -4,6 +4,7 @@ import ImageCanvas 1.0
 import TopRoundRect 1.0
 import QtWebKit 3.0
 import QtMultimedia 5.0
+import QtQuick.LocalStorage 2.0
 
 Item {
     id: window
@@ -38,8 +39,57 @@ Item {
         outWindowTimer.restart()
     }
     
+    Component.onCompleted: {
+        initDatabase()
+    }
+    
+    function getDatabase() {
+        return LocalStorage.openDatabaseSync("movie_position_db", "1.0", "Database store movie play position", 10000)
+    }
+    
+    function initDatabase() {
+        var db = getDatabase()
+        db.transaction(
+            function(tx) {
+                tx.executeSql('CREATE TABLE IF NOT EXISTS positions(path TEXT UNIQUE, position INTEGER)');
+            });
+    }    
+    
+    function savePosition(path, position) {
+        var res = "";
+        var db = getDatabase()
+        db.transaction(
+            function(tx) {
+                var rs = tx.executeSql('INSERT OR REPLACE INTO positions VALUES (?,?);', [path, position]);
+                if (rs.rowsAffected > 0) {
+                    res = "OK";
+                } else {
+                    res = "Error";
+                }
+            }
+        );   
+        
+        return res
+    } 
+    
+    function getPosition(path) {
+        var res = 0
+        var db = getDatabase()
+        db.transaction(
+            function(tx) {
+                var rs = tx.executeSql('SELECT position FROM positions WHERE path=?;', [path]);
+                if (rs.rows.length > 0) {
+                    res = rs.rows.item(0).position;
+                } else {
+                    res = 0
+                }
+            })
+        
+        return res
+    }    
+    
     function monitorWindowClose() {
-        console.log("Got it")
+        savePosition(player.source, player.position)
     }
     
     function monitorWindowState(state) {

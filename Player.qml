@@ -4,7 +4,8 @@ import QtGraphicalEffects 1.0
 
 Video {
     id: video
-    autoPlay: true
+    autoPlay: false
+    /* autoPlay: true */
     /* muted: true */
     anchors.leftMargin: 1
     anchors.rightMargin: 1
@@ -47,6 +48,9 @@ Video {
         timeTotal = formatTime(video.duration)
         
         hidingTimer.restart()
+        
+        video.seek(getPosition(video.source))
+        video.play()
     }
     
     onPositionChanged: {
