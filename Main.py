@@ -30,11 +30,13 @@ import signal
 from ImageCanvas import ImageCanvas
 from TopRoundRect import TopRoundRect
 from Window import Window
+from Database import Database
 
 if __name__ == "__main__":
     movie_file = sys.argv[1]
     
     app = QApplication(sys.argv)
+    database = Database()
     
     qmlRegisterType(ImageCanvas, "ImageCanvas", 1, 0, "ImageCanvas")
     qmlRegisterType(TopRoundRect, "TopRoundRect", 1, 0, "TopRoundRect")
@@ -45,6 +47,7 @@ if __name__ == "__main__":
     qml_context.setContextProperty("windowView", view)
     qml_context.setContextProperty("qApp", qApp)
     qml_context.setContextProperty("movie_file", movie_file)
+    qml_context.setContextProperty("database", database)
     
     view.setSource(QtCore.QUrl.fromLocalFile(os.path.join(os.path.dirname(__file__), 'Main.qml')))
     view.setMinimumSize(QSize(900, 518))

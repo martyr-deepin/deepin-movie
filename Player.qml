@@ -49,7 +49,7 @@ Video {
         
         hidingTimer.restart()
         
-        video.seek(getPosition(video.source))
+        video.seek(database.fetch_video_position(video.source))
         video.play()
     }
     
