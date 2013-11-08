@@ -16,6 +16,7 @@ Item {
     default property alias tabPages: pages.children
     property alias playPage: playPage
     property alias player: player
+    property alias titlebar: titlebar
     property int currentTab: 0
     property int windowLastState: 0
     

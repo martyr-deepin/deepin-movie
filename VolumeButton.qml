@@ -2,7 +2,7 @@ import QtQuick 2.1
 import QtMultimedia 5.0
 import QtGraphicalEffects 1.0
 
-ImageButton {
+ToggleButton {
     id: volumeButton
     
     imageName: "image/player_volume"
@@ -20,6 +20,7 @@ ImageButton {
     InteractiveArea {
         anchors.fill: parent
         hoverEnabled: true
+        propagateComposedEvents: true
         
         onPositionChanged: {
             volumeButton.inVolumebar()
@@ -28,6 +29,10 @@ ImageButton {
             volumePositionBar.width = showPosition
             
             hideVolumebarTimer.start()
+        }
+        
+        onClicked: {
+            mouse.accepted = false
         }
     }
     

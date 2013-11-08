@@ -37,6 +37,7 @@ Video {
     property alias videoArea: videoArea
     property alias hidingBottomPanelAnimation: hidingBottomPanelAnimation
     property alias playlistPanelArea: playlistPanelArea
+    property alias notifybar: notifybar
     
     signal bottomPanelShow
     signal bottomPanelHide
@@ -100,11 +101,17 @@ Video {
     }
     
     function forward() {
-        video.seek(video.position + 5000)
+        var newPositoin = video.position + 5000
+        video.seek(newPositoin)
+        
+        notifybar.show("image/notify_forward.png", "快进至 " + formatTime(newPositoin))
     }
     
     function backward() {
-        video.seek(video.position - 5000)
+        var newPositoin = video.position - 5000
+        video.seek(newPositoin)
+        
+        notifybar.show("image/notify_backward.png", "快退至 " + formatTime(newPositoin))
     }
     
     Rectangle {
@@ -598,6 +605,14 @@ Video {
         if (windowView.getState() == Qt.WindowFullScreen) {
             video.toggleFullscreen()
         }
+    }
+    
+    Notifybar {
+        id: notifybar
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.topMargin: 20 + titlebar.height
+        anchors.leftMargin: 20
     }
 
     ParallelAnimation{
