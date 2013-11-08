@@ -309,7 +309,8 @@ Video {
     
     Rectangle {
         id: bottomPanel
-        color: Qt.rgba(0, 0, 0, 0.95)
+        /* color: Qt.rgba(0, 0, 0, 0.95) */
+        color: Qt.rgba(0, 0, 0, 0)
         height: showHeight
         anchors.left: video.left
         anchors.right: video.right
@@ -319,6 +320,20 @@ Video {
         property double showOpacity: 0.9
         property double hideOpacity: 0
         
+        LinearGradient {
+            id: bottomPanelBackround
+            anchors.fill: parent
+            start: Qt.point(0, 0)
+            end: Qt.point(0, height)
+            gradient: Gradient {
+                GradientStop { position: 0.0; color: "#88000000"}
+                GradientStop { position: 0.1; color: "#AA000000"}
+                GradientStop { position: 0.6; color: "#DD000000"}
+                GradientStop { position: 1.0; color: "#FF000000"}
+            }
+            visible: showBottomPanel ? 1 : 0
+        }
+                    
         InteractiveArea {
             id: bottomPanelArea
             anchors.fill: parent
@@ -359,9 +374,8 @@ Video {
                     anchors.top: parent.top
                     anchors.left: parent.left
                     anchors.right: parent.right
-                    /* height: 3 */
                     height: 7
-                    color: "#32664d"
+                    color: "#5540404a"
                     visible: showBottomPanel ? 1 : 0
                     
                     InteractiveArea {
@@ -432,9 +446,9 @@ Video {
                         start: Qt.point(0, 0)
                         end: Qt.point(width, 0)
                         gradient: Gradient {
-                            GradientStop { position: 0.0; color: "#00f893"}
-                            GradientStop { position: 0.95; color: "#00f893"}
-                            GradientStop { position: 1.0; color: "#00f893"}
+                            GradientStop { position: 0.0; color: "#EE00f893"}
+                            GradientStop { position: 0.95; color: "#EE00f893"}
+                            GradientStop { position: 1.0; color: "#EE00f893"}
                         }
                         visible: showBottomPanel ? 1 : 0
                     }
@@ -445,7 +459,8 @@ Video {
                 id: buttonArea
                 anchors.left: parent.left
                 anchors.right: parent.right
-                anchors.verticalCenter: parent.verticalCenter
+                anchors.top: parent.top
+                anchors.topMargin: 34
                 
                 Row {
                     id: leftButtonArea
@@ -481,7 +496,7 @@ Video {
                     id: middleButtonArea
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
-                    spacing: 28
+                    spacing: 0
                     
                     ImageButton {
                         id: playerOpen
@@ -489,12 +504,22 @@ Video {
                         anchors.verticalCenter: playerPlay.verticalCenter
                         visible: showBottomPanel ? 1 : 0
                     }
+                    
+                    Space {
+                        width: 46
+                    }
+                    
                     ImageButton {
                         id: playerBackward
                         imageName: "image/player_backward"
                         anchors.verticalCenter: playerPlay.verticalCenter
                         visible: showBottomPanel ? 1 : 0
                     }
+                    
+                    Space {
+                        width: 28
+                    }
+                    
                     ImageButton {
                         id: playerPlay
                         imageName: video.playbackState == MediaPlayer.PlayingState ? "image/player_pause" : "image/player_play"
@@ -503,12 +528,22 @@ Video {
                         }
                         visible: showBottomPanel ? 1 : 0
                     }
+                    
+                    Space {
+                        width: 28
+                    }
+                    
                     ImageButton {
                         id: playerForward
                         imageName: "image/player_forward"
                         anchors.verticalCenter: playerPlay.verticalCenter
                         visible: showBottomPanel ? 1 : 0
                     }
+                    
+                    Space {
+                        width: 46
+                    }
+                    
                     VolumeButton {
                         id: playerVolume
                         anchors.verticalCenter: parent.verticalCenter

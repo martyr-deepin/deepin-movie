@@ -35,7 +35,7 @@ ImageButton {
         id: volumebar
         anchors.left: parent.right
         anchors.verticalCenter: parent.verticalCenter
-        anchors.leftMargin: 5
+        anchors.leftMargin: 8
         width: hideWidth
         height: 5
         color: Qt.rgba(2, 2, 2, 0.2)
