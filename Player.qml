@@ -19,7 +19,7 @@ Video {
     
     property bool showBottomPanel: true
     
-    property double showHeight: 60
+    property double showHeight: 64
     property double hideHeight: 0
     
     property double showWidth: 200
@@ -360,8 +360,8 @@ Video {
                     anchors.left: parent.left
                     anchors.right: parent.right
                     /* height: 3 */
-                    height: 10
-                    color: Qt.rgba(100, 100, 100, 0.2)
+                    height: 7
+                    color: "#32664d"
                     visible: showBottomPanel ? 1 : 0
                     
                     InteractiveArea {
@@ -432,9 +432,9 @@ Video {
                         start: Qt.point(0, 0)
                         end: Qt.point(width, 0)
                         gradient: Gradient {
-                            GradientStop { position: 0.0; color: Qt.rgba(19 / 255.0, 48 / 255.0, 104 / 255.0, 0.5)}
-                            GradientStop { position: 0.95; color: Qt.rgba(33 / 255.0, 91 / 255.0, 210 / 255.0, 0.8)}
-                            GradientStop { position: 1.0; color: Qt.rgba(33 / 255.0, 91 / 255.0, 210 / 255.0, 0.5)}
+                            GradientStop { position: 0.0; color: "#00f893"}
+                            GradientStop { position: 0.95; color: "#00f893"}
+                            GradientStop { position: 1.0; color: "#00f893"}
                         }
                         visible: showBottomPanel ? 1 : 0
                     }
@@ -450,9 +450,9 @@ Video {
                 Row {
                     id: leftButtonArea
                     anchors.left: parent.left
-                    anchors.leftMargin: 10
+                    anchors.leftMargin: 24
                     anchors.verticalCenter: parent.verticalCenter
-                    spacing: 5
+                    spacing: 20
                     
                     ImageButton {
                         id: playerList
@@ -481,7 +481,7 @@ Video {
                     id: middleButtonArea
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
-                    spacing: 5
+                    spacing: 28
                     
                     ImageButton {
                         id: playerOpen
