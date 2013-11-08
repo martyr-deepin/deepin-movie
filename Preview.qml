@@ -45,7 +45,7 @@ Rectangle {
                 anchors.bottom: parent.bottom
                 anchors.left: parent.left
                 anchors.right: parent.right
-                height: 20
+                height: 24
                 color: "#DD000000"
                 
                 Text {
