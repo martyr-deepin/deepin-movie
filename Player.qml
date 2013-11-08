@@ -114,6 +114,18 @@ Video {
         notifybar.show("image/notify_backward.png", "快退至 " + formatTime(newPositoin))
     }
     
+    function increaseVolume() {
+        video.volume = Math.min(video.volume + 0.05, 1.0)
+        
+        notifybar.show("image/notify_volume", "音量: " + video.volume * 100 + "%")
+    }
+
+    function decreaseVolume() {
+        video.volume = Math.max(video.volume - 0.05, 0.0)
+        
+        notifybar.show("image/notify_volume", "音量: " + video.volume * 100 + "%")
+    }
+    
     Rectangle {
         id: indicatorArea
         anchors.top: parent.top
@@ -569,6 +581,8 @@ Video {
                         
                         onChangeVolume: {
                             video.volume = playerVolume.volume
+                            
+                            notifybar.show("image/notify_volume", "音量: " + video.volume * 100 + "%")
                         }
                         
                         Component.onCompleted: {
@@ -601,6 +615,8 @@ Video {
     Keys.onSpacePressed: toggle()
     Keys.onLeftPressed: backward()
     Keys.onRightPressed: forward()
+    Keys.onUpPressed: increaseVolume()
+    Keys.onDownPressed: decreaseVolume()
     Keys.onEscapePressed: {
         if (windowView.getState() == Qt.WindowFullScreen) {
             video.toggleFullscreen()
