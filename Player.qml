@@ -120,7 +120,7 @@ Video {
             anchors.horizontalCenter: parent.horizontalCenter
             text: ""
             font.pixelSize: 20
-            color: "#80999999"
+            color: "#80DDDDDD"
             style: Text.Outline
             styleColor: "#FF333333"
             
