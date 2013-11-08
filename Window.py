@@ -29,11 +29,12 @@ class Window(QQuickView):
 
     def __init__(self):
         QQuickView.__init__(self)
+        surface_format = QSurfaceFormat()
+        surface_format.setAlphaBufferSize(8)
+        
         self.setColor(QColor(0, 0, 0, 0))
         self.setFlags(QtCore.Qt.FramelessWindowHint)
         self.setResizeMode(QtQuick.QQuickView.SizeRootObjectToView)
-        surface_format = QSurfaceFormat()
-        surface_format.setAlphaBufferSize(8)
         self.setFormat(surface_format)
         
     @pyqtSlot(result=int)    
