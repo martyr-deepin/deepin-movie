@@ -475,11 +475,12 @@ Video {
                     anchors.verticalCenter: parent.verticalCenter
                     spacing: 20
                     
-                    ImageButton {
+                    ToggleButton {
                         id: playerList
                         imageName: "image/player_list"
                         anchors.verticalCenter: parent.verticalCenter
                         visible: showBottomPanel ? 1 : 0
+                        active: playlistPanel.width == showWidth
                         
                         onClicked: {
                             if (playlistPanel.width == showWidth) {
@@ -490,7 +491,7 @@ Video {
                         }
                     }
                     
-                    ImageButton {
+                    ToggleButton {
                         id: playerConfig
                         imageName: "image/player_config"
                         anchors.verticalCenter: parent.verticalCenter
