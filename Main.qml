@@ -41,6 +41,7 @@ Item {
     
     function monitorWindowClose() {
         database.record_video_position(player.source, player.position)
+        config.save("Normal", "volume", player.volume)
     }
     
     function monitorWindowState(state) {

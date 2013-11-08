@@ -21,7 +21,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from PyQt5.QtCore import pyqtSlot, QObject
-from Constant import XDG_CONFIG_HOME, PROJECT_NAME
+from Constant import CONFIG_DIR
 import os
 import sqlite3
 from deepin_utils.file import touch_file
@@ -29,7 +29,7 @@ from deepin_utils.file import touch_file
 class Database(QObject):
     def __init__(self):
         QObject.__init__(self)
-        self.video_db_path = os.path.join(XDG_CONFIG_HOME, PROJECT_NAME, "video_db")
+        self.video_db_path = os.path.join(CONFIG_DIR, "video_db")
         touch_file(self.video_db_path)
         self.video_db_connect = sqlite3.connect(self.video_db_path)
         self.video_db_cursor = self.video_db_connect.cursor()

@@ -26,4 +26,4 @@ _HOME = os.path.expanduser('~')
 XDG_CONFIG_HOME = os.environ.get('XDG_CONFIG_HOME') or \
             os.path.join(_HOME, '.config')
 PROJECT_NAME = "deepin-movie"
-
+CONFIG_DIR = os.path.join(XDG_CONFIG_HOME, PROJECT_NAME)

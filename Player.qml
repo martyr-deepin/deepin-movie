@@ -51,6 +51,8 @@ Video {
         
         video.seek(database.fetch_video_position(video.source))
         video.play()
+        
+        video.volume = config.fetch("Normal", "volume") * 1
     }
     
     onPositionChanged: {
@@ -518,6 +520,10 @@ Video {
                         
                         onChangeVolume: {
                             video.volume = playerVolume.volume
+                        }
+                        
+                        Component.onCompleted: {
+                            playerVolume.volume = video.volume
                         }
                     }
                 }
