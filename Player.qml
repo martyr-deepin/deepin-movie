@@ -452,6 +452,12 @@ Video {
                         }
                         visible: showBottomPanel ? 1 : 0
                     }
+                    
+                    Image {
+                        source: "image/progress_pointer.png"
+                        x: timePosition * parent.width - width / 2
+                        y: progressbarForeground.y + (progressbarForeground.height - height) / 2
+                    }
                 }
             }
             
