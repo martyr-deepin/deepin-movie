@@ -21,36 +21,16 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from PyQt5.QtWidgets import QApplication, qApp
-from PyQt5.QtQuick import QQuickView
 from PyQt5.QtQml import qmlRegisterType
-from PyQt5.QtGui import QSurfaceFormat, QColor
-from PyQt5 import QtCore, QtQuick
-from PyQt5.QtCore import QSize, pyqtSlot
-import os
+from PyQt5.QtCore import QSize
+from PyQt5 import QtCore
 import sys
+import os
 import signal
 from ImageCanvas import ImageCanvas
 from TopRoundRect import TopRoundRect
+from Window import Window
 
-class Window(QQuickView):
-
-    def __init__(self):
-        QQuickView.__init__(self)
-        
-    @pyqtSlot(result=int)    
-    def getState(self):
-        return self.windowState()
-    
-    @pyqtSlot()
-    def doMinimized(self):
-        # NOTE: This is bug of Qt5 that showMinimized() just can work once after restore window.
-        # I change window state before set it as WindowMinimized to fixed this bug!
-        self.setWindowState(QtCore.Qt.WindowMaximized)
-        
-        # Do minimized.
-        self.setWindowState(QtCore.Qt.WindowMinimized)
-        self.setVisible(True)
-    
 if __name__ == "__main__":
     movie_file = sys.argv[1]
     
@@ -66,16 +46,8 @@ if __name__ == "__main__":
     qml_context.setContextProperty("qApp", qApp)
     qml_context.setContextProperty("movie_file", movie_file)
     
-    view.setResizeMode(QtQuick.QQuickView.SizeRootObjectToView)
-    view.setMinimumSize(QSize(900, 518))
-    
-    surface_format = QSurfaceFormat()
-    surface_format.setAlphaBufferSize(8)
-    view.setFormat(surface_format)
-    
-    view.setColor(QColor(0, 0, 0, 0))
-    view.setFlags(QtCore.Qt.FramelessWindowHint)
     view.setSource(QtCore.QUrl.fromLocalFile(os.path.join(os.path.dirname(__file__), 'Main.qml')))
+    view.setMinimumSize(QSize(900, 518))
     view.show()
     
     view.windowStateChanged.connect(view.rootObject().monitorWindowState)
