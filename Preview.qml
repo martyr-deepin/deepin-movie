@@ -5,12 +5,11 @@ import QtGraphicalEffects 1.0
 Rectangle {
     id: preview
     width: 150
-    height: 117
+    height: 100
     color: Qt.rgba(0, 0, 0, 0.0)
     property int triangleWidth: 20
     property int triangleHeight: 10
     property int previewPadding: 3
-    property int previewTimeHeight: 20
     
     property alias video: video
     property alias videoTime: videoTime
@@ -36,20 +35,28 @@ Rectangle {
             anchors.topMargin: previewPadding
             anchors.leftMargin: previewPadding
             anchors.rightMargin: previewPadding
-            anchors.bottomMargin: previewPadding + previewTimeHeight
+            anchors.bottomMargin: previewPadding
             
             onPositionChanged: {
                 preview.positionChanged()
             }
+            
+            Rectangle {
+                anchors.bottom: parent.bottom
+                anchors.left: parent.left
+                anchors.right: parent.right
+                height: 20
+                color: "#DD000000"
+                
+                Text {
+                    id: videoTime
+                    color: "white"                    
+                    anchors.centerIn: parent
+                }
+            }
         }
 
-        Text {
-            id: videoTime
-            text: "00:00:00"
-            color: Qt.rgba(10, 10, 10, 0.8)
-            anchors.top: video.bottom
-            anchors.horizontalCenter: video.horizontalCenter
-        }
+
     }
     
     Rectangle {
