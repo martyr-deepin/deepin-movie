@@ -586,6 +586,12 @@ Video {
                         
                         onClickMute: {
                             video.muted = !playerVolume.active
+                            
+                            if (video.muted) {
+                                notifybar.show("image/notify_volume.png", "静音")
+                            } else {
+                                notifybar.show("image/notify_volume.png", "音量: " + Math.round(video.volume * 100) + "%")
+                            }
                         }
                         
                         Component.onCompleted: {
