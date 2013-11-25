@@ -51,12 +51,6 @@ Rectangle {
             duration: 100
             easing.type: Easing.OutBack
         }
-        
-        onRunningChanged: {
-            if (!showingNotifyAnimation.running) {
-                hidingBottomPanelAnimation.restart()
-            }
-        }
     }    
 
     ParallelAnimation{
