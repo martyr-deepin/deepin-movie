@@ -10,7 +10,7 @@ ToggleButton {
     property alias volumebar: volumebar
     property double volume: 1.0
     property int hideWidth: 0.0
-    property int showWidth: 60.0
+    property int showWidth: 58.0
     property int hidePosition: hideWidth
     property int showPosition: volume * showWidth
     
@@ -25,8 +25,7 @@ ToggleButton {
         onPositionChanged: {
             volumeButton.inVolumebar()
             
-            volumebar.width = showWidth
-            volumePositionBar.width = showPosition
+            volumebar.visible = true
             
             hideVolumebarTimer.start()
         }
@@ -36,42 +35,38 @@ ToggleButton {
         }
     }
     
-    Rectangle {
+    Image {
         id: volumebar
+        source: "image/volume_background.png"
         anchors.left: parent.right
         anchors.verticalCenter: parent.verticalCenter
         anchors.leftMargin: 8
-        width: hideWidth
-        height: 5
-        color: Qt.rgba(2, 2, 2, 0.2)
+        visible: false
         
-        LinearGradient {
-            id: volumePositionBar
+        Image {
+            id: volumeLeft
             anchors.left: parent.left
-            anchors.top: parent.top
-            height: parent.height
-            width: hidePosition
-            start: Qt.point(0, 0)
-            end: Qt.point(width, 0)
-            gradient: Gradient {
-                GradientStop { position: 0.0; color: Qt.rgba(19 / 255.0, 48 / 255.0, 104 / 255.0, 0.5)}
-                GradientStop { position: 0.95; color: Qt.rgba(33 / 255.0, 91 / 255.0, 210 / 255.0, 0.8)}
-                GradientStop { position: 1.0; color: Qt.rgba(33 / 255.0, 91 / 255.0, 210 / 255.0, 0.5)}
-            }
-            
-            Behavior on width {
-                NumberAnimation {
-                    duration: 50
-                    easing.type: Easing.OutQuint
-                }
-            }
+            source: "image/volume_foreground_left.png"
         }
         
-        Behavior on width {
-            NumberAnimation {
-                duration: 300
-                easing.type: Easing.OutQuint
-            }
+        Image {
+            id: volumeMiddle
+            anchors.left: volumeLeft.right
+            source: "image/volume_foreground_middle.png"
+            fillMode: Image.TileHorizontally
+            width: showPosition
+        }
+        
+        Image {
+            id: volumeRight
+            anchors.left: volumeMiddle.right
+            source: "image/volume_foreground_right.png"
+        }
+        
+        Image {
+            id: volumePointer
+            anchors.right: volumeRight.right
+            source: "image/volume_pointer.png"
         }
     }
     
@@ -85,7 +80,7 @@ ToggleButton {
 
         onClicked: {
             volume = mouseX / showWidth
-            volumePositionBar.width = showPosition
+            volumeMiddle.width = showPosition
             volumeButton.changeVolume()
         }
         
@@ -93,7 +88,7 @@ ToggleButton {
             volumeButton.inVolumebar()
             
             volumebar.width = showWidth
-            volumePositionBar.width = showPosition
+            volumeMiddle.width = showPosition
             
             hideVolumebarTimer.stop()
         }
@@ -104,7 +99,7 @@ ToggleButton {
         
         onWheel: {
             volume = Math.max(Math.min(volume + (wheel.angleDelta.y / 120 * 0.05), 1.0), 0.0)
-            volumePositionBar.width = showPosition
+            volumeMiddle.width = showPosition
             volumeButton.changeVolume()
         }
     }
@@ -114,8 +109,7 @@ ToggleButton {
         interval: 2000
         repeat: false
         onTriggered: {
-            volumebar.width = hideWidth
-            volumePositionBar.width = hidePosition
+            volumebar.visible = false
         }
     }
 }
