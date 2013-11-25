@@ -265,7 +265,7 @@ Video {
 
     Rectangle {
         id: playlistPanel
-        color: Qt.rgba(0, 0, 0, 0.95)
+        color: "#1D1D1D"
         height: video.height
         width: hideWidth
         opacity: 1
@@ -297,7 +297,7 @@ Video {
         
         Rectangle {
             id: hidePlaylistButton
-            color: Qt.rgba(0, 0, 0, 0.95)
+            color: "#1D1D1D"
             width: triggerButtonWidth
             height: triggerButtonHeight
             anchors.left: playlistPanel.right
@@ -315,12 +315,10 @@ Video {
                 
                 onEntered: {
                     inTriggerButton = true
-                    hidePlaylistButton.color = Qt.rgba(10, 0, 0, 0.8)
                 }
             
                 onExited: {
                     inTriggerButton = false
-                    hidePlaylistButton.color = Qt.rgba(0, 0, 0, 0.95)
                 }
             }
         }
