@@ -180,7 +180,7 @@ Item {
             id: movieStorePage
             url: "http://pianku.xmp.kankan.com/moviestore_index.html"
             anchors.fill: parent
-            property string name: "深度影院"
+            property string name: "在线影院"
             visible: false
         }
         
@@ -189,14 +189,6 @@ Item {
             url: "http://search.xmp.kankan.com/lndex4xmp.shtml"
             anchors.fill: parent
             property string name: "视频搜索"
-            visible: false
-        }
-
-        WebView {
-            id: favouritePage
-            url: "http://search.xmp.kankan.com/lndex4xmp.shtml"
-            anchors.fill: parent
-            property string name: "我的收藏"
             visible: false
         }
     }
