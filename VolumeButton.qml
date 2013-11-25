@@ -8,6 +8,7 @@ ToggleButton {
     imageName: "image/player_volume"
     
     property alias volumebar: volumebar
+    
     property double volume: 1.0
     property int hideWidth: 0.0
     property int showWidth: 58.0
@@ -16,6 +17,15 @@ ToggleButton {
     
     signal inVolumebar
     signal changeVolume
+    signal clickMute
+    
+    Connections {
+        target: volumeButton
+        onClicked: {
+            volumebar.visible = volumeButton.active
+            volumeButton.clickMute(volumeButton.active)
+        }
+    }
     
     InteractiveArea {
         anchors.fill: parent
@@ -25,7 +35,9 @@ ToggleButton {
         onPositionChanged: {
             volumeButton.inVolumebar()
             
-            volumebar.visible = true
+            if (volumeButton.active) {
+                volumebar.visible = true
+            }
             
             hideVolumebarTimer.start()
         }

@@ -513,6 +513,7 @@ Video {
                         imageName: "image/player_config"
                         anchors.verticalCenter: parent.verticalCenter
                         visible: showBottomPanel ? 1 : 0
+                        active: false
                     }
                 }
                 
@@ -581,6 +582,10 @@ Video {
                             video.volume = playerVolume.volume
                             
                             notifybar.show("image/notify_volume.png", "音量: " + Math.round(video.volume * 100) + "%")
+                        }
+                        
+                        onClickMute: {
+                            video.muted = !playerVolume.active
                         }
                         
                         Component.onCompleted: {
