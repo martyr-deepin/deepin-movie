@@ -26,7 +26,7 @@ Video {
     property double hideWidth: 0
     property double triggerPlaylistX: 50
     property double triggerButtonWidth: 20
-    property double triggerButtonHeight: 80
+    property double triggerButtonHeight: 62
     property bool inTriggerButton: false
     
     property double triggerTopPanelHeight: 50
@@ -295,14 +295,19 @@ Video {
             }
         }
         
-        Rectangle {
+        Image {
             id: hidePlaylistButton
-            color: "#1D1D1D"
-            width: triggerButtonWidth
-            height: triggerButtonHeight
+            source: "image/playlist_button_background.png"
             anchors.left: playlistPanel.right
             anchors.verticalCenter: playlistPanel.verticalCenter
             visible: playlistPanel.width == showWidth
+            
+            Image {
+                source: "image/playlist_button_arrow.png"
+                anchors.right: parent.right
+                anchors.rightMargin: 7
+                anchors.verticalCenter: parent.verticalCenter
+            }
             
             MouseArea {
                 id: hidePlaylistButtonArea
