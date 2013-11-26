@@ -476,10 +476,8 @@ Video {
                             
                             videoPreview.videoTime.text = formatTime(videoPosition)
                             
-                            var minOffsetX = 10
-                            
                             if (mouseX < videoPreview.width / 2) {
-                                videoPreview.cornerPos = Math.max(mouseX, minOffsetX)
+                                videoPreview.cornerPos = mouseX
                             } else if (mouseX > progressbarArea.width - videoPreview.width / 2) {
                                 videoPreview.cornerPos = mouseX - progressbarArea.width + videoPreview.width
                             } else {
