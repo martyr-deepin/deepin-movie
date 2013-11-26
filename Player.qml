@@ -301,6 +301,7 @@ Video {
             visible: playlistPanel.width == showWidth
             
             Image {
+                id: hidePlaylistArrow
                 source: "image/playlist_button_arrow.png"
                 anchors.right: parent.right
                 anchors.rightMargin: 7
@@ -309,7 +310,10 @@ Video {
             
             MouseArea {
                 id: hidePlaylistButtonArea
-                anchors.fill: parent
+                anchors.top: parent.top
+                anchors.bottom: parent.bottom
+                anchors.right: parent.right
+                anchors.left: hidePlaylistArrow.left
                 hoverEnabled: true
                 
                 onClicked: {
