@@ -36,6 +36,7 @@ Video {
     property alias hidingBottomPanelAnimation: hidingBottomPanelAnimation
     property alias playlistPanelArea: playlistPanelArea
     property alias notifybar: notifybar
+    property alias pauseNotify: pauseNotify
     
     signal bottomPanelShow
     signal bottomPanelHide
@@ -167,6 +168,27 @@ Video {
                     height: positionIndicator.dotSize
                 }
             }
+        }
+    }
+    
+    Image {
+        id: pauseNotify
+        source: "image/pause_notify.png"
+        visible: video.playbackState != MediaPlayer.PlayingState
+    }
+    
+    Connections {
+        target: video
+        onPaused: {
+            pauseNotify.scale = 1
+            pauseNotify.anchors.left = undefined
+            pauseNotify.anchors.bottom = undefined
+            pauseNotify.anchors.leftMargin = 0
+            pauseNotify.anchors.bottomMargin = 0
+            pauseNotify.x = (parent.width - pauseNotify.width) / 2
+            pauseNotify.y = (parent.height - pauseNotify.height) / 2
+            
+            movePauseNotify.restart()
         }
     }
     
@@ -675,7 +697,7 @@ Video {
             property: "height"
             to: showHeight
             duration: 100
-            easing.type: Easing.OutBack
+            easing.type: Easing.OutQuint
         }
 
         onStarted: {
@@ -698,7 +720,7 @@ Video {
             property: "height"
             to: hideHeight
             duration: 100
-            easing.type: Easing.OutBack
+            easing.type: Easing.OutQuint
         }
         
         onStarted: {
@@ -721,7 +743,7 @@ Video {
             property: "width"
             to: showWidth
             duration: 100
-            easing.type: Easing.OutBack
+            easing.type: Easing.OutQuint
         }
         
         onRunningChanged: {
@@ -740,7 +762,62 @@ Video {
             property: "width"
             to: hideWidth
             duration: 100
-            easing.type: Easing.OutBack
+            easing.type: Easing.OutQuint
         }
     }    
+    
+    SequentialAnimation {
+        id: movePauseNotify
+        
+        ParallelAnimation {
+            PropertyAnimation {
+                target: pauseNotify
+                property: "scale"
+                to: 2
+                duration: 100
+                easing.type: Easing.OutQuint
+            }
+        }
+        
+        PauseAnimation { 
+            duration: 500
+        }
+        
+        ParallelAnimation {
+            alwaysRunToEnd: true
+            
+            PropertyAnimation {
+                target: pauseNotify
+                property: "y"
+                to: bottomPanel.y - pauseNotify.height - 10
+                duration: 100
+                easing.type: Easing.OutQuint
+            }
+
+            PropertyAnimation {
+                target: pauseNotify
+                property: "x"
+                to: bottomPanel.x + 10
+                duration: 100
+                easing.type: Easing.OutQuint
+            }
+            
+            PropertyAnimation {
+                target: pauseNotify
+                property: "scale"
+                to: 1
+                duration: 100
+                easing.type: Easing.OutQuint
+            }
+        }
+        
+        onRunningChanged: {
+            if (!movePauseNotify.running) {
+                pauseNotify.anchors.left = bottomPanel.left
+                pauseNotify.anchors.bottom = bottomPanel.top
+                pauseNotify.anchors.leftMargin = 10
+                pauseNotify.anchors.bottomMargin = 10
+            }
+        }
+    }
 }

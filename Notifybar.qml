@@ -49,7 +49,7 @@ Rectangle {
             property: "opacity"
             to: 1
             duration: 100
-            easing.type: Easing.OutBack
+            easing.type: Easing.OutQuint
         }
     }    
 
@@ -62,7 +62,7 @@ Rectangle {
             property: "opacity"
             to: 0
             duration: 100
-            easing.type: Easing.OutBack
+            easing.type: Easing.OutQuint
         }
     }    
 }

@@ -417,7 +417,7 @@ Item {
             property: "height"
             to: titlebarHeight
             duration: 100
-            easing.type: Easing.OutBack
+            easing.type: Easing.OutQuint
         }
         
         onRunningChanged: {
@@ -436,7 +436,7 @@ Item {
             property: "height"
             to: 0
             duration: 100
-            easing.type: Easing.OutBack
+            easing.type: Easing.OutQuint
         }
         
         onRunningChanged: {
