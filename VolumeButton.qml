@@ -8,6 +8,7 @@ ToggleButton {
     imageName: "image/player_volume"
     
     property alias volumebar: volumebar
+    property alias volumeMiddle: volumeMiddle
     
     property double volume: 1.0
     property int hideWidth: 0.0

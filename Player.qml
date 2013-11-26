@@ -64,6 +64,13 @@ Video {
         indicatorArea.visible = windowView.getState() != Qt.WindowFullScreen
     }
     
+    Connections {
+        target: video
+        onVolumeChanged: {
+            playerVolume.volumeMiddle.width = video.volume * playerVolume.showWidth
+        }
+    }
+    
     function tryPauseVideo() {
         if (video.playbackState == MediaPlayer.PlayingState) {
             video.pause()
