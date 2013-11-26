@@ -171,6 +171,14 @@ Video {
         }
     }
     
+    Notifybar {
+        id: notifybar
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.topMargin: 20 + titlebar.height
+        anchors.leftMargin: 20
+    }
+
     Image {
         id: pauseNotify
         source: "image/pause_notify.png"
@@ -681,14 +689,6 @@ Video {
         }
     }
     
-    Notifybar {
-        id: notifybar
-        anchors.top: parent.top
-        anchors.left: parent.left
-        anchors.topMargin: 20 + titlebar.height
-        anchors.leftMargin: 20
-    }
-
     ParallelAnimation{
         id: showingBottomPanelAnimation
         alwaysRunToEnd: true
