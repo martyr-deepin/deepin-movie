@@ -296,7 +296,7 @@ Video {
         Image {
             id: hidePlaylistButton
             source: "image/playlist_button_background.png"
-            anchors.left: playlistPanel.right
+            anchors.left: playlistTopline.left
             anchors.verticalCenter: playlistPanel.verticalCenter
             visible: playlistPanel.width == showWidth
             
@@ -325,11 +325,30 @@ Video {
                 }
             }
         }
+        
+        Rectangle {
+            id: playlistTopline
+            color: "#060606"
+            width: 1
+            anchors.top: playlistPanel.top
+            anchors.bottom: hidePlaylistButton.top
+            anchors.right: playlistPanel.right
+            visible: playlistPanel.width == showWidth
+        }
+
+        Rectangle {
+            id: playlistBottomline
+            color: "#060606"
+            width: 1
+            anchors.top: hidePlaylistButton.bottom
+            anchors.bottom: playlistPanel.bottom
+            anchors.right: playlistPanel.right
+            visible: playlistPanel.width == showWidth
+        }
     }
     
     Rectangle {
         id: bottomPanel
-        /* color: Qt.rgba(0, 0, 0, 0.95) */
         color: Qt.rgba(0, 0, 0, 0)
         height: showHeight
         anchors.left: video.left
