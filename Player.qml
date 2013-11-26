@@ -180,13 +180,14 @@ Video {
     Connections {
         target: video
         onPaused: {
-            pauseNotify.scale = 1
+            pauseNotify.scale = 0.6
             pauseNotify.anchors.left = undefined
             pauseNotify.anchors.bottom = undefined
             pauseNotify.anchors.leftMargin = 0
             pauseNotify.anchors.bottomMargin = 0
             pauseNotify.x = (parent.width - pauseNotify.width) / 2
             pauseNotify.y = (parent.height - pauseNotify.height) / 2
+            pauseNotify.source = "image/pause_notify.png"
             
             movePauseNotify.restart()
         }
@@ -773,7 +774,7 @@ Video {
             PropertyAnimation {
                 target: pauseNotify
                 property: "scale"
-                to: 2
+                to: 1
                 duration: 100
                 easing.type: Easing.OutQuint
             }
@@ -789,24 +790,24 @@ Video {
             PropertyAnimation {
                 target: pauseNotify
                 property: "y"
-                to: bottomPanel.y - pauseNotify.height - 10
-                duration: 100
+                to: bottomPanel.y - pauseNotify.height
+                duration: 650
                 easing.type: Easing.OutQuint
             }
 
             PropertyAnimation {
                 target: pauseNotify
                 property: "x"
-                to: bottomPanel.x + 10
-                duration: 100
+                to: bottomPanel.x
+                duration: 650
                 easing.type: Easing.OutQuint
             }
             
             PropertyAnimation {
                 target: pauseNotify
                 property: "scale"
-                to: 1
-                duration: 100
+                to: 0.6
+                duration: 650
                 easing.type: Easing.OutQuint
             }
         }
@@ -815,8 +816,10 @@ Video {
             if (!movePauseNotify.running) {
                 pauseNotify.anchors.left = bottomPanel.left
                 pauseNotify.anchors.bottom = bottomPanel.top
-                pauseNotify.anchors.leftMargin = 10
-                pauseNotify.anchors.bottomMargin = 10
+                pauseNotify.anchors.leftMargin = 16
+                pauseNotify.anchors.bottomMargin = 16
+                pauseNotify.source = "image/pause_notify_small.png"
+                pauseNotify.scale = 1
             }
         }
     }
