@@ -103,7 +103,7 @@ Item {
         anchors.fill: frame
         glowRadius: shadowRadius
         spread: 0.2
-        color: Qt.rgba(0, 0, 0, 0.5)
+        color: Qt.rgba(0, 0, 0, 0.3)
         cornerRadius: frame.radius + shadowRadius
         visible: true
     }
