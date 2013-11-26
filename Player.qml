@@ -520,7 +520,7 @@ Video {
                     
                     Image {
                         source: "image/progress_pointer.png"
-                        x: timePosition * parent.width - width / 2
+                        x: Math.min(Math.max(timePosition * parent.width - width / 2, 0), parent.width - width)
                         y: progressbarForeground.y + (progressbarForeground.height - height) / 2
                     }
                 }
