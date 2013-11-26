@@ -181,7 +181,7 @@ Video {
 
     Image {
         id: pauseNotify
-        source: "image/pause_notify.png"
+        source: "image/pause_notify.svg"
         visible: video.playbackState != MediaPlayer.PlayingState
     }
     
@@ -195,7 +195,6 @@ Video {
             pauseNotify.anchors.bottomMargin = 0
             pauseNotify.x = (parent.width - pauseNotify.width) / 2
             pauseNotify.y = (parent.height - pauseNotify.height) / 2
-            pauseNotify.source = "image/pause_notify.png"
             
             movePauseNotify.restart()
         }
@@ -816,10 +815,6 @@ Video {
             if (!movePauseNotify.running) {
                 pauseNotify.anchors.left = bottomPanel.left
                 pauseNotify.anchors.bottom = bottomPanel.top
-                pauseNotify.anchors.leftMargin = 16
-                pauseNotify.anchors.bottomMargin = 16
-                pauseNotify.source = "image/pause_notify_small.png"
-                pauseNotify.scale = 1
             }
         }
     }

@@ -103,7 +103,7 @@ Item {
         anchors.fill: frame
         glowRadius: shadowRadius
         spread: 0.2
-        color: Qt.rgba(0, 0, 0, 0.3)
+        color: Qt.rgba(0, 0, 0, 0.5)
         cornerRadius: frame.radius + shadowRadius
         visible: true
     }
@@ -158,9 +158,14 @@ Item {
         
         Rectangle {
             id: frameBackground
-            color: "black"
+            color: "#1D1D1D"
             anchors.fill: parent
             radius: frameRadius
+        }
+        
+        RoundItem {
+            target: frameBackground
+            radius: frame.radius
         }
     }
     
@@ -425,7 +430,6 @@ Item {
         radius: frameRadius
     }
     
-
     ParallelAnimation{
         id: showingTitlebarAnimation
         alwaysRunToEnd: true
