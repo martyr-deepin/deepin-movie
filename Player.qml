@@ -464,8 +464,10 @@ Video {
                             hidingTimer.stop()
                             
                             videoPreview.visible = true
-                            videoPreview.x = Math.max(Math.min(mouseX - videoPreview.width / 2, progressbarArea.width - videoPreview.width), 0)
-                            videoPreview.y = progressbarArea.y - videoPreview.height
+                            videoPreview.x = Math.max(Math.min(mouseX - videoPreview.width / 2, 
+                                                               progressbarArea.width - videoPreview.width),
+                                                      0)
+                            videoPreview.y = progressbarArea.y - videoPreview.height + videoPreview.cornerHeight
                             
                             videoPosition = video.duration * mouseX / (progressbarBackground.width - progressbarBackground.x)
                             
@@ -477,13 +479,11 @@ Video {
                             var minOffsetX = 10
                             
                             if (mouseX < videoPreview.width / 2) {
-                                videoPreview.triangleArea.drawOffsetX = Math.max(mouseX, minOffsetX)
+                                videoPreview.cornerPos = Math.max(mouseX, minOffsetX)
                             } else if (mouseX > progressbarArea.width - videoPreview.width / 2) {
-                                var offsetX = Math.min(mouseX - (progressbarArea.width - videoPreview.width / 2),
-                                                      videoPreview.triangleArea.width / 2 - minOffsetX * 2)
-                                videoPreview.triangleArea.drawOffsetX = videoPreview.triangleArea.defaultOffsetX + offsetX
+                                videoPreview.cornerPos = mouseX - progressbarArea.width + videoPreview.width
                             } else {
-                                videoPreview.triangleArea.drawOffsetX = videoPreview.triangleArea.defaultOffsetX
+                                videoPreview.cornerPos = videoPreview.width / 2
                             }
                         }
                         
@@ -498,15 +498,6 @@ Video {
                             onTriggered: {
                                 videoPreview.video.seek(videoPosition)
                             }
-                        }
-                    }
-                    
-                    Preview {
-                        id: videoPreview
-                        visible: false
-                        
-                        onPositionChanged: {
-                            videoPreview.video.visible = true
                         }
                     }
                     
@@ -530,6 +521,15 @@ Video {
                         source: "image/progress_pointer.png"
                         x: Math.min(Math.max(timePosition * parent.width - width / 2, 0), parent.width - width)
                         y: progressbarForeground.y + (progressbarForeground.height - height) / 2
+                    }
+                    
+                    Preview {
+                        id: videoPreview
+                        visible: false
+                        
+                        onPositionChanged: {
+                            videoPreview.video.visible = true
+                        }
                     }
                 }
             }

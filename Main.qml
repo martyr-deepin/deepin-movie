@@ -293,16 +293,15 @@ Item {
                 anchors.fill: parent
                 color: Qt.rgba(0, 0, 0, 0)
                 
-                RadialGradient {
+                LinearGradient {
                     anchors.fill: parent
-                    horizontalRadius: parent.width * 2
-                    verticalRadius: parent.width * 2
-                    horizontalOffset: 0
-                    verticalOffset: -parent.width
-                    
+                    start: Qt.point(0, 0)
+                    end: Qt.point(0, height)
                     gradient: Gradient {
-                        GradientStop { position: 0.0; color: "#0F4196"}
-                        GradientStop { position: 0.55; color: "#060709"}
+                        GradientStop { position: 0.0; color: "#FF000000"}
+                        GradientStop { position: 0.1; color: "#DD000000"}
+                        GradientStop { position: 0.6; color: "#AA000000"}
+                        GradientStop { position: 1.0; color: "#88000000"}
                     }
                 }
             }
