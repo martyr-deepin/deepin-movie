@@ -1,6 +1,5 @@
 import QtQuick 2.1
 import QtGraphicalEffects 1.0
-import ImageCanvas 1.0
 import TopRoundRect 1.0
 import QtWebKit 3.0
 import QtMultimedia 5.0
@@ -166,7 +165,6 @@ Item {
         }
     }
     
-    
     Rectangle {
         id: pages
         objectName: "pages"
@@ -192,7 +190,7 @@ Item {
             visible: false
         }
     }
-
+    
     Rectangle {
         id: playPage
         anchors.top: titlebar.top
@@ -245,9 +243,15 @@ Item {
                     player.tryPlayVideo()
                 }
             }
-        }    
-    }
+        }
         
+        RoundItem {
+            target: player
+            radius: frame.radius
+        }
+    }
+    
+    
     InteractiveArea {
         id: titlebar
         anchors.top: frame.top
@@ -344,7 +348,7 @@ Item {
                     tabEffect.x = x - 40
                 }
             }
-                
+            
             Row {
                 id: tabButtonArea
                 height: parent.height
@@ -407,6 +411,7 @@ Item {
         smooth: true
         radius: frameRadius
     }
+    
 
     ParallelAnimation{
         id: showingTitlebarAnimation

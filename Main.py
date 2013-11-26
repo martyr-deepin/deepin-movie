@@ -27,7 +27,6 @@ from PyQt5 import QtCore
 import sys
 import os
 import signal
-from ImageCanvas import ImageCanvas
 from TopRoundRect import TopRoundRect
 from Window import Window
 from Database import Database
@@ -40,7 +39,6 @@ if __name__ == "__main__":
     database = Database()
     config = Config()
     
-    qmlRegisterType(ImageCanvas, "ImageCanvas", 1, 0, "ImageCanvas")
     qmlRegisterType(TopRoundRect, "TopRoundRect", 1, 0, "TopRoundRect")
     
     view = Window()
