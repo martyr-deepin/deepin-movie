@@ -1,6 +1,5 @@
 import QtQuick 2.1
 import QtGraphicalEffects 1.0
-import TopRoundRect 1.0
 import QtWebKit 3.0
 import QtMultimedia 5.0
 import QtQuick.LocalStorage 2.0
@@ -284,14 +283,28 @@ Item {
             anchors.fill: parent
             color: Qt.rgba(0, 0, 0, 0)
             
-            TopRoundRect {
+            Rectangle {
                 id: titlebarGradient
                 anchors.fill: parent
-                radius: frameRadius
-                radialRadius: parent.width * 2
-                vOffset: -parent.width
-                startColor: "#0F4196"
-                endColor: "#060709"
+                color: Qt.rgba(0, 0, 0, 0)
+                
+                RadialGradient {
+                    anchors.fill: parent
+                    horizontalRadius: parent.width * 2
+                    verticalRadius: parent.width * 2
+                    horizontalOffset: 0
+                    verticalOffset: -parent.width
+                    
+                    gradient: Gradient {
+                        GradientStop { position: 0.0; color: "#0F4196"}
+                        GradientStop { position: 0.55; color: "#060709"}
+                    }
+                }
+            }
+            
+            TopRoundItem {
+                target: titlebarGradient
+                radius: frame.radius
             }
             
             Image {

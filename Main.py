@@ -21,13 +21,11 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from PyQt5.QtWidgets import QApplication, qApp
-from PyQt5.QtQml import qmlRegisterType
 from PyQt5.QtCore import QSize
 from PyQt5 import QtCore
 import sys
 import os
 import signal
-from TopRoundRect import TopRoundRect
 from Window import Window
 from Database import Database
 from Config import Config
@@ -38,8 +36,6 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     database = Database()
     config = Config()
-    
-    qmlRegisterType(TopRoundRect, "TopRoundRect", 1, 0, "TopRoundRect")
     
     view = Window()
     
