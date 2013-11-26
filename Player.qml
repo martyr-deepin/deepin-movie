@@ -25,8 +25,6 @@ Video {
     property double showWidth: 200
     property double hideWidth: 0
     property double triggerPlaylistX: 50
-    property double triggerButtonWidth: 20
-    property double triggerButtonHeight: 62
     property bool inTriggerButton: false
     
     property double triggerTopPanelHeight: 50
