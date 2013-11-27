@@ -18,6 +18,8 @@ Rectangle {
         id: label
         anchors.centerIn: parent
         color: "white"
+        style: Text.Outline
+        styleColor: "black" 
     }
     
     MouseArea {
