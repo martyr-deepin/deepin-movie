@@ -256,6 +256,12 @@ Video {
             toggle()
         }
         
+        onWheel: {
+            video.volume = Math.max(Math.min(volume + (wheel.angleDelta.y / 120 * 0.05), 1.0), 0.0)
+            
+            notifybar.show("image/notify_volume.png", "音量: " + Math.round(video.volume * 100) + "%")
+        }
+        
         Timer {
             id: showingPlaylistTimer
             interval: 500
@@ -443,8 +449,17 @@ Video {
                     anchors.left: parent.left
                     anchors.right: parent.right
                     height: 7
-                    color: "#5540404a"
+                    color: "#4a4a4a"
                     visible: showBottomPanel ? 1 : 0
+                    
+                    Rectangle {
+                        anchors.left: parent.left
+                        anchors.right: parent.right
+                        anchors.top: parent.top
+                        height: 1
+                        color: "#3c3c3c"
+                        visible: showBottomPanel ? 1 : 0
+                    }
                     
                     MouseArea {
                         id: progressbarArea
@@ -498,20 +513,23 @@ Video {
                         }
                     }
                     
-                    LinearGradient {
+                    Rectangle {
                         id: progressbarForeground
                         anchors.left: parent.left
                         anchors.top: parent.top
                         height: parent.height
                         width: timePosition * parent.width
-                        start: Qt.point(0, 0)
-                        end: Qt.point(width, 0)
-                        gradient: Gradient {
-                            GradientStop { position: 0.0; color: "#EE00f893"}
-                            GradientStop { position: 0.95; color: "#EE00f893"}
-                            GradientStop { position: 1.0; color: "#EE00f893"}
-                        }
+                        color: "#007cc2"
                         visible: showBottomPanel ? 1 : 0
+                        
+                        Rectangle {
+                            anchors.left: parent.left
+                            anchors.right: parent.right
+                            anchors.top: parent.top
+                            height: 1
+                            color: "#04a4ff"
+                            visible: showBottomPanel ? 1 : 0
+                        }
                     }
                     
                     Image {
