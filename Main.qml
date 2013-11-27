@@ -309,19 +309,9 @@ Item {
                 height: parent.height
                 color: Qt.rgba(0, 0, 0, 0)
                 
-                RadialGradient {
+                Image {
                     anchors.fill: parent
-                    horizontalRadius: 150
-                    horizontalOffset: -40
-                    verticalRadius: 150
-                    verticalOffset: -100
-                    
-                    gradient: Gradient {
-                        GradientStop { position: 0.0; color: Qt.rgba(33 / 255.0, 91 / 255.0, 210 / 255.0, 0.8)}
-                        GradientStop { position: 0.5; color: Qt.rgba(19 / 255.0, 48 / 255.0, 104 / 255.0, 0.5)}
-                        GradientStop { position: 0.8; color: Qt.rgba(6 / 255.0, 7 / 255.0, 9 / 255.0, 0.0)}
-                    }
-                    
+                    source: "image/tab_select_effect.png"
                 }
                 
                 Behavior on x {
@@ -340,12 +330,12 @@ Item {
                 visible: showTitlebar ? 1 : 0
 
                 onPressed: {
-                    tabEffect.x = x - 40
+                    tabEffect.x = x - 70
                     selectPlayPage()
                 }
                 
                 Component.onCompleted: {
-                    tabEffect.x = x - 40
+                    tabEffect.x = x - 70
                 }
             }
             
@@ -363,7 +353,7 @@ Item {
                         visible: showTitlebar ? 1 : 0
                         
                         onPressed: {
-                            tabEffect.x = x + width / 2 + 100
+                            tabEffect.x = x + width / 2 + 50
                             currentTab = index
                             selectTabPage()
                         }
