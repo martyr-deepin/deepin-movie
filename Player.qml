@@ -220,16 +220,20 @@ Video {
         property real windowViewY: 0
 
         property int maskHeight: 30
+        property bool stillInPlaylist: false
         
         onDoubleClicked: {
             video.toggleFullscreen()
         }
         
         onPositionChanged: {
+            stillInPlaylist = false
+            
             if (playlistPanel.width != showWidth || mouseX >= showWidth + triggerPlaylistProtectedWidth) {
                 if (mouseX < triggerPlaylistX) {
                     if (!showingPlaylistPanelAnimation.running) {
-                        showingPlaylistPanelAnimation.restart()
+                        stillInPlaylist = true
+                        showingPlaylistTimer.restart()
                     }
                 } else {
                     if (mouseY < triggerTopPanelHeight || mouseY > videoArea.height - triggerBottomPanelHeight) {
@@ -244,11 +248,23 @@ Video {
         }
 
         onExited: {
+            stillInPlaylist = false
             video.showCursor()
         }
         
         onSingleClicked: {
             toggle()
+        }
+        
+        Timer {
+            id: showingPlaylistTimer
+            interval: 200
+            repeat: false
+            onTriggered: {
+                if (videoArea.stillInPlaylist) {
+                    showingPlaylistPanelAnimation.restart()
+                }
+            }
         }
         
         Timer {
