@@ -4,9 +4,6 @@ MouseArea {
     id: dragArea
     property variant window
     
-    property real lastMouseX: 0
-    property real lastMouseY: 0
-    
     property bool isHover: false
     property bool isDoubleClick: false
     
@@ -20,9 +17,6 @@ MouseArea {
     onPressed: {
         isHover = false
         isDoubleClick = false
-        
-        lastMouseX = mouseX
-        lastMouseY = mouseY
         
         var pos = xobject.get_pointer_coordiante()
         lastX = pos[0]
@@ -49,9 +43,6 @@ MouseArea {
             var pos = xobject.get_pointer_coordiante()
             window.x = lastWindowX + pos[0] - lastX
             window.y = lastWindowY + pos[1] - lastY
-            
-            /* window.x += mouseX - lastMouseX */
-            /* window.y += mouseY - lastMouseY */
         }
     }
     
