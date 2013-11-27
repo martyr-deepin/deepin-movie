@@ -185,6 +185,7 @@ Video {
         anchors.left: parent.left
         anchors.topMargin: 20 + titlebar.height
         anchors.leftMargin: 20
+        visible: playlistPanel.width != showWidth
     }
 
     Image {

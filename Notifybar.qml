@@ -5,6 +5,7 @@ Rectangle {
     property string notifyIcon: ""
     property string notifyText: ""
     opacity: 0
+    visible: true
     
     function show(icon, text) {
         notifyIcon = icon
@@ -20,6 +21,7 @@ Rectangle {
         
         Image {
             source: notifyIcon
+            visible: notify.visible
         }
         
         Text {
@@ -28,6 +30,7 @@ Rectangle {
             color: "#80e6ff"
             style: Text.Outline
             styleColor: "#88000000"
+            visible: notify.visible
         }
     }
     
