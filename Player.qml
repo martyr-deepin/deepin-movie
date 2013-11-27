@@ -449,7 +449,7 @@ Video {
                     anchors.left: parent.left
                     anchors.right: parent.right
                     height: 7
-                    color: "#4a4a4a"
+                    color: "#444a4a4a"
                     visible: showBottomPanel ? 1 : 0
                     
                     Rectangle {
@@ -457,7 +457,7 @@ Video {
                         anchors.right: parent.right
                         anchors.top: parent.top
                         height: 1
-                        color: "#3c3c3c"
+                        color: "#443c3c3c"
                         visible: showBottomPanel ? 1 : 0
                     }
                     

@@ -29,7 +29,6 @@ import signal
 from Window import Window
 from Database import Database
 from Config import Config
-from XUtils import XObject
 
 if __name__ == "__main__":
     movie_file = sys.argv[1]
@@ -37,7 +36,6 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     database = Database()
     config = Config()
-    xobject = XObject()
     
     view = Window()
     
@@ -47,7 +45,6 @@ if __name__ == "__main__":
     qml_context.setContextProperty("movie_file", movie_file)
     qml_context.setContextProperty("database", database)
     qml_context.setContextProperty("config", config)
-    qml_context.setContextProperty("xobject", xobject)
     
     view.setSource(QtCore.QUrl.fromLocalFile(os.path.join(os.path.dirname(__file__), 'Main.qml')))
     view.setMinimumSize(QSize(900, 518))

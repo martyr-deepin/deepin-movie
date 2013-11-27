@@ -20,6 +20,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+from PyQt5 import QtGui
 from PyQt5.QtQuick import QQuickView
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtGui import QSurfaceFormat, QColor
@@ -50,4 +51,7 @@ class Window(QQuickView):
         # Do minimized.
         self.setWindowState(QtCore.Qt.WindowMinimized)
         self.setVisible(True)
-    
+        
+    @pyqtSlot(result="QVariant")    
+    def getCursorPos(self):
+        return QtGui.QCursor.pos()        

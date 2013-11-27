@@ -18,9 +18,9 @@ MouseArea {
         isHover = false
         isDoubleClick = false
         
-        var pos = xobject.get_pointer_coordiante()
-        lastX = pos[0]
-        lastY = pos[1]
+        var pos = window.getCursorPos()
+        lastX = pos.x
+        lastY = pos.y
         
         lastWindowX = window.x
         lastWindowY = window.y
@@ -40,9 +40,9 @@ MouseArea {
         isHover = true
         
         if (pressedButtons == Qt.LeftButton) {
-            var pos = xobject.get_pointer_coordiante()
-            window.x = lastWindowX + pos[0] - lastX
-            window.y = lastWindowY + pos[1] - lastY
+            var pos = window.getCursorPos()
+            window.x = lastWindowX + pos.x - lastX
+            window.y = lastWindowY + pos.y - lastY
         }
     }
     
