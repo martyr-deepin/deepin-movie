@@ -308,11 +308,13 @@ Item {
                 width: 239
                 height: 43
                 color: Qt.rgba(0, 0, 0, 0)
+                visible: showTitlebar ? 1 : 0
                 
                 Image {
                     id: tabEffectImage
                     anchors.fill: parent
                     source: "image/tab_select_effect.png"
+                    visible: showTitlebar ? 1 : 0
                 }
                 
                 Behavior on x {
