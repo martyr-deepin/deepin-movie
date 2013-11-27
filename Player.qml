@@ -68,7 +68,8 @@ Video {
     Connections {
         target: video
         onVolumeChanged: {
-            playerVolume.volumeMiddle.width = video.volume * playerVolume.showWidth
+            playerVolume.volume = video.volume
+            playerVolume.active = true
         }
     }
     
