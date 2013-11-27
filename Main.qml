@@ -61,7 +61,6 @@ Item {
         windowView.getState() == Qt.WindowMaximized ? frame.border.width = (shadowRadius + frameRadius) * 2 : frame.border.width = 0
         windowView.getState() == Qt.WindowMaximized ? frame.radius = frameRadius : frame.radius = 0
         windowView.getState() == Qt.WindowMaximized ? frameBackground.radius = frameRadius : frameBackground.radius = 0
-        windowView.getState() == Qt.WindowMaximized ? titlebarGradient.radius = frameRadius : titlebarGradient.radius = 0
         windowView.getState() == Qt.WindowMaximized ? frameBorder.visible = true : frameBorder.visible = false
         windowView.getState() == Qt.WindowMaximized ? windowView.showNormal() : windowView.showMaximized()
     }
@@ -71,7 +70,6 @@ Item {
         windowView.getState() == Qt.WindowFullScreen ? frame.border.width = (shadowRadius + frameRadius) * 2 : frame.border.width = 0
         windowView.getState() == Qt.WindowFullScreen ? frame.radius = frameRadius : frame.radius = 0
         windowView.getState() == Qt.WindowFullScreen ? frameBackground.radius = frameRadius : frameBackground.radius = 0
-        windowView.getState() == Qt.WindowFullScreen ? titlebarGradient.radius = frameRadius : titlebarGradient.radius = 0
         windowView.getState() == Qt.WindowFullScreen ? frameBorder.visible = true : frameBorder.visible = false
         windowView.getState() == Qt.WindowFullScreen ? windowView.showNormal() : windowView.showFullScreen()
         
