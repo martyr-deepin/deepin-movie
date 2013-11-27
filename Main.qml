@@ -281,21 +281,24 @@ Item {
                 color: Qt.rgba(0, 0, 0, 0)
                 
                 LinearGradient {
-                    anchors.fill: parent
+                    id: topPanelBackround
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.top: parent.top
+                    height: 100
                     start: Qt.point(0, 0)
                     end: Qt.point(0, height)
                     gradient: Gradient {
                         GradientStop { position: 0.0; color: "#FF000000"}
-                        GradientStop { position: 0.1; color: "#DD000000"}
-                        GradientStop { position: 0.6; color: "#AA000000"}
-                        GradientStop { position: 1.0; color: "#88000000"}
+                        GradientStop { position: 1.0; color: "#01000000"}
                     }
+                    visible: playPage.visible
                 }
-            }
-            
-            TopRoundItem {
-                target: titlebarGradient
-                radius: frame.radius
+                
+                TopRoundItem {
+                    target: topPanelBackround
+                    radius: frame.radius
+                }
             }
             
             Image {

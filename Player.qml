@@ -377,13 +377,14 @@ Video {
         
         LinearGradient {
             id: bottomPanelBackround
-            anchors.fill: parent
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
+            height: 100
             start: Qt.point(0, 0)
             end: Qt.point(0, height)
             gradient: Gradient {
-                GradientStop { position: 0.0; color: "#88000000"}
-                GradientStop { position: 0.1; color: "#AA000000"}
-                GradientStop { position: 0.6; color: "#DD000000"}
+                GradientStop { position: 0.0; color: "#01000000"}
                 GradientStop { position: 1.0; color: "#FF000000"}
             }
             visible: showBottomPanel ? 1 : 0
