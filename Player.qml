@@ -475,9 +475,7 @@ Video {
                             hidingTimer.stop()
                             
                             videoPreview.visible = true
-                            videoPreview.x = Math.max(Math.min(mouseX - videoPreview.width / 2, 
-                                                               progressbarArea.width - videoPreview.width),
-                                                      0)
+                            videoPreview.x = Math.min(Math.max(mouseX - videoPreview.width / 2, 0), progressbarArea.width - videoPreview.width)
                             videoPreview.y = progressbarArea.y - videoPreview.height + videoPreview.cornerHeight
                             
                             videoPosition = video.duration * mouseX / (progressbarBackground.width - progressbarBackground.x)
