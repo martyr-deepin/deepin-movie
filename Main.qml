@@ -321,7 +321,7 @@ Item {
                     horizontalRadius: 150
                     horizontalOffset: -40
                     verticalRadius: 150
-                    verticalOffset: -70
+                    verticalOffset: -100
                     
                     gradient: Gradient {
                         GradientStop { position: 0.0; color: Qt.rgba(33 / 255.0, 91 / 255.0, 210 / 255.0, 0.8)}
