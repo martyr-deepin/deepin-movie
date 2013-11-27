@@ -29,7 +29,8 @@ Item {
         repeat: false
         onTriggered: {
             if (!inInteractiveArea) {
-                player.hidingBottomPanelAnimation.restart()
+                player.hidingTimer.restart()
+                /* player.hidingBottomPanelAnimation.restart() */
             }
         }
     }

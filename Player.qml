@@ -34,6 +34,7 @@ Video {
     property alias videoPreview: videoPreview
     property alias videoArea: videoArea
     property alias hidingBottomPanelAnimation: hidingBottomPanelAnimation
+    property alias hidingTimer: hidingTimer
     property alias playlistPanelArea: playlistPanelArea
     property alias notifybar: notifybar
     property alias pauseNotify: pauseNotify
@@ -282,11 +283,13 @@ Video {
             hoverEnabled: true
             
             onEntered: {
+                playlistPanel.color = "#1D1D1D"
                 playlistPanel.opacity = 1
             }
             
             onExited: {
-                playlistPanel.opacity = 0.8
+                playlistPanel.color = "#000000"
+                playlistPanel.opacity = 0.9
             }
             
             onClicked: {
