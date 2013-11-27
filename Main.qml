@@ -29,8 +29,8 @@ Item {
         repeat: false
         onTriggered: {
             if (!inInteractiveArea) {
+                player.hidingTimer.interval = 1000
                 player.hidingTimer.restart()
-                /* player.hidingBottomPanelAnimation.restart() */
             }
         }
     }

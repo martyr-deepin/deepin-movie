@@ -197,6 +197,7 @@ Video {
         target: video
         onPaused: {
             pauseNotify.scale = 0.6
+            pauseNotify.opacity = 0
             pauseNotify.anchors.left = undefined
             pauseNotify.anchors.bottom = undefined
             pauseNotify.anchors.leftMargin = 0
@@ -260,7 +261,9 @@ Video {
                 
                 if (!playlistPanelArea.containsMouse && !hidePlaylistButton.containsMouse) {
                     video.hideCursor()
-                } 
+                }
+                
+                interval = 2000
             }
         }
         
@@ -750,31 +753,21 @@ Video {
                 duration: 100
                 easing.type: Easing.OutQuint
             }
+            
+            PropertyAnimation {
+                target: pauseNotify
+                property: "opacity"
+                to: 1
+                duration: 100
+                easing.type: Easing.OutQuint
+            }
         }
-        
+
         PauseAnimation { 
             duration: 500
         }
         
         ParallelAnimation {
-            alwaysRunToEnd: true
-            
-            PropertyAnimation {
-                target: pauseNotify
-                property: "y"
-                to: bottomPanel.y - pauseNotify.height
-                duration: 650
-                easing.type: Easing.OutQuint
-            }
-
-            PropertyAnimation {
-                target: pauseNotify
-                property: "x"
-                to: bottomPanel.x
-                duration: 650
-                easing.type: Easing.OutQuint
-            }
-            
             PropertyAnimation {
                 target: pauseNotify
                 property: "scale"
@@ -782,12 +775,13 @@ Video {
                 duration: 650
                 easing.type: Easing.OutQuint
             }
-        }
-        
-        onRunningChanged: {
-            if (!movePauseNotify.running) {
-                pauseNotify.anchors.left = bottomPanel.left
-                pauseNotify.anchors.bottom = bottomPanel.top
+            
+            PropertyAnimation {
+                target: pauseNotify
+                property: "opacity"
+                to: 0
+                duration: 650
+                easing.type: Easing.OutQuint
             }
         }
     }
