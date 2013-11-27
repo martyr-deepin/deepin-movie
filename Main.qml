@@ -273,34 +273,29 @@ Item {
         Rectangle {
             id: titlebarBackground
             anchors.fill: parent
-            color: Qt.rgba(0, 0, 0, 0)
-            
-            Rectangle {
-                id: titlebarGradient
-                anchors.fill: parent
-                color: Qt.rgba(0, 0, 0, 0)
-                
-                LinearGradient {
-                    id: topPanelBackround
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    anchors.top: parent.top
-                    height: 60
-                    start: Qt.point(0, 0)
-                    end: Qt.point(0, height)
-                    gradient: Gradient {
-                        GradientStop { position: 0.0; color: "#FF000000"}
-                        GradientStop { position: 1.0; color: "#01000000"}
-                    }
-                    visible: playPage.visible
+            color: "#00000000"
+        
+            LinearGradient {
+                id: topPanelBackround
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.top: parent.top
+                height: 70
+                start: Qt.point(0, 0)
+                end: Qt.point(0, height)
+                gradient: Gradient {
+                    GradientStop { position: 0.0; color: "#FF000000"}
+                    GradientStop { position: 1.0; color: "#00000000"}
                 }
-                
-                TopRoundItem {
-                    target: topPanelBackround
-                    radius: frame.radius
-                }
+                visible: playPage.visible && showTitlebar
             }
             
+            TopRoundItem {
+                target: topPanelBackround
+                radius: frame.radius
+                visible: playPage.visible && showTitlebar
+            }
+    
             Image {
                 id: appIcon
                 source: "image/logo.png"

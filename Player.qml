@@ -384,7 +384,7 @@ Video {
             start: Qt.point(0, 0)
             end: Qt.point(0, height)
             gradient: Gradient {
-                GradientStop { position: 0.0; color: "#01000000"}
+                GradientStop { position: 0.0; color: "#00000000"}
                 GradientStop { position: 1.0; color: "#FF000000"}
             }
             visible: showBottomPanel ? 1 : 0
