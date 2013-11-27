@@ -305,11 +305,12 @@ Item {
 
             Rectangle {
                 id: tabEffect
-                width: 300
-                height: parent.height
+                width: 239
+                height: 43
                 color: Qt.rgba(0, 0, 0, 0)
                 
                 Image {
+                    id: tabEffectImage
                     anchors.fill: parent
                     source: "image/tab_select_effect.png"
                 }
@@ -330,12 +331,12 @@ Item {
                 visible: showTitlebar ? 1 : 0
 
                 onPressed: {
-                    tabEffect.x = x - 70
+                    tabEffect.x = x - 35
                     selectPlayPage()
                 }
                 
                 Component.onCompleted: {
-                    tabEffect.x = x - 70
+                    tabEffect.x = x - 35
                 }
             }
             
@@ -353,7 +354,7 @@ Item {
                         visible: showTitlebar ? 1 : 0
                         
                         onPressed: {
-                            tabEffect.x = x + width / 2 + 50
+                            tabEffect.x = x + width / 2 + 85
                             currentTab = index
                             selectTabPage()
                         }
