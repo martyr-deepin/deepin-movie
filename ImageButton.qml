@@ -5,7 +5,7 @@ Image {
     source: imageName + "_normal.png"
     signal clicked
 
-    InteractiveArea {
+    MouseArea {
         id: mouseArea
         anchors.fill: parent
         hoverEnabled: true
@@ -19,5 +19,9 @@ Image {
         onPressed: {parent.source = imageName + "_press.png"}
         onReleased: {parent.source = imageName + "_hover.png"}
         onClicked: {parent.clicked()}
+
+        InteractiveItem {
+            targetItem: parent
+        }
     }
 }

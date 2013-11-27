@@ -20,10 +20,15 @@ Rectangle {
         color: "white"
     }
     
-    InteractiveArea {
+    MouseArea {
+        id: button
         anchors.fill: parent
         hoverEnabled: true
         
         onPressed: {parent.pressed()}
+
+        InteractiveItem {
+            targetItem: parent
+        }
     }
 }

@@ -255,29 +255,15 @@ Item {
         }
     }
     
-    
-    InteractiveArea {
+    DragArea {
         id: titlebar
+        window: windowView
         anchors.top: frame.top
         anchors.left: frame.left
         anchors.right: frame.right
         width: frame.width
         height: titlebarHeight
-        property real lastMouseX: 0
-        property real lastMouseY: 0
         hoverEnabled: true
-        
-        onPressed: {
-            lastMouseX = mouseX
-            lastMouseY = mouseY
-        }
-        
-        onPositionChanged: {
-            if (pressedButtons == Qt.LeftButton) {
-                windowView.x += mouseX - lastMouseX
-                windowView.y += mouseY - lastMouseY
-            }
-        }
         
         onDoubleClicked: {
             toggleMaxWindow()
@@ -417,6 +403,9 @@ Item {
             }
         }
         
+        InteractiveItem {
+            targetItem: parent
+        }
     }
     
     Rectangle {

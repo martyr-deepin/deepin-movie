@@ -207,38 +207,18 @@ Video {
         }
     }
     
-    InteractiveArea {
+    DragArea {
         id: videoArea
+        window: windowView
         anchors.fill: parent
         hoverEnabled: true
         
         property real windowViewX: 0
         property real windowViewY: 0
 
-        property real lastMouseX: 0
-        property real lastMouseY: 0
-
-        property bool isHover: false
-        property bool isDoubleClick: false
-
         property int maskHeight: 30
         
-        onPressed: {
-            isHover = false
-            isDoubleClick = false
-            
-            lastMouseX = mouseX
-            lastMouseY = mouseY
-        }
-        
-        onClicked: {
-            if (!isHover) {
-                clickTimer.restart()
-            }
-        }
-        
         onDoubleClicked: {
-            isDoubleClick = true
             video.toggleFullscreen()
         }
         
@@ -257,18 +237,15 @@ Video {
                     hidingTimer.restart()
                 }
             }
-
-            isHover = true
             video.showCursor()
-            
-            if (pressedButtons == Qt.LeftButton) {
-                windowView.x += mouseX - lastMouseX
-                windowView.y += mouseY - lastMouseY
-            }
         }
 
         onExited: {
             video.showCursor()
+        }
+        
+        onSingleClicked: {
+            toggle()
         }
         
         Timer {
@@ -286,18 +263,11 @@ Video {
             }
         }
         
-        Timer {
-            id: clickTimer
-            interval: 200
-            repeat: false
-            onTriggered: {
-                if (!videoArea.isDoubleClick) {
-                    toggle()
-                }
-            }
+        InteractiveItem {
+            targetItem: parent
         }
     }
-
+    
     Rectangle {
         id: playlistPanel
         color: "#1D1D1D"
@@ -305,28 +275,14 @@ Video {
         width: hideWidth
         opacity: 1
         
-        MouseArea {
+        DragArea {
             id: playlistPanelArea
+            window: windowView
             anchors.fill: parent
             hoverEnabled: true
             
-            property real lastMouseX: 0
-            property real lastMouseY: 0
-            
-            onPressed: {
-                lastMouseX = mouseX
-                lastMouseY = mouseY
-            }
-            
             onClicked: {
                 console.log("Click on playlist.")
-            }
-            
-            onPositionChanged: {
-                if (pressedButtons == Qt.LeftButton) {
-                    windowView.x += mouseX - lastMouseX
-                    windowView.y += mouseY - lastMouseY
-                }
             }
         }
         
@@ -414,32 +370,25 @@ Video {
             visible: showBottomPanel ? 1 : 0
         }
                     
-        InteractiveArea {
+        DragArea {
             id: bottomPanelArea
+            window: windowView
             anchors.fill: parent
             hoverEnabled: true
-            property real lastMouseX: 0
-            property real lastMouseY: 0
-            
-            onPressed: {
-                lastMouseX = mouseX
-                lastMouseY = mouseY
-            }
             
             onPositionChanged: {
                 hidingTimer.stop()
-                
-                if (pressedButtons == Qt.LeftButton) {
-                    windowView.x += mouseX - lastMouseX
-                    windowView.y += mouseY - lastMouseY
-                }
             }
             
             onExited: {
                 hidingTimer.restart()
             }
+
+            InteractiveItem {
+                targetItem: parent
+            }
         }
-        
+
         Column {
             anchors.fill: parent
             
@@ -458,7 +407,7 @@ Video {
                     color: "#5540404a"
                     visible: showBottomPanel ? 1 : 0
                     
-                    InteractiveArea {
+                    MouseArea {
                         id: progressbarArea
                         anchors.fill: parent
                         hoverEnabled: true
@@ -503,6 +452,10 @@ Video {
                             onTriggered: {
                                 videoPreview.video.seek(videoPosition)
                             }
+                        }
+                        
+                        InteractiveItem {
+                            targetItem: parent
                         }
                     }
                     

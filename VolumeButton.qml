@@ -28,7 +28,8 @@ ToggleButton {
         }
     }
     
-    InteractiveArea {
+    MouseArea {
+        id: volumeButtonArea
         anchors.fill: parent
         hoverEnabled: true
         propagateComposedEvents: true
@@ -45,6 +46,10 @@ ToggleButton {
         
         onClicked: {
             mouse.accepted = false
+        }
+        
+        InteractiveItem {
+            targetItem: parent
         }
     }
     
@@ -83,7 +88,7 @@ ToggleButton {
         }
     }
     
-    InteractiveArea {
+    MouseArea {
         id: volumebarArea
         anchors.top: volumebar.top
         anchors.bottom: volumebar.bottom
@@ -114,6 +119,10 @@ ToggleButton {
             volume = Math.max(Math.min(volume + (wheel.angleDelta.y / 120 * 0.05), 1.0), 0.0)
             volumeMiddle.width = showPosition
             volumeButton.changeVolume()
+        }
+        
+        InteractiveItem {
+            targetItem: parent
         }
     }
 

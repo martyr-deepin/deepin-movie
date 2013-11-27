@@ -6,13 +6,17 @@ Image {
     source: imageName + (active ? "_active.png" : "_inactive.png")
     signal clicked
 
-    InteractiveArea {
+    MouseArea {
         id: mouseArea
         anchors.fill: parent
         
         onClicked: {
             active = !active
             parent.clicked()
+        }
+        
+        InteractiveItem {
+            targetItem: parent
         }
     }
 }
