@@ -258,7 +258,7 @@ Video {
         
         Timer {
             id: showingPlaylistTimer
-            interval: 200
+            interval: 500
             repeat: false
             onTriggered: {
                 if (videoArea.stillInPlaylist) {
