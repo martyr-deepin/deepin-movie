@@ -286,7 +286,7 @@ Video {
             }
             
             onExited: {
-                playlistPanel.opacity = 0.5
+                playlistPanel.opacity = 0.8
             }
             
             onClicked: {
