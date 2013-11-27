@@ -289,11 +289,13 @@ Video {
             onEntered: {
                 playlistPanel.color = "#1D1D1D"
                 playlistPanel.opacity = 1
+                hidePlaylistButton.source = "image/playlist_button_active_background.png"
             }
             
             onExited: {
                 playlistPanel.color = "#000000"
                 playlistPanel.opacity = 0.9
+                hidePlaylistButton.source = "image/playlist_button_inactive_background.png"
             }
             
             onClicked: {
@@ -303,11 +305,12 @@ Video {
         
         Image {
             id: hidePlaylistButton
-            source: "image/playlist_button_background.png"
+            source: "image/playlist_button_active_background.png"
             anchors.left: playlistTopline.left
+            anchors.leftMargin: 1
             anchors.verticalCenter: playlistPanel.verticalCenter
             visible: playlistPanel.width == showWidth
-            opacity: playlistPanel.opacity
+            opacity: playlistPanel.opacity + 0.1
             
             Image {
                 id: hidePlaylistArrow
