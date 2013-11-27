@@ -281,6 +281,14 @@ Video {
             anchors.fill: parent
             hoverEnabled: true
             
+            onEntered: {
+                playlistPanel.opacity = 1
+            }
+            
+            onExited: {
+                playlistPanel.opacity = 0.5
+            }
+            
             onClicked: {
                 console.log("Click on playlist.")
             }
@@ -292,6 +300,7 @@ Video {
             anchors.left: playlistTopline.left
             anchors.verticalCenter: playlistPanel.verticalCenter
             visible: playlistPanel.width == showWidth
+            opacity: playlistPanel.opacity
             
             Image {
                 id: hidePlaylistArrow
@@ -299,6 +308,7 @@ Video {
                 anchors.right: parent.right
                 anchors.rightMargin: 7
                 anchors.verticalCenter: parent.verticalCenter
+                opacity: playlistPanel.opacity
             }
             
             MouseArea {
@@ -331,6 +341,7 @@ Video {
             anchors.bottom: hidePlaylistButton.top
             anchors.right: playlistPanel.right
             visible: playlistPanel.width == showWidth
+            opacity: playlistPanel.opacity
         }
 
         Rectangle {
@@ -341,6 +352,7 @@ Video {
             anchors.bottom: playlistPanel.bottom
             anchors.right: playlistPanel.right
             visible: playlistPanel.width == showWidth
+            opacity: playlistPanel.opacity
         }
     }
     
