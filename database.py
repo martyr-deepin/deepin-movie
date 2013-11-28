@@ -21,7 +21,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from PyQt5.QtCore import pyqtSlot, QObject
-from Constant import CONFIG_DIR
+from constant import CONFIG_DIR
 import os
 import sqlite3
 from deepin_utils.file import touch_file

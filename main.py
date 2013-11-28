@@ -26,9 +26,9 @@ from PyQt5 import QtCore
 import sys
 import os
 import signal
-from Window import Window
-from Database import Database
-from Config import Config
+from window import Window
+from database import Database
+from config import Config
 
 if __name__ == "__main__":
     movie_file = sys.argv[1]
