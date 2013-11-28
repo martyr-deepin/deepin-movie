@@ -1,4 +1,5 @@
 import QtQuick 2.1
+import QtQuick.Window 2.1
 
 MouseArea {
     id: resizeArea
@@ -27,40 +28,8 @@ MouseArea {
     
     property bool isPress: false
     
-    function resize(edge, x, y) {
-        if (edge == edgeRight || edge == edgeTopRight || edge == edgeBottomRight) {
-            tempWidth = lastWindowWidth + x - lastX
-            if (tempWidth >= window.minimumWidth) {
-                window.width = tempWidth
-            }
-        }
-        
-        if (edge == edgeBottom || edge == edgeBottomLeft || edge == edgeBottomRight) {
-            tempHeight = lastWindowHeight + y - lastY
-            if (tempHeight >= window.minimumHeight) {
-                window.height = tempHeight
-            }
-        }
-        
-        if (edge == edgeLeft || edge == edgeTopLeft || edge == edgeBottomLeft) {
-            var tempWidth = lastWindowWidth - x + lastX
-            if (tempWidth >= window.minimumWidth) {
-                window.x = x
-                window.width = tempWidth
-            } else {
-                window.width = window.minimumWidth
-            }
-        }
-        
-        if (edge == edgeTop || edge == edgeTopLeft || edge == edgeTopRight) {
-            var tempHeight = lastWindowHeight - y + lastY
-            if (tempHeight >= window.minimumHeight) {
-                window.y = y
-                window.height = tempHeight
-            } else {
-                window.height = window.minimumHeight
-            }
-        }
+    ResizeFrame {
+        id: resizeFrame
     }
     
     function changeEdge() {
@@ -133,12 +102,14 @@ MouseArea {
         
         changeCursor()
         changeEdge()
+        
+        resizeFrame.show()
     }
     
     onPositionChanged: {
         if (isPress && edge > 0) {
             var pos = window.getCursorPos()
-            resize(edge, pos.x, pos.y)
+            resizeFrame.resize(edge, pos.x, pos.y)
         }
         
         changeCursor()
@@ -148,5 +119,12 @@ MouseArea {
         isPress = false
         
         changeCursor()
+
+        window.x = resizeFrame.rect.x
+        window.y = resizeFrame.rect.y
+        window.width = resizeFrame.rect.width
+        window.height = resizeFrame.rect.height
+        
+        resizeFrame.visible = false
     }
 }
