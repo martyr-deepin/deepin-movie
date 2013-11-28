@@ -41,6 +41,8 @@ MouseArea {
             if (tempWidth > window.minimumWidth) {
                 window.x = x
                 window.width = tempWidth
+            } else {
+                window.width = window.minimumWidth
             }
         }
         
@@ -49,12 +51,13 @@ MouseArea {
             if (tempHeight > window.minimumHeight) {
                 window.y = y
                 window.height = tempHeight
+            } else {
+                window.height = window.minimumHeight
             }
         }
     }
     
     function changeEdge() {
-        edge = -1
         if (mouseX < frame.x) {
             if (mouseY < frame.y) {
                 edge = edgeTopLeft
@@ -74,8 +77,10 @@ MouseArea {
         } else {
             if (mouseY < frame.y) {
                 edge = edgeTop
-            } else {
+            } else if (mouseY > frame.y + frame.height) {
                 edge = edgeBottom
+            } else {
+                edge = -1
             }
         }
     }
@@ -88,7 +93,7 @@ MouseArea {
                 resizeArea.cursorShape = Qt.SizeBDiagCursor
             } else {
                 resizeArea.cursorShape = Qt.SizeHorCursor
-            }
+            } 
         } else if (mouseX > frame.x + frame.width) {
             if (mouseY < frame.y) {
                 resizeArea.cursorShape = Qt.SizeBDiagCursor
@@ -96,12 +101,14 @@ MouseArea {
                 resizeArea.cursorShape = Qt.SizeFDiagCursor
             } else {
                 resizeArea.cursorShape = Qt.SizeHorCursor
-            }
+            } 
         } else {
             if (mouseY < frame.y) {
                 resizeArea.cursorShape = Qt.SizeVerCursor
-            } else {
+            } else if (mouseY > frame.y + frame.height) {
                 resizeArea.cursorShape = Qt.SizeVerCursor
+            } else {
+                resizeArea.cursorShape = Qt.ArrowCursor
             }
         }
     }
@@ -128,16 +135,12 @@ MouseArea {
             resize(edge, pos.x, pos.y)
         }
         
-        if (!isPress) {
-            changeCursor()
-        }
+        changeCursor()
     }
     
     onReleased: {
         isPress = false
-    }
-    
-    onExited: {
-        resizeArea.cursorShape = Qt.ArrowCursor
+        
+        changeCursor()
     }
 }
