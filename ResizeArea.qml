@@ -29,16 +29,22 @@ MouseArea {
     
     function resize(edge, x, y) {
         if (edge == edgeRight || edge == edgeTopRight || edge == edgeBottomRight) {
-            window.width = lastWindowWidth + x - lastX
+            tempWidth = lastWindowWidth + x - lastX
+            if (tempWidth >= window.minimumWidth) {
+                window.width = tempWidth
+            }
         }
         
         if (edge == edgeBottom || edge == edgeBottomLeft || edge == edgeBottomRight) {
-            window.height = lastWindowHeight + y - lastY
+            tempHeight = lastWindowHeight + y - lastY
+            if (tempHeight >= window.minimumHeight) {
+                window.height = tempHeight
+            }
         }
         
         if (edge == edgeLeft || edge == edgeTopLeft || edge == edgeBottomLeft) {
             var tempWidth = lastWindowWidth - x + lastX
-            if (tempWidth > window.minimumWidth) {
+            if (tempWidth >= window.minimumWidth) {
                 window.x = x
                 window.width = tempWidth
             } else {
@@ -48,7 +54,7 @@ MouseArea {
         
         if (edge == edgeTop || edge == edgeTopLeft || edge == edgeTopRight) {
             var tempHeight = lastWindowHeight - y + lastY
-            if (tempHeight > window.minimumHeight) {
+            if (tempHeight >= window.minimumHeight) {
                 window.y = y
                 window.height = tempHeight
             } else {
