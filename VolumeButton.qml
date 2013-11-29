@@ -71,14 +71,8 @@ ToggleButton {
         
         onPositionChanged: {
             volumeButton.inVolumebar()
-            
-            hideVolumebarTimer.stop()
         }
 
-        onExited: {
-            hideVolumebarTimer.start()
-        }
-        
         onWheel: {
             volume = Math.max(Math.min(volume + (wheel.angleDelta.y / 120 * 0.05), 1.0), 0.0)
             volumeButton.changeVolume()
@@ -109,8 +103,6 @@ ToggleButton {
             if (volumeButton.active) {
                 volumebar.visible = true
             }
-            
-            hideVolumebarTimer.start()
         }
         
         onClicked: {
@@ -119,15 +111,6 @@ ToggleButton {
         
         InteractiveItem {
             targetItem: parent
-        }
-    }
-    
-    Timer {
-        id: hideVolumebarTimer
-        interval: 2000
-        repeat: false
-        onTriggered: {
-            volumebar.visible = false
         }
     }
 }
