@@ -683,7 +683,7 @@ Video {
                         text: timeCurrent + " / " + timeTotal
                         color: Qt.rgba(100, 100, 100, 1)
                         font.pixelSize: 12
-                        visible: showBottomPanel ? 1 : 0
+                        visible: showBottomPanel && window.width > 700 ? 1 : 0
                     }
                 }
             }

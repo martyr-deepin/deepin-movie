@@ -3,10 +3,9 @@ import QtGraphicalEffects 1.0
 
 Rectangle {
     id: textButton
-    width: label.width + 20
+    width: label.width
     height: parent.height
     smooth: true
-    radius: 2
     color: Qt.rgba(1, 0, 0, 0)
     
     property int tabIndex: 0

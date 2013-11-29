@@ -17,14 +17,18 @@ Item {
     property int shadowRadius: 10
     property int padding: frameRadius + shadowRadius
     
-    default property alias tabPages: pages.children
+    default property alias tabPages: tabs.children
     property alias playPage: playPage
+    property alias movieStorePage: movieStorePage
+    property alias searchPage: searchPage
+    property alias tabEffect: tabEffect
     property alias player: player
     property alias titlebar: titlebar
     property alias frame: frame
-    property int currentTab: 0
     property int windowLastState: 0
+    property int tabX: 0
     
+    property bool inTitlebar: false
     property bool showTitlebar: true
     property bool inInteractiveArea: false
     
@@ -86,31 +90,11 @@ Item {
         }
     }
 
-    function selectPlayPage() {
-        for (var i = 0; i < tabPages.length; ++i) {
-            /* Don't set opacity, otherwise 'opacity 0' widget will eat othersise widget's event */
-            tabPages[i].visible = false
-        }
-        
-        playPage.visible = true
-    }
-    
-    function selectTabPage() {
-        for (var i = 0; i < tabPages.length; ++i) {
-            /* Don't set opacity, otherwise 'opacity 0' widget will eat othersise widget's event */
-            tabPages[i].visible = tabButtonArea.children[i].tabIndex == currentTab
-        }
-        
-        playPage.visible = false
-    }
-    
     function initSize() {
         windowView.width = videoInitWidth
         windowView.height = videoInitHeight
         
         windowView.setMinSize(videoMinWidth, videoMinHeight)
-        
-        print(videoInitWidth, videoInitHeight, videoMinWidth, videoMinHeight)
     }
     
     Component.onCompleted: {
@@ -212,7 +196,7 @@ Item {
 
             onBottomPanelHide: {
                 if (playPage.visible) {
-                    if (!titlebar.pressed) {
+                    if (!titlebar.pressed && !inTitlebar) {
                         hidingTitlebarAnimation.restart()
                     }
                 }
@@ -223,7 +207,7 @@ Item {
             }
 
             onHideCursor: {
-                if (!titlebar.pressed) {
+                if (!titlebar.pressed && !inTitlebar) {
                     player.videoArea.cursorShape = Qt.BlankCursor
                 }
             }
@@ -256,6 +240,14 @@ Item {
         width: frame.width
         height: titlebarHeight
         hoverEnabled: true
+        
+        onPositionChanged: {
+            inTitlebar = true
+        }
+        
+        onExited: {
+            inTitlebar = false
+        }
         
         onDoubleClicked: {
             toggleMaxWindow()
@@ -292,24 +284,37 @@ Item {
                 source: "image/logo.png"
                 anchors.left: parent.left
                 anchors.verticalCenter: parent.verticalCenter
-                anchors.leftMargin: 20
+                anchors.leftMargin: 8
                 visible: showTitlebar ? 1 : 0
             }
-
-            Rectangle {
-                id: tabEffect
-                width: 239
-                height: 43
-                color: Qt.rgba(0, 0, 0, 0)
-                visible: showTitlebar ? 1 : 0
+            
+            Item {
+                id: tabs
                 
-                Image {
-                    id: tabEffectImage
-                    anchors.fill: parent
-                    source: "image/tab_select_effect.png"
-                    visible: showTitlebar ? 1 : 0
+                Item {
+                    property string name: "视频播放"
+                    property variant page: playPage
+                    property int index: 0
                 }
-                
+
+                Item {
+                    property string name: "在线视频"
+                    property variant page: movieStorePage
+                    property int index: 1
+                }
+
+                Item {
+                    property string name: "视频搜索"
+                    property variant page: searchPage
+                    property int index: 2
+                }
+            }
+            
+            Image {
+                id: tabEffect
+                source: "image/tab_select_effect.png"
+                x: tabX
+                visible: showTitlebar ? 1 : 0
                 Behavior on x {
                     NumberAnimation {
                         duration: 300
@@ -318,28 +323,13 @@ Item {
                 }
             }
             
-            TabButton {
-                id: playPageTab
-                text: "视频播放"
-                anchors.left: appIcon.right
-                width: 160
-                visible: showTitlebar ? 1 : 0
-
-                onPressed: {
-                    tabEffect.x = x - 35
-                    selectPlayPage()
-                }
-                
-                Component.onCompleted: {
-                    tabEffect.x = x - 35
-                }
-            }
-            
             Row {
-                id: tabButtonArea
+                id: tabRow
+                spacing: 44
+                anchors.left: parent.left
+                anchors.leftMargin: appIcon.width + spacing
                 height: parent.height
-                anchors.left: playPageTab.right
-                spacing: 40
+                visible: showTitlebar ? 1 : 0
                 
                 Repeater {
                     model: tabPages.length
@@ -349,14 +339,26 @@ Item {
                         visible: showTitlebar ? 1 : 0
                         
                         onPressed: {
-                            tabEffect.x = x + width / 2 + 85
-                            currentTab = index
-                            selectTabPage()
+                            tabEffect.x = x + (width - tabEffect.width) / 2 + tabRow.spacing * 2
+                            
+                            for (var i = 0; i < tabPages.length; i++) {
+                                tabPages[i].page.visible = tabPages[i].index == tabIndex
+                            }
+                            
+                            if (tabIndex > 0) {
+                                if (windowView.width < videoInitWidth) {
+                                    windowView.width = videoInitWidth
+                                } 
+                                
+                                if (windowView.height < videoInitHeight) {
+                                    windowView.height = videoInitHeight
+                                } 
+                            }
                         }
                     }
                 }
             }
-            
+
             Row {
                 anchors {right: parent.right}
                 id: windowButtonArea
