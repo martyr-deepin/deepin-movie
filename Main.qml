@@ -111,6 +111,7 @@ Item {
         id: resizeArea
         window: windowView
         frame: frame
+        resizeOffset: 10
     }
     
     Rectangle {

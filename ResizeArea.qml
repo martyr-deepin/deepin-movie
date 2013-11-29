@@ -8,6 +8,7 @@ MouseArea {
 
     property variant window
     property variant frame
+    property int resizeOffset: 0
     
     property real lastX: 0
     property real lastY: 0
@@ -33,26 +34,26 @@ MouseArea {
     }
     
     function changeEdge() {
-        if (mouseX < frame.x) {
-            if (mouseY < frame.y) {
+        if (mouseX < frame.x + resizeOffset) {
+            if (mouseY < frame.y + resizeOffset) {
                 edge = edgeTopLeft
-            } else if (mouseY > frame.y + frame.height) {
+            } else if (mouseY > frame.y + frame.height - resizeOffset) {
                 edge = edgeBottomLeft
             } else {
                 edge = edgeLeft
             }
-        } else if (mouseX > frame.x + frame.width) {
-            if (mouseY < frame.y) {
+        } else if (mouseX > frame.x + frame.width - resizeOffset) {
+            if (mouseY < frame.y + resizeOffset) {
                 edge = edgeTopRight
-            } else if (mouseY > frame.y + frame.height) {
+            } else if (mouseY > frame.y + frame.height - resizeOffset) {
                 edge = edgeBottomRight
             } else {
                 edge = edgeRight
             }
         } else {
-            if (mouseY < frame.y) {
+            if (mouseY < frame.y + resizeOffset) {
                 edge = edgeTop
-            } else if (mouseY > frame.y + frame.height) {
+            } else if (mouseY > frame.y + frame.height - resizeOffset) {
                 edge = edgeBottom
             } else {
                 edge = -1
@@ -61,26 +62,26 @@ MouseArea {
     }
     
     function changeCursor() {
-        if (mouseX < frame.x) {
-            if (mouseY < frame.y) {
+        if (mouseX < frame.x + resizeOffset) {
+            if (mouseY < frame.y + resizeOffset) {
                 resizeArea.cursorShape = Qt.SizeFDiagCursor
-            } else if (mouseY > frame.y + frame.height) {
+            } else if (mouseY > frame.y + frame.height - resizeOffset) {
                 resizeArea.cursorShape = Qt.SizeBDiagCursor
             } else {
                 resizeArea.cursorShape = Qt.SizeHorCursor
             } 
-        } else if (mouseX > frame.x + frame.width) {
-            if (mouseY < frame.y) {
+        } else if (mouseX > frame.x + frame.width - resizeOffset) {
+            if (mouseY < frame.y + resizeOffset) {
                 resizeArea.cursorShape = Qt.SizeBDiagCursor
-            } else if (mouseY > frame.y + frame.height) {
+            } else if (mouseY > frame.y + frame.height - resizeOffset) {
                 resizeArea.cursorShape = Qt.SizeFDiagCursor
             } else {
                 resizeArea.cursorShape = Qt.SizeHorCursor
             } 
         } else {
-            if (mouseY < frame.y) {
+            if (mouseY < frame.y + resizeOffset) {
                 resizeArea.cursorShape = Qt.SizeVerCursor
-            } else if (mouseY > frame.y + frame.height) {
+            } else if (mouseY > frame.y + frame.height - resizeOffset) {
                 resizeArea.cursorShape = Qt.SizeVerCursor
             } else {
                 resizeArea.cursorShape = Qt.ArrowCursor
