@@ -7,14 +7,21 @@ import QtQuick.LocalStorage 2.0
 Item {
     id: window
     
+    property int videoInitWidth: 950
+    property int videoInitHeight: (videoInitWidth - padding * 2) * movie_info["video_height"] / movie_info["video_width"] + padding * 2
+    property int videoMinWidth: 470
+    property int videoMinHeight: (videoMinWidth - padding * 2) * movie_info["video_height"] / movie_info["video_width"] + padding * 2
+    
     property int titlebarHeight: 45
     property int frameRadius: 3
     property int shadowRadius: 10
+    property int padding: frameRadius + shadowRadius
     
     default property alias tabPages: pages.children
     property alias playPage: playPage
     property alias player: player
     property alias titlebar: titlebar
+    property alias frame: frame
     property int currentTab: 0
     property int windowLastState: 0
     
@@ -97,12 +104,26 @@ Item {
         playPage.visible = false
     }
     
+    function initSize() {
+        windowView.width = videoInitWidth
+        windowView.height = videoInitHeight
+        
+        windowView.setMinSize(videoMinWidth, videoMinHeight)
+        
+        print(videoInitWidth, videoInitHeight, videoMinWidth, videoMinHeight)
+    }
+    
+    Component.onCompleted: {
+        initSize()
+    }
+    
     RectangularGlow {
         id: shadow
         anchors.fill: frame
         glowRadius: shadowRadius
         spread: 0.2
-        color: Qt.rgba(0, 0, 0, 0.3)
+        /* color: Qt.rgba(0, 0, 0, 0.3) */
+        color: Qt.rgba(1, 0, 0, 0.5)
         cornerRadius: frame.radius + shadowRadius
         visible: true
     }
@@ -118,7 +139,6 @@ Item {
         id: frame
         opacity: 1                /* frame transparent */
         color: Qt.rgba(0, 0, 0, 0)
-        /* color: Qt.rgba(0, 0, 0, 1) /\* this code just for test frame *\/ */
         anchors.centerIn: parent
         radius: frameRadius
         border.width: (shadowRadius + frameRadius) * 2

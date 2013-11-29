@@ -21,7 +21,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from PyQt5.QtWidgets import QApplication, qApp
-from PyQt5.QtCore import QSize
 from PyQt5 import QtCore
 import sys
 import os
@@ -29,9 +28,11 @@ import signal
 from window import Window
 from database import Database
 from config import Config
+from media_info import parse_info
 
 if __name__ == "__main__":
     movie_file = sys.argv[1]
+    movie_info = parse_info(movie_file)
     
     app = QApplication(sys.argv)
     database = Database()
@@ -43,11 +44,11 @@ if __name__ == "__main__":
     qml_context.setContextProperty("windowView", view)
     qml_context.setContextProperty("qApp", qApp)
     qml_context.setContextProperty("movie_file", movie_file)
+    qml_context.setContextProperty("movie_info", movie_info)
     qml_context.setContextProperty("database", database)
     qml_context.setContextProperty("config", config)
     
     view.setSource(QtCore.QUrl.fromLocalFile(os.path.join(os.path.dirname(__file__), 'Main.qml')))
-    view.setMinimumSize(QSize(900, 518))
     view.show()
     
     view.windowStateChanged.connect(view.rootObject().monitorWindowState)
