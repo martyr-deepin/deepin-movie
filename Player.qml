@@ -690,6 +690,39 @@ Video {
         }
     }
     
+    Rectangle {
+        anchors.right: bottomPanel.right
+        anchors.bottom: bottomPanel.bottom
+        anchors.rightMargin: 2
+        anchors.bottomMargin: 2
+        width: anchors.rightMargin + dragbarImage.width
+        height: anchors.bottomMargin + dragbarImage.height
+        color: "transparent"
+        
+        Image {
+            id: dragbarImage
+            source: "image/dragbar.png"
+            visible: false
+        }
+        
+        MouseArea {
+            id: dragbarArea
+            anchors.fill: parent
+            hoverEnabled: true
+            
+            onEntered: {
+                dragbarImage.visible = true
+                dragbarArea.cursorShape = Qt.SizeFDiagCursor
+            }
+            
+            onExited: {
+                dragbarImage.visible = false
+                dragbarArea.cursorShape = Qt.ArrowCursor
+            }
+        }
+    }
+
+    
     focus: true
     Keys.onSpacePressed: toggle()
     Keys.onLeftPressed: backward()
