@@ -22,38 +22,88 @@ Window {
         win.visible = true
     }
 
+    function resizeWidth(x, y) {
+        var tempWidth = lastWindowWidth + x - lastX
+        if (tempWidth >= window.minimumWidth) {
+            rect.width = tempWidth
+        }
+    }
+    
+    function resizeHeight(x, y) {
+        var tempHeight = lastWindowHeight + y - lastY
+        if (tempHeight >= window.minimumHeight) {
+            rect.height = tempHeight
+        }
+    }
+    
+    function moveresizeWidth(x, y) {
+        var tempWidth = lastWindowWidth - x + lastX
+        if (tempWidth >= window.minimumWidth) {
+            rect.x = x
+            rect.width = tempWidth
+        } else {
+            rect.width = window.minimumWidth
+        }
+    }
+    
+    function moveresizeHeight(x, y) {
+        var tempHeight = lastWindowHeight - y + lastY
+        if (tempHeight >= window.minimumHeight) {
+            rect.y = y
+            rect.height = tempHeight
+        } else {
+            rect.height = window.minimumHeight
+        }
+    }
+    
+    function adjustHeight() {
+        rect.height = (rect.width - framePadding * 2) * movie_info["video_height"] / movie_info["video_width"] + framePadding * 2
+    }
+    
+    function adjustHeightY() {
+        var beforeHeight = rect.height
+        rect.height = (rect.width - framePadding * 2) * movie_info["video_height"] / movie_info["video_width"] + framePadding * 2
+        var afterHeight = rect.height
+        
+        rect.y -= afterHeight - beforeHeight + framePadding
+    }
+    
     function resize(edge, x, y) {
-        if (edge == edgeRight || edge == edgeTopRight || edge == edgeBottomRight) {
-            tempWidth = lastWindowWidth + x - lastX
-            if (tempWidth >= window.minimumWidth) {
-                rect.width = tempWidth
+        if (proportionalResize && edge == edgeTopLeft) {
+            moveresizeWidth(x, y)
+            moveresizeHeight(x, y)
+            
+            adjustHeightY()
+        } else if (proportionalResize && edge == edgeTopRight) {
+            resizeWidth(x, y)
+            moveresizeHeight(x, y)
+            
+            adjustHeightY()
+        } else if (proportionalResize && edge == edgeBottomLeft) {
+            resizeHeight(x, y)
+            moveresizeWidth(x, y)
+            
+            adjustHeight()
+        } else if (proportionalResize && edge == edgeBottomRight) {
+            resizeWidth(x, y)
+            resizeHeight(x, y)
+            
+            adjustHeight()
+        } else {
+            if (edge == edgeRight || edge == edgeTopRight || edge == edgeBottomRight) {
+                resizeWidth(x, y)
             }
-        }
-        
-        if (edge == edgeBottom || edge == edgeBottomLeft || edge == edgeBottomRight) {
-            tempHeight = lastWindowHeight + y - lastY
-            if (tempHeight >= window.minimumHeight) {
-                rect.height = tempHeight
+            
+            if (edge == edgeBottom || edge == edgeBottomLeft || edge == edgeBottomRight) {
+                resizeHeight(x, y)
             }
-        }
-        
-        if (edge == edgeLeft || edge == edgeTopLeft || edge == edgeBottomLeft) {
-            var tempWidth = lastWindowWidth - x + lastX
-            if (tempWidth >= window.minimumWidth) {
-                rect.x = x
-                rect.width = tempWidth
-            } else {
-                rect.width = window.minimumWidth
+            
+            if (edge == edgeLeft || edge == edgeTopLeft || edge == edgeBottomLeft) {
+                moveresizeWidth(x, y)
             }
-        }
-        
-        if (edge == edgeTop || edge == edgeTopLeft || edge == edgeTopRight) {
-            var tempHeight = lastWindowHeight - y + lastY
-            if (tempHeight >= window.minimumHeight) {
-                rect.y = y
-                rect.height = tempHeight
-            } else {
-                rect.height = window.minimumHeight
+            
+            if (edge == edgeTop || edge == edgeTopLeft || edge == edgeTopRight) {
+                moveresizeHeight(x, y)
             }
         }
     }
@@ -71,7 +121,7 @@ Window {
             border.color: borderColor
             border.width: 2
             radius: 3
-            anchors.margins: 10
+            anchors.margins: framePadding
         }
     }
 }

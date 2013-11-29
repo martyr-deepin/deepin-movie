@@ -122,8 +122,8 @@ Item {
         anchors.fill: frame
         glowRadius: shadowRadius
         spread: 0.2
-        /* color: Qt.rgba(0, 0, 0, 0.3) */
-        color: Qt.rgba(1, 0, 0, 0.5)
+        color: Qt.rgba(0, 0, 0, 0.3)
+        /* color: Qt.rgba(1, 0, 0, 0.5) */
         cornerRadius: frame.radius + shadowRadius
         visible: true
     }
@@ -133,6 +133,8 @@ Item {
         window: windowView
         frame: frame
         resizeOffset: 10
+        framePadding: padding
+        proportionalResize: true
     }
     
     Rectangle {

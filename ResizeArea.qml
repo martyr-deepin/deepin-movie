@@ -9,6 +9,8 @@ MouseArea {
     property variant window
     property variant frame
     property int resizeOffset: 0
+    property bool proportionalResize: false
+    property int framePadding: 10
     
     property real lastX: 0
     property real lastY: 0
