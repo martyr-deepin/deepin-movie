@@ -32,9 +32,10 @@
 # Opengl driver (mesa) is using Xlib for buffer management. Result is assert failure in libxcb in different threads. 
 # 
 import os
+from PyQt5 import QtCore
 from PyQt5.QtCore import QCoreApplication
 if os.name == 'posix':
-    QCoreApplication.setAttribute(10, True) # 10 is value of Qt::AA_X11InitThreads, i can't import AA_X11InitThreads in pyqt5, so set attr with 10
+    QCoreApplication.setAttribute(QtCore.Qt.AA_X11InitThreads, True)
 
 from PyQt5.QtWidgets import QApplication, qApp
 from PyQt5 import QtCore
