@@ -722,6 +722,8 @@ Video {
                 if (windowView.getState() != Qt.WindowFullScreen) {
                     dragbarArea.cursorShape = Qt.ArrowCursor
                 }
+                
+                hidingTimer.restart()
             }
             
             onPressed: {
@@ -733,11 +735,17 @@ Video {
                     var pos = windowView.getCursorPos()
                     resizeFrame.resize(constant.edgeBottomRight, pos.x, pos.y)
                 }
+                
+                hidingTimer.stop()
             }
             
             onReleased: {
                 resizeFrame.hide()
                 dragbarArea.cursorShape = Qt.ArrowCursor
+            }
+            
+            InteractiveItem {
+                targetItem: parent
             }
         }
     }
