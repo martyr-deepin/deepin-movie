@@ -20,6 +20,22 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+# DON'T DELETE BELOW CODE!
+# Calls XInitThreads() as part of the QApplication construction in order to make Xlib calls thread-safe. 
+# This attribute must be set before QApplication is constructed.
+# Otherwise, you will got error:
+#     "python: ../../src/xcb_conn.c:180: write_vec: Assertion `!c->out.queue_len' failed."
+# 
+# Qt5 application hitting the race condition when resize and move controlling for a frameless window.
+# Race condition happened while Qt was using xcb to read event and request window position movements from two threads. 
+# Same time rendering thread was drawing scene with opengl. 
+# Opengl driver (mesa) is using Xlib for buffer management. Result is assert failure in libxcb in different threads. 
+# 
+import os
+from PyQt5.QtCore import QCoreApplication
+if os.name == 'posix':
+    QCoreApplication.setAttribute(10, True) # 10 is value of Qt::AA_X11InitThreads, i can't import AA_X11InitThreads in pyqt5, so set attr with 10
+
 from PyQt5.QtWidgets import QApplication, qApp
 from PyQt5 import QtCore
 import sys
