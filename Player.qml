@@ -5,8 +5,6 @@ import QtGraphicalEffects 1.0
 Video {
     id: video
     autoPlay: false
-    /* autoPlay: true */
-    /* muted: true */
     anchors.leftMargin: 1
     anchors.rightMargin: 1
     
@@ -702,7 +700,7 @@ Video {
         Image {
             id: dragbarImage
             source: "image/dragbar.png"
-            visible: false
+            visible: showBottomPanel && windowView.getState() != Qt.WindowFullScreen
         }
         
         MouseArea {
@@ -710,13 +708,35 @@ Video {
             anchors.fill: parent
             hoverEnabled: true
             
+            ResizeConstant {
+                id: constant
+            }
+    
             onEntered: {
-                dragbarImage.visible = true
-                dragbarArea.cursorShape = Qt.SizeFDiagCursor
+                if (windowView.getState() != Qt.WindowFullScreen) {
+                    dragbarArea.cursorShape = Qt.SizeFDiagCursor
+                }
             }
             
             onExited: {
-                dragbarImage.visible = false
+                if (windowView.getState() != Qt.WindowFullScreen) {
+                    dragbarArea.cursorShape = Qt.ArrowCursor
+                }
+            }
+            
+            onPressed: {
+                resizeFrame.show()
+            }
+            
+            onPositionChanged: {
+                if (pressed) {
+                    var pos = windowView.getCursorPos()
+                    resizeFrame.resize(constant.edgeBottomRight, pos.x, pos.y)
+                }
+            }
+            
+            onReleased: {
+                resizeFrame.hide()
                 dragbarArea.cursorShape = Qt.ArrowCursor
             }
         }

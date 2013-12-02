@@ -10,16 +10,52 @@ Window {
 	visible: false
 	color: "transparent"
     
+    property variant window
+    
+    property int framePadding: 10
+    
+    property real lastX: 0
+    property real lastY: 0
+    property real lastWindowX: 0
+    property real lastWindowY: 0
+    property real lastWindowWidth: 0
+    property real lastWindowHeight: 0
+    
     property alias rect: rect
     property alias frame: frame
     property string borderColor: "#AAAEC1D5"
+    property bool proportionalResize: false
+    property int proportionalWidth: 0
+    property int proportionalHeight: 0
+    
+    ResizeConstant {
+        id: constant
+    }
     
     function show() {
+        var pos = window.getCursorPos()
+        lastX = pos.x
+        lastY = pos.y
+        
+        lastWindowX = window.x
+        lastWindowY = window.y
+        lastWindowWidth = window.width
+        lastWindowHeight = window.height
+        
         rect.x = lastWindowX
         rect.y = lastWindowY
         rect.width = lastWindowWidth
         rect.height = lastWindowHeight
         win.visible = true
+    }
+    
+    function hide() {
+        window.x = rect.x
+        window.y = rect.y
+        window.width = rect.width
+        window.height = rect.height
+        
+        win.visible = false
     }
 
     function resizeWidth(x, y) {
@@ -57,52 +93,53 @@ Window {
     }
     
     function adjustHeight() {
-        rect.height = (rect.width - framePadding * 2) * movie_info["video_height"] / movie_info["video_width"] + framePadding * 2
+        rect.height = (rect.width - framePadding * 2) * proportionalHeight / proportionalWidth + framePadding * 2
     }
     
     function adjustHeightY() {
         var beforeHeight = rect.height
-        rect.height = (rect.width - framePadding * 2) * movie_info["video_height"] / movie_info["video_width"] + framePadding * 2
+        rect.height = (rect.width - framePadding * 2) * proportionalHeight / proportionalWidth + framePadding * 2
         var afterHeight = rect.height
         
         rect.y -= afterHeight - beforeHeight + framePadding
     }
     
     function resize(edge, x, y) {
-        if (proportionalResize && edge == edgeTopLeft) {
+        var pos = window.getCursorPos()
+        if (proportionalResize && edge == constant.edgeTopLeft) {
             moveresizeWidth(x, y)
             moveresizeHeight(x, y)
             
             adjustHeightY()
-        } else if (proportionalResize && edge == edgeTopRight) {
+        } else if (proportionalResize && edge == constant.edgeTopRight) {
             resizeWidth(x, y)
             moveresizeHeight(x, y)
             
             adjustHeightY()
-        } else if (proportionalResize && edge == edgeBottomLeft) {
+        } else if (proportionalResize && edge == constant.edgeBottomLeft) {
             resizeHeight(x, y)
             moveresizeWidth(x, y)
             
             adjustHeight()
-        } else if (proportionalResize && edge == edgeBottomRight) {
+        } else if (proportionalResize && edge == constant.edgeBottomRight) {
             resizeWidth(x, y)
             resizeHeight(x, y)
             
             adjustHeight()
         } else {
-            if (edge == edgeRight || edge == edgeTopRight || edge == edgeBottomRight) {
+            if (edge == constant.edgeRight || edge == constant.edgeTopRight || edge == constant.edgeBottomRight) {
                 resizeWidth(x, y)
             }
             
-            if (edge == edgeBottom || edge == edgeBottomLeft || edge == edgeBottomRight) {
+            if (edge == constant.edgeBottom || edge == constant.edgeBottomLeft || edge == constant.edgeBottomRight) {
                 resizeHeight(x, y)
             }
             
-            if (edge == edgeLeft || edge == edgeTopLeft || edge == edgeBottomLeft) {
+            if (edge == constant.edgeLeft || edge == constant.edgeTopLeft || edge == constant.edgeBottomLeft) {
                 moveresizeWidth(x, y)
             }
             
-            if (edge == edgeTop || edge == edgeTopLeft || edge == edgeTopRight) {
+            if (edge == constant.edgeTop || edge == constant.edgeTopLeft || edge == constant.edgeTopRight) {
                 moveresizeHeight(x, y)
             }
         }

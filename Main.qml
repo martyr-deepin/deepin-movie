@@ -107,18 +107,23 @@ Item {
         glowRadius: shadowRadius
         spread: 0.2
         color: Qt.rgba(0, 0, 0, 0.3)
-        /* color: Qt.rgba(1, 0, 0, 0.5) */
         cornerRadius: frame.radius + shadowRadius
         visible: true
+    }
+    
+    ResizeFrame {
+        id: resizeFrame
+        window: windowView
+        framePadding: padding
+        proportionalResize: true
+        proportionalWidth: movie_info["video_width"]
+        proportionalHeight: movie_info["video_height"]
     }
     
     ResizeArea {
         id: resizeArea
         window: windowView
         frame: frame
-        resizeOffset: 10
-        framePadding: padding
-        proportionalResize: true
     }
     
     Rectangle {
