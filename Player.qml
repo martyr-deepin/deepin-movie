@@ -48,8 +48,13 @@ Video {
         
         hidingTimer.restart()
         
-        video.seek(database.fetch_video_position(video.source))
+        var pos = database.fetch_video_position(video.source)
+        video.seek(pos)
         video.play()
+        
+        if (pos > 0) {
+            notifybar.show("image/notify_volume.png", "继续播放: " + formatTime(pos))
+        }
         
         video.volume = config.fetch("Normal", "volume") * 1
     }
