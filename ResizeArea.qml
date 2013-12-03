@@ -44,6 +44,8 @@ MouseArea {
     }
     
     function changeCursor() {
+        resizeArea.cursorShape = Qt.ArrowCursor
+        
         if (mouseX < frame.x) {
             if (mouseY < frame.y) {
                 resizeArea.cursorShape = Qt.SizeFDiagCursor

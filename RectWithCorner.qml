@@ -27,7 +27,7 @@ Rectangle {
     
     onCornerPosChanged: canvas.requestPaint()
     onCornerDirectionChanged: canvas.requestPaint()
-    onCornerTypeChanged: requestPaint()
+    onCornerTypeChanged: canvas.requestPaint()
 
     Canvas {
         id: canvas
