@@ -25,6 +25,8 @@ Rectangle {
     property int cornerWidth: 24
     property int cornerHeight: 12
     
+    property alias canvas: canvas
+    
     onCornerPosChanged: canvas.requestPaint()
     onCornerDirectionChanged: canvas.requestPaint()
     onCornerTypeChanged: canvas.requestPaint()

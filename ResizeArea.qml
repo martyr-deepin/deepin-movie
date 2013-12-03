@@ -92,4 +92,8 @@ MouseArea {
         changeCursor()
         resizeFrame.hide()
     }
+    
+    onExited: {
+        resizeArea.cursorShape = Qt.ArrowCursor
+    }
 }
