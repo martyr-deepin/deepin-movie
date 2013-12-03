@@ -489,10 +489,10 @@ Video {
                             videoPreview.videoTime.text = formatTime(videoPosition)
                             
                             if (mouseX <= videoPreview.cornerWidth / 2) {
-                                videoPreview.cornerPos = mouseX + videoPreview.cornerWidth
+                                videoPreview.cornerPos = mouseX + videoPreview.cornerWidth / 2
                                 videoPreview.cornerType = "left"
                             } else if (mouseX >= progressbarArea.width - videoPreview.cornerWidth / 2) {
-                                videoPreview.cornerPos = mouseX - progressbarArea.width + videoPreview.width - videoPreview.cornerWidth
+                                videoPreview.cornerPos = mouseX - progressbarArea.width + videoPreview.width - videoPreview.cornerWidth / 2
                                 videoPreview.cornerType = "right"
                             } else if (mouseX < videoPreview.width / 2) {
                                 videoPreview.cornerPos = mouseX

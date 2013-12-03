@@ -38,7 +38,7 @@ RectWithCorner {
         anchors.left: video.left
         anchors.right: video.right
         height: 24
-        color: "#AA000000"
+        color: "#DD000000"
         
         Text {
             id: videoTime
