@@ -20,12 +20,14 @@ Rectangle {
     property int rectHeight: 200
 
     property string cornerDirection: "down"
+    property string cornerType: "center"
     property int cornerPos: rectWidth / 2
     property int cornerWidth: 24
     property int cornerHeight: 12
     
     onCornerPosChanged: canvas.requestPaint()
     onCornerDirectionChanged: canvas.requestPaint()
+    onCornerTypeChanged: requestPaint()
 
     Canvas {
         id: canvas
@@ -63,110 +65,27 @@ Rectangle {
                 if (cornerPos > x + w - rectRadius - cornerWidth / 2) {
                     cornerPos = x + w - rectRadius - cornerWidth / 2
                 }
-                ctx.lineTo(cornerPos + cornerWidth / 2, y + h) /* corner */
-                ctx.lineTo(cornerPos, y + h + cornerHeight)
-                ctx.lineTo(cornerPos - cornerWidth / 2, y + h)
+                
+                if (cornerType == "center") {
+                    /* Center */
+                    ctx.lineTo(cornerPos + cornerWidth / 2, y + h) /* corner */
+                    ctx.lineTo(cornerPos, y + h + cornerHeight)
+                    ctx.lineTo(cornerPos - cornerWidth / 2, y + h)
+                } else if (cornerType == "left") {
+                    /* Left */
+                    ctx.lineTo(cornerPos, y + h) /* corner */
+                    ctx.lineTo(cornerPos - cornerWidth / 2, y + h + cornerHeight)
+                    ctx.lineTo(cornerPos - cornerWidth / 2, y + h)
+                } else if (cornerType == "right") {
+                    /* Right */
+                    ctx.lineTo(cornerPos + cornerWidth / 2, y + h)
+                    ctx.lineTo(cornerPos + cornerWidth / 2, y + h + cornerHeight)
+                    ctx.lineTo(cornerPos, y + h)
+                }
 
                 ctx.lineTo(x+rectRadius,y+h);              // bottom side
                 // draw bottom left corner
                 ctx.arcTo(x,y+h,x,y+h-rectRadius,rectRadius);
-                ctx.lineTo(x,y+rectRadius);                 // left side
-                // draw top left corner
-                ctx.arcTo(x,y,x+rectRadius,y,rectRadius);
-            } else if (cornerDirection == "up") {
-                var x = blurWidth
-                var y = blurWidth + cornerHeight
-                var w = rectWidth - 2 * blurWidth
-                var h = rectHeight - 2 * blurWidth - cornerHeight
-
-                ctx.moveTo(x + rectRadius, y);                 // top side
-
-                if (cornerPos < x + rectRadius + cornerWidth / 2) {
-                    cornerPos = x + rectRadius + cornerWidth / 2
-                }
-                if (cornerPos > x + w - rectRadius - cornerWidth / 2) {
-                    cornerPos = x + w - rectRadius - cornerWidth / 2
-                }
-                ctx.lineTo(cornerPos - cornerWidth / 2, y) /* corner */
-                ctx.lineTo(cornerPos, y - cornerHeight)
-                ctx.lineTo(cornerPos + cornerWidth / 2, y)
-
-                ctx.lineTo(x + w - rectRadius, y);
-
-                // draw top right corner
-                ctx.arcTo(x + w, y, x + w, y + rectRadius, rectRadius);
-                ctx.lineTo(x+w,y+h-rectRadius);    // right side
-                // draw bottom right corner
-                ctx.arcTo(x+w,y+h,x+w-rectRadius,y+h,rectRadius);
-
-                ctx.lineTo(x+rectRadius,y+h);              // bottom side
-                // draw bottom left corner
-                ctx.arcTo(x,y+h,x,y+h-rectRadius,rectRadius);
-                ctx.lineTo(x,y+rectRadius);                 // left side
-                // draw top left corner
-                ctx.arcTo(x,y,x+rectRadius,y,rectRadius);
-            } else if (cornerDirection == "left") {
-                var x = blurWidth + cornerHeight
-                var y = blurWidth
-                var w = rectWidth - 2 * blurWidth - cornerHeight
-                var h = rectHeight - 2 * blurWidth
-
-                ctx.moveTo(x + rectRadius, y);                 // top side
-                ctx.lineTo(x + w - rectRadius, y);
-
-                // draw top right corner
-                ctx.arcTo(x + w, y, x + w, y + rectRadius, rectRadius);
-                ctx.lineTo(x+w,y+h-rectRadius);    // right side
-                // draw bottom right corner
-                ctx.arcTo(x+w,y+h,x+w-rectRadius,y+h,rectRadius);
-
-                ctx.lineTo(x+rectRadius,y+h);              // bottom side
-                // draw bottom left corner
-                ctx.arcTo(x,y+h,x,y+h-rectRadius,rectRadius);
-
-                if (cornerPos < y + rectRadius + cornerWidth / 2) {
-                    cornerPos = y + rectRadius + cornerWidth / 2
-                }
-                if (cornerPos > y + h - rectRadius - cornerWidth / 2) {
-                    cornerPos = y + h - rectRadius - cornerWidth / 2
-                }
-                ctx.lineTo(x, cornerPos + cornerWidth / 2) /* corner */
-                ctx.lineTo(x - cornerHeight, cornerPos)
-                ctx.lineTo(x, cornerPos - cornerWidth / 2)
-
-                ctx.lineTo(x,y+rectRadius);                 // left side
-                // draw top left corner
-                ctx.arcTo(x,y,x+rectRadius,y,rectRadius);
-            } else if (cornerDirection == "right") {
-                var x = blurWidth
-                var y = blurWidth
-                var w = rectWidth - 2 * blurWidth - cornerHeight
-                var h = rectHeight - 2 * blurWidth
-
-                ctx.moveTo(x + rectRadius, y);                 // top side
-                ctx.lineTo(x + w - rectRadius, y);
-
-                // draw top right corner
-                ctx.arcTo(x + w, y, x + w, y + rectRadius, rectRadius);
-
-                if (cornerPos < y + rectRadius + cornerWidth / 2) {
-                    cornerPos = y + rectRadius + cornerWidth / 2
-                }
-                if (cornerPos > y + h - rectRadius - cornerWidth / 2) {
-                    cornerPos = y + h - rectRadius - cornerWidth / 2
-                }
-                ctx.lineTo(x + w, cornerPos - cornerWidth / 2) /* corner */
-                ctx.lineTo(x + w + cornerHeight, cornerPos)
-                ctx.lineTo(x + w, cornerPos + cornerWidth / 2)
-
-                ctx.lineTo(x+w,y+h-rectRadius);    // right side
-                // draw bottom right corner
-                ctx.arcTo(x+w,y+h,x+w-rectRadius,y+h,rectRadius);
-
-                ctx.lineTo(x+rectRadius,y+h);              // bottom side
-                // draw bottom left corner
-                ctx.arcTo(x,y+h,x,y+h-rectRadius,rectRadius);
-
                 ctx.lineTo(x,y+rectRadius);                 // left side
                 // draw top left corner
                 ctx.arcTo(x,y,x+rectRadius,y,rectRadius);

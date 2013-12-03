@@ -473,9 +473,10 @@ Video {
                             hidingTimer.stop()
                             
                             videoPreview.visible = true
-                            videoPreview.x = Math.min(Math.max(mouseX - videoPreview.width / 2, 0), progressbarArea.width - videoPreview.width)
+                            print(mouseX - videoPreview.width / 2, - videoPreview.blurWidth, progressbarArea.width - videoPreview.width + videoPreview.blurWidth)
+                            videoPreview.x = Math.min(Math.max(mouseX - videoPreview.width / 2, -videoPreview.blurWidth), 
+                                                      progressbarArea.width - videoPreview.width + videoPreview.blurWidth)
                             videoPreview.y = progressbarArea.y - videoPreview.height + videoPreview.cornerHeight
-                            
                             videoPosition = video.duration * mouseX / (progressbarBackground.width - progressbarBackground.x)
                             
                             videoPreview.video.visible = false
@@ -483,12 +484,26 @@ Video {
                             
                             videoPreview.videoTime.text = formatTime(videoPosition)
                             
-                            if (mouseX < videoPreview.width / 2) {
-                                videoPreview.cornerPos = mouseX
-                            } else if (mouseX > progressbarArea.width - videoPreview.width / 2) {
-                                videoPreview.cornerPos = mouseX - progressbarArea.width + videoPreview.width
+                            if (mouseX <= videoPreview.cornerWidth) {
+                                print("1")
+                                videoPreview.cornerPos = mouseX + videoPreview.cornerWidth
+                                videoPreview.cornerType = "left"
+                            } else if (mouseX >= progressbarArea.width - videoPreview.cornerWidth) {
+                                print("2")
+                                videoPreview.cornerPos = mouseX - progressbarArea.width + videoPreview.width - videoPreview.cornerWidth
+                                videoPreview.cornerType = "right"
+                            } else if (mouseX < videoPreview.width / 2) {
+                                print("3")
+                                videoPreview.cornerPos = mouseX + videoPreview.blurWidth
+                                videoPreview.cornerType = "center"
+                            } else if (mouseX >= progressbarArea.width - videoPreview.width / 2) {
+                                print("4")
+                                videoPreview.cornerPos = mouseX - progressbarArea.width + videoPreview.width - videoPreview.blurWidth
+                                videoPreview.cornerType = "center"
                             } else {
+                                print("5")
                                 videoPreview.cornerPos = videoPreview.width / 2
+                                videoPreview.cornerType = "center"
                             }
                         }
                         
