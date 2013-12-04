@@ -20,11 +20,13 @@ Rectangle {
         spacing: 5
         
         Image {
+            anchors.verticalCenter: parent.verticalCenter
             source: notifyIcon
             visible: notify.visible
         }
         
         Text {
+            anchors.verticalCenter: parent.verticalCenter
             text: notifyText
             font.pixelSize: 17
             color: "#80e6ff"

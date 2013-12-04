@@ -53,7 +53,7 @@ Video {
         video.play()
         
         if (pos > 0) {
-            notifybar.show("image/notify_volume.png", "继续播放: " + formatTime(pos))
+            notifybar.show("image/notify_play.png", "继续播放: " + formatTime(pos))
         }
         
         video.volume = config.fetch("Normal", "volume") * 1
