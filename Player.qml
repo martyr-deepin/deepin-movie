@@ -554,7 +554,7 @@ Video {
                         visible: false
                         
                         onPositionChanged: {
-                            /* videoPreview.video.visible = true */
+                            videoPreview.video.visible = true
                         }
                     }
                 }
