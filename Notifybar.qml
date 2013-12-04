@@ -1,5 +1,4 @@
 import QtQuick 2.1
-import QtGraphicalEffects 1.0
 
 Rectangle {
     id: notify
@@ -7,8 +6,6 @@ Rectangle {
     property string notifyText: ""
     opacity: 0
     visible: true
-    
-    property alias textGlow: textGlow
     
     function show(icon, text) {
         notifyIcon = icon
@@ -19,39 +16,26 @@ Rectangle {
         hidingNotifyTimer.restart()
     }
     
-    Image {
-        id: notifyImage
-        anchors.verticalCenter: parent.verticalCenter
-        source: notifyIcon
-        visible: notify.visible
-    }
-
-    Rectangle {
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.left: notifyImage.right
-        anchors.leftMargin: 5
+    Row {
+        spacing: 5
+        
+        Image {
+            anchors.verticalCenter: parent.verticalCenter
+            source: notifyIcon
+            visible: notify.visible
+        }
         
         Text {
-            id: text
             anchors.verticalCenter: parent.verticalCenter
             text: notifyText
             font.pixelSize: 17
             color: "#80e6ff"
-            /* color: "#000" */
+            style: Text.Outline
+            styleColor: Qt.color(0, 0, 0, 0.4)
+            visible: notify.visible
         }
-        
-        Glow {
-            id: textGlow
-            anchors.fill: text
-            source: text
-            radius: 4
-            samples: 10
-            color: "#000"
-            /* color: "#F00" */
-        }    
-        
     }
-
+    
     Timer {
         id: hidingNotifyTimer
         interval: 2000
