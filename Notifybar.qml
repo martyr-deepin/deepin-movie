@@ -31,7 +31,7 @@ Rectangle {
             font.pixelSize: 17
             color: "#80e6ff"
             style: Text.Outline
-            styleColor: "#AA000000"
+            styleColor: Qt.rgba(0, 0, 0, 0.6)
             visible: notify.visible
         }
     }
