@@ -39,6 +39,8 @@ class Window(QQuickView):
         self.setResizeMode(QtQuick.QQuickView.SizeRootObjectToView)
         self.setFormat(surface_format)
         
+        self.qml_context = self.rootContext()
+        
     @pyqtSlot(result=int)    
     def getState(self):
         return self.windowState()
