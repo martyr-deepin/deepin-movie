@@ -195,7 +195,7 @@ Video {
     Image {
         id: pauseNotify
         source: "image/pause_notify.svg"
-        visible: video.playbackState != MediaPlayer.PlayingState
+        visible: false
     }
     
     Connections {
@@ -203,6 +203,7 @@ Video {
         onPaused: {
             pauseNotify.scale = 0.6
             pauseNotify.opacity = 0
+            pauseNotify.visible = true
             pauseNotify.anchors.left = undefined
             pauseNotify.anchors.bottom = undefined
             pauseNotify.anchors.leftMargin = 0
@@ -895,6 +896,12 @@ Video {
                 to: 0
                 duration: 650
                 easing.type: Easing.OutQuint
+            }
+        }
+        
+        onRunningChanged: {
+            if (!movePauseNotify.running) {
+                pauseNotify.visible = false
             }
         }
     }

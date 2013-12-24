@@ -45,11 +45,13 @@ import signal
 from window import Window
 from database import Database
 from config import Config
-from media_info import parse_info
+from movie_info import MovieInfo
 
 if __name__ == "__main__":
-    movie_file = sys.argv[1]
-    movie_info = parse_info(movie_file)
+    movie_file = ""
+    if len(sys.argv) >= 2:
+        movie_file = sys.argv[1]
+    movie_info = MovieInfo(movie_file)
     
     app = QApplication(sys.argv)
     database = Database()
@@ -60,8 +62,7 @@ if __name__ == "__main__":
     qml_context = view.rootContext()
     qml_context.setContextProperty("windowView", view)
     qml_context.setContextProperty("qApp", qApp)
-    qml_context.setContextProperty("movie_file", movie_file)
-    qml_context.setContextProperty("movie_info", movie_info)
+    qml_context.setContextProperty("movieInfo", movie_info)
     qml_context.setContextProperty("database", database)
     qml_context.setContextProperty("config", config)
     
