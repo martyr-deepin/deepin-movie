@@ -10,6 +10,8 @@ Rectangle {
     property alias playlistPanelArea: playlistPanelArea
     property alias hidePlaylistButton: hidePlaylistButton
     
+    property string tabId: "network"
+    
     DragArea {
         id: playlistPanelArea
         window: windowView
@@ -30,6 +32,64 @@ Rectangle {
         
         onClicked: {
             console.log("Click on playlist.")
+        }
+    }
+    
+    Column {
+        anchors.fill: parent
+        
+        Item {
+            id: tabs
+            
+            Item {
+                property string name: "网络列表"
+                property string type: "network"
+            }
+
+            Item {
+                property string name: "本地列表"
+                property string type: "local"
+            }
+        }
+        
+        Row {
+            id: tabRow
+            height: 50
+            anchors.leftMargin: spacing
+            width: parent.width
+            visible: playlistPanel.width == showWidth
+            
+            property int tabWidth: width / tabs.children.length
+            
+            Repeater {
+                model: tabs.children.length
+                delegate: Item {
+                    height: parent.height
+                    width: tabRow.tabWidth
+                    
+                    Rectangle {
+                        anchors.fill: parent
+                        color: tabId == tabs.children[index].type ? "#171717" : "transparent"
+                        radius: 2
+                        anchors.margins: 12
+                        
+                        Text {
+                            text: tabs.children[index].name
+                            color: tabId == tabs.children[index].type ? "#E0E0E0" : "#474747"
+		                    font { pixelSize: 13 }
+                            anchors.centerIn: parent
+                        }                        
+                    }
+                    
+                    MouseArea {
+                        anchors.fill: parent
+                        
+                        onClicked: {
+                            tabId = tabs.children[index].type
+                        }
+                    }
+                }
+            }
         }
     }
     
