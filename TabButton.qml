@@ -15,6 +15,7 @@ Rectangle {
 
     Text {
         id: label
+		font { pixelSize: 15 }
         anchors.centerIn: parent
         color: "white"
         style: Text.Outline
