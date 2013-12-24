@@ -16,7 +16,7 @@ Video {
     property double videoPosition: 0
     
     property bool showBottomPanel: true
-    property bool videoPlaying: true
+    property bool novideo: true
     
     property double showHeight: 64
     property double hideHeight: 0
@@ -45,7 +45,7 @@ Video {
     
     Component.onCompleted: {
         if (source == "") {
-            videoPlaying = false
+            novideo = false
         } else {
             timeTotal = formatTime(video.duration)
             
@@ -222,7 +222,7 @@ Video {
     Rectangle {
         anchors.fill: parent
         color: "#050811"
-        visible: !videoPlaying
+        visible: !novideo
         
         Image {
             source: "image/background.png"
@@ -343,7 +343,7 @@ Video {
                 GradientStop { position: 0.0; color: "#00000000"}
                 GradientStop { position: 1.0; color: "#FF000000"}
             }
-            visible: showBottomPanel && videoPlaying ? 1 : 0
+            visible: showBottomPanel && novideo ? 1 : 0
         }
                     
         DragArea {
@@ -381,7 +381,7 @@ Video {
                     anchors.right: parent.right
                     height: 7
                     color: "#444a4a4a"
-                    visible: showBottomPanel && videoPlaying ? 1 : 0
+                    visible: showBottomPanel && novideo ? 1 : 0
                     
                     Rectangle {
                         anchors.left: parent.left
@@ -389,7 +389,7 @@ Video {
                         anchors.top: parent.top
                         height: 1
                         color: "#443c3c3c"
-                        visible: showBottomPanel && videoPlaying ? 1 : 0
+                        visible: showBottomPanel && novideo ? 1 : 0
                     }
                     
                     MouseArea {
@@ -458,7 +458,7 @@ Video {
                         height: parent.height
                         width: timePosition * parent.width
                         color: "#007cc2"
-                        visible: showBottomPanel && videoPlaying ? 1 : 0
+                        visible: showBottomPanel && novideo ? 1 : 0
                         
                         Rectangle {
                             anchors.left: parent.left
@@ -466,7 +466,7 @@ Video {
                             anchors.top: parent.top
                             height: 1
                             color: "#04a4ff"
-                            visible: showBottomPanel && videoPlaying ? 1 : 0
+                            visible: showBottomPanel && novideo ? 1 : 0
                         }
                     }
                     
@@ -505,7 +505,7 @@ Video {
                         id: playerList
                         imageName: "image/player_list"
                         anchors.verticalCenter: parent.verticalCenter
-                        visible: showBottomPanel && videoPlaying ? 1 : 0
+                        visible: showBottomPanel && novideo ? 1 : 0
                         active: playlistPanel.width == showWidth
                         
                         onClicked: {
@@ -521,7 +521,7 @@ Video {
                         id: playerConfig
                         imageName: "image/player_config"
                         anchors.verticalCenter: parent.verticalCenter
-                        visible: showBottomPanel && videoPlaying ? 1 : 0
+                        visible: showBottomPanel && novideo ? 1 : 0
                         active: false
                     }
                 }
@@ -536,7 +536,7 @@ Video {
                         id: playerOpen
                         imageName: "image/player_open"
                         anchors.verticalCenter: playerPlay.verticalCenter
-                        visible: showBottomPanel && videoPlaying ? 1 : 0
+                        visible: showBottomPanel && novideo ? 1 : 0
                     }
                     
                     Space {
@@ -547,7 +547,7 @@ Video {
                         id: playerBackward
                         imageName: "image/player_backward"
                         anchors.verticalCenter: playerPlay.verticalCenter
-                        visible: showBottomPanel && videoPlaying ? 1 : 0
+                        visible: showBottomPanel && novideo ? 1 : 0
                     }
                     
                     Space {
@@ -560,7 +560,7 @@ Video {
                         onClicked: {
                             toggle()
                         }
-                        visible: showBottomPanel && videoPlaying ? 1 : 0
+                        visible: showBottomPanel && novideo ? 1 : 0
                     }
                     
                     Space {
@@ -571,7 +571,7 @@ Video {
                         id: playerForward
                         imageName: "image/player_forward"
                         anchors.verticalCenter: playerPlay.verticalCenter
-                        visible: showBottomPanel && videoPlaying ? 1 : 0
+                        visible: showBottomPanel && novideo ? 1 : 0
                     }
                     
                     Space {
@@ -581,7 +581,7 @@ Video {
                     VolumeButton {
                         id: playerVolume
                         anchors.verticalCenter: parent.verticalCenter
-                        visible: showBottomPanel && videoPlaying ? 1 : 0
+                        visible: showBottomPanel && novideo ? 1 : 0
                         
                         onInVolumebar: {
                             hidingTimer.stop()
@@ -622,7 +622,7 @@ Video {
                         text: timeCurrent + " / " + timeTotal
                         color: Qt.rgba(100, 100, 100, 1)
                         font.pixelSize: 12
-                        visible: showBottomPanel && videoPlaying && window.width > 700 ? 1 : 0
+                        visible: showBottomPanel && novideo && window.width > 700 ? 1 : 0
                     }
                 }
             }
