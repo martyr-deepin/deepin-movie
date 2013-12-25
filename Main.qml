@@ -161,19 +161,10 @@ Item {
         
         WebView {
             id: movieStorePage
-            /* url: "http://pianku.xmp.kankan.com/moviestore_index.html" */
-            url: "http://www.google.com"
+            url: "http://pianku.xmp.kankan.com/moviestore_index.html"
             anchors.fill: parent
             property string name: "在线影院"
             visible: false
-            
-            onNavigationRequested: {
-                print("*** ", request)
-            }
-            
-            onLoadingChanged: {
-                print(loadRequest.url, loadRequest.status)
-            }
         }
         
         WebView {
