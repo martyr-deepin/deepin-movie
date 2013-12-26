@@ -23,7 +23,6 @@
 from PyQt5.QtWebKitWidgets import QWebView, QWebPage
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout
 from PyQt5.QtCore import QUrl, Qt
-import sys
 
 class Browser(QWidget):
     def __init__(self, url):
@@ -47,6 +46,9 @@ class Browser(QWidget):
         self.view.load(url)
 
 if __name__ == '__main__':
+    import sys
+    import signal
+    
     app = QApplication(sys.argv)
 
     url = QUrl('http://pianku.xmp.kankan.com/moviestore_index.html')
@@ -56,4 +58,5 @@ if __name__ == '__main__':
     browser.move(0, 0)
     browser.show()
 
+    signal.signal(signal.SIGINT, signal.SIG_DFL)
     sys.exit(app.exec_())
