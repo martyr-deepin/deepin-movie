@@ -31,6 +31,8 @@ Item {
     property bool showTitlebar: true
     property bool inInteractiveArea: false
     
+    property string selectWebPage: ""
+    
     signal exitMouseArea
     
     Timer {
@@ -47,6 +49,21 @@ Item {
     
     onExitMouseArea: {
         outWindowTimer.restart()
+    }
+    
+    Connections {
+        target: windowView
+        
+        onWidthChanged: {
+            if (!playPage.visible) {
+                pageManager.show_page(selectWebPage, pageFrame.x, pageFrame.y, pageFrame.width, pageFrame.height)
+            }
+        }
+        onHeightChanged: {
+            if (!playPage.visible) {
+                pageManager.show_page(selectWebPage, pageFrame.x, pageFrame.y, pageFrame.width, pageFrame.height)
+            }
+        }
     }
     
     function monitorWindowClose() {
@@ -331,11 +348,10 @@ Item {
                             if (index == 0) {
                                 pageManager.hide_page()
                                 playPage.visible = true
-                            } else if (index == 1) {
-                                pageManager.show_page("movie_store", pageFrame.width, pageFrame.height)
-                                playPage.visible = false
-                            } else if (index == 2) {
-                                pageManager.show_page("movie_search", pageFrame.width, pageFrame.height)
+                            } else {
+                                selectWebPage = index == 1 ? "movie_store" : "movie_search"
+
+                                pageManager.show_page(selectWebPage, pageFrame.x, pageFrame.y, pageFrame.width, pageFrame.height)
                                 playPage.visible = false
                             }
                             

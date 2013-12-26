@@ -31,17 +31,20 @@ class StickWidget(QWidget):
         self.xid = self.winId().__int__()        
         self.xwindow = get_window_by_id(self.xid)
         
-        self.setWindowFlags(Qt.Tool)
+        self.setWindowFlags(Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_TranslucentBackground, True)
         
         self.setContentsMargins(0, 0, 0, 0)
         self.layout = QVBoxLayout(self)
         self.layout.setContentsMargins(0, 0, 0, 0)
         self.setLayout(self.layout)
-
+        
     @init_xlib    
-    def show_with_parent(self, parent_xid, x, y):    
+    def show_with_parent(self, parent_xid, x, y, width, height):    
+        self.resize(width, height)
+        
         parent_xwindow = get_window_by_id(parent_xid)
         self.xwindow.reparent(parent_xwindow, x, y)
         xlib_display.sync()
+        
         self.show()

@@ -57,22 +57,18 @@ class PageManager(QObject):
         self.movie_store_page = Browser("http://pianku.xmp.kankan.com/moviestore_index.html")
         self.movie_search_page = Browser("http://search.xmp.kankan.com/lndex4xmp.shtml")
         
-        self.offset_x = 14
-        self.offset_y = 58
-    
-    @pyqtSlot(str, int, int)    
-    def show_page(self, page_name, width, height):
+    @pyqtSlot(str, int, int, int, int)    
+    def show_page(self, page_name, x, y, width, height):
         self.hide_page()
         
+        x += 1
         width -= 2
         height -= 1
         
         if page_name == "movie_store":
-            self.movie_store_page.resize(width, height)
-            self.movie_store_page.show_with_parent(self.main_xid, self.offset_x, self.offset_y)
+            self.movie_store_page.show_with_parent(self.main_xid, x, y, width, height)
         elif page_name == "movie_search":
-            self.movie_search_page.resize(width, height)
-            self.movie_search_page.show_with_parent(self.main_xid, self.offset_x, self.offset_y)
+            self.movie_search_page.show_with_parent(self.main_xid, x, y, width, height)
             
     @pyqtSlot()        
     def hide_page(self):
