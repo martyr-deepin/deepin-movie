@@ -19,6 +19,7 @@ Item {
     
     default property alias tabPages: tabs.children
     property alias playPage: playPage
+    property alias pageFrame: pageFrame
     property alias tabEffect: tabEffect
     property alias player: player
     property alias titlebar: titlebar
@@ -331,10 +332,10 @@ Item {
                                 pageManager.hide_page()
                                 playPage.visible = true
                             } else if (index == 1) {
-                                pageManager.show_page("movie_store")
+                                pageManager.show_page("movie_store", pageFrame.width, pageFrame.height)
                                 playPage.visible = false
                             } else if (index == 2) {
-                                pageManager.show_page("movie_search")
+                                pageManager.show_page("movie_search", pageFrame.width, pageFrame.height)
                                 playPage.visible = false
                             }
                             
