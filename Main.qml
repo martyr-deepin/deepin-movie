@@ -149,8 +149,7 @@ Item {
     }
     
     Rectangle {
-        id: pages
-        objectName: "pages"
+        id: pageFrame
         anchors.top: titlebar.bottom
         anchors.bottom: frame.bottom
         anchors.left: titlebar.left
@@ -161,9 +160,9 @@ Item {
     Rectangle {
         id: playPage
         anchors.top: titlebar.top
-        anchors.bottom: pages.bottom
-        anchors.left: pages.left
-        anchors.right: pages.right
+        anchors.bottom: pageFrame.bottom
+        anchors.left: pageFrame.left
+        anchors.right: pageFrame.right
         color: Qt.rgba(0, 0, 0, 0)
         
         Player {
