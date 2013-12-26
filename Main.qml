@@ -19,8 +19,6 @@ Item {
     
     default property alias tabPages: tabs.children
     property alias playPage: playPage
-    property alias movieStorePage: movieStorePage
-    property alias searchPage: searchPage
     property alias tabEffect: tabEffect
     property alias player: player
     property alias titlebar: titlebar
@@ -158,22 +156,6 @@ Item {
         anchors.left: titlebar.left
         anchors.right: titlebar.right
         color: Qt.rgba(0, 0, 0, 0)
-        
-        WebView {
-            id: movieStorePage
-            url: "http://pianku.xmp.kankan.com/moviestore_index.html"
-            anchors.fill: parent
-            property string name: "在线影院"
-            visible: false
-        }
-        
-        WebView {
-            id: searchPage
-            url: "http://search.xmp.kankan.com/lndex4xmp.shtml"
-            anchors.fill: parent
-            property string name: "视频搜索"
-            visible: false
-        }
     }
     
     Rectangle {
@@ -304,13 +286,13 @@ Item {
 
                 Item {
                     property string name: "在线视频"
-                    property variant page: movieStorePage
+                    property variant page: undefined
                     property int index: 1
                 }
 
                 Item {
                     property string name: "视频搜索"
-                    property variant page: searchPage
+                    property variant page: undefined
                     property int index: 2
                 }
             }
@@ -346,8 +328,15 @@ Item {
                         onPressed: {
                             tabEffect.x = x + (width - tabEffect.width) / 2 + tabRow.spacing * 2
                             
-                            for (var i = 0; i < tabPages.length; i++) {
-                                tabPages[i].page.visible = tabPages[i].index == tabIndex
+                            if (index == 0) {
+                                pageManager.hide_page()
+                                playPage.visible = true
+                            } else if (index == 1) {
+                                pageManager.show_page("movie_store")
+                                playPage.visible = false
+                            } else if (index == 2) {
+                                pageManager.show_page("movie_search")
+                                playPage.visible = false
                             }
                             
                             if (tabIndex > 0) {

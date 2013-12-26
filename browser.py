@@ -21,30 +21,26 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from PyQt5.QtWebKitWidgets import QWebView, QWebPage
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout
+from PyQt5.QtWidgets import QApplication
 from PyQt5.QtCore import QUrl, Qt
+from stickwidget import StickWidget
 
-class Browser(QWidget):
+class Browser(StickWidget):
     def __init__(self, url):
         super(Browser, self).__init__()
-        self.setWindowFlags(Qt.FramelessWindowHint)
-        self.setAttribute(Qt.WA_TranslucentBackground, True)
+        
         self.view = QWebView(self)
-        self.view.load(url)
+        self.view.load(QUrl(url))
         self.view.page().setLinkDelegationPolicy(QWebPage.DelegateAllLinks)
         self.view.page().linkClicked.connect(self.link_clicked)
         self.view.page().mainFrame().setScrollBarPolicy(Qt.Vertical, Qt.ScrollBarAlwaysOff)
         self.view.page().mainFrame().setScrollBarPolicy(Qt.Horizontal, Qt.ScrollBarAlwaysOff)
         
-        self.setContentsMargins(0, 0, 0, 0)
-        self.layout = QVBoxLayout(self)
-        self.layout.setContentsMargins(0, 0, 0, 0)
         self.layout.addWidget(self.view)
-        self.setLayout(self.layout)
         
     def link_clicked(self, url):
         self.view.load(url)
-
+        
 if __name__ == '__main__':
     import sys
     import signal

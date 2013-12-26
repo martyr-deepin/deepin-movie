@@ -23,8 +23,6 @@
 from contextlib import contextmanager 
 import traceback
 import sys
-from PyQt5.QtCore import QTime, Qt
-# from PyQt5.QtQml import formatTime
 
 @contextmanager
 def painter_state(painter):

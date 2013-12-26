@@ -46,7 +46,34 @@ from window import Window
 from database import Database
 from config import Config
 from movie_info import MovieInfo
+from browser import Browser
+from PyQt5.QtCore import pyqtSlot, QObject
 
+class PageManager(QObject):
+
+    def __init__(self, view):
+        super(QObject, self).__init__()
+        self.main_xid = view.winId().__int__()
+        self.movie_store_page = Browser("http://pianku.xmp.kankan.com/moviestore_index.html")
+        self.movie_search_page = Browser("http://search.xmp.kankan.com/lndex4xmp.shtml")
+        
+        self.offset_x = 14
+        self.offset_y = 60
+    
+    @pyqtSlot(str)    
+    def show_page(self, page_name):
+        self.hide_page()
+        
+        if page_name == "movie_store":
+            self.movie_store_page.show_with_parent(self.main_xid, self.offset_x, self.offset_y)
+        elif page_name == "movie_search":
+            self.movie_search_page.show_with_parent(self.main_xid, self.offset_x, self.offset_y)
+            
+    @pyqtSlot()        
+    def hide_page(self):
+        self.movie_store_page.hide()
+        self.movie_search_page.hide()
+    
 if __name__ == "__main__":
     movie_file = ""
     if len(sys.argv) >= 2:
@@ -58,6 +85,7 @@ if __name__ == "__main__":
     config = Config()
     
     view = Window()
+    page_manager = PageManager(view)
     
     qml_context = view.rootContext()
     qml_context.setContextProperty("windowView", view)
@@ -65,6 +93,7 @@ if __name__ == "__main__":
     qml_context.setContextProperty("movieInfo", movie_info)
     qml_context.setContextProperty("database", database)
     qml_context.setContextProperty("config", config)
+    qml_context.setContextProperty("pageManager", page_manager)
     
     view.setSource(QtCore.QUrl.fromLocalFile(os.path.join(os.path.dirname(__file__), 'Main.qml')))
     view.show()
