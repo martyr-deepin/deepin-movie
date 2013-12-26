@@ -20,20 +20,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# from PyQt5.QtCore import QFile, QIODevice, Qt, QTextStream, QUrl
-# from PyQt5.QtWidgets import (QAction, QApplication, QLineEdit, QMainWindow,
-#         QSizePolicy, QStyle, QTextEdit)
-# from PyQt5.QtNetwork import QNetworkProxyFactory, QNetworkRequest
 from PyQt5.QtWebKitWidgets import QWebView, QWebPage
-from PyQt5.QtWidgets import QMainWindow, QApplication
+from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout
 from PyQt5.QtCore import QUrl, Qt
 import sys
 
-class Browser(QMainWindow):
+class Browser(QWidget):
     def __init__(self, url):
         super(Browser, self).__init__()
         self.setWindowFlags(Qt.FramelessWindowHint)
-        
+        self.setAttribute(Qt.WA_TranslucentBackground, True)
         self.view = QWebView(self)
         self.view.load(url)
         self.view.page().setLinkDelegationPolicy(QWebPage.DelegateAllLinks)
@@ -41,7 +37,11 @@ class Browser(QMainWindow):
         self.view.page().mainFrame().setScrollBarPolicy(Qt.Vertical, Qt.ScrollBarAlwaysOff)
         self.view.page().mainFrame().setScrollBarPolicy(Qt.Horizontal, Qt.ScrollBarAlwaysOff)
         
-        self.setCentralWidget(self.view)
+        self.setContentsMargins(0, 0, 0, 0)
+        self.layout = QVBoxLayout(self)
+        self.layout.setContentsMargins(0, 0, 0, 0)
+        self.layout.addWidget(self.view)
+        self.setLayout(self.layout)
         
     def link_clicked(self, url):
         self.view.load(url)
@@ -49,13 +49,11 @@ class Browser(QMainWindow):
 if __name__ == '__main__':
     app = QApplication(sys.argv)
 
-    if len(sys.argv) > 1:
-        url = QUrl(sys.argv[1])
-    else:
-        url = QUrl('http://www.google.com/ncr')
+    url = QUrl('http://pianku.xmp.kankan.com/moviestore_index.html')
 
     browser = Browser(url)
     browser.resize(600, 400)
+    browser.move(0, 0)
     browser.show()
 
     sys.exit(app.exec_())
