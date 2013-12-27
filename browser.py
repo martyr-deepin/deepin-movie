@@ -24,6 +24,8 @@ from PyQt5.QtWebKitWidgets import QWebView, QWebPage
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtCore import QUrl, Qt
 from stickwidget import StickWidget
+from deepin_utils.file import get_parent_dir
+import os
 
 class Browser(StickWidget):
     def __init__(self, url):
@@ -33,8 +35,9 @@ class Browser(StickWidget):
         self.view.load(QUrl(url))
         self.view.page().setLinkDelegationPolicy(QWebPage.DelegateAllLinks)
         self.view.page().linkClicked.connect(self.link_clicked)
-        self.view.page().mainFrame().setScrollBarPolicy(Qt.Vertical, Qt.ScrollBarAlwaysOff)
         self.view.page().mainFrame().setScrollBarPolicy(Qt.Horizontal, Qt.ScrollBarAlwaysOff)
+            
+        self.view.settings().setUserStyleSheetUrl(QUrl.fromLocalFile(os.path.join(get_parent_dir(__file__), "scrollbar.css")))
         
         self.layout.addWidget(self.view)
         
@@ -53,6 +56,6 @@ if __name__ == '__main__':
     browser.resize(600, 400)
     browser.move(0, 0)
     browser.show()
-
+    
     signal.signal(signal.SIGINT, signal.SIG_DFL)
     sys.exit(app.exec_())
