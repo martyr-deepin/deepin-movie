@@ -82,6 +82,7 @@ if __name__ == "__main__":
     movie_info = MovieInfo(movie_file)
     
     app = QApplication(sys.argv)
+    app.setQuitOnLastWindowClosed(True)    
     database = Database()
     config = Config()
     
