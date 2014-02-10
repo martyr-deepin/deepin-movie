@@ -250,12 +250,13 @@ Video {
         onPositionChanged: {
             stillInPlaylist = false
             
-            if (playlistPanel.width != showWidth || mouseX >= showWidth + triggerPlaylistProtectedWidth) {
+            if (!playlistPanel.expanded || mouseX >= showWidth + triggerPlaylistProtectedWidth) {
                 if (mouseX < triggerPlaylistX) {
-                    if (!showingPlaylistPanelAnimation.running) {
-                        stillInPlaylist = true
-                        showingPlaylistTimer.restart()
-                    }
+                    /* if (!showingPlaylistPanelAnimation.running) { */
+                    /*     stillInPlaylist = true */
+                    /*     showingPlaylistTimer.restart() */
+                    /* } */
+                    showingPlaylistTimer.restart()
                 } else {
                     if (mouseY < triggerTopPanelHeight || mouseY > videoArea.height - triggerBottomPanelHeight) {
                         if (!showingBottomPanelAnimation.running) {
@@ -288,9 +289,10 @@ Video {
             interval: 500
             repeat: false
             onTriggered: {
-                if (videoArea.stillInPlaylist) {
-                    showingPlaylistPanelAnimation.restart()
-                }
+                /* if (videoArea.stillInPlaylist) { */
+                /*     showingPlaylistPanelAnimation.restart() */
+                /* } */
+                playlistPanel.show()
             }
         }
         

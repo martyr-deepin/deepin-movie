@@ -82,7 +82,6 @@ if __name__ == "__main__":
     movie_info = MovieInfo(movie_file)
     
     app = QApplication(sys.argv)
-    app.setQuitOnLastWindowClosed(True)    
     database = Database()
     config = Config()
     
@@ -102,6 +101,7 @@ if __name__ == "__main__":
     
     view.windowStateChanged.connect(view.rootObject().monitorWindowState)
     app.lastWindowClosed.connect(view.rootObject().monitorWindowClose)
+    app.setQuitOnLastWindowClosed(True)    
     
     signal.signal(signal.SIGINT, signal.SIG_DFL)
     sys.exit(app.exec_())

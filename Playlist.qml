@@ -2,57 +2,74 @@ import QtQuick 2.1
 
 Rectangle {
     id: playlistPanel
-    color: "#1D1D1D"
     height: video.height
     width: hideWidth
     opacity: 1
 
     property int showWidth: 200
     property int hideWidth: 0
-    property 
+    property bool expanded: width == showWidth
     property alias playlistPanelArea: playlistPanelArea
     property alias hidePlaylistButton: hidePlaylistButton
 
     property string tabId: "network"
-    
+
     signal showingAnimationDone
     signal hidingAnimationDone
-    
+
     function show() {
         if (width == hideWidth) {
             showingPlaylistPanelAnimation.restart()
         }
     }
-    
+
     function hide() {
         if (width == showWidth) {
             hidingPlaylistPanelAnimation.restart()
         }
     }
 
-    ParallelAnimation{
+    states: [
+        State {
+            name: "active"
+            PropertyChanges { target: playlistPanel; color: "#1D1D1D"; opacity: 1 }
+            PropertyChanges { target: hidePlaylistButton; source: "image/playlist_button_active_background.png"}
+        },
+        State {
+            name: "inactive"
+            PropertyChanges { target: playlistPanel; color: "#000000"; opacity: 0.9 }
+            PropertyChanges { target: hidePlaylistButton; source: "image/playlist_button_inactive_background.png"}
+        }
+    ]
+
+    PropertyAnimation {
         id: showingPlaylistPanelAnimation
         alwaysRunToEnd: true
 
-        PropertyAnimation {
-            target: playlistPanel
-            property: "width"
-            to: showWidth
-            duration: 100
-            easing.type: Easing.OutQuint
+        target: playlistPanel
+        property: "width"
+        to: showWidth
+        duration: 100
+        easing.type: Easing.OutQuint
+
+        onStopped: {
+            playlistPanel.showingAnimationDone()
+            playlistPanel.state = "active"
         }
     }
 
-    ParallelAnimation{
+    PropertyAnimation {
         id: hidingPlaylistPanelAnimation
         alwaysRunToEnd: true
 
-        PropertyAnimation {
-            target: playlistPanel
-            property: "width"
-            to: hideWidth
-            duration: 100
-            easing.type: Easing.OutQuint
+        target: playlistPanel
+        property: "width"
+        to: hideWidth
+        duration: 100
+        easing.type: Easing.OutQuint
+
+        onStopped: {
+            playlistPanel.hidingAnimationDone()
         }
     }
 
@@ -63,15 +80,11 @@ Rectangle {
         hoverEnabled: true
 
         onEntered: {
-            playlistPanel.color = "#1D1D1D"
-            playlistPanel.opacity = 1
-            hidePlaylistButton.source = "image/playlist_button_active_background.png"
+            playlistPanel.state = "active"
         }
 
         onExited: {
-            playlistPanel.color = "#000000"
-            playlistPanel.opacity = 0.9
-            hidePlaylistButton.source = "image/playlist_button_inactive_background.png"
+            playlistPanel.state = "inactive"
         }
 
         onClicked: {
