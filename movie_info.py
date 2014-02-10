@@ -20,12 +20,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from PyQt5.QtCore import pyqtSlot, QObject
+from PyQt5.QtCore import pyqtProperty, pyqtSignal, QObject
 from constant import DEFAULT_WIDTH, DEFAULT_HEIGHT
 from media_info import parse_info
 
 class MovieInfo(QObject):
-
+    movieSourceChanged = pyqtSignal(str)
+    movieDurationChanged = pyqtSignal(int)
+    movieWidthChanged = pyqtSignal(int)
+    movieHeightChanged = pyqtSignal(int)
+    
     def __init__(self, filepath=""):
         QObject.__init__(self)
         
@@ -38,15 +42,20 @@ class MovieInfo(QObject):
             self.media_info = parse_info(self.filepath)
             self.media_width = self.media_info["video_width"]
             self.media_height = self.media_info["video_height"]
-
-    @pyqtSlot(result=int)        
-    def get_movie_width(self):
-        return int(self.media_width)
+            self.media_duration = self.media_info["general_duration"]
+            
+    @pyqtProperty(int,notify=movieDurationChanged)
+    def movie_duration(self):
+        return int(self.media_duration)
         
-    @pyqtSlot(result=int)    
-    def get_movie_height(self):
+    @pyqtProperty(int,notify=movieWidthChanged)
+    def movie_width(self):
+        return int(self.media_width)
+
+    @pyqtProperty(int,notify=movieHeightChanged)
+    def movie_height(self):
         return int(self.media_height)
 
-    @pyqtSlot(result=str)    
-    def get_movie_file(self):
+    @pyqtProperty(str,notify=movieSourceChanged)    
+    def movie_file(self):
         return self.filepath

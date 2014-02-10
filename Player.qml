@@ -47,7 +47,7 @@ Video {
         if (source == "") {
             novideo = false
         } else {
-            timeTotal = formatTime(video.duration)
+            timeTotal = formatTime(movieInfo.movie_duration)
             
             hidingTimer.restart()
             
@@ -99,6 +99,7 @@ Video {
     }
     
     function formatTime(millseconds) {
+        if (millseconds < 0) return "00:00:00";
         var secs = Math.floor(millseconds / 1000)
         var hr = Math.floor(secs / 3600);
         var min = Math.floor((secs - (hr * 3600))/60);
@@ -691,38 +692,6 @@ Video {
         }
     }    
 
-    ParallelAnimation{
-        id: showingPlaylistPanelAnimation
-        alwaysRunToEnd: true
-        
-        PropertyAnimation {
-            target: playlistPanel
-            property: "width"
-            to: showWidth
-            duration: 100
-            easing.type: Easing.OutQuint
-        }
-        
-        onRunningChanged: {
-            if (!showingPlaylistPanelAnimation.running) {
-                hidingBottomPanelAnimation.restart()
-            }
-        }
-    }    
-
-    ParallelAnimation{
-        id: hidingPlaylistPanelAnimation
-        alwaysRunToEnd: true
-        
-        PropertyAnimation {
-            target: playlistPanel
-            property: "width"
-            to: hideWidth
-            duration: 100
-            easing.type: Easing.OutQuint
-        }
-    }    
-    
     SequentialAnimation {
         id: movePauseNotify
         

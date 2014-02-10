@@ -5,7 +5,7 @@ import QtGraphicalEffects 1.0
 RectWithCorner {
     id: preview
     rectWidth: 178
-    rectHeight: (rectWidth - padding * 2) * movieInfo.get_movie_height() / movieInfo.get_movie_width() + padding * 2 + preview.cornerHeight - previewPadding * 2
+    rectHeight: (rectWidth - padding * 2) * movieInfo.movie_height / movieInfo.movie_width + padding * 2 + preview.cornerHeight - previewPadding * 2
     cornerPos: 89
     withBlur: false
     blurWidth: 2

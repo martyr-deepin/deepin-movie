@@ -8,9 +8,9 @@ Item {
     id: window
     
     property int videoInitWidth: 950
-    property int videoInitHeight: (videoInitWidth - padding * 2) * movieInfo.get_movie_height() / movieInfo.get_movie_width() + padding * 2
+    property int videoInitHeight: (videoInitWidth - padding * 2) * movieInfo.movie_height / movieInfo.movie_width + padding * 2
     property int videoMinWidth: 470
-    property int videoMinHeight: (videoMinWidth - padding * 2) * movieInfo.get_movie_height() / movieInfo.get_movie_width() + padding * 2
+    property int videoMinHeight: (videoMinWidth - padding * 2) * movieInfo.movie_height / movieInfo.movie_width + padding * 2
     
     property int titlebarHeight: 45
     property int frameRadius: 3
@@ -132,8 +132,8 @@ Item {
         window: windowView
         framePadding: padding
         proportionalResize: true
-        proportionalWidth: movieInfo.get_movie_width()
-        proportionalHeight: movieInfo.get_movie_height()
+        proportionalWidth: movieInfo.movie_width
+        proportionalHeight: movieInfo.movie_height
     }
     
     ResizeArea {
@@ -187,7 +187,7 @@ Item {
             id: player
             width: parent.width
             height: parent.height
-            source: movieInfo.get_movie_file()
+            source: movieInfo.movie_file
             videoPreview.video.source: player.source
             
             Component.onCompleted: {

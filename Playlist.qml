@@ -7,40 +7,84 @@ Rectangle {
     width: hideWidth
     opacity: 1
 
+    property int showWidth: 200
+    property int hideWidth: 0
+    property 
     property alias playlistPanelArea: playlistPanelArea
     property alias hidePlaylistButton: hidePlaylistButton
-    
+
     property string tabId: "network"
     
+    signal showingAnimationDone
+    signal hidingAnimationDone
+    
+    function show() {
+        if (width == hideWidth) {
+            showingPlaylistPanelAnimation.restart()
+        }
+    }
+    
+    function hide() {
+        if (width == showWidth) {
+            hidingPlaylistPanelAnimation.restart()
+        }
+    }
+
+    ParallelAnimation{
+        id: showingPlaylistPanelAnimation
+        alwaysRunToEnd: true
+
+        PropertyAnimation {
+            target: playlistPanel
+            property: "width"
+            to: showWidth
+            duration: 100
+            easing.type: Easing.OutQuint
+        }
+    }
+
+    ParallelAnimation{
+        id: hidingPlaylistPanelAnimation
+        alwaysRunToEnd: true
+
+        PropertyAnimation {
+            target: playlistPanel
+            property: "width"
+            to: hideWidth
+            duration: 100
+            easing.type: Easing.OutQuint
+        }
+    }
+
     DragArea {
         id: playlistPanelArea
         window: windowView
         anchors.fill: parent
         hoverEnabled: true
-        
+
         onEntered: {
             playlistPanel.color = "#1D1D1D"
             playlistPanel.opacity = 1
             hidePlaylistButton.source = "image/playlist_button_active_background.png"
         }
-        
+
         onExited: {
             playlistPanel.color = "#000000"
             playlistPanel.opacity = 0.9
             hidePlaylistButton.source = "image/playlist_button_inactive_background.png"
         }
-        
+
         onClicked: {
             console.log("Click on playlist.")
         }
     }
-    
+
     Column {
         anchors.fill: parent
-        
+
         Item {
             id: tabs
-            
+
             Item {
                 property string name: "网络列表"
                 property string type: "network"
@@ -51,39 +95,39 @@ Rectangle {
                 property string type: "local"
             }
         }
-        
+
         Row {
             id: tabRow
             height: 50
             anchors.leftMargin: spacing
             width: parent.width
             visible: playlistPanel.width == showWidth
-            
+
             property int tabWidth: width / tabs.children.length
-            
+
             Repeater {
                 model: tabs.children.length
                 delegate: Item {
                     height: parent.height
                     width: tabRow.tabWidth
-                    
+
                     Rectangle {
                         anchors.fill: parent
                         color: tabId == tabs.children[index].type ? "#171717" : "transparent"
                         radius: 2
                         anchors.margins: 12
-                        
+
                         Text {
                             text: tabs.children[index].name
                             color: tabId == tabs.children[index].type ? "#E0E0E0" : "#474747"
-		                    font { pixelSize: 13 }
+                            font { pixelSize: 13 }
                             anchors.centerIn: parent
-                        }                        
+                        }
                     }
-                    
+
                     MouseArea {
                         anchors.fill: parent
-                        
+
                         onClicked: {
                             tabId = tabs.children[index].type
                         }
@@ -92,7 +136,7 @@ Rectangle {
             }
         }
     }
-    
+
     Image {
         id: hidePlaylistButton
         source: "image/playlist_button_active_background.png"
@@ -101,7 +145,7 @@ Rectangle {
         anchors.verticalCenter: playlistPanel.verticalCenter
         visible: playlistPanel.width == showWidth
         opacity: playlistPanel.opacity + 0.1
-        
+
         Image {
             id: hidePlaylistArrow
             source: "image/playlist_button_arrow.png"
@@ -110,7 +154,7 @@ Rectangle {
             anchors.verticalCenter: parent.verticalCenter
             opacity: playlistPanel.opacity
         }
-        
+
         MouseArea {
             id: hidePlaylistButtonArea
             anchors.top: parent.top
@@ -118,21 +162,21 @@ Rectangle {
             anchors.right: parent.right
             anchors.left: hidePlaylistArrow.left
             hoverEnabled: true
-            
+
             onClicked: {
                 hidingPlaylistPanelAnimation.restart()
             }
-            
+
             onEntered: {
                 inTriggerButton = true
             }
-            
+
             onExited: {
                 inTriggerButton = false
             }
         }
     }
-    
+
     Rectangle {
         id: playlistTopline
         color: "#060606"
