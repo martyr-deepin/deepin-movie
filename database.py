@@ -20,7 +20,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from PyQt5.QtCore import pyqtSlot, QObject
+from PyQt5.QtCore import pyqtSlot, pyqtProperty, QObject
 from constant import CONFIG_DIR
 import os
 import sqlite3
@@ -35,15 +35,18 @@ class Database(QObject):
         self.video_db_cursor = self.video_db_connect.cursor()
         
         self.video_db_cursor.execute(
-            "CREATE TABLE IF NOT EXISTS video_db(video_path PRIMARY KEY NOT NULL, video_position)"
-            )
+            "CREATE TABLE IF NOT EXISTS settings(key PRIMARY KEY NOT NULL, value)"
+        )
+        self.video_db_cursor.execute(
+            "CREATE TABLE IF NOT EXISTS videos(video_path PRIMARY KEY NOT NULL, video_position)"
+        )
     
     @pyqtSlot(str, int, result=bool)    
     def record_video_position(self, video_path, video_position):
         self.video_db_cursor.execute(
-            "INSERT OR REPLACE INTO video_db VALUES(?, ?)", 
+            "INSERT OR REPLACE INTO videos VALUES(?, ?)", 
             (unicode(video_path), str(video_position))
-            )
+        )
         self.video_db_connect.commit()
         
         return True
@@ -51,9 +54,32 @@ class Database(QObject):
     @pyqtSlot(str, result=int)
     def fetch_video_position(self, video_path):
         self.video_db_cursor.execute(
-            "SELECT video_position FROM video_db WHERE video_path=?" , [video_path])
+            "SELECT video_position FROM videos WHERE video_path=?" , [video_path]
+        )
         results = self.video_db_cursor.fetchall()
         if len(results) > 0:
             return int(results[0][0])
         else:
             return 0
+            
+    def getValue(self, key):
+        self.video_db_cursor.execute(
+            "SELECT value FROM settings WHERE key=?", (key,)
+        )
+        result = self.video_db_cursor.fetchone()
+        
+        return result and result[0]
+        
+    def setValue(self, key, value):
+        self.video_db_cursor.execute(
+            "INSERT OR REPLACE INTO settings VALUES(?, ?)", (key, value)
+        )
+        self.video_db_connect.commit()
+        
+    @pyqtProperty(str)
+    def playlist_local(self):
+        return self.getValue("playlist_local") or ""
+        
+    @playlist_local.setter
+    def playlist_local(self, value):
+        self.setValue("playlist_local", value)
