@@ -110,6 +110,7 @@ Rectangle {
         }
 
         Row {
+
             id: tabRow
             height: 50
             anchors.leftMargin: spacing
@@ -147,6 +148,10 @@ Rectangle {
                     }
                 }
             }
+        }
+
+        PlaylistView {
+            visible: playlistPanel.expanded
         }
     }
 
