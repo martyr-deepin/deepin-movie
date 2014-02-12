@@ -32,6 +32,8 @@ Item {
             width: 200
             height: label.height
 
+            property int itemIndex: index
+            property alias child: column.child
             property string title: itemName
 
             Behavior on height {
@@ -40,10 +42,6 @@ Item {
 
             Component.onCompleted: {
                 ListView.view.parent.childrenItems.push(item)
-            }
-
-            function getChildPlaylist() {
-                return column.child
             }
 
             function increaseH(h) {
@@ -81,19 +79,21 @@ Item {
 
                     text: itemName
                     color: "white"
+
                     MouseArea {
                         anchors.fill: parent
 
                         onClicked: {
                             if (column.child) {
-                                column.child.destroy()
-                                column.parent.decreaseH(column.child.actualHeight)
+                                column.child.destroy();
+                                column.parent.decreaseH(column.child.actualHeight);
                             } else {
                                 column.child = Qt.createQmlObject('import QtQuick 2.1; PlaylistView{}',
                                                                   column, "child");
                                 column.child.content = itemChild
                                 column.child.anchors.left = column.left
                                 column.child.anchors.leftMargin = 10
+
                                 column.parent.increaseH(column.child.actualHeight)
                             }
                         }
@@ -112,52 +112,112 @@ Item {
         anchors.fill: parent
     }
 
+    // getContent returns the string representation of this playlist hierarchy
+    // getObject returns the object representation of this playlist hierarchy
     function getContent() {
-        return content
+        var result = [];
+        for (var i = 0; i < listview.count; i++) {
+            result.push(listview.model.get(i));
+        }
+        return JSON.stringify(result);
     }
 
+    function getObject() {
+        return contentToObject(getContent());
+    }
+
+    function contentToObject(content) {
+        var result = [];
+
+        if (!content || content == "") return result;
+        var items = JSON.parse(content);
+        for (var i = 0; i < items.length; i++) {
+            items[i].itemChild = contentToObject(items[i].itemChild)
+            result.push(items[i]);
+        }
+
+        return result;
+    }
+
+    function objectToContent(obj) {
+        if (!obj) return "[]";
+
+        var result = [];
+
+        for (var i = 0; i < obj.length; i++) {
+            var item = {};
+            item.itemName = obj[i].itemName;
+            item.itemChild = objectToContent(obj[i].itemChild);
+            result.push(item);
+        }
+
+        return JSON.stringify(result);
+    }
+
+    // Just this level
     function getItemByName(name) {
         for (var i = 0; i < childrenItems.length; i++) {
-            print(childrenItems[i].title)
             if (childrenItems[i].title == name) {
                 return childrenItems[i]
             }
         }
 
-        for (var i = 0; i < childrenItems.length; i++) {
-            var child = childrenItems[i].getChildPlaylist();
-            if (child) {
-                var item = child.getItemByName(name);
-                if (item != null) {
-                    return item;
-                }
-            }
-        }
+        /* for (var i = 0; i < childrenItems.length; i++) { */
+        /*     var child = childrenItems[i].child; */
+        /*     if (child) { */
+        /*         var item = child.getItemByName(name); */
+        /*         if (item != null) { */
+        /*             return item; */
+        /*         } */
+        /*     } */
+        /* } */
 
         return null
     }
 
     /* Database operations */
     // path is something like ["level one", "level two", "level three"]
-    function insert(path) {
+    function _insert(path) {
         var lastMatchItem = root;
         for (var i = 0; i < path.length; i++) {
-            var item = getItemByName(path[i]);
+            var item = lastMatchItem.getItemByName(path[i]);
             if (item != null) {
-                lastMatchItem = item.getChildPlaylist();
+                if (item.child) {
+                    lastMatchItem = item.child;
+                } else {
+                    return lastMatchItem.insertToContent(path[i],
+                                                         path.slice(Math.min(i + 1, path.length - 1),
+                                                                    path.length))
+                }
             } else {
-                return lastMatchItem.insertOne(path.slice(i, path.length));
+                return lastMatchItem.insertToListModel(path.slice(i, path.length));
             }
         }
     }
 
-    function save() {
+    function _delete(path) {
+        var lastMatchItem = null;
+        for (var i = 0; i < path.length; i++) {
+            var item = (lastMatchItem || root).getItemByName(path[i]);
+            if (item != null) {
+                lastMatchItem = item.child;
+            } else {
+                return;
+            }
+        }
+
+        if((lastMatchItem || root).getItemByName(path[path.length - 1]) && lastMatchItem) {
+            lastMatchItem.deleteOne(path[path.length - 1]);
+        }
+    }
+
+    function _save() {
         if (type == "local") {
             database.playlist_local = getContent()
         }
     }
 
-    function fetch() {
+    function _fetch() {
         return type == "local" ? database.playlist_local : database.playlist_network
     }
     /* Database operations end */
@@ -165,7 +225,7 @@ Item {
     // see `insert' above for more infomation about path
     function pathToListElement(path) {
         var result;
-        
+
         for (var i = path.length - 1; i >= 0; i--) {
             var ele = {};
             ele.itemName = path[i];
@@ -175,11 +235,49 @@ Item {
 
         return result;
     }
-    
-    function insertOne(path) {
+
+    function insertToListModel(path) {
+        print("insertToListModel ", path);
         listview.model.append(pathToListElement(path));
     }
-    
+
+    function insertToContent(parentNode, path) {
+        print("insertToContent ", parentNode, path);
+        var obj = getObject();
+        for (var i = 0; i < obj.length; i++) {
+            if (obj[i].itemName == parentNode) {
+                var parent = obj[i];
+                
+                for (var i = 0; i < path.length; i++) {
+                    var child = parent.itemChild;
+                    var flag = false;
+                    for (var j = 0; j < child.length; j++) {
+                        var c = child[i];
+                        if (c && c.itemName == path[i]) {
+                            flag = true;
+                            parent = c;
+                            break;
+                        } 
+                    }
+                    if (!flag) {
+                        parent.itemChild.push(pathToListElement(path.slice(i, path.length)));
+                    } 
+                }
+                
+                break;
+            }
+        }
+        content = objectToContent(obj);
+    }
+
+    function deleteOne(name) {
+        for (var i = 0; i < listview.count; i++) {
+            if (listview.model.get(i).itemName == name) {
+                listview.model.remove(i, 1);
+            }
+        }
+    }
+
     function getModelFromString(str, prt) {
         var model = Qt.createQmlObject('import QtQuick 2.1; ListModel{}',
                                        prt, "model");
@@ -195,10 +293,8 @@ Item {
     }
 
     Component.onCompleted: {
-        /* save() */
-        /* print(fetch()) */
-        /* getItemByName("One") */
-        /* print(JSON.stringify(pathToListElement(["one", "two", "three"]))) */
-        insert(["Four", "Five"])
-    }
+        _insert(["Three", "Two", "Four"]);
+         /* _delete(["Three", "Two"]) */
+         /* print(objectToContent(contentToObject(content))) */
+     }
 }
