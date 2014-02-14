@@ -196,18 +196,24 @@ Item {
     }
 
     function _delete(path) {
-        var lastMatchItem = null;
-        for (var i = 0; i < path.length; i++) {
-            var item = (lastMatchItem || root).getItemByName(path[i]);
+        var lastMatchItem = root;
+        for (var i = 0; i < path.length - 1; i++) {
+            var item = lastMatchItem.getItemByName(path[i]);
+            print(item)
             if (item != null) {
-                lastMatchItem = item.child;
+                if (item.child) {
+                    lastMatchItem = item.child;
+                } else {
+                    return lastMatchItem.deleteFromContent(path[i],
+                                                           path.slice(i + 1, path.length))
+                }
             } else {
                 return;
             }
         }
 
-        if((lastMatchItem || root).getItemByName(path[path.length - 1]) && lastMatchItem) {
-            lastMatchItem.deleteOne(path[path.length - 1]);
+        if(lastMatchItem && lastMatchItem.getItemByName(path[path.length - 1])) {
+            lastMatchItem.deleteFromListModel(path[path.length - 1]);
         }
     }
 
@@ -237,17 +243,15 @@ Item {
     }
 
     function insertToListModel(path) {
-        print("insertToListModel ", path);
         listview.model.append(pathToListElement(path));
     }
 
     function insertToContent(parentNode, path) {
-        print("insertToContent ", parentNode, path);
         var obj = getObject();
         for (var i = 0; i < obj.length; i++) {
             if (obj[i].itemName == parentNode) {
                 var parent = obj[i];
-                
+
                 for (var i = 0; i < path.length; i++) {
                     var child = parent.itemChild;
                     var flag = false;
@@ -257,13 +261,54 @@ Item {
                             flag = true;
                             parent = c;
                             break;
-                        } 
+                        }
                     }
                     if (!flag) {
                         parent.itemChild.push(pathToListElement(path.slice(i, path.length)));
-                    } 
+                    }
                 }
-                
+                break;
+            }
+        }
+        content = objectToContent(obj);
+    }
+
+    function deleteFromListModel(name) {
+        for (var i = 0; i < listview.count; i++) {
+            if (listview.model.get(i).itemName == name) {
+                listview.model.remove(i, 1);
+            }
+        }
+    }
+
+    function deleteFromContent(parentNode, path) {
+        var obj = getObject();
+        for (var i = 0; i < obj.length; i++) {
+            if (obj[i].itemName == parentNode) {
+                var parent = obj[i];
+
+                for (var i = 0; i < path.length - 1; i++) {
+                    var child = parent.itemChild;
+                    var flag = false;
+                    for (var j = 0; j < child.length; j++) {
+                        var c = child[i];
+                        if (c && c.itemName == path[i]) {
+                            flag = true;
+                            parent = c;
+                            break;
+                        }
+                    }
+                    if (!flag) {
+                        break;
+                    }
+                }
+                var child = parent.itemChild;
+                for (var j = 0; j < child.length; j++) {
+                    var c = child[i];
+                    if (c && c.itemName == path[i]) {
+                        parent.itemChild.splice(i, 1);
+                    }
+                }
                 break;
             }
         }
@@ -294,7 +339,7 @@ Item {
 
     Component.onCompleted: {
         _insert(["Three", "Two", "Four"]);
-         /* _delete(["Three", "Two"]) */
+        _delete(["Three", "Two", "One"]);
          /* print(objectToContent(contentToObject(content))) */
      }
 }
