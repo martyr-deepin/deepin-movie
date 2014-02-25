@@ -3,20 +3,20 @@
 
 # Copyright (C) 2011 ~ 2012 Deepin, Inc.
 #               2011 ~ 2012 Wang Yong
-# 
+#
 # Author:     Wang Yong <lazycat.manatee@gmail.com>
 # Maintainer: Wang Yong <lazycat.manatee@gmail.com>
-# 
+#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -29,25 +29,20 @@ class MovieInfo(QObject):
     movieDurationChanged = pyqtSignal(int)
     movieWidthChanged = pyqtSignal(int)
     movieHeightChanged = pyqtSignal(int)
-    
+
     def __init__(self, filepath=""):
         QObject.__init__(self)
-        
-        self.filepath = filepath
+
         self.media_info = None
         self.media_width = DEFAULT_WIDTH
         self.media_height = DEFAULT_HEIGHT
-        
-        if self.filepath != "":
-            self.media_info = parse_info(self.filepath)
-            self.media_width = self.media_info["video_width"]
-            self.media_height = self.media_info["video_height"]
-            self.media_duration = self.media_info["general_duration"]
-            
+
+        self.movie_file = filepath
+
     @pyqtProperty(int,notify=movieDurationChanged)
     def movie_duration(self):
         return int(self.media_duration)
-        
+
     @pyqtProperty(int,notify=movieWidthChanged)
     def movie_width(self):
         return int(self.media_width)
@@ -56,6 +51,20 @@ class MovieInfo(QObject):
     def movie_height(self):
         return int(self.media_height)
 
-    @pyqtProperty(str,notify=movieSourceChanged)    
+    @pyqtProperty(str,notify=movieSourceChanged)
     def movie_file(self):
         return self.filepath
+
+    @movie_file.setter
+    def movie_file(self, filepath):
+        self.filepath = filepath
+        self.movieSourceChanged.emit(filepath)
+
+        if filepath != "":
+            self.media_info = parse_info(self.filepath)
+            self.media_width = self.media_info["video_width"]
+            self.movieWidthChanged.emit(self.media_width)
+            self.media_height = self.media_info["video_height"]
+            self.movieHeightChanged.emit(self.media_height)
+            self.media_duration = self.media_info["general_duration"]
+            self.movieDurationChanged.emit(self.media_duration)

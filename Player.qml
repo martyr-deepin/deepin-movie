@@ -7,79 +7,116 @@ Video {
     autoPlay: false
     anchors.leftMargin: 1
     anchors.rightMargin: 1
-    
+
     property bool continuePlay: false
-    
+
     property string timeTotal: ""
     property string timeCurrent: ""
     property double timePosition: 0
     property double videoPosition: 0
-    
+
     property bool showBottomPanel: true
     property bool novideo: true
-    
+
     property double showHeight: 64
     property double hideHeight: 0
-    
+
     property double showWidth: 200
     property double hideWidth: 0
     property double triggerPlaylistX: 50
     property bool inTriggerButton: false
-    
+
     property double triggerTopPanelHeight: 50
     property double triggerBottomPanelHeight: 50
     property double triggerPlaylistProtectedWidth: 50
-    
+
     property alias videoPreview: videoPreview
     property alias videoArea: videoArea
     property alias hidingBottomPanelAnimation: hidingBottomPanelAnimation
     property alias hidingTimer: hidingTimer
     property alias notifybar: notifybar
     property alias pauseNotify: pauseNotify
-    
+
     signal bottomPanelShow
     signal bottomPanelHide
     signal hideCursor
     signal showCursor
     signal toggleFullscreen
-    
+
     Component.onCompleted: {
         if (source == "") {
             novideo = false
         } else {
             timeTotal = formatTime(movieInfo.movie_duration)
-            
+
             hidingTimer.restart()
-            
+
             var pos = database.fetch_video_position(video.source)
             video.seek(pos)
             video.play()
-            
+
             if (pos > 0) {
                 notifybar.show("image/notify_play.png", "继续播放: " + formatTime(pos))
             }
-            
+
             video.volume = config.fetch("Normal", "volume") * 1
         }
     }
-    
+
+    DropArea {
+        anchors.fill: parent
+
+        onDropped: {
+            if (drop.hasUrls) {
+                var file_path = drop.urls[0].substring(7)
+                movieInfo.movie_file = file_path
+
+                video.novideo = true
+                video.source = file_path
+                video.play()
+            }
+        }
+    }
+
     onPositionChanged: {
         timeCurrent = formatTime(video.position)
         timePosition = video.position / video.duration
     }
-    
+
     onToggleFullscreen: {
         indicatorArea.visible = windowView.getState() != Qt.WindowFullScreen
     }
-    
+
     Connections {
         target: video
         onVolumeChanged: {
             playerVolume.volume = video.volume
             playerVolume.active = true
         }
+
+        onPaused: {
+            pauseNotify.scale = 0.6
+            pauseNotify.opacity = 0
+            pauseNotify.visible = true
+            pauseNotify.anchors.left = undefined
+            pauseNotify.anchors.bottom = undefined
+            pauseNotify.anchors.leftMargin = 0
+            pauseNotify.anchors.bottomMargin = 0
+            pauseNotify.x = (parent.width - pauseNotify.width) / 2
+            pauseNotify.y = (parent.height - pauseNotify.height) / 2
+
+            movePauseNotify.restart()
+        }
     }
-    
+
+    Connections {
+        target: movieInfo
+
+        onMovieDurationChanged: {
+            video.timeTotal = formatTime(movieInfo.movie_duration)
+        }
+    }
+
     function tryPauseVideo() {
         if (video.playbackState == MediaPlayer.PlayingState) {
             video.pause()
@@ -88,7 +125,7 @@ Video {
             video.continuePlay = false
         }
     }
-    
+
     function tryPlayVideo() {
         if (video.playbackState != MediaPlayer.PlayingState) {
             if (video.continuePlay) {
@@ -97,14 +134,14 @@ Video {
             }
         }
     }
-    
+
     function formatTime(millseconds) {
         if (millseconds < 0) return "00:00:00";
         var secs = Math.floor(millseconds / 1000)
         var hr = Math.floor(secs / 3600);
         var min = Math.floor((secs - (hr * 3600))/60);
         var sec = secs - (hr * 3600) - (min * 60);
-          
+
         if (hr < 10) {hr = "0" + hr; }
         if (min < 10) {min = "0" + min;}
         if (sec < 10) {sec = "0" + sec;}
@@ -115,33 +152,33 @@ Video {
     function toggle() {
         video.playbackState == MediaPlayer.PlayingState ? video.pause() : video.play()
     }
-    
+
     function forward() {
         var newPositoin = video.position + 5000
         video.seek(newPositoin)
-        
+
         notifybar.show("image/notify_forward.png", "快进至 " + formatTime(newPositoin))
     }
-    
+
     function backward() {
         var newPositoin = video.position - 5000
         video.seek(newPositoin)
-        
+
         notifybar.show("image/notify_backward.png", "快退至 " + formatTime(newPositoin))
     }
-    
+
     function increaseVolume() {
         video.volume = Math.min(video.volume + 0.05, 1.0)
-        
+
         notifybar.show("image/notify_volume.png", "音量: " + Math.round(video.volume * 100) + "%")
     }
 
     function decreaseVolume() {
         video.volume = Math.max(video.volume - 0.05, 0.0)
-        
+
         notifybar.show("image/notify_volume.png", "音量: " + Math.round(video.volume * 100) + "%")
     }
-    
+
     Rectangle {
         id: indicatorArea
         anchors.top: parent.top
@@ -149,7 +186,7 @@ Video {
         anchors.topMargin: 10
         visible: false
         width: 80
-        
+
         Text {
             id: timeIndicator
             anchors.horizontalCenter: parent.horizontalCenter
@@ -158,7 +195,7 @@ Video {
             color: "#80DDDDDD"
             style: Text.Outline
             styleColor: "#FF333333"
-            
+
             Timer {
                 interval: 1000;
                 running: true;
@@ -174,9 +211,9 @@ Video {
             spacing: 2
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: timeIndicator.bottom
-            
+
             property int dotSize: 3
-            
+
             Repeater {
                 model: 10
                 delegate: Rectangle {
@@ -187,7 +224,7 @@ Video {
             }
         }
     }
-    
+
     Notifybar {
         id: notifybar
         anchors.top: parent.top
@@ -202,54 +239,37 @@ Video {
         source: "image/pause_notify.svg"
         visible: false
     }
-    
-    Connections {
-        target: video
-        onPaused: {
-            pauseNotify.scale = 0.6
-            pauseNotify.opacity = 0
-            pauseNotify.visible = true
-            pauseNotify.anchors.left = undefined
-            pauseNotify.anchors.bottom = undefined
-            pauseNotify.anchors.leftMargin = 0
-            pauseNotify.anchors.bottomMargin = 0
-            pauseNotify.x = (parent.width - pauseNotify.width) / 2
-            pauseNotify.y = (parent.height - pauseNotify.height) / 2
-            
-            movePauseNotify.restart()
-        }
-    }
-    
+
     Rectangle {
         anchors.fill: parent
         color: "#050811"
         visible: !novideo
-        
+
         Image {
             source: "image/background.png"
             anchors.centerIn: parent
         }
     }
-    
+
     DragArea {
         id: videoArea
         window: windowView
         anchors.fill: parent
         hoverEnabled: true
-        
+
         property real windowViewX: 0
         property real windowViewY: 0
 
         property int maskHeight: 30
         property bool stillInPlaylist: false
-        
+
         onDoubleClicked: {
             video.toggleFullscreen()
         }
-        
+
         onPositionChanged: {
             stillInPlaylist = false
-            
+
             if (!playlistPanel.expanded || mouseX >= showWidth + triggerPlaylistProtectedWidth) {
                 if (mouseX < triggerPlaylistX) {
                     /* if (!showingPlaylistPanelAnimation.running) { */
@@ -273,17 +293,17 @@ Video {
             stillInPlaylist = false
             video.showCursor()
         }
-        
+
         onSingleClicked: {
             toggle()
         }
-        
+
         onWheel: {
             video.volume = Math.max(Math.min(volume + (wheel.angleDelta.y / 120 * 0.05), 1.0), 0.0)
-            
+
             notifybar.show("image/notify_volume.png", "音量: " + Math.round(video.volume * 100) + "%")
         }
-        
+
         Timer {
             id: showingPlaylistTimer
             interval: 500
@@ -295,7 +315,7 @@ Video {
                 playlistPanel.show()
             }
         }
-        
+
         Timer {
             id: hidingTimer
             interval: 2000
@@ -304,24 +324,24 @@ Video {
                 if (!hidingBottomPanelAnimation.running) {
                     hidingBottomPanelAnimation.restart()
                 }
-                
+
                 if (!playlistPanel.playlistPanelArea.containsMouse && !playlistPanel.hidePlaylistButton.containsMouse) {
                     video.hideCursor()
                 }
-                
+
                 interval = 2000
             }
         }
-        
+
         InteractiveItem {
             targetItem: parent
         }
     }
-    
+
     Playlist {
         id: playlistPanel
     }
-    
+
     Rectangle {
         id: bottomPanel
         color: Qt.rgba(0, 0, 0, 0)
@@ -330,10 +350,10 @@ Video {
         anchors.right: video.right
         y: video.height - height
         opacity: 1
-        
+
         property double showOpacity: 0.9
         property double hideOpacity: 0
-        
+
         LinearGradient {
             id: bottomPanelBackround
             anchors.left: parent.left
@@ -348,17 +368,17 @@ Video {
             }
             visible: showBottomPanel && novideo ? 1 : 0
         }
-                    
+
         DragArea {
             id: bottomPanelArea
             window: windowView
             anchors.fill: parent
             hoverEnabled: true
-            
+
             onPositionChanged: {
                 hidingTimer.stop()
             }
-            
+
             onExited: {
                 hidingTimer.restart()
             }
@@ -370,7 +390,7 @@ Video {
 
         Column {
             anchors.fill: parent
-            
+
             Item {
                 id: progressbar
                 anchors.top: parent.top
@@ -385,7 +405,7 @@ Video {
                     height: 7
                     color: "#444a4a4a"
                     visible: showBottomPanel && novideo ? 1 : 0
-                    
+
                     Rectangle {
                         anchors.left: parent.left
                         anchors.right: parent.right
@@ -394,30 +414,30 @@ Video {
                         color: "#443c3c3c"
                         visible: showBottomPanel && novideo ? 1 : 0
                     }
-                    
+
                     MouseArea {
                         id: progressbarArea
                         anchors.fill: parent
                         hoverEnabled: true
-                        
+
                         onClicked: {
                             video.seek(video.duration * mouseX / (progressbarBackground.width - progressbarBackground.x))
                         }
-                        
+
                         onPositionChanged: {
                             hidingTimer.stop()
-                            
+
                             videoPreview.visible = true
                             videoPreview.x = Math.min(Math.max(mouseX - videoPreview.width / 2, 0),
                                                       progressbarArea.width - videoPreview.width)
                             videoPreview.y = progressbarArea.y - videoPreview.height + progressbarArea.height / 2
                             videoPosition = video.duration * mouseX / (progressbarBackground.width - progressbarBackground.x)
-                            
+
                             videoPreview.video.visible = false
                             updatePreviewTimer.restart()
-                            
+
                             videoPreview.videoTime.text = formatTime(videoPosition)
-                            
+
                             if (mouseX <= videoPreview.cornerWidth / 2) {
                                 videoPreview.cornerPos = mouseX + videoPreview.cornerWidth / 2
                                 videoPreview.cornerType = "left"
@@ -435,11 +455,11 @@ Video {
                                 videoPreview.cornerType = "center"
                             }
                         }
-                        
+
                         onExited: {
                             videoPreview.visible = false
                         }
-                        
+
                         Timer {
                             id: updatePreviewTimer
                             interval: 50
@@ -448,12 +468,12 @@ Video {
                                 videoPreview.video.seek(videoPosition)
                             }
                         }
-                        
+
                         InteractiveItem {
                             targetItem: parent
                         }
                     }
-                    
+
                     Rectangle {
                         id: progressbarForeground
                         anchors.left: parent.left
@@ -462,7 +482,7 @@ Video {
                         width: timePosition * parent.width
                         color: "#007cc2"
                         visible: showBottomPanel && novideo ? 1 : 0
-                        
+
                         Rectangle {
                             anchors.left: parent.left
                             anchors.right: parent.right
@@ -472,45 +492,45 @@ Video {
                             visible: showBottomPanel && novideo ? 1 : 0
                         }
                     }
-                    
+
                     Image {
                         source: "image/progress_pointer.png"
                         x: Math.min(Math.max(timePosition * parent.width - width / 2, 0), parent.width - width)
                         y: progressbarForeground.y + (progressbarForeground.height - height) / 2
                     }
-                    
+
                     Preview {
                         id: videoPreview
                         visible: false
-                        
+
                         onPositionChanged: {
                             videoPreview.video.visible = true
                         }
                     }
                 }
             }
-            
+
             Item {
                 id: buttonArea
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.top: parent.top
                 anchors.topMargin: 34
-                
+
                 Row {
                     id: leftButtonArea
                     anchors.left: parent.left
                     anchors.leftMargin: 24
                     anchors.verticalCenter: parent.verticalCenter
                     spacing: 20
-                    
+
                     ToggleButton {
                         id: playerList
                         imageName: "image/player_list"
                         anchors.verticalCenter: parent.verticalCenter
                         visible: showBottomPanel && novideo ? 1 : 0
                         active: playlistPanel.width == showWidth
-                        
+
                         onClicked: {
                             if (playlistPanel.width == showWidth) {
                                 hidingPlaylistPanelAnimation.restart()
@@ -519,7 +539,7 @@ Video {
                             }
                         }
                     }
-                    
+
                     ToggleButton {
                         id: playerConfig
                         imageName: "image/player_config"
@@ -528,35 +548,35 @@ Video {
                         active: false
                     }
                 }
-                
+
                 Row {
                     id: middleButtonArea
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
                     spacing: 0
-                    
+
                     ImageButton {
                         id: playerOpen
                         imageName: "image/player_open"
                         anchors.verticalCenter: playerPlay.verticalCenter
                         visible: showBottomPanel && novideo ? 1 : 0
                     }
-                    
+
                     Space {
                         width: 46
                     }
-                    
+
                     ImageButton {
                         id: playerBackward
                         imageName: "image/player_backward"
                         anchors.verticalCenter: playerPlay.verticalCenter
                         visible: showBottomPanel && novideo ? 1 : 0
                     }
-                    
+
                     Space {
                         width: 28
                     }
-                    
+
                     ImageButton {
                         id: playerPlay
                         imageName: video.playbackState == MediaPlayer.PlayingState ? "image/player_pause" : "image/player_play"
@@ -565,47 +585,47 @@ Video {
                         }
                         visible: showBottomPanel && novideo ? 1 : 0
                     }
-                    
+
                     Space {
                         width: 28
                     }
-                    
+
                     ImageButton {
                         id: playerForward
                         imageName: "image/player_forward"
                         anchors.verticalCenter: playerPlay.verticalCenter
                         visible: showBottomPanel && novideo ? 1 : 0
                     }
-                    
+
                     Space {
                         width: 46
                     }
-                    
+
                     VolumeButton {
                         id: playerVolume
                         anchors.verticalCenter: parent.verticalCenter
                         visible: showBottomPanel && novideo ? 1 : 0
-                        
+
                         onInVolumebar: {
                             hidingTimer.stop()
                         }
-                        
+
                         onChangeVolume: {
                             video.volume = playerVolume.volume
-                            
+
                             notifybar.show("image/notify_volume.png", "音量: " + Math.round(video.volume * 100) + "%")
                         }
-                        
+
                         onClickMute: {
                             video.muted = !playerVolume.active
-                            
+
                             if (video.muted) {
                                 notifybar.show("image/notify_volume.png", "静音")
                             } else {
                                 notifybar.show("image/notify_volume.png", "音量: " + Math.round(video.volume * 100) + "%")
                             }
                         }
-                        
+
                         Component.onCompleted: {
                             playerVolume.volume = video.volume
                         }
@@ -618,7 +638,7 @@ Video {
                     anchors.rightMargin: 10
                     anchors.verticalCenter: parent.verticalCenter
                     spacing: 5
-                    
+
                     Text {
                         id: playTime
                         anchors.verticalCenter: parent.verticalCenter
@@ -630,12 +650,12 @@ Video {
                 }
             }
         }
-        
+
         Dragbar {
             target: bottomPanel
         }
     }
-    
+
     focus: true
     Keys.onSpacePressed: toggle()
     Keys.onLeftPressed: backward()
@@ -647,11 +667,11 @@ Video {
             video.toggleFullscreen()
         }
     }
-    
+
     ParallelAnimation{
         id: showingBottomPanelAnimation
         alwaysRunToEnd: true
-        
+
         PropertyAnimation {
             target: bottomPanel
             property: "height"
@@ -663,18 +683,18 @@ Video {
         onStarted: {
             video.bottomPanelShow()
         }
-        
+
         onRunningChanged: {
             if (!showingBottomPanelAnimation.running) {
                 showBottomPanel = true
             }
         }
-    }    
+    }
 
     ParallelAnimation{
         id: hidingBottomPanelAnimation
         alwaysRunToEnd: true
-        
+
         PropertyAnimation {
             target: bottomPanel
             property: "height"
@@ -682,21 +702,21 @@ Video {
             duration: 100
             easing.type: Easing.OutQuint
         }
-        
+
         onStarted: {
             video.bottomPanelHide()
         }
-        
+
         onRunningChanged: {
             if (!showingBottomPanelAnimation.running) {
                 showBottomPanel = false
             }
         }
-    }    
+    }
 
     SequentialAnimation {
         id: movePauseNotify
-        
+
         ParallelAnimation {
             PropertyAnimation {
                 target: pauseNotify
@@ -705,7 +725,7 @@ Video {
                 duration: 100
                 easing.type: Easing.OutQuint
             }
-            
+
             PropertyAnimation {
                 target: pauseNotify
                 property: "opacity"
@@ -715,10 +735,10 @@ Video {
             }
         }
 
-        PauseAnimation { 
+        PauseAnimation {
             duration: 500
         }
-        
+
         ParallelAnimation {
             PropertyAnimation {
                 target: pauseNotify
@@ -727,7 +747,7 @@ Video {
                 duration: 650
                 easing.type: Easing.OutQuint
             }
-            
+
             PropertyAnimation {
                 target: pauseNotify
                 property: "opacity"
@@ -736,7 +756,7 @@ Video {
                 easing.type: Easing.OutQuint
             }
         }
-        
+
         onRunningChanged: {
             if (!movePauseNotify.running) {
                 pauseNotify.visible = false
