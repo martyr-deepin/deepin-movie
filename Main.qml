@@ -6,17 +6,17 @@ import QtQuick.LocalStorage 2.0
 
 Item {
     id: window
-    
+
     property int videoInitWidth: 950
     property int videoInitHeight: (videoInitWidth - padding * 2) * movieInfo.movie_height / movieInfo.movie_width + padding * 2
     property int videoMinWidth: 470
     property int videoMinHeight: (videoMinWidth - padding * 2) * movieInfo.movie_height / movieInfo.movie_width + padding * 2
-    
+
     property int titlebarHeight: 45
     property int frameRadius: 3
     property int shadowRadius: 10
     property int padding: frameRadius + shadowRadius
-    
+
     default property alias tabPages: tabs.children
     property alias playPage: playPage
     property alias pageFrame: pageFrame
@@ -26,15 +26,15 @@ Item {
     property alias frame: frame
     property int windowLastState: 0
     property int tabX: 0
-    
+
     property bool inTitlebar: false
     property bool showTitlebar: true
     property bool inInteractiveArea: false
-    
+
     property string selectWebPage: ""
-    
+
     signal exitMouseArea
-    
+
     Timer {
         id: outWindowTimer
         interval: 50
@@ -46,14 +46,14 @@ Item {
             }
         }
     }
-    
+
     onExitMouseArea: {
         outWindowTimer.restart()
     }
-    
+
     Connections {
         target: windowView
-        
+
         onWidthChanged: {
             if (!playPage.visible) {
                 pageManager.show_page(selectWebPage, pageFrame.x, pageFrame.y, pageFrame.width, pageFrame.height)
@@ -65,12 +65,12 @@ Item {
             }
         }
     }
-    
+
     function monitorWindowClose() {
         database.record_video_position(player.source, player.position)
         config.save("Normal", "volume", player.volume)
     }
-    
+
     function monitorWindowState(state) {
         if (windowLastState != state) {
             if (state == Qt.WindowMinimized) {
@@ -81,7 +81,7 @@ Item {
             windowLastState = state
         }
     }
-    
+
     function toggleMaxWindow() {
         windowView.getState() == Qt.WindowMaximized ? maxButton.imageName = "image/window_max" : maxButton.imageName = "image/window_unmax"
         windowView.getState() == Qt.WindowMaximized ? shadow.visible = true : shadow.visible = false
@@ -91,7 +91,7 @@ Item {
         windowView.getState() == Qt.WindowMaximized ? frameBorder.visible = true : frameBorder.visible = false
         windowView.getState() == Qt.WindowMaximized ? windowView.showNormal() : windowView.showMaximized()
     }
-    
+
     function toggleFullWindow() {
         windowView.getState() == Qt.WindowFullScreen ? shadow.visible = true : shadow.visible = false
         windowView.getState() == Qt.WindowFullScreen ? frame.border.width = (shadowRadius + frameRadius) * 2 : frame.border.width = 0
@@ -99,7 +99,7 @@ Item {
         windowView.getState() == Qt.WindowFullScreen ? frameBackground.radius = frameRadius : frameBackground.radius = 0
         windowView.getState() == Qt.WindowFullScreen ? frameBorder.visible = true : frameBorder.visible = false
         windowView.getState() == Qt.WindowFullScreen ? windowView.showNormal() : windowView.showFullScreen()
-        
+
         if (windowView.getState() == Qt.WindowFullScreen) {
             hidingTitlebarAnimation.restart()
             player.hidingBottomPanelAnimation.restart()
@@ -109,14 +109,14 @@ Item {
     function initSize() {
         windowView.width = videoInitWidth
         windowView.height = videoInitHeight
-        
+
         windowView.setMinSize(videoMinWidth, videoMinHeight)
     }
-    
+
     Component.onCompleted: {
         initSize()
     }
-    
+
     RectangularGlow {
         id: shadow
         anchors.fill: frame
@@ -126,7 +126,7 @@ Item {
         cornerRadius: frame.radius + shadowRadius
         visible: true
     }
-    
+
     ResizeFrame {
         id: resizeFrame
         window: windowView
@@ -135,13 +135,13 @@ Item {
         proportionalWidth: movieInfo.movie_width
         proportionalHeight: movieInfo.movie_height
     }
-    
+
     ResizeArea {
         id: resizeArea
         window: windowView
         frame: frame
     }
-    
+
     Rectangle {
         id: frame
         opacity: 1                /* frame transparent */
@@ -152,20 +152,20 @@ Item {
         border.color: Qt.rgba(0, 0, 0, 0)
         width: window.width - border.width
         height: window.height - border.width
-        
+
         Rectangle {
             id: frameBackground
             color: "#1D1D1D"
             anchors.fill: parent
             radius: frameRadius
         }
-        
+
         RoundItem {
             target: frameBackground
             radius: frame.radius
         }
     }
-    
+
     Rectangle {
         id: pageFrame
         anchors.top: titlebar.bottom
@@ -174,7 +174,7 @@ Item {
         anchors.right: titlebar.right
         color: Qt.rgba(0, 0, 0, 0)
     }
-    
+
     Rectangle {
         id: playPage
         anchors.top: titlebar.top
@@ -182,18 +182,18 @@ Item {
         anchors.left: pageFrame.left
         anchors.right: pageFrame.right
         color: Qt.rgba(0, 0, 0, 0)
-        
+
         Player {
             id: player
             width: parent.width
             height: parent.height
             source: movieInfo.movie_file
             videoPreview.video.source: player.source
-            
+
             Component.onCompleted: {
                 videoPreview.video.pause()
             }
-            
+
             onBottomPanelShow: {
                 showingTitlebarAnimation.restart()
             }
@@ -205,7 +205,7 @@ Item {
                     }
                 }
             }
-            
+
             onShowCursor: {
                 player.videoArea.cursorShape = Qt.ArrowCursor
             }
@@ -215,11 +215,11 @@ Item {
                     player.videoArea.cursorShape = Qt.BlankCursor
                 }
             }
-            
+
             onToggleFullscreen: {
                 toggleFullWindow()
             }
-            
+
             onVisibleChanged: {
                 if (!player.visible) {
                     player.tryPauseVideo()
@@ -228,13 +228,23 @@ Item {
                 }
             }
         }
-        
+
+        MouseArea {
+            acceptedButtons: Qt.LeftButton | Qt.RightButton
+            anchors.fill: parent
+            onClicked: {
+                if (mouse.button == Qt.RightButton) {
+                    _menu_controller.show_menu()
+                }
+            }
+        }
+
         RoundItem {
             target: player
             radius: frame.radius
         }
     }
-    
+
     DragArea {
         id: titlebar
         window: windowView
@@ -244,24 +254,24 @@ Item {
         width: frame.width
         height: titlebarHeight
         hoverEnabled: true
-        
+
         onPositionChanged: {
             inTitlebar = true
         }
-        
+
         onExited: {
             inTitlebar = false
         }
-        
+
         onDoubleClicked: {
             toggleMaxWindow()
         }
-        
+
         Rectangle {
             id: titlebarBackground
             anchors.fill: parent
             color: "#00000000"
-        
+
             LinearGradient {
                 id: topPanelBackround
                 anchors.left: parent.left
@@ -276,13 +286,13 @@ Item {
                 }
                 visible: playPage.visible && showTitlebar
             }
-            
+
             TopRoundItem {
                 target: topPanelBackround
                 radius: frame.radius
                 visible: playPage.visible && showTitlebar
             }
-    
+
             Image {
                 id: appIcon
                 source: "image/logo.png"
@@ -291,10 +301,10 @@ Item {
                 anchors.leftMargin: 8
                 visible: showTitlebar ? 1 : 0
             }
-            
+
             Item {
                 id: tabs
-                
+
                 Item {
                     property string name: "视频播放"
                     property variant page: playPage
@@ -313,7 +323,7 @@ Item {
                     property int index: 2
                 }
             }
-            
+
             Image {
                 id: tabEffect
                 source: "image/tab_select_effect.png"
@@ -326,7 +336,7 @@ Item {
                     }
                 }
             }
-            
+
             Row {
                 id: tabRow
                 spacing: 44
@@ -334,17 +344,17 @@ Item {
                 anchors.leftMargin: appIcon.width + spacing
                 height: parent.height
                 visible: showTitlebar ? 1 : 0
-                
+
                 Repeater {
                     model: tabPages.length
                     delegate: TabButton {
                         text: tabPages[index].name
                         tabIndex: index
                         visible: showTitlebar ? 1 : 0
-                        
+
                         onPressed: {
                             tabEffect.x = x + (width - tabEffect.width) / 2 + tabRow.spacing * 2
-                            
+
                             if (index == 0) {
                                 pageManager.hide_page()
                                 playPage.visible = true
@@ -354,15 +364,15 @@ Item {
                                 pageManager.show_page(selectWebPage, pageFrame.x, pageFrame.y, pageFrame.width, pageFrame.height)
                                 playPage.visible = false
                             }
-                            
+
                             if (tabIndex > 0) {
                                 if (windowView.width < videoInitWidth) {
                                     windowView.width = videoInitWidth
-                                } 
-                                
+                                }
+
                                 if (windowView.height < videoInitHeight) {
                                     windowView.height = videoInitHeight
-                                } 
+                                }
                             }
                         }
                     }
@@ -372,7 +382,7 @@ Item {
             Row {
                 anchors {right: parent.right}
                 id: windowButtonArea
-                
+
                 ImageButton {
                     id: minButton
                     imageName: "image/window_min"
@@ -397,12 +407,12 @@ Item {
                 }
             }
         }
-        
+
         InteractiveItem {
             targetItem: parent
         }
     }
-    
+
     Rectangle {
         id: frameBorder
         anchors.fill: frame
@@ -412,11 +422,11 @@ Item {
         smooth: true
         radius: frameRadius
     }
-    
+
     ParallelAnimation{
         id: showingTitlebarAnimation
         alwaysRunToEnd: true
-        
+
         PropertyAnimation {
             target: titlebar
             property: "height"
@@ -424,18 +434,18 @@ Item {
             duration: 100
             easing.type: Easing.OutQuint
         }
-        
+
         onRunningChanged: {
             if (!showingTitlebarAnimation.running) {
                 showTitlebar = true
             }
         }
-    }    
+    }
 
     ParallelAnimation{
         id: hidingTitlebarAnimation
         alwaysRunToEnd: true
-        
+
         PropertyAnimation {
             target: titlebar
             property: "height"
@@ -443,12 +453,11 @@ Item {
             duration: 100
             easing.type: Easing.OutQuint
         }
-        
+
         onRunningChanged: {
             if (!showingTitlebarAnimation.running) {
                 showTitlebar = false
             }
         }
-    }    
+    }
 }
-
