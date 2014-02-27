@@ -37,9 +37,9 @@ from PyQt5 import QtCore
 from PyQt5.QtCore import QCoreApplication
 if os.name == 'posix':
     QCoreApplication.setAttribute(QtCore.Qt.AA_X11InitThreads, True)
-
+    
+from PyQt5.QtCore import pyqtSlot, QObject
 from PyQt5.QtWidgets import QApplication, qApp
-from PyQt5.QtGui import QCursor
 import sys
 import os
 import signal
@@ -48,8 +48,7 @@ from database import Database
 from config import Config
 from movie_info import MovieInfo
 from browser import Browser
-from PyQt5.QtCore import pyqtSlot, QObject
-from deepin_menu.menu import Menu, CheckboxMenuItem
+from menu_controller import MenuController
 
 class PageManager(QObject):
 
@@ -77,54 +76,6 @@ class PageManager(QObject):
         self.movie_store_page.hide()
         self.movie_search_page.hide()
         
-frame_sub_menu = [
-    ("_p_default", "Default"),
-    ("_p_4_3", "4:3"),
-    ("_p_16_9", "16:9"),
-    ("_p_16_10", "16:10"),
-    ("_p_1_85_1", "1.85:1"),
-    ("_p_2_35_1", "2.35:1"),
-    None,
-    ("_s_0_5", "0.5"),        
-    ("_s_1", "1"),        
-    ("_s_1_5", "1.5"),        
-    ("_s_2", "2"),        
-    None,
-    ("_turn_right", "Rotate 90 degree"),
-    ("_turn_left", "Rotate -90 degree"),
-    ("_flip_horizontal", "Flip Horizontally"),
-    ("_flip_vertial", "Flip Vertically"),
-]
-    
-right_click_menu = [
-    ("_open_file", "Open File"),
-    ("_open_dir", "Open Directory"),
-    ("_open_url", "Open URL"),
-    None,
-    ("_fullscreen_quit", "Fullscreen/Quit Fullscreen"),
-    None,
-    CheckboxMenuItem("_on_top", "On Top", True),
-    ("_play_sequence", "Play Sequence"),
-    ("_play", "Play"),
-    ("_frame", "Frame", (), frame_sub_menu),
-    ("_sound", "Sound"),
-    ("_subtitle", "Subtitle"),
-    ("_share", "Share", (), [("_share_to_dtalk", "DTalk"), 
-                             ("_share_to_s_weibo", "Sina Weibo"),
-                             ("_share_to_t_weibo", "Tencent Weibo"),]),
-    ("_information", "Information"),
-    ("_preferences", "Preferences"),
-]
-
-class MenuController(QObject):
-    def __init__(self):
-        super(MenuController, self).__init__()
-        self.menu = Menu(right_click_menu)
-
-    @pyqtSlot()
-    def show_menu(self):
-        self.menu.showRectMenu(QCursor.pos().x(), QCursor.pos().y())
-
 if __name__ == "__main__":
     movie_file = ""
     if len(sys.argv) >= 2:
