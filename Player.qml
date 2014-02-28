@@ -348,6 +348,7 @@ Video {
         height: showHeight
         anchors.left: video.left
         anchors.right: video.right
+        /* anchors.bottom: video.bottom */
         y: video.height - height
         opacity: 1
 

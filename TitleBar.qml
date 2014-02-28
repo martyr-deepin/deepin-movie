@@ -3,26 +3,21 @@ import QtGraphicalEffects 1.0
 
 DragArea {
     id: titlebar
-    
-    window: windowView
-    anchors.top: frame.top
-    anchors.left: frame.left
-    anchors.right: frame.right
-    height: titlebarHeight
+
+    height: program_constants.titlebarHeight
     hoverEnabled: true
+
+    property alias tabPages: tabs.children
     
-    property alias tabPages: tabs.children    
+    signal showed ()
+    signal hided ()
 
-    onPositionChanged: {
-        inTitlebar = true
+    function showWithAnimation () {
+        showingTitlebarAnimation.start()
     }
-
-    onExited: {
-        inTitlebar = false
-    }
-
-    onDoubleClicked: {
-        toggleMaxWindow()
+    
+    function hideWithAnimation () {
+        hidingTitlebarAnimation.start()
     }
 
     Item {
@@ -41,13 +36,11 @@ DragArea {
                 GradientStop { position: 0.0; color: "#FF000000"}
                 GradientStop { position: 1.0; color: "#00000000"}
             }
-            visible: playPage.visible && showTitlebar
         }
 
         TopRoundItem {
             target: topPanelBackround
             radius: frame.radius
-            visible: playPage.visible && showTitlebar
         }
 
         Image {
@@ -56,7 +49,6 @@ DragArea {
             anchors.left: parent.left
             anchors.verticalCenter: parent.verticalCenter
             anchors.leftMargin: 8
-            visible: showTitlebar ? 1 : 0
         }
 
         Item {
@@ -164,4 +156,32 @@ DragArea {
             }
         }
     }
+
+    PropertyAnimation {
+        id: showingTitlebarAnimation
+        
+        target: titlebar
+        property: "height"
+        to: program_constants.titlebarHeight
+        duration: 1000
+        easing.type: Easing.OutQuint
+        
+        onStopped: {
+            titlebar.showed()
+        }
+    }
+    
+    PropertyAnimation {
+        id: hidingTitlebarAnimation
+        
+        target: titlebar
+        property: "height"
+        to: 0
+        duration: 1000
+        easing.type: Easing.OutQuint
+        
+        onStopped: {
+            titlebar.hided()
+        }
+    }    
 }

@@ -12,7 +12,6 @@ Item {
     property int videoMinWidth: 470
     property int videoMinHeight: (videoMinWidth - padding * 2) * movieInfo.movie_height / movieInfo.movie_width + padding * 2
 
-    property int titlebarHeight: 45
     property int frameRadius: 3
     property int shadowRadius: 10
     property int padding: frameRadius + shadowRadius
@@ -34,6 +33,8 @@ Item {
     property string selectWebPage: ""
 
     signal exitMouseArea
+
+    Constants { id: program_constants }
 
     Timer {
         id: outWindowTimer
@@ -101,7 +102,7 @@ Item {
         windowView.getState() == Qt.WindowFullScreen ? windowView.showNormal() : windowView.showFullScreen()
 
         if (windowView.getState() == Qt.WindowFullScreen) {
-            hidingTitlebarAnimation.restart()
+            titlebar.hideWithAnimation()
             player.hidingBottomPanelAnimation.restart()
         }
     }
@@ -166,13 +167,12 @@ Item {
         }
     }
 
-    Rectangle {
+    Item {
         id: pageFrame
         anchors.top: titlebar.bottom
         anchors.bottom: frame.bottom
         anchors.left: titlebar.left
         anchors.right: titlebar.right
-        color: Qt.rgba(0, 0, 0, 0)
     }
 
     Rectangle {
@@ -204,13 +204,13 @@ Item {
             }
 
             onBottomPanelShow: {
-                showingTitlebarAnimation.restart()
+                titlebar.showWithAnimation()
             }
 
             onBottomPanelHide: {
                 if (playPage.visible) {
                     if (!titlebar.pressed && !inTitlebar) {
-                        hidingTitlebarAnimation.restart()
+                        titlebar.hideWithAnimation()
                     }
                 }
             }
@@ -263,8 +263,28 @@ Item {
         }
     }
 
-    TitleBar { id: titlebar }
-    InteractiveItem { targetItem: titlebar }
+    TitleBar {
+        id: titlebar
+        window: windowView
+        anchors.top: frame.top
+        anchors.left: frame.left
+        anchors.right: frame.right
+
+        onShowed: { showTitlebar = true }
+        onHided: { showTitlebar = false }
+        
+        onPositionChanged: {
+            inTitlebar = true
+        }
+
+        onExited: {
+            inTitlebar = false
+        }
+
+        onDoubleClicked: {
+            toggleMaxWindow()
+        }
+    }
 
     Rectangle {
         id: frameBorder
@@ -274,43 +294,5 @@ Item {
         border.width: 1
         smooth: true
         radius: frameRadius
-    }
-
-    ParallelAnimation{
-        id: showingTitlebarAnimation
-        alwaysRunToEnd: true
-
-        PropertyAnimation {
-            target: titlebar
-            property: "height"
-            to: titlebarHeight
-            duration: 100
-            easing.type: Easing.OutQuint
-        }
-
-        onRunningChanged: {
-            if (!showingTitlebarAnimation.running) {
-                showTitlebar = true
-            }
-        }
-    }
-
-    ParallelAnimation{
-        id: hidingTitlebarAnimation
-        alwaysRunToEnd: true
-
-        PropertyAnimation {
-            target: titlebar
-            property: "height"
-            to: 0
-            duration: 100
-            easing.type: Easing.OutQuint
-        }
-
-        onRunningChanged: {
-            if (!showingTitlebarAnimation.running) {
-                showTitlebar = false
-            }
-        }
     }
 }
