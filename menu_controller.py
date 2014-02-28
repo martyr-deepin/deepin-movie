@@ -20,7 +20,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from PyQt5.QtCore import QObject, pyqtSlot
+from PyQt5.QtCore import QObject, pyqtSlot, pyqtSignal
 from PyQt5.QtGui import QCursor
 from deepin_menu.menu import Menu, CheckboxMenuItem
 
@@ -64,9 +64,21 @@ right_click_menu = [
 ]
 
 class MenuController(QObject):
+    
+    clockwiseRotate = pyqtSignal()
+    antiClosewiseRotate = pyqtSignal()
+    
     def __init__(self):
         super(MenuController, self).__init__()
         self.menu = Menu(right_click_menu)
+        
+        self.menu.itemClicked.connect(self._menu_item_invoked)
+        
+    def _menu_item_invoked(self, _id, _checked):
+        if _id == "_turn_right":
+            self.clockwiseRotate.emit()
+        elif _id == "_turn_left":
+            self.antiClosewiseRotate.emit()
 
     @pyqtSlot()
     def show_menu(self):
