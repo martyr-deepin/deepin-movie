@@ -1,5 +1,4 @@
 import QtQuick 2.1
-import QtGraphicalEffects 1.0
 
 Rectangle {
     id: textButton
@@ -28,9 +27,5 @@ Rectangle {
         hoverEnabled: true
         
         onPressed: {parent.pressed()}
-
-        InteractiveItem {
-            targetItem: parent
-        }
     }
 }

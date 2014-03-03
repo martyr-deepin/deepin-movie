@@ -24,7 +24,7 @@ Item {
 
         Item {
             property string name: "视频播放"
-            property variant page: playPage
+            property variant page: undefined
             property int index: 0
         }
 
@@ -61,7 +61,7 @@ Item {
 
         TopRoundItem {
             target: topPanelBackround
-            radius: frame.radius
+            radius: program_constants.windowRadius
         }
 
         Image {
@@ -75,8 +75,6 @@ Item {
         Image {
             id: tabEffect
             source: "image/tab_select_effect.png"
-            x: tabX
-            visible: showTitlebar ? 1 : 0
             Behavior on x {
                 NumberAnimation {
                     duration: 300
@@ -91,36 +89,24 @@ Item {
             anchors.left: parent.left
             anchors.leftMargin: appIcon.width + spacing
             height: parent.height
-            visible: showTitlebar ? 1 : 0
 
             Repeater {
                 model: tabPages.length
                 delegate: TabButton {
                     text: tabPages[index].name
                     tabIndex: index
-                    visible: showTitlebar ? 1 : 0
 
                     onPressed: {
                         tabEffect.x = x + (width - tabEffect.width) / 2 + tabRow.spacing * 2
 
                         if (index == 0) {
                             pageManager.hide_page()
-                            playPage.visible = true
+                            player.visible = true
                         } else {
-                            selectWebPage = index == 1 ? "movie_store" : "movie_search"
+                            var selectWebPage = index == 1 ? "movie_store" : "movie_search"
 
-                            pageManager.show_page(selectWebPage, pageFrame.x, pageFrame.y, pageFrame.width, pageFrame.height)
-                            playPage.visible = false
-                        }
-
-                        if (tabIndex > 0) {
-                            if (windowView.width < videoInitWidth) {
-                                windowView.width = videoInitWidth
-                            }
-
-                            if (windowView.height < videoInitHeight) {
-                                windowView.height = videoInitHeight
-                            }
+                            pageManager.show_page(selectWebPage, online.x, online.y, online.width, online.height)
+                            player.visible = false
                         }
                     }
                 }
@@ -137,21 +123,18 @@ Item {
                 onClicked: {
                     windowView.doMinimized()
                 }
-                visible: showTitlebar ? 1 : 0
             }
 
             ImageButton {
                 id: maxButton
                 imageName: "image/window_max"
                 onClicked: {toggleMaxWindow()}
-                visible: showTitlebar ? 1 : 0
             }
 
             ImageButton {
                 id: closeButton
                 imageName: "image/window_close"
                 onClicked: {windowView.close()}
-                visible: showTitlebar ? 1 : 0
             }
         }
     }
