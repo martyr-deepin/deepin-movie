@@ -1,4 +1,5 @@
 import QtQuick 2.1
+import QtMultimedia 5.0
 import QtQuick.Window 2.1
 
 Item {
@@ -35,12 +36,6 @@ Item {
 
         Image { anchors.fill: parent; source: "image/background.png" }
 
-        Player1 {
-            id: player
-            source: "/home/hualet/Videos/1.mp4"
-            anchors.fill: parent
-        }
-
         PlaceHolder {
             id: online;
             width: parent.width
@@ -48,6 +43,20 @@ Item {
             anchors.bottom: parent.bottom
             anchors.topMargin: program_constants.titlebarHeight
         }
+
+        Player1 {
+            id: player
+            source: "/home/hualet/Videos/1.mp4"
+            anchors.fill: parent
+
+            onPlaybackStateChanged: {
+                if (playbackState == MediaPlayer.PausedState) {
+                    pause_notify.notify()
+                }
+            }
+        }
+
+        PauseNotify { id: pause_notify; visible: false; anchors.centerIn: parent }
     }
 
     MainController {

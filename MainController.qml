@@ -1,4 +1,5 @@
 import QtQuick 2.1
+import QtMultimedia 5.0
 
 MouseArea {
     hoverEnabled: true
@@ -11,6 +12,7 @@ MouseArea {
     property int startX
     property int startY
 
+    // resize operation related
     function getEdge(mouse) {
         if (0 < mouse.x && mouse.x < triggerThreshold) {
             if (0 < mouse.y && mouse.y < triggerThreshold) {
@@ -51,6 +53,15 @@ MouseArea {
         }
     }
 
+    // player control operation related
+    function play() {
+        player.play()
+    }
+
+    function pause() {
+        player.pause()
+    }
+
     onPressed: {
         resizeEdge = getEdge(mouse)
         if (resizeEdge != resize_edge.resizeNone) {
@@ -80,6 +91,14 @@ MouseArea {
     onReleased: {
         resizeEdge = resize_edge.resizeNone
         resize_visual.hide()
+    }
+
+    onClicked: {
+        if (player.playbackState == MediaPlayer.PausedState) {
+            play()
+        } else if (player.playbackState == MediaPlayer.PlayingState) {
+            pause()
+        }
     }
 
     ResizeVisual {
