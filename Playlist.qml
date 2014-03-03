@@ -2,32 +2,14 @@ import QtQuick 2.1
 
 Rectangle {
     id: playlistPanel
-    height: video.height
-    width: hideWidth
+    state: "active"
     opacity: 1
 
-    property int showWidth: 200
-    property int hideWidth: 0
-    property bool expanded: width == showWidth
-    property alias playlistPanelArea: playlistPanelArea
-    property alias hidePlaylistButton: hidePlaylistButton
-
     property string tabId: "network"
+    property bool expanded: width == program_constants.playlistWidth
 
     signal showingAnimationDone
     signal hidingAnimationDone
-
-    function show() {
-        if (width == hideWidth) {
-            showingPlaylistPanelAnimation.restart()
-        }
-    }
-
-    function hide() {
-        if (width == showWidth) {
-            hidingPlaylistPanelAnimation.restart()
-        }
-    }
 
     states: [
         State {
@@ -42,13 +24,41 @@ Rectangle {
         }
     ]
 
+    function show() {
+        if (!expanded) {
+            showingPlaylistPanelAnimation.restart()
+        }
+    }
+
+    function hide() {
+        if (expanded) {
+            hidingPlaylistPanelAnimation.restart()
+        }
+    }
+    
+    onStateChanged: {
+        if (state == "inactive") {
+            hide_timer.restart()
+        } else {
+            hide_timer.stop()
+        }
+    }
+
+    Timer {
+        id: hide_timer
+        interval: 5000
+        repeat: false
+        
+        onTriggered: hidingPlaylistPanelAnimation.start()
+    }
+
     PropertyAnimation {
         id: showingPlaylistPanelAnimation
         alwaysRunToEnd: true
 
         target: playlistPanel
         property: "width"
-        to: showWidth
+        to: program_constants.playlistWidth
         duration: 100
         easing.type: Easing.OutQuint
 
@@ -64,18 +74,18 @@ Rectangle {
 
         target: playlistPanel
         property: "width"
-        to: hideWidth
+        to: 0
         duration: 100
         easing.type: Easing.OutQuint
 
         onStopped: {
             playlistPanel.hidingAnimationDone()
+            playlistPanel.visible = false
         }
     }
 
-    DragArea {
+    MouseArea {
         id: playlistPanelArea
-        window: windowView
         anchors.fill: parent
         hoverEnabled: true
 
@@ -115,7 +125,6 @@ Rectangle {
             height: 50
             anchors.leftMargin: spacing
             width: parent.width
-            visible: playlistPanel.width == showWidth
 
             property int tabWidth: width / tabs.children.length
 
@@ -161,7 +170,6 @@ Rectangle {
         anchors.left: playlistTopline.left
         anchors.leftMargin: 1
         anchors.verticalCenter: playlistPanel.verticalCenter
-        visible: playlistPanel.width == showWidth
         opacity: playlistPanel.opacity + 0.1
 
         Image {
@@ -186,11 +194,11 @@ Rectangle {
             }
 
             onEntered: {
-                inTriggerButton = true
+                playlistPanel.state = "active"
             }
 
             onExited: {
-                inTriggerButton = false
+                playlistPanel.state = "inactive"
             }
         }
     }
@@ -202,7 +210,6 @@ Rectangle {
         anchors.top: playlistPanel.top
         anchors.bottom: hidePlaylistButton.top
         anchors.right: playlistPanel.right
-        visible: playlistPanel.width == showWidth
         opacity: playlistPanel.opacity
     }
 
@@ -213,7 +220,6 @@ Rectangle {
         anchors.top: hidePlaylistButton.bottom
         anchors.bottom: playlistPanel.bottom
         anchors.right: playlistPanel.right
-        visible: playlistPanel.width == showWidth
         opacity: playlistPanel.opacity
     }
 }

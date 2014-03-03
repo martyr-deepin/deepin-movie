@@ -62,6 +62,14 @@ Item {
     MainController {
         window: root
     }
+    
+    Playlist { 
+        id: playlist 
+        width: program_constants.playlistWidth
+        height: main_window.height
+        anchors.top: main_window.top
+        anchors.left: main_window.left
+    }
 
     TitleBar {
         id: titlebar;
@@ -76,4 +84,6 @@ Item {
         anchors.bottom: main_window.bottom
         anchors.horizontalCenter: main_window.horizontalCenter
     }
+    
+    Component.onCompleted: { playlist.show() }
 }
