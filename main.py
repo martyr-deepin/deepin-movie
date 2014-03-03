@@ -62,9 +62,9 @@ class PageManager(QObject):
     def show_page(self, page_name, x, y, width, height):
         self.hide_page()
 
-        x += 1
+        x += 3
         width -= 2
-        height -= 1
+        height -= 2
 
         if page_name == "movie_store":
             self.movie_store_page.show_with_parent(self.main_xid, x, y, width, height)

@@ -6,7 +6,7 @@ MouseArea {
 
     property var window
     property int resizeEdge
-    property int triggerThreshold: 5  // threshold for resizing the window
+    property int triggerThreshold: 10  // threshold for resizing the window
 
     property int startX
     property int startY

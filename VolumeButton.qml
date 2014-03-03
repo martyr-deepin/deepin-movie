@@ -77,10 +77,6 @@ ToggleButton {
             volume = Math.max(Math.min(volume + (wheel.angleDelta.y / 120 * 0.05), 1.0), 0.0)
             volumeButton.changeVolume()
         }
-            
-        InteractiveItem {
-            targetItem: parent
-        }
     }
     
     Connections {
@@ -107,10 +103,6 @@ ToggleButton {
         
         onClicked: {
             mouse.accepted = false
-        }
-        
-        InteractiveItem {
-            targetItem: parent
         }
     }
 }

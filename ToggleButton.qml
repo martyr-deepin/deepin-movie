@@ -14,9 +14,5 @@ Image {
             active = !active
             parent.clicked()
         }
-        
-        InteractiveItem {
-            targetItem: parent
-        }
     }
 }

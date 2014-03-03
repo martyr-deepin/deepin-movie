@@ -19,9 +19,5 @@ Image {
         onPressed: {parent.source = imageName + "_press.png"}
         onReleased: {parent.source = imageName + "_hover.png"}
         onClicked: {parent.clicked()}
-
-        InteractiveItem {
-            targetItem: parent
-        }
     }
 }
