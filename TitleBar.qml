@@ -1,23 +1,44 @@
 import QtQuick 2.1
 import QtGraphicalEffects 1.0
 
-DragArea {
+Item {
     id: titlebar
 
     height: program_constants.titlebarHeight
-    hoverEnabled: true
 
     property alias tabPages: tabs.children
-    
+
     signal showed ()
     signal hided ()
 
     function showWithAnimation () {
         showingTitlebarAnimation.start()
     }
-    
+
     function hideWithAnimation () {
         hidingTitlebarAnimation.start()
+    }
+
+    Item {
+        id: tabs
+
+        Item {
+            property string name: "视频播放"
+            property variant page: playPage
+            property int index: 0
+        }
+
+        Item {
+            property string name: "在线视频"
+            property variant page: undefined
+            property int index: 1
+        }
+
+        Item {
+            property string name: "视频搜索"
+            property variant page: undefined
+            property int index: 2
+        }
     }
 
     Item {
@@ -49,28 +70,6 @@ DragArea {
             anchors.left: parent.left
             anchors.verticalCenter: parent.verticalCenter
             anchors.leftMargin: 8
-        }
-
-        Item {
-            id: tabs
-
-            Item {
-                property string name: "视频播放"
-                property variant page: playPage
-                property int index: 0
-            }
-
-            Item {
-                property string name: "在线视频"
-                property variant page: undefined
-                property int index: 1
-            }
-
-            Item {
-                property string name: "视频搜索"
-                property variant page: undefined
-                property int index: 2
-            }
         }
 
         Image {
@@ -159,29 +158,29 @@ DragArea {
 
     PropertyAnimation {
         id: showingTitlebarAnimation
-        
+
         target: titlebar
         property: "height"
         to: program_constants.titlebarHeight
         duration: 1000
         easing.type: Easing.OutQuint
-        
+
         onStopped: {
             titlebar.showed()
         }
     }
-    
+
     PropertyAnimation {
         id: hidingTitlebarAnimation
-        
+
         target: titlebar
         property: "height"
         to: 0
         duration: 1000
         easing.type: Easing.OutQuint
-        
+
         onStopped: {
             titlebar.hided()
         }
-    }    
+    }
 }

@@ -5,7 +5,11 @@ MouseArea {
     anchors.fill: window
 
     property var window
-    property int triggerThreshold: 5
+    property int resizeEdge
+    property int triggerThreshold: 5  // threshold for resizing the window
+
+    property int startX
+    property int startY
 
     function getEdge(mouse) {
         if (0 < mouse.x && mouse.x < triggerThreshold) {
@@ -48,21 +52,33 @@ MouseArea {
     }
 
     onPressed: {
-        resize_visual.resizeEdge = getEdge(mouse)
+        resizeEdge = getEdge(mouse)
+        if (resizeEdge != resize_edge.resizeNone) {
+            resize_visual.resizeEdge = resizeEdge
+        } else {
+            startX = mouse.x
+            startY = mouse.y
+        }
     }
 
     onPositionChanged: {
         if (!pressed) {
-            var resizeEdge = getEdge(mouse)
-            changeCursor(resizeEdge)
+            changeCursor(getEdge(mouse))
         }
         else {
-            resize_visual.show()
-            resize_visual.intelligentlyResize(windowView, mouse.x, mouse.y)
+            if (resizeEdge != resize_edge.resizeNone) {
+                resize_visual.show()
+                resize_visual.intelligentlyResize(windowView, mouse.x, mouse.y)
+            }
+            else {
+                windowView.setX(windowView.x + mouse.x - startX)
+                windowView.setY(windowView.y + mouse.y - startY)
+            }
         }
     }
 
     onReleased: {
+        resizeEdge = resize_edge.resizeNone
         resize_visual.hide()
     }
 
