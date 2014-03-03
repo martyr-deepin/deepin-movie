@@ -98,11 +98,13 @@ if __name__ == "__main__":
     qml_context.setContextProperty("pageManager", page_manager)
     qml_context.setContextProperty("_menu_controller", menu_controller)
 
-    view.setSource(QtCore.QUrl.fromLocalFile(os.path.join(os.path.dirname(__file__), 'Main.qml')))
+    view.setSource(QtCore.QUrl.fromLocalFile(os.path.join(os.path.dirname(__file__), 'main.qml')))
+    view.setX(100)
+    view.setY(100)
     view.show()
     
-    view.windowStateChanged.connect(view.rootObject().monitorWindowState)
-    app.lastWindowClosed.connect(view.rootObject().monitorWindowClose)
+    # view.windowStateChanged.connect(view.rootObject().monitorWindowState)
+    # app.lastWindowClosed.connect(view.rootObject().monitorWindowClose)
     app.setQuitOnLastWindowClosed(True)
 
     signal.signal(signal.SIGINT, signal.SIG_DFL)

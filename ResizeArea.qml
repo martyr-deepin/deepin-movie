@@ -3,7 +3,6 @@ import QtQuick.Window 2.1
 
 MouseArea {
     id: resizeArea
-    anchors.fill: parent
     hoverEnabled: true
 
     property variant window

@@ -248,20 +248,20 @@ Item {
     // Sandwiched between the video player layer and the controls layer,
     // it will response to user interaction(like mouse click and key control)
     // and serve as the logic controller of the whole program.
-    Item {
-        id: main_controller
-        anchors.fill: parent
+    /* Item { */
+    /*     id: main_controller */
+    /*     anchors.fill: frame */
 
-        MouseArea {
-            acceptedButtons: Qt.LeftButton | Qt.RightButton
-            anchors.fill: parent
-            onClicked: {
-                if (mouse.button == Qt.RightButton) {
-                    _menu_controller.show_menu()
-                }
-            }
-        }
-    }
+    /*     MouseArea { */
+    /*         acceptedButtons: Qt.LeftButton | Qt.RightButton */
+    /*         anchors.fill: parent */
+    /*         onClicked: { */
+    /*             if (mouse.button == Qt.RightButton) { */
+    /*                 _menu_controller.show_menu() */
+    /*             } */
+    /*         } */
+    /*     } */
+    /* } */
 
     TitleBar {
         id: titlebar
