@@ -79,6 +79,11 @@ MouseArea {
         print("position changed")
         if (!pressed) {
             changeCursor(getEdge(mouse))
+            if (!playlist.expanded && 
+                0 < mouse.x &&
+                mouse.x <= program_constants.playlistTriggerThreshold) {
+                playlist.show()
+            }
         }
         else {
             // prevent play or pause event from happening if we intend to move or resize the window

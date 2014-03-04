@@ -26,6 +26,7 @@ Rectangle {
 
     function show() {
         if (!expanded) {
+            visible = true
             showingPlaylistPanelAnimation.restart()
         }
     }

@@ -46,7 +46,7 @@ Item {
 
         Player1 {
             id: player
-            source: "/home/hualet/Videos/1.mp4"
+            /* source: "/home/hualet/Videos/1.mp4" */
             anchors.fill: parent
 
             onPlaybackStateChanged: {
@@ -65,8 +65,9 @@ Item {
     
     Playlist { 
         id: playlist 
-        width: program_constants.playlistWidth
+        width: 0
         height: main_window.height
+        visible: false
         anchors.top: main_window.top
         anchors.left: main_window.left
     }
