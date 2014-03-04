@@ -84,6 +84,4 @@ Item {
         anchors.bottom: main_window.bottom
         anchors.horizontalCenter: main_window.horizontalCenter
     }
-    
-    Component.onCompleted: { playlist.show() }
 }

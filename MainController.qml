@@ -12,6 +12,8 @@ MouseArea {
     property int startX
     property int startY
 
+    property bool shouldPlayOrPause: true
+
     // resize operation related
     function getEdge(mouse) {
         if (0 < mouse.x && mouse.x < triggerThreshold) {
@@ -63,6 +65,7 @@ MouseArea {
     }
 
     onPressed: {
+        print("pressed")
         resizeEdge = getEdge(mouse)
         if (resizeEdge != resize_edge.resizeNone) {
             resize_visual.resizeEdge = resizeEdge
@@ -73,10 +76,13 @@ MouseArea {
     }
 
     onPositionChanged: {
+        print("position changed")
         if (!pressed) {
             changeCursor(getEdge(mouse))
         }
         else {
+            // prevent play or pause event from happening if we intend to move or resize the window
+            shouldPlayOrPause = false
             if (resizeEdge != resize_edge.resizeNone) {
                 resize_visual.show()
                 resize_visual.intelligentlyResize(windowView, mouse.x, mouse.y)
@@ -89,15 +95,21 @@ MouseArea {
     }
 
     onReleased: {
+        print("released")
         resizeEdge = resize_edge.resizeNone
         resize_visual.hide()
     }
 
     onClicked: {
-        if (player.playbackState == MediaPlayer.PausedState) {
-            play()
-        } else if (player.playbackState == MediaPlayer.PlayingState) {
-            pause()
+        print("clicked")
+        if (shouldPlayOrPause) {
+            if (player.playbackState == MediaPlayer.PausedState) {
+                play()
+            } else if (player.playbackState == MediaPlayer.PlayingState) {
+                pause()
+            }
+        } else {
+            shouldPlayOrPause = true
         }
     }
 
