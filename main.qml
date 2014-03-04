@@ -5,7 +5,7 @@ import QtQuick.Window 2.1
 Item {
     id: root
     width: 950
-    height: 470
+    height: 642
 
     ResizeEdge { id: resize_edge }
     Constants { id: program_constants }
@@ -24,6 +24,16 @@ Item {
             }
         }
     }
+    
+    Rectangle {
+        width: main_window.width + 2
+        height: main_window.height + 2
+        radius: main_window.radius
+        border.color: Qt.rgba(100, 100, 100, 0.3)
+        border.width: 1
+        
+        anchors.centerIn: parent
+    }
 
     Rectangle {
         id: main_window
@@ -34,7 +44,16 @@ Item {
         radius: program_constants.windowRadius
         anchors.centerIn: parent
 
-        Image { anchors.fill: parent; source: "image/background.png" }
+        Rectangle {
+            id: bg
+            color: "#050811"
+            visible: { 
+                return !player.hasVideo &&
+                player.visible
+            }
+            anchors.fill: parent
+            Image { anchors.centerIn: parent; source: "image/background.png" }
+        }
 
         PlaceHolder {
             id: online;
@@ -43,10 +62,10 @@ Item {
             anchors.bottom: parent.bottom
             anchors.topMargin: program_constants.titlebarHeight
         }
-
+        
         Player1 {
             id: player
-            /* source: "/home/hualet/Videos/1.mp4" */
+            source: "/home/hualet/Videos/2.mp4"
             anchors.fill: parent
 
             onPlaybackStateChanged: {
@@ -75,12 +94,14 @@ Item {
     TitleBar {
         id: titlebar;
         width: main_window.width
+        anchors.top: main_window.top        
         anchors.horizontalCenter: main_window.horizontalCenter
     }
 
     ControlBar {
         id: controlbar
 
+        visible: { return player.visible && player.hasVideo}
         width: main_window.width
         anchors.bottom: main_window.bottom
         anchors.horizontalCenter: main_window.horizontalCenter

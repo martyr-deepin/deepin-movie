@@ -6,7 +6,7 @@ import QtQuick.LocalStorage 2.0
 
 Item {
     id: window
-
+    
     property int videoInitWidth: 950
     property int videoInitHeight: (videoInitWidth - padding * 2) * movieInfo.movie_height / movieInfo.movie_width + padding * 2
     property int videoMinWidth: 470
@@ -117,7 +117,7 @@ Item {
     Component.onCompleted: {
         initSize()
     }
-
+    
     RectangularGlow {
         id: shadow
         anchors.fill: frame

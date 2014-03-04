@@ -57,15 +57,18 @@ MouseArea {
 
     // player control operation related
     function play() {
-        player.play()
+        if (player.hasVideo) {
+            player.play()
+        }
     }
 
     function pause() {
-        player.pause()
+        if (player.hasVideo) {
+            player.pause()
+        }
     }
 
     onPressed: {
-        print("pressed")
         resizeEdge = getEdge(mouse)
         if (resizeEdge != resize_edge.resizeNone) {
             resize_visual.resizeEdge = resizeEdge
@@ -76,7 +79,6 @@ MouseArea {
     }
 
     onPositionChanged: {
-        print("position changed")
         if (!pressed) {
             changeCursor(getEdge(mouse))
             if (!playlist.expanded && 
@@ -100,13 +102,11 @@ MouseArea {
     }
 
     onReleased: {
-        print("released")
         resizeEdge = resize_edge.resizeNone
         resize_visual.hide()
     }
 
     onClicked: {
-        print("clicked")
         if (shouldPlayOrPause) {
             if (player.playbackState == MediaPlayer.PausedState) {
                 play()

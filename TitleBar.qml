@@ -51,7 +51,7 @@ Item {
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.top: parent.top
-            height: 60
+            height: parent.height
             start: Qt.point(0, 0)
             end: Qt.point(0, height)
             gradient: Gradient {
