@@ -6,7 +6,8 @@ Item {
     
     property real percentage: 0
     
-    signal mouseOver (mouse)
+    signal mouseOver (var mouse)
+    signal mouseExit (var mouse)
 
     Rectangle {
         id: background
@@ -58,6 +59,7 @@ Item {
         }
         
         MouseArea {
+            hoverEnabled: true
             anchors.fill: parent
             
             onClicked: {
@@ -66,6 +68,10 @@ Item {
             
             onPositionChanged: {
                 progressbar.mouseOver(mouse)
+            }
+            
+            onExited: {
+                progressbar.mouseExit(mouse)
             }
         }
     }

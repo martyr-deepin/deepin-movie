@@ -65,7 +65,7 @@ Item {
         
         Player1 {
             id: player
-            source: "/home/hualet/Videos/2.mp4"
+            source: "/home/hualet/Videos/1.mp4"
             anchors.fill: parent
 
             onPlaybackStateChanged: {

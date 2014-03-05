@@ -11,6 +11,12 @@ Item {
 
     signal showed ()
     signal hided ()
+    
+    function show() {
+    }
+    
+    function hide() {
+    }
 
     function showWithAnimation () {
         showingTitlebarAnimation.start()

@@ -5,9 +5,26 @@ import QtGraphicalEffects 1.0
 Item {
     height: program_constants.controlbarHeight
 
+    signal showed ()
+    signal hided ()
+
+    function show() {
+    }
+
+    function hide() {
+    }
+
+    function showWithAnimation() {
+        showingBottomPanelAnimation.start()
+    }
+
+    function hideWithAnimation() {
+        hidingBottomPanelAnimation.start()
+    }
+
     LinearGradient {
         id: bottomPanelBackround
-        
+
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
@@ -23,114 +40,47 @@ Item {
     Column {
         anchors.fill: parent
 
-        Item {
-            id: progressbar
-            anchors.top: parent.top
-            anchors.left: parent.left
-            anchors.right: parent.right
+        ProgressBar {
+            width: parent.width
 
-            Rectangle {
-                id: progressbarBackground
-                anchors.top: parent.top
-                anchors.left: parent.left
-                anchors.right: parent.right
-                height: 7
-                color: "#444a4a4a"
+            Preview {
+                id: videoPreview
+                visible: false
 
-                Rectangle {
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    anchors.top: parent.top
-                    height: 1
-                    color: "#443c3c3c"
+                onPositionChanged: {
+                    videoPreview.video.visible = true
                 }
+            }
 
-                MouseArea {
-                    id: progressbarArea
-                    anchors.fill: parent
-                    hoverEnabled: true
+            onMouseOver: {
+                videoPreview.visible = true
+                videoPreview.x = Math.min(Math.max(mouse.x - videoPreview.width / 2, 0),
+                                          width - videoPreview.width)
+                videoPreview.y = y - videoPreview.height
 
-                    onClicked: {
-                        video.seek(video.duration * mouseX / (progressbarBackground.width - progressbarBackground.x))
-                    }
-
-                    onPositionChanged: {
-                        hidingTimer.stop()
-
-                        videoPreview.visible = true
-                        videoPreview.x = Math.min(Math.max(mouseX - videoPreview.width / 2, 0),
-                                                  progressbarArea.width - videoPreview.width)
-                        videoPreview.y = progressbarArea.y - videoPreview.height + progressbarArea.height / 2
-                        videoPosition = video.duration * mouseX / (progressbarBackground.width - progressbarBackground.x)
-
-                        videoPreview.video.visible = false
-                        updatePreviewTimer.restart()
-
-                        videoPreview.videoTime.text = formatTime(videoPosition)
-
-                        if (mouseX <= videoPreview.cornerWidth / 2) {
-                            videoPreview.cornerPos = mouseX + videoPreview.cornerWidth / 2
-                            videoPreview.cornerType = "left"
-                        } else if (mouseX >= progressbarArea.width - videoPreview.cornerWidth / 2) {
-                            videoPreview.cornerPos = mouseX - progressbarArea.width + videoPreview.width - videoPreview.cornerWidth / 2
-                            videoPreview.cornerType = "right"
-                        } else if (mouseX < videoPreview.width / 2) {
-                            videoPreview.cornerPos = mouseX
-                            videoPreview.cornerType = "center"
-                        } else if (mouseX >= progressbarArea.width - videoPreview.width / 2) {
-                            videoPreview.cornerPos = mouseX - progressbarArea.width + videoPreview.width
-                            videoPreview.cornerType = "center"
-                        } else {
-                            videoPreview.cornerPos = videoPreview.width / 2
-                            videoPreview.cornerType = "center"
-                        }
-                    }
-
-                    onExited: {
-                        videoPreview.visible = false
-                    }
-
-                    Timer {
-                        id: updatePreviewTimer
-                        interval: 50
-                        repeat: false
-                        onTriggered: {
-                            videoPreview.video.seek(videoPosition)
-                        }
-                    }
+                var mouseX = mouse.x
+                var mouseY = mouse.y
+                
+                if (mouseX <= videoPreview.cornerWidth / 2) {
+                    videoPreview.cornerPos = mouseX + videoPreview.cornerWidth / 2
+                    videoPreview.cornerType = "left"
+                } else if (mouseX >= width - videoPreview.cornerWidth / 2) {
+                    videoPreview.cornerPos = mouseX - width + videoPreview.width - videoPreview.cornerWidth / 2
+                    videoPreview.cornerType = "right"
+                } else if (mouseX < videoPreview.width / 2) {
+                    videoPreview.cornerPos = mouseX
+                    videoPreview.cornerType = "center"
+                } else if (mouseX >= width - videoPreview.width / 2) {
+                    videoPreview.cornerPos = mouseX - width + videoPreview.width
+                    videoPreview.cornerType = "center"
+                } else {
+                    videoPreview.cornerPos = videoPreview.width / 2
+                    videoPreview.cornerType = "center"
                 }
-
-                Rectangle {
-                    id: progressbarForeground
-                    anchors.left: parent.left
-                    anchors.top: parent.top
-                    height: parent.height
-                    /* width: timePosition * parent.width */
-                    color: "#007cc2"
-
-                    Rectangle {
-                        anchors.left: parent.left
-                        anchors.right: parent.right
-                        anchors.top: parent.top
-                        height: 1
-                        color: "#04a4ff"
-                    }
-                }
-
-                Image {
-                    source: "image/progress_pointer.png"
-                    /* x: Math.min(Math.max(timePosition * parent.width - width / 2, 0), parent.width - width) */
-                    y: progressbarForeground.y + (progressbarForeground.height - height) / 2
-                }
-
-                Preview {
-                    id: videoPreview
-                    visible: false
-
-                    onPositionChanged: {
-                        videoPreview.video.visible = true
-                    }
-                }
+            }
+            
+            onMouseExit: {
+                videoPreview.visible = false
             }
         }
 
@@ -152,7 +102,7 @@ Item {
                     id: playerList
                     imageName: "image/player_list"
                     anchors.verticalCenter: parent.verticalCenter
-                    /* active: playlistPanel.width == showWidth */
+                /* active: playlistPanel.width == showWidth */
                 }
 
                 ToggleButton {
@@ -253,5 +203,27 @@ Item {
                 }
             }
         }
+    }
+
+    PropertyAnimation {
+        id: showingBottomPanelAnimation
+        target: parent
+        property: "height"
+        to: showHeight
+        duration: 100
+        easing.type: Easing.OutQuint
+
+        onStopped: parent.showed()
+    }
+
+    PropertyAnimation {
+        id: hidingBottomPanelAnimation
+        target: parent
+        property: "height"
+        to: hideHeight
+        duration: 100
+        easing.type: Easing.OutQuint
+
+        onStopped: parent.hided()
     }
 }
