@@ -23,7 +23,6 @@ Window {
     }
 
     function hide() {
-        root.resizeDone()
         root.visible = false
     }
     
@@ -54,6 +53,7 @@ Window {
             flag == resize_edge.resizeBottomRight) {
             frame.width = x
         }
+        root.resizeDone()
     }
 
     Rectangle {
