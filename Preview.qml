@@ -5,44 +5,45 @@ import QtGraphicalEffects 1.0
 RectWithCorner {
     id: preview
     rectWidth: 178
-    rectHeight: (rectWidth - padding * 2) * movieInfo.movie_height / movieInfo.movie_width + padding * 2 + preview.cornerHeight - previewPadding * 2
+    rectHeight: rectWidth * movieInfo.movie_height / movieInfo.movie_width + preview.cornerHeight - previewPadding * 2
     cornerPos: 89
     withBlur: false
     blurWidth: 2
 
-    property alias video: video
-    property alias videoTime: videoTime
+    property url source
     
     property int previewPadding: 4
     
-    signal positionChanged
+    function seek(percentage) {
+        video.seek(Math.floor(movieInfo.movie_duration * percentage))
+    }
     
     Video {
         id: video
         autoPlay: true
         muted: true
+        source: parent.source
+        
         anchors.fill: parent
         anchors.topMargin: previewPadding
         anchors.bottomMargin: previewPadding + preview.cornerHeight
         anchors.leftMargin: previewPadding
         anchors.rightMargin: previewPadding
         
-        onPositionChanged: {
-            preview.positionChanged()
-        }
-        
+        onPlaying: pause()
     }
     
     Rectangle {
+        height: 24
+        color: "#DD000000"
         anchors.bottom: video.bottom
         anchors.left: video.left
         anchors.right: video.right
-        height: 24
-        color: "#DD000000"
         
         Text {
             id: videoTime
             color: "white"
+            text: "00:00:00"
             anchors.centerIn: parent
         }
     }

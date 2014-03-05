@@ -81,7 +81,7 @@ MouseArea {
     onPositionChanged: {
         if (!pressed) {
             changeCursor(getEdge(mouse))
-            if (!playlist.expanded && 
+            if (!playlist.expanded &&
                 0 < mouse.x &&
                 mouse.x <= program_constants.playlistTriggerThreshold) {
                 playlist.show()
@@ -133,6 +133,18 @@ MouseArea {
             windowView.setHeight(frameHeight)
             window.width = frameWidth
             window.height = frameHeight
+        }
+    }
+
+    DropArea {
+        anchors.fill: parent
+
+        onDropped: {
+            if (drop.hasUrls) {
+                var file_path = drop.urls[0].substring(7)
+                movieInfo.movie_file = file_path
+                play()
+            }
         }
     }
 }

@@ -4,9 +4,12 @@ import QtQuick.Window 2.1
 
 Item {
     id: root
-    width: 950
-    height: 642
-
+    width: movieInfo.movie_width
+    height: movieInfo.movie_height
+    
+    onWidthChanged: windowView.width = width
+    onHeightChanged: windowView.height = height
+    
     ResizeEdge { id: resize_edge }
     Constants { id: program_constants }
 
@@ -65,9 +68,8 @@ Item {
         
         Player1 {
             id: player
-            source: "/home/hualet/Videos/1.mp4"
             anchors.fill: parent
-
+            source: movieInfo.movie_file
             onPlaybackStateChanged: {
                 if (playbackState == MediaPlayer.PausedState) {
                     pause_notify.notify()
@@ -92,7 +94,7 @@ Item {
     }
 
     TitleBar {
-        id: titlebar;
+        id: titlebar
         width: main_window.width
         anchors.top: main_window.top        
         anchors.horizontalCenter: main_window.horizontalCenter
@@ -101,7 +103,7 @@ Item {
     ControlBar {
         id: controlbar
 
-        visible: { return player.visible && player.hasVideo}
+        visible: { return player.visible && player.hasVideo }
         width: main_window.width
         anchors.bottom: main_window.bottom
         anchors.horizontalCenter: main_window.horizontalCenter

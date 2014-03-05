@@ -34,21 +34,21 @@ class MovieInfo(QObject):
         QObject.__init__(self)
 
         self.media_info = None
-        self.media_width = DEFAULT_WIDTH
-        self.media_height = DEFAULT_HEIGHT
-
         self.movie_file = filepath
 
     @pyqtProperty(int,notify=movieDurationChanged)
     def movie_duration(self):
+        print("movie_duration ", self.media_duration)
         return int(self.media_duration)
 
     @pyqtProperty(int,notify=movieWidthChanged)
     def movie_width(self):
+        print("movie_width ", self.media_width)        
         return int(self.media_width)
 
     @pyqtProperty(int,notify=movieHeightChanged)
     def movie_height(self):
+        print("movie_height ", self.media_height)        
         return int(self.media_height)
 
     @pyqtProperty(str,notify=movieSourceChanged)
@@ -60,11 +60,10 @@ class MovieInfo(QObject):
         self.filepath = filepath
         self.movieSourceChanged.emit(filepath)
 
-        if filepath != "":
-            self.media_info = parse_info(self.filepath)
-            self.media_width = self.media_info["video_width"]
-            self.movieWidthChanged.emit(self.media_width)
-            self.media_height = self.media_info["video_height"]
-            self.movieHeightChanged.emit(self.media_height)
-            self.media_duration = self.media_info["general_duration"]
-            self.movieDurationChanged.emit(self.media_duration)
+        self.media_info = parse_info(self.filepath)
+        self.media_width = self.media_info["video_width"] or DEFAULT_WIDTH
+        self.movieWidthChanged.emit(self.media_width)
+        self.media_height = self.media_info["video_height"] or DEFAULT_HEIGHT
+        self.movieHeightChanged.emit(self.media_height)
+        self.media_duration = self.media_info["general_duration"] or 0
+        self.movieDurationChanged.emit(self.media_duration)

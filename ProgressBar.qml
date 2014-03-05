@@ -2,12 +2,34 @@ import QtQuick 2.1
 
 Item {
     id: progressbar
+    width: 300
     height: 7
+
+    property real percentage: 0.0
     
-    property real percentage: 0
-    
+    onPercentageChanged: {
+        print("percentage changed ", percentage)
+    }
+
     signal mouseOver (var mouse)
-    signal mouseExit (var mouse)
+    signal mouseExit ()
+    
+    MouseArea {
+        hoverEnabled: true
+        anchors.fill: parent
+
+        onClicked: {
+            pointer.x = mouse.x - pointer.width / 2
+        }
+
+        onPositionChanged: {
+            progressbar.mouseOver(mouse)
+        }
+
+        onExited: {
+            progressbar.mouseExit()
+        }
+    }
 
     Rectangle {
         id: background
@@ -21,13 +43,13 @@ Item {
             height: 1
             color: "#443c3c3c"
         }
-        
+
         Rectangle {
             id: foreground
             anchors.left: parent.left
             anchors.top: parent.top
             height: parent.height
-            width: progressbar.percentage * (progressbar.width - pointer.width / 2)
+            width: progressbar.percentage * progressbar.width
             color: "#007cc2"
 
             Rectangle {
@@ -41,6 +63,8 @@ Item {
 
         Image {
             id: pointer
+            x: -(pointer.width / 2)
+            opacity: 0 <= x && x <= background.width - width ? 1 : 0
             source: "image/progress_pointer.png"
             anchors.verticalCenter: parent.verticalCenter
 
@@ -49,29 +73,12 @@ Item {
 
                 drag.target: parent
                 drag.axis: Drag.XAxis
-                drag.minimumX: 0
-                drag.maximumX: background.width - width
+                drag.minimumX: -(pointer.width / 2)
+                drag.maximumX: background.width - (pointer.width / 2)
             }
-
+            
             onXChanged: {
-                progressbar.percentage = x / (background.width - width)
-            }
-        }
-        
-        MouseArea {
-            hoverEnabled: true
-            anchors.fill: parent
-            
-            onClicked: {
-                pointer.x = mouse.x - pointer.width / 2
-            }
-            
-            onPositionChanged: {
-                progressbar.mouseOver(mouse)
-            }
-            
-            onExited: {
-                progressbar.mouseExit(mouse)
+                progressbar.percentage = (x + pointer.width / 2) / Math.max(progressbar.width, 1)
             }
         }
     }

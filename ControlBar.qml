@@ -4,6 +4,8 @@ import QtGraphicalEffects 1.0
 
 Item {
     height: program_constants.controlbarHeight
+    
+    property url videoSource
 
     signal showed ()
     signal hided ()
@@ -38,18 +40,13 @@ Item {
     }
 
     Column {
-        anchors.fill: parent
-
         ProgressBar {
-            width: parent.width
+            width: parent.parent.width
 
             Preview {
                 id: videoPreview
+                source: movieInfo.movie_file
                 visible: false
-
-                onPositionChanged: {
-                    videoPreview.video.visible = true
-                }
             }
 
             onMouseOver: {
@@ -77,6 +74,7 @@ Item {
                     videoPreview.cornerPos = videoPreview.width / 2
                     videoPreview.cornerType = "center"
                 }
+                videoPreview.seek(mouseX / width)
             }
             
             onMouseExit: {
@@ -209,7 +207,7 @@ Item {
         id: showingBottomPanelAnimation
         target: parent
         property: "height"
-        to: showHeight
+        to: program_constants.controlbarHeight
         duration: 100
         easing.type: Easing.OutQuint
 
@@ -220,7 +218,7 @@ Item {
         id: hidingBottomPanelAnimation
         target: parent
         property: "height"
-        to: hideHeight
+        to: 0
         duration: 100
         easing.type: Easing.OutQuint
 
