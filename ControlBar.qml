@@ -3,9 +3,12 @@ import QtMultimedia 5.0
 import QtGraphicalEffects 1.0
 
 Item {
+    id: control_bar
     height: program_constants.controlbarHeight
     
     property url videoSource
+    property int position: 0
+    property alias percentage: progressbar.percentage
 
     signal showed ()
     signal hided ()
@@ -41,6 +44,7 @@ Item {
 
     Column {
         ProgressBar {
+            id: progressbar
             width: parent.parent.width
 
             Preview {
@@ -48,7 +52,7 @@ Item {
                 source: movieInfo.movie_file
                 visible: false
             }
-
+            
             onMouseOver: {
                 videoPreview.visible = true
                 videoPreview.x = Math.min(Math.max(mouse.x - videoPreview.width / 2, 0),
@@ -195,7 +199,7 @@ Item {
                 Text {
                     id: playTime
                     anchors.verticalCenter: parent.verticalCenter
-                    /* text: timeCurrent + " / " + timeTotal */
+                    text: formatTime(control_bar.position) + " / " + formatTime(movieInfo.movie_duration)
                     color: Qt.rgba(100, 100, 100, 1)
                     font.pixelSize: 12
                 }

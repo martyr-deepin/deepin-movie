@@ -2,7 +2,9 @@ import QtQuick 2.1
 import QtMultimedia 5.0
 
 MouseArea {
+    focus: true
     hoverEnabled: true
+    acceptedButtons: Qt.LeftButton | Qt.RightButton
     anchors.fill: window
 
     property var window
@@ -54,6 +56,38 @@ MouseArea {
             cursorShape = Qt.ArrowCursor
         }
     }
+    
+    function close() {
+        windowView.close()
+    }
+
+    function normalize() {
+        root.state = "normal"
+        windowView.showNormal()
+    }
+
+    function fullscreen() {
+        root.state = "fullscreen"
+        windowView.showFullScreen()
+    }
+
+    function maximize() {
+        root.state = "normal"
+        windowView.showMaximized()
+    }
+    
+    function minimize() {
+        root.state = "normal"
+        windowView.showMaximized()
+    }
+
+    function toggleFullscreen() {
+        windowView.getState() == Qt.WindowFullScreen ? normalize() : fullscreen()
+    }
+
+    function toggleMaximized() {
+        windowView.getState() == Qt.WindowMaximized ? normalize() : maximize()        
+    }
 
     // player control operation related
     function play() {
@@ -67,6 +101,48 @@ MouseArea {
             player.pause()
         }
     }
+
+    function togglePlay() {
+        if (player.hasVideo) {
+            player.playbackState == MediaPlayer.PlayingState ? pause() : play()
+        }
+    }
+
+    function forward(delta) {
+        print("forward")
+        player.seek(player.position + delta)
+        notifybar.show("image/notify_forward.png", "快进至 " + formatTime(player.position))
+    }
+
+    function backward(delta) {
+        print("backward")
+        player.seek(player.position - delta)
+        notifybar.show("image/notify_backward.png", "快退至 " + formatTime(player.position))
+    }
+
+    function increaseVolume(delta) {
+        print("increaseVolume")
+        player.volume = Math.min(player.volume + delta, 1.0)
+
+        notifybar.show("image/notify_volume.png", "音量: " + Math.round(player.volume * 100) + "%")
+    }
+
+    function decreaseVolume(delta) {
+        print("decreaseVolume")
+        player.volume = Math.max(player.volume - delta, 0.0)
+
+        notifybar.show("image/notify_volume.png", "音量: " + Math.round(player.volume * 100) + "%")
+    }
+
+    Keys.onSpacePressed: togglePlay()
+    Keys.onLeftPressed: backward(5000)
+    Keys.onRightPressed: forward(5000)
+    Keys.onUpPressed: increaseVolume(0.05)
+    Keys.onDownPressed: decreaseVolume(0.05)
+    Keys.onEscapePressed: {
+    }
+
+    onWheel: wheel.angleDelta.y > 0 ? increaseVolume(wheel.angleDelta.y / 120 * 0.05) : decreaseVolume(-wheel.angleDelta.y / 120 * 0.05)
 
     onPressed: {
         resizeEdge = getEdge(mouse)
@@ -107,15 +183,23 @@ MouseArea {
     }
 
     onClicked: {
-        if (shouldPlayOrPause) {
-            if (player.playbackState == MediaPlayer.PausedState) {
-                play()
-            } else if (player.playbackState == MediaPlayer.PlayingState) {
-                pause()
-            }
+        if (mouse.button == Qt.RightButton) {
+            _menu_controller.show_menu()
         } else {
-            shouldPlayOrPause = true
+            if (shouldPlayOrPause) {
+                if (player.playbackState == MediaPlayer.PausedState) {
+                    play()
+                } else if (player.playbackState == MediaPlayer.PlayingState) {
+                    pause()
+                }
+            } else {
+                shouldPlayOrPause = true
+            }
         }
+    }
+    
+    onDoubleClicked: {
+        toggleFullscreen()
     }
 
     ResizeVisual {

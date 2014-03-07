@@ -7,10 +7,6 @@ Item {
 
     property real percentage: 0.0
     
-    onPercentageChanged: {
-        print("percentage changed ", percentage)
-    }
-
     signal mouseOver (var mouse)
     signal mouseExit ()
     
@@ -19,7 +15,7 @@ Item {
         anchors.fill: parent
 
         onClicked: {
-            pointer.x = mouse.x - pointer.width / 2
+            percentage = mouse.x / progressbar.width
         }
 
         onPositionChanged: {
@@ -63,7 +59,7 @@ Item {
 
         Image {
             id: pointer
-            x: -(pointer.width / 2)
+            x: progressbar.width * percentage - width / 2
             opacity: 0 <= x && x <= background.width - width ? 1 : 0
             source: "image/progress_pointer.png"
             anchors.verticalCenter: parent.verticalCenter

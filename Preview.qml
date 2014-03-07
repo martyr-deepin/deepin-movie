@@ -16,6 +16,7 @@ RectWithCorner {
     
     function seek(percentage) {
         video.seek(Math.floor(movieInfo.movie_duration * percentage))
+        videoTime.text = formatTime(movieInfo.movie_duration * percentage)
     }
     
     Video {
@@ -43,7 +44,6 @@ RectWithCorner {
         Text {
             id: videoTime
             color: "white"
-            text: "00:00:00"
             anchors.centerIn: parent
         }
     }

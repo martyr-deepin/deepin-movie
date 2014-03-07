@@ -11,6 +11,9 @@ Item {
 
     signal showed ()
     signal hided ()
+    signal minButtonClicked ()
+    signal maxButtonClicked ()
+    signal closeButtonClicked ()
     
     function show() {
     }
@@ -127,21 +130,19 @@ Item {
             ImageButton {
                 id: minButton
                 imageName: "image/window_min"
-                onClicked: {
-                    windowView.doMinimized()
-                }
+                onClicked: { titlebar.minButtonClicked() }
             }
 
             ImageButton {
                 id: maxButton
                 imageName: "image/window_max"
-                onClicked: {toggleMaxWindow()}
+                onClicked: { titlebar.maxButtonClicked() }
             }
 
             ImageButton {
                 id: closeButton
                 imageName: "image/window_close"
-                onClicked: {windowView.close()}
+                onClicked: { titlebar.closeButtonClicked() }
             }
         }
     }
