@@ -3,30 +3,22 @@ import QtGraphicalEffects 1.0
 
 Item {
     id: titlebar
-
     height: program_constants.titlebarHeight
 
     property alias tabPages: tabs.children
     property string currentPage
 
-    signal showed ()
-    signal hided ()
     signal minButtonClicked ()
     signal maxButtonClicked ()
     signal closeButtonClicked ()
     
     function show() {
+        opacity = 1
+        visible = true
     }
     
     function hide() {
-    }
-
-    function showWithAnimation () {
-        showingTitlebarAnimation.start()
-    }
-
-    function hideWithAnimation () {
-        hidingTitlebarAnimation.start()
+        hide_animation.start()
     }
 
     Item {
@@ -146,32 +138,14 @@ Item {
             }
         }
     }
-
+    
     PropertyAnimation {
-        id: showingTitlebarAnimation
-
+        id: hide_animation
         target: titlebar
-        property: "height"
-        to: program_constants.titlebarHeight
-        duration: 1000
-        easing.type: Easing.OutQuint
-
-        onStopped: {
-            titlebar.showed()
-        }
-    }
-
-    PropertyAnimation {
-        id: hidingTitlebarAnimation
-
-        target: titlebar
-        property: "height"
+        duration: 300
         to: 0
-        duration: 1000
-        easing.type: Easing.OutQuint
-
-        onStopped: {
-            titlebar.hided()
-        }
+        property: "opacity"
+        
+        onStopped: titlebar.visible = false
     }
 }

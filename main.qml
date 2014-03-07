@@ -28,6 +28,18 @@ Item {
         return hr + ':' + min + ':' + sec;
     }
     
+    function showControls() {
+        titlebar.show()
+        controlbar.show()
+        hide_controls_timer.restart()
+    }
+    
+    function hideControls() {
+        titlebar.hide()
+        controlbar.hide()
+        hide_controls_timer.stop()
+    }
+    
     states: [
         State {
             name: "normal"
@@ -72,6 +84,16 @@ Item {
         }
         onToggleFullscreen: {
             main_controller.toggleFullscreen()
+        }
+    }
+    
+    Timer { 
+        id: hide_controls_timer
+        running: true
+        interval: 5000
+        
+        onTriggered: {
+            hideControls()
         }
     }
 

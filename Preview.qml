@@ -10,7 +10,8 @@ RectWithCorner {
     withBlur: false
     blurWidth: 2
 
-    property url source
+    property alias source: video.source
+    property alias hasVideo: video.hasVideo
     
     property int previewPadding: 4
     
@@ -23,7 +24,6 @@ RectWithCorner {
         id: video
         autoPlay: true
         muted: true
-        source: parent.source
         
         anchors.fill: parent
         anchors.topMargin: previewPadding

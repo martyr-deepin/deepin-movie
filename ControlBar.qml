@@ -5,26 +5,23 @@ import QtGraphicalEffects 1.0
 Item {
     id: control_bar
     height: program_constants.controlbarHeight
-    
-    property url videoSource
+
     property int position: 0
     property alias percentage: progressbar.percentage
 
-    signal showed ()
-    signal hided ()
+    Behavior on opacity {
+        NumberAnimation { duration: 300 }
+    }
 
     function show() {
+        if (videoPreview.hasVideo) {
+            opacity = 1
+            visible = true
+        }
     }
 
     function hide() {
-    }
-
-    function showWithAnimation() {
-        showingBottomPanelAnimation.start()
-    }
-
-    function hideWithAnimation() {
-        hidingBottomPanelAnimation.start()
+        hide_animation.start()
     }
 
     LinearGradient {
@@ -52,7 +49,7 @@ Item {
                 source: movieInfo.movie_file
                 visible: false
             }
-            
+
             onMouseOver: {
                 videoPreview.visible = true
                 videoPreview.x = Math.min(Math.max(mouse.x - videoPreview.width / 2, 0),
@@ -61,7 +58,7 @@ Item {
 
                 var mouseX = mouse.x
                 var mouseY = mouse.y
-                
+
                 if (mouseX <= videoPreview.cornerWidth / 2) {
                     videoPreview.cornerPos = mouseX + videoPreview.cornerWidth / 2
                     videoPreview.cornerType = "left"
@@ -80,7 +77,7 @@ Item {
                 }
                 videoPreview.seek(mouseX / width)
             }
-            
+
             onMouseExit: {
                 videoPreview.visible = false
             }
@@ -208,24 +205,12 @@ Item {
     }
 
     PropertyAnimation {
-        id: showingBottomPanelAnimation
-        target: parent
-        property: "height"
-        to: program_constants.controlbarHeight
-        duration: 100
-        easing.type: Easing.OutQuint
-
-        onStopped: parent.showed()
-    }
-
-    PropertyAnimation {
-        id: hidingBottomPanelAnimation
-        target: parent
-        property: "height"
+        id: hide_animation
+        target: control_bar
+        duration: 300
         to: 0
-        duration: 100
-        easing.type: Easing.OutQuint
+        property: "opacity"
 
-        onStopped: parent.hided()
+        onStopped: titlebar.visible = false
     }
 }

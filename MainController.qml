@@ -141,6 +141,14 @@ MouseArea {
     Keys.onDownPressed: decreaseVolume(0.05)
     Keys.onEscapePressed: {
     }
+    
+    onEntered: {
+        showControls()
+    }
+    
+    onExited: {
+        hideControls()
+    }
 
     onWheel: wheel.angleDelta.y > 0 ? increaseVolume(wheel.angleDelta.y / 120 * 0.05) : decreaseVolume(-wheel.angleDelta.y / 120 * 0.05)
 
@@ -155,6 +163,7 @@ MouseArea {
     }
 
     onPositionChanged: {
+        showControls()
         if (!pressed) {
             changeCursor(getEdge(mouse))
             if (!playlist.expanded &&
@@ -224,6 +233,7 @@ MouseArea {
         anchors.fill: parent
 
         onDropped: {
+            showControls()
             if (drop.hasUrls) {
                 var file_path = drop.urls[0].substring(7)
                 movieInfo.movie_file = file_path
