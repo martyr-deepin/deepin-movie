@@ -70,6 +70,9 @@ Item {
         onAntiClosewiseRotate: {
             player.orientation += 90
         }
+        onToggleFullscreen: {
+            main_controller.toggleFullscreen()
+        }
     }
 
     Rectangle {

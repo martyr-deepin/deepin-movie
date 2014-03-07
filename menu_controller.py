@@ -67,6 +67,7 @@ class MenuController(QObject):
     
     clockwiseRotate = pyqtSignal()
     antiClosewiseRotate = pyqtSignal()
+    toggleFullscreen = pyqtSignal()
     
     def __init__(self):
         super(MenuController, self).__init__()
@@ -79,8 +80,9 @@ class MenuController(QObject):
             self.clockwiseRotate.emit()
         elif _id == "_turn_left":
             self.antiClosewiseRotate.emit()
+        elif _id == "_fullscreen_quit":
+            self.toggleFullscreen.emit()
 
     @pyqtSlot()
     def show_menu(self):
         self.menu.showRectMenu(QCursor.pos().x(), QCursor.pos().y())
-
