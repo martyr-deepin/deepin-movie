@@ -153,6 +153,10 @@ Item {
         id: player
         anchors.fill: parent
         source: movieInfo.movie_file
+        
+        onSourceChanged: {
+            seek(database.fetch_video_position(source))
+        }
 
         onPlaybackStateChanged: {
             if (playbackState == MediaPlayer.PausedState) {
@@ -162,7 +166,8 @@ Item {
 
         onPositionChanged: {
             var newPercentage = position / movieInfo.movie_duration
-            if (Math.abs(newPercentage - controlbar.percentage) < 1e-6) {
+            
+            if (Math.abs(newPercentage - controlbar.percentage) > 1e-10) {
                 controlbar.percentage = position / movieInfo.movie_duration
             }
         }
