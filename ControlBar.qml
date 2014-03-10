@@ -15,13 +15,13 @@ Item {
 
     function show() {
         if (videoPreview.hasVideo) {
-            opacity = 1
             visible = true
+
         }
     }
 
     function hide() {
-        hide_animation.start()
+        visible = false
     }
 
     LinearGradient {
@@ -202,15 +202,5 @@ Item {
                 }
             }
         }
-    }
-
-    PropertyAnimation {
-        id: hide_animation
-        target: control_bar
-        duration: 300
-        to: 0
-        property: "opacity"
-
-        onStopped: titlebar.visible = false
     }
 }

@@ -27,23 +27,36 @@ Item {
         if (hr) {hr = "00";}
         return hr + ':' + min + ':' + sec;
     }
-    
+
+    property bool controlsShowedFlag: true
     function showControls() {
-        titlebar.show()
-        controlbar.show()
-        hide_controls_timer.restart()
+        if (!controlsShowedFlag) {
+            titlebar.show()
+            controlbar.show()
+            hide_controls_timer.restart()
+            controlsShowedFlag = true
+        }
     }
-    
+
     function hideControls() {
-        titlebar.hide()
-        controlbar.hide()
-        hide_controls_timer.stop()
+        if (controlsShowedFlag) {
+            titlebar.hide()
+            controlbar.hide()
+            hide_controls_timer.stop()
+            controlsShowedFlag = false
+        }
     }
-    
+
+    function monitorWindowClose() {
+        print("monitorWindowClose")
+        database.record_video_position(player.source, player.position)
+        config.save("Normal", "volume", player.volume)
+    }
+
     states: [
         State {
             name: "normal"
-            
+
             PropertyChanges { target: player; anchors.fill: main_window }
             PropertyChanges { target: titlebar; width: main_window.width; anchors.top: main_window.top }
             PropertyChanges { target: controlbar; width: main_window.width; anchors.bottom: main_window.bottom}
@@ -51,12 +64,12 @@ Item {
         },
         State {
             name: "fullscreen"
-            
+
             PropertyChanges { target: player; anchors.fill: root }
             PropertyChanges { target: titlebar; width: root.width; anchors.top: root.top }
             PropertyChanges { target: controlbar; width: root.width; anchors.bottom: root.bottom}
             PropertyChanges { target: notifybar; anchors.top: titlebar.bottom; anchors.left: root.left}
-        }        
+        }
     ]
 
     Connections {
@@ -86,12 +99,12 @@ Item {
             main_controller.toggleFullscreen()
         }
     }
-    
-    Timer { 
+
+    Timer {
         id: hide_controls_timer
         running: true
         interval: 5000
-        
+
         onTriggered: {
             hideControls()
         }
@@ -141,17 +154,20 @@ Item {
         anchors.fill: parent
         source: movieInfo.movie_file
 
-        property int lastPosition: 0
-
         onPlaybackStateChanged: {
             if (playbackState == MediaPlayer.PausedState) {
                 pause_notify.notify()
             }
         }
 
-        onPositionChanged: controlbar.percentage = position / movieInfo.movie_duration
-        
-        PauseNotify { id: pause_notify; visible: false; anchors.centerIn: parent }        
+        onPositionChanged: {
+            var newPercentage = position / movieInfo.movie_duration
+            if (Math.abs(newPercentage - controlbar.percentage) < 1e-6) {
+                controlbar.percentage = position / movieInfo.movie_duration
+            }
+        }
+
+        PauseNotify { id: pause_notify; visible: false; anchors.centerIn: parent }
     }
 
     MainController {
@@ -171,7 +187,7 @@ Item {
     TitleBar {
         id: titlebar
         anchors.horizontalCenter: main_window.horizontalCenter
-        
+
         onMinButtonClicked: main_controller.minimize()
         onMaxButtonClicked: main_controller.toggleMaximized()
         onCloseButtonClicked: main_controller.close()

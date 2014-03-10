@@ -15,6 +15,19 @@ MouseArea {
     property int startY
 
     property bool shouldPlayOrPause: true
+    
+    property int movieDuration: movieInfo.movie_duration
+
+    Timer {
+        id: show_playlist_timer
+        interval: 3000
+
+        onTriggered: {
+            if (mouseX <= program_constants.playlistTriggerThreshold) {
+                playlist.show()
+            }
+        }
+    }
 
     // resize operation related
     function getEdge(mouse) {
@@ -56,7 +69,7 @@ MouseArea {
             cursorShape = Qt.ArrowCursor
         }
     }
-    
+
     function close() {
         windowView.close()
     }
@@ -75,7 +88,7 @@ MouseArea {
         root.state = "normal"
         windowView.showMaximized()
     }
-    
+
     function minimize() {
         root.state = "normal"
         windowView.showMaximized()
@@ -86,7 +99,7 @@ MouseArea {
     }
 
     function toggleMaximized() {
-        windowView.getState() == Qt.WindowMaximized ? normalize() : maximize()        
+        windowView.getState() == Qt.WindowMaximized ? normalize() : maximize()
     }
 
     // player control operation related
@@ -141,13 +154,13 @@ MouseArea {
     Keys.onDownPressed: decreaseVolume(0.05)
     Keys.onEscapePressed: {
     }
-    
+
     onEntered: {
         showControls()
     }
-    
+
     onExited: {
-        hideControls()
+    /* hideControls() */
     }
 
     onWheel: wheel.angleDelta.y > 0 ? increaseVolume(wheel.angleDelta.y / 120 * 0.05) : decreaseVolume(-wheel.angleDelta.y / 120 * 0.05)
@@ -164,12 +177,13 @@ MouseArea {
 
     onPositionChanged: {
         showControls()
+
         if (!pressed) {
             changeCursor(getEdge(mouse))
             if (!playlist.expanded &&
                 0 < mouse.x &&
                 mouse.x <= program_constants.playlistTriggerThreshold) {
-                playlist.show()
+                show_playlist_timer.restart()
             }
         }
         else {
@@ -206,7 +220,7 @@ MouseArea {
             }
         }
     }
-    
+
     onDoubleClicked: {
         toggleFullscreen()
     }
@@ -234,6 +248,7 @@ MouseArea {
 
         onDropped: {
             showControls()
+            
             if (drop.hasUrls) {
                 var file_path = drop.urls[0].substring(7)
                 movieInfo.movie_file = file_path

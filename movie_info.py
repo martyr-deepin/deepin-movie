@@ -23,6 +23,7 @@
 from PyQt5.QtCore import pyqtProperty, pyqtSignal, QObject
 from constant import DEFAULT_WIDTH, DEFAULT_HEIGHT
 from media_info import parse_info
+from logger import logger
 
 class MovieInfo(QObject):
     movieSourceChanged = pyqtSignal(str)
@@ -38,17 +39,17 @@ class MovieInfo(QObject):
 
     @pyqtProperty(int,notify=movieDurationChanged)
     def movie_duration(self):
-        print("movie_duration ", self.media_duration)
+        logger.info("get movie_duration %s" % self.media_duration)
         return int(self.media_duration)
 
     @pyqtProperty(int,notify=movieWidthChanged)
     def movie_width(self):
-        print("movie_width ", self.media_width)        
+        logger.info("get movie_width %s" % self.media_width)        
         return int(self.media_width)
 
     @pyqtProperty(int,notify=movieHeightChanged)
     def movie_height(self):
-        print("movie_height ", self.media_height)        
+        logger.info("get movie_height %s" % self.media_height)        
         return int(self.media_height)
 
     @pyqtProperty(str,notify=movieSourceChanged)
@@ -57,13 +58,15 @@ class MovieInfo(QObject):
 
     @movie_file.setter
     def movie_file(self, filepath):
+        logger.info("set movie_file %s" % filepath)                
         self.filepath = filepath
-        self.movieSourceChanged.emit(filepath)
 
         self.media_info = parse_info(self.filepath)
         self.media_width = self.media_info["video_width"] or DEFAULT_WIDTH
-        self.movieWidthChanged.emit(self.media_width)
         self.media_height = self.media_info["video_height"] or DEFAULT_HEIGHT
-        self.movieHeightChanged.emit(self.media_height)
         self.media_duration = self.media_info["general_duration"] or 0
-        self.movieDurationChanged.emit(self.media_duration)
+        
+        self.movieSourceChanged.emit(filepath)
+        self.movieWidthChanged.emit(self.media_width)
+        self.movieHeightChanged.emit(self.media_height)
+        self.movieDurationChanged.emit(self.media_duration)        

@@ -104,7 +104,7 @@ if __name__ == "__main__":
     view.show()
     
     # view.windowStateChanged.connect(view.rootObject().monitorWindowState)
-    # app.lastWindowClosed.connect(view.rootObject().monitorWindowClose)
+    app.lastWindowClosed.connect(view.rootObject().monitorWindowClose)
     app.setQuitOnLastWindowClosed(True)
 
     signal.signal(signal.SIGINT, signal.SIG_DFL)

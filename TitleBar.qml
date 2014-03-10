@@ -11,14 +11,13 @@ Item {
     signal minButtonClicked ()
     signal maxButtonClicked ()
     signal closeButtonClicked ()
-    
+
     function show() {
-        opacity = 1
         visible = true
     }
-    
+
     function hide() {
-        hide_animation.start()
+        visible = false
     }
 
     Item {
@@ -137,15 +136,5 @@ Item {
                 onClicked: { titlebar.closeButtonClicked() }
             }
         }
-    }
-    
-    PropertyAnimation {
-        id: hide_animation
-        target: titlebar
-        duration: 300
-        to: 0
-        property: "opacity"
-        
-        onStopped: titlebar.visible = false
     }
 }
