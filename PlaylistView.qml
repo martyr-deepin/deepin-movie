@@ -11,17 +11,7 @@ Item {
 
     property var childrenItems: []
 
-    property string content: JSON.stringify([{"itemName": "One",
-                                              "itemChild": ""},
-                                             {"itemName": "Three",
-                                              "itemChild": JSON.stringify([{"itemName": "Two",
-                                                                            "itemChild": JSON.stringify([{"itemName": "One",
-                                                                                                          "itemChild": ""},
-                                                                                                         {"itemName": "One",
-                                                                                                          "itemChild": ""}])}])},
-                                             {"itemName": "Two",
-                                              "itemChild": JSON.stringify([{"itemName": "One",
-                                                                            "itemChild": ""}])}])
+    property string content: ""
 
     Component {
         id: listview_delegate
@@ -186,7 +176,7 @@ Item {
                     lastMatchItem = item.child;
                 } else {
                     return lastMatchItem.insertToContent(path[i],
-                                                         path.slice(Math.min(i + 1, path.length - 1),
+                                                         path.slice(i + 1,
                                                                     path.length))
                 }
             } else {
@@ -199,7 +189,6 @@ Item {
         var lastMatchItem = root;
         for (var i = 0; i < path.length - 1; i++) {
             var item = lastMatchItem.getItemByName(path[i]);
-            print(item)
             if (item != null) {
                 if (item.child) {
                     lastMatchItem = item.child;
@@ -337,9 +326,9 @@ Item {
         return model
     }
 
-    Component.onCompleted: {
-        _insert(["Three", "Two", "Four"]);
-        _delete(["Three", "Two", "One"]);
-         /* print(objectToContent(contentToObject(content))) */
-     }
+    /* Component.onCompleted: { */
+    /*     _insert(["Three", "Two", "Four"]); */
+    /*     _delete(["Three", "Two", "One"]); */
+    /*      print(objectToContent(contentToObject(content))) */
+    /*  } */
 }

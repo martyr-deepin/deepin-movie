@@ -23,6 +23,14 @@ Rectangle {
             PropertyChanges { target: hidePlaylistButton; source: "image/playlist_button_inactive_background.png"}
         }
     ]
+    
+    onStateChanged: {
+        if (state == "inactive") {
+            hide_timer.restart()
+        } else {
+            hide_timer.stop()
+        }
+    }    
 
     function show() {
         if (!expanded) {
@@ -37,11 +45,11 @@ Rectangle {
         }
     }
     
-    onStateChanged: {
-        if (state == "inactive") {
-            hide_timer.restart()
+    function addItem(playlistType, item) {
+        if (playlistType == "network") {
+            network_playlist._insert(item)
         } else {
-            hide_timer.stop()
+            local_playlist._insert(item)
         }
     }
 
@@ -121,8 +129,8 @@ Rectangle {
         }
 
         Row {
-
             id: tabRow
+            
             height: 50
             anchors.leftMargin: spacing
             width: parent.width
@@ -161,7 +169,13 @@ Rectangle {
         }
 
         PlaylistView {
-            visible: playlistPanel.expanded
+            id: network_playlist
+            visible: playlistPanel.expanded && tabId == "networkd"
+        }
+        
+        PlaylistView {
+            id: local_playlist
+            visible: playlistPanel.expanded && tabId == "local"            
         }
     }
 

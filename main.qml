@@ -27,6 +27,11 @@ Item {
         if (hr) {hr = "00";}
         return hr + ':' + min + ':' + sec;
     }
+    
+    function urlToPlaylistItem(url) {
+        var pathDict = (url + "").split("/")
+        return pathDict.slice(pathDict.length - 2, pathDict.length + 1)
+    }
 
     property bool controlsShowedFlag: true
     function showControls() {
@@ -154,8 +159,9 @@ Item {
         anchors.fill: parent
         source: movieInfo.movie_file
         
-        onSourceChanged: {
+        onSourceChanged: {      /* FixMe: this signal is fired twice. */
             seek(database.fetch_video_position(source))
+            playlist.addItem("local", urlToPlaylistItem(source))
         }
 
         onPlaybackStateChanged: {
@@ -167,7 +173,7 @@ Item {
         onPositionChanged: {
             var newPercentage = position / movieInfo.movie_duration
             
-            if (Math.abs(newPercentage - controlbar.percentage) > 1e-10) {
+            if ((newPercentage - controlbar.percentage) * movieInfo.movie_duration > 5000) {
                 controlbar.percentage = position / movieInfo.movie_duration
             }
         }
@@ -204,7 +210,7 @@ Item {
         position: player.position
         visible: { return player.visible && player.hasVideo }
         anchors.horizontalCenter: main_window.horizontalCenter
-
+        
         onPercentageChanged: {
             player.seek(percentage * movieInfo.movie_duration)
         }

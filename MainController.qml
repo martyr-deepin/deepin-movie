@@ -24,6 +24,7 @@ MouseArea {
 
         onTriggered: {
             if (mouseX <= program_constants.playlistTriggerThreshold) {
+                hideControls()
                 playlist.show()
             }
         }
