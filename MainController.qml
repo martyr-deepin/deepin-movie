@@ -15,16 +15,17 @@ MouseArea {
     property int startY
 
     property bool shouldPlayOrPause: true
-    
+
     property int movieDuration: movieInfo.movie_duration
 
     Timer {
         id: show_playlist_timer
-        interval: 3000
+        interval: 30
 
         onTriggered: {
             if (mouseX <= program_constants.playlistTriggerThreshold) {
                 hideControls()
+                playlist.state = "active"
                 playlist.show()
             }
         }
@@ -181,11 +182,12 @@ MouseArea {
 
         if (!pressed) {
             changeCursor(getEdge(mouse))
+
             if (!playlist.expanded &&
                 0 < mouse.x &&
                 mouse.x <= program_constants.playlistTriggerThreshold) {
                 show_playlist_timer.restart()
-            }
+            } 
         }
         else {
             // prevent play or pause event from happening if we intend to move or resize the window
@@ -249,7 +251,7 @@ MouseArea {
 
         onDropped: {
             showControls()
-            
+
             if (drop.hasUrls) {
                 var file_path = drop.urls[0].substring(7)
                 movieInfo.movie_file = file_path

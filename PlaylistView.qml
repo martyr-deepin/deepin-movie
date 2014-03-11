@@ -11,7 +11,17 @@ Item {
 
     property var childrenItems: []
 
-    property string content: ""
+    property string content: JSON.stringify([{"itemName": "One",
+                                              "itemChild": ""},
+                                             {"itemName": "Three",
+                                              "itemChild": JSON.stringify([{"itemName": "Two",
+                                                                            "itemChild": JSON.stringify([{"itemName": "One",
+                                                                                                          "itemChild": ""},
+                                                                                                         {"itemName": "One",
+                                                                                                          "itemChild": ""}])}])},
+                                             {"itemName": "Two",
+                                              "itemChild": JSON.stringify([{"itemName": "One",
+                                                                            "itemChild": ""}])}])
 
     Component {
         id: listview_delegate
@@ -20,7 +30,7 @@ Item {
             id: item
 
             width: 200
-            height: label.height
+            height: 20
 
             property int itemIndex: index
             property alias child: column.child
@@ -54,38 +64,68 @@ Item {
                 }
             }
 
+            function isGroup() {
+                return itemChild != ""
+            }
+
             Column {
                 id: column
 
                 property var child
 
-                anchors.left: parent.left
-                anchors.right: parent.right
+                anchors.fill: parent
                 anchors.leftMargin: 15
                 anchors.rightMargin: 15
+                anchors.topMargin: 5
 
-                Text {
-                    id: label
+                function toggleExpand() {
+                    item.ListView.view.currentIndex = index
+                    if (!column.parent.isGroup()) playlist.currentItem = column
 
-                    text: itemName
-                    color: "white"
+                    if (column.child) {
+                        column.child.destroy();
+                        column.parent.decreaseH(column.child.actualHeight);
+                    } else if (column.parent.isGroup()) {
+                        column.child = Qt.createQmlObject('import QtQuick 2.1; PlaylistView{}',
+                                                          column, "child");
+                        column.child.content = itemChild
+                        column.child.anchors.left = column.left
+                        column.child.anchors.leftMargin = 10
 
-                    MouseArea {
-                        anchors.fill: parent
+                        column.parent.increaseH(column.child.actualHeight)
+                    }
+                }
 
-                        onClicked: {
-                            if (column.child) {
-                                column.child.destroy();
-                                column.parent.decreaseH(column.child.actualHeight);
-                            } else {
-                                column.child = Qt.createQmlObject('import QtQuick 2.1; PlaylistView{}',
-                                                                  column, "child");
-                                column.child.content = itemChild
-                                column.child.anchors.left = column.left
-                                column.child.anchors.leftMargin = 10
+                Row {
+                    id: row
+                    spacing: 10
 
-                                column.parent.increaseH(column.child.actualHeight)
-                            }
+                    Image {
+                        opacity: column.parent.isGroup() ? 1 : 0
+                        source: column.child ? "image/expanded.png" : "image/not_expanded.png"
+
+                        MouseArea {
+                            anchors.fill: parent
+
+                            onClicked: column.toggleExpand()
+                        }
+                    }
+
+                    Text {
+                        id: label
+
+                        text: itemName
+                        color: column.child ? "#8800BDFF" : playlist.currentItem == column ? "#00BDFF" : mouse_area.containsMouse ? "white" : "#B4B4B4"
+                        font.pixelSize: column.parent.isGroup() ? 12 : playlist.currentItem == column ? 13 : 11
+
+                        MouseArea {
+                            id: mouse_area
+                            hoverEnabled: true
+                            anchors.fill: parent
+
+                            onEntered: playlist.state = "active"
+
+                            onClicked: column.toggleExpand()
                         }
                     }
                 }
@@ -98,6 +138,7 @@ Item {
 
         model: root.getModelFromString(root.content, listview)
         delegate: listview_delegate
+        currentIndex: -1
 
         anchors.fill: parent
     }
@@ -326,9 +367,9 @@ Item {
         return model
     }
 
-    /* Component.onCompleted: { */
-    /*     _insert(["Three", "Two", "Four"]); */
-    /*     _delete(["Three", "Two", "One"]); */
-    /*      print(objectToContent(contentToObject(content))) */
-    /*  } */
+    Component.onCompleted: {
+        /* _insert(["Three", "Two", "Four"]); */
+        /* _delete(["Three", "Two", "One"]); */
+         /* print(objectToContent(contentToObject(content))) */
+     }
 }

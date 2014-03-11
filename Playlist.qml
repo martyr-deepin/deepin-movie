@@ -5,6 +5,7 @@ Rectangle {
     state: "active"
     opacity: 1
 
+    property var currentItem
     property string tabId: "network"
     property bool expanded: width == program_constants.playlistWidth
 
@@ -105,7 +106,7 @@ Rectangle {
         onExited: {
             playlistPanel.state = "inactive"
         }
-
+        
         onClicked: {
             console.log("Click on playlist.")
         }
@@ -145,13 +146,13 @@ Rectangle {
 
                     Rectangle {
                         anchors.fill: parent
-                        color: tabId == tabs.children[index].type ? "#171717" : "transparent"
+                        color: tabId == tabs.children[index].type ? "#131414" : "transparent"
                         radius: 2
                         anchors.margins: 12
 
                         Text {
                             text: tabs.children[index].name
-                            color: tabId == tabs.children[index].type ? "#E0E0E0" : "#474747"
+                            color: tabId == tabs.children[index].type ? "#FACA57" : "#B4B4B4"
                             font { pixelSize: 13 }
                             anchors.centerIn: parent
                         }
@@ -170,12 +171,12 @@ Rectangle {
 
         PlaylistView {
             id: network_playlist
-            visible: playlistPanel.expanded && tabId == "networkd"
+            visible: playlistPanel.expanded && tabId == "network"
         }
         
         PlaylistView {
             id: local_playlist
-            visible: playlistPanel.expanded && tabId == "local"            
+            visible: playlistPanel.expanded && tabId == "local"
         }
     }
 
