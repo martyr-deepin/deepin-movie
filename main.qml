@@ -193,6 +193,8 @@ Item {
         visible: false
         anchors.top: main_window.top
         anchors.left: main_window.left
+        
+        onVideoSelected: movieInfo.movie_file = path
     }
 
     TitleBar {

@@ -11,6 +11,7 @@ Rectangle {
 
     signal showingAnimationDone
     signal hidingAnimationDone
+    signal videoSelected (string path)
 
     states: [
         State {

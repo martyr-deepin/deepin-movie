@@ -11,16 +11,23 @@ Item {
 
     property var childrenItems: []
 
-    property string content: JSON.stringify([{"itemName": "One",
+    property string content: JSON.stringify([{"itemName": "1.mp4",
+                                              "itemUrl": "/home/hualet/Videos/1.mp4",
                                               "itemChild": ""},
                                              {"itemName": "Three",
+                                              "itemUrl": "",                                              
                                               "itemChild": JSON.stringify([{"itemName": "Two",
-                                                                            "itemChild": JSON.stringify([{"itemName": "One",
+                                                                            "itemUrl": "",
+                                                                            "itemChild": JSON.stringify([{"itemName": "Movie.mkv",
+                                                                                                          "itemUrl": "/home/hualet/Videos/Movie.mkv",
                                                                                                           "itemChild": ""},
-                                                                                                         {"itemName": "One",
+                                                                                                         {"itemName": "slime.mov",
+                                                                                                          "itemUrl": "/home/hualet/Videos/slime.mov",
                                                                                                           "itemChild": ""}])}])},
                                              {"itemName": "Two",
+                                              "itemUrl": "",
                                               "itemChild": JSON.stringify([{"itemName": "One",
+                                                                            "itemUrl": "",
                                                                             "itemChild": ""}])}])
 
     Component {
@@ -93,6 +100,10 @@ Item {
                         column.child.anchors.leftMargin = 10
 
                         column.parent.increaseH(column.child.actualHeight)
+                    } else {
+                        print(itemName)
+                        print(itemUrl)
+                        playlist.videoSelected(itemUrl)
                     }
                 }
 
@@ -265,6 +276,7 @@ Item {
         for (var i = path.length - 1; i >= 0; i--) {
             var ele = {};
             ele.itemName = path[i];
+            ele.itemUrl = path[i];
             ele.itemChild = result ? JSON.stringify([result]) : "";
             result = ele;
         }
@@ -360,7 +372,9 @@ Item {
             var obj = JSON.parse(str);
 
             for (var i = 0; i < obj.length; i++) {
-                model.append({"itemName": obj[i].itemName, "itemChild": obj[i].itemChild})
+                model.append({"itemName": obj[i].itemName, 
+                              "itemChild": obj[i].itemChild,
+                              "itemUrl": obj[i].itemUrl} )
             }
         }
 
