@@ -25,14 +25,14 @@ Rectangle {
             PropertyChanges { target: hidePlaylistButton; source: "image/playlist_button_inactive_background.png"}
         }
     ]
-    
+
     onStateChanged: {
         if (state == "inactive") {
             hide_timer.restart()
         } else {
             hide_timer.stop()
         }
-    }    
+    }
 
     function show() {
         if (!expanded) {
@@ -46,7 +46,7 @@ Rectangle {
             hidingPlaylistPanelAnimation.restart()
         }
     }
-    
+
     function addItem(playlistType, item) {
         if (playlistType == "network") {
             network_playlist._insert(item)
@@ -59,7 +59,7 @@ Rectangle {
         id: hide_timer
         interval: 5000
         repeat: false
-        
+
         onTriggered: hidingPlaylistPanelAnimation.start()
     }
 
@@ -107,14 +107,17 @@ Rectangle {
         onExited: {
             playlistPanel.state = "inactive"
         }
-        
+
         onClicked: {
             console.log("Click on playlist.")
         }
     }
 
     Column {
-        anchors.fill: parent
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: bottom_rect.top
 
         Item {
             id: tabs
@@ -132,7 +135,7 @@ Rectangle {
 
         Row {
             id: tabRow
-            
+
             height: 50
             anchors.leftMargin: spacing
             width: parent.width
@@ -147,7 +150,7 @@ Rectangle {
 
                     Rectangle {
                         anchors.fill: parent
-                        color: tabId == tabs.children[index].type ? "#131414" : "transparent"
+                        color: tabId == tabs.children[index].type ? program_constants.bgDarkColor : "transparent"
                         radius: 2
                         anchors.margins: 12
 
@@ -172,12 +175,31 @@ Rectangle {
 
         PlaylistView {
             id: network_playlist
+            width: 190
             visible: playlistPanel.expanded && tabId == "network"
         }
-        
+
         PlaylistView {
             id: local_playlist
+            width: 190
             visible: playlistPanel.expanded && tabId == "local"
+        }
+    }
+
+    Rectangle {
+        id: bottom_rect
+        width: parent.width
+        height: 24
+        color: program_constants.bgDarkColor
+        anchors.bottom: parent.bottom
+
+        ClearButton {
+            id: clear_button
+            anchors.right: parent.right
+            anchors.rightMargin: 5
+            anchors.verticalCenter: parent.verticalCenter
+
+            onEntered: playlist.state = "active"
         }
     }
 

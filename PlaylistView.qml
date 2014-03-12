@@ -15,7 +15,7 @@ Item {
                                               "itemUrl": "/home/hualet/Videos/1.mp4",
                                               "itemChild": ""},
                                              {"itemName": "Three",
-                                              "itemUrl": "",                                              
+                                              "itemUrl": "",
                                               "itemChild": JSON.stringify([{"itemName": "Two",
                                                                             "itemUrl": "",
                                                                             "itemChild": JSON.stringify([{"itemName": "Movie.mkv",
@@ -36,7 +36,7 @@ Item {
         Item {
             id: item
 
-            width: 200
+            width: root.width
             height: 20
 
             property int itemIndex: index
@@ -74,7 +74,7 @@ Item {
             function isGroup() {
                 return itemChild != ""
             }
-
+            
             Column {
                 id: column
 
@@ -82,7 +82,6 @@ Item {
 
                 anchors.fill: parent
                 anchors.leftMargin: 15
-                anchors.rightMargin: 15
                 anchors.topMargin: 5
 
                 function toggleExpand() {
@@ -93,7 +92,7 @@ Item {
                         column.child.destroy();
                         column.parent.decreaseH(column.child.actualHeight);
                     } else if (column.parent.isGroup()) {
-                        column.child = Qt.createQmlObject('import QtQuick 2.1; PlaylistView{}',
+                        column.child = Qt.createQmlObject('import QtQuick 2.1; PlaylistView{width:' + (column.width - 10) + '}',
                                                           column, "child");
                         column.child.content = itemChild
                         column.child.anchors.left = column.left
@@ -107,36 +106,59 @@ Item {
                     }
                 }
 
-                Row {
-                    id: row
-                    spacing: 10
+                Item {
+                    width: parent.width
+                    height: row.height
+                    
+                    MouseArea {
+                        id: mouse_area
+                        hoverEnabled: true
+                        anchors.fill: parent
 
-                    Image {
-                        opacity: column.parent.isGroup() ? 1 : 0
-                        source: column.child ? "image/expanded.png" : "image/not_expanded.png"
+                        onEntered: {playlist.state = "active"; delete_button.visible = true}
+                        onExited: delete_button.visible = false
+                        onClicked: column.toggleExpand()
+                    }
+                    
+                    Row {
+                        id: row
+                        spacing: 10
 
-                        MouseArea {
-                            anchors.fill: parent
+                        Image {
+                            opacity: column.parent.isGroup() ? 1 : 0
+                            source: column.child ? "image/expanded.png" : "image/not_expanded.png"
+                        }
 
-                            onClicked: column.toggleExpand()
+                        Text {
+                            id: label
+                            text: itemName
+                            color: column.child ? "#8800BDFF" : playlist.currentItem == column ? "#00BDFF" : mouse_area.containsMouse ? "white" : "#B4B4B4"
+                            font.pixelSize: column.parent.isGroup() ? 12 : playlist.currentItem == column ? 13 : 11
                         }
                     }
 
-                    Text {
-                        id: label
-
-                        text: itemName
-                        color: column.child ? "#8800BDFF" : playlist.currentItem == column ? "#00BDFF" : mouse_area.containsMouse ? "white" : "#B4B4B4"
-                        font.pixelSize: column.parent.isGroup() ? 12 : playlist.currentItem == column ? 13 : 11
+                    Image {
+                        id: delete_button
+                        visible: false
+                        source: "image/delete_normal.png"
+                        anchors.right: parent.right
+                        anchors.verticalCenter: parent.verticalCenter
 
                         MouseArea {
-                            id: mouse_area
                             hoverEnabled: true
                             anchors.fill: parent
 
-                            onEntered: playlist.state = "active"
-
-                            onClicked: column.toggleExpand()
+                            onEntered: {
+                                playlist.state = "active"
+                                delete_button.visible = true
+                                delete_button.source = "image/delete_hover.png"
+                            }
+                            onExited: {
+                                delete_button.visible = false                                
+                                delete_button.source = "image/delete_normal.png"
+                            }
+                            onPressed: delete_button.source = "image/delete_pressed.png"
+                            onReleased: delete_button.source = "image/delete_hover.png"
                         }
                     }
                 }
@@ -372,7 +394,7 @@ Item {
             var obj = JSON.parse(str);
 
             for (var i = 0; i < obj.length; i++) {
-                model.append({"itemName": obj[i].itemName, 
+                model.append({"itemName": obj[i].itemName,
                               "itemChild": obj[i].itemChild,
                               "itemUrl": obj[i].itemUrl} )
             }
