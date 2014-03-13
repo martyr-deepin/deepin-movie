@@ -5,12 +5,16 @@ import QtQuick.Window 2.1
 Item {
     id: root
     state: "normal"
-    width: movieInfo.movie_width
-    height: movieInfo.movie_height
+    width: movieInfo.movie_width * widthProportion
+    height: movieInfo.movie_height * heightProportion
+    
+    property real widthProportion: 1
+    property real heightProportion: 1
 
     onWidthChanged: windowView.width = width
     onHeightChanged: windowView.height = height
-
+    
+    MenuResponder {}
     ResizeEdge { id: resize_edge }
     Constants { id: program_constants }
 
@@ -89,19 +93,6 @@ Item {
             if (!player.visible) {
                 pageManager.show_page(titlebar.currentPage, online.x, online.y, online.width, online.height)
             }
-        }
-    }
-
-    Connections {
-        target: _menu_controller
-        onClockwiseRotate: {
-            player.orientation -= 90
-        }
-        onAntiClosewiseRotate: {
-            player.orientation += 90
-        }
-        onToggleFullscreen: {
-            main_controller.toggleFullscreen()
         }
     }
 

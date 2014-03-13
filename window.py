@@ -20,12 +20,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import time
 from PyQt5.QtCore import QSize
 from PyQt5 import QtGui
 from PyQt5.QtQuick import QQuickView
-from PyQt5.QtCore import pyqtSlot
-from PyQt5.QtGui import QSurfaceFormat, QColor
+from PyQt5.QtCore import pyqtSlot, QDir
+from PyQt5.QtGui import QSurfaceFormat, QColor, QPixmap
 from PyQt5 import QtCore, QtQuick
+from notification import notify
 
 class Window(QQuickView):
 
@@ -62,3 +64,14 @@ class Window(QQuickView):
     @pyqtSlot(int, int)
     def setMinSize(self, min_width, min_height):
         self.setMinimumSize(QSize(min_width, min_height))
+        
+    @pyqtSlot()
+    def screenShot(self):
+        self.rootObject().hideControls()
+        
+        name = "%s-%s" % (self.title(), time.strftime("%y-%m-%d-%H-%M-%S", time.localtime()))
+        path = QDir.homePath() +"/%s.jpg" % name
+        p = QPixmap.fromImage(self.grabWindow())
+        p.save(path, "jpg")
+        
+        notify(u"截图成功", u"文件已保存到%s" % path)

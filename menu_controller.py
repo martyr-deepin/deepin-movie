@@ -53,6 +53,7 @@ right_click_menu = [
     CheckboxMenuItem("_on_top", "On Top", True),
     ("_play_sequence", "Play Sequence"),
     ("_play", "Play"),
+    ("_screenshot", "ScreenShot"),
     ("_frame", "Frame", (), frame_sub_menu),
     ("_sound", "Sound"),
     ("_subtitle", "Subtitle"),
@@ -68,6 +69,8 @@ class MenuController(QObject):
     clockwiseRotate = pyqtSignal()
     antiClosewiseRotate = pyqtSignal()
     toggleFullscreen = pyqtSignal()
+    screenShot = pyqtSignal()
+    proportionChanged = pyqtSignal(float)
     
     def __init__(self):
         super(MenuController, self).__init__()
@@ -82,6 +85,16 @@ class MenuController(QObject):
             self.antiClosewiseRotate.emit()
         elif _id == "_fullscreen_quit":
             self.toggleFullscreen.emit()
+        elif _id == "_screenshot":
+            self.screenShot.emit()
+        elif _id == "_s_0_5":
+            self.proportionChanged.emit(0.5)
+        elif _id == "_s_1":
+            self.proportionChanged.emit(1)
+        elif _id == "_s_1_5":
+            self.proportionChanged.emit(1.5)
+        elif _id == "_s_2":
+            self.proportionChanged.emit(2)
 
     @pyqtSlot()
     def show_menu(self):
