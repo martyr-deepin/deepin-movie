@@ -74,7 +74,7 @@ Item {
             function isGroup() {
                 return itemChild != ""
             }
-            
+
             Column {
                 id: column
 
@@ -109,17 +109,28 @@ Item {
                 Item {
                     width: parent.width
                     height: row.height
-                    
+
                     MouseArea {
                         id: mouse_area
                         hoverEnabled: true
                         anchors.fill: parent
 
-                        onEntered: {playlist.state = "active"; delete_button.visible = true}
-                        onExited: delete_button.visible = false
+                        onEntered: {
+                            playlist.state = "active"
+                            delete_button.visible = true
+
+                            if (!column.parent.isGroup()) {
+                                var pos = windowView.getCursorPos()
+                                tooltip.showTip(pos.x, pos.y, itemName)
+                            }
+                        }
+                        onExited: {
+                            delete_button.visible = false
+                            tooltip.hideTip()
+                        }
                         onClicked: column.toggleExpand()
                     }
-                    
+
                     Row {
                         id: row
                         spacing: 10
@@ -154,7 +165,7 @@ Item {
                                 delete_button.source = "image/delete_hover.png"
                             }
                             onExited: {
-                                delete_button.visible = false                                
+                                delete_button.visible = false
                                 delete_button.source = "image/delete_normal.png"
                             }
                             onPressed: delete_button.source = "image/delete_pressed.png"

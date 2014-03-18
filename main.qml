@@ -15,6 +15,7 @@ Item {
     onHeightChanged: windowView.height = height
     
     MenuResponder {}
+    ToolTip { id: tooltip }
     ResizeEdge { id: resize_edge }
     Constants { id: program_constants }
 

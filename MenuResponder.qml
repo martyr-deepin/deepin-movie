@@ -1,6 +1,6 @@
 import QtQuick 2.1
 
-Connections {
+ Connections {
     target: _menu_controller
     
     onClockwiseRotate: {
