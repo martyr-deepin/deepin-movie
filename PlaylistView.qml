@@ -300,109 +300,111 @@ Item {
     function _fetch() {
         return type == "local" ? database.playlist_local : database.playlist_network
     }
+    
     /* Database operations end */
 
     // see `insert' above for more infomation about path
     function pathToListElement(path) {
-        var result;
+        var result
 
         for (var i = path.length - 1; i >= 0; i--) {
-            var ele = {};
-            ele.itemName = path[i];
-            ele.itemUrl = path[i];
-            ele.itemChild = result ? JSON.stringify([result]) : "";
-            result = ele;
+            var ele = {}
+            ele.itemName = path[i]
+            ele.itemUrl = path[i]
+            ele.itemChild = result ? JSON.stringify([result]) : "[]"
+            result = ele
         }
 
-        return result;
+        return result
     }
 
     function insertToListModel(path) {
-        listview.model.append(pathToListElement(path));
+        listview.model.append(pathToListElement(path))
+        listview.forceLayout()
     }
 
     function insertToContent(parentNode, path) {
-        var obj = getObject();
+        var obj = getObject()
         for (var i = 0; i < obj.length; i++) {
             if (obj[i].itemName == parentNode) {
-                var parent = obj[i];
+                var parent = obj[i]
 
                 for (var i = 0; i < path.length; i++) {
-                    var child = parent.itemChild;
-                    var flag = false;
+                    var child = parent.itemChild
+                    var flag = false
                     for (var j = 0; j < child.length; j++) {
-                        var c = child[i];
+                        var c = child[i]
                         if (c && c.itemName == path[i]) {
-                            flag = true;
-                            parent = c;
-                            break;
+                            flag = true
+                            parent = c
+                            break
                         }
                     }
                     if (!flag) {
-                        parent.itemChild.push(pathToListElement(path.slice(i, path.length)));
+                        parent.itemChild.push(pathToListElement(path.slice(i, path.length)))
                     }
                 }
-                break;
+                break
             }
         }
-        content = objectToContent(obj);
+        content = objectToContent(obj)
     }
 
     function deleteFromListModel(name) {
         for (var i = 0; i < listview.count; i++) {
             if (listview.model.get(i).itemName == name) {
-                listview.model.remove(i, 1);
+                listview.model.remove(i, 1)
             }
         }
     }
 
     function deleteFromContent(parentNode, path) {
-        var obj = getObject();
+        var obj = getObject()
         for (var i = 0; i < obj.length; i++) {
             if (obj[i].itemName == parentNode) {
-                var parent = obj[i];
+                var parent = obj[i]
 
                 for (var i = 0; i < path.length - 1; i++) {
-                    var child = parent.itemChild;
-                    var flag = false;
+                    var child = parent.itemChild
+                    var flag = false
                     for (var j = 0; j < child.length; j++) {
-                        var c = child[i];
+                        var c = child[i]
                         if (c && c.itemName == path[i]) {
-                            flag = true;
-                            parent = c;
-                            break;
+                            flag = true
+                            parent = c
+                            break
                         }
                     }
                     if (!flag) {
-                        break;
+                        break
                     }
                 }
-                var child = parent.itemChild;
+                var child = parent.itemChild
                 for (var j = 0; j < child.length; j++) {
-                    var c = child[i];
+                    var c = child[i]
                     if (c && c.itemName == path[i]) {
-                        parent.itemChild.splice(i, 1);
+                        parent.itemChild.splice(i, 1)
                     }
                 }
-                break;
+                break
             }
         }
-        content = objectToContent(obj);
+        content = objectToContent(obj)
     }
 
     function deleteOne(name) {
         for (var i = 0; i < listview.count; i++) {
             if (listview.model.get(i).itemName == name) {
-                listview.model.remove(i, 1);
+                listview.model.remove(i, 1)
             }
         }
     }
 
     function getModelFromString(str, prt) {
         var model = Qt.createQmlObject('import QtQuick 2.1; ListModel{}',
-                                       prt, "model");
+                                       prt, "model")
         if (str != "") {
-            var obj = JSON.parse(str);
+            var obj = JSON.parse(str)
 
             for (var i = 0; i < obj.length; i++) {
                 model.append({"itemName": obj[i].itemName,
