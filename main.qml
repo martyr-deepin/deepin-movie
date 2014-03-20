@@ -7,17 +7,32 @@ Item {
     state: "normal"
     width: movieInfo.movie_width * widthProportion
     height: movieInfo.movie_height * heightProportion
-    
+
     property real widthProportion: 1
     property real heightProportion: 1
 
     onWidthChanged: windowView.width = width
     onHeightChanged: windowView.height = height
-    
+
+    Constants { id: program_constants }
+
     MenuResponder {}
     ToolTip { id: tooltip }
     ResizeEdge { id: resize_edge }
-    Constants { id: program_constants }
+
+    OpenFileDialog {
+        id: open_file_dialog
+        
+        onAccepted: {
+            for (var i = 0; i < fileUrls.length; i++) {
+                playlist.addItem("local", urlToPlaylistItem(fileUrls[i]))
+            }
+        }
+    }
+
+    OpenFolderDialog {
+        id: open_folder_dialog
+    }
 
     function formatTime(millseconds) {
         if (millseconds < 0) return "00:00:00";
@@ -32,7 +47,7 @@ Item {
         if (hr) {hr = "00";}
         return hr + ':' + min + ':' + sec;
     }
-    
+
     function urlToPlaylistItem(url) {
         var pathDict = (url + "").split("/")
         return pathDict.slice(pathDict.length - 2, pathDict.length + 1)
@@ -40,7 +55,7 @@ Item {
 
     property bool controlsShowedFlag: true
     function showControls() {
-        if (!controlsShowedFlag) {
+        if (!controlsShowedFlag && !playlist.expanded) {
             titlebar.show()
             controlbar.show()
             hide_controls_timer.restart()
@@ -58,7 +73,6 @@ Item {
     }
 
     function monitorWindowClose() {
-        print("monitorWindowClose")
         database.record_video_position(player.source, player.position)
         config.save("Normal", "volume", player.volume)
     }
@@ -150,10 +164,9 @@ Item {
         id: player
         anchors.fill: parent
         source: movieInfo.movie_file
-        
+
         onSourceChanged: {      /* FixMe: this signal is fired twice. */
             seek(database.fetch_video_position(source))
-            playlist.addItem("local", urlToPlaylistItem(source))
         }
 
         onPlaybackStateChanged: {
@@ -164,7 +177,7 @@ Item {
 
         onPositionChanged: {
             var newPercentage = position / movieInfo.movie_duration
-            
+
             if ((newPercentage - controlbar.percentage) * movieInfo.movie_duration > 5000) {
                 controlbar.percentage = position / movieInfo.movie_duration
             }
@@ -185,7 +198,7 @@ Item {
         visible: false
         anchors.top: main_window.top
         anchors.left: main_window.left
-        
+
         onVideoSelected: movieInfo.movie_file = path
     }
 
@@ -204,7 +217,7 @@ Item {
         position: player.position
         visible: { return player.visible && player.hasVideo }
         anchors.horizontalCenter: main_window.horizontalCenter
-        
+
         onPercentageChanged: {
             player.seek(percentage * movieInfo.movie_duration)
         }

@@ -19,4 +19,11 @@ import QtQuick 2.1
         root.widthProportion = arguments[0]
         root.heightProportion = arguments[0]
     }
+    onOpenDialog: {
+        if (arguments[0] == "file") {
+            open_file_dialog.open()
+        } else if (arguments[0] == "dir") {
+            open_folder_dialog.open()
+        } 
+    }
 }

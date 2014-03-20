@@ -13,22 +13,22 @@ Item {
 
     property string content: JSON.stringify([{"itemName": "1.mp4",
                                               "itemUrl": "/home/hualet/Videos/1.mp4",
-                                              "itemChild": ""},
+                                              "itemChild": "[]"},
                                              {"itemName": "Three",
                                               "itemUrl": "",
                                               "itemChild": JSON.stringify([{"itemName": "Two",
                                                                             "itemUrl": "",
                                                                             "itemChild": JSON.stringify([{"itemName": "Movie.mkv",
                                                                                                           "itemUrl": "/home/hualet/Videos/Movie.mkv",
-                                                                                                          "itemChild": ""},
+                                                                                                          "itemChild": "[]"},
                                                                                                          {"itemName": "slime.mov",
                                                                                                           "itemUrl": "/home/hualet/Videos/slime.mov",
-                                                                                                          "itemChild": ""}])}])},
+                                                                                                          "itemChild": "[]"}])}])},
                                              {"itemName": "Two",
                                               "itemUrl": "",
                                               "itemChild": JSON.stringify([{"itemName": "One",
                                                                             "itemUrl": "",
-                                                                            "itemChild": ""}])}])
+                                                                            "itemChild": "[]"}])}])
 
     Component {
         id: listview_delegate
@@ -48,6 +48,7 @@ Item {
             }
 
             Component.onCompleted: {
+                print("push =====>", itemName)
                 ListView.view.parent.childrenItems.push(item)
             }
 
@@ -72,7 +73,8 @@ Item {
             }
 
             function isGroup() {
-                return itemChild != ""
+                /* print(itemName + "===>" + itemChild) */
+                return itemChild != "[]"
             }
 
             Column {
@@ -90,18 +92,17 @@ Item {
 
                     if (column.child) {
                         column.child.destroy();
-                        column.parent.decreaseH(column.child.actualHeight);
+                        column.parent.decreaseH(column.child.actualHeight)
                     } else if (column.parent.isGroup()) {
-                        column.child = Qt.createQmlObject('import QtQuick 2.1; PlaylistView{width:' + (column.width - 10) + '}',
-                                                          column, "child");
+                        column.child = Qt.createQmlObject('import QtQuick 2.1; PlaylistView{width:' + (column.width) + '}',
+                                                          column, "child")
                         column.child.content = itemChild
                         column.child.anchors.left = column.left
-                        column.child.anchors.leftMargin = 10
 
                         column.parent.increaseH(column.child.actualHeight)
                     } else {
-                        print(itemName)
-                        print(itemUrl)
+                        /* print(itemName) */
+                        /* print(itemUrl) */
                         playlist.videoSelected(itemUrl)
                     }
                 }
@@ -190,62 +191,53 @@ Item {
     // getContent returns the string representation of this playlist hierarchy
     // getObject returns the object representation of this playlist hierarchy
     function getContent() {
-        var result = [];
+        var result = []
         for (var i = 0; i < listview.count; i++) {
-            result.push(listview.model.get(i));
+            result.push(listview.model.get(i))
         }
-        return JSON.stringify(result);
+        return JSON.stringify(result)
     }
 
     function getObject() {
-        return contentToObject(getContent());
+        return contentToObject(getContent())
     }
 
     function contentToObject(content) {
-        var result = [];
+        var result = []
 
-        if (!content || content == "") return result;
-        var items = JSON.parse(content);
+        if (!content || content == "") return result
+        var items = JSON.parse(content)
         for (var i = 0; i < items.length; i++) {
             items[i].itemChild = contentToObject(items[i].itemChild)
-            result.push(items[i]);
+            result.push(items[i])
         }
 
-        return result;
+        return result
     }
 
     function objectToContent(obj) {
-        if (!obj) return "[]";
+        if (!obj) return "[]"
 
-        var result = [];
+        var result = []
 
         for (var i = 0; i < obj.length; i++) {
-            var item = {};
-            item.itemName = obj[i].itemName;
-            item.itemChild = objectToContent(obj[i].itemChild);
-            result.push(item);
+            var item = {}
+            item.itemName = obj[i].itemName
+            item.itemChild = objectToContent(obj[i].itemChild)
+            result.push(item)
         }
 
-        return JSON.stringify(result);
+        return JSON.stringify(result)
     }
 
     // Just this level
     function getItemByName(name) {
+        print("getItemByName")
         for (var i = 0; i < childrenItems.length; i++) {
             if (childrenItems[i].title == name) {
                 return childrenItems[i]
             }
         }
-
-        /* for (var i = 0; i < childrenItems.length; i++) { */
-        /*     var child = childrenItems[i].child; */
-        /*     if (child) { */
-        /*         var item = child.getItemByName(name); */
-        /*         if (item != null) { */
-        /*             return item; */
-        /*         } */
-        /*     } */
-        /* } */
 
         return null
     }
@@ -253,41 +245,41 @@ Item {
     /* Database operations */
     // path is something like ["level one", "level two", "level three"]
     function _insert(path) {
-        var lastMatchItem = root;
+        var lastMatchItem = root
         for (var i = 0; i < path.length; i++) {
-            var item = lastMatchItem.getItemByName(path[i]);
+            var item = lastMatchItem.getItemByName(path[i])
             if (item != null) {
                 if (item.child) {
-                    lastMatchItem = item.child;
+                    lastMatchItem = item.child
                 } else {
                     return lastMatchItem.insertToContent(path[i],
                                                          path.slice(i + 1,
                                                                     path.length))
                 }
             } else {
-                return lastMatchItem.insertToListModel(path.slice(i, path.length));
+                return lastMatchItem.insertToListModel(path.slice(i, path.length))
             }
         }
     }
 
     function _delete(path) {
-        var lastMatchItem = root;
+        var lastMatchItem = root
         for (var i = 0; i < path.length - 1; i++) {
-            var item = lastMatchItem.getItemByName(path[i]);
+            var item = lastMatchItem.getItemByName(path[i])
             if (item != null) {
                 if (item.child) {
-                    lastMatchItem = item.child;
+                    lastMatchItem = item.child
                 } else {
                     return lastMatchItem.deleteFromContent(path[i],
                                                            path.slice(i + 1, path.length))
                 }
             } else {
-                return;
+                return
             }
         }
 
         if(lastMatchItem && lastMatchItem.getItemByName(path[path.length - 1])) {
-            lastMatchItem.deleteFromListModel(path[path.length - 1]);
+            lastMatchItem.deleteFromListModel(path[path.length - 1])
         }
     }
 

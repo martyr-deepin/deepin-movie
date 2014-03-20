@@ -71,6 +71,7 @@ class MenuController(QObject):
     toggleFullscreen = pyqtSignal()
     screenShot = pyqtSignal()
     proportionChanged = pyqtSignal(float)
+    openDialog = pyqtSignal(str)
     
     def __init__(self):
         super(MenuController, self).__init__()
@@ -95,6 +96,12 @@ class MenuController(QObject):
             self.proportionChanged.emit(1.5)
         elif _id == "_s_2":
             self.proportionChanged.emit(2)
+        elif _id == "_open_file":
+            self.openDialog.emit("file")
+        elif _id == "_open_dir":
+            self.openDialog.emit("dir")
+        elif _id == "_open_url":
+            self.openDialog.emit("url")
 
     @pyqtSlot()
     def show_menu(self):
