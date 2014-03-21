@@ -11,24 +11,25 @@ Item {
 
     property var childrenItems: []
 
-    property string content: JSON.stringify([{"itemName": "1.mp4",
-                                              "itemUrl": "/home/hualet/Videos/1.mp4",
-                                              "itemChild": "[]"},
-                                             {"itemName": "Three",
-                                              "itemUrl": "",
-                                              "itemChild": JSON.stringify([{"itemName": "Two",
-                                                                            "itemUrl": "",
-                                                                            "itemChild": JSON.stringify([{"itemName": "Movie.mkv",
-                                                                                                          "itemUrl": "/home/hualet/Videos/Movie.mkv",
-                                                                                                          "itemChild": "[]"},
-                                                                                                         {"itemName": "slime.mov",
-                                                                                                          "itemUrl": "/home/hualet/Videos/slime.mov",
-                                                                                                          "itemChild": "[]"}])}])},
-                                             {"itemName": "Two",
-                                              "itemUrl": "",
-                                              "itemChild": JSON.stringify([{"itemName": "One",
-                                                                            "itemUrl": "",
-                                                                            "itemChild": "[]"}])}])
+    /* property string content: JSON.stringify([{"itemName": "1.mp4", */
+    /*                                           "itemUrl": "/home/hualet/Videos/1.mp4", */
+    /*                                           "itemChild": "[]"}, */
+    /*                                          {"itemName": "Three", */
+    /*                                           "itemUrl": "", */
+    /*                                           "itemChild": JSON.stringify([{"itemName": "Two", */
+    /*                                                                         "itemUrl": "", */
+    /*                                                                         "itemChild": JSON.stringify([{"itemName": "Movie.mkv", */
+    /*                                                                                                       "itemUrl": "/home/hualet/Videos/Movie.mkv", */
+    /*                                                                                                       "itemChild": "[]"}, */
+    /*                                                                                                      {"itemName": "slime.mov", */
+    /*                                                                                                       "itemUrl": "/home/hualet/Videos/slime.mov", */
+    /*                                                                                                       "itemChild": "[]"}])}])}, */
+    /*                                          {"itemName": "Two", */
+    /*                                           "itemUrl": "", */
+    /*                                           "itemChild": JSON.stringify([{"itemName": "One", */
+    /*                                                                         "itemUrl": "", */
+    /*                                                                         "itemChild": "[]"}])}]) */
+    property string content: "[]"
 
     Component {
         id: listview_delegate
@@ -48,7 +49,6 @@ Item {
             }
 
             Component.onCompleted: {
-                print("push =====>", itemName)
                 ListView.view.parent.childrenItems.push(item)
             }
 
@@ -73,7 +73,6 @@ Item {
             }
 
             function isGroup() {
-                /* print(itemName + "===>" + itemChild) */
                 return itemChild != "[]"
             }
 
@@ -223,6 +222,7 @@ Item {
         for (var i = 0; i < obj.length; i++) {
             var item = {}
             item.itemName = obj[i].itemName
+            item.itemUrl = obj[i].itemUrl
             item.itemChild = objectToContent(obj[i].itemChild)
             result.push(item)
         }
@@ -232,7 +232,6 @@ Item {
 
     // Just this level
     function getItemByName(name) {
-        print("getItemByName")
         for (var i = 0; i < childrenItems.length; i++) {
             if (childrenItems[i].title == name) {
                 return childrenItems[i]
@@ -296,14 +295,18 @@ Item {
     /* Database operations end */
 
     // see `insert' above for more infomation about path
-    function pathToListElement(path) {
+    function pathToListElement(path, childAsObj) {
         var result
 
         for (var i = path.length - 1; i >= 0; i--) {
             var ele = {}
             ele.itemName = path[i]
             ele.itemUrl = path[i]
-            ele.itemChild = result ? JSON.stringify([result]) : "[]"
+            if (childAsObj == false) {
+                ele.itemChild = result ? JSON.stringify([result]) : "[]"
+            } else {
+                ele.itemChild = result ? [result] : []
+            }
             result = ele
         }
 
@@ -311,7 +314,7 @@ Item {
     }
 
     function insertToListModel(path) {
-        listview.model.append(pathToListElement(path))
+        listview.model.append(pathToListElement(path, false))
         listview.forceLayout()
     }
 
@@ -333,7 +336,7 @@ Item {
                         }
                     }
                     if (!flag) {
-                        parent.itemChild.push(pathToListElement(path.slice(i, path.length)))
+                        parent.itemChild.push(pathToListElement(path.slice(i, path.length), true))
                     }
                 }
                 break
