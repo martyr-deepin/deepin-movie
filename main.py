@@ -55,8 +55,12 @@ class PageManager(QObject):
     def __init__(self, view):
         super(QObject, self).__init__()
         self.main_xid = view.winId().__int__()
-        self.movie_store_page = Browser("http://pianku.xmp.kankan.com/moviestore_index.html")
-        self.movie_search_page = Browser("http://search.xmp.kankan.com/lndex4xmp.shtml")
+        # self.movie_store_page = Browser("http://pianku.xmp.kankan.com/moviestore_index.html")
+        # self.movie_search_page = Browser("http://search.xmp.kankan.com/lndex4xmp.shtml")
+
+        # self.movie_store_page = Browser("http://dy.yunfan.com")
+        self.movie_search_page = Browser("http://www.yunfan.com/qs")
+        self.movie_store_page = Browser("http://www.jyyy.cc/gc/diaosinanshidisanji/Qvod-0-0.html")
 
     @pyqtSlot(str, int, int, int, int)
     def show_page(self, page_name, x, y, width, height):
@@ -77,14 +81,16 @@ class PageManager(QObject):
         self.movie_search_page.hide()
         
 if __name__ == "__main__":
+    app = QApplication(sys.argv)    
+    
     movie_file = ""
     if len(sys.argv) >= 2:
         movie_file = sys.argv[1]
     movie_info = MovieInfo(movie_file)
-
-    app = QApplication(sys.argv)
-    database = Database()
+    
     config = Config()
+    database = Database()
+    
     view = Window()
     page_manager = PageManager(view)
     menu_controller = MenuController()

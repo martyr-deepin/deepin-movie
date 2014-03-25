@@ -20,9 +20,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+from PyQt5.QtWebKit import QWebSettings
 from PyQt5.QtWebKitWidgets import QWebView, QWebPage
 from PyQt5.QtWidgets import QApplication
-from PyQt5.QtCore import QUrl, Qt
+from PyQt5.QtCore import QUrl, Qt, QFile, QTextStream, QIODevice
 from stickwidget import StickWidget
 from deepin_utils.file import get_parent_dir
 import os
@@ -32,17 +33,48 @@ class Browser(StickWidget):
         super(Browser, self).__init__()
         
         self.view = QWebView(self)
-        self.view.load(QUrl(url))
-        self.view.page().setLinkDelegationPolicy(QWebPage.DelegateAllLinks)
-        self.view.page().linkClicked.connect(self.link_clicked)
-        self.view.page().mainFrame().setScrollBarPolicy(Qt.Horizontal, Qt.ScrollBarAlwaysOff)
-            
+        self.layout.addWidget(self.view)        
+        self.view.settings().setAttribute(QWebSettings.PluginsEnabled, True)
         self.view.settings().setUserStyleSheetUrl(QUrl.fromLocalFile(os.path.join(get_parent_dir(__file__), "scrollbar.css")))
         
-        self.layout.addWidget(self.view)
+        self.view.load(QUrl(url))
+        self.view.page().setLinkDelegationPolicy(QWebPage.DelegateAllLinks)
+        self.view.page().mainFrame().setScrollBarPolicy(Qt.Horizontal, Qt.ScrollBarAlwaysOff)
+        self.view.page().mainFrame().evaluateJavaScript(self.plugin_public_js)
+        self.view.page().mainFrame().evaluateJavaScript(self.plugin_qvod_search_js)
+        
+        self.view.loadFinished.connect(self.url_load_finished)
+        self.view.page().linkClicked.connect(self.link_clicked)        
+        
+    def url_load_finished(self):
+        self.view.page().mainFrame().evaluateJavaScript("startsearch(document)")
         
     def link_clicked(self, url):
         self.view.load(url)
+        
+    @property
+    def plugin_public_js(self):
+        fd = QFile("qvod/public.js") 
+ 
+        if fd.open(QIODevice.ReadOnly | QFile.Text): 
+            result = QTextStream(fd).readAll() 
+            fd.close() 
+        else: 
+            result = '' 
+            
+        return result
+        
+    @property
+    def plugin_qvod_search_js(self):
+        fd = QFile("qvod/qvodsearch.js") 
+ 
+        if fd.open(QIODevice.ReadOnly | QFile.Text): 
+            result = QTextStream(fd).readAll() 
+            fd.close() 
+        else: 
+            result = '' 
+            
+        return result
         
 if __name__ == '__main__':
     import sys
