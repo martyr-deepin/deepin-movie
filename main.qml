@@ -160,7 +160,7 @@ Item {
         }
     }
 
-    Player1 {
+    Player {
         id: player
         anchors.fill: parent
         source: movieInfo.movie_file
