@@ -33,6 +33,9 @@
 # Opengl driver (mesa) is using Xlib for buffer management. Result is assert failure in libxcb in different threads.
 #
 import os
+import sys
+import signal
+
 from PyQt5 import QtCore
 from PyQt5.QtCore import QCoreApplication
 if os.name == 'posix':
@@ -40,9 +43,8 @@ if os.name == 'posix':
     
 from PyQt5.QtCore import pyqtSlot, QObject
 from PyQt5.QtWidgets import QApplication, qApp
-import sys
-import os
-import signal
+
+import qvod
 from window import Window
 from database import Database
 from config import Config
@@ -58,9 +60,8 @@ class PageManager(QObject):
         # self.movie_store_page = Browser("http://pianku.xmp.kankan.com/moviestore_index.html")
         # self.movie_search_page = Browser("http://search.xmp.kankan.com/lndex4xmp.shtml")
 
-        # self.movie_store_page = Browser("http://dy.yunfan.com")
+        self.movie_store_page = Browser("http://dy.yunfan.com")
         self.movie_search_page = Browser("http://www.yunfan.com/qs")
-        self.movie_store_page = Browser("http://www.jyyy.cc/gc/diaosinanshidisanji/Qvod-0-0.html")
 
     @pyqtSlot(str, int, int, int, int)
     def show_page(self, page_name, x, y, width, height):

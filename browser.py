@@ -21,7 +21,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from PyQt5.QtWebKit import QWebSettings
-from PyQt5.QtWebKitWidgets import QWebView, QWebPage
+from PyQt5.QtWebKitWidgets import QWebView, QWebPage, QWebInspector
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtCore import QUrl, Qt, QFile, QTextStream, QIODevice
 from stickwidget import StickWidget
@@ -34,20 +34,22 @@ class Browser(StickWidget):
         
         self.view = QWebView(self)
         self.layout.addWidget(self.view)        
-        self.view.settings().setAttribute(QWebSettings.PluginsEnabled, True)
+        self.view.settings().setAttribute(QWebSettings.PluginsEnabled, True) # enable plugins
+        self.view.settings().setAttribute(QWebSettings.DeveloperExtrasEnabled, True) # enable dev tools
         self.view.settings().setUserStyleSheetUrl(QUrl.fromLocalFile(os.path.join(get_parent_dir(__file__), "scrollbar.css")))
         
         self.view.load(QUrl(url))
         self.view.page().setLinkDelegationPolicy(QWebPage.DelegateAllLinks)
         self.view.page().mainFrame().setScrollBarPolicy(Qt.Horizontal, Qt.ScrollBarAlwaysOff)
-        self.view.page().mainFrame().evaluateJavaScript(self.plugin_public_js)
-        self.view.page().mainFrame().evaluateJavaScript(self.plugin_qvod_search_js)
+        # self.view.page().mainFrame().evaluateJavaScript(self.plugin_public_js)
+        # self.view.page().mainFrame().evaluateJavaScript(self.plugin_qvod_search_js)
         
         self.view.loadFinished.connect(self.url_load_finished)
         self.view.page().linkClicked.connect(self.link_clicked)        
         
     def url_load_finished(self):
-        self.view.page().mainFrame().evaluateJavaScript("startsearch(document)")
+        print "url_load_finished"
+        # self.view.page().mainFrame().evaluateJavaScript("setTimeout(function () {startsearch(document)}, 3000)")
         
     def link_clicked(self, url):
         self.view.load(url)
@@ -82,7 +84,8 @@ if __name__ == '__main__':
     
     app = QApplication(sys.argv)
 
-    url = QUrl('http://pianku.xmp.kankan.com/moviestore_index.html')
+    url = QUrl('http://www.9ying.net/play/696368.html')
+    # url = QUrl('http://www.baidu.com')
 
     browser = Browser(url)
     browser.resize(600, 400)

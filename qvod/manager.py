@@ -20,7 +20,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import os
 import re
+import thread
+import shutil
+import subprocess
 
 class Parser(object):
     __slots__ = ("qvod_uri_pattern", "_uri", "_file_name", "_file_size", "_file_hash")    
@@ -52,9 +56,24 @@ class Parser(object):
     def file_hash(self):
         return self._file_hash
         
+    def __str__(self):
+        return "Name: {}, Size: {}, Hash: {}".format(self.file_name, self.file_size, self.file_hash)
+        
 class Downloader(object):
-    def __init__(self):
-        pass
+    def __init__(self, uri):
+        self.uri = uri
+        self.parser = Parser(uri)
+        
+    def _exe_from_parser(self, parser):
+        return "%s+%s_%s.exe" % (parser.file_hash, parser.file_name, parser.file_hash)
+        
+    def start(self):
+        def _start():
+            src = os.path.join(os.path.dirname(__file__), "downloader.exe")
+            dest = os.path.join(os.path.expanduser("~/.cache"), self._exe_from_parser(self.parser))
+            shutil.copy(src, dest)
+            subprocess.Popen(["wine", dest])
+        thread.start_new_thread(_start, ())
         
 if __name__ == "__main__":
     # test for parser
