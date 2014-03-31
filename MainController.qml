@@ -187,7 +187,7 @@ MouseArea {
                 0 < mouse.x &&
                 mouse.x <= program_constants.playlistTriggerThreshold) {
                 show_playlist_timer.restart()
-            } 
+            }
         }
         else {
             // prevent play or pause event from happening if we intend to move or resize the window
@@ -209,6 +209,11 @@ MouseArea {
     }
 
     onClicked: {
+        if (playlist.expanded) {
+            playlist.hide()
+            return 
+        }
+        
         if (mouse.button == Qt.RightButton) {
             _menu_controller.show_menu()
         } else {
