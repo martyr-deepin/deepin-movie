@@ -47,7 +47,11 @@ MouseArea {
         spacing: 5
 
         Image { id: icn }
-        Text { id: lab; text: "清空" }
+        Text { 
+            id: lab; 
+            text: "清空" 
+            font.pixelSize: 12
+        }
     }
     
     onPressed: state = "pressed"
