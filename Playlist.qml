@@ -6,7 +6,7 @@ Rectangle {
     opacity: 1
 
     property var currentItem
-    property string tabId: "network"
+    property string tabId: "local"
     property bool expanded: width == program_constants.playlistWidth
 
     signal showingAnimationDone
@@ -127,15 +127,14 @@ Rectangle {
 
         Item {
             id: tabs
-
-            Item {
-                property string name: "网络列表"
-                property string type: "network"
-            }
-
             Item {
                 property string name: "本地列表"
                 property string type: "local"
+            }
+            
+            Item {
+                property string name: "网络列表"
+                property string type: "network"
             }
         }
 
@@ -182,13 +181,15 @@ Rectangle {
         PlaylistView {
             id: network_playlist
             width: 190
-            visible: playlistPanel.expanded && tabId == "network"
+            type: "local"
+            visible: playlistPanel.expanded && tabId == "local"
         }
 
         PlaylistView {
             id: local_playlist
             width: 190
-            visible: playlistPanel.expanded && tabId == "local"
+            type: "network"            
+            visible: playlistPanel.expanded && tabId == "network"
         }
     }
 
