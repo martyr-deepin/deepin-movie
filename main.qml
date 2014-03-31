@@ -71,6 +71,11 @@ Item {
             controlsShowedFlag = false
         }
     }
+    
+    /* to perform like a newly started program  */
+    function reset() {
+        movieInfo.source = ""
+    }
 
     function monitorWindowClose() {
         database.record_video_position(player.source, player.position)
@@ -186,9 +191,18 @@ Item {
         onPositionChanged: {
             var newPercentage = position / movieInfo.movie_duration
 
+            /* If we maunally forwarded the player by selecting a position on the progress bar, 
+             the player may gradually increase the `position' property to offset instead of 
+             setting it to offset immediately. 
+             To reduce the chance that causes progress bar 'x' binding loop, we should do some
+             check before we set controlbar's `percentage' property. */
             if ((newPercentage - controlbar.percentage) * movieInfo.movie_duration > 5000) {
                 controlbar.percentage = position / movieInfo.movie_duration
             }
+            
+            /* if(newPercentage == 1) { */
+            /*     root.reset() */
+            /* } */
         }
 
         PauseNotify { id: pause_notify; visible: false; anchors.centerIn: parent }
@@ -228,6 +242,10 @@ Item {
 
         onPercentageChanged: {
             player.seek(percentage * movieInfo.movie_duration)
+        }
+        
+        onTogglePlay: {
+            main_controller.togglePlay()
         }
     }
 

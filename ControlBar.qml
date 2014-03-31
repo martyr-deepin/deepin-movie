@@ -8,6 +8,8 @@ Item {
 
     property int position: 0
     property alias percentage: progressbar.percentage
+    
+    signal togglePlay ()
 
     Behavior on opacity {
         NumberAnimation { duration: 300 }
@@ -142,7 +144,7 @@ Item {
                     id: playerPlay
                     imageName: player.playbackState == MediaPlayer.PlayingState ? "image/player_pause" : "image/player_play"
                     onClicked: {
-                        toggle()
+                        control_bar.togglePlay()
                     }
                 }
 
