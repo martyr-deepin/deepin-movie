@@ -10,26 +10,7 @@ Item {
     property int actualHeight: listview.contentHeight
 
     property var childrenItems: []
-
-    /* property string content: JSON.stringify([{"itemName": "1.mp4", */
-    /*                                           "itemUrl": "/home/hualet/Videos/1.mp4", */
-    /*                                           "itemChild": "[]"}, */
-    /*                                          {"itemName": "Three", */
-    /*                                           "itemUrl": "", */
-    /*                                           "itemChild": JSON.stringify([{"itemName": "Two", */
-    /*                                                                         "itemUrl": "", */
-    /*                                                                         "itemChild": JSON.stringify([{"itemName": "Movie.mkv", */
-    /*                                                                                                       "itemUrl": "/home/hualet/Videos/Movie.mkv", */
-    /*                                                                                                       "itemChild": "[]"}, */
-    /*                                                                                                      {"itemName": "slime.mov", */
-    /*                                                                                                       "itemUrl": "/home/hualet/Videos/slime.mov", */
-    /*                                                                                                       "itemChild": "[]"}])}])}, */
-    /*                                          {"itemName": "Two", */
-    /*                                           "itemUrl": "", */
-    /*                                           "itemChild": JSON.stringify([{"itemName": "One", */
-    /*                                                                         "itemUrl": "", */
-    /*                                                                         "itemChild": "[]"}])}]) */
-    property string content: "[]"
+    property string content: _fetch()
 
     Component {
         id: listview_delegate
@@ -100,9 +81,8 @@ Item {
 
                         column.parent.increaseH(column.child.actualHeight)
                     } else {
-                        /* print(itemName) */
-                        /* print(itemUrl) */
                         playlist.videoSelected(itemUrl)
+                        playlist.hide()
                     }
                 }
 
@@ -143,6 +123,8 @@ Item {
                         Text {
                             id: label
                             text: itemName
+                            width: 100
+                            elide: Text.ElideRight
                             color: column.child ? "#8800BDFF" : playlist.currentItem == column ? "#00BDFF" : mouse_area.containsMouse ? "white" : "#B4B4B4"
                             font.pixelSize: column.parent.isGroup() ? 12 : playlist.currentItem == column ? 13 : 11
                         }
@@ -242,7 +224,7 @@ Item {
     }
 
     /* Database operations */
-    // path is something like ["level one", "level two", "level three"]
+    // path is something like ["level one", "level two", ["level three", "/home/you/Videos/movie.mov"]]
     function _insert(path) {
         var lastMatchItem = root
         for (var i = 0; i < path.length; i++) {
@@ -251,12 +233,16 @@ Item {
                 if (item.child) {
                     lastMatchItem = item.child
                 } else {
-                    return lastMatchItem.insertToContent(path[i],
-                                                         path.slice(i + 1,
-                                                                    path.length))
+                    lastMatchItem.insertToContent(path[i],
+                                                  path.slice(i + 1,
+                                                             path.length))
+                    _save()
+                    return
                 }
             } else {
-                return lastMatchItem.insertToListModel(path.slice(i, path.length))
+                lastMatchItem.insertToListModel(path.slice(i, path.length))
+                _save()
+                return
             }
         }
     }
@@ -269,29 +255,35 @@ Item {
                 if (item.child) {
                     lastMatchItem = item.child
                 } else {
-                    return lastMatchItem.deleteFromContent(path[i],
-                                                           path.slice(i + 1, path.length))
+                    lastMatchItem.deleteFromContent(path[i],
+                                                    path.slice(i + 1, path.length))
+                    _save()
+                    return
                 }
             } else {
+                _save()
                 return
             }
         }
 
         if(lastMatchItem && lastMatchItem.getItemByName(path[path.length - 1])) {
             lastMatchItem.deleteFromListModel(path[path.length - 1])
+            _save()
         }
     }
 
     function _save() {
         if (type == "local") {
             database.playlist_local = getContent()
+        } else {
+            Database.playlist_network = getContent()
         }
     }
 
     function _fetch() {
         return type == "local" ? database.playlist_local : database.playlist_network
     }
-    
+
     /* Database operations end */
 
     // see `insert' above for more infomation about path
@@ -300,8 +292,13 @@ Item {
 
         for (var i = path.length - 1; i >= 0; i--) {
             var ele = {}
-            ele.itemName = path[i]
-            ele.itemUrl = path[i]
+            if (i == path.length - 1) {
+                ele.itemName = path[i][0]
+                ele.itemUrl = path[i][1]
+            } else {
+                ele.itemName = path[i]
+                ele.itemUrl = path[i]
+            }
             if (childAsObj == false) {
                 ele.itemChild = result ? JSON.stringify([result]) : "[]"
             } else {

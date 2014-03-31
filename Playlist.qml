@@ -54,6 +54,12 @@ Rectangle {
             local_playlist._insert(item)
         }
     }
+    
+    function selectNextItem() {
+    }
+    
+    function selectPreviousItem() {
+    }
 
     Timer {
         id: hide_timer

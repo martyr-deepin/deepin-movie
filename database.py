@@ -19,14 +19,17 @@
 # 
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-from PyQt5.QtCore import pyqtSlot, pyqtProperty, QObject
-from constant import CONFIG_DIR
 import os
 import sqlite3
+from constant import CONFIG_DIR
 from deepin_utils.file import touch_file
+from PyQt5.QtCore import pyqtSlot, pyqtSignal, pyqtProperty, QObject
+
 
 class Database(QObject):
+    localPlaylistChanged = pyqtSignal(str)
+    networkPlaylistChanged = pyqtSignal(str)
+    
     def __init__(self):
         QObject.__init__(self)
         self.video_db_path = os.path.join(CONFIG_DIR, "video_db")
@@ -76,10 +79,19 @@ class Database(QObject):
         )
         self.video_db_connect.commit()
         
-    @pyqtProperty(str)
+    @pyqtProperty(str,notify=localPlaylistChanged)
     def playlist_local(self):
         return self.getValue("playlist_local") or ""
         
     @playlist_local.setter
     def playlist_local(self, value):
         self.setValue("playlist_local", value)
+        
+    @pyqtProperty(str,notify=networkPlaylistChanged)
+    def playlist_network(self):
+        return self.getValue("playlist_network") or ""
+        
+    @playlist_network.setter
+    def playlist_network(self, value):
+        self.setValue("playlist_network", value)
+
