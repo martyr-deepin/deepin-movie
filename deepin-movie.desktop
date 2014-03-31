@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Deepin Movie
+Name[zh_CN]=深度影院
+Name[zh_TW]=深度影院
+Exec=deepin-movie %f
+Icon=deepin-movie
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Encoding=UTF-8
+Categories=Application;Multimedia;Player;
+StartupNotify=false
