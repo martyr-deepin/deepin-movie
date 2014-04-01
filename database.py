@@ -86,6 +86,7 @@ class Database(QObject):
     @playlist_local.setter
     def playlist_local(self, value):
         self.setValue("playlist_local", value)
+        self.localPlaylistChanged.emit(value)
         
     @pyqtProperty(str,notify=networkPlaylistChanged)
     def playlist_network(self):
@@ -94,4 +95,5 @@ class Database(QObject):
     @playlist_network.setter
     def playlist_network(self, value):
         self.setValue("playlist_network", value)
+        self.networkPlaylistChanged.emit(value)
 
