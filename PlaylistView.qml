@@ -10,7 +10,7 @@ Item {
     property int actualHeight: listview.contentHeight
 
     property var childrenItems: []
-    property string content: _fetch()
+    property string content: type == "local" ? database.playlist_local : database.playlist_network
 
     Component {
         id: listview_delegate
@@ -276,14 +276,9 @@ Item {
         if (type == "local") {
             database.playlist_local = getContent()
         } else {
-            Database.playlist_network = getContent()
+            database.playlist_network = getContent()
         }
     }
-
-    function _fetch() {
-        return type == "local" ? database.playlist_local : database.playlist_network
-    }
-
     /* Database operations end */
 
     // see `insert' above for more infomation about path

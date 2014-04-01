@@ -55,6 +55,14 @@ Rectangle {
         }
     }
     
+    function clear() {
+        if (playlistPanel.tabId == "local") {
+            database.playlist_local = ""
+        } else {
+            database.playlist_network = ""
+        }
+    }
+    
     function selectNextItem() {
     }
     
@@ -207,6 +215,7 @@ Rectangle {
             anchors.verticalCenter: parent.verticalCenter
 
             onEntered: playlist.state = "active"
+            onClicked: playlist.clear()
         }
     }
 
