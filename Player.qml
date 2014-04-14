@@ -7,23 +7,23 @@ Video {
     autoPlay: true
     anchors.fill: parent
 
-    property int screensaverInhibitId
+    // property int screensaverInhibitId
 
-    ScreenSaver { id: dbus_screensaver }
+    // ScreenSaver { id: dbus_screensaver }
 
-    onPlaying: {
-        if (!dbus_screensaver.isInhibited) {
-            screensaverInhibitId = dbus_screensaver.Inhibit("DMovie", "videos' playing")
-        }
-    }
-    onPaused: {
-        if (screensaverInhibitId) {
-            dbus_screensaver.Uninhibit(screensaverInhibitId)
-        }
-    }
-    onStopped: {
-        if (screensaverInhibitId) {
-            dbus_screensaver.Uninhibit(screensaverInhibitId)
-        }
-    }
+    // onPlaying: {
+    //     if (!dbus_screensaver.isInhibited) {
+    //         screensaverInhibitId = dbus_screensaver.Inhibit("DMovie", "videos' playing")
+    //     }
+    // }
+    // onPaused: {
+    //     if (screensaverInhibitId) {
+    //         dbus_screensaver.Uninhibit(screensaverInhibitId)
+    //     }
+    // }
+    // onStopped: {
+    //     if (screensaverInhibitId) {
+    //         dbus_screensaver.Uninhibit(screensaverInhibitId)
+    //     }
+    // }
 }

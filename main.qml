@@ -24,8 +24,11 @@ Item {
         id: open_file_dialog
 
         onAccepted: {
-            for (var i = 0; i < fileUrls.length; i++) {
-                playlist.addItem("local", urlToPlaylistItem(fileUrls[i]))
+            if (fileUrls.length > 0) {
+                for (var i = 0; i < fileUrls.length; i++) {
+                    playlist.addItem("local", urlToPlaylistItem(fileUrls[i]))
+                }
+                movieInfo.movie_file = fileUrls[0]
             }
         }
     }
