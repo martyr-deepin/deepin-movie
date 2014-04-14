@@ -42,7 +42,7 @@ class Browser(StickWidget):
         self.view.page().setLinkDelegationPolicy(QWebPage.DelegateAllLinks)
         self.view.page().mainFrame().setScrollBarPolicy(Qt.Horizontal, Qt.ScrollBarAlwaysOff)
         # self.view.page().mainFrame().evaluateJavaScript(self.plugin_public_js)
-        # self.view.page().mainFrame().evaluateJavaScript(self.plugin_qvod_search_js)
+        self.view.page().mainFrame().evaluateJavaScript(self.plugin_qvod_search_js)
         
         self.view.loadFinished.connect(self.url_load_finished)
         self.view.page().linkClicked.connect(self.link_clicked)        
@@ -50,25 +50,14 @@ class Browser(StickWidget):
     def url_load_finished(self):
         print "url_load_finished"
         # self.view.page().mainFrame().evaluateJavaScript("setTimeout(function () {startsearch(document)}, 3000)")
+        self.view.page().mainFrame().evaluateJavaScript("setTimeout(function () {search()}, 3000)")
         
     def link_clicked(self, url):
         self.view.load(url)
         
     @property
-    def plugin_public_js(self):
-        fd = QFile("qvod/public.js") 
- 
-        if fd.open(QIODevice.ReadOnly | QFile.Text): 
-            result = QTextStream(fd).readAll() 
-            fd.close() 
-        else: 
-            result = '' 
-            
-        return result
-        
-    @property
     def plugin_qvod_search_js(self):
-        fd = QFile("qvod/qvodsearch.js") 
+        fd = QFile("qvod/search.js") 
  
         if fd.open(QIODevice.ReadOnly | QFile.Text): 
             result = QTextStream(fd).readAll() 

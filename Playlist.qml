@@ -56,6 +56,7 @@ Rectangle {
     }
     
     function clear() {
+        print(playlistPanel.tabId)
         if (playlistPanel.tabId == "local") {
             database.playlist_local = ""
         } else {
@@ -187,14 +188,14 @@ Rectangle {
         }
 
         PlaylistView {
-            id: network_playlist
+            id: local_playlist
             width: 190
             type: "local"
             visible: playlistPanel.expanded && tabId == "local"
         }
 
         PlaylistView {
-            id: local_playlist
+            id: network_playlist
             width: 190
             type: "network"            
             visible: playlistPanel.expanded && tabId == "network"
