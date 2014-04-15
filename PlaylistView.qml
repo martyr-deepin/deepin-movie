@@ -1,411 +1,141 @@
 import QtQuick 2.1
 
-Item {
-    id: root
-    width: 300
-    height: 500
+ListView {
+	id: playlist
+	width: 300
+	height: childrenRect.height
 
-    property string type: "local" // local or network
-    property int actualWidth: listview.contentWidth
-    property int actualHeight: listview.contentHeight
+	property var allItems: []
+	property string currentPlayingSource
+	property bool isSelected: {
+		for (var i = 0; i < allItems.length; i++) {
+			if (allItems.isSelected) {
+				return true
+			}
+		}
+		return false
+	}
 
-    property var childrenItems: []
-    property string content: type == "local" ? database.playlist_local : database.playlist_network
+	// ["Level One", "Level Two", "Level Three"]
+	function findItemByPath(path) {
+		print(allItems.length)
+		for (var i = 0; i < allItems.length; i++) {
+			if (allItems[i].propName == path[0]) {
+				if (allItems[i].child) {
+					return allItems[i].child.findItemByPath(path.slice(1))					
+				} else if (path.length == 1) {
+					return allItems[i]
+				} else {
+					return null
+				}
+			}
+		}
+		return null
+	}
 
-    Component {
-        id: listview_delegate
+	// ["Level One", "Level Two", ("Level Three", "/home/hualet/Videos/movie.mov", [])]
+	function addItem(path) {
+		var parent = findItemByPath(path.slice(0, path.length))
+		if (parent != null) {
+			parent.child.model.append({"itemName": path[path.length - 1][0],
+									   "itemUrl": path[path.length - 1][1],
+									   "itemChild": path[path.length -1][2]})
+		}
+	}
 
-        Item {
-            id: item
+	model: ListModel {}
+	delegate: Component {
+		Column {
+			id: column
+			width: ListView.view.width
 
-            width: root.width
-            height: 20
+			property var propName: itemName
+			property var propUrl: itemUrl
+			property var propChild: itemChild
+			property var child: sub.item
 
-            property int itemIndex: index
-            property alias child: column.child
-            property string title: itemName
+		    property bool isGroup: itemChild.count > 0
+			property bool isSelected: isGroup ? sub.item.isSelected : (playlist.currentPlayingSource == itemUrl)
 
-            Behavior on height {
-                SmoothedAnimation {duration: 100}
-            }
+			Component.onCompleted: playlist.allItems.push(column)
 
-            Component.onCompleted: {
-                ListView.view.parent.childrenItems.push(item)
-            }
+			Item {
+				width: column.width
+				height: 20
 
-            function increaseH(h) {
-                height += h
-                if (ListView.view &&
-                    ListView.view.parent.parent &&
-                    ListView.view.parent.parent.parent &&
-                    ListView.view.parent.parent.parent.increaseH) {
-                    ListView.view.parent.parent.parent.increaseH(h)
-                }
-            }
+				Image {
+					id: expand_button
+					opacity: isGroup ? 1 : 0
+					source: isSelected ? "image/expanded.png" : "image/not_expanded.png"
 
-            function decreaseH(h) {
-                height -= h
-                if (ListView.view &&
-                    ListView.view.parent.parent &&
-                    ListView.view.parent.parent.parent &&
-                    ListView.view.parent.parent.parent.decreaseH) {
-                    ListView.view.parent.parent.parent.decreaseH(h)
-                }
-            }
+					anchors.verticalCenter: parent.verticalCenter
+				}
+				Text {
+					id: name
+					width: parent.width - expand_button.width - anchors.leftMargin - delete_button.width
+					text: itemName
+					elide: Text.ElideRight
+					color: column.isGroup ? "8800BDFF" : playlist.isSelected ? "#00BDFF" : mouse_area.containsMouse ? "white" : "#B4B4B4"
+					font.pixelSize: column.isGroup ? 12 : playlist.isSelected ? 13 : 11
 
-            function isGroup() {
-                return itemChild != "[]"
-            }
+					anchors.left: expand_button.right
+					anchors.leftMargin: 10
+					anchors.verticalCenter: parent.verticalCenter 
+				}
+				Image {
+					id: delete_button
+					visible: false
+					source: "image/delete_normal.png"
 
-            Column {
-                id: column
+					anchors.right: parent.right
+					anchors.verticalCenter: parent.verticalCenter
 
-                property var child
+					MouseArea {
+						hoverEnabled: true
+						anchors.fill: parent
 
-                anchors.fill: parent
-                anchors.leftMargin: 15
-                anchors.topMargin: 5
+						onClicked: {
 
-                function toggleExpand() {
-                    item.ListView.view.currentIndex = index
-                    if (!column.parent.isGroup()) playlist.currentItem = column
+						}
+						onPressed: delete_button.source = "image/delete_pressed.png"
+						onReleased: delete_button.source = "image/delete_hover.png"
+					}
+				}
+				MouseArea {
+					id: mouse_area
+					hoverEnabled: true
+					anchors.fill: parent
+					onEntered: {
+					    delete_button.visible = true
+					    delete_button.source = "image/delete_hover.png"
+					}
+					onExited: {
+					    delete_button.visible = false
+					    delete_button.source = "image/delete_normal.png"
+					}
+					onClicked: {
+						mouse.accepted = false
+						if (column.isGroup) {
+							sub.visible = !sub.visible							
+						} else {
+							column.isSelected = !column.isSelected
+						}
+					}
+				}					
+			}
 
-                    if (column.child) {
-                        column.child.destroy();
-                        column.parent.decreaseH(column.child.actualHeight)
-                    } else if (column.parent.isGroup()) {
-                        column.child = Qt.createQmlObject('import QtQuick 2.1; PlaylistView{width:' + (column.width) + '}',
-                                                          column, "child")
-                        column.child.content = itemChild
-                        column.child.anchors.left = column.left
-
-                        column.parent.increaseH(column.child.actualHeight)
-                    } else {
-                        playlist.videoSelected(itemUrl)
-                        playlist.hide()
-                    }
-                }
-
-                Item {
-                    width: parent.width
-                    height: row.height
-
-                    MouseArea {
-                        id: mouse_area
-                        hoverEnabled: true
-                        anchors.fill: parent
-
-                        onEntered: {
-                            playlist.state = "active"
-                            delete_button.visible = true
-
-                            if (!column.parent.isGroup()) {
-                                var pos = windowView.getCursorPos()
-                                tooltip.showTip(pos.x, pos.y, itemName)
-                            }
-                        }
-                        onExited: {
-                            delete_button.visible = false
-                            tooltip.hideTip()
-                        }
-                        onClicked: column.toggleExpand()
-                    }
-
-                    Row {
-                        id: row
-                        spacing: 10
-
-                        Image {
-                            opacity: column.parent.isGroup() ? 1 : 0
-                            source: column.child ? "image/expanded.png" : "image/not_expanded.png"
-                        }
-
-                        Text {
-                            id: label
-                            text: itemName
-                            width: 100
-                            elide: Text.ElideRight
-                            color: column.child ? "#8800BDFF" : playlist.currentItem == column ? "#00BDFF" : mouse_area.containsMouse ? "white" : "#B4B4B4"
-                            font.pixelSize: column.parent.isGroup() ? 12 : playlist.currentItem == column ? 13 : 11
-                        }
-                    }
-
-                    Image {
-                        id: delete_button
-                        visible: false
-                        source: "image/delete_normal.png"
-                        anchors.right: parent.right
-                        anchors.verticalCenter: parent.verticalCenter
-
-                        MouseArea {
-                            hoverEnabled: true
-                            anchors.fill: parent
-
-                            onEntered: {
-                                playlist.state = "active"
-                                delete_button.visible = true
-                                delete_button.source = "image/delete_hover.png"
-                            }
-                            onExited: {
-                                delete_button.visible = false
-                                delete_button.source = "image/delete_normal.png"
-                            }
-                            onPressed: delete_button.source = "image/delete_pressed.png"
-                            onReleased: delete_button.source = "image/delete_hover.png"
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    ListView {
-        id: listview
-
-        model: root.getModelFromString(root.content, listview)
-        delegate: listview_delegate
-        currentIndex: -1
-
-        anchors.fill: parent
-    }
-
-    // getContent returns the string representation of this playlist hierarchy
-    // getObject returns the object representation of this playlist hierarchy
-    function getContent() {
-        var result = []
-        for (var i = 0; i < listview.count; i++) {
-            result.push(listview.model.get(i))
-        }
-        return JSON.stringify(result)
-    }
-
-    function getObject() {
-        return contentToObject(getContent())
-    }
-
-    function contentToObject(content) {
-        var result = []
-
-        if (!content || content == "") return result
-        var items = JSON.parse(content)
-        for (var i = 0; i < items.length; i++) {
-            items[i].itemChild = contentToObject(items[i].itemChild)
-            result.push(items[i])
-        }
-
-        return result
-    }
-
-    function objectToContent(obj) {
-        if (!obj) return "[]"
-
-        var result = []
-
-        for (var i = 0; i < obj.length; i++) {
-            var item = {}
-            item.itemName = obj[i].itemName
-            item.itemUrl = obj[i].itemUrl
-            item.itemChild = objectToContent(obj[i].itemChild)
-            result.push(item)
-        }
-
-        return JSON.stringify(result)
-    }
-
-    // Just this level
-    function getItemByName(name) {
-        for (var i = 0; i < childrenItems.length; i++) {
-            if (childrenItems[i].title == name) {
-                return childrenItems[i]
-            }
-        }
-
-        return null
-    }
-
-    /* Database operations */
-    // path is something like ["level one", "level two", ["level three", "/home/you/Videos/movie.mov"]]
-    function _insert(path) {
-        var lastMatchItem = root
-        for (var i = 0; i < path.length; i++) {
-            var item = lastMatchItem.getItemByName(path[i])
-            if (item != null) {
-                if (item.child) {
-                    lastMatchItem = item.child
-                } else {
-                    lastMatchItem.insertToContent(path[i],
-                                                  path.slice(i + 1,
-                                                             path.length))
-                    _save()
-                    return
-                }
-            } else {
-                lastMatchItem.insertToListModel(path.slice(i, path.length))
-                _save()
-                return
-            }
-        }
-    }
-
-    function _delete(path) {
-        var lastMatchItem = root
-        for (var i = 0; i < path.length - 1; i++) {
-            var item = lastMatchItem.getItemByName(path[i])
-            if (item != null) {
-                if (item.child) {
-                    lastMatchItem = item.child
-                } else {
-                    lastMatchItem.deleteFromContent(path[i],
-                                                    path.slice(i + 1, path.length))
-                    _save()
-                    return
-                }
-            } else {
-                _save()
-                return
-            }
-        }
-
-        if(lastMatchItem && lastMatchItem.getItemByName(path[path.length - 1])) {
-            lastMatchItem.deleteFromListModel(path[path.length - 1])
-            _save()
-        }
-    }
-
-    function _save() {
-        if (type == "local") {
-            database.playlist_local = getContent()
-        } else {
-            database.playlist_network = getContent()
-        }
-    }
-    /* Database operations end */
-
-    // see `insert' above for more infomation about path
-    function pathToListElement(path, childAsObj) {
-        var result
-
-        for (var i = path.length - 1; i >= 0; i--) {
-            var ele = {}
-            if (i == path.length - 1) {
-                ele.itemName = path[i][0]
-                ele.itemUrl = path[i][1]
-            } else {
-                ele.itemName = path[i]
-                ele.itemUrl = path[i]
-            }
-            if (childAsObj == false) {
-                ele.itemChild = result ? JSON.stringify([result]) : "[]"
-            } else {
-                ele.itemChild = result ? [result] : []
-            }
-            result = ele
-        }
-
-        return result
-    }
-
-    function insertToListModel(path) {
-        listview.model.append(pathToListElement(path, false))
-        listview.forceLayout()
-    }
-
-    function insertToContent(parentNode, path) {
-        var obj = getObject()
-        for (var i = 0; i < obj.length; i++) {
-            if (obj[i].itemName == parentNode) {
-                var parent = obj[i]
-
-                for (var i = 0; i < path.length; i++) {
-                    var child = parent.itemChild
-                    var flag = false
-                    for (var j = 0; j < child.length; j++) {
-                        var c = child[i]
-                        if (c && c.itemName == path[i]) {
-                            flag = true
-                            parent = c
-                            break
-                        }
-                    }
-                    if (!flag) {
-                        parent.itemChild.push(pathToListElement(path.slice(i, path.length), true))
-                    }
-                }
-                break
-            }
-        }
-        content = objectToContent(obj)
-    }
-
-    function deleteFromListModel(name) {
-        for (var i = 0; i < listview.count; i++) {
-            if (listview.model.get(i).itemName == name) {
-                listview.model.remove(i, 1)
-            }
-        }
-    }
-
-    function deleteFromContent(parentNode, path) {
-        var obj = getObject()
-        for (var i = 0; i < obj.length; i++) {
-            if (obj[i].itemName == parentNode) {
-                var parent = obj[i]
-
-                for (var i = 0; i < path.length - 1; i++) {
-                    var child = parent.itemChild
-                    var flag = false
-                    for (var j = 0; j < child.length; j++) {
-                        var c = child[i]
-                        if (c && c.itemName == path[i]) {
-                            flag = true
-                            parent = c
-                            break
-                        }
-                    }
-                    if (!flag) {
-                        break
-                    }
-                }
-                var child = parent.itemChild
-                for (var j = 0; j < child.length; j++) {
-                    var c = child[i]
-                    if (c && c.itemName == path[i]) {
-                        parent.itemChild.splice(i, 1)
-                    }
-                }
-                break
-            }
-        }
-        content = objectToContent(obj)
-    }
-
-    function deleteOne(name) {
-        for (var i = 0; i < listview.count; i++) {
-            if (listview.model.get(i).itemName == name) {
-                listview.model.remove(i, 1)
-            }
-        }
-    }
-
-    function getModelFromString(str, prt) {
-        var model = Qt.createQmlObject('import QtQuick 2.1; ListModel{}',
-                                       prt, "model")
-        if (str != "") {
-            var obj = JSON.parse(str)
-
-            for (var i = 0; i < obj.length; i++) {
-                model.append({"itemName": obj[i].itemName,
-                              "itemChild": obj[i].itemChild,
-                              "itemUrl": obj[i].itemUrl} )
-            }
-        }
-
-        return model
-    }
-
-    Component.onCompleted: {
-        /* _insert(["Three", "Two", "Four"]); */
-        /* _delete(["Three", "Two", "One"]); */
-         /* print(objectToContent(contentToObject(content))) */
-     }
+			Loader {
+				id: sub
+				x: 15
+				visible: false
+				active: column.isGroup
+				source: "PlaylistView2.qml"
+				asynchronous: true
+				onLoaded: {
+					item.model = itemChild
+					item.width -= sub
+				}
+			}
+		}
+	}
 }
