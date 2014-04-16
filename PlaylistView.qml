@@ -112,6 +112,10 @@ ListView {
     	return result
     }
 
+    function clear() {
+        model.clear()
+    }
+
 	model: ListModel {}
 	delegate: Component {
 		Column {

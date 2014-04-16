@@ -66,8 +66,10 @@ Rectangle {
     function clear() {
         print(playlistPanel.tabId)
         if (playlistPanel.tabId == "local") {
+            local_playlist.clear()
             database.playlist_local = ""
         } else {
+            network_playlist.cleart()
             database.playlist_network = ""
         }
     }
