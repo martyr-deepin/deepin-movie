@@ -18,7 +18,6 @@ ListView {
 
 	// ["Level One", "Level Two", "Level Three"]
 	function findItemByPath(path) {
-		print(allItems.length)
 		for (var i = 0; i < allItems.length; i++) {
 			if (allItems[i].propName == path[0]) {
 				if (allItems[i].child) {
@@ -34,14 +33,60 @@ ListView {
 	}
 
 	// ["Level One", "Level Two", ("Level Three", "/home/hualet/Videos/movie.mov", [])]
-	function addItem(path) {
-		var parent = findItemByPath(path.slice(0, path.length))
-		if (parent != null) {
-			parent.child.model.append({"itemName": path[path.length - 1][0],
-									   "itemUrl": path[path.length - 1][1],
-									   "itemChild": path[path.length -1][2]})
+	function _pathToListElement(path) {
+		var result  = null
+		for (var i = path.length - 1; i >= 0; i--) {
+			var item = {}
+			if (i == path.length - 1) {
+				item.itemName = path[i][0]
+				item.itemUrl = path[i][1]
+				item.itemChild = []
+				} else {
+					item.itemName = path[i]
+					item.itemUrl = ""
+					item.itemChild = [result]
+				}
+			result = item
 		}
+		print(JSON.stringify(result))
+		return result
 	}
+
+	// ["Level One", "Level Two", ("Level Three", "/home/hualet/Videos/movie.mov", [])]
+	function addItem(path) {
+        if (allItems.length == 0) {
+            model.append(_pathToListElement(path))
+        } else {
+        	var item = {
+        	    "itemName": path[path.length - 1][0],
+        	    "itemUrl": path[path.length - 1][1],
+        	    "itemChild": path[path.length -1][2]
+        	}
+            var parent = findItemByPath(path.slice(0, path.length))
+            if (parent != null) {
+                parent.child.model.append(item)
+            }
+        }
+	}
+
+    function getContent() {
+        var result = []
+        for (var i = 0; i < allItems; i++) {
+            if (allItems[i].isGroup) {
+                result.append({
+                    "itemName": allItems[i].itemName, 
+                    "itemUrl": allItems[i].itemUrl,
+                    "itemChild": allItems[i].child.getContent()})
+            } else {
+                result.append({
+                    "itemName": allItems[i].itemName,
+                    "itemUrl": allItems[i].itemUrl,
+                    "itemChild": "[]"
+                    })
+            }
+        }
+        return JSON.stringify(result)
+    }
 
 	model: ListModel {}
 	delegate: Component {
@@ -75,8 +120,8 @@ ListView {
 					width: parent.width - expand_button.width - anchors.leftMargin - delete_button.width
 					text: itemName
 					elide: Text.ElideRight
-					color: column.isGroup ? "8800BDFF" : playlist.isSelected ? "#00BDFF" : mouse_area.containsMouse ? "white" : "#B4B4B4"
-					font.pixelSize: column.isGroup ? 12 : playlist.isSelected ? 13 : 11
+					color: column.isGroup ? "#8800BDFF" : column.isSelected ? "#00BDFF" : mouse_area.containsMouse ? "white" : "#B4B4B4"
+					font.pixelSize: column.isGroup ? 12 : column.isSelected ? 13 : 11
 
 					anchors.left: expand_button.right
 					anchors.leftMargin: 10
@@ -114,7 +159,6 @@ ListView {
 					    delete_button.source = "image/delete_normal.png"
 					}
 					onClicked: {
-						mouse.accepted = false
 						if (column.isGroup) {
 							sub.visible = !sub.visible							
 						} else {
@@ -129,11 +173,11 @@ ListView {
 				x: 15
 				visible: false
 				active: column.isGroup
-				source: "PlaylistView2.qml"
+				source: "PlaylistView.qml"
 				asynchronous: true
 				onLoaded: {
 					item.model = itemChild
-					item.width -= sub
+					item.width = column.width - sub.x
 				}
 			}
 		}
