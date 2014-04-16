@@ -69,18 +69,22 @@ ListView {
 
 	// ["Level One", "Level Two", ("Level Three", "/home/hualet/Videos/movie.mov", [])]
 	function addItem(path) {
-        if (allItems.length == 0) {
+		var parent = findItemByPath(path.slice(0, path.length - 1))
+        if (allItems.length == 0 || parent == null) {
             model.append(_pathToListElement(path))
-        } else {
+        } else if(parent != null){
         	var item = {
         	    "itemName": path[path.length - 1][0],
         	    "itemUrl": path[path.length - 1][1],
         	    "itemChild": path[path.length -1][2]
         	}
-            var parent = findItemByPath(path.slice(0, path.length - 1))
-            if (parent != null) {
-                parent.child.model.append(item)
-            }
+
+        	// check for redundant insertion
+        	for (var i = 0; i < parent.child.count; i++) {
+        		if (parent.child.model.get(i).itemUrl == item.itemUrl) return
+        	}
+
+        	parent.child.model.append(item)
         }
 	}
 
@@ -225,7 +229,7 @@ ListView {
 
 			Loader {
 				id: sub
-				x: 15
+				x: 10
 				visible: column.isSelected
 				active: column.isGroup
 				source: "PlaylistView.qml"
