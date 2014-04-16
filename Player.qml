@@ -16,14 +16,17 @@ Video {
     //         screensaverInhibitId = dbus_screensaver.Inhibit("DMovie", "videos' playing")
     //     }
     // }
-    // onPaused: {
-    //     if (screensaverInhibitId) {
-    //         dbus_screensaver.Uninhibit(screensaverInhibitId)
-    //     }
-    // }
+    onPaused: {
+        // if (screensaverInhibitId) {
+        //     dbus_screensaver.Uninhibit(screensaverInhibitId)
+        // }
+        pause_notify.notify()
+    }
     // onStopped: {
     //     if (screensaverInhibitId) {
     //         dbus_screensaver.Uninhibit(screensaverInhibitId)
     //     }
     // }
+
+    PauseNotify { id: pause_notify; visible: false; anchors.centerIn: parent }
 }
