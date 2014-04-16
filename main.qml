@@ -86,10 +86,6 @@ Item {
     function monitorWindowClose() {
         config.save("Normal", "volume", player.volume)
         database.record_video_position(player.source, player.position)
-        print("content of local_playlist: ")
-        print(playlist.getContent("local"))
-        print("content of network_playlist: ")
-        print(playlist.getContent("network"))
         database.playlist_local = playlist.getContent("local")
         database.playlist_network = playlist.getContent("network")
     }
@@ -194,10 +190,8 @@ Item {
             seek(database.fetch_video_position(source))
         }
 
-        onPlaybackStateChanged: {
-            if (playbackState == MediaPlayer.PausedState) {
-                pause_notify.notify()
-            }
+        onPaused: {
+            print(playlist.getNextSource())
         }
 
         onPositionChanged: {
@@ -216,8 +210,6 @@ Item {
         /*     root.reset() */
         /* } */
         }
-
-        PauseNotify { id: pause_notify; visible: false; anchors.centerIn: parent }
     }
 
     MainController {
@@ -230,6 +222,7 @@ Item {
         width: 0
         height: main_window.height
         visible: false
+        currentPlayingSource: player.source
         anchors.top: main_window.top
         anchors.left: main_window.left
 

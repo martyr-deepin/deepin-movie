@@ -8,6 +8,7 @@ Rectangle {
     property var currentItem
     property string tabId: "local"
     property bool expanded: width == program_constants.playlistWidth
+    property url currentPlayingSource
 
     signal showingAnimationDone
     signal hidingAnimationDone
@@ -74,10 +75,13 @@ Rectangle {
         }
     }
     
-    function selectNextItem() {
-    }
-    
-    function selectPreviousItem() {
+    function getNextSource() {
+        // if (local_playlist.isSelected) {
+        //     return local_playlist.getNextSource()
+        // } else {
+        //     return network_playlist.getNextSource()
+        // }
+        return local_playlist.getNextSource()
     }
 
     Timer {
@@ -201,6 +205,7 @@ Rectangle {
             id: local_playlist
             width: 190
             visible: playlistPanel.expanded && tabId == "local"
+            currentPlayingSource: playlistPanel.currentPlayingSource
 
             Component.onCompleted: initializeWithContent(database.playlist_local)
         }
@@ -209,6 +214,7 @@ Rectangle {
             id: network_playlist
             width: 190
             visible: playlistPanel.expanded && tabId == "network"
+            currentPlayingSource: playlistPanel.currentPlayingSource
 
             Component.onCompleted: initializeWithContent(database.playlist_local)
         }

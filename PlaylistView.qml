@@ -7,23 +7,39 @@ ListView {
 
 	property var allItems: []
 	property string currentPlayingSource
-	property bool isSelected: {
-		for (var i = 0; i < allItems.length; i++) {
-			if (allItems.isSelected) {
-				return true
-			}
-		}
-		return false
+	property bool isSelected: false
+
+	function getNextSource() {
+	   	if (isSelected) {
+	   		for (var i = 0; i < allItems.length; i++) {
+	   			if (allItems[i].isSelected) { // seek which Column is selected
+	   				if (allItems[i].isGroup) { // if the Column has child, then find recursively
+	   					return allItems[i].child.getNextSource()
+	   				} else {
+	   					if (i == allItems.length) { // the source current playing is the last one in this category
+	   						return null
+	   					} else {
+	   						if (allItems[i + 1].isGroup) { // the next item in this category has child
+	   							return null
+	   						} else {
+	   							return allItems[i + 1].propUrl // finally, get what we want
+	   						}
+	   					}
+	   				}
+	   			}
+	   		}
+	   	}
+	   	return null
 	}
 
 	// ["Level One", "Level Two", "Level Three"]
 	function findItemByPath(path) {
 		for (var i = 0; i < allItems.length; i++) {
 			if (allItems[i].propName == path[0]) {
-				if (allItems[i].child) {
-					return allItems[i].child.findItemByPath(path.slice(1))					
-				} else if (path.length == 1) {
+				if (path.length == 1) {
 					return allItems[i]
+				} else if (allItems[i].child) {
+					return allItems[i].child.findItemByPath(path.slice(1))
 				} else {
 					return null
 				}
@@ -48,7 +64,6 @@ ListView {
 				}
 			result = item
 		}
-		print(JSON.stringify(result))
 		return result
 	}
 
@@ -62,13 +77,14 @@ ListView {
         	    "itemUrl": path[path.length - 1][1],
         	    "itemChild": path[path.length -1][2]
         	}
-            var parent = findItemByPath(path.slice(0, path.length))
+            var parent = findItemByPath(path.slice(0, path.length - 1))
             if (parent != null) {
                 parent.child.model.append(item)
             }
         }
 	}
 
+	// playlist serialization
     function getContent() {
         var result = []
         for (var i = 0; i < allItems.length; i++) {
@@ -88,16 +104,8 @@ ListView {
         return JSON.stringify(result)
     }
 
-    // Note: this function is solely used for _initialization_
-    function initializeWithContent(content) {
-     	var eles = _fromContent(content)   
-     	for (var i = 0; i < eles.length; i++) {
-     		print(eles[i])
-     		model.append(eles[i])
-     	}
-    }
-
-    function _fromContent(content) {
+    // playlist deserialization
+    function fromContent(content) {
     	var result = []
 
     	var list = JSON.parse(content)
@@ -105,11 +113,19 @@ ListView {
     		result.push({
     			"itemName": list[i].itemName,
     			"itemUrl": list[i].itemUrl,
-    			"itemChild": _fromContent(list[i].itemChild)
+    			"itemChild": fromContent(list[i].itemChild)
     			})
     	}
 
     	return result
+    }
+
+    // Note: this function is solely used for _initialization_
+    function initializeWithContent(content) {
+     	var eles = fromContent(content)   
+     	for (var i = 0; i < eles.length; i++) {
+     		model.append(eles[i])
+     	}
     }
 
     function clear() {
@@ -128,9 +144,13 @@ ListView {
 			property var child: sub.item
 
 		    property bool isGroup: itemChild.count > 0
-			property bool isSelected: isGroup ? sub.item.isSelected : (playlist.currentPlayingSource == itemUrl)
+			property bool isSelected: {
+				var result = isGroup ? child.isSelected : (playlist.currentPlayingSource == itemUrl)
+				ListView.view.isSelected = ListView.view.isSelected || result
+				return result
+			}
 
-			Component.onCompleted: playlist.allItems.push(column)
+			Component.onCompleted: ListView.view.allItems.push(column)
 			Component.onDestruction: {
 				var idx = column.ListView.view.allItems.indexOf(column)
 				if (idx != -1) {
@@ -166,7 +186,7 @@ ListView {
 				Image {
 					id: expand_button
 					opacity: isGroup ? 1 : 0
-					source: isSelected ? "image/expanded.png" : "image/not_expanded.png"
+					source: sub.visible ? "image/expanded.png" : "image/not_expanded.png"
 
 					anchors.verticalCenter: parent.verticalCenter
 				}
@@ -175,11 +195,11 @@ ListView {
 					width: parent.width - expand_button.width - anchors.leftMargin - delete_button.width
 					text: itemName
 					elide: Text.ElideRight
-					color: column.isGroup ? "#8800BDFF" : column.isSelected ? "#00BDFF" : mouse_area.containsMouse ? "white" : "#B4B4B4"
 					font.pixelSize: column.isGroup ? 12 : column.isSelected ? 13 : 11
+					color: column.isSelected ? column.isGroup ? "#8800BDFF" : "#00BDFF" : mouse_area.containsMouse ? "white" : "#B4B4B4"
 
 					anchors.left: expand_button.right
-					anchors.leftMargin: 10
+					anchors.leftMargin: 5
 					anchors.verticalCenter: parent.verticalCenter 
 				}
 				Image {
@@ -206,14 +226,14 @@ ListView {
 			Loader {
 				id: sub
 				x: 15
-				visible: false
+				visible: column.isSelected
 				active: column.isGroup
 				source: "PlaylistView.qml"
 				asynchronous: true
 				onLoaded: {
 					item.model = itemChild
 					item.width = column.width - sub.x
-					item.currentPlayingSource = column.ListView.view.currentPlayingSource
+					item.currentPlayingSource = Qt.binding(function () {return column.ListView.view.currentPlayingSource})
 				}
 			}
 		}
