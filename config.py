@@ -22,7 +22,7 @@
 
 import deepin_utils.config as config
 from constant import CONFIG_DIR
-from PyQt5.QtCore import pyqtSlot, QObject
+from PyQt5.QtCore import pyqtSlot, pyqtProperty, QObject
 import os
 
 DEFAULT_CONFIG = [
@@ -49,3 +49,7 @@ class Config(QObject):
     def save(self, section, option, value):  
         self.config.set(section, option, value)
         self.config.write()
+
+    @pyqtProperty(str, constant=True)
+    def homeDir(self):
+        return os.path.expanduser("~")
