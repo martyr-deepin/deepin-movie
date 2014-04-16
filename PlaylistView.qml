@@ -103,10 +103,37 @@ ListView {
 			property bool isSelected: isGroup ? sub.item.isSelected : (playlist.currentPlayingSource == itemUrl)
 
 			Component.onCompleted: playlist.allItems.push(column)
+			Component.onDestruction: {
+				var idx = column.ListView.view.allItems.indexOf(column)
+				if (idx != -1) {
+					column.ListView.view.allItems.splice(idx, 1)
+				}
+			}
 
 			Item {
 				width: column.width
 				height: 20
+
+				MouseArea {
+					id: mouse_area
+					hoverEnabled: true
+					anchors.fill: parent
+					onEntered: {
+					    delete_button.visible = true
+					    delete_button.source = "image/delete_hover.png"
+					}
+					onExited: {
+					    delete_button.visible = false
+					    delete_button.source = "image/delete_normal.png"
+					}
+					onClicked: {
+						if (column.isGroup) {
+							sub.visible = !sub.visible							
+						} else {
+							column.isSelected = !column.isSelected
+						}
+					}
+				}
 
 				Image {
 					id: expand_button
@@ -136,36 +163,16 @@ ListView {
 					anchors.verticalCenter: parent.verticalCenter
 
 					MouseArea {
-						hoverEnabled: true
 						anchors.fill: parent
 
 						onClicked: {
-
+							column.ListView.view.model.remove(index, 1)
 						}
+
 						onPressed: delete_button.source = "image/delete_pressed.png"
 						onReleased: delete_button.source = "image/delete_hover.png"
 					}
 				}
-				MouseArea {
-					id: mouse_area
-					hoverEnabled: true
-					anchors.fill: parent
-					onEntered: {
-					    delete_button.visible = true
-					    delete_button.source = "image/delete_hover.png"
-					}
-					onExited: {
-					    delete_button.visible = false
-					    delete_button.source = "image/delete_normal.png"
-					}
-					onClicked: {
-						if (column.isGroup) {
-							sub.visible = !sub.visible							
-						} else {
-							column.isSelected = !column.isSelected
-						}
-					}
-				}					
 			}
 
 			Loader {
