@@ -202,7 +202,7 @@ Item {
                setting it to offset immediately.
                To reduce the chance that causes progress bar 'x' binding loop, we should do some
                check before we set controlbar's `percentage' property. */
-            if ((newPercentage - controlbar.percentage) * movieInfo.movie_duration > 5000) {
+            if ((newPercentage - controlbar.percentage) * movieInfo.movie_duration > 5000 || newPercentage == 0) {
                 controlbar.percentage = position / movieInfo.movie_duration
             }
 
