@@ -20,10 +20,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import deepin_utils.config as config
+import os
+from deepin_utils import config
 from constant import CONFIG_DIR
 from PyQt5.QtCore import pyqtSlot, pyqtProperty, QObject
-import os
 
 DEFAULT_CONFIG = [
     ("Normal", [("volume", "1.0")])
@@ -35,6 +35,7 @@ class Config(QObject):
         self.config_path = os.path.join(CONFIG_DIR, "config.ini")
         
         if not os.path.exists(self.config_path):
+            os.makedirs(CONFIG_DIR)
             self.config = config.Config(self.config_path, DEFAULT_CONFIG)
             self.config.write()
         else:
