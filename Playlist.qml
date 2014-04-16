@@ -47,11 +47,19 @@ Rectangle {
         }
     }
 
+    function getContent(type) {
+        if (type == "network") {
+            return network_playlist.getContent()
+        } else {
+            return local_playlist.getContent()
+        }
+    }
+
     function addItem(playlistType, item) {
         if (playlistType == "network") {
-            network_playlist._insert(item)
+            network_playlist.addItem(item)
         } else {
-            local_playlist._insert(item)
+            local_playlist.addItem(item)
         }
     }
     
@@ -190,15 +198,17 @@ Rectangle {
         PlaylistView {
             id: local_playlist
             width: 190
-            type: "local"
             visible: playlistPanel.expanded && tabId == "local"
+
+            Component.onCompleted: initializeWithContent(database.playlist_local)
         }
 
         PlaylistView {
             id: network_playlist
             width: 190
-            type: "network"            
             visible: playlistPanel.expanded && tabId == "network"
+
+            Component.onCompleted: initializeWithContent(database.playlist_local)
         }
     }
 

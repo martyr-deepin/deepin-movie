@@ -71,21 +71,45 @@ ListView {
 
     function getContent() {
         var result = []
-        for (var i = 0; i < allItems; i++) {
+        for (var i = 0; i < allItems.length; i++) {
             if (allItems[i].isGroup) {
-                result.append({
-                    "itemName": allItems[i].itemName, 
-                    "itemUrl": allItems[i].itemUrl,
+                result.push({
+                    "itemName": allItems[i].propName, 
+                    "itemUrl": allItems[i].propUrl,
                     "itemChild": allItems[i].child.getContent()})
             } else {
-                result.append({
-                    "itemName": allItems[i].itemName,
-                    "itemUrl": allItems[i].itemUrl,
+                result.push({
+                    "itemName": allItems[i].propName,
+                    "itemUrl": allItems[i].propUrl,
                     "itemChild": "[]"
                     })
             }
         }
         return JSON.stringify(result)
+    }
+
+    // Note: this function is solely used for _initialization_
+    function initializeWithContent(content) {
+     	var eles = _fromContent(content)   
+     	for (var i = 0; i < eles.length; i++) {
+     		print(eles[i])
+     		model.append(eles[i])
+     	}
+    }
+
+    function _fromContent(content) {
+    	var result = []
+
+    	var list = JSON.parse(content)
+    	for (var i = 0; i < list.length; i++) {
+    		result.push({
+    			"itemName": list[i].itemName,
+    			"itemUrl": list[i].itemUrl,
+    			"itemChild": _fromContent(list[i].itemChild)
+    			})
+    	}
+
+    	return result
     }
 
 	model: ListModel {}
@@ -185,6 +209,7 @@ ListView {
 				onLoaded: {
 					item.model = itemChild
 					item.width = column.width - sub.x
+					item.currentPlayingSource = column.ListView.view.currentPlayingSource
 				}
 			}
 		}

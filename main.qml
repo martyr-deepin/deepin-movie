@@ -22,6 +22,7 @@ Item {
 
     OpenFileDialog {
         id: open_file_dialog
+        folder: config.homeDir
 
         onAccepted: {
             if (fileUrls.length > 0) {
@@ -85,6 +86,12 @@ Item {
     function monitorWindowClose() {
         config.save("Normal", "volume", player.volume)
         database.record_video_position(player.source, player.position)
+        print("content of local_playlist: ")
+        print(playlist.getContent("local"))
+        print("content of network_playlist: ")
+        print(playlist.getContent("network"))
+        database.playlist_local = playlist.getContent("local")
+        database.playlist_network = playlist.getContent("network")
     }
 
     states: [

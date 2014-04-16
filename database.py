@@ -87,6 +87,7 @@ class Database(QObject):
     def playlist_local(self, value):
         self.setValue("playlist_local", value)
         self.localPlaylistChanged.emit(value)
+        self.video_db_connect.commit()
         
     @pyqtProperty(str,notify=networkPlaylistChanged)
     def playlist_network(self):
@@ -96,4 +97,5 @@ class Database(QObject):
     def playlist_network(self, value):
         self.setValue("playlist_network", value)
         self.networkPlaylistChanged.emit(value)
+        self.video_db_connect.commit()
 
