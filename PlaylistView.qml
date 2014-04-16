@@ -9,6 +9,8 @@ ListView {
 	property string currentPlayingSource
 	property bool isSelected: false
 
+	signal newSourceSelected(string path)
+
 	function getNextSource() {
 	   	if (isSelected) {
 	   		for (var i = 0; i < allItems.length; i++) {
@@ -181,8 +183,8 @@ ListView {
 					onClicked: {
 						if (column.isGroup) {
 							sub.visible = !sub.visible							
-						} else {
-							column.isSelected = !column.isSelected
+						} else if(!column.isSelected){
+							column.ListView.view.newSourceSelected(propUrl)
 						}
 					}
 				}

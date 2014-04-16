@@ -190,8 +190,8 @@ Item {
             seek(database.fetch_video_position(source))
         }
 
-        onPaused: {
-            print(playlist.getNextSource())
+        onStopped: {
+            movieInfo.movie_file = playlist.getNextSource()
         }
 
         onPositionChanged: {
@@ -226,7 +226,7 @@ Item {
         anchors.top: main_window.top
         anchors.left: main_window.left
 
-        onVideoSelected: movieInfo.movie_file = path
+        onNewSourceSelected: movieInfo.movie_file = path
     }
 
     TitleBar {

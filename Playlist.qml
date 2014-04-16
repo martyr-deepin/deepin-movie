@@ -12,7 +12,7 @@ Rectangle {
 
     signal showingAnimationDone
     signal hidingAnimationDone
-    signal videoSelected (string path)
+    signal newSourceSelected (string path)
 
     states: [
         State {
@@ -206,6 +206,8 @@ Rectangle {
             width: 190
             visible: playlistPanel.expanded && tabId == "local"
             currentPlayingSource: playlistPanel.currentPlayingSource
+
+            onNewSourceSelected: playlistPanel.newSourceSelected(path)
 
             Component.onCompleted: initializeWithContent(database.playlist_local)
         }
