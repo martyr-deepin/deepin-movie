@@ -24,6 +24,9 @@ import QtQuick 2.1
             open_file_dialog.open()
         } else if (arguments[0] == "dir") {
             open_folder_dialog.open()
-        } 
+        } else {
+            var value = _input_dialog.show()
+            if (value != "") { movieInfo.movie_file = value }
+        }
     }
 }

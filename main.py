@@ -42,9 +42,8 @@ if os.name == 'posix':
     QCoreApplication.setAttribute(QtCore.Qt.AA_X11InitThreads, True)
     
 from PyQt5.QtCore import pyqtSlot, QObject
-from PyQt5.QtWidgets import QApplication, qApp
+from PyQt5.QtWidgets import QApplication, QInputDialog
 
-import qvod
 from window import Window
 from database import Database
 from config import Config
@@ -80,13 +79,25 @@ class PageManager(QObject):
     def hide_page(self):
         self.movie_store_page.hide()
         self.movie_search_page.hide()
+
+class InputDialog(QObject):
+    def __init__(self, parent):
+        super(InputDialog, self).__init__()
+        self.parent = parent
+        self.title = "Open URL:"
+        self.label = "URL to open:"
+        self._dialog = QInputDialog()
+
+    @pyqtSlot(result=str)
+    def show(self):
+        input, ok = self._dialog.getText(self.parent, self.title, self.label)
+        return input if ok else ""
+        
         
 if __name__ == "__main__":
     app = QApplication(sys.argv)    
     
-    movie_file = ""
-    if len(sys.argv) >= 2:
-        movie_file = sys.argv[1]
+    movie_file = sys.argv[1] if len(sys.argv) >= 2 else ""
     movie_info = MovieInfo(movie_file)
     
     config = Config()
@@ -95,14 +106,17 @@ if __name__ == "__main__":
     view = Window()
     page_manager = PageManager(view)
     menu_controller = MenuController()
+    inputDialog = InputDialog(None)
 
     qml_context = view.rootContext()
-    qml_context.setContextProperty("windowView", view)
-    qml_context.setContextProperty("qApp", qApp)
-    qml_context.setContextProperty("movieInfo", movie_info)
-    qml_context.setContextProperty("database", database)
+
     qml_context.setContextProperty("config", config)
+    qml_context.setContextProperty("database", database)
+
+    qml_context.setContextProperty("windowView", view)
+    qml_context.setContextProperty("movieInfo", movie_info)
     qml_context.setContextProperty("pageManager", page_manager)
+    qml_context.setContextProperty("_input_dialog", inputDialog)
     qml_context.setContextProperty("_menu_controller", menu_controller)
 
     view.setSource(QtCore.QUrl.fromLocalFile(os.path.join(os.path.dirname(__file__), 'main.qml')))
