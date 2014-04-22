@@ -187,6 +187,9 @@ Item {
         }
 
         onSourceChanged: {      /* FixMe: this signal is fired twice. */
+            playlist.hide()
+            titlebar.show()
+            controlbar.show()
             seek(database.fetch_video_position(source))
         }
 

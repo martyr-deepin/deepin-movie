@@ -18,7 +18,6 @@ Item {
     function show() {
         if (videoPreview.hasVideo) {
             visible = true
-
         }
     }
 

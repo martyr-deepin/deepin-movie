@@ -204,19 +204,13 @@ Rectangle {
         PlaylistView {
             id: local_playlist
             width: 190
+            root: local_playlist
             visible: playlistPanel.expanded && tabId == "local"
             currentPlayingSource: playlistPanel.currentPlayingSource
 
-            onNewSourceSelected: playlistPanel.newSourceSelected(path)
-
-            Component.onCompleted: initializeWithContent(database.playlist_local)
-        }
-
-        PlaylistView {
-            id: network_playlist
-            width: 190
-            visible: playlistPanel.expanded && tabId == "network"
-            currentPlayingSource: playlistPanel.currentPlayingSource
+            onNewSourceSelected: {
+                playlistPanel.newSourceSelected(path)
+            }
 
             Component.onCompleted: initializeWithContent(database.playlist_local)
         }

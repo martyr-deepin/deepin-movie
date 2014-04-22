@@ -6,8 +6,9 @@ ListView {
 	height: childrenRect.height
 
 	property var allItems: []
-	property string currentPlayingSource
 	property bool isSelected: false
+	property string currentPlayingSource
+	property var root
 
 	signal newSourceSelected(string path)
 
@@ -184,7 +185,7 @@ ListView {
 						if (column.isGroup) {
 							sub.visible = !sub.visible							
 						} else if(!column.isSelected){
-							column.ListView.view.newSourceSelected(propUrl)
+							column.ListView.view.root.newSourceSelected(propUrl)
 						}
 					}
 				}
@@ -239,6 +240,7 @@ ListView {
 				onLoaded: {
 					item.model = itemChild
 					item.width = column.width - sub.x
+					item.root = column.ListView.view.root
 					item.currentPlayingSource = Qt.binding(function () {return column.ListView.view.currentPlayingSource})
 				}
 			}
