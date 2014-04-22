@@ -70,7 +70,9 @@ class MenuController(QObject):
     antiClosewiseRotate = pyqtSignal()
     toggleFullscreen = pyqtSignal()
     screenShot = pyqtSignal()
-    proportionChanged = pyqtSignal(float)
+    scaleChanged = pyqtSignal(float,arguments=["scale"])
+    proportionChanged = pyqtSignal(float,float,
+        arguments=["propWidth", "propHeight"])
     openDialog = pyqtSignal(str)
     staysOnTop = pyqtSignal(bool,arguments=["onTop"])
     
@@ -87,14 +89,26 @@ class MenuController(QObject):
             self.toggleFullscreen.emit()
         elif _id == "_screenshot":
             self.screenShot.emit()
+        elif _id == "_p_default":
+            self.proportionChanged.emit(1, 1)
+        elif _id == "_p_4_3":
+            self.proportionChanged.emit(4, 3)
+        elif _id == "_p_16_9":
+            self.proportionChanged.emit(16, 9)
+        elif _id == "_p_16_10":
+            self.proportionChanged.emit(16, 10)
+        elif _id == "_p_1_85_1":
+            self.proportionChanged.emit(1.85, 1)
+        elif _id == "_p_2_35_1":
+            self.proportionChanged.emit(2.35, 1)
         elif _id == "_s_0_5":
-            self.proportionChanged.emit(0.5)
+            self.scaleChanged.emit(0.5)
         elif _id == "_s_1":
-            self.proportionChanged.emit(1)
+            self.scaleChanged.emit(1)
         elif _id == "_s_1_5":
-            self.proportionChanged.emit(1.5)
+            self.scaleChanged.emit(1.5)
         elif _id == "_s_2":
-            self.proportionChanged.emit(2)
+            self.scaleChanged.emit(2)
         elif _id == "_open_file":
             self.openDialog.emit("file")
         elif _id == "_open_dir":
