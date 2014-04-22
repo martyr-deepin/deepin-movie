@@ -72,12 +72,11 @@ class MenuController(QObject):
     screenShot = pyqtSignal()
     proportionChanged = pyqtSignal(float)
     openDialog = pyqtSignal(str)
+    staysOnTop = pyqtSignal(bool,arguments=["onTop"])
     
-    def __init__(self):
+    def __init__(self, window):
         super(MenuController, self).__init__()
-        self.menu = Menu(right_click_menu)
-        
-        self.menu.itemClicked.connect(self._menu_item_invoked)
+        self._window = window
         
     def _menu_item_invoked(self, _id, _checked):
         if _id == "_turn_right":
@@ -102,7 +101,16 @@ class MenuController(QObject):
             self.openDialog.emit("dir")
         elif _id == "_open_url":
             self.openDialog.emit("url")
+        elif _id == "_on_top":
+            self.staysOnTop.emit(_checked)
+
+    def _getMenuItems(self):
+        right_click_menu[6] = CheckboxMenuItem("_on_top", "On Top", 
+            self._window.staysOnTop)
+        return right_click_menu
 
     @pyqtSlot()
     def show_menu(self):
+        self.menu = Menu(self._getMenuItems())
+        self.menu.itemClicked.connect(self._menu_item_invoked)
         self.menu.showRectMenu(QCursor.pos().x(), QCursor.pos().y())

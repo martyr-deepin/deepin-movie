@@ -105,7 +105,7 @@ if __name__ == "__main__":
     
     view = Window()
     page_manager = PageManager(view)
-    menu_controller = MenuController()
+    menu_controller = MenuController(view)
     inputDialog = InputDialog(None)
 
     qml_context = view.rootContext()

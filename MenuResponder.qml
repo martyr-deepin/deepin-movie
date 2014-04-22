@@ -19,6 +19,9 @@ import QtQuick 2.1
         root.widthProportion = arguments[0]
         root.heightProportion = arguments[0]
     }
+    onStaysOnTop: {
+        windowView.staysOnTop = onTop
+    }
     onOpenDialog: {
         if (arguments[0] == "file") {
             open_file_dialog.open()

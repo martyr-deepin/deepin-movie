@@ -24,7 +24,7 @@ import time
 from PyQt5.QtCore import QSize
 from PyQt5 import QtGui
 from PyQt5.QtQuick import QQuickView
-from PyQt5.QtCore import pyqtSlot, QDir
+from PyQt5.QtCore import pyqtSlot, pyqtProperty, QDir
 from PyQt5.QtGui import QSurfaceFormat, QColor, QPixmap
 from PyQt5 import QtCore, QtQuick
 from notification import notify
@@ -37,10 +37,10 @@ class Window(QQuickView):
         surface_format.setAlphaBufferSize(8)
         
         self.setColor(QColor(0, 0, 0, 0))
-        self.setFlags(QtCore.Qt.FramelessWindowHint)
         self.setResizeMode(QtQuick.QQuickView.SizeRootObjectToView)
         self.setFormat(surface_format)
         
+        self.staysOnTop = True
         self.qml_context = self.rootContext()
         
     @pyqtSlot(result=int)    
@@ -57,6 +57,19 @@ class Window(QQuickView):
         self.setWindowState(QtCore.Qt.WindowMinimized)
         self.setVisible(True)
         
+    @pyqtProperty(bool)
+    def staysOnTop(self):
+        return self._staysOnTop
+
+    @staysOnTop.setter
+    def staysOnTop(self, onTop):
+        self._staysOnTop = onTop
+        flags = QtCore.Qt.FramelessWindowHint
+        if onTop: flags = flags | QtCore.Qt.WindowStaysOnTopHint
+        self.setFlags(flags)
+        self.hide()
+        self.show()
+
     @pyqtSlot(result="QVariant")    
     def getCursorPos(self):
         return QtGui.QCursor.pos()        
