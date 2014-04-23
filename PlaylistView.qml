@@ -71,7 +71,7 @@ ListView {
 		return result
 	}
 
-	// ["Level One", "Level Two", ("Level Three", "/home/hualet/Videos/movie.mov", [])]
+	// ["Level One", "Level Two", ("Level Three", "file:///home/hualet/Videos/movie.mov", [])]
 	function addItem(path) {
 		var parent = findItemByPath(path.slice(0, path.length - 1))
         if (allItems.length == 0 || parent == null) {

@@ -42,7 +42,7 @@ Item {
         onAccepted: {
             var fileUrls = _utils.getAllFilesInDir(fileUrl)
             for (var i = 0; i < fileUrls.length; i++) {
-               playlist.addItem("local", urlToPlaylistItem(fileUrls[i]))
+               playlist.addItem("local", urlToPlaylistItem("file://"+fileUrls[i]))
            }           
         }
     }
