@@ -28,6 +28,7 @@ from PyQt5.QtCore import pyqtSlot, pyqtProperty, QDir
 from PyQt5.QtGui import QSurfaceFormat, QColor, QPixmap
 from PyQt5 import QtCore, QtQuick
 from notification import notify
+from constant import DEFAULT_WIDTH, DEFAULT_HEIGHT
 
 class Window(QQuickView):
 
@@ -37,6 +38,7 @@ class Window(QQuickView):
         surface_format.setAlphaBufferSize(8)
         
         self.setColor(QColor(0, 0, 0, 0))
+        self.setMinimumSize(QSize(DEFAULT_WIDTH, DEFAULT_HEIGHT))
         self.setResizeMode(QtQuick.QQuickView.SizeRootObjectToView)
         self.setFormat(surface_format)
         
@@ -73,10 +75,6 @@ class Window(QQuickView):
     @pyqtSlot(result="QVariant")    
     def getCursorPos(self):
         return QtGui.QCursor.pos()        
-    
-    @pyqtSlot(int, int)
-    def setMinSize(self, min_width, min_height):
-        self.setMinimumSize(QSize(min_width, min_height))
         
     @pyqtSlot()
     def screenShot(self):
