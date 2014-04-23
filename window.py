@@ -40,7 +40,7 @@ class Window(QQuickView):
         self.setResizeMode(QtQuick.QQuickView.SizeRootObjectToView)
         self.setFormat(surface_format)
         
-        self.staysOnTop = True
+        self.staysOnTop = False
         self.qml_context = self.rootContext()
         
     @pyqtSlot(result=int)    

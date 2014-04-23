@@ -49,6 +49,7 @@ from database import Database
 from config import Config
 from movie_info import MovieInfo
 from browser import Browser
+from utils import Utils
 from menu_controller import MenuController
 
 class PageManager(QObject):
@@ -71,9 +72,11 @@ class PageManager(QObject):
         height -= 2
 
         if page_name == "movie_store":
-            self.movie_store_page.show_with_parent(self.main_xid, x, y, width, height)
+            self.movie_store_page.show_with_parent(self.main_xid,
+             x, y, width, height)
         elif page_name == "movie_search":
-            self.movie_search_page.show_with_parent(self.main_xid, x, y, width, height)
+            self.movie_search_page.show_with_parent(self.main_xid,
+             x, y, width, height)
 
     @pyqtSlot()
     def hide_page(self):
@@ -93,7 +96,6 @@ class InputDialog(QObject):
         input, ok = self._dialog.getText(self.parent, self.title, self.label)
         return input if ok else ""
         
-        
 if __name__ == "__main__":
     app = QApplication(sys.argv)    
     
@@ -101,6 +103,7 @@ if __name__ == "__main__":
     movie_info = MovieInfo(movie_file)
     
     config = Config()
+    utils = Utils()
     database = Database()
     
     view = Window()
@@ -111,6 +114,7 @@ if __name__ == "__main__":
     qml_context = view.rootContext()
 
     qml_context.setContextProperty("config", config)
+    qml_context.setContextProperty("_utils", utils)
     qml_context.setContextProperty("database", database)
 
     qml_context.setContextProperty("windowView", view)
@@ -119,7 +123,8 @@ if __name__ == "__main__":
     qml_context.setContextProperty("_input_dialog", inputDialog)
     qml_context.setContextProperty("_menu_controller", menu_controller)
 
-    view.setSource(QtCore.QUrl.fromLocalFile(os.path.join(os.path.dirname(__file__), 'main.qml')))
+    view.setSource(QtCore.QUrl.fromLocalFile(
+        os.path.join(os.path.dirname(__file__), 'main.qml')))
     view.setX(100)
     view.setY(100)
     view.show()

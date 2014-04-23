@@ -214,6 +214,16 @@ Rectangle {
 
             Component.onCompleted: initializeWithContent(database.playlist_local)
         }
+
+        PlaylistView {
+            id: network_playlist
+            width: 190
+            root: local_playlist
+            visible: playlistPanel.expanded && tabId == "network"
+            currentPlayingSource: playlistPanel.currentPlayingSource
+
+            // Component.onCompleted: initializeWithContent(database.playlist_local)
+        }
     }
 
     Rectangle {

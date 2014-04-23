@@ -63,7 +63,8 @@ ListView {
 				} else {
 					item.itemName = path[i]
 					item.itemUrl = ""
-					item.itemChild = [result]
+					item.itemChild = []
+					item.itemChild.push(result)
 				}
 			result = item
 		}
@@ -83,12 +84,12 @@ ListView {
         	}
 
         	// check for redundant insertion
-        	for (var i = 0; i < parent.child.count; i++) {
-        		if (parent.child.model.get(i).itemUrl == item.itemUrl) return
+        	for (var i = 0; i < parent.propChild.count; i++) {
+        		if (parent.propChild.get(i).itemUrl == item.itemUrl) return
         	}
-
-        	parent.child.model.append(item)
+        	parent.propChild.append(item)
         }
+        forceLayout()
 	}
 
 	// playlist serialization
@@ -148,9 +149,9 @@ ListView {
 			property var propName: itemName
 			property var propUrl: itemUrl
 			property var propChild: itemChild
-			property var child: sub.item
+			property var child: sub.item 
 
-		    property bool isGroup: itemChild.count > 0
+		    property bool isGroup: propChild ? propChild.count > 0 : false
 			property bool isSelected: {
 				var result = isGroup ? child.isSelected : (playlist.currentPlayingSource == itemUrl)
 				ListView.view.isSelected = ListView.view.isSelected || result
@@ -238,7 +239,7 @@ ListView {
 				source: "PlaylistView.qml"
 				asynchronous: true
 				onLoaded: {
-					item.model = itemChild
+					item.model = column.propChild
 					item.width = column.width - sub.x
 					item.root = column.ListView.view.root
 					item.currentPlayingSource = Qt.binding(function () {return column.ListView.view.currentPlayingSource})

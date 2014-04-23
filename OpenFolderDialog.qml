@@ -2,8 +2,8 @@ import QtQuick 2.1
 import QtQuick.Dialogs 1.0
 
 FileDialog {
-    title: "Please choose one or file"
+    title: "Please choose folder"
     selectExisting: true
-    selectFolder: false
+    selectFolder: true
     selectMultiple: false
 }

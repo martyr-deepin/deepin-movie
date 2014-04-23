@@ -22,7 +22,7 @@ Item {
 
     OpenFileDialog {
         id: open_file_dialog
-        folder: config.homeDir
+        folder: _utils.homeDir
 
         onAccepted: {
             if (fileUrls.length > 0) {
@@ -36,6 +36,15 @@ Item {
 
     OpenFolderDialog {
         id: open_folder_dialog
+
+        folder: _utils.homeDir
+
+        onAccepted: {
+            var fileUrls = _utils.getAllFilesInDir(fileUrl)
+            for (var i = 0; i < fileUrls.length; i++) {
+               playlist.addItem("local", urlToPlaylistItem(fileUrls[i]))
+           }           
+        }
     }
 
     function formatTime(millseconds) {

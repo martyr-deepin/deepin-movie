@@ -20,18 +20,25 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from contextlib import contextmanager 
-import traceback
-import sys
+import os
+from PyQt5.QtCore import QObject, pyqtSlot, pyqtProperty
 
-@contextmanager
-def painter_state(painter):
-    painter.save()
-    try:  
-        yield  
-    except Exception, e:  
-        print 'function cairo_state got error: %s' % e  
-        traceback.print_exc(file=sys.stdout)
-    else:  
-        painter.restore()
+class Utils(QObject):
+	"""docstring for Utils"""
+	def __init__(self):
+		super(Utils, self).__init__()
 
+
+	@pyqtProperty(str, constant=True)
+	def homeDir(self):
+	    return os.path.expanduser("~")
+
+	@pyqtSlot(str,result="QVariant")
+	def getAllFilesInDir(self, dir):
+		dir = dir[7:]
+		result = []
+		for entry in os.listdir(dir):
+			file_abs_path = os.path.join(dir, entry)
+			if os.path.isfile(file_abs_path):
+				result.append(file_abs_path)
+		return result

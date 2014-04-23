@@ -23,7 +23,7 @@
 import os
 from deepin_utils import config
 from constant import CONFIG_DIR
-from PyQt5.QtCore import pyqtSlot, pyqtProperty, QObject
+from PyQt5.QtCore import pyqtSlot, QObject
 
 DEFAULT_CONFIG = [
     ("Normal", [("volume", "1.0")])
@@ -50,7 +50,3 @@ class Config(QObject):
     def save(self, section, option, value):  
         self.config.set(section, option, value)
         self.config.write()
-
-    @pyqtProperty(str, constant=True)
-    def homeDir(self):
-        return os.path.expanduser("~")
