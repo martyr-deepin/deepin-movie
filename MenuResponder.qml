@@ -12,6 +12,12 @@ Connections {
     onAntiClosewiseRotate: {
         player.orientation += 90
     }
+    onFlipHorizontal: {
+        player.flipHorizontal()
+    }
+    onFlipVertical: {
+        player.flipVertical()
+    }
     onToggleFullscreen: {
         main_controller.toggleFullscreen()
     }

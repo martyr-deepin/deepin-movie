@@ -6,6 +6,43 @@ Video {
     id: video
     autoPlay: true
     anchors.fill: parent
+    transform: flip
+
+    function flipHorizontal() {
+        if (flip.axis.y == 1) {
+            flip.axis.y == 0
+        } else {
+            if (flip.axis.x == 1) {
+                flip.axis.x = 0
+                video.orientation -= 180
+            } else {
+                flip.axis.y = 1
+            }
+        }
+    }
+
+    function flipVertical() {
+        if (flip.axis.x == 1) {
+            flip.axis.x == 0
+        } else {
+            if (flip.axis.y == 1) {
+                flip.axis.y = 0
+                video.orientation -= 180
+            } else {
+                flip.axis.x = 1
+            }
+        }
+    }
+
+    Rotation { 
+        id: flip
+        origin.x: width / 2
+        origin.y: height / 2
+        axis.x: 0
+        axis.y: 0
+        axis.z: 0
+        angle: 180
+    }
 
     // property int screensaverInhibitId
 

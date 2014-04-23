@@ -68,6 +68,8 @@ class MenuController(QObject):
     
     clockwiseRotate = pyqtSignal()
     antiClosewiseRotate = pyqtSignal()
+    flipHorizontal = pyqtSignal()
+    flipVertical = pyqtSignal()
     toggleFullscreen = pyqtSignal()
     screenShot = pyqtSignal()
     scaleChanged = pyqtSignal(float,arguments=["scale"])
@@ -85,6 +87,10 @@ class MenuController(QObject):
             self.clockwiseRotate.emit()
         elif _id == "_turn_left":
             self.antiClosewiseRotate.emit()
+        elif _id == "_flip_horizontal":
+            self.flipHorizontal.emit()
+        elif _id == "_flip_vertial":
+            self.flipVertical.emit()
         elif _id == "_fullscreen_quit":
             self.toggleFullscreen.emit()
         elif _id == "_screenshot":
