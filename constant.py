@@ -27,6 +27,7 @@ XDG_CONFIG_HOME = os.environ.get('XDG_CONFIG_HOME') or \
             os.path.join(_HOME, '.config')
 PROJECT_NAME = "deepin-movie"
 CONFIG_DIR = os.path.join(XDG_CONFIG_HOME, PROJECT_NAME)
+MAIN_QML = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'main.qml')
 
 DEFAULT_WIDTH = 840
 DEFAULT_HEIGHT = 560

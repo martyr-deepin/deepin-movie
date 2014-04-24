@@ -50,6 +50,7 @@ from config import Config
 from movie_info import MovieInfo
 from browser import Browser
 from utils import Utils
+from constant import MAIN_QML
 from menu_controller import MenuController
 
 class PageManager(QObject):
@@ -123,8 +124,7 @@ if __name__ == "__main__":
     qml_context.setContextProperty("_input_dialog", inputDialog)
     qml_context.setContextProperty("_menu_controller", menu_controller)
 
-    view.setSource(QtCore.QUrl.fromLocalFile(
-        os.path.join(os.path.dirname(__file__), 'main.qml')))
+    view.setSource(QtCore.QUrl.fromLocalFile(MAIN_QML))
     view.setX(100)
     view.setY(100)
     view.show()

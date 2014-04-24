@@ -124,26 +124,22 @@ MouseArea {
     }
 
     function forward(delta) {
-        print("forward")
         player.seek(player.position + delta)
         notifybar.show("image/notify_forward.png", "快进至 " + formatTime(player.position))
     }
 
     function backward(delta) {
-        print("backward")
         player.seek(player.position - delta)
         notifybar.show("image/notify_backward.png", "快退至 " + formatTime(player.position))
     }
 
     function increaseVolume(delta) {
-        print("increaseVolume")
         player.volume = Math.min(player.volume + delta, 1.0)
 
         notifybar.show("image/notify_volume.png", "音量: " + Math.round(player.volume * 100) + "%")
     }
 
     function decreaseVolume(delta) {
-        print("decreaseVolume")
         player.volume = Math.max(player.volume - delta, 0.0)
 
         notifybar.show("image/notify_volume.png", "音量: " + Math.round(player.volume * 100) + "%")
