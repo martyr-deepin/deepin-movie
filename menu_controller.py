@@ -22,7 +22,7 @@
 
 from PyQt5.QtCore import QObject, pyqtSlot, pyqtSignal
 from PyQt5.QtGui import QCursor
-from deepin_menu.menu import Menu, CheckboxMenuItem
+from deepin_menu.menu import Menu, CheckableMenuItem
 
 frame_sub_menu = [
     ("_p_default", "Default"),
@@ -50,7 +50,7 @@ right_click_menu = [
     None,
     ("_fullscreen_quit", "Fullscreen/Quit Fullscreen"),
     None,
-    CheckboxMenuItem("_on_top", "On Top", True),
+    CheckableMenuItem("_on_top", "On Top", True),
     ("_play_sequence", "Play Sequence"),
     ("_play", "Play"),
     ("_screenshot", "ScreenShot"),
@@ -125,7 +125,7 @@ class MenuController(QObject):
             self.staysOnTop.emit(_checked)
 
     def _getMenuItems(self):
-        right_click_menu[6] = CheckboxMenuItem("_on_top", "On Top", 
+        right_click_menu[6] = CheckableMenuItem("_on_top", "On Top", 
             self._window.staysOnTop)
         return right_click_menu
 
