@@ -207,6 +207,7 @@ Item {
         }
 
         onPositionChanged: {
+            subtitleContent = movieInfo.get_subtitle_at(position)
             var newPercentage = position / movieInfo.movie_duration
 
             /* If we maunally forwarded the player by selecting a position on the progress bar,

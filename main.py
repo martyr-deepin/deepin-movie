@@ -48,6 +48,7 @@ from window import Window
 from database import Database
 from config import Config
 from movie_info import MovieInfo
+from subtitles import Parser
 from browser import Browser
 from utils import Utils
 from constant import MAIN_QML

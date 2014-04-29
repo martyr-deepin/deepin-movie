@@ -20,16 +20,33 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from PyQt5.QtCore import pyqtProperty, pyqtSignal, QObject
+import os
+
+from PyQt5.QtCore import pyqtProperty, pyqtSignal, QObject, pyqtSlot
+
+from subtitles import Parser, SUPPORTED_FILE_TYPES
 from constant import DEFAULT_WIDTH, DEFAULT_HEIGHT
 from media_info import parse_info
 from logger import logger
+
+def get_subtitle_from_movie(movie_file):
+    '''
+    movie_file is like file:///home/user/movie.mp4
+    '''
+    name_without_ext = movie_file[7:].rpartition(".")[0]
+    if name_without_ext == "": return ""
+    for ext in SUPPORTED_FILE_TYPES:
+        try_sub_name = "%s.%s" % (name_without_ext, ext)
+        if os.path.exists(try_sub_name):
+            return try_sub_name
+    return ""
 
 class MovieInfo(QObject):
     movieSourceChanged = pyqtSignal(str)
     movieDurationChanged = pyqtSignal(int)
     movieWidthChanged = pyqtSignal(int)
     movieHeightChanged = pyqtSignal(int)
+    subtitleChanged = pyqtSignal(str)
 
     def __init__(self, filepath=""):
         QObject.__init__(self)
@@ -53,6 +70,16 @@ class MovieInfo(QObject):
     def movie_file(self):
         return self.filepath
 
+    @pyqtProperty(str,notify=subtitleChanged)
+    def subtitle_file(self):
+        return self._subtitle_file
+
+    @subtitle_file.setter
+    def subtitle_file(self, value):
+        self._subtitle_file = value
+        self.subtitleChanged.emit(value)
+        self._parser = Parser(value)
+    
     @movie_file.setter
     def movie_file(self, filepath):
         logger.info("set movie_file %s" % filepath)                
@@ -66,4 +93,10 @@ class MovieInfo(QObject):
         self.movieSourceChanged.emit(filepath)
         self.movieWidthChanged.emit(self.media_width)
         self.movieHeightChanged.emit(self.media_height)
-        self.movieDurationChanged.emit(self.media_duration)        
+        self.movieDurationChanged.emit(self.media_duration) 
+
+        self.subtitle_file = get_subtitle_from_movie(self.filepath)
+
+    @pyqtSlot(int, result=str)     
+    def get_subtitle_at(self, timestamp):
+        return self._parser.get_subtitle_at(timestamp)

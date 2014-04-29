@@ -20,15 +20,18 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import sys
 import pysrt
 import chardet
 
-FILE_TYPE_ASS = "__ass__"
-FILE_TYPE_SRT = "__srt__"
+SUPPORTED_FILE_TYPES = ("ass", "srt")
 
-class NotSupportedFileTypeExcpetion(object):
+for type in SUPPORTED_FILE_TYPES:
+	setattr(sys.modules[__name__], "FILE_TYPE_%s" % type.upper(), "__%s__" % type)
+
+class NotSupportedFileTypeExcpetion(Exception):
 	"""docstring for NotSupportedFileTypeExcpetion"""
-	def __init__(self, arg):
+	def __init__(self):
 		super(NotSupportedFileTypeExcpetion, self).__init__("Not Supported")
 
 class _Parser(object):
@@ -37,10 +40,10 @@ class _Parser(object):
 		super(_Parser, self).__init__()
 
 	def parse(self):
-		raise NotImplementedError
+		pass
 
 	def get_subtitle_at(self, time):
-		raise NotImplementedError
+		return ""
 
 class SrtParser(_Parser):
 	"""docstring for SrtParser"""
@@ -74,14 +77,15 @@ class Parser(object):
 
 	    if _file_type == FILE_TYPE_SRT:
 	    	self._parser = SrtParser(self._file_name)
+	    else:
+	    	self._parser = _Parser()
 
 	def _get_file_type(self, file_name):
 		if file_name.endswith("ass") or file_name.endswith("saa"):
 			return FILE_TYPE_ASS
 		elif file_name.endswith("srt"):
 			return FILE_TYPE_SRT
-		else:
-			raise NotSupportedFileTypeExcpetion()
+		return None
 
 	def get_subtitle_at(self, timestamp):
 		hours, timestamp = divmod(timestamp, 1000 * 60 * 60)
@@ -93,7 +97,8 @@ class Parser(object):
 			seconds, milliseconds),)
 
 if __name__ == '__main__':
-	parser = Parser("/home/hualet/Videos/subtitles/movie.srt")
+	parser = Parser("")
+	parser = Parser("/home/hualet/Videos/Movie.srt")
 	print parser.get_subtitle_at(1000 * 1)
 	print parser.get_subtitle_at(1000 * 20)
 	print parser.get_subtitle_at(1000 * 60)

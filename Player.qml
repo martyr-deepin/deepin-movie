@@ -8,6 +8,8 @@ Video {
     anchors.fill: parent
     transform: flip
 
+    property alias subtitleContent: subtitle.text
+
     function flipHorizontal() {
         if (flip.axis.y == 1) {
             flip.axis.y == 0
@@ -65,5 +67,18 @@ Video {
     //     }
     // }
 
-    PauseNotify { id: pause_notify; visible: false; anchors.centerIn: parent }
+    PauseNotify { 
+        id: pause_notify
+         visible: false
+         anchors.centerIn: parent 
+    }
+
+    Subtitle { 
+        id: subtitle
+
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        anchors.margins: 20
+    }
 }
