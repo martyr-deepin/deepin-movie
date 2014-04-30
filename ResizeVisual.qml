@@ -16,8 +16,6 @@ Window {
     property alias frameHeight: frame.height
     property int resizeEdge
     
-    signal resizeDone ()
-    
     function show() {
         root.visible = true
     }
@@ -53,7 +51,6 @@ Window {
             flag == resize_edge.resizeBottomRight) {
             frame.width = x
         }
-        root.resizeDone()
     }
 
     Rectangle {

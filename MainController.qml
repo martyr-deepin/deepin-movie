@@ -201,7 +201,15 @@ MouseArea {
 
     onReleased: {
         resizeEdge = resize_edge.resizeNone
+
+        // do the actual resize action
         resize_visual.hide()
+        windowView.setX(resize_visual.frameX)
+        windowView.setY(resize_visual.frameY)
+        windowView.setWidth(resize_visual.frameWidth)
+        windowView.setHeight(resize_visual.frameHeight)
+        window.width = resize_visual.frameWidth
+        window.height = resize_visual.frameHeight
     }
 
     onClicked: {
@@ -232,19 +240,11 @@ MouseArea {
     ResizeVisual {
         id: resize_visual
 
-        frameX: windowView.x // FixMe: we should also count the anchors.leftMaring here;
+        // FixMe: we should also count the anchors.leftMaring here;
         frameY: windowView.y
+        frameX: windowView.x 
         frameWidth: window.width
         frameHeight: window.height
-
-        onResizeDone: {
-            windowView.setX(frameX)
-            windowView.setY(frameY)
-            windowView.setWidth(frameWidth)
-            windowView.setHeight(frameHeight)
-            window.width = frameWidth
-            window.height = frameHeight
-        }
     }
 
     DropArea {

@@ -48,7 +48,6 @@ from window import Window
 from database import Database
 from config import Config
 from movie_info import MovieInfo
-from subtitles import Parser
 from browser import Browser
 from utils import Utils
 from constant import MAIN_QML
@@ -59,8 +58,6 @@ class PageManager(QObject):
     def __init__(self, view):
         super(QObject, self).__init__()
         self.main_xid = view.winId().__int__()
-        # self.movie_store_page = Browser("http://pianku.xmp.kankan.com/moviestore_index.html")
-        # self.movie_search_page = Browser("http://search.xmp.kankan.com/lndex4xmp.shtml")
 
         self.movie_store_page = Browser("http://dy.yunfan.com")
         self.movie_search_page = Browser("http://www.yunfan.com/qs")
