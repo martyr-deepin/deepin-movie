@@ -23,6 +23,7 @@
 import sys
 import ass
 import pysrt
+import tempfile
 from datetime import timedelta
 from deepin_utils.process import get_command_output_first_line
 
@@ -46,9 +47,11 @@ def get_file_encoding(file_name):
 	else:
 		return ""
 
-def convert_file_utf_8(file_name, origin_encoding):
+def get_utf_8_version(file_name, origin_encoding):
+	fp, tmp_name = tempfile.mkstemp(text=True)
 	get_command_output_first_line(["iconv", "--from-code", origin_encoding, 
-		"--to-code", "UTF-8", "-o", file_name, file_name])
+		"--to-code", "UTF-8", "-o", tmp_name, file_name])
+	return tmp_name
 
 class NotSupportedFileTypeExcpetion(Exception):
 	"""docstring for NotSupportedFileTypeExcpetion"""
@@ -85,7 +88,7 @@ class AssParser(_Parser):
 
 	def parse(self, file_name, file_encoding):
 		if file_encoding.lower() != "utf-8":
-			convert_file_utf_8(file_name, file_encoding)
+			file_name = get_utf_8_version(file_name, file_encoding)
 		with open(file_name) as f:
 			self._events = ass.parse(f).events
 
@@ -144,7 +147,6 @@ class Parser(object):
 		return self._parser.get_subtitle_at(timestamp)
 
 if __name__ == '__main__':
-	convert_file_utf_8("/home/hualet/Videos/another.ass", "UCS-2")
 	parser = Parser("")
 	parser = Parser("/home/hualet/Videos/Test.srt")
 	print parser.get_subtitle_at(1000 * 1)
