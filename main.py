@@ -99,36 +99,38 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)    
     
     movie_file = sys.argv[1] if len(sys.argv) >= 2 else ""
-    movie_info = MovieInfo(movie_file)
+    movie_info = MovieInfo()
     
     config = Config()
     utils = Utils()
     database = Database()
     
-    view = Window()
-    page_manager = PageManager(view)
-    menu_controller = MenuController(view)
+    windowView = Window()
+    page_manager = PageManager(windowView)
+    menu_controller = MenuController(windowView)
     inputDialog = InputDialog(None)
 
-    qml_context = view.rootContext()
+    qml_context = windowView.rootContext()
 
     qml_context.setContextProperty("config", config)
     qml_context.setContextProperty("_utils", utils)
     qml_context.setContextProperty("database", database)
 
-    qml_context.setContextProperty("windowView", view)
+    qml_context.setContextProperty("windowView", windowView)
     qml_context.setContextProperty("movieInfo", movie_info)
     qml_context.setContextProperty("pageManager", page_manager)
     qml_context.setContextProperty("_input_dialog", inputDialog)
     qml_context.setContextProperty("_menu_controller", menu_controller)
 
-    view.setSource(QtCore.QUrl.fromLocalFile(MAIN_QML))
-    view.setX(100)
-    view.setY(100)
-    view.show()
+    windowView.setSource(QtCore.QUrl.fromLocalFile(MAIN_QML))
+    windowView.setX(100)
+    windowView.setY(100)
+    windowView.show()
+
+    movie_info.movie_file = movie_file
     
     # view.windowStateChanged.connect(view.rootObject().monitorWindowState)
-    app.lastWindowClosed.connect(view.rootObject().monitorWindowClose)
+    app.lastWindowClosed.connect(windowView.rootObject().monitorWindowClose)
     app.setQuitOnLastWindowClosed(True)
     
     signal.signal(signal.SIGINT, signal.SIG_DFL)

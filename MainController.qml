@@ -18,6 +18,35 @@ MouseArea {
 
     property int movieDuration: movieInfo.movie_duration
 
+    Connections {
+        target: movieInfo
+
+        onMovieSourceChanged: {
+            seek_to_last_watched_timer.schedule(database.fetch_video_position(player.source))
+
+            playlist.hide()
+            titlebar.show()
+            controlbar.show()
+        }
+    }
+
+    Timer {
+        id: seek_to_last_watched_timer
+        interval: 500
+
+        property int last_watched_pos
+
+        function schedule(pos) {
+            start()
+            last_watched_pos = pos
+        }
+
+        onTriggered: {
+            print(last_watched_pos)
+            player.seek(last_watched_pos)
+        }
+    }
+
     Timer {
         id: show_playlist_timer
         interval: 30

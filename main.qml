@@ -187,21 +187,6 @@ Item {
         anchors.fill: parent
         source: movieInfo.movie_file
 
-        Connections {
-            target: movieInfo
-
-            onMovieSourceChanged: {
-                player.play()
-            }
-        }
-
-        onSourceChanged: {      /* FixMe: this signal is fired twice. */
-            playlist.hide()
-            titlebar.show()
-            controlbar.show()
-            seek(database.fetch_video_position(source))
-        }
-
         onStopped: {
             movieInfo.movie_file = playlist.getNextSource()
         }
