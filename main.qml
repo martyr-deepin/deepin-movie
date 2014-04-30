@@ -57,7 +57,7 @@ Item {
         if (hr < 10) {hr = "0" + hr; }
         if (min < 10) {min = "0" + min;}
         if (sec < 10) {sec = "0" + sec;}
-        if (hr) {hr = "00";}
+        if (!hr) {hr = "00";}
         return hr + ':' + min + ':' + sec;
     }
 
@@ -89,7 +89,9 @@ Item {
 
     /* to perform like a newly started program  */
     function reset() {
-        movieInfo.source = ""
+        movieInfo.movie_file = ""
+        player.visible = false
+        controlbar.visible = false
     }
 
     function monitorWindowClose() {
@@ -165,10 +167,7 @@ Item {
         Rectangle {
             id: bg
             color: "#050811"
-            visible: {
-                return !player.hasVideo &&
-                player.visible
-            }
+            visible: { return !(player.hasVideo && player.visible) }
             anchors.fill: parent
             Image { anchors.centerIn: parent; source: "image/background.png" }
         }
@@ -188,7 +187,12 @@ Item {
         source: movieInfo.movie_file
 
         onStopped: {
-            movieInfo.movie_file = playlist.getNextSource()
+            var next = playlist.getNextSource()
+            if (next) {
+                movieInfo.movie_file = next
+            } else {
+                root.reset()
+            }
         }
 
         onPositionChanged: {
@@ -225,7 +229,7 @@ Item {
     ControlBar {
         id: controlbar
         percentage: player.position / movieInfo.movie_duration
-        visible: { return player.visible && player.hasVideo }
+        visible: { return (player.visible && player.hasVideo) }
         anchors.horizontalCenter: main_window.horizontalCenter
 
         onTogglePlay: {

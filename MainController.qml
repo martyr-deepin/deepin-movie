@@ -181,8 +181,7 @@ MouseArea {
     Keys.onRightPressed: forward(5000)
     Keys.onUpPressed: increaseVolume(0.05)
     Keys.onDownPressed: decreaseVolume(0.05)
-    Keys.onEscapePressed: {
-    }
+    Keys.onEscapePressed: normalize()
 
     onEntered: {
         showControls()
