@@ -208,20 +208,6 @@ Item {
 
         onPositionChanged: {
             subtitleContent = movieInfo.get_subtitle_at(position)
-            var newPercentage = position / movieInfo.movie_duration
-
-            /* If we maunally forwarded the player by selecting a position on the progress bar,
-               the player may gradually increase the `position' property to offset instead of
-               setting it to offset immediately.
-               To reduce the chance that causes progress bar 'x' binding loop, we should do some
-               check before we set controlbar's `percentage' property. */
-            if ((newPercentage - controlbar.percentage) * movieInfo.movie_duration > 5000 || newPercentage == 0) {
-                controlbar.percentage = position / movieInfo.movie_duration
-            }
-
-        /* if(newPercentage == 1) { */
-        /*     root.reset() */
-        /* } */
         }
     }
 
@@ -253,18 +239,15 @@ Item {
 
     ControlBar {
         id: controlbar
-
-        position: player.position
+        percentage: player.position / movieInfo.movie_duration
         visible: { return player.visible && player.hasVideo }
         anchors.horizontalCenter: main_window.horizontalCenter
-
-        onPercentageChanged: {
-            player.seek(percentage * movieInfo.movie_duration)
-        }
 
         onTogglePlay: {
             main_controller.togglePlay()
         }
+
+        onPercentageSet: player.seek(movieInfo.movie_duration * percentage)
     }
 
     Notifybar {

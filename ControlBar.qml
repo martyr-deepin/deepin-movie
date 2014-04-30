@@ -6,10 +6,10 @@ Item {
     id: control_bar
     height: program_constants.controlbarHeight
 
-    property int position: 0
     property alias percentage: progressbar.percentage
     
     signal togglePlay ()
+    signal percentageSet(real percentage)
 
     Behavior on opacity {
         NumberAnimation { duration: 300 }
@@ -82,6 +82,8 @@ Item {
             onMouseExit: {
                 videoPreview.visible = false
             }
+
+            onPercentageSet: {control_bar.percentageSet(percentage); print("percentageSet")}
         }
 
         Item {
@@ -197,7 +199,7 @@ Item {
                 Text {
                     id: playTime
                     anchors.verticalCenter: parent.verticalCenter
-                    text: formatTime(control_bar.position) + " / " + formatTime(movieInfo.movie_duration)
+                    text: formatTime(control_bar.percentage * movieInfo.movie_duration) + " / " + formatTime(movieInfo.movie_duration)
                     color: Qt.rgba(100, 100, 100, 1)
                     font.pixelSize: 12
                 }

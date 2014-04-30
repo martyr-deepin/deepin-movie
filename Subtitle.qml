@@ -11,8 +11,10 @@ Item {
 	Text {
 		id: txt
 		width: parent.width
+		color: "white"
 		horizontalAlignment: Text.AlignHCenter
 		wrapMode: Text.WordWrap
 		maximumLineCount: 10
+		font.pixelSize: 20
 	}
 }

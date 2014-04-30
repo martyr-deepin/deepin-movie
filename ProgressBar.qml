@@ -9,13 +9,14 @@ Item {
     
     signal mouseOver (var mouse)
     signal mouseExit ()
+    signal percentageSet(real percentage)
     
     MouseArea {
         hoverEnabled: true
         anchors.fill: parent
 
         onClicked: {
-            percentage = mouse.x / progressbar.width
+            progressbar.percentageSet(mouse.x / progressbar.width)
         }
 
         onPositionChanged: {
@@ -24,6 +25,12 @@ Item {
 
         onExited: {
             progressbar.mouseExit()
+        }
+    }
+
+    onPercentageChanged: {
+        if (!drag_area.drag.active) {
+           pointer.x = progressbar.width * percentage - pointer.width / 2           
         }
     }
 
@@ -59,12 +66,12 @@ Item {
 
         Image {
             id: pointer
-            x: progressbar.width * percentage - width / 2
             opacity: 0 <= x && x <= background.width - width ? 1 : 0
             source: "image/progress_pointer.png"
             anchors.verticalCenter: parent.verticalCenter
 
             MouseArea {
+                id: drag_area
                 anchors.fill: parent
 
                 drag.target: parent
@@ -74,7 +81,9 @@ Item {
             }
             
             onXChanged: {
-                progressbar.percentage = (x + pointer.width / 2) / Math.max(progressbar.width, 1)
+                if (drag_area.active) {
+                    progressbar.percentageSet(x + pointer.width / 2) / Math.max(progressbar.width, 1)
+                }
             }
         }
     }

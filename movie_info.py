@@ -33,10 +33,12 @@ def get_subtitle_from_movie(movie_file):
     '''
     movie_file is like file:///home/user/movie.mp4
     '''
-    name_without_ext = movie_file[7:].rpartition(".")[0]
+    if movie_file.startswith("file://"): movie_file = movie_file[7:]
+    name_without_ext = movie_file.rpartition(".")[0]
     if name_without_ext == "": return ""
     for ext in SUPPORTED_FILE_TYPES:
         try_sub_name = "%s.%s" % (name_without_ext, ext)
+        print try_sub_name
         if os.path.exists(try_sub_name):
             return try_sub_name
     return ""
