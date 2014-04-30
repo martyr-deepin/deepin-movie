@@ -22,7 +22,10 @@ MouseArea {
         target: movieInfo
 
         onMovieSourceChanged: {
-            seek_to_last_watched_timer.schedule(database.fetch_video_position(player.source))
+            var last_watched_pos = database.fetch_video_position(player.source)
+            if (Math.abs(last_watched_pos - movieInfo.movie_duration) < 10) {
+                seek_to_last_watched_timer.schedule(last_watched_pos)
+            }
 
             playlist.hide()
             titlebar.show()
@@ -42,7 +45,6 @@ MouseArea {
         }
 
         onTriggered: {
-            print(last_watched_pos)
             player.seek(last_watched_pos)
         }
     }
