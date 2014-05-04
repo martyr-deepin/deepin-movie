@@ -91,7 +91,7 @@ class MovieInfo(QObject):
         self.media_width = self.media_info["video_width"] or DEFAULT_WIDTH
         self.media_height = self.media_info["video_height"] or DEFAULT_HEIGHT
         self.media_duration = self.media_info["general_duration"] or 0
-        
+
         self.movieSourceChanged.emit(filepath)
         self.movieWidthChanged.emit(self.media_width)
         self.movieHeightChanged.emit(self.media_height)

@@ -285,8 +285,7 @@ MouseArea {
 
             if (drop.hasUrls) {
                 var file_path = drop.urls[0].substring(7)
-                movieInfo.movie_file = file_path
-                play()
+                movieInfo.movie_file = decodeURIComponent(file_path)
             }
         }
     }
