@@ -21,6 +21,14 @@ MouseArea {
     Connections {
         target: movieInfo
 
+        onMovieWidthChanged: {
+            root.width = movieInfo.movie_width
+        }
+
+        onMovieHeightChanged: {
+            root.height = movieInfo.movie_height
+        }
+
         onMovieSourceChanged: {
             var last_watched_pos = database.fetch_video_position(player.source)
             if (Math.abs(last_watched_pos - movieInfo.movie_duration) < 10) {
