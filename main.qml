@@ -164,6 +164,15 @@ Item {
             anchors.bottom: parent.bottom
             anchors.topMargin: program_constants.titlebarHeight
         }
+
+        Image {
+            source: "image/dragbar.png"
+
+            anchors.rightMargin: 5
+            anchors.bottomMargin: 5
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
+        }
     }
 
     Player {

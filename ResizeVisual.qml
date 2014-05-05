@@ -29,27 +29,48 @@ Window {
     }
     
     function _intelligentlyResize(window, x, y, flag) {
-        if (flag == resize_edge.resizeTop || 
-            flag == resize_edge.resizeTopLeft ||
-            flag == resize_edge.resizeTopRight) {
+        if (flag == resize_edge.resizeTop) {
             frame.y = window.y + y
             frame.height = window.height - y
-        }
-        if (flag == resize_edge.resizeBottom || 
-            flag == resize_edge.resizeBottomLeft ||
-            flag == resize_edge.resizeBottomRight) {
+        } else if (flag == resize_edge.resizeBottom) {
             frame.height = y
-        }
-        if (flag == resize_edge.resizeLeft || 
-            flag == resize_edge.resizeTopLeft ||
-            flag == resize_edge.resizeBottomLeft) {
+        } else if (flag == resize_edge.resizeLeft) {
             frame.x = window.x + x
             frame.width = window.width - x
-        }
-        if (flag == resize_edge.resizeRight || 
-            flag == resize_edge.resizeTopRight ||
-            flag == resize_edge.resizeBottomRight) {
+        } else if (flag == resize_edge.resizeRight) {
             frame.width = x
+        } else if (flag == resize_edge.resizeTopLeft) {
+            var widthHeightScale = window.width / window.height
+            var deltaX = -x
+            var deltaY = deltaX / widthHeightScale
+
+            frame.x = window.x - deltaX
+            frame.y = window.y - deltaY
+            frame.width = window.width + deltaX
+            frame.height = window.height + deltaY
+        } else if (flag == resize_edge.resizeTopRight) {
+            var widthHeightScale = window.width / window.height
+            var deltaX = x - window.width
+            var deltaY = deltaX / widthHeightScale
+            
+            frame.y = window.y - deltaY
+            frame.width = window.width + deltaX
+            frame.height = window.height + deltaY
+        } else if (flag == resize_edge.resizeBottomLeft) {
+            var widthHeightScale = window.width / window.height
+            var deltaX = -x
+            var deltaY = deltaX / widthHeightScale
+            
+            frame.x = window.x - deltaX
+            frame.width = window.width + deltaX
+            frame.height = window.height + deltaY
+        } else if (flag == resize_edge.resizeBottomRight) {
+            var widthHeightScale = window.width / window.height
+            var deltaX = x - window.width
+            var deltaY = deltaX / widthHeightScale
+            
+            frame.width = window.width + deltaX
+            frame.height = window.height + deltaY
         }
     }
 
