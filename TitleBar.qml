@@ -24,21 +24,9 @@ Item {
         id: tabs
 
         Item {
-            property string name: "视频播放"
+            property string name: "深度影音"
             property variant page: undefined
             property int index: 0
-        }
-
-        Item {
-            property string name: "在线视频"
-            property variant page: undefined
-            property int index: 1
-        }
-
-        Item {
-            property string name: "视频搜索"
-            property variant page: undefined
-            property int index: 2
         }
     }
 
@@ -73,45 +61,11 @@ Item {
             anchors.leftMargin: 8
         }
 
-        Image {
-            id: tabEffect
-            source: "image/tab_select_effect.png"
-            Behavior on x {
-                NumberAnimation {
-                    duration: 300
-                    easing.type: Easing.OutQuint
-                }
-            }
-        }
+        TabButton {
+            text: "深度影音"
 
-        Row {
-            id: tabRow
-            spacing: 44
-            anchors.left: parent.left
-            anchors.leftMargin: appIcon.width + spacing
-            height: parent.height
-
-            Repeater {
-                model: tabPages.length
-                delegate: TabButton {
-                    text: tabPages[index].name
-                    tabIndex: index
-
-                    onPressed: {
-                        tabEffect.x = x + (width - tabEffect.width) / 2 + tabRow.spacing * 2
-
-                        if (index == 0) {
-                            pageManager.hide_page()
-                            player.visible = true
-                        } else {
-                            currentPage = index == 1 ? "movie_store" : "movie_search"
-
-                            pageManager.show_page(currentPage, online.x, online.y, online.width, online.height)
-                            player.visible = false
-                        }
-                    }
-                }
-            }
+            anchors.left: appIcon.right
+            anchors.leftMargin: 10
         }
 
         Row {

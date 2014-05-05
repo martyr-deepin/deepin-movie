@@ -106,7 +106,7 @@ if __name__ == "__main__":
     database = Database()
     
     windowView = Window()
-    page_manager = PageManager(windowView)
+    # page_manager = PageManager(windowView)
     menu_controller = MenuController(windowView)
     inputDialog = InputDialog(None)
 
@@ -118,7 +118,7 @@ if __name__ == "__main__":
 
     qml_context.setContextProperty("windowView", windowView)
     qml_context.setContextProperty("movieInfo", movie_info)
-    qml_context.setContextProperty("pageManager", page_manager)
+    # qml_context.setContextProperty("pageManager", page_manager)
     qml_context.setContextProperty("_input_dialog", inputDialog)
     qml_context.setContextProperty("_menu_controller", menu_controller)
 

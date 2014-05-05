@@ -120,21 +120,6 @@ Item {
         }
     ]
 
-    Connections {
-        target: windowView
-
-        onWidthChanged: {
-            if (!player.visible) {
-                pageManager.show_page(titlebar.currentPage, online.x, online.y, online.width, online.height)
-            }
-        }
-        onHeightChanged: {
-            if (!player.visible) {
-                pageManager.show_page(titlebar.currentPage, online.x, online.y, online.width, online.height)
-            }
-        }
-    }
-
     Timer {
         id: hide_controls_timer
         running: true
