@@ -212,8 +212,6 @@ MouseArea {
     }
 
     onPositionChanged: {
-        showControls()
-
         if (!pressed) {
             changeCursor(getEdge(mouse))
 

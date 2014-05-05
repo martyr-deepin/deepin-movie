@@ -21,12 +21,11 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import time
+from PyQt5 import QtGui, QtCore, QtQuick
 from PyQt5.QtCore import QSize
-from PyQt5 import QtGui
 from PyQt5.QtQuick import QQuickView
 from PyQt5.QtCore import pyqtSlot, pyqtProperty, QDir
 from PyQt5.QtGui import QSurfaceFormat, QColor, QPixmap
-from PyQt5 import QtCore, QtQuick
 from notification import notify
 from constant import DEFAULT_WIDTH, DEFAULT_HEIGHT
 
@@ -71,6 +70,12 @@ class Window(QQuickView):
         self.setFlags(flags)
         self.hide()
         self.show()
+
+    @pyqtSlot()
+    def moveToCenter(self):
+        distance = self.screen().geometry().center() - self.geometry().center()
+        self.setX(self.x() + distance.x())
+        self.setY(self.y() + distance.y())
 
     @pyqtSlot(result="QVariant")    
     def getCursorPos(self):
