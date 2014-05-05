@@ -22,12 +22,12 @@ MouseArea {
         target: movieInfo
 
         onMovieWidthChanged: {
-            root.width = movieInfo.movie_width
+            main_window.width = movieInfo.movie_width
             windowView.moveToCenter()
         }
 
         onMovieHeightChanged: {
-            root.height = movieInfo.movie_height
+            main_window.height = movieInfo.movie_height
             windowView.moveToCenter()
         }
 

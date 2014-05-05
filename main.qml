@@ -1,12 +1,13 @@
 import QtQuick 2.1
 import QtMultimedia 5.0
 import QtQuick.Window 2.1
+import QtGraphicalEffects 1.0
 
 Item {
     id: root
     state: "normal"
-    width: movieInfo.movie_width * widthProportion
-    height: movieInfo.movie_height * heightProportion
+    width: main_window.width + 16
+    height: main_window.height + 16
 
     property real widthProportion: 1
     property real heightProportion: 1
@@ -130,20 +131,20 @@ Item {
         }
     }
 
-    Rectangle {
-        width: main_window.width + 2
-        height: main_window.height + 2
-        radius: main_window.radius
-        border.color: Qt.rgba(100, 100, 100, 0.3)
-        border.width: 1
-
-        anchors.centerIn: parent
+    RectangularGlow {
+        id: shadow
+        anchors.fill: main_window
+        glowRadius: 3
+        spread: 0
+        color: Qt.rgba(0, 0, 0, 1)
+        cornerRadius: 10
+        visible: true
     }
 
     Rectangle {
         id: main_window
-        width: root.width - 6
-        height: root.height - 6
+        width: movieInfo.movie_width * root.widthProportion
+        height: movieInfo.movie_height * root.heightProportion
         clip: true
         color: "#1D1D1D"
         radius: program_constants.windowRadius
@@ -152,17 +153,10 @@ Item {
         Rectangle {
             id: bg
             color: "#050811"
+            radius: main_window.radius
             visible: { return !(player.hasVideo && player.visible) }
             anchors.fill: parent
             Image { anchors.centerIn: parent; source: "image/background.png" }
-        }
-
-        PlaceHolder {
-            id: online;
-            width: parent.width
-            anchors.top: parent.top
-            anchors.bottom: parent.bottom
-            anchors.topMargin: program_constants.titlebarHeight
         }
 
         Image {
@@ -177,7 +171,7 @@ Item {
 
     Player {
         id: player
-        anchors.fill: parent
+        anchors.fill: main_window
         source: movieInfo.movie_file
 
         onStopped: {
@@ -196,7 +190,7 @@ Item {
 
     MainController {
         id: main_controller
-        window: root
+        window: main_window
     }
 
     Playlist {
