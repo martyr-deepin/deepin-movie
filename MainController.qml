@@ -23,10 +23,12 @@ MouseArea {
 
         onMovieWidthChanged: {
             root.width = movieInfo.movie_width
+            windowView.moveToCenter()
         }
 
         onMovieHeightChanged: {
             root.height = movieInfo.movie_height
+            windowView.moveToCenter()
         }
 
         onMovieSourceChanged: {
@@ -145,15 +147,11 @@ MouseArea {
 
     // player control operation related
     function play() {
-        if (player.hasVideo) {
-            player.play()
-        }
+        player.play()
     }
 
     function pause() {
-        if (player.hasVideo) {
-            player.pause()
-        }
+        player.pause()
     }
 
     function togglePlay() {
