@@ -3,17 +3,15 @@ import QtMultimedia 5.0
 import QtQuick.Window 2.1
 import QtGraphicalEffects 1.0
 
-Item {
+Rectangle {
     id: root
+    color: "red"
     state: "normal"
-    width: main_window.width + 16
-    height: main_window.height + 16
+    width: windowView.width * widthProportion
+    height: windowView.height * heightProportion
 
     property real widthProportion: 1
     property real heightProportion: 1
-
-    onWidthChanged: windowView.width = width
-    onHeightChanged: windowView.height = height
 
     Constants { id: program_constants }
 
@@ -107,9 +105,9 @@ Item {
             name: "normal"
 
             PropertyChanges { target: player; anchors.fill: main_window }
-            PropertyChanges { target: titlebar; width: main_window.width; anchors.top: main_window.top }
-            PropertyChanges { target: controlbar; width: main_window.width; anchors.bottom: main_window.bottom}
-            PropertyChanges { target: notifybar; anchors.top: titlebar.bottom; anchors.left: main_window.left}
+            PropertyChanges { target: titlebar; width: Math.max(windowView.defaultWidth, main_window.width); anchors.top: main_window.top }
+            PropertyChanges { target: controlbar; width: Math.max(windowView.defaultHeight, main_window.width); anchors.bottom: main_window.bottom}
+            PropertyChanges { target: notifybar; anchors.top: root.top; anchors.left: root.left}
         },
         State {
             name: "fullscreen"
@@ -143,8 +141,8 @@ Item {
 
     Rectangle {
         id: main_window
-        width: movieInfo.movie_width * root.widthProportion
-        height: movieInfo.movie_height * root.heightProportion
+        width: root.width - 16
+        height: root.height - 16
         clip: true
         color: "#1D1D1D"
         radius: program_constants.windowRadius
@@ -190,7 +188,7 @@ Item {
 
     MainController {
         id: main_controller
-        window: main_window
+        window: root
     }
 
     Playlist {
@@ -205,6 +203,12 @@ Item {
         onNewSourceSelected: movieInfo.movie_file = path
     }
 
+    Notifybar {
+        id: notifybar
+        anchors.topMargin: 60
+        anchors.leftMargin: 30
+    }
+
     TitleBar {
         id: titlebar
         anchors.horizontalCenter: main_window.horizontalCenter
@@ -216,6 +220,7 @@ Item {
 
     ControlBar {
         id: controlbar
+        width: root.width
         percentage: player.position / movieInfo.movie_duration
         visible: { return (player.visible && player.hasVideo) }
         anchors.horizontalCenter: main_window.horizontalCenter
@@ -225,11 +230,5 @@ Item {
         }
 
         onPercentageSet: player.seek(movieInfo.movie_duration * percentage)
-    }
-
-    Notifybar {
-        id: notifybar
-        anchors.topMargin: 20
-        anchors.leftMargin: 20
     }
 }

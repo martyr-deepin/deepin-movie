@@ -43,6 +43,14 @@ class Window(QQuickView):
         
         self.staysOnTop = False
         self.qml_context = self.rootContext()
+
+    @pyqtProperty(int,constant=True)
+    def defaultWidth(self):
+        return DEFAULT_WIDTH
+
+    @pyqtProperty(int,constant=True)
+    def defaultHeight(self):
+        return DEFAULT_HEIGHT
         
     @pyqtSlot(result=int)    
     def getState(self):

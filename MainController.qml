@@ -22,12 +22,12 @@ MouseArea {
         target: movieInfo
 
         onMovieWidthChanged: {
-            main_window.width = movieInfo.movie_width
+            windowView.setWidth(movieInfo.movie_width)
             windowView.moveToCenter()
         }
 
         onMovieHeightChanged: {
-            main_window.height = movieInfo.movie_height
+            windowView.setHeight(movieInfo.movie_height)
             windowView.moveToCenter()
         }
 
@@ -237,13 +237,13 @@ MouseArea {
         resizeEdge = resize_edge.resizeNone
 
         // do the actual resize action
-        resize_visual.hide()
-        windowView.setX(resize_visual.frameX)
-        windowView.setY(resize_visual.frameY)
-        windowView.setWidth(resize_visual.frameWidth)
-        windowView.setHeight(resize_visual.frameHeight)
-        window.width = resize_visual.frameWidth
-        window.height = resize_visual.frameHeight
+        if (resize_visual.visible) {
+            resize_visual.hide()
+            windowView.setX(resize_visual.frameX)
+            windowView.setY(resize_visual.frameY)
+            windowView.setWidth(resize_visual.frameWidth)
+            windowView.setHeight(resize_visual.frameHeight)
+        }
     }
 
     onClicked: {

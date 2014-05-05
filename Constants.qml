@@ -1,7 +1,7 @@
 import QtQuick 2.1
 
 Item {
-    property int titlebarHeight: 45
+    property int titlebarHeight: 80
     property int controlbarHeight: 64
     
     property int playlistWidth: 200

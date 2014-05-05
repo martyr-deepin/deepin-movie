@@ -5,9 +5,6 @@ Item {
     id: titlebar
     height: program_constants.titlebarHeight
 
-    property alias tabPages: tabs.children
-    property string currentPage
-
     signal minButtonClicked ()
     signal maxButtonClicked ()
     signal closeButtonClicked ()
@@ -18,16 +15,6 @@ Item {
 
     function hide() {
         visible = false
-    }
-
-    Item {
-        id: tabs
-
-        Item {
-            property string name: "深度影音"
-            property variant page: undefined
-            property int index: 0
-        }
     }
 
     Item {
@@ -57,8 +44,9 @@ Item {
             id: appIcon
             source: "image/logo.png"
             anchors.left: parent.left
-            anchors.verticalCenter: parent.verticalCenter
             anchors.leftMargin: 8
+            anchors.top: parent.top
+            anchors.topMargin: 5
         }
 
         TabButton {
@@ -66,6 +54,7 @@ Item {
 
             anchors.left: appIcon.right
             anchors.leftMargin: 10
+            anchors.verticalCenter: appIcon.verticalCenter
         }
 
         Row {
