@@ -3,10 +3,14 @@ import QtMultimedia 5.0
 import QtQuick.Window 2.1
 import QtGraphicalEffects 1.0
 
-Item {
+Rectangle {
     id: root
+    color: "red"
     state: "normal"
-    width: windowView.width * widthProportion
+    // QT takes care of WORKAREA for you which is thoughtful indeed, but it cause 
+    // problems sometime, we should be careful in case that is changes height for 
+    // you suddently.
+    width: height * windowView.width / windowView.height * widthProportion
     height: windowView.height * heightProportion
 
     property real widthProportion: 1
@@ -92,12 +96,6 @@ Item {
         controlbar.visible = false
     }
 
-    function adjustSize(widthHeightScale) {
-        width = height * widthHeightScale
-        windowView.setWidth(width)
-        windowView.moveToCenter()
-    }
-
     function monitorWindowClose() {
         config.save("Normal", "volume", player.volume)
         database.record_video_position(player.source, player.position)
@@ -109,7 +107,7 @@ Item {
         State {
             name: "normal"
 
-            PropertyChanges { target: player; anchors.fill: main_window }
+            PropertyChanges { target: player; width: main_window.width; height: main_window.height }
             PropertyChanges { target: titlebar; width: main_window.width; anchors.top: main_window.top }
             PropertyChanges { target: controlbar; width: main_window.width; anchors.bottom: main_window.bottom}
             PropertyChanges { target: notifybar; anchors.top: root.top; anchors.left: root.left}
@@ -117,7 +115,7 @@ Item {
         State {
             name: "fullscreen"
 
-            PropertyChanges { target: player; anchors.fill: root }
+            PropertyChanges { target: player; width: root.width; height: root.height }
             PropertyChanges { target: titlebar; width: root.width; anchors.top: root.top }
             PropertyChanges { target: controlbar; width: root.width; anchors.bottom: root.bottom}
             PropertyChanges { target: notifybar; anchors.top: titlebar.bottom; anchors.left: root.left}
@@ -146,7 +144,7 @@ Item {
 
     Rectangle {
         id: main_window
-        width: root.width - program_constants.windowGlowRadius * 2
+        width: root.width - program_constants.windowGlowRadius * 2 //height * (movieInfo.movie_width / movieInfo.movie_height)
         height: root.height - program_constants.windowGlowRadius * 2
         clip: true
         color: "#1D1D1D"
@@ -161,20 +159,11 @@ Item {
             anchors.fill: parent
             Image { anchors.centerIn: parent; source: "image/background.png" }
         }
-
-        Image {
-            source: "image/dragbar.png"
-
-            anchors.rightMargin: 5
-            anchors.bottomMargin: 5
-            anchors.right: parent.right
-            anchors.bottom: parent.bottom
-        }
     }
 
     Player {
         id: player
-        anchors.fill: main_window
+        anchors.centerIn: main_window
         source: movieInfo.movie_file
 
         onStopped: {
@@ -235,5 +224,14 @@ Item {
         }
 
         onPercentageSet: player.seek(movieInfo.movie_duration * percentage)
+    }
+
+    Image {
+        source: "image/dragbar.png"
+
+        anchors.rightMargin: 5
+        anchors.bottomMargin: 5
+        anchors.right: main_window.right
+        anchors.bottom: main_window.bottom
     }
 }

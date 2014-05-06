@@ -5,7 +5,6 @@ import DBus.Com.Deepin.Daemon.Power 1.0
 Video {
     id: video
     autoPlay: true
-    anchors.fill: parent
     transform: flip
 
     property alias subtitleContent: subtitle.text
