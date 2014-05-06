@@ -168,11 +168,13 @@ Item {
         source: movieInfo.movie_file
 
         onStopped: {
-            var next = playlist.getNextSource()
-            if (next) {
-                movieInfo.movie_file = next
-            } else {
-                root.reset()
+            if (Math.abs(position - movieInfo.movie_duration) < 10) {
+                var next = playlist.getNextSource()
+                if (next) {
+                    movieInfo.movie_file = next
+                } else {
+                    root.reset()
+                }
             }
         }
 
