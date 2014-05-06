@@ -8,6 +8,7 @@ Item {
     property int playlistTriggerThreshold: 50
     
     property int windowRadius: 3
+    property int windowGlowRadius: windowView.windowGlowRadius
     
     property color normalColor: "#B4B4B4"
     property color hoverColor: "#FFFFFF"

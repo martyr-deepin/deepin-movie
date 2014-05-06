@@ -25,7 +25,7 @@ import os
 from PyQt5.QtCore import pyqtProperty, pyqtSignal, QObject, pyqtSlot
 
 from subtitles import Parser, SUPPORTED_FILE_TYPES
-from constant import DEFAULT_WIDTH, DEFAULT_HEIGHT
+from constant import DEFAULT_WIDTH, DEFAULT_HEIGHT, WINDOW_GLOW_RADIUS
 from media_info import parse_info
 from logger import logger
 
@@ -91,6 +91,9 @@ class MovieInfo(QObject):
         self.media_width = self.media_info["video_width"] or DEFAULT_WIDTH
         self.media_height = self.media_info["video_height"] or DEFAULT_HEIGHT
         self.media_duration = self.media_info["general_duration"] or 0
+        self.media_width = int(self.media_width) + 2 * WINDOW_GLOW_RADIUS
+        self.media_height = int(self.media_height) + 2 * WINDOW_GLOW_RADIUS
+        self.media_duration = int(self.media_duration)
 
         self.movieSourceChanged.emit(filepath)
         self.movieWidthChanged.emit(self.media_width)

@@ -3,9 +3,8 @@ import QtMultimedia 5.0
 import QtQuick.Window 2.1
 import QtGraphicalEffects 1.0
 
-Rectangle {
+Item {
     id: root
-    color: "red"
     state: "normal"
     width: windowView.width * widthProportion
     height: windowView.height * heightProportion
@@ -93,6 +92,12 @@ Rectangle {
         controlbar.visible = false
     }
 
+    function adjustSize(widthHeightScale) {
+        width = height * widthHeightScale
+        windowView.setWidth(width)
+        windowView.moveToCenter()
+    }
+
     function monitorWindowClose() {
         config.save("Normal", "volume", player.volume)
         database.record_video_position(player.source, player.position)
@@ -105,8 +110,8 @@ Rectangle {
             name: "normal"
 
             PropertyChanges { target: player; anchors.fill: main_window }
-            PropertyChanges { target: titlebar; width: Math.max(windowView.defaultWidth, main_window.width); anchors.top: main_window.top }
-            PropertyChanges { target: controlbar; width: Math.max(windowView.defaultHeight, main_window.width); anchors.bottom: main_window.bottom}
+            PropertyChanges { target: titlebar; width: main_window.width; anchors.top: main_window.top }
+            PropertyChanges { target: controlbar; width: main_window.width; anchors.bottom: main_window.bottom}
             PropertyChanges { target: notifybar; anchors.top: root.top; anchors.left: root.left}
         },
         State {
@@ -132,7 +137,7 @@ Rectangle {
     RectangularGlow {
         id: shadow
         anchors.fill: main_window
-        glowRadius: 3
+        glowRadius: program_constants.windowGlowRadius - 5
         spread: 0
         color: Qt.rgba(0, 0, 0, 1)
         cornerRadius: 10
@@ -141,8 +146,8 @@ Rectangle {
 
     Rectangle {
         id: main_window
-        width: root.width - 16
-        height: root.height - 16
+        width: root.width - program_constants.windowGlowRadius * 2
+        height: root.height - program_constants.windowGlowRadius * 2
         clip: true
         color: "#1D1D1D"
         radius: program_constants.windowRadius

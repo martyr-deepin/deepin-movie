@@ -21,14 +21,23 @@ MouseArea {
     Connections {
         target: movieInfo
 
+        // Notice:
+        // QWindow.setHeight probably will not set the actual height of the 
+        // window to the given value(automatically adjusted by the WM or something),
+        // though QWindow.height is set to the given value actually, 
+        // so QWindow.height is not reliable here to get the actual height of the window,
+        // fortunately, we can get it from the rootObject(here is root) of the QQuickView.
+
+        // How the WM effects the size of the window is not clear, so we just
+        // assume that the maximum size the window can go is the screen size minus
+        // the DOCK_AREA, and as the most screen's width is larger that its height,
+        // we soly consider the situation that the height is cut off by the WM.
         onMovieWidthChanged: {
             windowView.setWidth(movieInfo.movie_width)
-            windowView.moveToCenter()
         }
 
         onMovieHeightChanged: {
             windowView.setHeight(movieInfo.movie_height)
-            windowView.moveToCenter()
         }
 
         onMovieSourceChanged: {

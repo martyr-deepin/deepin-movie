@@ -27,7 +27,7 @@ from PyQt5.QtQuick import QQuickView
 from PyQt5.QtCore import pyqtSlot, pyqtProperty, QDir
 from PyQt5.QtGui import QSurfaceFormat, QColor, QPixmap
 from notification import notify
-from constant import DEFAULT_WIDTH, DEFAULT_HEIGHT
+from constant import DEFAULT_WIDTH, DEFAULT_HEIGHT, WINDOW_GLOW_RADIUS
 
 class Window(QQuickView):
 
@@ -51,6 +51,10 @@ class Window(QQuickView):
     @pyqtProperty(int,constant=True)
     def defaultHeight(self):
         return DEFAULT_HEIGHT
+
+    @pyqtProperty(int,constant=True)
+    def windowGlowRadius(self):
+        return WINDOW_GLOW_RADIUS
         
     @pyqtSlot(result=int)    
     def getState(self):
