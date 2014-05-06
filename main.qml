@@ -110,6 +110,7 @@ Item {
             PropertyChanges { target: titlebar; width: main_window.width; anchors.top: main_window.top }
             PropertyChanges { target: controlbar; width: main_window.width; anchors.bottom: main_window.bottom}
             PropertyChanges { target: notifybar; anchors.top: root.top; anchors.left: root.left}
+            PropertyChanges { target: playlist; height: main_window.height; anchors.right: main_window.right }
         },
         State {
             name: "fullscreen"
@@ -118,6 +119,7 @@ Item {
             PropertyChanges { target: titlebar; width: root.width; anchors.top: root.top }
             PropertyChanges { target: controlbar; width: root.width; anchors.bottom: root.bottom}
             PropertyChanges { target: notifybar; anchors.top: titlebar.bottom; anchors.left: root.left}
+            PropertyChanges { target: playlist; height: root.height; anchors.right: root.right }
         }
     ]
 
@@ -187,11 +189,10 @@ Item {
     Playlist {
         id: playlist
         width: 0
-        height: main_window.height
         visible: false
         currentPlayingSource: player.source
-        anchors.top: main_window.top
-        anchors.left: main_window.left
+        anchors.right: main_window.right
+        anchors.verticalCenter: parent.verticalCenter
 
         onNewSourceSelected: movieInfo.movie_file = path
     }

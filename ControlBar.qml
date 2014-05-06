@@ -98,20 +98,14 @@ Item {
                 anchors.left: parent.left
                 anchors.leftMargin: 24
                 anchors.verticalCenter: parent.verticalCenter
-                spacing: 20
+                spacing: 5
 
-                ToggleButton {
-                    id: playerList
-                    imageName: "image/player_list"
+                Text {
+                    id: playTime
                     anchors.verticalCenter: parent.verticalCenter
-                /* active: playlistPanel.width == showWidth */
-                }
-
-                ToggleButton {
-                    id: playerConfig
-                    imageName: "image/player_config"
-                    anchors.verticalCenter: parent.verticalCenter
-                    active: false
+                    text: formatTime(control_bar.percentage * movieInfo.movie_duration) + " / " + formatTime(movieInfo.movie_duration)
+                    color: Qt.rgba(100, 100, 100, 1)
+                    font.pixelSize: 12
                 }
             }
 
@@ -194,14 +188,20 @@ Item {
                 anchors.right: parent.right
                 anchors.rightMargin: 10
                 anchors.verticalCenter: parent.verticalCenter
-                spacing: 5
+                spacing: 20
 
-                Text {
-                    id: playTime
+                ToggleButton {
+                    id: playerList
+                    imageName: "image/player_list"
                     anchors.verticalCenter: parent.verticalCenter
-                    text: formatTime(control_bar.percentage * movieInfo.movie_duration) + " / " + formatTime(movieInfo.movie_duration)
-                    color: Qt.rgba(100, 100, 100, 1)
-                    font.pixelSize: 12
+                /* active: playlistPanel.width == showWidth */
+                }
+
+                ToggleButton {
+                    id: playerConfig
+                    imageName: "image/player_config"
+                    anchors.verticalCenter: parent.verticalCenter
+                    active: false
                 }
             }
         }
