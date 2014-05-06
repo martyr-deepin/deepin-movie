@@ -2,6 +2,7 @@ import QtQuick 2.1
 import QtMultimedia 5.0
 import QtQuick.Window 2.1
 import QtGraphicalEffects 1.0
+import DBus.Com.Deepin.Daemon.Display 1.0
 
 Item {
     id: root
@@ -9,11 +10,16 @@ Item {
     // QT takes care of WORKAREA for you which is thoughtful indeed, but it cause 
     // problems sometime, we should be careful in case that is changes height for 
     // you suddently.
-    width: height * movieInfo.movie_width / movieInfo.movie_height * widthProportion
-    height: windowView.height * heightProportion
+    width: height * widthHeightScale
+    height: windowView.height 
 
-    property real widthProportion: 1
-    property real heightProportion: 1
+    property real widthHeightScale: movieInfo.movie_width / movieInfo.movie_height
+
+    Display { id: dbus_display }
+    property rect primaryRect: {
+        var rect = dbus_display.primaryRect
+        return Qt.rect(rect[0], rect[1], rect[2], rect[3])
+    }
 
     Constants { id: program_constants }
 

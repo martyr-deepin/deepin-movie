@@ -25,7 +25,12 @@ Connections {
         windowView.screenShot()
     }
     onProportionChanged: {
-        root.widthProportion = propWidth / propHeight
+        var widthHeightScale = propWidth / propHeight
+        if (root.height * widthHeightScale > primaryRect.width - 200) {
+            windowView.setHeight((primaryRect.width - 200) / widthHeightScale)
+            windowView.setWidth(primaryRect.width - 200)
+        }
+        root.widthHeightScale = widthHeightScale
     }
     onScaleChanged: {
         root.widthProportion = scale

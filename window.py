@@ -27,7 +27,8 @@ from PyQt5.QtQuick import QQuickView
 from PyQt5.QtCore import pyqtSlot, pyqtProperty, QDir
 from PyQt5.QtGui import QSurfaceFormat, QColor, QPixmap
 from notification import notify
-from constant import DEFAULT_WIDTH, DEFAULT_HEIGHT, WINDOW_GLOW_RADIUS
+from constant import (DEFAULT_WIDTH, DEFAULT_HEIGHT, WINDOW_GLOW_RADIUS,
+    MINIMIZE_WIDTH, MINIMIZE_HEIGHT)
 
 class Window(QQuickView):
 
@@ -37,7 +38,7 @@ class Window(QQuickView):
         surface_format.setAlphaBufferSize(8)
         
         self.setColor(QColor(0, 0, 0, 0))
-        self.setMinimumSize(QSize(DEFAULT_WIDTH, DEFAULT_HEIGHT))
+        self.setMinimumSize(QSize(MINIMIZE_WIDTH, MINIMIZE_HEIGHT))
         self.setResizeMode(QtQuick.QQuickView.SizeRootObjectToView)
         self.setFormat(surface_format)
         
