@@ -26,15 +26,19 @@ Connections {
     }
     onProportionChanged: {
         var widthHeightScale = propWidth / propHeight
-        if (root.height * widthHeightScale > primaryRect.width - 200) {
-            windowView.setHeight((primaryRect.width - 200) / widthHeightScale)
-            windowView.setWidth(primaryRect.width - 200)
+        if (root.height * widthHeightScale > primaryRect.width) {
+            windowView.setHeight((primaryRect.width) / widthHeightScale)
+            windowView.setWidth(primaryRect.width)
         }
         root.widthHeightScale = widthHeightScale
+        windowView.setWidth(root.height * widthHeightScale)
+        windowView.moveToCenter()
     }
     onScaleChanged: {
-        root.widthProportion = scale
-        root.heightProportion = scale
+        windowView.setHeight(root.height * scale)
+        windowView.setWidth(root.height * scale * root.widthHeightScale)
+
+        windowView.moveToCenter()
     }
     onStaysOnTop: {
         windowView.staysOnTop = onTop
