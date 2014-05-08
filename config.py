@@ -25,8 +25,14 @@ from deepin_utils import config
 from constant import CONFIG_DIR
 from PyQt5.QtCore import pyqtSlot, QObject
 
+ADJUST_TYPE_WINDOW_VIDEO = "ADJUST_TYPE_WINDOW_VIDEO"
+ADJUST_TYPE_VIDEO_WINDOW = "ADJUST_TYPE_VIDEO_WINDOW"
+ADJUST_TYPE_LAST_TIME = "ADJUST_TYPE_LAST_TIME"
+ADJUST_TYPE_FULLSCREEN = "ADJUST_TYPE_FULLSCREEN"
+
 DEFAULT_CONFIG = [
-    ("Normal", [("volume", "1.0")])
+    ("Normal", [("volume", "1.0")]),
+    ("Normal", [("adjust_type", ADJUST_TYPE_WINDOW_VIDEO)]),
     ]
 
 class Config(QObject):

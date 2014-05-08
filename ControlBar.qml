@@ -9,6 +9,8 @@ Item {
     property alias percentage: progressbar.percentage
     
     signal togglePlay ()
+    signal muteSet (bool muted)
+    signal volumeChanged (real volume)
     signal percentageSet(real percentage)
 
     Behavior on opacity {
@@ -161,24 +163,12 @@ Item {
                     id: playerVolume
                     anchors.verticalCenter: parent.verticalCenter
 
-                    onInVolumebar: {
-                        hidingTimer.stop()
-                    }
-
                     onChangeVolume: {
-                        video.volume = playerVolume.volume
-
-                        notifybar.show("image/notify_volume.png", "音量: " + Math.round(video.volume * 100) + "%")
+                        control_bar.volumeChanged(volume)
                     }
 
                     onClickMute: {
-                        video.muted = !playerVolume.active
-
-                        if (video.muted) {
-                            notifybar.show("image/notify_volume.png", "静音")
-                        } else {
-                            notifybar.show("image/notify_volume.png", "音量: " + Math.round(player.volume * 100) + "%")
-                        }
+                        control_bar.muteSet(!playerVolume.active)
                     }
                 }
             }

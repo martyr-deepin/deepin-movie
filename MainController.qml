@@ -225,6 +225,21 @@ MouseArea {
         notifybar.show("image/notify_volume.png", "音量: " + Math.round(player.volume * 100) + "%")
     }
 
+    function setVolume(volume) {
+        player.volume = volume
+        notifybar.show("image/notify_volume.png", "音量: " + Math.round(player.volume * 100) + "%")
+    }
+
+    function setMute(muted) {
+        player.muted = muted
+
+        if (player.muted) {
+            notifybar.show("image/notify_volume.png", "静音")
+        } else {
+            notifybar.show("image/notify_volume.png", "音量: " + Math.round(player.volume * 100) + "%")
+        }
+    }
+
     Keys.onSpacePressed: togglePlay()
     Keys.onLeftPressed: backward(5000)
     Keys.onRightPressed: forward(5000)

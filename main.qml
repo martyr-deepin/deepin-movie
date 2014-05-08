@@ -9,6 +9,7 @@ Item {
     // QT takes care of WORKAREA for you which is thoughtful indeed, but it cause 
     // problems sometime, we should be careful in case that it changes height for 
     // you suddenly.
+    x: (windowView.width - width) / 2
     width: height * widthHeightScale
     height: windowView.height 
 
@@ -99,6 +100,13 @@ Item {
          rect.y <= point.y && point.y <= rect.y + rect.height
     }
 
+    function mouseInControlsArea() {
+        return inRectCheck(Qt.point(main_controller.mouseX, main_controller.mouseY),
+            Qt.rect(0, 0, main_window.width, titlebar.height)) || inRectCheck(
+            Qt.point(main_controller.mouseX, main_controller.mouseY),
+            Qt.rect(0, main_window.height - controlbar.height, main_window.width, controlbar.height))
+    }
+
     /* to perform like a newly started program  */
     function reset() {
         movieInfo.movie_file = ""
@@ -144,7 +152,11 @@ Item {
         interval: 5000
 
         onTriggered: {
-            hideControls()
+            if (!mouseInControlsArea()) {
+                hideControls()
+            } else {
+                hide_controls_timer.restart()
+            }
         }
     }
 
@@ -238,6 +250,14 @@ Item {
 
         onTogglePlay: {
             main_controller.togglePlay()
+        }
+
+        onVolumeChanged: {
+            main_controller.setVolume(volume)
+        }
+
+        onMuteSet: {
+            main_controller.setMute(muted)
         }
 
         onPercentageSet: player.seek(movieInfo.movie_duration * percentage)
