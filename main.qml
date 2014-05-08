@@ -1,6 +1,5 @@
 import QtQuick 2.1
 import QtMultimedia 5.0
-import QtQuick.Window 2.1
 import QtGraphicalEffects 1.0
 import DBus.Com.Deepin.Daemon.Display 1.0
 
