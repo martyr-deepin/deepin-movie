@@ -79,6 +79,21 @@ MouseArea {
         }
     }
 
+    property int clickCount: 0
+    Timer {
+        id: double_click_check_timer
+        interval: 200
+
+        onTriggered: {
+            if (mouse_area.clickCount == 1) {
+                mouse_area.doSingleClick()
+            } else if (mouse_area.clickCount == 2) {
+                mouse_area.doDoubleClick()
+            }
+            mouse_area.clickCount = 0
+        }
+    }
+
     // resize operation related
     function getEdge(mouse) {
         if (0 < mouse.x && mouse.x < triggerThreshold) {
@@ -118,6 +133,27 @@ MouseArea {
         } else {
             cursorShape = Qt.ArrowCursor
         }
+    }
+
+    function doSingleClick() {
+        if (playlist.expanded) {
+            playlist.hide()
+            return 
+        }
+
+        if (shouldPlayOrPause) {
+            if (player.playbackState == MediaPlayer.PausedState) {
+                play()
+            } else if (player.playbackState == MediaPlayer.PlayingState) {
+                pause()
+            }
+        } else {
+            shouldPlayOrPause = true
+        }
+    }
+
+    function doDoubleClick(mouse) {
+        toggleFullscreen()
     }
 
     function close() {
@@ -254,28 +290,14 @@ MouseArea {
     }
 
     onClicked: {
-        if (playlist.expanded) {
-            playlist.hide()
-            return 
-        }
-        
         if (mouse.button == Qt.RightButton) {
             _menu_controller.show_menu()
         } else {
-            if (shouldPlayOrPause) {
-                if (player.playbackState == MediaPlayer.PausedState) {
-                    play()
-                } else if (player.playbackState == MediaPlayer.PlayingState) {
-                    pause()
-                }
-            } else {
-                shouldPlayOrPause = true
-            }
+            clickCount++
+            if (!double_click_check_timer.running) {
+                double_click_check_timer.start()  
+            } 
         }
-    }
-
-    onDoubleClicked: {
-        toggleFullscreen()
     }
 
     ResizeVisual {
