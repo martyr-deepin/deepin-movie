@@ -2,9 +2,6 @@ import QtQuick 2.1
 import Deepin.Widgets 1.0
 
 DPreferenceWindow {
-    width: 500
-    height: 500
-
     content: DPreferenceView {
         id: preference_view
         

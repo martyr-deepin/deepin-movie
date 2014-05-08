@@ -54,6 +54,14 @@ Item {
         }
     }
 
+    PreferenceWindow {
+        id: preference_window
+        x: windowView.x + (windowView.width - width) / 2
+        y: windowView.y + (windowView.height - height) / 2
+        width: 500
+        height: 500
+    }
+
     function formatTime(millseconds) {
         if (millseconds < 0) return "00:00:00";
         var secs = Math.floor(millseconds / 1000)
@@ -260,6 +268,10 @@ Item {
 
         onMutedSet: {
             main_controller.setMute(muted)
+        }
+
+        onConfigButtonClicked: {
+            preference_window.show()
         }
 
         onPercentageSet: player.seek(movieInfo.movie_duration * percentage)

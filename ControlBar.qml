@@ -14,6 +14,7 @@ Item {
     signal mutedSet (bool muted)
     signal changeVolume (real volume)
     signal percentageSet(real percentage)
+    signal configButtonClicked ()
 
     Behavior on opacity {
         NumberAnimation { duration: 300 }
@@ -196,11 +197,14 @@ Item {
                 /* active: playlistPanel.width == showWidth */
                 }
 
-                ToggleButton {
+                ImageButton {
                     id: playerConfig
                     imageName: "image/player_config"
                     anchors.verticalCenter: parent.verticalCenter
-                    active: false
+
+                    onClicked: {
+                        control_bar.configButtonClicked()
+                    }
                 }
             }
         }
