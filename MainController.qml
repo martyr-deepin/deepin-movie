@@ -6,7 +6,7 @@ MouseArea {
     focus: true
     hoverEnabled: true
     acceptedButtons: Qt.LeftButton | Qt.RightButton
-    anchors.fill: window
+    anchors.fill: main_window
 
     property var window
     property int resizeEdge
@@ -232,14 +232,6 @@ MouseArea {
     Keys.onDownPressed: decreaseVolume(0.05)
     Keys.onEscapePressed: normalize()
 
-    onEntered: {
-        showControls()
-    }
-
-    onExited: {
-    /* hideControls() */
-    }
-
     onWheel: wheel.angleDelta.y > 0 ? increaseVolume(wheel.angleDelta.y / 120 * 0.05) : decreaseVolume(-wheel.angleDelta.y / 120 * 0.05)
 
     onPressed: {
@@ -256,9 +248,14 @@ MouseArea {
         if (!pressed) {
             changeCursor(getEdge(mouse))
 
-            if (!playlist.expanded &&
-                0 < mouse.x &&
-                mouse.x <= program_constants.playlistTriggerThreshold) {
+            if (inRectCheck(mouse, Qt.rect(0, 0, main_window.width, 
+                program_constants.titlebarTriggerThreshold))) {
+                showControls()
+            } else if (inRectCheck(mouse, Qt.rect(0, main_window.height - controlbar.height, 
+                main_window.width, program_constants.controlbarTriggerThreshold))) {
+                showControls()
+            } else if (!playlist.expanded && inRectCheck(mouse, Qt.rect(0, 0, 
+                program_constants.playlistTriggerThreshold, main_window.height))) {
                 show_playlist_timer.restart()
             }
         }
