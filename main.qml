@@ -256,7 +256,7 @@ Item {
             main_controller.setVolume(volume)
         }
 
-        onMuteSet: {
+        onMutedSet: {
             main_controller.setMute(muted)
         }
 

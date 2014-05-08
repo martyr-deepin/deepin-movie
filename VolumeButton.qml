@@ -2,107 +2,107 @@ import QtQuick 2.1
 import QtMultimedia 5.0
 import QtGraphicalEffects 1.0
 
-ToggleButton {
-    id: volumeButton
-    
-    imageName: "image/player_volume"
-    
-    property alias volumebar: volumebar
-    property alias volumeMiddle: volumeMiddle
-    
+Row {
+    id: item
+    spacing: 5
+    width: 100
+    height: toggle_button.height
+
     property double volume: 1.0
-    property int hideWidth: 0.0
-    property int showWidth: volumebar.width
-    property int hidePosition: hideWidth
-    property int showPosition: volume * showWidth
-    property int middleWidth: Math.max(showPosition - volumeLeft.width - volumeRight.width, 0)
-    
-    signal inVolumebar
+
     signal changeVolume
-    signal clickMute
-    
-    Image {
-        id: volumebar
-        source: "image/volume_background.png"
-        anchors.left: parent.right
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.leftMargin: 8
-        
-        Image {
-            id: volumeLeft
-            anchors.left: parent.left
-            source: "image/volume_foreground_left.png"
-        }
+    signal mutedSet (bool muted)
 
-        Image {
-            id: volumeMiddle
-            anchors.left: volumeLeft.right
-            source: "image/volume_foreground_middle.png"
-            fillMode: Image.TileHorizontally
-            width: middleWidth
-        }
-        
-        Image {
-            id: volumeRight
-            anchors.left: volumeMiddle.right
-            source: "image/volume_foreground_right.png"
-        }
+    Timer {
+        id: hide_bar_timer
 
-        Image {
-            id: volumePointer
-            anchors.verticalCenter: parent.verticalCenter
-            source: "image/volume_pointer.png"
-            x: volumeRight.x - volumePointer.width / 2
-        }
-    }
-    
-    MouseArea {
-        id: volumebarArea
-        anchors.top: volumebar.top
-        anchors.bottom: volumebar.bottom
-        anchors.left: volumebar.left
-        anchors.right: volumebar.right
-        hoverEnabled: true
-
-        onClicked: {
-            volume = mouseX / showWidth
-            volumeButton.changeVolume()
-        }
-        
-        onPositionChanged: {
-            volumeButton.inVolumebar()
-        }
-
-        onWheel: {
-            volume = Math.max(Math.min(volume + (wheel.angleDelta.y / 120 * 0.05), 1.0), 0.0)
-            volumeButton.changeVolume()
-        }
-    }
-    
-    Connections {
-        target: volumeButton
-        onClicked: {
-            volumebar.visible = volumeButton.active
-            volumeButton.clickMute(volumeButton.active)
-        }
-    }
-    
-    MouseArea {
-        id: volumeButtonArea
-        anchors.fill: parent
-        hoverEnabled: true
-        propagateComposedEvents: true
-        
-        onPositionChanged: {
-            volumeButton.inVolumebar()
-            
-            if (volumeButton.active) {
-                volumebar.visible = true
+        interval: 200
+        onTriggered: {
+            if (volume_bar_mouse_area.containsMouse) {
+                hide_bar_timer.restart()
+            } else {
+                bar_item.visible = false
             }
         }
+    }
+
+    ToggleButton {
+        id: toggle_button
         
+        imageName: "image/player_volume"
+
+        onEntered: {
+            bar_item.visible = true
+        }
+
+        onExited: {
+            hide_bar_timer.restart()
+        }
+
         onClicked: {
-            mouse.accepted = false
+            item.mutedSet(!active)
+        }
+    }
+
+    Item {
+        id: bar_item
+        visible: false
+        width: volume_bar.width
+        height: toggle_button.height
+
+        Image {
+            id: volume_bar
+            source: "image/volume_background.png"
+            anchors.verticalCenter: parent.verticalCenter
+
+            MouseArea {
+                id: volume_bar_mouse_area
+                hoverEnabled: true
+                anchors.fill: parent
+
+                onClicked: {
+                    volume_pointer.x = Math.min(Math.max(mouse.x - volume_pointer.width / 2, 0), parent.width)
+                    volume = volume_pointer.x / (volume_bar.width - volume_pointer.width)
+                    item.changeVolume(volume)
+                }
+            }
+            
+            Image {
+                id: left_part
+                anchors.left: parent.left
+                source: "image/volume_foreground_left.png"
+            }
+
+            Image {
+                id: center_part
+                anchors.left: left_part.right
+                anchors.right: volume_pointer.horizontalCenter
+                source: "image/volume_foreground_middle.png"
+                fillMode: Image.TileHorizontally
+            }
+
+            Image {
+                id: volume_pointer
+                anchors.verticalCenter: parent.verticalCenter
+                source: "image/volume_pointer.png"
+                x: (volume_bar.width - volume_pointer.width) * item.volume
+
+                onXChanged: {
+                    if (pointer_mouse_area.pressed) {
+                        volume = x / (volume_bar.width - volume_pointer.width)
+                        item.changeVolume(volume)
+                    }
+                }
+
+                MouseArea {
+                    id: pointer_mouse_area
+                    anchors.fill: parent
+                    drag.target: volume_pointer
+                    drag.axis: Drag.XAxis
+                    drag.minimumX: 0
+                    drag.maximumX: volume_bar.width - volume_pointer.width
+                }
+            }
         }
     }
 }

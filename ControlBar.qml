@@ -9,7 +9,7 @@ Item {
     property alias percentage: progressbar.percentage
     
     signal togglePlay ()
-    signal muteSet (bool muted)
+    signal mutedSet (bool muted)
     signal volumeChanged (real volume)
     signal percentageSet(real percentage)
 
@@ -167,8 +167,8 @@ Item {
                         control_bar.volumeChanged(volume)
                     }
 
-                    onClickMute: {
-                        control_bar.muteSet(!playerVolume.active)
+                    onMutedSet: {
+                        control_bar.mutedSet(muted)
                     }
                 }
             }
