@@ -58,7 +58,7 @@ Item {
         id: preference_window
         x: windowView.x + (windowView.width - width) / 2
         y: windowView.y + (windowView.height - height) / 2
-        width: 500
+        width: 800
         height: 500
     }
 

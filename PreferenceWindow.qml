@@ -4,6 +4,7 @@ import Deepin.Widgets 1.0
 DPreferenceWindow {
     content: DPreferenceView {
         id: preference_view
+        sectionListWidth:  150
         
         sections: [
             {
