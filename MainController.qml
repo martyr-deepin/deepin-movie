@@ -6,7 +6,7 @@ MouseArea {
     focus: true
     hoverEnabled: true
     acceptedButtons: Qt.LeftButton | Qt.RightButton
-    anchors.fill: main_window
+    anchors.fill: window
 
     property var window
     property int resizeEdge

@@ -54,6 +54,14 @@ class Window(QQuickView):
         return DEFAULT_HEIGHT
 
     @pyqtProperty(int,constant=True)
+    def minimumWidth(self):
+        return MINIMIZE_WIDTH
+
+    @pyqtProperty(int,constant=True)
+    def minimumHeight(self):
+        return MINIMIZE_HEIGHT
+
+    @pyqtProperty(int,constant=True)
     def windowGlowRadius(self):
         return WINDOW_GLOW_RADIUS
         
@@ -78,7 +86,7 @@ class Window(QQuickView):
     @staysOnTop.setter
     def staysOnTop(self, onTop):
         self._staysOnTop = onTop
-        flags = QtCore.Qt.FramelessWindowHint
+        flags = QtCore.Qt.Window #FramelessWindowHint
         if onTop: flags = flags | QtCore.Qt.WindowStaysOnTopHint
         self.setFlags(flags)
         self.hide()

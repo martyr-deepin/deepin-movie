@@ -7,9 +7,9 @@ Item {
     id: root
     state: "normal"
     // QT takes care of WORKAREA for you which is thoughtful indeed, but it cause 
-    // problems sometime, we should be careful in case that is changes height for 
-    // you suddently.
-    width: { windowView.setWidth(height * widthHeightScale); return height * widthHeightScale }
+    // problems sometime, we should be careful in case that it changes height for 
+    // you suddenly.
+    width: height * widthHeightScale
     height: windowView.height 
 
     property real widthHeightScale: movieInfo.movie_width / movieInfo.movie_height
