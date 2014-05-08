@@ -86,7 +86,7 @@ class Window(QQuickView):
     @staysOnTop.setter
     def staysOnTop(self, onTop):
         self._staysOnTop = onTop
-        flags = QtCore.Qt.Window #FramelessWindowHint
+        flags = QtCore.Qt.FramelessWindowHint
         if onTop: flags = flags | QtCore.Qt.WindowStaysOnTopHint
         self.setFlags(flags)
         self.hide()

@@ -191,6 +191,7 @@ Item {
 
     Player {
         id: player
+        volume: controlbar.volume
         anchors.centerIn: main_window
         source: movieInfo.movie_file
 
@@ -244,6 +245,7 @@ Item {
     ControlBar {
         id: controlbar
         width: root.width
+        volume: config.fetch("Normal", "volume")
         percentage: player.position / movieInfo.movie_duration
         visible: { return (player.visible && player.hasVideo) }
         anchors.horizontalCenter: main_window.horizontalCenter
@@ -252,7 +254,7 @@ Item {
             main_controller.togglePlay()
         }
 
-        onVolumeChanged: {
+        onChangeVolume: {
             main_controller.setVolume(volume)
         }
 

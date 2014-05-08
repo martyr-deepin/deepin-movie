@@ -1,16 +1,18 @@
 import QtQuick 2.1
 import QtMultimedia 5.0
 import QtGraphicalEffects 1.0
+import Deepin.Widgets 1.0
 
 Item {
     id: control_bar
     height: program_constants.controlbarHeight
 
+    property alias volume: volume_button.volume
     property alias percentage: progressbar.percentage
     
     signal togglePlay ()
     signal mutedSet (bool muted)
-    signal volumeChanged (real volume)
+    signal changeVolume (real volume)
     signal percentageSet(real percentage)
 
     Behavior on opacity {
@@ -137,9 +139,16 @@ Item {
                     width: 28
                 }
 
-                ImageButton {
+                DImageCheckButton {
                     id: playerPlay
-                    imageName: player.playbackState == MediaPlayer.PlayingState ? "image/player_pause" : "image/player_play"
+                    activatedNomralImage: "image/player_play_normal.png"
+                    activatedHoverImage: "image/player_play_hover.png"
+                    activatedPressImage: "image/player_play_press.png"
+
+                    inactivatedNomralImage: "image/player_pause_normal.png"
+                    inactivatedHoverImage: "image/player_pause_hover.png"
+                    inactivatedPressImage: "image/player_pause_press.png"
+
                     onClicked: {
                         control_bar.togglePlay()
                     }
@@ -160,11 +169,11 @@ Item {
                 }
 
                 VolumeButton {
-                    id: playerVolume
+                    id: volume_button
                     anchors.verticalCenter: parent.verticalCenter
 
                     onChangeVolume: {
-                        control_bar.volumeChanged(volume)
+                        control_bar.changeVolume(volume)
                     }
 
                     onMutedSet: {

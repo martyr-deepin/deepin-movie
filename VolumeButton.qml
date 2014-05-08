@@ -5,7 +5,7 @@ import QtGraphicalEffects 1.0
 Row {
     id: item
     spacing: 5
-    width: 100
+    width: toggle_button.width
     height: toggle_button.height
 
     property double volume: 1.0
