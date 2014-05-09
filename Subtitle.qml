@@ -5,7 +5,7 @@ Item {
 	height: txt.implicitHeight
 
 	property alias text: txt.text
-	property alias textColor: txt.color
+	property alias fontColor: txt.color
 	property alias fontSize: txt.font.pixelSize
 
 	Text {

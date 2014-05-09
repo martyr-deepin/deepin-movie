@@ -23,7 +23,7 @@
 import os
 from deepin_utils import config
 from constant import CONFIG_DIR
-from PyQt5.QtCore import pyqtSlot, pyqtProperty, QObject
+from PyQt5.QtCore import pyqtSlot, pyqtProperty, pyqtSignal, QObject
 
 YES = "yes"
 NO = "no"
@@ -58,10 +58,15 @@ DEFAULT_CONFIG = [
     ("rotateClockwise", "W"),
     ("rotateAnticlockwise", "E"),
     ("screenshot", "Alt+A"),]),
-("Subtitle", [("auto_load", YES)],),
+("Subtitle", [("auto_load", YES),
+    ("font_size", "16"),
+    ("font_color", "#ffffff")]),
 ]
 
 class Config(QObject):
+    subtitleFontSizeChanged = pyqtSignal(int)
+    subtitleFontColorChanged = pyqtSignal(str)
+
     def __init__(self):
         QObject.__init__(self)
         self.config_path = os.path.join(CONFIG_DIR, "config.ini")
@@ -91,6 +96,22 @@ class Config(QObject):
         for item in self.config.items("HotkeysOthers"):
             result.append({"command": item[0], "key": item[1]})
         return result
+
+    @pyqtProperty(int, notify=subtitleFontSizeChanged)
+    def fontSize(self):
+        return self.fetchfloat("Subtitle", "font_size")
+
+    @fontSize.setter
+    def fontSize(self, value):
+        self.save("Subtitle", "font_size", value)
+
+    @pyqtProperty(str, notify=subtitleFontColorChanged)
+    def fontColor(self):
+        return self.fetch("Subtitle", "font_color")
+
+    @fontColor.setter
+    def fontColor(self, value):
+        self.save("Subtitle", "font_color", value)
 
     @pyqtSlot(str, str, result=str)    
     def fetch(self, section, option):
