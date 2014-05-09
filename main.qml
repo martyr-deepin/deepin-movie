@@ -23,9 +23,7 @@ Item {
 
     Constants { id: program_constants }
 
-    MenuResponder {}
     ToolTip { id: tooltip }
-    ResizeEdge { id: resize_edge }
 
     OpenFileDialog {
         id: open_file_dialog

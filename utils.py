@@ -21,6 +21,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
+from PyQt5.QtGui import QKeySequence
 from PyQt5.QtCore import QObject, pyqtSlot, pyqtProperty
 
 class Utils(QObject):
@@ -42,3 +43,11 @@ class Utils(QObject):
 			if os.path.isfile(file_abs_path):
 				result.append(file_abs_path)
 		return result
+
+	@pyqtSlot(int, int, str, result=bool)
+	def checkKeySequenceEqual(self, modifier, key, targetKeySequence):
+		return QKeySequence(modifier + key) == QKeySequence(targetKeySequence)
+
+	@pyqtSlot(int, int, result=str)
+	def keyEventToQKeySequenceString(self, modifier, key):
+		return QKeySequence(modifier + key).toString()

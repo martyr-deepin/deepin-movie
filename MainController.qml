@@ -19,6 +19,10 @@ MouseArea {
 
     property int movieDuration: movieInfo.movie_duration
 
+    ResizeEdge { id: resize_edge }
+    MenuResponder { id: menu_responder }
+    KeysResponder { id: keys_responder }
+
     Connections {
         target: movieInfo
 
@@ -188,6 +192,9 @@ MouseArea {
         windowView.getState() == Qt.WindowMaximized ? normalize() : maximize()
     }
 
+    function rotateClockwise() { player.orientation -= 90 }
+    function rotateAnticlockwise() { player.orientation += 90 }
+
     // player control operation related
     function play() {
         player.play()
@@ -203,27 +210,33 @@ MouseArea {
         }
     }
 
-    function forward(delta) {
+    function forwardByDelta(delta) {
         player.seek(player.position + delta)
         notifybar.show("image/notify_forward.png", "快进至 " + formatTime(player.position))
     }
 
-    function backward(delta) {
+    function backwardByDelta(delta) {
         player.seek(player.position - delta)
         notifybar.show("image/notify_backward.png", "快退至 " + formatTime(player.position))
     }
 
-    function increaseVolume(delta) {
+    function forward() { forwardByDelta(5000) }
+    function backward() { backwardByDelta(5000) }
+
+    function increaseVolumeByDelta(delta) {
         player.volume = Math.min(player.volume + delta, 1.0)
 
         notifybar.show("image/notify_volume.png", "音量: " + Math.round(player.volume * 100) + "%")
     }
 
-    function decreaseVolume(delta) {
+    function decreaseVolumeByDelta(delta) {
         player.volume = Math.max(player.volume - delta, 0.0)
 
         notifybar.show("image/notify_volume.png", "音量: " + Math.round(player.volume * 100) + "%")
     }
+
+    function increaseVolume() { increaseVolumeByDelta(0.05) }
+    function decreaseVolume() { decreaseVolumeByDelta(0.05) }
 
     function setVolume(volume) {
         player.volume = volume
@@ -240,12 +253,17 @@ MouseArea {
         }
     }
 
-    Keys.onSpacePressed: togglePlay()
-    Keys.onLeftPressed: backward(5000)
-    Keys.onRightPressed: forward(5000)
-    Keys.onUpPressed: increaseVolume(0.05)
-    Keys.onDownPressed: decreaseVolume(0.05)
-    Keys.onEscapePressed: normalize()
+    function toggleMute() {
+        setMute(!player.muted)
+    }
+
+    function openFile() { open_file_dialog.open() }
+    function openDir() { open_folder_dialog.open() }
+
+    function playNext() {}
+    function playPrevious() {}
+
+    Keys.onPressed: keys_responder.respondKey(event)
 
     onWheel: wheel.angleDelta.y > 0 ? increaseVolume(wheel.angleDelta.y / 120 * 0.05) : decreaseVolume(-wheel.angleDelta.y / 120 * 0.05)
 

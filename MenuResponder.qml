@@ -7,10 +7,10 @@ Connections {
     target: _menu_controller
     
     onClockwiseRotate: {
-        player.orientation -= 90
+        main_controller.rotateClockwise()
     }
     onAntiClosewiseRotate: {
-        player.orientation += 90
+        main_controller.rotateAnticlockwise()
     }
     onFlipHorizontal: {
         player.flipHorizontal()
@@ -45,9 +45,9 @@ Connections {
     }
     onOpenDialog: {
         if (arguments[0] == "file") {
-            open_file_dialog.open()
+            main_controller.openFile()
         } else if (arguments[0] == "dir") {
-            open_folder_dialog.open()
+            main_controller.openDir()
         } else {
             var value = _input_dialog.show()
             if (value != "") { movieInfo.movie_file = value }
