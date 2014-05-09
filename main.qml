@@ -1,11 +1,13 @@
 import QtQuick 2.1
 import QtMultimedia 5.0
 import QtGraphicalEffects 1.0
-import DBus.Com.Deepin.Daemon.Display 1.0
+import QtQuick.Window 2.1
 
-Item {
+Rectangle {
     id: root
     state: "normal"
+    color: "transparent"
+    radius: main_window.radius
     // QT takes care of WORKAREA for you which is thoughtful indeed, but it cause 
     // problems sometime, we should be careful in case that it changes height for 
     // you suddenly.
@@ -15,10 +17,8 @@ Item {
 
     property real widthHeightScale: movieInfo.movie_width / movieInfo.movie_height
 
-    Display { id: dbus_display }
     property rect primaryRect: {
-        var rect = dbus_display.primaryRect
-        return Qt.rect(rect[0], rect[1], rect[2], rect[3])
+        return Qt.rect(0, 0, Screen.desktopAvailableWidth, Screen.desktopAvailableHeight)
     }
 
     Constants { id: program_constants }
