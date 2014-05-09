@@ -196,13 +196,8 @@ MouseArea {
     function rotateAnticlockwise() { player.orientation += 90 }
 
     // player control operation related
-    function play() {
-        player.play()
-    }
-
-    function pause() {
-        player.pause()
-    }
+    function play() { player.play() }
+    function pause() { player.pause() }
 
     function togglePlay() {
         if (player.hasVideo) {

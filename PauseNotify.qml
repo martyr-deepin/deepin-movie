@@ -8,7 +8,7 @@ Image {
         pauseNotify.visible = true
         movePauseNotify.start()
     }
-    
+
     SequentialAnimation {
         id: movePauseNotify
 

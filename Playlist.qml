@@ -10,6 +10,8 @@ Rectangle {
     property bool expanded: width == program_constants.playlistWidth
     property url currentPlayingSource
 
+    signal showingAnimationWillStart
+    signal hidingAnimationWillStart
     signal showingAnimationDone
     signal hidingAnimationDone
     signal newSourceSelected (string path)
@@ -37,6 +39,7 @@ Rectangle {
 
     function show() {
         if (!expanded) {
+            showingAnimationWillStart()
             visible = true
             showingPlaylistPanelAnimation.restart()
         }
@@ -44,6 +47,7 @@ Rectangle {
 
     function hide() {
         if (expanded) {
+            hidingAnimationWillStart()
             hidingPlaylistPanelAnimation.restart()
         }
     }

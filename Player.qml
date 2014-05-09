@@ -7,6 +7,7 @@ Video {
     autoPlay: true
     transform: flip
 
+    property bool shouldShowNotify: true
     property alias subtitleContent: subtitle.text
     property alias subtitleFontSize: subtitle.fontSize
     property alias subtitleFontColo: subtitle.fontColor
@@ -47,26 +48,9 @@ Video {
         angle: 180
     }
 
-    // property int screensaverInhibitId
+    onPlaying: pause_notify.visible = false
 
-    // ScreenSaver { id: dbus_screensaver }
-
-    // onPlaying: {
-    //     if (!dbus_screensaver.isInhibited) {
-    //         screensaverInhibitId = dbus_screensaver.Inhibit("DMovie", "videos' playing")
-    //     }
-    // }
-    onPaused: {
-        // if (screensaverInhibitId) {
-        //     dbus_screensaver.Uninhibit(screensaverInhibitId)
-        // }
-        pause_notify.notify()
-    }
-    // onStopped: {
-    //     if (screensaverInhibitId) {
-    //         dbus_screensaver.Uninhibit(screensaverInhibitId)
-    //     }
-    // }
+    onPaused: { if (shouldShowNotify) pause_notify.notify() }
 
     PauseNotify { 
         id: pause_notify

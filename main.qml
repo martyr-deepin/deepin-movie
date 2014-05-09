@@ -231,6 +231,10 @@ Rectangle {
         anchors.verticalCenter: parent.verticalCenter
 
         onNewSourceSelected: movieInfo.movie_file = path
+        onShowingAnimationWillStart: { player.shouldShowNotify=false; player.pause() }
+        onShowingAnimationDone: { player.shouldShowNotify=true; player.play() } 
+        onHidingAnimationWillStart: { player.shouldShowNotify=false; player.pause() }
+        onHidingAnimationDone: { player.shouldShowNotify=true; player.play() }
     }
 
     Notifybar {
