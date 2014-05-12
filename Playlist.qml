@@ -136,14 +136,6 @@ Rectangle {
         onEntered: {
             playlistPanel.state = "active"
         }
-
-        onExited: {
-            playlistPanel.state = "inactive"
-        }
-
-        onClicked: {
-            console.log("Click on playlist.")
-        }
     }
 
     Column {
@@ -155,13 +147,8 @@ Rectangle {
         Item {
             id: tabs
             Item {
-                property string name: "本地列表"
+                property string name: "播放列表"
                 property string type: "local"
-            }
-            
-            Item {
-                property string name: "网络列表"
-                property string type: "network"
             }
         }
 

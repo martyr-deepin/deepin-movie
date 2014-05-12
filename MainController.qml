@@ -273,6 +273,7 @@ MouseArea {
     }
 
     onPositionChanged: {
+        playlist.state = "inactive"
         if (!pressed) {
             changeCursor(getEdge(mouse))
 
