@@ -10,21 +10,21 @@ Item {
     property alias volume: volume_button.volume
     property alias percentage: progressbar.percentage
     property alias videoPlaying: play_pause_button.checkFlag
-    
+
     signal togglePlay ()
     signal mutedSet (bool muted)
     signal changeVolume (real volume)
     signal percentageSet(real percentage)
     signal configButtonClicked ()
+    signal playStopButtonClicked ()
+    signal openFileButtonClicked ()
 
     Behavior on opacity {
         NumberAnimation { duration: 300 }
     }
 
     function show() {
-        if (videoPreview.hasVideo) {
-            visible = true
-        }
+        visible = true
     }
 
     function hide() {
@@ -58,31 +58,33 @@ Item {
             }
 
             onMouseOver: {
-                videoPreview.visible = true
-                videoPreview.x = Math.min(Math.max(mouse.x - videoPreview.width / 2, 0),
-                                          width - videoPreview.width)
-                videoPreview.y = y - videoPreview.height
+                if (videoPreview.hasVideo) {
+                    videoPreview.visible = true
+                    videoPreview.x = Math.min(Math.max(mouse.x - videoPreview.width / 2, 0),
+                                              width - videoPreview.width)
+                    videoPreview.y = y - videoPreview.height
 
-                var mouseX = mouse.x
-                var mouseY = mouse.y
+                    var mouseX = mouse.x
+                    var mouseY = mouse.y
 
-                if (mouseX <= videoPreview.cornerWidth / 2) {
-                    videoPreview.cornerPos = mouseX + videoPreview.cornerWidth / 2
-                    videoPreview.cornerType = "left"
-                } else if (mouseX >= width - videoPreview.cornerWidth / 2) {
-                    videoPreview.cornerPos = mouseX - width + videoPreview.width - videoPreview.cornerWidth / 2
-                    videoPreview.cornerType = "right"
-                } else if (mouseX < videoPreview.width / 2) {
-                    videoPreview.cornerPos = mouseX
-                    videoPreview.cornerType = "center"
-                } else if (mouseX >= width - videoPreview.width / 2) {
-                    videoPreview.cornerPos = mouseX - width + videoPreview.width
-                    videoPreview.cornerType = "center"
-                } else {
-                    videoPreview.cornerPos = videoPreview.width / 2
-                    videoPreview.cornerType = "center"
+                    if (mouseX <= videoPreview.cornerWidth / 2) {
+                        videoPreview.cornerPos = mouseX + videoPreview.cornerWidth / 2
+                        videoPreview.cornerType = "left"
+                    } else if (mouseX >= width - videoPreview.cornerWidth / 2) {
+                        videoPreview.cornerPos = mouseX - width + videoPreview.width - videoPreview.cornerWidth / 2
+                        videoPreview.cornerType = "right"
+                    } else if (mouseX < videoPreview.width / 2) {
+                        videoPreview.cornerPos = mouseX
+                        videoPreview.cornerType = "center"
+                    } else if (mouseX >= width - videoPreview.width / 2) {
+                        videoPreview.cornerPos = mouseX - width + videoPreview.width
+                        videoPreview.cornerType = "center"
+                    } else {
+                        videoPreview.cornerPos = videoPreview.width / 2
+                        videoPreview.cornerType = "center"
+                    }
+                    videoPreview.seek(mouseX / width)
                 }
-                videoPreview.seek(mouseX / width)
             }
 
             onMouseExit: {
@@ -126,26 +128,28 @@ Item {
                     id: playerOpen
                     imageName: "image/player_stop.png"
                     anchors.verticalCenter: parent.verticalCenter
+
+                    onClicked: control_bar.playStopButtonClicked()
                 }
 
                 Space {
                     width: 32
                 }
 
-                OpacityImageButton { 
-                    imageName: "image/player_backward_normal.png" 
+                OpacityImageButton {
+                    imageName: "image/player_backward_normal.png"
                     anchors.verticalCenter: parent.verticalCenter
                 }
 
                 Space {
                     width: 25
                 }
-                
+
                 OpacityImageButton {
                     id: play_pause_button
                     imageName: checkFlag ? "image/player_pause_normal.png" : "image/player_play_normal.png"
                     property bool checkFlag: false
-                    
+
                     onClicked: {
                         checkFlag = !checkFlag
                         control_bar.togglePlay()
@@ -156,9 +160,9 @@ Item {
                     width: 25
                 }
 
-                OpacityImageButton { 
-                    imageName: "image/player_forward_normal.png" 
-                    anchors.verticalCenter: parent.verticalCenter                    
+                OpacityImageButton {
+                    imageName: "image/player_forward_normal.png"
+                    anchors.verticalCenter: parent.verticalCenter
                 }
 
                 Space {
@@ -185,10 +189,12 @@ Item {
                 anchors.rightMargin: 27
                 anchors.verticalCenter: parent.verticalCenter
                 spacing: 25
-                
+
                 OpacityImageButton {
                     id: open_file_button
                     imageName: "image/player_open.png"
+
+                    onClicked: control_bar.openFileButtonClicked()
                 }
 
                 ToggleButton {
@@ -197,15 +203,15 @@ Item {
                     anchors.verticalCenter: parent.verticalCenter
                 }
 
-                /* ImageButton { */
-                /*     id: playerConfig */
-                /*     imageName: "image/player_config" */
-                /*     anchors.verticalCenter: parent.verticalCenter */
+            /* ImageButton { */
+            /*     id: playerConfig */
+            /*     imageName: "image/player_config" */
+            /*     anchors.verticalCenter: parent.verticalCenter */
 
-                /*     onClicked: { */
-                /*         control_bar.configButtonClicked() */
-                /*     } */
-                /* } */
+            /*     onClicked: { */
+            /*         control_bar.configButtonClicked() */
+            /*     } */
+            /* } */
             }
         }
     }

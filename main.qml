@@ -8,12 +8,12 @@ Rectangle {
     state: "normal"
     color: "transparent"
     radius: main_window.radius
-    // QT takes care of WORKAREA for you which is thoughtful indeed, but it cause 
-    // problems sometime, we should be careful in case that it changes height for 
+    // QT takes care of WORKAREA for you which is thoughtful indeed, but it cause
+    // problems sometime, we should be careful in case that it changes height for
     // you suddenly.
     x: (windowView.width - width) / 2
     width: height * widthHeightScale
-    height: windowView.height 
+    height: windowView.height
 
     property real widthHeightScale: movieInfo.movie_width / movieInfo.movie_height
 
@@ -47,8 +47,8 @@ Rectangle {
         onAccepted: {
             var fileUrls = _utils.getAllFilesInDir(fileUrl)
             for (var i = 0; i < fileUrls.length; i++) {
-               playlist.addItem("local", urlToPlaylistItem("file://"+fileUrls[i]))
-           }           
+                playlist.addItem("local", urlToPlaylistItem("file://"+fileUrls[i]))
+            }
         }
     }
 
@@ -81,34 +81,27 @@ Rectangle {
         return result
     }
 
-    property bool controlsShowedFlag: true
     function showControls() {
-        if (!controlsShowedFlag && !playlist.expanded) {
-            titlebar.show()
-            controlbar.show()
-            hide_controls_timer.restart()
-            controlsShowedFlag = true
-        }
+        titlebar.show()
+        controlbar.show()
+        hide_controls_timer.restart()
     }
 
     function hideControls() {
-        if (controlsShowedFlag) {
-            titlebar.hide()
-            controlbar.hide()
-            hide_controls_timer.stop()
-            controlsShowedFlag = false
-        }
+        titlebar.hide()
+        controlbar.hide()
+        hide_controls_timer.stop()
     }
 
     // Utils functions
     function inRectCheck(point, rect) {
         return rect.x <= point.x && point.x <= rect.x + rect.width &&
-         rect.y <= point.y && point.y <= rect.y + rect.height
+        rect.y <= point.y && point.y <= rect.y + rect.height
     }
 
     function mouseInControlsArea() {
         return inRectCheck(Qt.point(main_controller.mouseX, main_controller.mouseY),
-            Qt.rect(0, 0, main_window.width, titlebar.height)) || inRectCheck(
+                           Qt.rect(0, 0, main_window.width, titlebar.height)) || inRectCheck(
             Qt.point(main_controller.mouseX, main_controller.mouseY),
             Qt.rect(0, main_window.height - controlbar.height, main_window.width, controlbar.height))
     }
@@ -117,7 +110,7 @@ Rectangle {
     function reset() {
         movieInfo.movie_file = ""
         player.visible = false
-        controlbar.visible = false
+        showControls()
     }
 
     function monitorWindowClose() {
@@ -232,7 +225,7 @@ Rectangle {
 
         onNewSourceSelected: movieInfo.movie_file = path
         onShowingAnimationWillStart: { player.shouldShowNotify=false; player.pause() }
-        onShowingAnimationDone: { player.shouldShowNotify=true; player.play() } 
+        onShowingAnimationDone: { player.shouldShowNotify=true; player.play() }
         onHidingAnimationWillStart: { player.shouldShowNotify=false; player.pause() }
         onHidingAnimationDone: { player.shouldShowNotify=true; player.play() }
     }
@@ -255,11 +248,11 @@ Rectangle {
     ControlBar {
         id: controlbar
         width: root.width
-        
+
         volume: config.fetch("Normal", "volume")
         percentage: player.position / movieInfo.movie_duration
         videoPlaying: player.playbackState == MediaPlayer.PlayingState
-        
+
         anchors.horizontalCenter: main_window.horizontalCenter
 
         onTogglePlay: {
@@ -278,6 +271,10 @@ Rectangle {
             // preference_window.show()
         }
 
+        onPlayStopButtonClicked: { reset() }
+
+        onOpenFileButtonClicked: { main_controller.openFile() }
+
         onPercentageSet: player.seek(movieInfo.movie_duration * percentage)
     }
 
@@ -290,6 +287,6 @@ Rectangle {
         anchors.right: main_window.right
         anchors.bottom: main_window.bottom
     }
-    
+
     Component.onCompleted: showControls()
 }
