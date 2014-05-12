@@ -282,7 +282,8 @@ MouseArea {
             } else if (inRectCheck(mouse, Qt.rect(0, main_window.height - controlbar.height, 
                 main_window.width, program_constants.controlbarTriggerThreshold))) {
                 showControls()
-            } else if (!playlist.expanded && inRectCheck(mouse, Qt.rect(0, 0, 
+            } else if (!playlist.expanded && inRectCheck(mouse, 
+                Qt.rect(main_window.width - program_constants.playlistTriggerThreshold, 0, 
                 program_constants.playlistTriggerThreshold, main_window.height))) {
                 show_playlist_timer.restart()
             }
