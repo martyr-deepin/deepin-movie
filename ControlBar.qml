@@ -9,6 +9,7 @@ Item {
 
     property alias volume: volume_button.volume
     property alias percentage: progressbar.percentage
+    property alias videoPlaying: play_pause_button.checkFlag
     
     signal togglePlay ()
     signal mutedSet (bool muted)
@@ -101,12 +102,13 @@ Item {
             Row {
                 id: leftButtonArea
                 anchors.left: parent.left
-                anchors.leftMargin: 24
+                anchors.leftMargin: 27
                 anchors.verticalCenter: parent.verticalCenter
                 spacing: 5
 
                 Text {
                     id: playTime
+                    visible: control_bar.videoPlaying
                     anchors.verticalCenter: parent.verticalCenter
                     text: formatTime(control_bar.percentage * movieInfo.movie_duration) + " / " + formatTime(movieInfo.movie_duration)
                     color: Qt.rgba(100, 100, 100, 1)
@@ -120,53 +122,47 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
                 spacing: 0
 
-                ImageButton {
+                OpacityImageButton {
                     id: playerOpen
-                    imageName: "image/player_open"
-                    anchors.verticalCenter: playerPlay.verticalCenter
+                    imageName: "image/player_stop.png"
+                    anchors.verticalCenter: parent.verticalCenter
                 }
 
                 Space {
-                    width: 46
+                    width: 32
                 }
 
-                ImageButton {
-                    id: playerBackward
-                    imageName: "image/player_backward"
-                    anchors.verticalCenter: playerPlay.verticalCenter
+                OpacityImageButton { 
+                    imageName: "image/player_backward_normal.png" 
+                    anchors.verticalCenter: parent.verticalCenter
                 }
 
                 Space {
-                    width: 28
+                    width: 25
                 }
-
-                DImageCheckButton {
-                    id: playerPlay
-                    activatedNomralImage: "image/player_play_normal.png"
-                    activatedHoverImage: "image/player_play_hover.png"
-                    activatedPressImage: "image/player_play_press.png"
-
-                    inactivatedNomralImage: "image/player_pause_normal.png"
-                    inactivatedHoverImage: "image/player_pause_hover.png"
-                    inactivatedPressImage: "image/player_pause_press.png"
-
+                
+                OpacityImageButton {
+                    id: play_pause_button
+                    imageName: checkFlag ? "image/player_pause_normal.png" : "image/player_play_normal.png"
+                    property bool checkFlag: false
+                    
                     onClicked: {
+                        checkFlag = !checkFlag
                         control_bar.togglePlay()
                     }
                 }
 
                 Space {
-                    width: 28
+                    width: 25
                 }
 
-                ImageButton {
-                    id: playerForward
-                    imageName: "image/player_forward"
-                    anchors.verticalCenter: playerPlay.verticalCenter
+                OpacityImageButton { 
+                    imageName: "image/player_forward_normal.png" 
+                    anchors.verticalCenter: parent.verticalCenter                    
                 }
 
                 Space {
-                    width: 46
+                    width: 32
                 }
 
                 VolumeButton {
@@ -186,26 +182,30 @@ Item {
             Row {
                 id: rightButtonArea
                 anchors.right: parent.right
-                anchors.rightMargin: 10
+                anchors.rightMargin: 27
                 anchors.verticalCenter: parent.verticalCenter
-                spacing: 20
+                spacing: 25
+                
+                OpacityImageButton {
+                    id: open_file_button
+                    imageName: "image/player_open.png"
+                }
 
                 ToggleButton {
                     id: playerList
                     imageName: "image/player_list"
                     anchors.verticalCenter: parent.verticalCenter
-                /* active: playlistPanel.width == showWidth */
                 }
 
-                ImageButton {
-                    id: playerConfig
-                    imageName: "image/player_config"
-                    anchors.verticalCenter: parent.verticalCenter
+                /* ImageButton { */
+                /*     id: playerConfig */
+                /*     imageName: "image/player_config" */
+                /*     anchors.verticalCenter: parent.verticalCenter */
 
-                    onClicked: {
-                        control_bar.configButtonClicked()
-                    }
-                }
+                /*     onClicked: { */
+                /*         control_bar.configButtonClicked() */
+                /*     } */
+                /* } */
             }
         }
     }

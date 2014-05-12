@@ -26,11 +26,12 @@ Row {
         }
     }
 
-    ToggleButton {
+    OpacityImageButton {
         id: toggle_button
-        
-        imageName: "image/player_volume"
+        imageName: checkFlag ? "image/player_volume_inactive.png" : "image/player_volume_active.png"
 
+        property bool checkFlag: false
+        
         onEntered: {
             bar_item.visible = true
         }
@@ -40,7 +41,8 @@ Row {
         }
 
         onClicked: {
-            item.mutedSet(!active)
+            checkFlag = !checkFlag
+            item.mutedSet(checkFlag)
         }
     }
 
@@ -66,7 +68,7 @@ Row {
                     item.changeVolume(volume)
                 }
             }
-            
+
             Image {
                 id: left_part
                 anchors.left: parent.left

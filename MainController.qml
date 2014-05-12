@@ -72,10 +72,10 @@ MouseArea {
 
     Timer {
         id: show_playlist_timer
-        interval: 30
+        interval: 3000
 
         onTriggered: {
-            if (mouseX <= program_constants.playlistTriggerThreshold) {
+            if (mouseX >= main_window.width - program_constants.playlistTriggerThreshold) {
                 hideControls()
                 playlist.state = "active"
                 playlist.show()

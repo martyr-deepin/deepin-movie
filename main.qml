@@ -255,9 +255,11 @@ Rectangle {
     ControlBar {
         id: controlbar
         width: root.width
+        
         volume: config.fetch("Normal", "volume")
         percentage: player.position / movieInfo.movie_duration
-        visible: { return (player.visible && player.hasVideo) }
+        videoPlaying: player.playbackState == MediaPlayer.PlayingState
+        
         anchors.horizontalCenter: main_window.horizontalCenter
 
         onTogglePlay: {
@@ -273,7 +275,7 @@ Rectangle {
         }
 
         onConfigButtonClicked: {
-            preference_window.show()
+            // preference_window.show()
         }
 
         onPercentageSet: player.seek(movieInfo.movie_duration * percentage)
@@ -288,4 +290,6 @@ Rectangle {
         anchors.right: main_window.right
         anchors.bottom: main_window.bottom
     }
+    
+    Component.onCompleted: showControls()
 }
