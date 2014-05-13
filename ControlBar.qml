@@ -99,11 +99,41 @@ Item {
 
         Item {
             id: buttonArea
+            state: { width < windowView.minimumWidth ? "minimal" : "normal"}
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.top: parent.top
             anchors.topMargin: 34
-
+            
+            states: [
+                State {
+                    name: "normal"
+                    PropertyChanges {
+                        target: leftButtonArea
+                        visible: true
+                    }
+                    PropertyChanges {
+                        target: middleButtonArea
+                        anchors.centerIn: buttonArea
+                        anchors.left: undefined
+                        anchors.leftMargin: 0
+                    }
+                },
+                State {
+                    name: "minimal"
+                    PropertyChanges {
+                        target: leftButtonArea
+                        visible: false
+                    }
+                    PropertyChanges {
+                        target: middleButtonArea
+                        anchors.centerIn: undefined
+                        anchors.left: buttonArea.left
+                        anchors.leftMargin: 27
+                    }
+                }                
+            ]
+            
             Row {
                 id: leftButtonArea
                 anchors.left: parent.left
@@ -123,8 +153,7 @@ Item {
 
             Row {
                 id: middleButtonArea
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.verticalCenter: parent.verticalCenter
+                anchors.centerIn: parent
                 spacing: 0
 
                 OpacityImageButton {
