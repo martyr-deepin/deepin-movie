@@ -135,7 +135,8 @@ Rectangle {
             name: "normal"
 
             PropertyChanges { target: root; width: height * widthHeightScale; height: windowView.height }
-            PropertyChanges { target: player; width: main_window.width; height: main_window.height }
+            PropertyChanges { target: main_window; width: root.width - program_constants.windowGlowRadius * 2; 
+                              height: root.height - program_constants.windowGlowRadius * 2; }
             PropertyChanges { target: titlebar; width: main_window.width; anchors.top: main_window.top }
             PropertyChanges { target: controlbar; width: main_window.width; anchors.bottom: main_window.bottom}
             PropertyChanges { target: notifybar; anchors.top: root.top; anchors.left: root.left}
@@ -146,7 +147,7 @@ Rectangle {
             name: "fullscreen"
 
             PropertyChanges { target: root; width: windowView.width; height: windowView.height }
-            PropertyChanges { target: player; width: root.width; height: root.height }
+            PropertyChanges { target: main_window; width: root.width; height: root.height }
             PropertyChanges { target: titlebar; width: root.width; anchors.top: root.top }
             PropertyChanges { target: controlbar; width: root.width; anchors.bottom: root.bottom}
             PropertyChanges { target: notifybar; anchors.top: titlebar.bottom; anchors.left: root.left}
