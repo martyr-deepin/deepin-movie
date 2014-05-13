@@ -206,6 +206,7 @@ Rectangle {
         volume: controlbar.volume
         anchors.centerIn: main_window
         source: movieInfo.movie_file
+        anchors.fill: main_window
 
         onStopped: {
             if (Math.abs(position - movieInfo.movie_duration) < 10) {
