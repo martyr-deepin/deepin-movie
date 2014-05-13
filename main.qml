@@ -12,15 +12,17 @@ Rectangle {
     // problems sometime, we should be careful in case that it changes height for
     // you suddenly.
     x: (windowView.width - width) / 2
+    width: height * widthHeightScale
     height: windowView.height
 
     onHeightChanged: {
         if (state != "fullscreen") {
-            width = height * widthHeightScale
             if (width > primaryRect.width) {
                 windowView.setHeight((primaryRect.width) / widthHeightScale)
                 windowView.setWidth(primaryRect.width)
             }
+        } else {
+            windowView.setWidth(width)
         }
     }
 
@@ -299,6 +301,8 @@ Rectangle {
         onShowingAnimationDone: { player.shouldShowNotify=true; player.play() }
         onHidingAnimationWillStart: { player.shouldShowNotify=false; player.pause() }
         onHidingAnimationDone: { player.shouldShowNotify=true; player.play() }
+        
+        onModeButtonClicked: _menu_controller.show_mode_menu()
     }
 
     Component.onCompleted: showControls()
