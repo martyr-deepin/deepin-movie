@@ -215,21 +215,6 @@ Rectangle {
         window: root
     }
 
-    Playlist {
-        id: playlist
-        width: 0
-        visible: false
-        currentPlayingSource: player.source
-        anchors.right: main_window.right
-        anchors.verticalCenter: parent.verticalCenter
-
-        onNewSourceSelected: movieInfo.movie_file = path
-        onShowingAnimationWillStart: { player.shouldShowNotify=false; player.pause() }
-        onShowingAnimationDone: { player.shouldShowNotify=true; player.play() }
-        onHidingAnimationWillStart: { player.shouldShowNotify=false; player.pause() }
-        onHidingAnimationDone: { player.shouldShowNotify=true; player.play() }
-    }
-
     Notifybar {
         id: notifybar
         anchors.topMargin: 60
@@ -254,6 +239,9 @@ Rectangle {
         videoPlaying: player.playbackState == MediaPlayer.PlayingState
 
         anchors.horizontalCenter: main_window.horizontalCenter
+        
+        onPreviousButtonClicked: main_controller.playPrevious()
+        onNextButtonClicked: main_controller.playNext()
 
         onTogglePlay: {
             main_controller.togglePlay()
@@ -285,6 +273,21 @@ Rectangle {
         anchors.bottomMargin: 5
         anchors.right: main_window.right
         anchors.bottom: main_window.bottom
+    }
+    
+    Playlist {
+        id: playlist
+        width: 0
+        visible: false
+        currentPlayingSource: player.source
+        anchors.right: main_window.right
+        anchors.verticalCenter: parent.verticalCenter
+
+        onNewSourceSelected: movieInfo.movie_file = path
+        onShowingAnimationWillStart: { player.shouldShowNotify=false; player.pause() }
+        onShowingAnimationDone: { player.shouldShowNotify=true; player.play() }
+        onHidingAnimationWillStart: { player.shouldShowNotify=false; player.pause() }
+        onHidingAnimationDone: { player.shouldShowNotify=true; player.play() }
     }
 
     Component.onCompleted: showControls()

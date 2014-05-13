@@ -204,7 +204,7 @@ MouseArea {
             player.playbackState == MediaPlayer.PlayingState ? pause() : play()
         }
     }
-
+    
     function forwardByDelta(delta) {
         player.seek(player.position + delta)
         notifybar.show("image/notify_forward.png", "快进至 " + formatTime(player.position))
@@ -255,8 +255,8 @@ MouseArea {
     function openFile() { open_file_dialog.open() }
     function openDir() { open_folder_dialog.open() }
 
-    function playNext() {}
-    function playPrevious() {}
+    function playNext() { movieInfo.movie_file = playlist.getNextSource() }
+    function playPrevious() { movieInfo.movie_file = playlist.getPreviousSource() }
 
     Keys.onPressed: keys_responder.respondKey(event)
 

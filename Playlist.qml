@@ -16,6 +16,11 @@ Rectangle {
     signal showingAnimationDone
     signal hidingAnimationDone
     signal newSourceSelected (string path)
+    
+    signal addButtonClicked ()
+    signal deleteButtonClicked ()
+    signal clearButtonClicked ()
+    signal modeButtonClicked ()
 
     states: [
         State {
@@ -90,6 +95,10 @@ Rectangle {
             database.playlist_network = ""
         }
     }
+    
+    function getPreviousSource() {
+        return local_playlist.getPreviousSource()
+    }
 
     function getNextSource() {
         // if (local_playlist.isSelected) {
@@ -155,6 +164,10 @@ Rectangle {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: bottom_rect.top
+        anchors.leftMargin: 10
+        anchors.rightMargin: 10
+        anchors.topMargin: 15
+        anchors.bottomMargin: 15
 
         /* Item { */
         /*     id: tabs */
@@ -232,18 +245,36 @@ Rectangle {
     Rectangle {
         id: bottom_rect
         width: parent.width
-        height: 24
-        color: program_constants.bgDarkColor
+        height: 36
+        color: Qt.rgba(1, 1, 1, 0.05)
         anchors.bottom: parent.bottom
 
-        ClearButton {
-            id: clear_button
+        Row {
+            height: parent.height
             anchors.right: parent.right
-            anchors.rightMargin: 5
-            anchors.verticalCenter: parent.verticalCenter
+            anchors.rightMargin: 10
+            spacing: 10
 
-            onEntered: playlist.state = "active"
-            onClicked: playlist.clear()
+            OpacityImageButton {
+                imageName: "image/playlist_mode_button.png"
+                anchors.verticalCenter: parent.verticalCenter
+                onClicked: { playlistPanel.modeButtonClicked() }
+            }
+            OpacityImageButton {
+                imageName: "image/playlist_delete_button.png"
+                anchors.verticalCenter: parent.verticalCenter                
+                onClicked: { playlistPanel.deleteButtonClicked() }
+            }
+            OpacityImageButton {
+                imageName: "image/playlist_add_button.png"
+                anchors.verticalCenter: parent.verticalCenter                
+                onClicked: { playlistPanel.addButtonClicked() }
+            }            
+            OpacityImageButton {
+                imageName: "image/playlist_clear_button.png"
+                anchors.verticalCenter: parent.verticalCenter                
+                onClicked: { playlistPanel.clearButtonClicked() }
+            }            
         }
     }
 

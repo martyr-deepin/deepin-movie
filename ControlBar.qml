@@ -19,6 +19,8 @@ Item {
     signal playStopButtonClicked ()
     signal openFileButtonClicked ()
     signal playlistButtonClicked ()
+    signal previousButtonClicked ()
+    signal nextButtonClicked ()
 
     Behavior on opacity {
         NumberAnimation { duration: 300 }
@@ -138,8 +140,9 @@ Item {
                 }
 
                 OpacityImageButton {
-                    imageName: "image/player_backward_normal.png"
+                    imageName: "image/player_previous_normal.png"
                     anchors.verticalCenter: parent.verticalCenter
+                    onClicked: control_bar.previousButtonClicked()
                 }
 
                 Space {
@@ -162,8 +165,9 @@ Item {
                 }
 
                 OpacityImageButton {
-                    imageName: "image/player_forward_normal.png"
+                    imageName: "image/player_next_normal.png"
                     anchors.verticalCenter: parent.verticalCenter
+                    onClicked: control_bar.nextButtonClicked()
                 }
 
                 Space {
