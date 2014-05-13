@@ -209,7 +209,7 @@ Rectangle {
         anchors.fill: main_window
 
         onStopped: {
-            if (Math.abs(position - movieInfo.movie_duration) < 10) {
+            if (Math.abs(position - movieInfo.movie_duration) < 1000) {
                 var next = playlist.getNextSource()
                 if (next) {
                     movieInfo.movie_file = next

@@ -137,7 +137,7 @@ class MenuController(QObject):
         
     @pyqtSlot()
     def show_mode_menu(self):
-        self.menu = Menu([CheckableMenuItem("mode_group:radio:in_order", "顺序播放"),
+        self.menu = Menu([CheckableMenuItem("mode_group:radio:in_order", "顺序播放", True),
                          CheckableMenuItem("mode_group:radio:random", "随机播放"),
                          CheckableMenuItem("mode_group:radio:single", "单个播放"),
                          CheckableMenuItem("mode_group:radio:single_cycle", "单个循环"),
