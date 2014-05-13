@@ -50,7 +50,7 @@ Item {
         }
 
         TabButton {
-            text: "深度影音"
+            text: "深度影院"
 
             anchors.left: appIcon.right
             anchors.leftMargin: 10
