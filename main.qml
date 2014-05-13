@@ -304,6 +304,8 @@ Rectangle {
         onHidingAnimationDone: { player.shouldShowNotify=true; player.play() }
         
         onModeButtonClicked: _menu_controller.show_mode_menu()
+        onAddButtonClicked: main_controller.openFile()
+        onClearButtonClicked: playlist.clear()
     }
 
     Component.onCompleted: showControls()
