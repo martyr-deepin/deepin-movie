@@ -98,7 +98,7 @@ class InputDialog(QObject):
 if __name__ == "__main__":
     app = QApplication(sys.argv)    
     
-    movie_file = sys.argv[1] if len(sys.argv) >= 2 else ""
+    movie_file = os.path.realpath(sys.argv[1]) if len(sys.argv) >= 2 else ""
     movie_info = MovieInfo()
     
     config = Config()
