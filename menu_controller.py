@@ -134,3 +134,12 @@ class MenuController(QObject):
         self.menu = Menu(self._getMenuItems())
         self.menu.itemClicked.connect(self._menu_item_invoked)
         self.menu.showRectMenu(QCursor.pos().x(), QCursor.pos().y())
+        
+    @pyqtSlot()
+    def show_mode_menu(self):
+        self.menu = Menu([CheckableMenuItem("mode_group:radio:in_order", "顺序播放"),
+                         CheckableMenuItem("mode_group:radio:random", "随机播放"),
+                         CheckableMenuItem("mode_group:radio:single", "单个播放"),
+                         CheckableMenuItem("mode_group:radio:single_cycle", "单个循环"),
+                         CheckableMenuItem("mode_group:radio:playlist_cycle", "列表循环"),])
+        self.menu.showRectMenu(QCursor.pos().x() - 100, QCursor.pos().y())        
