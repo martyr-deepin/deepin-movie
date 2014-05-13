@@ -188,7 +188,7 @@ Rectangle {
         width: root.width - program_constants.windowGlowRadius * 2 //height * (movieInfo.movie_width / movieInfo.movie_height)
         height: root.height - program_constants.windowGlowRadius * 2
         clip: true
-        color: "#1D1D1D"
+        color: "black"
         radius: program_constants.windowRadius
         anchors.centerIn: parent
 

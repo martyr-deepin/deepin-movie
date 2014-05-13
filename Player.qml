@@ -6,7 +6,6 @@ Video {
     id: video
     autoPlay: true
     transform: flip
-    fillMode: VideoOutput.Stretch
 
     property bool shouldShowNotify: true
     property alias subtitleContent: subtitle.text
