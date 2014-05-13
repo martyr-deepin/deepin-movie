@@ -32,10 +32,11 @@ MouseArea {
         // though QWindow.height is set to the given value actually, 
         // so QWindow.height is not reliable here to get the actual height of the window,
         // fortunately, we can get it from the rootObject(here is root) of the QQuickView.
-        onMovieWidthChanged: {
-            windowView.setWidth(movieInfo.movie_width)
-            windowView.moveToCenter()
-        }
+        
+        /* onMovieWidthChanged: { */
+        /*     windowView.setWidth(movieInfo.movie_width) */
+        /*     windowView.moveToCenter() */
+        /* } */
 
         onMovieHeightChanged: {
             windowView.setHeight(movieInfo.movie_height)

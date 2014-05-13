@@ -14,16 +14,17 @@ Rectangle {
     x: (windowView.width - width) / 2
     width: height * widthHeightScale
     height: windowView.height
-
+    
     onHeightChanged: {
         if (state != "fullscreen") {
             if (width > primaryRect.width) {
                 windowView.setHeight((primaryRect.width) / widthHeightScale)
                 windowView.setWidth(primaryRect.width)
+            } else {
+                windowView.setWidth(height * widthHeightScale)
             }
-        } else {
-            windowView.setWidth(width)
         }
+        windowView.moveToCenter()
     }
 
     property real widthHeightScale: movieInfo.movie_width / movieInfo.movie_height
@@ -137,7 +138,7 @@ Rectangle {
             name: "normal"
 
             PropertyChanges { target: root; width: height * widthHeightScale; height: windowView.height }
-            PropertyChanges { target: main_window; width: root.width - program_constants.windowGlowRadius * 2; 
+            PropertyChanges { target: main_window; width: root.width - program_constants.windowGlowRadius * 2;
                               height: root.height - program_constants.windowGlowRadius * 2; }
             PropertyChanges { target: titlebar; width: main_window.width; anchors.top: main_window.top }
             PropertyChanges { target: controlbar; width: main_window.width; anchors.bottom: main_window.bottom}
@@ -302,7 +303,7 @@ Rectangle {
         onShowingAnimationDone: { player.shouldShowNotify=true; player.play() }
         onHidingAnimationWillStart: { player.shouldShowNotify=false; player.pause() }
         onHidingAnimationDone: { player.shouldShowNotify=true; player.play() }
-        
+
         onModeButtonClicked: _menu_controller.show_mode_menu()
         onAddButtonClicked: main_controller.openFile()
         onClearButtonClicked: playlist.clear()
