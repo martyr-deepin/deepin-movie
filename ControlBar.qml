@@ -10,6 +10,7 @@ Item {
     property alias volume: volume_button.volume
     property alias percentage: progressbar.percentage
     property alias videoPlaying: play_pause_button.checkFlag
+    property alias playlistExpaned: play_list_button.checkFlag
 
     signal togglePlay ()
     signal mutedSet (bool muted)
@@ -18,6 +19,7 @@ Item {
     signal configButtonClicked ()
     signal playStopButtonClicked ()
     signal openFileButtonClicked ()
+    signal playlistButtonClicked ()
 
     Behavior on opacity {
         NumberAnimation { duration: 300 }
@@ -110,7 +112,7 @@ Item {
 
                 Text {
                     id: playTime
-                    visible: control_bar.videoPlaying
+                    visible: videoPreview.hasVideo
                     anchors.verticalCenter: parent.verticalCenter
                     text: formatTime(control_bar.percentage * movieInfo.movie_duration) + " / " + formatTime(movieInfo.movie_duration)
                     color: Qt.rgba(100, 100, 100, 1)
@@ -197,10 +199,18 @@ Item {
                     onClicked: control_bar.openFileButtonClicked()
                 }
 
-                ToggleButton {
-                    id: playerList
-                    imageName: "image/player_list"
-                    anchors.verticalCenter: parent.verticalCenter
+                OpacityImageButton {
+                    id: play_list_button
+                    
+                    property bool checkFlag
+                    
+                    imageName: checkFlag ? "image/player_list_selected.png" : "image/player_list_normal.png"
+                    anchors.verticalCenter: parent.verticalCenter                    
+
+                    onClicked: {
+                        checkFlag = !checkFlag
+                        control_bar.playlistButtonClicked()
+                    }
                 }
 
             /* ImageButton { */

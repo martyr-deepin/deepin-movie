@@ -252,6 +252,7 @@ Rectangle {
         volume: config.fetch("Normal", "volume")
         percentage: player.position / movieInfo.movie_duration
         videoPlaying: player.playbackState == MediaPlayer.PlayingState
+        playlistExpaned: playlist.expanded
 
         anchors.horizontalCenter: main_window.horizontalCenter
 
@@ -272,9 +273,8 @@ Rectangle {
         }
 
         onPlayStopButtonClicked: { reset() }
-
         onOpenFileButtonClicked: { main_controller.openFile() }
-
+        onPlaylistButtonClicked: { hideControls(); playlist.toggleShow() }
         onPercentageSet: player.seek(movieInfo.movie_duration * percentage)
     }
 

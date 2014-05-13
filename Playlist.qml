@@ -1,4 +1,5 @@
 import QtQuick 2.1
+import Deepin.Widgets 1.0
 
 Rectangle {
     id: playlistPanel
@@ -19,13 +20,13 @@ Rectangle {
     states: [
         State {
             name: "active"
-            PropertyChanges { target: playlistPanel; color: "#1D1D1D"; opacity: 1 }
-            PropertyChanges { target: hidePlaylistButton; source: "image/playlist_button_active_background.png"}
+            PropertyChanges { target: playlistPanel; color: "#1B1C1D"; opacity: 1 }
+            PropertyChanges { target: hidePlaylistButton; source: "image/playlist_handle_bg.png"; opacity: 1 }
         },
         State {
             name: "inactive"
-            PropertyChanges { target: playlistPanel; color: "#000000"; opacity: 0.9 }
-            PropertyChanges { target: hidePlaylistButton; source: "image/playlist_button_inactive_background.png"}
+            PropertyChanges { target: playlistPanel; color: "#1B1C1D"; opacity: 0.95 }
+            PropertyChanges { target: hidePlaylistButton; source: "image/playlist_handle_bg.png"; opacity: 0.95 }
         }
     ]
 
@@ -52,6 +53,17 @@ Rectangle {
         }
     }
 
+    function toggleShow() {
+        if (expanded) {
+            hidingAnimationWillStart()
+            hidingPlaylistPanelAnimation.restart()
+        } else {
+            showingAnimationWillStart()
+            visible = true
+            showingPlaylistPanelAnimation.restart()
+        }
+    }
+
     function getContent(type) {
         if (type == "network") {
             return network_playlist.getContent()
@@ -67,7 +79,7 @@ Rectangle {
             local_playlist.addItem(item)
         }
     }
-    
+
     function clear() {
         print(playlistPanel.tabId)
         if (playlistPanel.tabId == "local") {
@@ -78,7 +90,7 @@ Rectangle {
             database.playlist_network = ""
         }
     }
-    
+
     function getNextSource() {
         // if (local_playlist.isSelected) {
         //     return local_playlist.getNextSource()
@@ -144,53 +156,53 @@ Rectangle {
         anchors.right: parent.right
         anchors.bottom: bottom_rect.top
 
-        Item {
-            id: tabs
-            Item {
-                property string name: "播放列表"
-                property string type: "local"
-            }
-        }
+        /* Item { */
+        /*     id: tabs */
+        /*     Item { */
+        /*         property string name: "播放列表" */
+        /*         property string type: "local" */
+        /*     } */
+        /* } */
 
-        Row {
-            id: tabRow
+        /* Row { */
+        /*     id: tabRow */
 
-            height: 50
-            anchors.leftMargin: spacing
-            width: parent.width
+        /*     height: 50 */
+        /*     anchors.leftMargin: spacing */
+        /*     width: parent.width */
 
-            property int tabWidth: width / tabs.children.length
+        /*     property int tabWidth: width / tabs.children.length */
 
-            Repeater {
-                model: tabs.children.length
-                delegate: Item {
-                    height: parent.height
-                    width: tabRow.tabWidth
+        /*     Repeater { */
+        /*         model: tabs.children.length */
+        /*         delegate: Item { */
+        /*             height: parent.height */
+        /*             width: tabRow.tabWidth */
 
-                    Rectangle {
-                        anchors.fill: parent
-                        color: tabId == tabs.children[index].type ? program_constants.bgDarkColor : "transparent"
-                        radius: 2
-                        anchors.margins: 12
+        /*             Rectangle { */
+        /*                 anchors.fill: parent */
+        /*                 color: tabId == tabs.children[index].type ? program_constants.bgDarkColor : "transparent" */
+        /*                 radius: 2 */
+        /*                 anchors.margins: 12 */
 
-                        Text {
-                            text: tabs.children[index].name
-                            color: tabId == tabs.children[index].type ? "#FACA57" : "#B4B4B4"
-                            font { pixelSize: 13 }
-                            anchors.centerIn: parent
-                        }
-                    }
+        /*                 Text { */
+        /*                     text: tabs.children[index].name */
+        /*                     color: tabId == tabs.children[index].type ? "#FACA57" : "#B4B4B4" */
+        /*                     font { pixelSize: 13 } */
+        /*                     anchors.centerIn: parent */
+        /*                 } */
+        /*             } */
 
-                    MouseArea {
-                        anchors.fill: parent
+        /*             MouseArea { */
+        /*                 anchors.fill: parent */
 
-                        onClicked: {
-                            tabId = tabs.children[index].type
-                        }
-                    }
-                }
-            }
-        }
+        /*                 onClicked: { */
+        /*                     tabId = tabs.children[index].type */
+        /*                 } */
+        /*             } */
+        /*         } */
+        /*     } */
+        /* } */
 
         PlaylistView {
             id: local_playlist
@@ -208,9 +220,9 @@ Rectangle {
 
         PlaylistView {
             id: network_playlist
+            visible: false
             width: 190
             root: local_playlist
-            visible: playlistPanel.expanded && tabId == "network"
             currentPlayingSource: playlistPanel.currentPlayingSource
 
             // Component.onCompleted: initializeWithContent(database.playlist_local)
@@ -237,60 +249,23 @@ Rectangle {
 
     Image {
         id: hidePlaylistButton
-        source: "image/playlist_button_active_background.png"
-        anchors.left: playlistTopline.left
-        anchors.leftMargin: 1
+        width: implicitWidth
+        height: implicitHeight
+        anchors.right: parent.left
         anchors.verticalCenter: playlistPanel.verticalCenter
-        opacity: playlistPanel.opacity + 0.1
 
-        Image {
-            id: hidePlaylistArrow
-            source: "image/playlist_button_arrow.png"
-            anchors.right: parent.right
-            anchors.rightMargin: 7
+        DImageButton {
+            id: handle_arrow_button
+            normal_image: "image/playlist_handle_normal.png"
+            hover_image: "image/playlist_handle_hover.png"
+            press_image: "image/playlist_handle_press.png"
             anchors.verticalCenter: parent.verticalCenter
-            opacity: playlistPanel.opacity
-        }
-
-        MouseArea {
-            id: hidePlaylistButtonArea
-            anchors.top: parent.top
-            anchors.bottom: parent.bottom
-            anchors.right: parent.right
-            anchors.left: hidePlaylistArrow.left
-            hoverEnabled: true
+            anchors.left: parent.left
+            anchors.leftMargin: 3
 
             onClicked: {
                 hidingPlaylistPanelAnimation.restart()
             }
-
-            onEntered: {
-                playlistPanel.state = "active"
-            }
-
-            onExited: {
-                playlistPanel.state = "inactive"
-            }
         }
-    }
-
-    Rectangle {
-        id: playlistTopline
-        color: "#060606"
-        width: 1
-        anchors.top: playlistPanel.top
-        anchors.bottom: hidePlaylistButton.top
-        anchors.right: playlistPanel.right
-        opacity: playlistPanel.opacity
-    }
-
-    Rectangle {
-        id: playlistBottomline
-        color: "#060606"
-        width: 1
-        anchors.top: hidePlaylistButton.bottom
-        anchors.bottom: playlistPanel.bottom
-        anchors.right: playlistPanel.right
-        opacity: playlistPanel.opacity
     }
 }
