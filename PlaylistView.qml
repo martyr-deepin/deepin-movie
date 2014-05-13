@@ -236,7 +236,8 @@ ListView {
 					text: itemName
 					elide: Text.ElideRight
 					font.pixelSize: 14
-					color: column.isSelected ? column.isGroup ? "#8800BDFF" : "#00BDFF" : mouse_area.containsMouse ? "white" : "#B4B4B4"
+					/* color: column.isSelected ? column.isGroup ? "#8800BDFF" : "#00BDFF" : mouse_area.containsMouse ? "white" : "#B4B4B4" */
+                    color: column.isSelected ? Qt.rgba(43, 132, 206, 1) : mouse_area.containsMouse ? Qt.rgba(214, 214, 214, 1) : Qt.rgba(214, 214, 214, 0.5)
 
 					anchors.left: expand_button.right
 					anchors.leftMargin: 9
