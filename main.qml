@@ -12,8 +12,17 @@ Rectangle {
     // problems sometime, we should be careful in case that it changes height for
     // you suddenly.
     x: (windowView.width - width) / 2
-    width: height * widthHeightScale
     height: windowView.height
+
+    onHeightChanged: {
+        if (state != "fullscreen") {
+            width = height * widthHeightScale
+            if (width > primaryRect.width) {
+                windowView.setHeight((primaryRect.width) / widthHeightScale)
+                windowView.setWidth(primaryRect.width)
+            }
+        }
+    }
 
     property real widthHeightScale: movieInfo.movie_width / movieInfo.movie_height
 
@@ -108,6 +117,7 @@ Rectangle {
 
     /* to perform like a newly started program  */
     function reset() {
+        state = "normal"
         movieInfo.movie_file = ""
         player.visible = false
         showControls()
@@ -193,7 +203,7 @@ Rectangle {
         volume: controlbar.volume
         anchors.centerIn: main_window
         source: movieInfo.movie_file
-        
+
         onStopped: {
             if (Math.abs(position - movieInfo.movie_duration) < 10) {
                 var next = playlist.getNextSource()
@@ -239,7 +249,7 @@ Rectangle {
         videoPlaying: player.playbackState == MediaPlayer.PlayingState
 
         anchors.horizontalCenter: main_window.horizontalCenter
-        
+
         onPreviousButtonClicked: main_controller.playPrevious()
         onNextButtonClicked: main_controller.playNext()
 
@@ -274,7 +284,7 @@ Rectangle {
         anchors.right: main_window.right
         anchors.bottom: main_window.bottom
     }
-    
+
     Playlist {
         id: playlist
         width: 0
