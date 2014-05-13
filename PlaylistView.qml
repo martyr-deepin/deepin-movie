@@ -205,7 +205,7 @@ ListView {
 					    delete_button.visible = false
 					    delete_button.source = "image/delete_normal.png"
 					}
-					onClicked: {
+					onDoubleClicked: {
 						if (column.isGroup) {
 							sub.visible = !sub.visible							
 						} else if(!column.isSelected){
