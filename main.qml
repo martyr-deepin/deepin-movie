@@ -88,8 +88,8 @@ Rectangle {
     function urlToPlaylistItem(url) {
         var pathDict = (url + "").split("/")
         var result = pathDict.slice(pathDict.length - 2, pathDict.length + 1)
-        result[result.length - 1] = [result[result.length - 1], url]
-        return result
+        /* result[result.length - 1] = [result[result.length - 1], url] */
+        return [[result[result.length - 1], url, []]]
     }
 
     function showControls() {

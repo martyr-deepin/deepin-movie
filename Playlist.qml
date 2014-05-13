@@ -159,15 +159,15 @@ Rectangle {
         }
     }
 
-    Column {
+    Item {
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: bottom_rect.top
-        anchors.leftMargin: 10
-        anchors.rightMargin: 10
-        anchors.topMargin: 15
-        anchors.bottomMargin: 15
+        anchors.topMargin: 24
+        anchors.bottomMargin: 24
+        anchors.leftMargin: 20
+        anchors.rightMargin: 20
 
         /* Item { */
         /*     id: tabs */
@@ -219,10 +219,11 @@ Rectangle {
 
         PlaylistView {
             id: local_playlist
-            width: 190
+            width: 181
             root: local_playlist
             visible: playlistPanel.expanded && tabId == "local"
             currentPlayingSource: playlistPanel.currentPlayingSource
+            anchors.horizontalCenter: parent.horizontalCenter
 
             onNewSourceSelected: {
                 playlistPanel.newSourceSelected(path)
@@ -234,7 +235,7 @@ Rectangle {
         PlaylistView {
             id: network_playlist
             visible: false
-            width: 190
+            width: 0
             root: local_playlist
             currentPlayingSource: playlistPanel.currentPlayingSource
 

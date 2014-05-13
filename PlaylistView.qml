@@ -191,7 +191,7 @@ ListView {
 
 			Item {
 				width: column.width
-				height: 20
+				height: 24
 
 				MouseArea {
 					id: mouse_area
@@ -216,23 +216,35 @@ ListView {
 
 				Image {
 					id: expand_button
-					opacity: isGroup ? 1 : 0
+                    visible: false
+					/* opacity: isGroup ? 1 : 0 */
 					source: sub.visible ? "image/expanded.png" : "image/not_expanded.png"
 
 					anchors.verticalCenter: parent.verticalCenter
 				}
+                
+                Image {
+                    width: 10
+                    height: 10
+                    anchors.centerIn: expand_button
+                    source: column.isSelected ? column.isGroup ? "" : "image/playing_indicator.png" : ""
+                }
+                
 				Text {
 					id: name
-					width: parent.width - expand_button.width - anchors.leftMargin - delete_button.width
+					width: parent.width - expand_button.width - anchors.leftMargin - anchors.rightMargin - delete_button.width
 					text: itemName
 					elide: Text.ElideRight
-					font.pixelSize: column.isGroup ? 12 : column.isSelected ? 13 : 11
+					font.pixelSize: 14
 					color: column.isSelected ? column.isGroup ? "#8800BDFF" : "#00BDFF" : mouse_area.containsMouse ? "white" : "#B4B4B4"
 
 					anchors.left: expand_button.right
-					anchors.leftMargin: 5
+					anchors.leftMargin: 9
+                    anchors.right: delete_button.left
+                    anchors.rightMargin: 6
 					anchors.verticalCenter: parent.verticalCenter 
 				}
+                
 				Image {
 					id: delete_button
 					visible: false
