@@ -10,7 +10,6 @@ Item {
     property alias volume: volume_button.volume
     property alias percentage: progressbar.percentage
     property alias videoPlaying: play_pause_button.checkFlag
-    property alias playlistExpaned: play_list_button.checkFlag
 
     signal togglePlay ()
     signal mutedSet (bool muted)
@@ -202,14 +201,11 @@ Item {
                 OpacityImageButton {
                     id: play_list_button
                     
-                    property bool checkFlag
-                    
-                    imageName: checkFlag ? "image/player_list_selected.png" : "image/player_list_normal.png"
+                    imageName: "image/player_list_normal.png"
                     anchors.verticalCenter: parent.verticalCenter                    
 
                     onClicked: {
-                        checkFlag = !checkFlag
-                        control_bar.playlistButtonClicked()
+                         control_bar.playlistButtonClicked()
                     }
                 }
 

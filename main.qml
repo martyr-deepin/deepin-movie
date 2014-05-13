@@ -193,7 +193,7 @@ Rectangle {
         volume: controlbar.volume
         anchors.centerIn: main_window
         source: movieInfo.movie_file
-
+        
         onStopped: {
             if (Math.abs(position - movieInfo.movie_duration) < 10) {
                 var next = playlist.getNextSource()
@@ -252,7 +252,6 @@ Rectangle {
         volume: config.fetch("Normal", "volume")
         percentage: player.position / movieInfo.movie_duration
         videoPlaying: player.playbackState == MediaPlayer.PlayingState
-        playlistExpaned: playlist.expanded
 
         anchors.horizontalCenter: main_window.horizontalCenter
 
