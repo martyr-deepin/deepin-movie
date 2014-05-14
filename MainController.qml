@@ -182,7 +182,7 @@ MouseArea {
 
     function minimize() {
         root.state = "normal"
-        windowView.showMaximized()
+        windowView.showMinimized()
     }
 
     function toggleFullscreen() {

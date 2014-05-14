@@ -15,6 +15,8 @@ Rectangle {
     width: height * widthHeightScale
     height: windowView.height
     
+    property var windowLastState: ""
+
     onHeightChanged: {
         if (state != "fullscreen") {
             if (width > primaryRect.width) {
@@ -122,9 +124,20 @@ Rectangle {
     function reset() {
         root.state = "normal"
         movieInfo.movie_file = ""
-        main_controller.stop()        
+        main_controller.stop()
         controlbar.reset()
         showControls()
+    }
+
+    function monitorWindowState(state) {
+        if (windowLastState != state) {
+            if (state == Qt.WindowMinimized) {
+                main_controller.pause()
+            } else {
+                main_controller.play()
+            }
+            windowLastState = state
+        }
     }
 
     function monitorWindowClose() {
@@ -210,7 +223,7 @@ Rectangle {
         anchors.centerIn: main_window
         source: movieInfo.movie_file
         anchors.fill: main_window
-        
+
         onSourceChanged: {
             if (source != "") playlist.addItem("local", urlToPlaylistItem(source))
         }
@@ -253,7 +266,7 @@ Rectangle {
 
     ControlBar {
         id: controlbar
- 
+
         volume: config.fetch("Normal", "volume")
         percentage: player.position / movieInfo.movie_duration
         videoPlaying: player.playbackState == MediaPlayer.PlayingState

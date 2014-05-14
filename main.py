@@ -129,7 +129,7 @@ if __name__ == "__main__":
 
     movie_info.movie_file = movie_file
     
-    # view.windowStateChanged.connect(view.rootObject().monitorWindowState)
+    windowView.windowStateChanged.connect(windowView.rootObject().monitorWindowState)
     app.lastWindowClosed.connect(windowView.rootObject().monitorWindowClose)
     app.setQuitOnLastWindowClosed(True)
     
