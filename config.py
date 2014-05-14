@@ -35,6 +35,7 @@ ADJUST_TYPE_FULLSCREEN = "ADJUST_TYPE_FULLSCREEN"
 
 DEFAULT_CONFIG = [
 ("Player", [("volume", "1.0"), 
+    ("muted", NO),
     ("adjust_type", ADJUST_TYPE_WINDOW_VIDEO),
     ("clean_playlist_on_open_new_file", NO),
     ("auto_play_from_last", YES),

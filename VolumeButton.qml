@@ -9,6 +9,9 @@ Row {
     height: toggle_button.height
 
     property double volume: 1.0
+    property alias muted: toggle_button.checkFlag
+    
+    property bool showBarFlag: false
 
     signal changeVolume
     signal mutedSet (bool muted)
@@ -21,7 +24,7 @@ Row {
             if (volume_bar_mouse_area.containsMouse) {
                 hide_bar_timer.restart()
             } else {
-                bar_item.visible = false
+                item.showBarFlag = false
             }
         }
     }
@@ -33,7 +36,7 @@ Row {
         property bool checkFlag: false
         
         onEntered: {
-            bar_item.visible = true
+            item.showBarFlag = true
         }
 
         onExited: {
@@ -48,7 +51,7 @@ Row {
 
     Item {
         id: bar_item
-        visible: false
+        visible: item.showBarFlag && !toggle_button.checkFlag
         width: volume_bar.width
         height: toggle_button.height
 

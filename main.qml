@@ -205,6 +205,7 @@ Rectangle {
 
     Player {
         id: player
+        muted: config.fetchBool("Player", "muted")
         volume: controlbar.volume
         anchors.centerIn: main_window
         source: movieInfo.movie_file
@@ -256,6 +257,7 @@ Rectangle {
         volume: config.fetch("Normal", "volume")
         percentage: player.position / movieInfo.movie_duration
         videoPlaying: player.playbackState == MediaPlayer.PlayingState
+        muted: config.fetchBool("Player", "muted")
 
         anchors.horizontalCenter: main_window.horizontalCenter
 

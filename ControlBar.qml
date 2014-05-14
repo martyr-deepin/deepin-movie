@@ -10,6 +10,7 @@ Item {
     property alias volume: volume_button.volume
     property alias percentage: progressbar.percentage
     property alias videoPlaying: play_pause_button.checkFlag
+    property alias muted: volume_button.muted
 
     signal togglePlay ()
     signal mutedSet (bool muted)

@@ -242,6 +242,7 @@ MouseArea {
 
     function setMute(muted) {
         player.muted = muted
+        config.save("Player", "muted", muted)
 
         if (player.muted) {
             notifybar.show("image/notify_volume.png", "静音")
