@@ -16,6 +16,11 @@ Item {
     function hide() {
         visible = false
     }
+    
+    MouseArea {
+        anchors.fill: titlebar
+        onDoubleClicked: titlebar.maxButtonClicked()
+    }
 
     Item {
         id: titlebarBackground
