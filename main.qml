@@ -212,7 +212,7 @@ Rectangle {
         anchors.fill: main_window
         
         onSourceChanged: {
-            playlist.addItem("local", urlToPlaylistItem(source))
+            if (source != "") playlist.addItem("local", urlToPlaylistItem(source))
         }
 
         onStopped: {
