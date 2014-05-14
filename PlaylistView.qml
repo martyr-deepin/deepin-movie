@@ -98,6 +98,9 @@ ListView {
 	function addItem(path) {
 		var parent = findItemByPath(path.slice(0, path.length - 1))
         if (allItems.length == 0 || parent == null) {
+        	for (var i = 0; i < count; i++) {
+        		if (model.get(i).itemUrl == path[path.length - 1][1]) return
+        	}
             model.append(_pathToListElement(path))
         } else if(parent != null){
         	var item = {
