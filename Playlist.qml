@@ -164,8 +164,8 @@ Rectangle {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: bottom_rect.top
-        anchors.topMargin: 24
-        anchors.bottomMargin: 24
+        anchors.topMargin: 20
+        anchors.bottomMargin: 20
         anchors.leftMargin: 20
         anchors.rightMargin: 20
 
@@ -246,7 +246,7 @@ Rectangle {
     Rectangle {
         id: bottom_rect
         width: parent.width
-        height: 36
+        height: 25
         color: Qt.rgba(1, 1, 1, 0.05)
         anchors.bottom: parent.bottom
 
