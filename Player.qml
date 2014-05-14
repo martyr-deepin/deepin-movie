@@ -6,6 +6,7 @@ Video {
     id: video
     autoPlay: true
     transform: flip
+    visible: playbackState != MediaPlayer.StoppedState
 
     property bool shouldShowNotify: true
     property alias subtitleContent: subtitle.text

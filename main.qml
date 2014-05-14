@@ -120,9 +120,10 @@ Rectangle {
 
     /* to perform like a newly started program  */
     function reset() {
-        state = "normal"
+        root.state = "normal"
         movieInfo.movie_file = ""
-        player.visible = false
+        main_controller.stop()        
+        controlbar.reset()
         showControls()
     }
 
@@ -247,8 +248,7 @@ Rectangle {
 
     ControlBar {
         id: controlbar
-        width: root.width
-
+ 
         volume: config.fetch("Normal", "volume")
         percentage: player.position / movieInfo.movie_duration
         videoPlaying: player.playbackState == MediaPlayer.PlayingState
@@ -274,7 +274,7 @@ Rectangle {
             // preference_window.show()
         }
 
-        onPlayStopButtonClicked: { reset() }
+        onPlayStopButtonClicked: { root.reset() }
         onOpenFileButtonClicked: { main_controller.openFile() }
         onPlaylistButtonClicked: { hideControls(); playlist.toggleShow() }
         onPercentageSet: player.seek(movieInfo.movie_duration * percentage)

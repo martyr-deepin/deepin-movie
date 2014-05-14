@@ -199,6 +199,7 @@ MouseArea {
     // player control operation related
     function play() { player.play() }
     function pause() { player.pause() }
+    function stop() { player.stop() }
 
     function togglePlay() {
         if (player.hasVideo) {

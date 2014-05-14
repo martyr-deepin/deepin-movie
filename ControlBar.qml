@@ -33,6 +33,10 @@ Item {
     function hide() {
         visible = false
     }
+    
+    function reset() {
+        percentage = 0
+    }
 
     LinearGradient {
         id: bottomPanelBackround
@@ -50,9 +54,11 @@ Item {
     }
 
     Column {
+        width: parent.width
+        
         ProgressBar {
             id: progressbar
-            width: parent.parent.width
+            width: parent.width
 
             Preview {
                 id: videoPreview
