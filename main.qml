@@ -209,6 +209,10 @@ Rectangle {
         anchors.centerIn: main_window
         source: movieInfo.movie_file
         anchors.fill: main_window
+        
+        onSourceChanged: {
+            playlist.addItem("local", urlToPlaylistItem(source))
+        }
 
         onStopped: {
             if (Math.abs(position - movieInfo.movie_duration) < 1000) {
