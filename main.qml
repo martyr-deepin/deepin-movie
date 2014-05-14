@@ -132,7 +132,7 @@ Rectangle {
     }
 
     function monitorWindowState(state) {
-        time_indicator.visible = (state == Qt.WindowFullScreen || 
+        time_indicator.visible = (state == Qt.WindowFullScreen && 
                                   player.playbackState == MediaPlayer.PlayingState)
         if (windowLastState != state) {
             if (state == Qt.WindowMinimized) {

@@ -23,6 +23,7 @@
 import os
 from PyQt5.QtGui import QKeySequence
 from PyQt5.QtCore import QObject, pyqtSlot, pyqtProperty
+from PyQt5.QtDBus import QDBusInterface, QDBusConnection
 
 class Utils(QObject):
 	"""docstring for Utils"""
@@ -43,6 +44,22 @@ class Utils(QObject):
 			if os.path.isfile(file_abs_path):
 				result.append(file_abs_path)
 		return result
+
+	@pyqtSlot()    
+	def enable_zone(self):
+	    try:
+	        iface = QDBusInterface("com.deepin.daemon.Zone", "/com/deepin/daemon/Zone", '', QDBusConnection.sessionBus())
+	        iface.asyncCall("EnableZoneDetected", True)
+	    except:
+	        pass
+	    
+	@pyqtSlot()    
+	def disable_zone(self):
+	    try:
+	        iface = QDBusInterface("com.deepin.daemon.Zone", "/com/deepin/daemon/Zone", '', QDBusConnection.sessionBus())
+	        iface.asyncCall("EnableZoneDetected", False)
+	    except:
+	        pass
 
 	@pyqtSlot(int, int, str, result=bool)
 	def checkKeySequenceEqual(self, modifier, key, targetKeySequence):
