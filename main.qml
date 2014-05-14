@@ -130,6 +130,8 @@ Rectangle {
     }
 
     function monitorWindowState(state) {
+        time_indicator.visible = (state == Qt.WindowFullScreen || 
+                                  player.playbackState == MediaPlayer.PlayingState)
         if (windowLastState != state) {
             if (state == Qt.WindowMinimized) {
                 main_controller.pause()
@@ -158,7 +160,6 @@ Rectangle {
             PropertyChanges { target: controlbar; width: main_window.width; anchors.bottom: main_window.bottom}
             PropertyChanges { target: notifybar; anchors.top: root.top; anchors.left: root.left}
             PropertyChanges { target: playlist; height: main_window.height; anchors.right: main_window.right }
-            PropertyChanges { target: drag_point; visible: true }
         },
         State {
             name: "fullscreen"
@@ -169,7 +170,6 @@ Rectangle {
             PropertyChanges { target: controlbar; width: root.width; anchors.bottom: root.bottom}
             PropertyChanges { target: notifybar; anchors.top: titlebar.bottom; anchors.left: root.left}
             PropertyChanges { target: playlist; height: root.height; anchors.right: root.right }
-            PropertyChanges { target: drag_point; visible: false }
         }
     ]
 
@@ -244,6 +244,16 @@ Rectangle {
             controlbar.percentage = position / movieInfo.movie_duration
         }
     }
+    
+    TimeIndicator {
+        id: time_indicator
+        visible: false
+        percentage: controlbar.percentage
+        anchors.top: main_window.top
+        anchors.right: main_window.right
+        anchors.topMargin: 10
+        anchors.rightMargin: 10
+    }
 
     MainController {
         id: main_controller
@@ -298,16 +308,6 @@ Rectangle {
         onOpenFileButtonClicked: { main_controller.openFile() }
         onPlaylistButtonClicked: { hideControls(); playlist.toggleShow() }
         onPercentageSet: player.seek(movieInfo.movie_duration * percentage)
-    }
-
-    Image {
-        id: drag_point
-        source: "image/dragbar.png"
-
-        anchors.rightMargin: 5
-        anchors.bottomMargin: 5
-        anchors.right: main_window.right
-        anchors.bottom: main_window.bottom
     }
 
     Playlist {

@@ -34,7 +34,7 @@ Item {
     function hide() {
         visible = false
     }
-    
+
     function reset() {
         percentage = 0
     }
@@ -56,7 +56,7 @@ Item {
 
     Column {
         width: parent.width
-        
+
         ProgressBar {
             id: progressbar
             width: parent.width
@@ -111,7 +111,7 @@ Item {
             anchors.right: parent.right
             anchors.top: parent.top
             anchors.topMargin: 34
-            
+
             states: [
                 State {
                     name: "normal"
@@ -138,9 +138,9 @@ Item {
                         anchors.left: buttonArea.left
                         anchors.leftMargin: 27
                     }
-                }                
+                }
             ]
-            
+
             Row {
                 id: leftButtonArea
                 anchors.left: parent.left
@@ -240,12 +240,12 @@ Item {
 
                 OpacityImageButton {
                     id: play_list_button
-                    
+
                     imageName: "image/player_list_normal.png"
-                    anchors.verticalCenter: parent.verticalCenter                    
+                    anchors.verticalCenter: parent.verticalCenter
 
                     onClicked: {
-                         control_bar.playlistButtonClicked()
+                        control_bar.playlistButtonClicked()
                     }
                 }
 
@@ -260,5 +260,15 @@ Item {
             /* } */
             }
         }
+    }
+
+    Image {
+        id: drag_point
+        source: "image/dragbar.png"
+
+        anchors.rightMargin: 5
+        anchors.bottomMargin: 5
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
     }
 }
