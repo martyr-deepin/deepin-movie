@@ -1,7 +1,7 @@
 import QtQuick 2.1
 import QtGraphicalEffects 1.0
 
-Item {
+DragableArea {
     id: titlebar
     height: program_constants.titlebarHeight
 
@@ -16,11 +16,8 @@ Item {
     function hide() {
         visible = false
     }
-    
-    MouseArea {
-        anchors.fill: titlebar
-        onDoubleClicked: titlebar.maxButtonClicked()
-    }
+
+    onDoubleClicked: titlebar.maxButtonClicked()
 
     Item {
         id: titlebarBackground

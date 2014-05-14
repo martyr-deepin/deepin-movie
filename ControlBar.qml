@@ -3,7 +3,7 @@ import QtMultimedia 5.0
 import QtGraphicalEffects 1.0
 import Deepin.Widgets 1.0
 
-Item {
+DragableArea {
     id: control_bar
     height: program_constants.controlbarHeight
 

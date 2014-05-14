@@ -270,6 +270,7 @@ Rectangle {
 
     TitleBar {
         id: titlebar
+        window: windowView
         anchors.horizontalCenter: main_window.horizontalCenter
 
         onMinButtonClicked: main_controller.minimize()
@@ -279,7 +280,7 @@ Rectangle {
 
     ControlBar {
         id: controlbar
-
+        window: windowView
         volume: config.fetch("Normal", "volume")
         percentage: player.position / movieInfo.movie_duration
         videoPlaying: player.playbackState == MediaPlayer.PlayingState
