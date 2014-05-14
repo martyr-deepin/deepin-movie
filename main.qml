@@ -114,6 +114,8 @@ Rectangle {
     }
 
     function mouseInControlsArea() {
+        if (main_controller.mouseX == 0 && main_controller.mouseY == 0) return false//mouse is not in window area
+
         return inRectCheck(Qt.point(main_controller.mouseX, main_controller.mouseY),
                            Qt.rect(0, 0, main_window.width, titlebar.height)) || inRectCheck(
             Qt.point(main_controller.mouseX, main_controller.mouseY),
@@ -176,7 +178,7 @@ Rectangle {
     Timer {
         id: hide_controls_timer
         running: true
-        interval: 5000
+        interval: 3000
 
         onTriggered: {
             if (!mouseInControlsArea()) {
