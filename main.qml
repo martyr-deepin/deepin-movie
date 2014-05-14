@@ -241,6 +241,7 @@ Rectangle {
 
         onPositionChanged: {
             subtitleContent = movieInfo.get_subtitle_at(position)
+            controlbar.percentage = position / movieInfo.movie_duration
         }
     }
 
