@@ -25,22 +25,58 @@ from PyQt5.QtGui import QCursor
 from deepin_menu.menu import Menu, CheckableMenuItem
 
 frame_sub_menu = [
-    ("_p_default", "Default"),
-    ("_p_4_3", "4:3"),
-    ("_p_16_9", "16:9"),
-    ("_p_16_10", "16:10"),
-    ("_p_1_85_1", "1.85:1"),
-    ("_p_2_35_1", "2.35:1"),
+    CheckableMenuItem("proportion:radio:_p_default", "Default", True),
+    CheckableMenuItem("proportion:radio:_p_4_3", "4:3"),
+    CheckableMenuItem("proportion:radio:_p_16_9", "16:9"),
+    CheckableMenuItem("proportion:radio:_p_16_10", "16:10"),
+    CheckableMenuItem("proportion:radio:_p_1_85_1", "1.85:1"),
+    CheckableMenuItem("proportion:radio:_p_2_35_1", "2.35:1"),
     None,
-    ("_s_0_5", "0.5"),        
-    ("_s_1", "1"),        
-    ("_s_1_5", "1.5"),        
-    ("_s_2", "2"),        
+    CheckableMenuItem("scale:radio:_s_0_5", "0.5"),        
+    CheckableMenuItem("scale:radio:_s_1", "1", True),        
+    CheckableMenuItem("scale:radio:_s_1_5", "1.5"),        
+    CheckableMenuItem("scale:radio:_s_2", "2"),        
     None,
     ("_turn_right", "Rotate 90 degree"),
     ("_turn_left", "Rotate -90 degree"),
     ("_flip_horizontal", "Flip Horizontally"),
     ("_flip_vertial", "Flip Vertically"),
+]
+
+sound_sub_menu = [
+    ("_sound_channel", "Sound Channels"),
+    ("_sound_channel", "Sound Tracks"),
+    ("_sound_output_mode", "Output Mode"),
+    None,
+    ("_sound_increase", "Increase Volume"),
+    ("_sound_decrease", "Decrease Volume"),
+    ("_sound_muted", "Muted")
+]
+
+subtitle_sub_menu = [
+    ("_subtitle_hide", "Hide Subtitle"),
+    None,
+    ("_subtitle_online_match", "自动在线匹配"),
+    ("_subtitle_online_search", "在线查找"),
+    ("_subtitle_manual", "手动载入"),
+    ("_subtitle_choose", "字幕选择"),
+    ("_subtitle_settings", "字幕设置")
+]
+
+play_sequence_sub_menu = [
+    CheckableMenuItem("mode_group:radio:in_order", "顺序播放", True),
+    CheckableMenuItem("mode_group:radio:random", "随机播放"),
+    CheckableMenuItem("mode_group:radio:single", "单个播放"),
+    CheckableMenuItem("mode_group:radio:single_cycle", "单个循环"),
+    CheckableMenuItem("mode_group:radio:playlist_cycle", "列表循环")
+]
+
+play_sub_menu = [
+    ("_play_operation_previous", "Previous"),
+    ("_play_operation_next", "Next"),
+    None,
+    ("_play_operation_forward", "Forward"),
+    ("_play_operation_backward", "Backward"),
 ]
     
 right_click_menu = [
@@ -49,17 +85,14 @@ right_click_menu = [
     ("_open_url", "Open URL"),
     None,
     ("_fullscreen_quit", "Fullscreen/Quit Fullscreen"),
+    CheckableMenuItem("_mini_mode", "Mini Mode", True),
+    CheckableMenuItem("_on_top", "On Top", False),
     None,
-    CheckableMenuItem("_on_top", "On Top", True),
-    ("_play_sequence", "Play Sequence"),
-    ("_play", "Play"),
-    ("_screenshot", "ScreenShot"),
+    ("_play_sequence", "Play Sequence", (), play_sequence_sub_menu),
+    ("_play", "Play", (), play_sub_menu),
     ("_frame", "Frame", (), frame_sub_menu),
-    ("_sound", "Sound"),
-    ("_subtitle", "Subtitle"),
-    ("_share", "Share", (), [("_share_to_dtalk", "DTalk"), 
-                             ("_share_to_s_weibo", "Sina Weibo"),
-                             ("_share_to_t_weibo", "Tencent Weibo"),]),
+    ("_sound", "Sound", (), sound_sub_menu),
+    ("_subtitle", "Subtitle", (), subtitle_sub_menu),
     ("_information", "Information"),
     ("_preferences", "Preferences"),
 ]
@@ -124,22 +157,14 @@ class MenuController(QObject):
         elif _id == "_on_top":
             self.staysOnTop.emit(_checked)
 
-    def _getMenuItems(self):
-        right_click_menu[6] = CheckableMenuItem("_on_top", "On Top", 
-            self._window.staysOnTop)
-        return right_click_menu
-
     @pyqtSlot()
     def show_menu(self):
-        self.menu = Menu(self._getMenuItems())
+        self.menu = Menu(right_click_menu)
+        self.menu.getItemById("_on_top").checked = self._window.staysOnTop
         self.menu.itemClicked.connect(self._menu_item_invoked)
         self.menu.showRectMenu(QCursor.pos().x(), QCursor.pos().y())
         
     @pyqtSlot()
     def show_mode_menu(self):
-        self.menu = Menu([CheckableMenuItem("mode_group:radio:in_order", "顺序播放", True),
-                         CheckableMenuItem("mode_group:radio:random", "随机播放"),
-                         CheckableMenuItem("mode_group:radio:single", "单个播放"),
-                         CheckableMenuItem("mode_group:radio:single_cycle", "单个循环"),
-                         CheckableMenuItem("mode_group:radio:playlist_cycle", "列表循环"),])
+        self.menu = Menu(play_sequence_sub_menu)
         self.menu.showRectMenu(QCursor.pos().x() - 100, QCursor.pos().y())        
