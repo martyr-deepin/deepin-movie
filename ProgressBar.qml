@@ -7,7 +7,8 @@ Item {
 
     property real percentage: 0.0
     
-    signal mouseOver (var mouse)
+    signal mouseOver (int mouseX)
+    signal mouseDrag (int mouseX)
     signal mouseExit ()
     signal percentageSet(real percentage)
     
@@ -20,7 +21,7 @@ Item {
         }
 
         onPositionChanged: {
-            progressbar.mouseOver(mouse)
+            progressbar.mouseOver(mouse.x)
         }
 
         onExited: {
@@ -52,7 +53,7 @@ Item {
             anchors.left: parent.left
             anchors.top: parent.top
             height: parent.height
-            width: progressbar.percentage * progressbar.width
+            width: pointer.x + pointer.width / 2
             color: "#007cc2"
 
             Rectangle {
@@ -78,11 +79,10 @@ Item {
                 drag.axis: Drag.XAxis
                 drag.minimumX: -(pointer.width / 2)
                 drag.maximumX: background.width - (pointer.width / 2)
-            }
-            
-            onXChanged: {
-                if (drag_area.active) {
-                    progressbar.percentageSet(x + pointer.width / 2) / Math.max(progressbar.width, 1)
+
+                onPositionChanged: {
+                    progressbar.mouseDrag(pointer.x + pointer.width / 2)
+                    progressbar.percentageSet((pointer.x + pointer.width / 2) / Math.max(progressbar.width, 1))
                 }
             }
         }

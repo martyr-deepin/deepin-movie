@@ -39,6 +39,34 @@ DragableArea {
         percentage = 0
     }
 
+    function showPreview(mouseX, mode) {
+        videoPreview.state = mode
+        if (videoPreview.hasVideo) {
+            videoPreview.visible = true
+            videoPreview.x = Math.min(Math.max(mouseX - videoPreview.width / 2, 0),
+                                      width - videoPreview.width)
+            videoPreview.y = progressbar.y - videoPreview.height - 10
+
+            if (mouseX <= videoPreview.cornerWidth / 2) {
+                videoPreview.cornerPos = mouseX + videoPreview.cornerWidth / 2
+                videoPreview.cornerType = "left"
+            } else if (mouseX >= width - videoPreview.cornerWidth / 2) {
+                videoPreview.cornerPos = mouseX - width + videoPreview.width - videoPreview.cornerWidth / 2
+                videoPreview.cornerType = "right"
+            } else if (mouseX < videoPreview.width / 2) {
+                videoPreview.cornerPos = mouseX
+                videoPreview.cornerType = "center"
+            } else if (mouseX >= width - videoPreview.width / 2) {
+                videoPreview.cornerPos = mouseX - width + videoPreview.width
+                videoPreview.cornerType = "center"
+            } else {
+                videoPreview.cornerPos = videoPreview.width / 2
+                videoPreview.cornerType = "center"
+            }
+            videoPreview.seek(mouseX / width)
+        }
+    }
+
     LinearGradient {
         id: bottomPanelBackround
 
@@ -67,35 +95,8 @@ DragableArea {
                 visible: false
             }
 
-            onMouseOver: {
-                if (videoPreview.hasVideo) {
-                    videoPreview.visible = true
-                    videoPreview.x = Math.min(Math.max(mouse.x - videoPreview.width / 2, 0),
-                                              width - videoPreview.width)
-                    videoPreview.y = y - videoPreview.height
-
-                    var mouseX = mouse.x
-                    var mouseY = mouse.y
-
-                    if (mouseX <= videoPreview.cornerWidth / 2) {
-                        videoPreview.cornerPos = mouseX + videoPreview.cornerWidth / 2
-                        videoPreview.cornerType = "left"
-                    } else if (mouseX >= width - videoPreview.cornerWidth / 2) {
-                        videoPreview.cornerPos = mouseX - width + videoPreview.width - videoPreview.cornerWidth / 2
-                        videoPreview.cornerType = "right"
-                    } else if (mouseX < videoPreview.width / 2) {
-                        videoPreview.cornerPos = mouseX
-                        videoPreview.cornerType = "center"
-                    } else if (mouseX >= width - videoPreview.width / 2) {
-                        videoPreview.cornerPos = mouseX - width + videoPreview.width
-                        videoPreview.cornerType = "center"
-                    } else {
-                        videoPreview.cornerPos = videoPreview.width / 2
-                        videoPreview.cornerType = "center"
-                    }
-                    videoPreview.seek(mouseX / width)
-                }
-            }
+            onMouseOver: { control_bar.showPreview(mouseX, "normal") }
+            onMouseDrag: { control_bar.showPreview(mouseX, "minimal") }
 
             onMouseExit: {
                 videoPreview.visible = false

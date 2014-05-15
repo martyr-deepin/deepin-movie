@@ -4,11 +4,25 @@ import QtGraphicalEffects 1.0
 
 RectWithCorner {
     id: preview
-    rectWidth: 178
-    rectHeight: rectWidth * movieInfo.movie_height / movieInfo.movie_width + preview.cornerHeight - previewPadding * 2
+    state: "normal"
     cornerPos: 89
     withBlur: false
     blurWidth: 2
+
+    states: [
+        State {
+            name: "normal"
+            PropertyChanges { target: preview; rectWidth: 178; rectHeight: rectWidth * movieInfo.movie_height / movieInfo.movie_width + preview.cornerHeight - previewPadding * 2 }
+            PropertyChanges { target: video; visible: true }
+            PropertyChanges { target: time_bg; color: "#DD000000" }
+        },
+        State {
+            name: "minimal"
+            PropertyChanges { target: preview; rectWidth: 100; rectHeight: 44 }
+            PropertyChanges { target: video; visible: false }
+            PropertyChanges { target: time_bg; color: "transparent" }
+        }        
+    ]
 
     property alias source: video.source
     property alias hasVideo: video.hasVideo
@@ -35,8 +49,8 @@ RectWithCorner {
     }
     
     Rectangle {
+        id: time_bg
         height: 24
-        color: "#DD000000"
         anchors.bottom: video.bottom
         anchors.left: video.left
         anchors.right: video.right
