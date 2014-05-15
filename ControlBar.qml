@@ -5,7 +5,7 @@ import Deepin.Widgets 1.0
 
 DragableArea {
     id: control_bar
-    height: program_constants.controlbarHeight
+    height: program_constants.controlbarHeight + 20
 
     property alias volume: volume_button.volume
     property alias percentage: progressbar.percentage
@@ -84,6 +84,8 @@ DragableArea {
 
     Column {
         width: parent.width
+        height: program_constants.controlbarHeight
+        anchors.bottom: parent.bottom
 
         ProgressBar {
             id: progressbar
