@@ -12,8 +12,10 @@ MouseArea {
     property int resizeEdge
     property int triggerThreshold: 10  // threshold for resizing the window
 
-    property int startX
-    property int startY
+    property int dragStartX
+    property int dragStartY
+    property int windowLastX
+    property int windowLastY
 
     property bool shouldPlayOrPause: true
 
@@ -27,12 +29,12 @@ MouseArea {
         target: movieInfo
 
         // Notice:
-        // QWindow.setHeight probably will not set the actual height of the 
+        // QWindow.setHeight probably will not set the actual height of the
         // window to the given value(automatically adjusted by the WM or something),
-        // though QWindow.height is set to the given value actually, 
+        // though QWindow.height is set to the given value actually,
         // so QWindow.height is not reliable here to get the actual height of the window,
         // fortunately, we can get it from the rootObject(here is root) of the QQuickView.
-        
+
         /* onMovieWidthChanged: { */
         /*     windowView.setWidth(movieInfo.movie_width) */
         /*     windowView.moveToCenter() */
@@ -143,7 +145,7 @@ MouseArea {
     function doSingleClick() {
         if (playlist.expanded) {
             playlist.hide()
-            return 
+            return
         }
 
         if (shouldPlayOrPause) {
@@ -207,7 +209,7 @@ MouseArea {
             player.playbackState == MediaPlayer.PlayingState ? pause() : play()
         }
     }
-    
+
     function forwardByDelta(delta) {
         player.seek(player.position + delta)
         notifybar.show("image/notify_forward.png", "快进至 " + formatTime(player.position))
@@ -271,8 +273,12 @@ MouseArea {
         if (resizeEdge != resize_edge.resizeNone) {
             resize_visual.resizeEdge = resizeEdge
         } else {
-            startX = mouse.x
-            startY = mouse.y
+            var pos = windowView.getCursorPos()
+
+            windowLastX = windowView.x
+            windowLastY = windowView.y
+            dragStartX = pos.x
+            dragStartY = pos.y
         }
     }
 
@@ -281,18 +287,18 @@ MouseArea {
         if (!pressed) {
             changeCursor(getEdge(mouse))
 
-            if (inRectCheck(mouse, Qt.rect(0, 0, main_window.width, 
-                program_constants.titlebarTriggerThreshold))) {
+            if (inRectCheck(mouse, Qt.rect(0, 0, main_window.width,
+                                           program_constants.titlebarTriggerThreshold))) {
                 showControls()
-            } else if (inRectCheck(mouse, Qt.rect(0, main_window.height - controlbar.height, 
-                main_window.width, program_constants.controlbarTriggerThreshold))) {
+            } else if (inRectCheck(mouse, Qt.rect(0, main_window.height - controlbar.height,
+                                                  main_window.width, program_constants.controlbarTriggerThreshold))) {
                 showControls()
-            } 
-            /* else if (!playlist.expanded && inRectCheck(mouse,  */
-            /*     Qt.rect(main_window.width - program_constants.playlistTriggerThreshold, 0,  */
-            /*     program_constants.playlistTriggerThreshold, main_window.height))) { */
-            /*     show_playlist_timer.restart() */
-            /* } */
+            }
+        /* else if (!playlist.expanded && inRectCheck(mouse,  */
+        /*     Qt.rect(main_window.width - program_constants.playlistTriggerThreshold, 0,  */
+        /*     program_constants.playlistTriggerThreshold, main_window.height))) { */
+        /*     show_playlist_timer.restart() */
+        /* } */
         }
         else {
             // prevent play or pause event from happening if we intend to move or resize the window
@@ -302,8 +308,13 @@ MouseArea {
                 resize_visual.intelligentlyResize(windowView, mouse.x, mouse.y)
             }
             else {
-                windowView.setX(windowView.x + mouse.x - startX)
-                windowView.setY(windowView.y + mouse.y - startY)
+                var pos = windowView.getCursorPos()
+                windowView.setX(windowLastX + pos.x - dragStartX)
+                windowView.setY(windowLastY + pos.y - dragStartY)
+                windowLastX = windowView.x
+                windowLastY = windowView.y
+                dragStartX = pos.x
+                dragStartY = pos.y
             }
         }
     }
@@ -327,8 +338,8 @@ MouseArea {
         } else {
             clickCount++
             if (!double_click_check_timer.running) {
-                double_click_check_timer.start()  
-            } 
+                double_click_check_timer.start()
+            }
         }
     }
 
@@ -337,7 +348,7 @@ MouseArea {
 
         // FixMe: we should also count the anchors.leftMaring here;
         frameY: windowView.y
-        frameX: windowView.x 
+        frameX: windowView.x
         frameWidth: window.width
         frameHeight: window.height
     }
