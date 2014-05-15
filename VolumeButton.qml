@@ -65,6 +65,8 @@ Row {
                 hoverEnabled: true
                 anchors.fill: parent
 
+                onContainsMouseChanged: toggle_button.state = containsMouse ? "hover" : "normal"
+
                 onClicked: {
                     volume_pointer.x = Math.min(Math.max(mouse.x - volume_pointer.width / 2, 0), parent.width)
                     volume = volume_pointer.x / (volume_bar.width - volume_pointer.width)
