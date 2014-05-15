@@ -20,11 +20,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import os
 import sys
 import ass
 import pysrt
 import tempfile
 from datetime import timedelta
+from chardet.universaldetector import UniversalDetector
 from deepin_utils.process import get_command_output_first_line
 
 SUPPORTED_FILE_TYPES = ("ass", "srt")
@@ -42,10 +44,19 @@ def get_file_type(file_name):
 	return None
 
 def get_file_encoding(file_name):
-	if file_name != "":
-		return get_command_output_first_line(["enca", "-i", file_name]).rstrip()
-	else:
-		return ""
+	if not os.path.isfile(file_name): return ""
+	u = UniversalDetector()
+	with open(file_name, "rb") as f:
+		for index, line in enumerate(f):
+			u.feed(line)
+			if index > 500: break
+		u.close()
+	return u.result["encoding"]
+
+	# if file_name != "":
+	# 	return get_command_output_first_line(["enca", "-i", file_name]).rstrip()
+	# else:
+	# 	return ""
 
 def get_utf_8_version(file_name, origin_encoding):
 	fp, tmp_name = tempfile.mkstemp(text=True)
