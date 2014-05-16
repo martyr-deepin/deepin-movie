@@ -160,7 +160,10 @@ class MenuController(QObject):
     @pyqtSlot()
     def show_menu(self):
         self.menu = Menu(right_click_menu)
+        self.frame_sub_menu = self.menu.getItemById("_sound").subMenu
+
         self.menu.getItemById("_on_top").checked = self._window.staysOnTop
+
         self.menu.itemClicked.connect(self._menu_item_invoked)
         self.menu.showRectMenu(QCursor.pos().x(), QCursor.pos().y())
         
