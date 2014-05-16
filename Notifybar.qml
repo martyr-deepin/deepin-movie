@@ -11,7 +11,6 @@ Rectangle {
         notifyIcon = icon
         notifyText = text
         opacity = 1
-        showingNotifyAnimation.restart()
         
         hidingNotifyTimer.restart()
     }
@@ -40,34 +39,6 @@ Rectangle {
         id: hidingNotifyTimer
         interval: 2000
         repeat: false
-        onTriggered: {
-            hidingNotifyAnimation.restart()
-        }
-    }
-    
-    ParallelAnimation{
-        id: showingNotifyAnimation
-        alwaysRunToEnd: true
-        
-        PropertyAnimation {
-            target: notify
-            property: "opacity"
-            to: 1
-            duration: 100
-            easing.type: Easing.OutQuint
-        }
-    }    
-
-    ParallelAnimation{
-        id: hidingNotifyAnimation
-        alwaysRunToEnd: true
-        
-        PropertyAnimation {
-            target: notify
-            property: "opacity"
-            to: 0
-            duration: 100
-            easing.type: Easing.OutQuint
-        }
-    }    
+        onTriggered: { notify.opacity = 0 }
+    }   
 }
