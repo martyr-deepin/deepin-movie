@@ -160,7 +160,6 @@ Rectangle {
                               height: root.height - program_constants.windowGlowRadius * 2; }
             PropertyChanges { target: titlebar; width: main_window.width; anchors.top: main_window.top }
             PropertyChanges { target: controlbar; width: main_window.width; anchors.bottom: main_window.bottom}
-            PropertyChanges { target: notifybar; anchors.top: root.top; anchors.left: root.left}
             PropertyChanges { target: playlist; height: main_window.height; anchors.right: main_window.right }
         },
         State {
@@ -170,7 +169,6 @@ Rectangle {
             PropertyChanges { target: main_window; width: root.width; height: root.height }
             PropertyChanges { target: titlebar; width: root.width; anchors.top: root.top }
             PropertyChanges { target: controlbar; width: root.width; anchors.bottom: root.bottom}
-            PropertyChanges { target: notifybar; anchors.top: titlebar.bottom; anchors.left: root.left}
             PropertyChanges { target: playlist; height: root.height; anchors.right: root.right }
         }
     ]
@@ -264,6 +262,8 @@ Rectangle {
 
     Notifybar {
         id: notifybar
+        anchors.top: root.top
+        anchors.left: root.left
         anchors.topMargin: 60
         anchors.leftMargin: 30
     }
