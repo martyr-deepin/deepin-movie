@@ -154,9 +154,8 @@ Rectangle {
         anchors.fill: parent
         hoverEnabled: true
 
-        onEntered: {
-            playlistPanel.state = "active"
-        }
+        onEntered: { playlistPanel.state = "active" }
+        onWheel: {}
     }
 
     Item {
@@ -166,60 +165,17 @@ Rectangle {
         anchors.bottom: bottom_rect.top
         anchors.topMargin: 20
         anchors.bottomMargin: 20
-        anchors.leftMargin: 20
-        anchors.rightMargin: 20
 
-        /* Item { */
-        /*     id: tabs */
-        /*     Item { */
-        /*         property string name: "播放列表" */
-        /*         property string type: "local" */
-        /*     } */
-        /* } */
-
-        /* Row { */
-        /*     id: tabRow */
-
-        /*     height: 50 */
-        /*     anchors.leftMargin: spacing */
-        /*     width: parent.width */
-
-        /*     property int tabWidth: width / tabs.children.length */
-
-        /*     Repeater { */
-        /*         model: tabs.children.length */
-        /*         delegate: Item { */
-        /*             height: parent.height */
-        /*             width: tabRow.tabWidth */
-
-        /*             Rectangle { */
-        /*                 anchors.fill: parent */
-        /*                 color: tabId == tabs.children[index].type ? program_constants.bgDarkColor : "transparent" */
-        /*                 radius: 2 */
-        /*                 anchors.margins: 12 */
-
-        /*                 Text { */
-        /*                     text: tabs.children[index].name */
-        /*                     color: tabId == tabs.children[index].type ? "#FACA57" : "#B4B4B4" */
-        /*                     font { pixelSize: 13 } */
-        /*                     anchors.centerIn: parent */
-        /*                 } */
-        /*             } */
-
-        /*             MouseArea { */
-        /*                 anchors.fill: parent */
-
-        /*                 onClicked: { */
-        /*                     tabId = tabs.children[index].type */
-        /*                 } */
-        /*             } */
-        /*         } */
-        /*     } */
-        /* } */
+        DScrollBar {
+            flickable: local_playlist
+            anchors.right: parent.right
+            anchors.rightMargin: 5
+        }
 
         PlaylistView {
             id: local_playlist
             width: 181
+            height: parent.height
             root: local_playlist
             visible: playlistPanel.expanded && tabId == "local"
             currentPlayingSource: playlistPanel.currentPlayingSource
