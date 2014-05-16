@@ -5,8 +5,9 @@ import Deepin.Widgets 1.0
 
 DragableArea {
     id: control_bar
-    height: program_constants.controlbarHeight + 20
-
+    // make sure the 15 pixels upon the controlbar hasn't the ability to play or pause the video
+    height: program_constants.controlbarHeight + 15 
+    
     property alias volume: volume_button.volume
     property alias percentage: progressbar.percentage
     property alias videoPlaying: play_pause_button.checkFlag
