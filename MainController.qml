@@ -89,7 +89,7 @@ MouseArea {
     property int clickCount: 0
     Timer {
         id: double_click_check_timer
-        interval: 200
+        interval: 300
 
         onTriggered: {
             if (mouse_area.clickCount == 1) {
