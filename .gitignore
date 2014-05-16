@@ -7,3 +7,5 @@ dist
 *.po~
 *.swp
 apidocs
+deepin-movie.sublime-project
+deepin-movie.sublime-workspace
