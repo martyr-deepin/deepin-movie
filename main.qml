@@ -131,14 +131,23 @@ Rectangle {
         showControls()
     }
 
+    // To check wether the player is stopped by the app or by the user
+    // if it is ther user that stopped the player, we'll not play it automatically.
+    property bool videoStoppedByAppFlag: false 
     function monitorWindowState(state) {
         time_indicator.visible = (state == Qt.WindowFullScreen && 
                                   player.playbackState == MediaPlayer.PlayingState)
         if (windowLastState != state) {
             if (state == Qt.WindowMinimized) {
-                main_controller.pause()
-            } else {
-                main_controller.play()
+                if (player.playbackState == MediaPlayer.PlayingState) {
+                    main_controller.pause()
+                    videoStoppedByAppFlag = true
+                }
+            } else {                    
+                if (videoStoppedByAppFlag == true) {                      
+                    main_controller.play()
+                    videoStoppedByAppFlag = false
+                }
             }
             windowLastState = state
         }
