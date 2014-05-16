@@ -169,11 +169,13 @@ MouseArea {
 
     function normalize() {
         root.state = "normal"
+        _utils.enable_zone()
         windowView.showNormal()
     }
 
     function fullscreen() {
         root.state = "fullscreen"
+        _utils.disable_zone()
         windowView.showFullScreen()
     }
 
@@ -189,7 +191,6 @@ MouseArea {
 
     function toggleFullscreen() {
         windowView.getState() == Qt.WindowFullScreen ? normalize() : fullscreen()
-        windowView.getState() == Qt.WindowFullScreen ? _utils.disable_zone() : _utils.enable_zone()
     }
 
     function toggleMaximized() {
