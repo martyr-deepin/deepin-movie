@@ -99,3 +99,4 @@ class Database(QObject):
         self.networkPlaylistChanged.emit(value)
         self.video_db_connect.commit()
 
+database = Database()

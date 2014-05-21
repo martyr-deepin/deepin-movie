@@ -36,13 +36,14 @@ ADJUST_TYPE_FULLSCREEN = "ADJUST_TYPE_FULLSCREEN"
 DEFAULT_CONFIG = [
 ("Player", [("volume", "1.0"), 
     ("muted", NO),
-    ("adjust_type", ADJUST_TYPE_WINDOW_VIDEO),
-    ("clean_playlist_on_open_new_file", NO),
-    ("auto_play_from_last", YES),
-    ("auto_play_series", YES),
-    ("show_preview", YES),
-    ("multiple_programs_allowed", NO),
-    ("stop_on_minimized", YES),]),
+    ("subtitleHide", NO),
+    ("adjustType", ADJUST_TYPE_WINDOW_VIDEO),
+    ("cleanPlaylistOnOpenNewFile", NO),
+    ("autoPlayFromLast", YES),
+    ("autoPlaySeries", YES),
+    ("showPreview", YES),
+    ("multipleProgramsAllowed", NO),
+    ("stopOnMinimized", YES),]),
 ("HotkeysPlay", [("hotkey_enabled", YES),
     ("openFile", "Ctrl+O"), 
     ("openDir", "Ctrl+F"),
@@ -60,13 +61,14 @@ DEFAULT_CONFIG = [
     ("rotateAnticlockwise", "E"),
     ("screenshot", "Alt+A"),]),
 ("Subtitle", [("auto_load", YES),
-    ("font_size", "16"),
-    ("font_color", "#ffffff")]),
+    ("fontSize", "16"),
+    ("fontColor", "#ffffff")]),
 ]
 
 class Config(QObject):
     subtitleFontSizeChanged = pyqtSignal(int)
     subtitleFontColorChanged = pyqtSignal(str)
+    configChanged = pyqtSignal(str, "QVariant")
 
     def __init__(self):
         QObject.__init__(self)
@@ -130,3 +132,5 @@ class Config(QObject):
     def save(self, section, option, value):  
         self.config.set(section, option, value)
         self.config.write()
+
+config = Config()

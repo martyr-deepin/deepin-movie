@@ -45,11 +45,11 @@ from PyQt5.QtCore import pyqtSlot, QObject
 from PyQt5.QtWidgets import QApplication, QInputDialog
 
 from window import Window
-from database import Database
-from config import Config
+from database import database
+from config import config
 from movie_info import MovieInfo
 from browser import Browser
-from utils import Utils
+from utils import utils
 from constant import MAIN_QML
 from menu_controller import MenuController
 
@@ -100,10 +100,6 @@ if __name__ == "__main__":
     
     movie_file = os.path.realpath(sys.argv[1]) if len(sys.argv) >= 2 else ""
     movie_info = MovieInfo()
-    
-    config = Config()
-    utils = Utils()
-    database = Database()
     
     windowView = Window()
     # page_manager = PageManager(windowView)

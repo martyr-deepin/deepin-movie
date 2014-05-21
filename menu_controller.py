@@ -23,6 +23,7 @@
 from PyQt5.QtCore import QObject, pyqtSlot, pyqtSignal
 from PyQt5.QtGui import QCursor
 from deepin_menu.menu import Menu, CheckableMenuItem
+from config import config
 
 frame_sub_menu = [
     CheckableMenuItem("proportion:radio:_p_default", "Default", True),
@@ -54,7 +55,7 @@ sound_sub_menu = [
 ]
 
 subtitle_sub_menu = [
-    ("_subtitle_hide", "Hide Subtitle"),
+    CheckableMenuItem("_subtitle_hide", "Hide Subtitle"),
     None,
     ("_subtitle_online_match", "自动在线匹配"),
     ("_subtitle_online_search", "在线查找"),
@@ -160,9 +161,9 @@ class MenuController(QObject):
     @pyqtSlot()
     def show_menu(self):
         self.menu = Menu(right_click_menu)
-        self.frame_sub_menu = self.menu.getItemById("_sound").subMenu
 
         self.menu.getItemById("_on_top").checked = self._window.staysOnTop
+        self.menu.getItemById("_subtitle_hide").checked = self._window
 
         self.menu.itemClicked.connect(self._menu_item_invoked)
         self.menu.showRectMenu(QCursor.pos().x(), QCursor.pos().y())

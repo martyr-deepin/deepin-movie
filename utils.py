@@ -68,3 +68,5 @@ class Utils(QObject):
 	@pyqtSlot(int, int, result=str)
 	def keyEventToQKeySequenceString(self, modifier, key):
 		return QKeySequence(modifier + key).toString()
+
+utils = Utils()
