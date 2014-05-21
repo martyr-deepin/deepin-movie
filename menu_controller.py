@@ -163,7 +163,7 @@ class MenuController(QObject):
         self.menu = Menu(right_click_menu)
 
         self.menu.getItemById("_on_top").checked = self._window.staysOnTop
-        self.menu.getItemById("_subtitle_hide").checked = self._window
+        self.menu.getItemById("_subtitle_hide").checked = config.subtitleHide
 
         self.menu.itemClicked.connect(self._menu_item_invoked)
         self.menu.showRectMenu(QCursor.pos().x(), QCursor.pos().y())

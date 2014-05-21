@@ -44,7 +44,7 @@ DEFAULT_CONFIG = [
     ("showPreview", YES),
     ("multipleProgramsAllowed", NO),
     ("stopOnMinimized", YES),]),
-("HotkeysPlay", [("hotkey_enabled", YES),
+("HotkeysPlay", [("hotkeyEnabled", YES),
     ("openFile", "Ctrl+O"), 
     ("openDir", "Ctrl+F"),
     ("togglePlay", "Space"),
@@ -56,20 +56,16 @@ DEFAULT_CONFIG = [
     ("increaseVolume", "Up"),
     ("decreaseVolume", "Down"),
     ("toggleMute", "M"),]),
-("HotkeysOthers", [("hotkey_enabled", YES),
+("HotkeysOthers", [("hotkeyEnabled", YES),
     ("rotateClockwise", "W"),
     ("rotateAnticlockwise", "E"),
     ("screenshot", "Alt+A"),]),
-("Subtitle", [("auto_load", YES),
+("Subtitle", [("autoLoad", YES),
     ("fontSize", "16"),
     ("fontColor", "#ffffff")]),
 ]
 
 class Config(QObject):
-    subtitleFontSizeChanged = pyqtSignal(int)
-    subtitleFontColorChanged = pyqtSignal(str)
-    configChanged = pyqtSignal(str, "QVariant")
-
     def __init__(self):
         QObject.__init__(self)
         self.config_path = os.path.join(CONFIG_DIR, "config.ini")
@@ -100,22 +96,6 @@ class Config(QObject):
             result.append({"command": item[0], "key": item[1]})
         return result
 
-    @pyqtProperty(int, notify=subtitleFontSizeChanged)
-    def fontSize(self):
-        return self.fetchfloat("Subtitle", "font_size")
-
-    @fontSize.setter
-    def fontSize(self, value):
-        self.save("Subtitle", "font_size", value)
-
-    @pyqtProperty(str, notify=subtitleFontColorChanged)
-    def fontColor(self):
-        return self.fetch("Subtitle", "font_color")
-
-    @fontColor.setter
-    def fontColor(self, value):
-        self.save("Subtitle", "font_color", value)
-
     @pyqtSlot(str, str, result=str)    
     def fetch(self, section, option):
         return self.config.get(section, option)
@@ -133,4 +113,35 @@ class Config(QObject):
         self.config.set(section, option, value)
         self.config.write()
 
+    for section, items in DEFAULT_CONFIG:
+        for key, value in items:
+            itemName = "%s%s" % (section[0].lower() + section[1:], key[0].upper() + key[1:])
+            itemNotify = "%sChanged" % itemName
+
+            nfy = locals()[itemNotify] = pyqtSignal()
+            
+            def _get(section, key):
+                def f(self):
+                    return self.fetch(section, key)
+                return f
+            
+            def _set(section ,key, nfy):
+                def f(self, value):
+                    self.save(section, key, value)
+                    nfy.emit()
+                return f
+            
+            set = locals()['_set_'+key] = _set(section, key, nfy)
+            get = locals()['_get_'+key] = _get(section, key)
+            
+            locals()[itemName] = pyqtProperty("QVariant", get, set, notify=nfy)
+
 config = Config()
+
+if __name__ == '__main__':
+    for section, items in DEFAULT_CONFIG:
+        for key, value in items:
+            itemName = "%s%s" % (section[0].lower() + section[1:], key[0].upper() + key[1:])
+            itemNotify = "%sChanged" % itemName
+
+            print getattr(config, itemName)
