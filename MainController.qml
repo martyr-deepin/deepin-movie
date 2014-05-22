@@ -239,13 +239,13 @@ MouseArea {
 
     function increaseVolumeByDelta(delta) {
         player.volume = Math.min(player.volume + delta, 1.0)
-
+        config.playerVolume = player.volume
         notifybar.show("image/notify_volume.png", "音量: " + Math.round(player.volume * 100) + "%")
     }
 
     function decreaseVolumeByDelta(delta) {
         player.volume = Math.max(player.volume - delta, 0.0)
-
+        config.playerVolume = player.volume
         notifybar.show("image/notify_volume.png", "音量: " + Math.round(player.volume * 100) + "%")
     }
 
