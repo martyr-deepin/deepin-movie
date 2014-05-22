@@ -11,10 +11,6 @@ Rectangle {
     property bool expanded: width == program_constants.playlistWidth
     property url currentPlayingSource
 
-    signal showingAnimationWillStart
-    signal hidingAnimationWillStart
-    signal showingAnimationDone
-    signal hidingAnimationDone
     signal newSourceSelected (string path)
     
     signal addButtonClicked ()
@@ -45,7 +41,6 @@ Rectangle {
 
     function show() {
         if (!expanded) {
-            showingAnimationWillStart()
             visible = true
             showingPlaylistPanelAnimation.restart()
         }
@@ -53,17 +48,14 @@ Rectangle {
 
     function hide() {
         if (expanded) {
-            hidingAnimationWillStart()
             hidingPlaylistPanelAnimation.restart()
         }
     }
 
     function toggleShow() {
         if (expanded) {
-            hidingAnimationWillStart()
             hidingPlaylistPanelAnimation.restart()
         } else {
-            showingAnimationWillStart()
             visible = true
             showingPlaylistPanelAnimation.restart()
         }
@@ -128,7 +120,6 @@ Rectangle {
         easing.type: Easing.OutQuint
 
         onStopped: {
-            playlistPanel.showingAnimationDone()
             playlistPanel.state = "active"
         }
     }
@@ -144,7 +135,6 @@ Rectangle {
         easing.type: Easing.OutQuint
 
         onStopped: {
-            playlistPanel.hidingAnimationDone()
             playlistPanel.visible = false
         }
     }

@@ -14,6 +14,7 @@ Rectangle {
     x: (windowView.width - width) / 2
     width: height * widthHeightScale
     height: windowView.height
+    layer.enabled: true
     
     property var windowLastState: ""
 
@@ -328,11 +329,6 @@ Rectangle {
         anchors.verticalCenter: parent.verticalCenter
 
         onNewSourceSelected: movieInfo.movie_file = path
-        onShowingAnimationWillStart: { player.shouldShowNotify=false; player.pause() }
-        onShowingAnimationDone: { player.shouldShowNotify=true; player.play() }
-        onHidingAnimationWillStart: { player.shouldShowNotify=false; player.pause() }
-        onHidingAnimationDone: { player.shouldShowNotify=true; player.play() }
-
         onModeButtonClicked: _menu_controller.show_mode_menu()
         onAddButtonClicked: main_controller.openFile()
         onClearButtonClicked: playlist.clear()

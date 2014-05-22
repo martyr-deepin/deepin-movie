@@ -8,7 +8,6 @@ Video {
     transform: flip
     visible: playbackState != MediaPlayer.StoppedState
 
-    property bool shouldShowNotify: true
     property alias subtitleContent: subtitle.text
     property alias subtitleFontSize: subtitle.fontSize
     property alias subtitleFontColor: subtitle.fontColor
@@ -49,9 +48,7 @@ Video {
         angle: 180
     }
 
-    onPlaying: pause_notify.visible = false
-
-    onPaused: { if (shouldShowNotify) pause_notify.notify() }
+    onPaused: { pause_notify.notify() }
 
     PauseNotify { 
         id: pause_notify
