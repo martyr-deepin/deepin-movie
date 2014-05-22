@@ -4,7 +4,7 @@ import DBus.Com.Deepin.Daemon.Power 1.0
  
 Video {
     id: video
-    autoPlay: true
+    autoPlay: false
     transform: flip
     visible: playbackState != MediaPlayer.StoppedState
 

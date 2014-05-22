@@ -49,6 +49,8 @@ MouseArea {
             var last_watched_pos = database.fetch_video_position(player.source)
             if (Math.abs(last_watched_pos - movieInfo.movie_duration) > 10) {
                 seek_to_last_watched_timer.schedule(last_watched_pos)
+            } else {
+                play()
             }
 
             playlist.hide()
@@ -70,6 +72,7 @@ MouseArea {
 
         onTriggered: {
             player.seek(last_watched_pos)
+            play()
         }
     }
 
