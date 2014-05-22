@@ -11,7 +11,7 @@ Video {
     property bool shouldShowNotify: true
     property alias subtitleContent: subtitle.text
     property alias subtitleFontSize: subtitle.fontSize
-    property alias subtitleFontColo: subtitle.fontColor
+    property alias subtitleFontColor: subtitle.fontColor
 
     function flipHorizontal() {
         if (flip.axis.y == 1) {

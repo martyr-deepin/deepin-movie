@@ -1,8 +1,8 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# Copyright (C) 2011 Deepin, Inc.
-#               2011 Hou Shaohui
+# Copyright (C) 2014 Deepin, Inc.
+#               2014 Wang Yaohua
 #
 # Author:     Wang Yaohua <mr.asianwang@gmail.com>
 # Maintainer: Wang Yaohua <mr.asianwang@gmail.com>
@@ -25,26 +25,23 @@ from deepin_utils import config
 from constant import CONFIG_DIR
 from PyQt5.QtCore import pyqtSlot, pyqtProperty, pyqtSignal, QObject
 
-YES = "yes"
-NO = "no"
-
 ADJUST_TYPE_WINDOW_VIDEO = "ADJUST_TYPE_WINDOW_VIDEO"
 ADJUST_TYPE_VIDEO_WINDOW = "ADJUST_TYPE_VIDEO_WINDOW"
 ADJUST_TYPE_LAST_TIME = "ADJUST_TYPE_LAST_TIME"
 ADJUST_TYPE_FULLSCREEN = "ADJUST_TYPE_FULLSCREEN"
 
 DEFAULT_CONFIG = [
-("Player", [("volume", "1.0"), 
-    ("muted", NO),
-    ("subtitleHide", NO),
+("Player", [("volume", 1.0), 
+    ("muted", False),
+    ("subtitleHide", False),
     ("adjustType", ADJUST_TYPE_WINDOW_VIDEO),
-    ("cleanPlaylistOnOpenNewFile", NO),
-    ("autoPlayFromLast", YES),
-    ("autoPlaySeries", YES),
-    ("showPreview", YES),
-    ("multipleProgramsAllowed", NO),
-    ("stopOnMinimized", YES),]),
-("HotkeysPlay", [("hotkeyEnabled", YES),
+    ("cleanPlaylistOnOpenNewFile", False),
+    ("autoPlayFromLast", True),
+    ("autoPlaySeries", True),
+    ("showPreview", True),
+    ("multipleProgramsAllowed", False),
+    ("stopOnMinimized", True),]),
+("HotkeysPlay", [("hotkeyEnabled", True),
     ("openFile", "Ctrl+O"), 
     ("openDir", "Ctrl+F"),
     ("togglePlay", "Space"),
@@ -56,22 +53,22 @@ DEFAULT_CONFIG = [
     ("increaseVolume", "Up"),
     ("decreaseVolume", "Down"),
     ("toggleMute", "M"),]),
-("HotkeysOthers", [("hotkeyEnabled", YES),
+("HotkeysOthers", [("hotkeyEnabled", True),
     ("rotateClockwise", "W"),
     ("rotateAnticlockwise", "E"),
     ("screenshot", "Alt+A"),]),
-("Subtitle", [("autoLoad", YES),
-    ("fontSize", "16"),
+("Subtitle", [("autoLoad", True),
+    ("fontSize", 16),
     ("fontColor", "#ffffff")]),
 ]
 
 class Config(QObject):
     def __init__(self):
-        QObject.__init__(self)
+        super(QObject, self).__init__()
         self.config_path = os.path.join(CONFIG_DIR, "config.ini")
         
         if not os.path.exists(self.config_path):
-            os.makedirs(CONFIG_DIR)
+            if not os.path.exists(CONFIG_DIR): os.makedirs(CONFIG_DIR)
             self.config = config.Config(self.config_path)
             self.config.config_parser.optionxform=str
             self.config.default_config = DEFAULT_CONFIG
@@ -101,7 +98,7 @@ class Config(QObject):
         return self.config.get(section, option)
 
     @pyqtSlot(str, str, result=float)
-    def fetchfloat(self, section, option):
+    def fetchFloat(self, section, option):
         return self.config.getfloat(section, option)
 
     @pyqtSlot(str,str,result=bool)
@@ -122,16 +119,22 @@ class Config(QObject):
             
             def _get(section, key):
                 def f(self):
-                    return self.fetch(section, key)
+                    try:
+                        return self.fetchBool(section, key)
+                    except Exception:
+                        try:
+                            return self.fetchFloat(section, key)
+                        except Exception:
+                            return self.fetch(section, key)
                 return f
             
-            def _set(section ,key, nfy):
+            def _set(section ,key, itemNotify):
                 def f(self, value):
                     self.save(section, key, value)
-                    nfy.emit()
+                    getattr(self, itemNotify).emit()
                 return f
             
-            set = locals()['_set_'+key] = _set(section, key, nfy)
+            set = locals()['_set_'+key] = _set(section, key, itemNotify)
             get = locals()['_get_'+key] = _get(section, key)
             
             locals()[itemName] = pyqtProperty("QVariant", get, set, notify=nfy)
@@ -144,4 +147,5 @@ if __name__ == '__main__':
             itemName = "%s%s" % (section[0].lower() + section[1:], key[0].upper() + key[1:])
             itemNotify = "%sChanged" % itemName
 
+            print itemName
             print getattr(config, itemName)

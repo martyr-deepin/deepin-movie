@@ -240,12 +240,12 @@ MouseArea {
     function decreaseVolume() { decreaseVolumeByDelta(0.05) }
 
     function setVolume(volume) {
-        player.volume = volume
+        config.playerVolume = volume
         notifybar.show("image/notify_volume.png", "音量: " + Math.round(player.volume * 100) + "%")
     }
 
     function setMute(muted) {
-        player.muted = muted
+        config.playerMuted = muted
         config.save("Player", "muted", muted)
 
         if (player.muted) {

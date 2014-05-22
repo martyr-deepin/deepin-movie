@@ -227,10 +227,13 @@ Rectangle {
 
     Player {
         id: player
-        muted: config.fetchBool("Player", "muted")
+        muted: config.playerMuted
         volume: controlbar.volume
-        anchors.centerIn: main_window
         source: movieInfo.movie_file
+
+        subtitleFontSize: config.subtitleFontSize
+        subtitleFontColor: config.subtitleFontColor
+
         anchors.fill: main_window
 
         onSourceChanged: {
@@ -290,10 +293,10 @@ Rectangle {
     ControlBar {
         id: controlbar
         window: windowView
-        volume: config.fetch("Normal", "volume")
+        volume: config.playerVolume
         percentage: player.position / movieInfo.movie_duration
         videoPlaying: player.playbackState == MediaPlayer.PlayingState
-        muted: config.fetchBool("Player", "muted")
+        muted: config.playerMuted
 
         anchors.horizontalCenter: main_window.horizontalCenter
 
@@ -304,14 +307,8 @@ Rectangle {
             main_controller.togglePlay()
         }
 
-        onChangeVolume: {
-            main_controller.setVolume(volume)
-        }
-
-        onMutedSet: {
-            main_controller.setMute(muted)
-        }
-
+        onChangeVolume: { main_controller.setVolume(volume) }
+        onMutedSet: { main_controller.setMute(muted) }
         onConfigButtonClicked: {
             // preference_window.show()
         }
