@@ -275,9 +275,9 @@ Rectangle {
 
     Notifybar {
         id: notifybar
-        anchors.top: root.top
+        anchors.top: titlebar.visible ? titlebar.bottom : root.top
         anchors.left: root.left
-        anchors.topMargin: 60
+        anchors.topMargin: titlebar.visible ? 0 : 30
         anchors.leftMargin: 30
     }
 
