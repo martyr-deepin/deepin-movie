@@ -12,7 +12,7 @@ RectWithCorner {
     states: [
         State {
             name: "normal"
-            PropertyChanges { target: preview; rectWidth: 178; rectHeight: rectWidth * movieInfo.movie_height / movieInfo.movie_width + preview.cornerHeight - previewPadding * 2 }
+            PropertyChanges { target: preview; rectWidth: 178; rectHeight: (rectWidth - previewPadding * 2) * movieInfo.movie_height / movieInfo.movie_width + previewPadding * 2 + preview.cornerHeight }
             PropertyChanges { target: video; visible: true }
             PropertyChanges { target: time_bg; color: "#DD000000" }
         },
