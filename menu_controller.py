@@ -23,7 +23,8 @@
 from PyQt5.QtCore import QObject, pyqtSlot, pyqtSignal
 from PyQt5.QtGui import QCursor
 from deepin_menu.menu import Menu, CheckableMenuItem
-from config import config
+
+from config import *
 
 frame_sub_menu = [
     CheckableMenuItem("proportion:radio:_p_default", "Default", True),
@@ -51,7 +52,7 @@ sound_sub_menu = [
     None,
     ("_sound_increase", "Increase Volume"),
     ("_sound_decrease", "Decrease Volume"),
-    ("_sound_muted", "Muted")
+    CheckableMenuItem("_sound_muted", "Muted")
 ]
 
 subtitle_sub_menu = [
@@ -116,6 +117,10 @@ class MenuController(QObject):
         super(MenuController, self).__init__()
         self._window = window
         
+    # if actions-like menu items are clicked, we should send signals to inform 
+    # the main controller that actions should be taken, if configs-like menu 
+    # items are clicked, we just change the configuration, config.py will takes 
+    # care of it for you .
     def _menu_item_invoked(self, _id, _checked):
         if _id == "_turn_right":
             self.clockwiseRotate.emit()
@@ -157,13 +162,40 @@ class MenuController(QObject):
             self.openDialog.emit("url")
         elif _id == "_on_top":
             self.staysOnTop.emit(_checked)
+        elif _id == "mode_group:radio:in_order":
+            config.playerPlayOrderType = ORDER_TYPE_IN_ORDER
+        elif _id == "mode_group:radio:random":
+            config.playerPlayOrderType = ORDER_TYPE_RANDOM
+        elif _id == "mode_group:radio:single":
+            config.playerPlayOrderType = ORDER_TYPE_SINGLE
+        elif _id == "mode_group:radio:single_cycle":
+            config.playerPlayOrderType = ORDER_TYPE_SINGLE_CYCLE
+        elif _id == "mode_group:radio:playlist_cycle":
+            config.playerPlayOrderType = ORDER_TYPE_PLAYLIST_CYCLE
+        elif _id == "_sound_muted":
+            config.playerMuted = _checked
 
     @pyqtSlot()
     def show_menu(self):
         self.menu = Menu(right_click_menu)
 
         self.menu.getItemById("_on_top").checked = self._window.staysOnTop
-        self.menu.getItemById("_subtitle_hide").checked = config.subtitleHide
+
+        self.menu.getItemById("mode_group:radio:in_order").checked = \
+            config.playerPlayOrderType == ORDER_TYPE_IN_ORDER
+        self.menu.getItemById("mode_group:radio:random").checked = \
+            config.playerPlayOrderType == ORDER_TYPE_RANDOM
+        self.menu.getItemById("mode_group:radio:single").checked = \
+            config.playerPlayOrderType == ORDER_TYPE_SINGLE
+        self.menu.getItemById("mode_group:radio:single_cycle").checked = \
+            config.playerPlayOrderType == ORDER_TYPE_SINGLE_CYCLE
+        self.menu.getItemById("mode_group:radio:playlist_cycle").checked = \
+            config.playerPlayOrderType == ORDER_TYPE_PLAYLIST_CYCLE
+
+        self.menu.getItemById("_sound_muted").checked = config.playerMuted
+
+        self.menu.getItemById("_subtitle_hide").checked = \
+            config.playerSubtitleHide
 
         self.menu.itemClicked.connect(self._menu_item_invoked)
         self.menu.showRectMenu(QCursor.pos().x(), QCursor.pos().y())
