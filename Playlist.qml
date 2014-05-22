@@ -10,6 +10,7 @@ Rectangle {
     property string tabId: "local"
     property bool expanded: width == program_constants.playlistWidth
     property url currentPlayingSource
+    property alias window: playlistPanelArea.window
 
     signal newSourceSelected (string path)
     
@@ -139,7 +140,7 @@ Rectangle {
         }
     }
 
-    MouseArea {
+    DragableArea {
         id: playlistPanelArea
         anchors.fill: parent
         hoverEnabled: true
@@ -165,9 +166,9 @@ Rectangle {
         PlaylistView {
             id: local_playlist
             width: 181
-            height: parent.height
+            height: Math.min(parent.height, childrenRect.height)
             root: local_playlist
-            visible: playlistPanel.expanded && tabId == "local"
+            visible: playlistPanel.expanded
             currentPlayingSource: playlistPanel.currentPlayingSource
             anchors.horizontalCenter: parent.horizontalCenter
 

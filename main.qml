@@ -324,6 +324,7 @@ Rectangle {
         id: playlist
         width: 0
         visible: false
+        window: windowView
         currentPlayingSource: player.source
         anchors.right: main_window.right
         anchors.verticalCenter: parent.verticalCenter

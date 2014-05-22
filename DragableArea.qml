@@ -17,12 +17,14 @@ MouseArea {
         dragStartY = pos.y 
     }
 	onPositionChanged: { 
-        var pos = window.getCursorPos()
-		window.setX(windowLastX + pos.x - dragStartX)
-		window.setY(windowLastY + pos.y - dragStartY)
-        windowLastX = window.x
-        windowLastY = window.y
-        dragStartX = pos.x
-        dragStartY = pos.y 
+        if (pressed) {
+            var pos = window.getCursorPos()
+            window.setX(windowLastX + pos.x - dragStartX)
+            window.setY(windowLastY + pos.y - dragStartY)
+            windowLastX = window.x
+            windowLastY = window.y
+            dragStartX = pos.x
+            dragStartY = pos.y
+        }
 	}
 }
