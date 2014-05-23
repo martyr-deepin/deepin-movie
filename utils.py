@@ -101,7 +101,7 @@ class Utils(QObject):
     def keyEventToQKeySequenceString(self, modifier, key):
         return QKeySequence(modifier + key).toString()
 
-
+utils = Utils()
 if __name__ == '__main__':
     lst = [
         "权力的游戏.Game.of.Thrones.S04E01.中英字幕.HDTVrip.720x400.mp4",

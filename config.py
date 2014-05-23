@@ -65,7 +65,7 @@ DEFAULT_CONFIG = [
     ("rotateAnticlockwise", "E"),
     ("screenshot", "Alt+A"),]),
 ("Subtitle", [("autoLoad", True),
-    ("fontSize", 16),
+    ("fontSize", 20),
     ("fontColor", "#ffffff")]),
 ]
 

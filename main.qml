@@ -232,7 +232,7 @@ Rectangle {
         volume: controlbar.volume
         source: movieInfo.movie_file
 
-        subtitleFontSize: config.subtitleFontSize
+        subtitleFontSize: Math.floor(config.subtitleFontSize * main_window.width / windowView.defaultWidth)
         subtitleFontColor: config.subtitleFontColor
 
         anchors.fill: main_window
