@@ -219,8 +219,10 @@ MouseArea {
     function stop() { player.stop() }
 
     function togglePlay() {
-        if (player.hasVideo) {
+        if (player.hasVideo && player.source != "") {
             player.playbackState == MediaPlayer.PlayingState ? pause() : play()
+        } else {
+            movieInfo.movie_file = database.lastPlayedFile
         }
     }
 

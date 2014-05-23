@@ -90,6 +90,6 @@ class Database(QObject):
     @lastPlayedFile.setter
     def lastPlayedFile(self, value):
         self.setValue("last_played_file", value)
-        self.lastPlayedFileChanged.emit()
+        self.lastPlayedFileChanged.emit(value)
 
 database = Database()

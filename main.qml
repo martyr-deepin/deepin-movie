@@ -236,8 +236,10 @@ Rectangle {
 
         anchors.fill: main_window
 
-        onSourceChanged: {
-            if (source != "") playlist.addItem("local", urlToPlaylistItem(source))
+        // onSourceChanged doesn't ensures that the file is playable, this one did.
+        onPlaying: { 
+            playlist.addItem("local", urlToPlaylistItem(source))
+            database.lastPlayedFile = source  
         }
 
         onStopped: {

@@ -38,6 +38,7 @@ DragableArea {
 
     function reset() {
         percentage = 0
+        play_pause_button.checkFlag = false
     }
 
     function showPreview(mouseX, mode) {
@@ -154,7 +155,7 @@ DragableArea {
 
                 Text {
                     id: playTime
-                    visible: videoPreview.hasVideo
+                    visible: videoPreview.hasVideo && videoPreview.source != ""
                     anchors.verticalCenter: parent.verticalCenter
                     text: formatTime(control_bar.percentage * movieInfo.movie_duration) + " / " + formatTime(movieInfo.movie_duration)
                     color: Qt.rgba(100, 100, 100, 1)
