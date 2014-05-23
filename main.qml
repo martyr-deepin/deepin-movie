@@ -158,7 +158,6 @@ Rectangle {
         config.save("Normal", "volume", player.volume)
         database.record_video_position(player.source, player.position)
         database.playlist_local = playlist.getContent("local")
-        database.playlist_network = playlist.getContent("network")
     }
 
     states: [

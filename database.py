@@ -28,8 +28,8 @@ from PyQt5.QtCore import pyqtSlot, pyqtSignal, pyqtProperty, QObject
 
 class Database(QObject):
     localPlaylistChanged = pyqtSignal(str)
-    networkPlaylistChanged = pyqtSignal(str)
-    
+    lastPlayedFileChanged = pyqtSignal(str)
+
     def __init__(self):
         QObject.__init__(self)
         self.video_db_path = os.path.join(CONFIG_DIR, "video_db")
@@ -40,24 +40,19 @@ class Database(QObject):
         self.video_db_cursor.execute(
             "CREATE TABLE IF NOT EXISTS settings(key PRIMARY KEY NOT NULL, value)"
         )
-        self.video_db_cursor.execute(
-            "CREATE TABLE IF NOT EXISTS videos(video_path PRIMARY KEY NOT NULL, video_position)"
-        )
     
-    @pyqtSlot(str, int, result=bool)    
+    @pyqtSlot(str, int)    
     def record_video_position(self, video_path, video_position):
         self.video_db_cursor.execute(
-            "INSERT OR REPLACE INTO videos VALUES(?, ?)", 
+            "INSERT OR REPLACE INTO settings VALUES(?, ?)", 
             (unicode(video_path), str(video_position))
         )
         self.video_db_connect.commit()
         
-        return True
-    
     @pyqtSlot(str, result=int)
     def fetch_video_position(self, video_path):
         self.video_db_cursor.execute(
-            "SELECT video_position FROM videos WHERE video_path=?" , [video_path]
+            "SELECT value FROM settings WHERE key=?" , [video_path]
         )
         results = self.video_db_cursor.fetchall()
         if len(results) > 0:
@@ -87,16 +82,14 @@ class Database(QObject):
     def playlist_local(self, value):
         self.setValue("playlist_local", value)
         self.localPlaylistChanged.emit(value)
-        self.video_db_connect.commit()
-        
-    @pyqtProperty(str,notify=networkPlaylistChanged)
-    def playlist_network(self):
-        return self.getValue("playlist_network") or ""
-        
-    @playlist_network.setter
-    def playlist_network(self, value):
-        self.setValue("playlist_network", value)
-        self.networkPlaylistChanged.emit(value)
-        self.video_db_connect.commit()
+
+    @pyqtProperty(str,notify=lastPlayedFileChanged)
+    def lastPlayedFile(self):
+        return self.getValue("last_played_file") or ""
+
+    @lastPlayedFile.setter
+    def lastPlayedFile(self, value):
+        self.setValue("last_played_file", value)
+        self.lastPlayedFileChanged.emit()
 
 database = Database()
