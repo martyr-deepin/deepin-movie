@@ -11,6 +11,7 @@ MouseArea {
     property var window
     property int resizeEdge
     property int triggerThreshold: 10  // threshold for resizing the window
+    property int cornerTriggerThreshold: 20
 
     property int dragStartX
     property int dragStartY
@@ -116,29 +117,30 @@ MouseArea {
 
     // resize operation related
     function getEdge(mouse) {
-        if (0 < mouse.x && mouse.x < triggerThreshold) {
-            if (0 < mouse.y && mouse.y < triggerThreshold) {
+        // four corners
+        if (0 < mouse.x && mouse.x < cornerTriggerThreshold) {
+            if (0 < mouse.y && mouse.y < cornerTriggerThreshold)
                 return resize_edge.resizeTopLeft
-            } else if (window.height - triggerThreshold < mouse.y && mouse.y < window.height) {
+            if (window.height - cornerTriggerThreshold < mouse.y && mouse.y < window.height)
                 return resize_edge.resizeBottomLeft
-            } else {
-                return resize_edge.resizeLeft
-            }
-        } else if (window.width - triggerThreshold < mouse.x && mouse.x < window.width) {
-            if (0 < mouse.y && mouse.y < triggerThreshold) {
+        } else if (window.width - cornerTriggerThreshold < mouse.x && mouse.x < window.width) {
+            if (0 < mouse.y && mouse.y < cornerTriggerThreshold)
                 return resize_edge.resizeTopRight
-            } else if (window.height - triggerThreshold < mouse.y && mouse.y < window.height) {
+            if (window.height - cornerTriggerThreshold < mouse.y && mouse.y < window.height)
                 return resize_edge.resizeBottomRight
-            } else {
-                return resize_edge.resizeRight
-            }
+        }
+        // four sides
+        if (0 < mouse.x && mouse.x < triggerThreshold) {
+            return resize_edge.resizeLeft
+        } else if (window.width - triggerThreshold < mouse.x && mouse.x < window.width) {
+            return resize_edge.resizeRight
         } else if (0 < mouse.y && mouse.y < triggerThreshold){
             return resize_edge.resizeTop
         } else if (window.height - triggerThreshold < mouse.y && mouse.y < window.height) {
             return resize_edge.resizeBottom
-        } else {
-            return resize_edge.resizeNone
-        }
+        } 
+
+        return resize_edge.resizeNone
     }
 
     function changeCursor(resizeEdge) {
