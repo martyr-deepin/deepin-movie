@@ -6,59 +6,61 @@ ListView {
 	height: childrenRect.height
 
 	property var allItems: []
-	property bool isSelected: false
 	property string currentPlayingSource
 	property var root
+	property bool isSelected: {
+		var result = false
+		for(var i = 0; i < allItems.length; i++) {
+			result = allItems[i].isSelected || result
+		}
+		return result
+	}
 
 	signal newSourceSelected(string path)
     
 	function getPreviousSource() {
-	   	if (isSelected) {
-	   		for (var i = 0; i < allItems.length; i++) {
-	   			if (allItems[i].isSelected) { // seek which Column is selected
-	   				if (allItems[i].isGroup) { // if the Column has child, then find recursively
-	   					return allItems[i].child.getNextSource()
-	   				} else {
-	   					if (i == 0) { // the source current playing is the first one in this category
-	   						return null
-	   					} else {
-	   						if (i - 1 < 0 || allItems[i - 1].isGroup) { // the previous item in this category has child
-	   							return null
-	   						} else {
-	   							return allItems[i - 1].propUrl // finally, get what we want
-	   						}
-	   					}
-	   				}
-	   			}
-	   		}
+   		for (var i = 0; i < allItems.length; i++) {
+   			if (allItems[i].isSelected) { // seek which Column is selected
+   				if (allItems[i].isGroup) { // if the Column has child, then find recursively
+   					return allItems[i].child.getNextSource()
+   				} else {
+   					if (i == 0) { // the source current playing is the first one in this category
+   						return null
+   					} else {
+   						if (i - 1 < 0 || allItems[i - 1].isGroup) { // the previous item in this category has child
+   							return null
+   						} else {
+   							return allItems[i - 1].propUrl // finally, get what we want
+   						}
+   					}
+   				}
+   			}
 	   	}
 	   	return null
 	}    
 
 	function getNextSource() {
-	   	if (isSelected) {
-	   		for (var i = 0; i < allItems.length; i++) {
-	   			if (allItems[i].isSelected) { // seek which Column is selected
-	   				if (allItems[i].isGroup) { // if the Column has child, then find recursively
-	   					return allItems[i].child.getNextSource()
-	   				} else {
-	   					if (i == allItems.length) { // the source current playing is the last one in this category
-	   						return null
-	   					} else {
-	   						if (i + 1 > allItems.length || allItems[i + 1].isGroup) { // the next item in this category has child
-	   							return null
-	   						} else {
-	   							return allItems[i + 1].propUrl // finally, get what we want
-	   						}
-	   					}
-	   				}
-	   			}
-	   		}
-	   	}
+   		for (var i = 0; i < allItems.length; i++) {
+   			if (allItems[i].isSelected) { // seek which Column is selected
+   				if (allItems[i].isGroup) { // if the Column has child, then find recursively
+   					return allItems[i].child.getNextSource()
+   				} else {
+   					if (i == allItems.length) { // the source current playing is the last one in this category
+   						return null
+   					} else {
+   						if (i + 1 > allItems.length || allItems[i + 1].isGroup) { // the next item in this category has child
+   							return null
+   						} else {
+   							return allItems[i + 1].propUrl // finally, get what we want
+   						}
+   					}
+   				}
+   			}
+   		}
 	   	return null
 	}
 
-	// ["Level One", "Level Two", "Level Three"]
+	// ["Level One", "Level Two"]
 	function findItemByPath(path) {
 		for (var i = 0; i < allItems.length; i++) {
 			if (allItems[i].propName == path[0]) {
@@ -74,7 +76,7 @@ ListView {
 		return null
 	}
 
-	// ["Level One", "Level Two", ("Level Three", "/home/hualet/Videos/movie.mov", [])]
+	// ["Level One", ["Level Two", "/home/hualet/Videos/movie.mov", []]]
 	function _pathToListElement(path) {
 		var result  = null
 		for (var i = path.length - 1; i >= 0; i--) {
@@ -94,15 +96,18 @@ ListView {
 		return result
 	}
 
-	// ["Level One", "Level Two", ("Level Three", "file:///home/hualet/Videos/movie.mov", [])]
+	// ["Level One", ["Level Two",  "file:///home/hualet/Videos/movie.mov"]
+	// NOTE: we only support two level playlist by now
 	function addItem(path) {
-		var parent = findItemByPath(path.slice(0, path.length - 1))
-        if (allItems.length == 0 || parent == null) {
+		var parent = findItemByPath(path.slice(0, 1))
+        if (parent == null) {
+        	// check for redundant insertion
         	for (var i = 0; i < count; i++) {
         		if (model.get(i).itemUrl == path[path.length - 1][1]) return
         	}
+
             model.append(_pathToListElement(path))
-        } else if(parent != null){
+        } else {
         	var item = {
         	    "itemName": path[path.length - 1][0],
         	    "itemUrl": path[path.length - 1][1],
@@ -113,6 +118,7 @@ ListView {
         	for (var i = 0; i < parent.propChild.count; i++) {
         		if (parent.propChild.get(i).itemUrl == item.itemUrl) return
         	}
+
         	parent.propChild.append(item)
         }
         forceLayout()
@@ -178,11 +184,8 @@ ListView {
 			property var child: sub.item 
 
 		    property bool isGroup: propChild ? propChild.count > 0 : false
-			property bool isSelected: {
-				var result = isGroup ? child.isSelected : (playlist.currentPlayingSource == itemUrl)
-				ListView.view.isSelected = ListView.view.isSelected || result
-				return result
-			}
+			property bool isSelected: isGroup ? child.isSelected : playlist.currentPlayingSource == itemUrl
+			property bool isHover: mouse_area.containsMouse
 
 			Component.onCompleted: ListView.view.allItems.push(column)
 			Component.onDestruction: {
@@ -208,10 +211,13 @@ ListView {
 					    delete_button.visible = false
 					    delete_button.source = "image/delete_normal.png"
 					}
-					onDoubleClicked: {
+					onClicked: {
 						if (column.isGroup) {
 							sub.visible = !sub.visible							
-						} else if(!column.isSelected){
+						}
+					}
+					onDoubleClicked: {
+						if(!column.isSelected){
 							column.ListView.view.root.newSourceSelected(propUrl)
 						}
 					}
@@ -219,8 +225,7 @@ ListView {
 
 				Image {
 					id: expand_button
-                    visible: false
-					/* opacity: isGroup ? 1 : 0 */
+                    visible: column.isGroup ? true : false
 					source: sub.visible ? "image/expanded.png" : "image/not_expanded.png"
 
 					anchors.verticalCenter: parent.verticalCenter
@@ -229,8 +234,9 @@ ListView {
                 Image {
                     width: 10
                     height: 10
+                    visible: column.isGroup ? false : column.isSelected ? true : false
+                    source: "image/playing_indicator.png"
                     anchors.centerIn: expand_button
-                    source: column.isSelected ? column.isGroup ? "" : "image/playing_indicator.png" : ""
                 }
                 
 				Text {
@@ -239,8 +245,16 @@ ListView {
 					text: itemName
 					elide: Text.ElideRight
 					font.pixelSize: 14
-					/* color: column.isSelected ? column.isGroup ? "#8800BDFF" : "#00BDFF" : mouse_area.containsMouse ? "white" : "#B4B4B4" */
-                    color: column.isSelected ? Qt.rgba(43, 132, 206, 1) : mouse_area.containsMouse ? Qt.rgba(214, 214, 214, 1) : Qt.rgba(214, 214, 214, 0.5)
+                    // color: column.isSelected ? Qt.rgba(43, 132, 206, 1) : mouse_area.containsMouse ? Qt.rgba(214, 214, 214, 1) : Qt.rgba(214, 214, 214, 0.5)
+                    color: {
+                    	if (column.isSelected) {
+                    		return column.isGroup ? "#8853B6F5" : "#53B6F5"
+                    	} else if (column.isHover) {
+                    		return "#FFFFFF"
+                    	} else {
+                    		return "#9F9F9F"
+                    	}
+                    }
 
 					anchors.left: expand_button.right
 					anchors.leftMargin: 9
@@ -273,7 +287,7 @@ ListView {
 			Loader {
 				id: sub
 				x: 10
-				visible: column.isSelected
+				visible: false
 				active: column.isGroup
 				source: "PlaylistView.qml"
 				asynchronous: true

@@ -21,6 +21,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
+import json
 from PyQt5.QtGui import QKeySequence
 from PyQt5.QtCore import QObject, pyqtSlot, pyqtProperty
 from PyQt5.QtDBus import QDBusInterface, QDBusConnection
@@ -55,7 +56,7 @@ class Utils(QObject):
 
     @pyqtSlot(str, result="QVariant")
     def getAllFilesInDir(self, dir):
-        dir = dir[7:]
+        dir = dir[7:] if dir.startswith("file://") else dir
         result = []
         for entry in os.listdir(dir):
             file_abs_path = os.path.join(dir, entry)
@@ -64,16 +65,19 @@ class Utils(QObject):
         return result
 
     # name should has no "file://" prefix
-    @pyqtSlot(str, result="QVariant")
-    def getSeriesInDir(self, name, dir):
+    @pyqtSlot(str, result=str)
+    def getSeriesByName(self, name):
+        dir = os.path.dirname(name)
         allFiles = self.getAllFilesInDir(dir)
-        allFilesExceptSelf = allFiles.remove(name)
-        nameFilter = min((longest_match(x, name) for x in allFilesExceptSelf),
+        allFiles.remove(name)
+        allFiles = [os.path.basename(x) for x in allFiles]
+        nameFilter = min((longest_match(x, os.path.basename(name)) for x in allFiles),
                          key=len)
 
-        result = filter(lambda x: nameFilter in x, allFilesExceptSelf)
+        result = filter(lambda x: nameFilter in x, allFiles)
+        result = [os.path.join(dir, x) for x in result]
 
-        return nameFilter, result
+        return json.dumps({"name":nameFilter, "items":result})
 
     @pyqtSlot()
     def enable_zone(self):
@@ -115,3 +119,5 @@ if __name__ == '__main__':
     ]
 
     print longest_match(*lst)
+    result = utils.getSeriesByName("/home/hualet/Videos/1000种死法第五季/1000种死法第五季-第5集.rmvb")
+    print result

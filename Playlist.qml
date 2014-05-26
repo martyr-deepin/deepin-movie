@@ -63,43 +63,24 @@ Rectangle {
     }
 
     function getContent(type) {
-        if (type == "network") {
-            return network_playlist.getContent()
-        } else {
-            return local_playlist.getContent()
-        }
+        return playlist.getContent()
     }
 
-    function addItem(playlistType, item) {
-        if (playlistType == "network") {
-            network_playlist.addItem(item)
-        } else {
-            local_playlist.addItem(item)
-        }
+    function addItem(item) {
+        playlist.addItem(item)
     }
 
     function clear() {
-        print(playlistPanel.tabId)
-        if (playlistPanel.tabId == "local") {
-            local_playlist.clear()
-            database.playlist_local = ""
-        } else {
-            network_playlist.cleart()
-            database.playlist_network = ""
-        }
+        playlist.clear()
+        database.playlist_local = ""
     }
     
     function getPreviousSource() {
-        return local_playlist.getPreviousSource()
+        return playlist.getPreviousSource()
     }
 
     function getNextSource() {
-        // if (local_playlist.isSelected) {
-        //     return local_playlist.getNextSource()
-        // } else {
-        //     return network_playlist.getNextSource()
-        // }
-        return local_playlist.getNextSource()
+        return playlist.getNextSource()
     }
 
     Timer {
@@ -158,16 +139,16 @@ Rectangle {
         anchors.bottomMargin: 20
 
         DScrollBar {
-            flickable: local_playlist
+            flickable: playlist
             anchors.right: parent.right
             anchors.rightMargin: 5
         }
 
         PlaylistView {
-            id: local_playlist
+            id: playlist
             width: 181
             height: Math.min(parent.height, childrenRect.height)
-            root: local_playlist
+            root: playlist
             visible: playlistPanel.expanded
             currentPlayingSource: playlistPanel.currentPlayingSource
             anchors.horizontalCenter: parent.horizontalCenter
@@ -177,16 +158,6 @@ Rectangle {
             }
 
             Component.onCompleted: initializeWithContent(database.playlist_local)
-        }
-
-        PlaylistView {
-            id: network_playlist
-            visible: false
-            width: 0
-            root: local_playlist
-            currentPlayingSource: playlistPanel.currentPlayingSource
-
-            // Component.onCompleted: initializeWithContent(database.playlist_local)
         }
     }
 

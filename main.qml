@@ -47,7 +47,7 @@ Rectangle {
         onAccepted: {
             if (fileUrls.length > 0) {
                 for (var i = 0; i < fileUrls.length; i++) {
-                    playlist.addItem("local", urlToPlaylistItem(fileUrls[i]))
+                    addPlayListItem(fileUrls[i])
                 }
                 movieInfo.movie_file = fileUrls[0]
             }
@@ -61,9 +61,12 @@ Rectangle {
 
         onAccepted: {
             var fileUrls = _utils.getAllFilesInDir(fileUrl)
-            for (var i = 0; i < fileUrls.length; i++) {
-                playlist.addItem("local", urlToPlaylistItem("file://"+fileUrls[i]))
+            if (fileUrls.length > 0) {
+                for (var i = 0; i < fileUrls.length; i++) {
+                    addPlayListItem(fileUrls[i])
+                }                
             }
+            movieInfo.movie_file = fileUrls[0]
         }
     }
 
@@ -89,11 +92,23 @@ Rectangle {
         return hr + ':' + min + ':' + sec;
     }
 
-    function urlToPlaylistItem(url) {
-        var pathDict = (url + "").split("/")
+    function urlToPlaylistItem(serie, url) {
+        url = "file://" + url
+        var pathDict = url.split("/")
         var result = pathDict.slice(pathDict.length - 2, pathDict.length + 1)
-        /* result[result.length - 1] = [result[result.length - 1], url] */
-        return [[result[result.length - 1].toString(), url.toString(), ""]]
+        return serie ? [serie, [result[result.length - 1].toString(), url.toString()]]
+                        : [[result[result.length - 1].toString(), url.toString()]]
+    }
+
+    function addPlayListItem(url) { 
+        var serie = JSON.parse(_utils.getSeriesByName(url))
+        if (serie.name != "") {
+            for (var i = 0; i < serie.items.length; i++) {
+                playlist.addItem(urlToPlaylistItem(serie.name, serie.items[i]))
+            }
+        } else {
+            playlist.addItem(urlToPlaylistItem("", url))
+        }
     }
 
     function showControls() {
@@ -157,7 +172,7 @@ Rectangle {
     function monitorWindowClose() {
         config.save("Normal", "volume", player.volume)
         database.record_video_position(player.source, player.position)
-        database.playlist_local = playlist.getContent("local")
+        database.playlist_local = playlist.getContent()
     }
 
     states: [
@@ -238,7 +253,7 @@ Rectangle {
 
         // onSourceChanged doesn't ensures that the file is playable, this one did.
         onPlaying: { 
-            playlist.addItem("local", urlToPlaylistItem(source))
+            playlist.addItem(urlToPlaylistItem(source))
             database.lastPlayedFile = source  
         }
 
