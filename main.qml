@@ -110,7 +110,7 @@ Rectangle {
     }
 
     function mouseInControlsArea() {
-        if (main_controller.mouseX == 0 && main_controller.mouseY == 0) return false//mouse is not in window area
+        if (!main_controller.containsMouse) return false
 
         return inRectCheck(Qt.point(main_controller.mouseX, main_controller.mouseY),
                            Qt.rect(0, 0, main_window.width, titlebar.height)) || inRectCheck(
@@ -279,6 +279,7 @@ Rectangle {
 
     TitleBar {
         id: titlebar
+        visible: false
         window: windowView
         anchors.horizontalCenter: main_window.horizontalCenter
 
@@ -289,6 +290,7 @@ Rectangle {
 
     ControlBar {
         id: controlbar
+        visible: false
         window: windowView
         volume: config.playerVolume
         percentage: player.position / movieInfo.movie_duration
