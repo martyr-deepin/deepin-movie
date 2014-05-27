@@ -301,8 +301,8 @@ MouseArea {
     function openFile() { open_file_dialog.open() }
     function openDir() { open_folder_dialog.open() }
 
-    function playNext() { movieInfo.movie_file = playlist.getNextSource() }
-    function playPrevious() { movieInfo.movie_file = playlist.getPreviousSource() }
+    function playNext() { movieInfo.movie_file = playlist.getNextSource() || "" }
+    function playPrevious() { movieInfo.movie_file = playlist.getPreviousSource() || "" }
 
     Keys.onPressed: keys_responder.respondKey(event)
 

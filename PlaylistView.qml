@@ -8,13 +8,8 @@ ListView {
 	property var allItems: []
 	property string currentPlayingSource
 	property var root
-	property bool isSelected: {
-		var result = false
-		for(var i = 0; i < allItems.length; i++) {
-			result = allItems[i].isSelected || result
-		}
-		return result
-	}
+	// isSelected is determined by its children
+	property bool isSelected: false
 
 	signal newSourceSelected(string path)
     
@@ -22,12 +17,12 @@ ListView {
    		for (var i = 0; i < allItems.length; i++) {
    			if (allItems[i].isSelected) { // seek which Column is selected
    				if (allItems[i].isGroup) { // if the Column has child, then find recursively
-   					return allItems[i].child.getNextSource()
+   					return allItems[i].child.getPreviousSource()
    				} else {
    					if (i == 0) { // the source current playing is the first one in this category
    						return null
    					} else {
-   						if (i - 1 < 0 || allItems[i - 1].isGroup) { // the previous item in this category has child
+   						if (allItems[i - 1].isGroup) { // the previous item in this category has child
    							return null
    						} else {
    							return allItems[i - 1].propUrl // finally, get what we want
@@ -43,12 +38,13 @@ ListView {
    		for (var i = 0; i < allItems.length; i++) {
    			if (allItems[i].isSelected) { // seek which Column is selected
    				if (allItems[i].isGroup) { // if the Column has child, then find recursively
+   					print("group")
    					return allItems[i].child.getNextSource()
    				} else {
-   					if (i == allItems.length) { // the source current playing is the last one in this category
+   					if (i == allItems.length - 1) { // the source current playing is the last one in this category
    						return null
    					} else {
-   						if (i + 1 > allItems.length || allItems[i + 1].isGroup) { // the next item in this category has child
+   						if (allItems[i + 1].isGroup) { // the next item in this category has child
    							return null
    						} else {
    							return allItems[i + 1].propUrl // finally, get what we want
@@ -186,6 +182,7 @@ ListView {
 		    property bool isGroup: propChild ? propChild.count > 0 : false
 			property bool isSelected: isGroup ? child.isSelected : playlist.currentPlayingSource == itemUrl
 			property bool isHover: mouse_area.containsMouse
+			onIsSelectedChanged: column.ListView.view.isSelected = column.ListView.view.isSelected || isSelected
 
 			Component.onCompleted: ListView.view.allItems.push(column)
 			Component.onDestruction: {
