@@ -178,6 +178,25 @@ MouseArea {
         toggleFullscreen()
     }
 
+    function urlToPlaylistItem(serie, url) {
+        url = "file://" + url
+        var pathDict = url.split("/")
+        var result = pathDict.slice(pathDict.length - 2, pathDict.length + 1)
+        return serie ? [serie, [result[result.length - 1].toString(), url.toString()]]
+                        : [[result[result.length - 1].toString(), url.toString()]]
+    }
+
+    function addPlayListItem(url) { 
+        var serie = JSON.parse(_utils.getSeriesByName(url))
+        if (serie.name != "") {
+            for (var i = 0; i < serie.items.length; i++) {
+                playlist.addItem(urlToPlaylistItem(serie.name, serie.items[i]))
+            }
+        } else {
+            playlist.addItem(urlToPlaylistItem("", url))
+        }
+    }
+
     function close() {
         windowView.close()
     }
@@ -384,6 +403,7 @@ MouseArea {
             if (drop.hasUrls) {
                 var file_path = drop.urls[0].substring(7)
                 movieInfo.movie_file = decodeURIComponent(file_path)
+                addPlayListItem(file_path)
             }
         }
     }

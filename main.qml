@@ -47,7 +47,7 @@ Rectangle {
         onAccepted: {
             if (fileUrls.length > 0) {
                 for (var i = 0; i < fileUrls.length; i++) {
-                    addPlayListItem(fileUrls[i])
+                    main_controller.addPlayListItem(fileUrls[i])
                 }
                 movieInfo.movie_file = fileUrls[0]
             }
@@ -63,7 +63,7 @@ Rectangle {
             var fileUrls = _utils.getAllFilesInDir(fileUrl)
             if (fileUrls.length > 0) {
                 for (var i = 0; i < fileUrls.length; i++) {
-                    addPlayListItem(fileUrls[i])
+                    main_controller.addPlayListItem(fileUrls[i])
                 }                
             }
             movieInfo.movie_file = fileUrls[0]
@@ -90,25 +90,6 @@ Rectangle {
         if (sec < 10) {sec = "0" + sec;}
         if (!hr) {hr = "00";}
         return hr + ':' + min + ':' + sec;
-    }
-
-    function urlToPlaylistItem(serie, url) {
-        url = "file://" + url
-        var pathDict = url.split("/")
-        var result = pathDict.slice(pathDict.length - 2, pathDict.length + 1)
-        return serie ? [serie, [result[result.length - 1].toString(), url.toString()]]
-                        : [[result[result.length - 1].toString(), url.toString()]]
-    }
-
-    function addPlayListItem(url) { 
-        var serie = JSON.parse(_utils.getSeriesByName(url))
-        if (serie.name != "") {
-            for (var i = 0; i < serie.items.length; i++) {
-                playlist.addItem(urlToPlaylistItem(serie.name, serie.items[i]))
-            }
-        } else {
-            playlist.addItem(urlToPlaylistItem("", url))
-        }
     }
 
     function showControls() {
@@ -253,7 +234,7 @@ Rectangle {
 
         // onSourceChanged doesn't ensures that the file is playable, this one did.
         onPlaying: { 
-            playlist.addItem(urlToPlaylistItem(source))
+            // playlist.addItem(urlToPlaylistItem(source)) // will resulting in duplicated added
             database.lastPlayedFile = source  
         }
 
