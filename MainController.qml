@@ -34,15 +34,34 @@ MouseArea {
         // window to the given value(automatically adjusted by the WM or something),
         // though QWindow.height is set to the given value actually,
         // so QWindow.height is not reliable here to get the actual height of the window,
-        // fortunately, we can get it from the rootObject(here is root) of the QQuickView.
+        property int width: 0
+        property int height: 0
+        onMovieWidthChanged: { width = movieInfo.movie_width; setSizeForRootWindow() } 
+        onMovieHeightChanged: { height = movieInfo.movie_height; setSizeForRootWindow() }
 
-        /* onMovieWidthChanged: { */
-        /*     windowView.setWidth(movieInfo.movie_width) */
-        /*     windowView.moveToCenter() */
-        /* } */
+        function setSizeForRootWindow() {
+            if (width != 0 && height != 0) {
+                if (primaryRect.width / primaryRect.height > movieInfo.movie_width / movieInfo.movie_height) {
+                    if (movieInfo.movie_width > primaryRect.width) {
+                        windowView.setWidth(primaryRect.width)
+                        windowView.setHeight(primaryRect.width / root.widthHeightScale)
+                    } else {
+                        windowView.setWidth(movieInfo.movie_width)
+                        windowView.setHeight(movieInfo.movie_width / root.widthHeightScale)
+                    }
+                } else {
+                    if (movieInfo.movie_height > primaryRect.height) {
+                        windowView.setHeight(primaryRect.height)
+                        windowView.setWidth(primaryRect.height * root.widthHeightScale)
+                    } else {
+                        windowView.setHeight(movieInfo.movie_height)
+                        windowView.setWidth(movieInfo.movie_height * root.widthHeightScale)
+                    }
+                }
 
-        onMovieHeightChanged: {
-            windowView.setHeight(movieInfo.movie_height)
+                width = 0
+                height = 0
+            }
         }
 
         onMovieSourceChanged: {

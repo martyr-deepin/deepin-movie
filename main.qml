@@ -12,27 +12,23 @@ Rectangle {
     // problems sometime, we should be careful in case that it changes height for
     // you suddenly.
     x: (windowView.width - width) / 2
-    width: height * widthHeightScale
+    width: windowView.width
     height: windowView.height
     layer.enabled: true
     
     property var windowLastState: ""
 
-    onHeightChanged: {
-        if (state != "fullscreen") {
-            if (width > primaryRect.width) {
-                windowView.setHeight((primaryRect.width) / widthHeightScale)
-                windowView.setWidth(primaryRect.width)
-            } else {
-                windowView.setWidth(height * widthHeightScale)
-            }
-        }
-    }
-
     property real widthHeightScale: movieInfo.movie_width / movieInfo.movie_height
 
     property rect primaryRect: {
         return Qt.rect(0, 0, Screen.desktopAvailableWidth, Screen.desktopAvailableHeight)
+    }
+
+    Connections {
+        target: windowView
+
+        onWidthChanged: root.width = windowView.width
+        onHeightChanged: root.height = windowView.height
     }
 
     Constants { id: program_constants }
