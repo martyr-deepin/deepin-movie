@@ -110,8 +110,6 @@ Rectangle {
     }
 
     function mouseInControlsArea() {
-        if (!main_controller.containsMouse) return false
-
         return inRectCheck(Qt.point(main_controller.mouseX, main_controller.mouseY),
                            Qt.rect(0, 0, main_window.width, titlebar.height)) || inRectCheck(
             Qt.point(main_controller.mouseX, main_controller.mouseY),
