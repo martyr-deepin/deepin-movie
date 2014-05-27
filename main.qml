@@ -27,7 +27,6 @@ Rectangle {
                 windowView.setWidth(height * widthHeightScale)
             }
         }
-        windowView.moveToCenter()
     }
 
     property real widthHeightScale: movieInfo.movie_width / movieInfo.movie_height

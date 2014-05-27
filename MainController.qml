@@ -43,7 +43,6 @@ MouseArea {
 
         onMovieHeightChanged: {
             windowView.setHeight(movieInfo.movie_height)
-            windowView.moveToCenter()
         }
 
         onMovieSourceChanged: {

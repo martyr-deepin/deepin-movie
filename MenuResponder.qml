@@ -32,13 +32,25 @@ Connections {
         }
         root.widthHeightScale = widthHeightScale
         windowView.setWidth(root.height * widthHeightScale)
-        windowView.moveToCenter()
     }
     onScaleChanged: {
-        windowView.setHeight(root.height * scale)
-        windowView.setWidth(root.height * scale * root.widthHeightScale)
-
-        windowView.moveToCenter()
+        if (primaryRect.width / primaryRect.height > movieInfo.movie_width / movieInfo.movie_height) {
+            if (movieInfo.movie_width * scale > primaryRect.width) {
+                windowView.setWidth(primaryRect.width)
+                windowView.setHeight(primaryRect.width / root.widthHeightScale)
+            } else {
+                windowView.setWidth(movieInfo.movie_width * scale)
+                windowView.setHeight(movieInfo.movie_width * scale / root.widthHeightScale)
+            }
+        } else {
+            if (movieInfo.movie_height * scale > primaryRect.height) {
+                windowView.setHeight(primaryRect.height)
+                windowView.setWidth(primaryRect.height * root.widthHeightScale)
+            } else {
+                windowView.setHeight(movieInfo.movie_height * scale)
+                windowView.setWidth(movieInfo.movie_height * scale * root.widthHeightScale)
+            }
+        }
     }
     onStaysOnTop: {
         windowView.staysOnTop = onTop

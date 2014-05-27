@@ -116,6 +116,9 @@ class MenuController(QObject):
     def __init__(self, window):
         super(MenuController, self).__init__()
         self._window = window
+
+        self._proportion = "proportion:radio:_p_default"
+        self._scale = "scale:radio:_s_1"
         
     # if actions-like menu items are clicked, we should send signals to inform 
     # the main controller that actions should be taken, if configs-like menu 
@@ -134,25 +137,35 @@ class MenuController(QObject):
             self.toggleFullscreen.emit()
         elif _id == "_screenshot":
             self.screenShot.emit()
-        elif _id == "_p_default":
+        elif _id == "proportion:radio:_p_default":
+            self._proportion = "proportion:radio:_p_default"
             self.proportionChanged.emit(1, 1)
-        elif _id == "_p_4_3":
+        elif _id == "proportion:radio:_p_4_3":
+            self._proportion = "proportion:radio:_p_4_3"
             self.proportionChanged.emit(4, 3)
-        elif _id == "_p_16_9":
+        elif _id == "proportion:radio:_p_16_9":
+            self._proportion = "proportion:radio:_p_16_9"
             self.proportionChanged.emit(16, 9)
-        elif _id == "_p_16_10":
+        elif _id == "proportion:radio:_p_16_10":
+            self._proportion = "proportion:radio:_p_16_10"
             self.proportionChanged.emit(16, 10)
-        elif _id == "_p_1_85_1":
+        elif _id == "proportion:radio:_p_1_85_1":
+            self._proportion = "proportion:radio:_p_1_85_1"
             self.proportionChanged.emit(1.85, 1)
-        elif _id == "_p_2_35_1":
+        elif _id == "proportion:radio:_p_2_35_1":
+            self._proportion = "proportion:radio:_p_2_35_1"
             self.proportionChanged.emit(2.35, 1)
-        elif _id == "_s_0_5":
+        elif _id == "scale:radio:_s_0_5":
+            self._scale = "scale:radio:_s_0_5"
             self.scaleChanged.emit(0.5)
-        elif _id == "_s_1":
+        elif _id == "scale:radio:_s_1":
+            self._scale = "scale:radio:_s_1"
             self.scaleChanged.emit(1)
-        elif _id == "_s_1_5":
+        elif _id == "scale:radio:_s_1_5":
+            self._scale = "scale:radio:_s_1_5"
             self.scaleChanged.emit(1.5)
-        elif _id == "_s_2":
+        elif _id == "scale:radio:_s_2":
+            self._scale = "scale:radio:_s_2"
             self.scaleChanged.emit(2)
         elif _id == "_open_file":
             self.openDialog.emit("file")
@@ -191,6 +204,28 @@ class MenuController(QObject):
             config.playerPlayOrderType == ORDER_TYPE_SINGLE_CYCLE
         self.menu.getItemById("mode_group:radio:playlist_cycle").checked = \
             config.playerPlayOrderType == ORDER_TYPE_PLAYLIST_CYCLE
+
+        self.menu.getItemById("proportion:radio:_p_default").checked = \
+            self._proportion == "proportion:radio:_p_default"
+        self.menu.getItemById("proportion:radio:_p_4_3").checked = \
+            self._proportion == "proportion:radio:_p_4_3"
+        self.menu.getItemById("proportion:radio:_p_16_9").checked = \
+            self._proportion == "proportion:radio:_p_16_9"
+        self.menu.getItemById("proportion:radio:_p_16_10").checked = \
+            self._proportion == "proportion:radio:_p_16_10"
+        self.menu.getItemById("proportion:radio:_p_1_85_1").checked = \
+            self._proportion == "proportion:radio:_p_1_85_1"
+        self.menu.getItemById("proportion:radio:_p_2_35_1").checked = \
+            self._proportion == "proportion:radio:_p_2_35_1"
+
+        self.menu.getItemById("scale:radio:_s_0_5").checked = \
+            self._scale == "scale:radio:_s_0_5"        
+        self.menu.getItemById("scale:radio:_s_1").checked = \
+            self._scale == "scale:radio:_s_1"      
+        self.menu.getItemById("scale:radio:_s_1_5").checked = \
+            self._scale == "scale:radio:_s_1_5"        
+        self.menu.getItemById("scale:radio:_s_2").checked = \
+            self._scale == "scale:radio:_s_2"
 
         self.menu.getItemById("_sound_muted").checked = config.playerMuted
 

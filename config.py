@@ -117,6 +117,7 @@ class Config(QObject):
         self.config.set(section, option, value)
         self.config.write()
 
+    # automatically make config entries accessable as qt properties.
     for section, items in DEFAULT_CONFIG:
         for key, value in items:
             itemName = "%s%s" % (section[0].lower() + section[1:], key[0].upper() + key[1:])
