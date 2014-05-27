@@ -244,7 +244,11 @@ MouseArea {
         if (player.hasVideo && player.source != "") {
             player.playbackState == MediaPlayer.PlayingState ? pause() : play()
         } else {
-            movieInfo.movie_file = database.lastPlayedFile
+            if (database.lastPlayedFile) {
+                movieInfo.movie_file = database.lastPlayedFile
+            } else {
+                controlbar.reset()
+            }
         }
     }
 
