@@ -42,7 +42,8 @@ Rectangle {
         onAccepted: {
             if (fileUrls.length > 0) {
                 for (var i = 0; i < fileUrls.length; i++) {
-                    main_controller.addPlayListItem(fileUrls[i])
+                    var fileUrl = fileUrls[i] + ""
+                    main_controller.addPlayListItem(fileUrl.substring(7))
                 }
                 movieInfo.movie_file = fileUrls[0]
             }
