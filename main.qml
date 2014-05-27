@@ -178,7 +178,7 @@ Rectangle {
     Timer {
         id: hide_controls_timer
         running: true
-        interval: 3000
+        interval: 5000
 
         onTriggered: {
             if (!mouseInControlsArea()) {

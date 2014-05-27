@@ -306,7 +306,11 @@ MouseArea {
 
     Keys.onPressed: keys_responder.respondKey(event)
 
-    onWheel: wheel.angleDelta.y > 0 ? increaseVolumeByDelta(wheel.angleDelta.y / 120 * 0.05) : decreaseVolumeByDelta(-wheel.angleDelta.y / 120 * 0.05)
+    onWheel: { 
+        wheel.angleDelta.y > 0 ? increaseVolumeByDelta(wheel.angleDelta.y / 120 * 0.05)
+                                :decreaseVolumeByDelta(-wheel.angleDelta.y / 120 * 0.05)
+        controlbar.emulateVolumeButtonHover()
+    }
 
     onPressed: {
         resizeEdge = getEdge(mouse)

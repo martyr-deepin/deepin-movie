@@ -16,15 +16,22 @@ Row {
     signal changeVolume
     signal mutedSet (bool muted)
 
+    function emulateHover() {
+        item.showBarFlag = true
+        toggle_button.state = "hover"
+        hide_bar_timer.restart()
+    }
+
     Timer {
         id: hide_bar_timer
 
-        interval: 200
+        interval: 500
         onTriggered: {
             if (volume_bar_mouse_area.containsMouse) {
                 hide_bar_timer.restart()
             } else {
                 item.showBarFlag = false
+                toggle_button.state = "normal"
             }
         }
     }

@@ -75,6 +75,8 @@ DragableArea {
     function rotatePreviewClockwise() { videoPreview.rotateClockwise() }
     function rotatePreviewAntilockwise() { videoPreview.rotateAnticlockwise() }
 
+    function emulateVolumeButtonHover() { volume_button.emulateHover() }
+
     LinearGradient {
         id: bottomPanelBackround
 
