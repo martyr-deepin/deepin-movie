@@ -230,8 +230,10 @@ MouseArea {
         windowView.getState() == Qt.WindowMaximized ? normalize() : maximize()
     }
 
-    function rotateClockwise() { player.orientation -= 90 }
-    function rotateAnticlockwise() { player.orientation += 90 }
+    function flipHorizontal() { player.flipHorizontal(); controlbar.flipPreviewHorizontal() }
+    function flipVertical() { player.flipVertical(); controlbar.flipPreviewVertical() }
+    function rotateClockwise() { player.rotateClockwise(); controlbar.rotatePreviewClockwise() }
+    function rotateAnticlockwise() { player.rotateAnticlockwise(); controlbar.rotatePreviewAntilockwise() }
 
     // player control operation related
     function play() { player.play() }

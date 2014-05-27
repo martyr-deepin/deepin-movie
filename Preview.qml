@@ -9,10 +9,16 @@ RectWithCorner {
     withBlur: false
     blurWidth: 2
 
+    property real widthHeightScale
+
     states: [
         State {
             name: "normal"
-            PropertyChanges { target: preview; rectWidth: 178; rectHeight: (rectWidth - previewPadding * 2) * movieInfo.movie_height / movieInfo.movie_width + previewPadding * 2 + preview.cornerHeight }
+            PropertyChanges { 
+                target: preview
+                rectWidth: 178
+                rectHeight: (rectWidth - previewPadding * 2) / widthHeightScale + previewPadding * 2 + preview.cornerHeight 
+            }
             PropertyChanges { target: video; visible: true }
             PropertyChanges { target: time_bg; color: "#DD000000" }
         },
@@ -33,8 +39,13 @@ RectWithCorner {
         video.seek(Math.floor(movieInfo.movie_duration * percentage))
         videoTime.text = formatTime(movieInfo.movie_duration * percentage)
     }
-    
-    Video {
+
+    function flipHorizontal() { video.flipHorizontal() }
+    function flipVertical() { video.flipVertical() }
+    function rotateClockwise() { video.rotateClockwise() }
+    function rotateAnticlockwise() { video.rotateAnticlockwise() }
+
+    Player {
         id: video
         autoPlay: true
         muted: true

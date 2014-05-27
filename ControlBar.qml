@@ -12,6 +12,7 @@ DragableArea {
     property alias percentage: progressbar.percentage
     property alias videoPlaying: play_pause_button.checkFlag
     property alias muted: volume_button.muted
+    property alias widthHeightScale: videoPreview.widthHeightScale
 
     signal togglePlay ()
     signal mutedSet (bool muted)
@@ -68,6 +69,11 @@ DragableArea {
             videoPreview.seek(mouseX / width)
         }
     }
+
+    function flipPreviewHorizontal() { videoPreview.flipHorizontal() }
+    function flipPreviewVertical() { videoPreview.flipVertical() }
+    function rotatePreviewClockwise() { videoPreview.rotateClockwise() }
+    function rotatePreviewAntilockwise() { videoPreview.rotateAnticlockwise() }
 
     LinearGradient {
         id: bottomPanelBackround

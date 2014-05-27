@@ -38,6 +38,9 @@ Video {
         }
     }
 
+    function rotateClockwise() { video.orientation -= 90 }
+    function rotateAnticlockwise() { video.orientation += 90 }
+
     Rotation { 
         id: flip
         origin.x: width / 2

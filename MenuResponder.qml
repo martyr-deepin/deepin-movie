@@ -13,10 +13,10 @@ Connections {
         main_controller.rotateAnticlockwise()
     }
     onFlipHorizontal: {
-        player.flipHorizontal()
+        main_controller.flipHorizontal()
     }
     onFlipVertical: {
-        player.flipVertical()
+        main_controller.flipVertical()
     }
     onToggleFullscreen: {
         main_controller.toggleFullscreen()
