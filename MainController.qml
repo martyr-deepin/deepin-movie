@@ -266,14 +266,12 @@ MouseArea {
     function backward() { backwardByDelta(5000) }
 
     function increaseVolumeByDelta(delta) {
-        player.volume = Math.min(player.volume + delta, 1.0)
-        config.playerVolume = player.volume
+        config.playerVolume = Math.min(player.volume + delta, 1.0)
         notifybar.show("image/notify_volume.png", "音量: " + Math.round(player.volume * 100) + "%")
     }
 
     function decreaseVolumeByDelta(delta) {
-        player.volume = Math.max(player.volume - delta, 0.0)
-        config.playerVolume = player.volume
+        config.playerVolume = Math.max(player.volume - delta, 0.0)
         notifybar.show("image/notify_volume.png", "音量: " + Math.round(player.volume * 100) + "%")
     }
 
@@ -308,7 +306,7 @@ MouseArea {
 
     Keys.onPressed: keys_responder.respondKey(event)
 
-    onWheel: wheel.angleDelta.y > 0 ? increaseVolume(wheel.angleDelta.y / 120 * 0.05) : decreaseVolume(-wheel.angleDelta.y / 120 * 0.05)
+    onWheel: wheel.angleDelta.y > 0 ? increaseVolumeByDelta(wheel.angleDelta.y / 120 * 0.05) : decreaseVolumeByDelta(-wheel.angleDelta.y / 120 * 0.05)
 
     onPressed: {
         resizeEdge = getEdge(mouse)
