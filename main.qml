@@ -271,7 +271,7 @@ Rectangle {
         id: notifybar
         anchors.top: root.top
         anchors.left: root.left
-        anchors.topMargin: 50
+        anchors.topMargin: 60
         anchors.leftMargin: 30
     }
 
