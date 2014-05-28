@@ -132,24 +132,142 @@ DPreferenceWindow {
             }
         }
 
+        SectionContent { title: "Keyboard"; sectionId: "" }
+
         SectionContent { 
             id: keyboard_video
             title: "Video" 
             sectionId: "keyboard_video"
+            showSep: false
 
-            HotKeyInput{}
-            HotKeyInput{}
+            CheckBox {
+                text: "Enable hotkeys"
+            }
+
+            HotKeyInputRow {
+                title: "Open file"
+                hotKey: "key"
+            }
+            HotKeyInputRow {
+                title: "Open directory"
+                hotKey: "key"
+            }
+            HotKeyInputRow {
+                title: "Pause/Play"
+                hotKey: "key"
+            }
+            HotKeyInputRow {
+                title: "Forward"
+                hotKey: "key"
+            }
+            HotKeyInputRow {
+                title: "Rewind"
+                hotKey: "key"
+            }
+            HotKeyInputRow {
+                title: "Fullscreen"
+                hotKey: "key"
+            }
+            HotKeyInputRow {
+                title: "Previous"
+                hotKey: "key"
+            }
+            HotKeyInputRow {
+                title: "Next"
+                hotKey: "key"
+            }
+            HotKeyInputRow {
+                title: "Increase Volume"
+                hotKey: "key"
+            }
+            HotKeyInputRow {
+                title: "Decrease Volume"
+                hotKey: "key"
+            }
+            HotKeyInputRow {
+                title: "Mute"
+                hotKey: "key"
+            }
+            HotKeyInputRow {
+                title: "Compact mode"
+                hotKey: "key"
+            }
         }
         SectionContent { 
             id: keyboard_subtitle
             title: "Subtitle" 
             sectionId: "keyboard_subtitle"
+            showSep: false
 
+            CheckBox {
+                text: "Enable hotkeys"
+            }
+
+            HotKeyInputRow {
+                title: "Delay-0.5s"
+                hotKey: "key"
+            }
+            HotKeyInputRow {
+                title: "Delay+0.5s"
+                hotKey: "key"
+            }
+            HotKeyInputRow {
+                title: "Loading subtitles"
+                hotKey: "key"
+            }
+            HotKeyInputRow {
+                title: "Increase subtitle scalse"
+                hotKey: "key"
+            }
+            HotKeyInputRow {
+                title: "Decrease subtitle scalse"
+                hotKey: "key"
+            }
         }
         SectionContent { 
             id: keyboard_other
             title: "Other" 
             sectionId: "keyboard_other"
+            showSep: false
+
+            CheckBox {
+                text: "Enable hotkeys"
+            }
+
+            HotKeyInputRow {
+                title: "Increase brightness"
+                hotKey: "key"
+            }
+            HotKeyInputRow {
+                title: "Decrease brightness"
+                hotKey: "key"
+            }
+            HotKeyInputRow {
+                title: "Rotate counterclockwise"
+                hotKey: "key"
+            }
+            HotKeyInputRow {
+                title: "Rotate clockwise"
+                hotKey: "key"
+            }
+            HotKeyInputRow {
+                title: "Take screenshot"
+                hotKey: "key"
+            }
+            HotKeyInputRow {
+                title: "Switch audio tracks"
+                hotKey: "key"
+            }
+
+            ComboBoxRow {
+                title: "Left Click"
+            }
+            ComboBoxRow {
+                title: "Double Click"
+            }
+            ComboBoxRow {
+                title: "Scroll"
+            }
 
         }
         SectionContent { 
@@ -157,6 +275,13 @@ DPreferenceWindow {
             title: "Subtitles" 
             sectionId: "subtitles"
 
+            CheckBox {
+                text: "Load subtitles automatically"
+            }
+
+            FileInputRow {
+                title: "Subtitle directory:"
+            }
         }
         SectionContent { 
             id: screenshot

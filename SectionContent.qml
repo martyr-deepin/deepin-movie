@@ -8,6 +8,7 @@ Item {
 
 	property string sectionId
 	property alias title: settings_title.title
+	property alias showSep: settings_title.showSep
 
 	MouseArea {
 		anchors.fill: parent

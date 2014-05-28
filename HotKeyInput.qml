@@ -4,14 +4,14 @@ import Deepin.Widgets 1.0
 DTextInput {
 	id: input
 	readOnly: true
-	text: shortcuts
+	text: hotKey
 
-	property string shortcuts: "shortcuts"
+	property string hotKey: "shortcuts"
 
 	signal shortcutsSet (string key)
 
-	onShortcutsSet: shortcuts = key
-	onActiveFocusChanged: text = activeFocus ? "Please input new shortcuts" : shortcuts
+	onShortcutsSet: hotKey = key
+	onActiveFocusChanged: text = activeFocus ? "Please input new shortcuts" : hotKey
 
 	Keys.onPressed: {
 		var modifiers = [Qt.Key_Control, Qt.Key_Shift, Qt.Key_Alt, Qt.Key_Meta, Qt.Key_AltGr]

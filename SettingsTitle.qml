@@ -6,6 +6,7 @@ Row {
 	height: txt.implicitHeight
 
 	property alias title: txt.text
+	property alias showSep: sep.visible
 
 	DssH1 { 
 		id: txt
@@ -13,7 +14,8 @@ Row {
 	}
 
 	DSeparatorHorizontal { 
-		width: 500 
+		id: sep
+		width: 1000 
 		anchors.verticalCenter: parent.verticalCenter
 	}
 }
