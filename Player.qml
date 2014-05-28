@@ -14,7 +14,7 @@ Video {
 
     function flipHorizontal() {
         if (flip.axis.y == 1) {
-            flip.axis.y == 0
+            flip.axis.y = 0
         } else {
             if (flip.axis.x == 1) {
                 flip.axis.x = 0
@@ -27,7 +27,7 @@ Video {
 
     function flipVertical() {
         if (flip.axis.x == 1) {
-            flip.axis.x == 0
+            flip.axis.x = 0
         } else {
             if (flip.axis.y == 1) {
                 flip.axis.y = 0
