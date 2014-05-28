@@ -112,6 +112,7 @@ class MenuController(QObject):
         arguments=["propWidth", "propHeight"])
     openDialog = pyqtSignal(str)
     staysOnTop = pyqtSignal(bool,arguments=["onTop"])
+    showPreference = pyqtSignal()
     
     def __init__(self, window):
         super(MenuController, self).__init__()
@@ -187,6 +188,8 @@ class MenuController(QObject):
             config.playerPlayOrderType = ORDER_TYPE_PLAYLIST_CYCLE
         elif _id == "_sound_muted":
             config.playerMuted = _checked
+        elif _id == "_preferences":
+            self.showPreference.emit()
 
     @pyqtSlot()
     def show_menu(self):

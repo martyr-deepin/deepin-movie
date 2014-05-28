@@ -65,4 +65,6 @@ Connections {
             if (value != "") { movieInfo.movie_file = value }
         }
     }
+
+    onShowPreference: { preference_window.show() }
 }

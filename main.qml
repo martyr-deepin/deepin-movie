@@ -304,9 +304,6 @@ Rectangle {
 
         onChangeVolume: { main_controller.setVolume(volume) }
         onMutedSet: { main_controller.setMute(muted) }
-        onConfigButtonClicked: {
-            // preference_window.show()
-        }
 
         onPlayStopButtonClicked: { root.reset() }
         onOpenFileButtonClicked: { main_controller.openFile() }

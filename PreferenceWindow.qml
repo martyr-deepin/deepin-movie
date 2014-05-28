@@ -1,70 +1,174 @@
 import QtQuick 2.1
+import QtQuick.Controls 1.1
 import Deepin.Widgets 1.0
 
 DPreferenceWindow {
+    width: 560
+    height: 480
+
     content: DPreferenceView {
         id: preference_view
-        sectionListWidth:  150
+        sectionListWidth:  100
         
         sections: [
             {
-                "sectionId": "id1",
-                "sectionName": "First",
+                "sectionId": "playback",
+                "sectionName": "Playback",
+                "subSections": []
+            },
+            {
+                "sectionId": "general",
+                "sectionName": "General",
+                "subSections": []
+            },
+            {
+                "sectionId": "keyboard",
+                "sectionName": "Keyboard",
                 "subSections": [
                     {
-                        "sectionId": "id2",
-                        "sectionName": "RedRedRed",
+                        "sectionId": "keyboard_video",
+                        "sectionName": "Video",
                         "subSections": []
                     },
                     {
-                        "sectionId": "id3",
-                        "sectionName": "Blue",
+                        "sectionId": "keyboard_subtitle",
+                        "sectionName": "Subtitle",
                         "subSections": []
-                    }
+                    },
+                    {
+                        "sectionId": "keyboard_other",
+                        "sectionName": "Other",
+                        "subSections": []
+                    },
                 ]
             },
             {
-                "sectionId": "id4",
-                "sectionName": "Yellow",
+                "sectionId": "subtitles",
+                "sectionName": "Subtitles",
                 "subSections": []
             },
             {
-                "sectionId": "id5",
-                "sectionName": "Green",
+                "sectionId": "screenshot",
+                "sectionName": "Screenshot",
                 "subSections": []
             },
+            {
+                "sectionId": "about",
+                "sectionName": "About",
+                "subSections": []
+            }
         ]
 
-        Rectangle {
-            color: "red"
-            width: 300
-            height: 300
+        SectionContent { 
+            id: playback
+            title: "Playback" 
+            sectionId: "playback"
 
-            property string sectionId: "id2"
+            GroupBox {
+                title: "On opening video:"
+                ExclusiveGroup { id: group }
+                Column {
+                    width: playback.width
+                    Row {
+                        RadioButton {
+                            text: "Fit video to player"
+                            exclusiveGroup: group
+                        }
+                        RadioButton {
+                            text: "Fit player to video"
+                            exclusiveGroup: group
+                        }
+                    }
+                    Row {
+                        RadioButton {
+                            text: "Resize interface to last closed size"
+                            exclusiveGroup: group
+                        }
+                        RadioButton {
+                            text: "Enter fullscreen mode"
+                            exclusiveGroup: group
+                        }
+                    }
+                }
+            }
+            Column {
+                width: playback.width
+
+                CheckBox {
+                    text: "Clear playlist when opening new file"
+                }
+                CheckBox {
+                    text: "Resume playback after restarting player"
+                }
+                CheckBox {
+                    text: "Continue to next video automatically"
+                }
+                CheckBox {
+                    text: "Show thumbnail when hovering over progress bar"
+                }
+                CheckBox {
+                    text: "allow multiple instance"
+                }
+                CheckBox {
+                    text: "Pause when minimized"
+                }
+            }
         }
 
-        Rectangle {
-            color: "blue"
-            width: 300
-            height: 300
+        SectionContent { 
+            id: general
+            title: "General" 
+            sectionId: "general"
 
-            property string sectionId: "id3"
+            Column {
+                width: general.width
+
+                CheckBox {
+                    text: "Enable system popup notification"
+                }
+                CheckBox {
+                    text: "Enable play popup notification"
+                }
+            }
         }
 
-        Rectangle {
-            color: "yellow"
-            width: 300
-            height: 300
+        SectionContent { 
+            id: keyboard_video
+            title: "Video" 
+            sectionId: "keyboard_video"
 
-            property string sectionId: "id4"
+            HotKeyInput{}
+            HotKeyInput{}
         }
+        SectionContent { 
+            id: keyboard_subtitle
+            title: "Subtitle" 
+            sectionId: "keyboard_subtitle"
 
-        Rectangle {
-            color: "green"
-            width: 300
-            height: 300
+        }
+        SectionContent { 
+            id: keyboard_other
+            title: "Other" 
+            sectionId: "keyboard_other"
 
-            property string sectionId: "id5"
+        }
+        SectionContent { 
+            id: subtitles
+            title: "Subtitles" 
+            sectionId: "subtitles"
+
+        }
+        SectionContent { 
+            id: screenshot
+            title: "Screenshot" 
+            sectionId: "screenshot"
+
+        }
+        SectionContent { 
+            id: about
+            title: "About" 
+            sectionId: "about"
+
         }
     }
 }
