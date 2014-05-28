@@ -27,7 +27,7 @@ Row {
 
         interval: 500
         onTriggered: {
-            if (volume_bar_mouse_area.containsMouse) {
+            if (volume_bar_mouse_area.containsMouse || toggle_button.containsMouse) {
                 hide_bar_timer.restart()
             } else {
                 item.showBarFlag = false
