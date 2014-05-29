@@ -4,6 +4,7 @@ ListView {
 	id: playlist
 	width: 300
 	height: childrenRect.height
+	layer.enabled: true
 
 	property var allItems: []
 	property string currentPlayingSource
