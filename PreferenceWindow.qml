@@ -6,8 +6,11 @@ DPreferenceWindow {
     width: 560
     height: 480
 
-    content: DPreferenceView {
+    DPreferenceView {
         id: preference_view
+        anchors.fill: parent
+        anchors.leftMargin: 10
+        anchors.rightMargin: 10
         sectionListWidth:  100
         
         sections: [
@@ -91,27 +94,24 @@ DPreferenceWindow {
                     }
                 }
             }
-            Column {
-                width: playback.width
 
-                CheckBox {
-                    text: "Clear playlist when opening new file"
-                }
-                CheckBox {
-                    text: "Resume playback after restarting player"
-                }
-                CheckBox {
-                    text: "Continue to next video automatically"
-                }
-                CheckBox {
-                    text: "Show thumbnail when hovering over progress bar"
-                }
-                CheckBox {
-                    text: "allow multiple instance"
-                }
-                CheckBox {
-                    text: "Pause when minimized"
-                }
+            CheckBox {
+                text: "Clear playlist when opening new file"
+            }
+            CheckBox {
+                text: "Resume playback after restarting player"
+            }
+            CheckBox {
+                text: "Continue to next video automatically"
+            }
+            CheckBox {
+                text: "Show thumbnail when hovering over progress bar"
+            }
+            CheckBox {
+                text: "allow multiple instance"
+            }
+            CheckBox {
+                text: "Pause when minimized"
             }
         }
 
@@ -119,26 +119,25 @@ DPreferenceWindow {
             id: general
             title: "General" 
             sectionId: "general"
+            topSpaceHeight: 30
 
-            Column {
-                width: general.width
-
-                CheckBox {
-                    text: "Enable system popup notification"
-                }
-                CheckBox {
-                    text: "Enable play popup notification"
-                }
+            CheckBox {
+                text: "Enable system popup notification"
+            }
+            CheckBox {
+                text: "Enable play popup notification"
             }
         }
 
-        SectionContent { title: "Keyboard"; sectionId: "" }
+        SectionContent { title: "Keyboard"; sectionId: ""; topSpaceHeight: 30 }
 
         SectionContent { 
             id: keyboard_video
             title: "Video" 
             sectionId: "keyboard_video"
             showSep: false
+            anchors.left: parent.left
+            anchors.leftMargin: 5
 
             CheckBox {
                 text: "Enable hotkeys"
@@ -198,6 +197,8 @@ DPreferenceWindow {
             title: "Subtitle" 
             sectionId: "keyboard_subtitle"
             showSep: false
+            anchors.left: parent.left
+            anchors.leftMargin: 5
 
             CheckBox {
                 text: "Enable hotkeys"
@@ -229,6 +230,8 @@ DPreferenceWindow {
             title: "Other" 
             sectionId: "keyboard_other"
             showSep: false
+            anchors.left: parent.left
+            anchors.leftMargin: 5
 
             CheckBox {
                 text: "Enable hotkeys"
@@ -274,6 +277,7 @@ DPreferenceWindow {
             id: subtitles
             title: "Subtitles" 
             sectionId: "subtitles"
+            topSpaceHeight: 30
 
             CheckBox {
                 text: "Load subtitles automatically"
@@ -287,13 +291,13 @@ DPreferenceWindow {
             id: screenshot
             title: "Screenshot" 
             sectionId: "screenshot"
-
+            topSpaceHeight: 30
         }
         SectionContent { 
             id: about
             title: "About" 
             sectionId: "about"
-
+            topSpaceHeight: 30
         }
     }
 }
