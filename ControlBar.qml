@@ -260,22 +260,22 @@ DragableArea {
                 anchors.verticalCenter: parent.verticalCenter
                 spacing: 25
 
-                OpacityImageButton {
-                    id: open_file_button
-                    imageName: "image/player_open.png"
+                DImageButton {
+                    normal_image: "image/open_file_normal.svg"
+                    hover_image: "image/open_file_hover_press.svg"
+                    press_image: "image/open_file_hover_press.svg"
 
+                    anchors.verticalCenter: parent.verticalCenter
                     onClicked: control_bar.openFileButtonClicked()
                 }
 
-                OpacityImageButton {
-                    id: play_list_button
+                DImageButton {
+                    normal_image: "image/playlist_open_normal.svg"
+                    hover_image: "image/playlist_open_hover_press.svg"
+                    press_image: "image/playlist_open_hover_press.svg"
 
-                    imageName: "image/player_list_normal.png"
                     anchors.verticalCenter: parent.verticalCenter
-
-                    onClicked: {
-                        control_bar.playlistButtonClicked()
-                    }
+                    onClicked: control_bar.playlistButtonClicked()
                 }
 
             /* ImageButton { */
