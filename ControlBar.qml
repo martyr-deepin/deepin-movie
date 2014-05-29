@@ -176,11 +176,14 @@ DragableArea {
                 anchors.centerIn: parent
                 spacing: 0
 
-                OpacityImageButton {
-                    id: playerOpen
-                    imageName: "image/player_stop.png"
-                    anchors.verticalCenter: parent.verticalCenter
+                DImageButton {
+                    normal_image: "image/stop_normal.svg"
+                    hover_image: "image/stop_hover_press.svg"
+                    press_image: "image/stop_hover_press.svg"
+                    sourceSize.width: 28
+                    sourceSize.height: 28
 
+                    anchors.verticalCenter: parent.verticalCenter
                     onClicked: control_bar.playStopButtonClicked()
                 }
 
@@ -188,8 +191,13 @@ DragableArea {
                     width: 32
                 }
 
-                OpacityImageButton {
-                    imageName: "image/player_previous_normal.png"
+                DImageButton {
+                    normal_image: "image/previous_normal.svg"
+                    hover_image: "image/previous_hover_press.svg"
+                    press_image: "image/previous_hover_press.svg"
+                    sourceSize.width: 28
+                    sourceSize.height: 28
+
                     anchors.verticalCenter: parent.verticalCenter
                     onClicked: control_bar.previousButtonClicked()
                 }
@@ -198,9 +206,12 @@ DragableArea {
                     width: 25
                 }
 
-                OpacityImageButton {
+                DImageButton {
                     id: play_pause_button
-                    imageName: checkFlag ? "image/player_pause_normal.png" : "image/player_play_normal.png"
+                    normal_image: checkFlag ? "image/pause_normal.svg" : "image/play_normal.svg"
+                    hover_image: checkFlag ? "image/pause_hover_press.svg" : "image/play_hover_press.svg"
+                    press_image: checkFlag ? "image/pause_hover_press.svg" : "image/play_hover_press.svg"
+
                     property bool checkFlag: false
 
                     onClicked: {
@@ -213,8 +224,13 @@ DragableArea {
                     width: 25
                 }
 
-                OpacityImageButton {
-                    imageName: "image/player_next_normal.png"
+                DImageButton {
+                    normal_image: "image/next_normal.svg"
+                    hover_image: "image/next_hover_press.svg"
+                    press_image: "image/next_hover_press.svg"
+                    sourceSize.width: 28
+                    sourceSize.height: 28
+
                     anchors.verticalCenter: parent.verticalCenter
                     onClicked: control_bar.nextButtonClicked()
                 }

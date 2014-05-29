@@ -1,6 +1,7 @@
 import QtQuick 2.1
 import QtMultimedia 5.0
 import QtGraphicalEffects 1.0
+import Deepin.Widgets 1.0
 
 Row {
     id: item
@@ -18,16 +19,16 @@ Row {
 
     function emulateHover() {
         item.showBarFlag = true
-        toggle_button.state = "hover"
+        toggle_button.state = "hovered"
         hide_bar_timer.restart()
     }
 
     Timer {
         id: hide_bar_timer
 
-        interval: 500
+        interval: 300
         onTriggered: {
-            if (volume_bar_mouse_area.containsMouse || toggle_button.containsMouse) {
+            if (volume_bar_mouse_area.containsMouse || toggle_button.mouseArea.containsMouse) {
                 hide_bar_timer.restart()
             } else {
                 item.showBarFlag = false
@@ -36,18 +37,34 @@ Row {
         }
     }
 
-    OpacityImageButton {
+    DImageButton {
         id: toggle_button
-        imageName: checkFlag ? "image/player_volume_inactive.png" : "image/player_volume_active.png"
+        sourceSize.width: 28
+        sourceSize.height: 28
+        normal_image: checkFlag ? "image/volume_muted_normal.svg" : 
+                                    item.volume > 0.75 ? "image/volume_4_normal.svg" : 
+                                                        item.volume > 0.5 ? "image/volume_3_normal.svg":
+                                                                            item.volume > 0.25 ? "image/volume_2_normal.svg":
+                                                                                                "image/volume_1_normal.svg"
+        hover_image: checkFlag ? "image/volume_muted_hover_press.svg" : 
+                                    item.volume > 0.75 ? "image/volume_4_hover_press.svg" : 
+                                                        item.volume > 0.5 ? "image/volume_3_hover_press.svg":
+                                                                            item.volume > 0.25 ? "image/volume_2_hover_press.svg":
+                                                                                                "image/volume_1_hover_press.svg"
+        press_image: checkFlag ? "image/volume_muted_hover_press.svg" : 
+                                    item.volume > 0.75 ? "image/volume_4_hover_press.svg" : 
+                                                        item.volume > 0.5 ? "image/volume_3_hover_press.svg":
+                                                                            item.volume > 0.25 ? "image/volume_2_hover_press.svg":
+                                                                                                "image/volume_1_hover_press.svg"
 
         property bool checkFlag: false
         
-        onEntered: {
-            item.showBarFlag = true
-        }
-
-        onExited: {
-            hide_bar_timer.restart()
+        onStateChanged: {
+            if(state == "hovered") {
+                item.showBarFlag = true
+            } else {
+                hide_bar_timer.restart()
+            }
         }
 
         onClicked: {
@@ -72,7 +89,7 @@ Row {
                 hoverEnabled: true
                 anchors.fill: parent
 
-                onContainsMouseChanged: toggle_button.state = containsMouse ? "hover" : "normal"
+                onContainsMouseChanged: toggle_button.state = containsMouse ? "hovered" : "normal"
 
                 onClicked: {
                     volume_pointer.x = Math.min(Math.max(mouse.x - volume_pointer.width / 2, 0), parent.width)
