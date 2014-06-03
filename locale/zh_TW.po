@@ -1,0 +1,3 @@
+#: ../main.qml:333
+msgid "Banana"
+msgstr ""
