@@ -2,6 +2,7 @@ import QtQuick 2.1
 import Deepin.Widgets 1.0
 
 Item {
+    id: row
     width: 370
     height: Math.max(title.implicitHeight, input.height)
 
@@ -15,7 +16,7 @@ Item {
 
         onAccepted: {
             input.text = fileUrl
-            parent.fileSet()
+            row.fileSet()
         }
     }
 

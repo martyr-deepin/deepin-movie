@@ -21,17 +21,22 @@ DPreferenceWindow {
                 "subSections": []
             },
             {
-                "sectionId": "general",
-                "sectionName": "General",
-                "subSections": []
-            },
-            {
                 "sectionId": "keyboard",
                 "sectionName": "Keyboard",
                 "subSections": [
                     {
-                        "sectionId": "keyboard_video",
-                        "sectionName": "Video",
+                        "sectionId": "keyboard_playback",
+                        "sectionName": "Playback",
+                        "subSections": []
+                    },                    
+                    {
+                        "sectionId": "keyboard_frame_sound",
+                        "sectionName": "Frame/Sound",
+                        "subSections": []
+                    },                    
+                    {
+                        "sectionId": "keyboard_files",
+                        "sectionName": "Files",
                         "subSections": []
                     },
                     {
@@ -117,14 +122,6 @@ DPreferenceWindow {
             DCheckBox {
                 text: "Pause when minimized"
             }
-        }
-
-        SectionContent { 
-            id: general
-            title: "General" 
-            sectionId: "general"
-            topSpaceHeight: 30
-
             DCheckBox {
                 text: "Enable system popup notification"
             }
@@ -136,10 +133,86 @@ DPreferenceWindow {
         SectionContent { title: "Keyboard"; sectionId: ""; topSpaceHeight: 30 }
 
         SectionContent { 
-            id: keyboard_video
-            title: "Video" 
-            sectionId: "keyboard_video"
+            id: keyboard_playback
+            title: "Playback" 
+            sectionId: "keyboard_playback"
             showSep: false
+            topSpaceHeight: 5
+            anchors.left: parent.left
+            anchors.leftMargin: 5
+
+            DCheckBox {
+                text: "Enable hotkeys"
+            }
+            HotKeyInputRow {
+                title: "Pause/Play"
+                hotKey: config.hotkeysPlayTogglePlay
+            }
+            HotKeyInputRow {
+                title: "Forward"
+                hotKey: config.hotkeysPlayForward
+            }
+            HotKeyInputRow {
+                title: "Rewind"
+                hotKey: config.hotkeysPlayBackward
+            }
+            HotKeyInputRow {
+                title: "Fullscreen"
+                hotKey: config.hotkeysPlayToggleFullscreen
+            }
+            HotKeyInputRow {
+                title: "Speed up"
+                hotKey: config.hotkeysPlaySpeedUp
+            }
+            HotKeyInputRow {
+                title: "Slow down"
+                hotKey: config.hotkeysPlaySlowDown
+            }
+        }
+        SectionContent { 
+            id: keyboard_frame_sound
+            title: "Frame/Sound" 
+            sectionId: "keyboard_frame_sound"
+            showSep: false
+            topSpaceHeight: 5
+            anchors.left: parent.left
+            anchors.leftMargin: 5
+
+            DCheckBox {
+                text: "Enable hotkeys"
+            }
+
+            HotKeyInputRow {
+                title: "Mini Mode"
+                hotKey: config.hotkeysFrameSoundMiniMode
+            }
+            HotKeyInputRow {
+                title: "Rotate counterclockwise"
+                hotKey: config.hotkeysFrameSoundRotateAnticlockwise
+            }
+            HotKeyInputRow {
+                title: "Rotate clockwise"
+                hotKey: config.hotkeysFrameSoundRotateClockwise
+            }
+            HotKeyInputRow {
+                title: "Increase Volume"
+                hotKey: config.hotkeysFrameSoundIncreaseVolume
+            }
+            HotKeyInputRow {
+                title: "Decrease Volume"
+                hotKey: config.hotkeysFrameSoundDecreaseVolume
+            }
+            HotKeyInputRow {
+                title: "Mute"
+                hotKey: config.hotkeysFrameSoundToggleMute
+            }
+        }
+        SectionContent { 
+            id: keyboard_files
+            title: "Files" 
+            sectionId: "keyboard_files"
+            showSep: false
+            topSpaceHeight: 5
             anchors.left: parent.left
             anchors.leftMargin: 5
 
@@ -149,51 +222,15 @@ DPreferenceWindow {
 
             HotKeyInputRow {
                 title: "Open file"
-                hotKey: "key"
+                hotKey: config.hotkeysFilesOpenFile
             }
             HotKeyInputRow {
-                title: "Open directory"
-                hotKey: "key"
+                title: "Open Previous"
+                hotKey: config.hotkeysFilesPlayPrevious
             }
             HotKeyInputRow {
-                title: "Pause/Play"
-                hotKey: "key"
-            }
-            HotKeyInputRow {
-                title: "Forward"
-                hotKey: "key"
-            }
-            HotKeyInputRow {
-                title: "Rewind"
-                hotKey: "key"
-            }
-            HotKeyInputRow {
-                title: "Fullscreen"
-                hotKey: "key"
-            }
-            HotKeyInputRow {
-                title: "Previous"
-                hotKey: "key"
-            }
-            HotKeyInputRow {
-                title: "Next"
-                hotKey: "key"
-            }
-            HotKeyInputRow {
-                title: "Increase Volume"
-                hotKey: "key"
-            }
-            HotKeyInputRow {
-                title: "Decrease Volume"
-                hotKey: "key"
-            }
-            HotKeyInputRow {
-                title: "Mute"
-                hotKey: "key"
-            }
-            HotKeyInputRow {
-                title: "Compact mode"
-                hotKey: "key"
+                title: "Open Next"
+                hotKey: config.hotkeysFilesPlayNext
             }
         }
         SectionContent { 
@@ -201,6 +238,7 @@ DPreferenceWindow {
             title: "Subtitle" 
             sectionId: "keyboard_subtitle"
             showSep: false
+            topSpaceHeight: 5
             anchors.left: parent.left
             anchors.leftMargin: 5
 
@@ -210,23 +248,19 @@ DPreferenceWindow {
 
             HotKeyInputRow {
                 title: "Delay-0.5s"
-                hotKey: "key"
+                hotKey: config.hotkeysSubtitlesSubtitleForward
             }
             HotKeyInputRow {
                 title: "Delay+0.5s"
-                hotKey: "key"
+                hotKey: config.hotkeysSubtitlesSubtitleBackward
             }
             HotKeyInputRow {
-                title: "Loading subtitles"
-                hotKey: "key"
+                title: "Subtitle move up"
+                hotKey: config.hotkeysSubtitlesSubtitleMoveUp
             }
             HotKeyInputRow {
-                title: "Increase subtitle scalse"
-                hotKey: "key"
-            }
-            HotKeyInputRow {
-                title: "Decrease subtitle scalse"
-                hotKey: "key"
+                title: "Subtitle move down"
+                hotKey: config.hotkeysSubtitlesSubtitleMoveDown
             }
         }
         SectionContent { 
@@ -234,37 +268,9 @@ DPreferenceWindow {
             title: "Other" 
             sectionId: "keyboard_other"
             showSep: false
+            topSpaceHeight: 5
             anchors.left: parent.left
             anchors.leftMargin: 5
-
-            DCheckBox {
-                text: "Enable hotkeys"
-            }
-
-            HotKeyInputRow {
-                title: "Increase brightness"
-                hotKey: "key"
-            }
-            HotKeyInputRow {
-                title: "Decrease brightness"
-                hotKey: "key"
-            }
-            HotKeyInputRow {
-                title: "Rotate counterclockwise"
-                hotKey: "key"
-            }
-            HotKeyInputRow {
-                title: "Rotate clockwise"
-                hotKey: "key"
-            }
-            HotKeyInputRow {
-                title: "Take screenshot"
-                hotKey: "key"
-            }
-            HotKeyInputRow {
-                title: "Switch audio tracks"
-                hotKey: "key"
-            }
 
             ComboBoxRow {
                 title: "Left Click"
