@@ -5,6 +5,8 @@ DragableArea {
     id: titlebar
     height: program_constants.titlebarHeight
 
+    property alias title: title_text.text
+
     signal minButtonClicked ()
     signal maxButtonClicked ()
     signal closeButtonClicked ()
@@ -52,6 +54,7 @@ DragableArea {
         }
 
         TabButton {
+            id: btn
             text: "深度影院"
 
             anchors.left: appIcon.right
@@ -59,9 +62,26 @@ DragableArea {
             anchors.verticalCenter: appIcon.verticalCenter
         }
 
+        Item {
+            width: parent.width - appIcon.width - btn.width - windowButtonArea.width
+            height: title_text.height
+            
+            anchors.verticalCenter: appIcon.verticalCenter
+            anchors.horizontalCenter: parent.horizontalCenter
+            
+            Text {
+                id: title_text
+                font.pixelSize: 13
+                color: Qt.rgba(1, 1, 1, 0.8)
+                elide: Text.ElideRight
+                
+                anchors.centerIn: parent
+            }
+        }
+
         Row {
-            anchors {right: parent.right}
             id: windowButtonArea
+            anchors {right: parent.right}
 
             ImageButton {
                 id: minButton

@@ -45,6 +45,7 @@ def get_subtitle_from_movie(movie_file):
 
 class MovieInfo(QObject):
     movieSourceChanged = pyqtSignal(str, arguments=["movie_file",])
+    movieTitleChanged = pyqtSignal(str, arguments=["movie_title",])
     movieDurationChanged = pyqtSignal(int, arguments=["movie_duration",])
     movieWidthChanged = pyqtSignal(int, arguments=["movie_width",])
     movieHeightChanged = pyqtSignal(int, arguments=["movie_height",])
@@ -71,6 +72,10 @@ class MovieInfo(QObject):
     @pyqtProperty(str,notify=movieSourceChanged)
     def movie_file(self):
         return self.filepath
+        
+    @pyqtProperty(str,notify=movieTitleChanged)
+    def movie_title(self):
+        return os.path.basename(self.filepath)
 
     @pyqtProperty(str,notify=subtitleChanged)
     def subtitle_file(self):
@@ -96,6 +101,7 @@ class MovieInfo(QObject):
         self.media_duration = int(self.media_duration)
 
         self.movieSourceChanged.emit(filepath)
+        self.movieTitleChanged.emit(os.path.basename(filepath))
         self.movieWidthChanged.emit(self.media_width)
         self.movieHeightChanged.emit(self.media_height)
         self.movieDurationChanged.emit(self.media_duration) 

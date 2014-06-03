@@ -276,6 +276,7 @@ Rectangle {
         id: titlebar
         visible: false
         window: windowView
+        title: movieInfo.movie_title
         anchors.horizontalCenter: main_window.horizontalCenter
 
         onMinButtonClicked: main_controller.minimize()
@@ -325,6 +326,6 @@ Rectangle {
         onAddButtonClicked: main_controller.openFile()
         onClearButtonClicked: playlist.clear()
     }
-
+    
     Component.onCompleted: showControls()
 }
