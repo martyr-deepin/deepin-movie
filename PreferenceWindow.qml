@@ -6,12 +6,13 @@ DPreferenceWindow {
     width: 560
     height: 480
 
-    DPreferenceView {
+    content: DPreferenceView {
         id: preference_view
         anchors.fill: parent
         anchors.leftMargin: 10
         anchors.rightMargin: 10
         sectionListWidth:  100
+        layer.enabled: true
         
         sections: [
             {
@@ -67,27 +68,30 @@ DPreferenceWindow {
             title: "Playback" 
             sectionId: "playback"
 
-            GroupBox {
-                title: "On opening video:"
+            DGroupBox {
+                /* title: "On opening video:" */
+                tTitle: "On opening video:"
                 ExclusiveGroup { id: group }
                 Column {
                     width: playback.width
                     Row {
-                        RadioButton {
+                        spacing: 10
+                        DRadio {
                             text: "Fit video to player"
                             exclusiveGroup: group
                         }
-                        RadioButton {
+                        DRadio {
                             text: "Fit player to video"
                             exclusiveGroup: group
                         }
                     }
                     Row {
-                        RadioButton {
+                        spacing: 10                        
+                        DRadio {
                             text: "Resize interface to last closed size"
                             exclusiveGroup: group
                         }
-                        RadioButton {
+                        DRadio {
                             text: "Enter fullscreen mode"
                             exclusiveGroup: group
                         }
@@ -95,22 +99,22 @@ DPreferenceWindow {
                 }
             }
 
-            CheckBox {
+            DCheckBox {
                 text: "Clear playlist when opening new file"
             }
-            CheckBox {
+            DCheckBox {
                 text: "Resume playback after restarting player"
             }
-            CheckBox {
+            DCheckBox {
                 text: "Continue to next video automatically"
             }
-            CheckBox {
+            DCheckBox {
                 text: "Show thumbnail when hovering over progress bar"
             }
-            CheckBox {
+            DCheckBox {
                 text: "allow multiple instance"
             }
-            CheckBox {
+            DCheckBox {
                 text: "Pause when minimized"
             }
         }
@@ -121,10 +125,10 @@ DPreferenceWindow {
             sectionId: "general"
             topSpaceHeight: 30
 
-            CheckBox {
+            DCheckBox {
                 text: "Enable system popup notification"
             }
-            CheckBox {
+            DCheckBox {
                 text: "Enable play popup notification"
             }
         }
@@ -139,7 +143,7 @@ DPreferenceWindow {
             anchors.left: parent.left
             anchors.leftMargin: 5
 
-            CheckBox {
+            DCheckBox {
                 text: "Enable hotkeys"
             }
 
@@ -200,7 +204,7 @@ DPreferenceWindow {
             anchors.left: parent.left
             anchors.leftMargin: 5
 
-            CheckBox {
+            DCheckBox {
                 text: "Enable hotkeys"
             }
 
@@ -233,7 +237,7 @@ DPreferenceWindow {
             anchors.left: parent.left
             anchors.leftMargin: 5
 
-            CheckBox {
+            DCheckBox {
                 text: "Enable hotkeys"
             }
 
@@ -279,7 +283,7 @@ DPreferenceWindow {
             sectionId: "subtitles"
             topSpaceHeight: 30
 
-            CheckBox {
+            DCheckBox {
                 text: "Load subtitles automatically"
             }
 

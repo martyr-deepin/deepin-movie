@@ -2,20 +2,35 @@ import QtQuick 2.1
 import Deepin.Widgets 1.0
 
 Item {
-	width: 300
-	height: Math.max(title.implicitHeight, input.height)
+    width: 370
+    height: Math.max(title.implicitHeight, input.height)
 
-	property alias title: title.text
+    property alias title: title.text
+    property alias homeDir: open_folder_dialog.folder
+    
+    signal fileSet ()
 
-	DssH1 {
-		id: title
-		anchors.left: parent.left
-		anchors.verticalCenter: parent.verticalCenter
-	}
-	DTextInput {
-		id: input
-		width: 200
-		anchors.right: parent.right
-		anchors.verticalCenter: parent.verticalCenter
-	}
+    OpenFolderDialog {
+        id: open_folder_dialog
+
+        onAccepted: {
+            input.text = fileUrl
+            parent.fileSet()
+        }
+    }
+
+    DssH1 {
+        id: title
+        anchors.left: parent.left
+        anchors.verticalCenter: parent.verticalCenter
+    }
+
+    DFileChooseInput {
+        id: input
+        width: 200
+        anchors.right: parent.right
+        anchors.verticalCenter: parent.verticalCenter
+
+        onFileChooseClicked: open_folder_dialog.open()
+    }
 }

@@ -4,6 +4,7 @@ import Deepin.Widgets 1.0
 Row {
 	clip: true
 	height: txt.implicitHeight
+	spacing: 2
 
 	property alias title: txt.text
 	property alias showSep: sep.visible

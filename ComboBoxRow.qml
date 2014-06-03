@@ -2,7 +2,7 @@ import QtQuick 2.1
 import Deepin.Widgets 1.0
 
 Item {
-	width: 300
+	width: 370
 	height: Math.max(title.implicitHeight, input.height)
 
 	property alias title: title.text
