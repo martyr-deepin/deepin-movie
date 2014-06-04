@@ -234,13 +234,18 @@ Rectangle {
 
         anchors.fill: main_window
 
+        property url lastSource: ""
+        property int lastPosition: 0
+
         // onSourceChanged doesn't ensures that the file is playable, this one did.
         onPlaying: { 
             // playlist.addItem(urlToPlaylistItem(source)) // will resulting in duplicated added
+            lastSource = source
             database.lastPlayedFile = source  
         }
 
         onStopped: {
+            database.record_video_position(lastSource, lastPosition)
             if (Math.abs(position - movieInfo.movie_duration) < 1000) {
                 var next = playlist.getNextSource()
                 if (next) {
@@ -252,6 +257,7 @@ Rectangle {
         }
 
         onPositionChanged: {
+            position != 0 && (lastPosition = position)
             subtitleContent = movieInfo.get_subtitle_at(position)
             controlbar.percentage = position / movieInfo.movie_duration
         }
