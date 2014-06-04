@@ -12,6 +12,8 @@ Video {
     property alias subtitleFontSize: subtitle.fontSize
     property alias subtitleFontColor: subtitle.fontColor
 
+    property bool isPreview: false
+
     function flipHorizontal() {
         if (flip.axis.y == 1) {
             flip.axis.y = 0
@@ -51,7 +53,7 @@ Video {
         angle: 180
     }
 
-    onPaused: { pause_notify.notify() }
+    onPaused: { if(!isPreview) pause_notify.notify() }
 
     PauseNotify { 
         id: pause_notify

@@ -13,6 +13,7 @@ DragableArea {
     property alias videoPlaying: play_pause_button.checkFlag
     property alias muted: volume_button.muted
     property alias widthHeightScale: videoPreview.widthHeightScale
+    property bool previewHasVideo: false
 
     signal togglePlay ()
     signal mutedSet (bool muted)
@@ -44,7 +45,7 @@ DragableArea {
 
     function showPreview(mouseX, mode) {
         videoPreview.state = mode
-        if (videoPreview.hasVideo && videoPreview.source != "") {
+        if (control_bar.previewHasVideo && videoPreview.source != "") {
             videoPreview.visible = true
             videoPreview.x = Math.min(Math.max(mouseX - videoPreview.width / 2, 0),
                                       width - videoPreview.width)
@@ -114,7 +115,7 @@ DragableArea {
                 videoPreview.visible = false
             }
 
-            onPercentageSet: {control_bar.percentageSet(percentage); print("percentageSet")}
+            onPercentageSet: control_bar.percentageSet(percentage)
         }
 
         Item {
@@ -163,7 +164,7 @@ DragableArea {
 
                 Text {
                     id: playTime
-                    visible: videoPreview.hasVideo && videoPreview.source != ""
+                    visible: control_bar.previewHasVideo && videoPreview.source != ""
                     anchors.verticalCenter: parent.verticalCenter
                     text: formatTime(control_bar.percentage * movieInfo.movie_duration) + " / " + formatTime(movieInfo.movie_duration)
                     color: Qt.rgba(100, 100, 100, 1)

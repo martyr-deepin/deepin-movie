@@ -293,6 +293,7 @@ Rectangle {
         videoPlaying: player.playbackState == MediaPlayer.PlayingState
         muted: config.playerMuted
         widthHeightScale: movieInfo.movie_width / movieInfo.movie_height
+        previewHasVideo: player.hasVideo
 
         anchors.horizontalCenter: main_window.horizontalCenter
 
