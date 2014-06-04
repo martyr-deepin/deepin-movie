@@ -37,14 +37,14 @@ RectWithCorner {
     ]
     
     function seek(percentage) {
-        video.seek(Math.floor(movieInfo.movie_duration * percentage))
+        video && video.seek(Math.floor(movieInfo.movie_duration * percentage))
         videoTime.text = formatTime(movieInfo.movie_duration * percentage)
     }
 
-    function flipHorizontal() { video.flipHorizontal() }
-    function flipVertical() { video.flipVertical() }
-    function rotateClockwise() { video.rotateClockwise() }
-    function rotateAnticlockwise() { video.rotateAnticlockwise() }
+    function flipHorizontal() { video && video.flipHorizontal() }
+    function flipVertical() { video && video.flipVertical() }
+    function rotateClockwise() { video && video.rotateClockwise() }
+    function rotateAnticlockwise() { video && video.rotateAnticlockwise() }
 
     Component {
         id: player_component
