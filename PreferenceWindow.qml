@@ -113,18 +113,24 @@ DPreferenceWindow {
             }
 
             DCheckBox {
-                text: "Clear playlist when opening new file"
+                text: dsTr("Clear playlist when opening new file")
                 checked: config.playerCleanPlaylistOnOpenNewFile
                 onClicked: config.playerCleanPlaylistOnOpenNewFile = checked
             }
             DCheckBox {
-                text: "Resume playback after restarting player"
+                text: dsTr("Resume playback after restarting player")
+                checked: config.playerAutoPlayFromLast
+                onClicked: config.playerAutoPlayFromLast = checked
             }
             DCheckBox {
-                text: "Continue to next video automatically"
+                text: dsTr("Continue to next video automatically")
+                checked: config.playerAutoPlaySeries
+                onClicked: config.playerAutoPlaySeries = checked
             }
             DCheckBox {
                 text: "Show thumbnail when hovering over progress bar"
+                checked: config.playerShowPreview
+                onClicked: config.playerShowPreview = checked
             }
             DCheckBox {
                 text: "allow multiple instance"

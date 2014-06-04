@@ -72,7 +72,7 @@ MouseArea {
 
         onMovieSourceChanged: {
             var last_watched_pos = database.fetch_video_position(player.source)
-            if (Math.abs(last_watched_pos - movieInfo.movie_duration) > 1000) {
+            if (config.playerAutoPlayFromLast && Math.abs(last_watched_pos - movieInfo.movie_duration) > 1000) {
                 seek_to_last_watched_timer.schedule(last_watched_pos)
             } else {
                 play()
@@ -211,7 +211,7 @@ MouseArea {
     }
 
     function addPlayListItem(url) { 
-        var serie = JSON.parse(_utils.getSeriesByName(url))
+        var serie = config.playerAutoPlaySeries ? JSON.parse(_utils.getSeriesByName(url)) : ""
         if (serie.name != "") {
             for (var i = 0; i < serie.items.length; i++) {
                 playlist.addItem(urlToPlaylistItem(serie.name, serie.items[i]))

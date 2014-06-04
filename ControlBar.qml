@@ -44,30 +44,32 @@ DragableArea {
     }
 
     function showPreview(mouseX, mode) {
-        videoPreview.state = mode
-        if (control_bar.previewHasVideo && videoPreview.source != "") {
-            videoPreview.visible = true
-            videoPreview.x = Math.min(Math.max(mouseX - videoPreview.width / 2, 0),
-                                      width - videoPreview.width)
-            videoPreview.y = progressbar.y - videoPreview.height - 10
+        if (config.playerShowPreview) {
+            videoPreview.state = mode
+            if (control_bar.previewHasVideo && videoPreview.source != "") {
+                videoPreview.visible = true
+                videoPreview.x = Math.min(Math.max(mouseX - videoPreview.width / 2, 0),
+                                          width - videoPreview.width)
+                videoPreview.y = progressbar.y - videoPreview.height - 10
 
-            if (mouseX <= videoPreview.cornerWidth / 2) {
-                videoPreview.cornerPos = mouseX + videoPreview.cornerWidth / 2
-                videoPreview.cornerType = "left"
-            } else if (mouseX >= width - videoPreview.cornerWidth / 2) {
-                videoPreview.cornerPos = mouseX - width + videoPreview.width - videoPreview.cornerWidth / 2
-                videoPreview.cornerType = "right"
-            } else if (mouseX < videoPreview.width / 2) {
-                videoPreview.cornerPos = mouseX
-                videoPreview.cornerType = "center"
-            } else if (mouseX >= width - videoPreview.width / 2) {
-                videoPreview.cornerPos = mouseX - width + videoPreview.width
-                videoPreview.cornerType = "center"
-            } else {
-                videoPreview.cornerPos = videoPreview.width / 2
-                videoPreview.cornerType = "center"
+                if (mouseX <= videoPreview.cornerWidth / 2) {
+                    videoPreview.cornerPos = mouseX + videoPreview.cornerWidth / 2
+                    videoPreview.cornerType = "left"
+                } else if (mouseX >= width - videoPreview.cornerWidth / 2) {
+                    videoPreview.cornerPos = mouseX - width + videoPreview.width - videoPreview.cornerWidth / 2
+                    videoPreview.cornerType = "right"
+                } else if (mouseX < videoPreview.width / 2) {
+                    videoPreview.cornerPos = mouseX
+                    videoPreview.cornerType = "center"
+                } else if (mouseX >= width - videoPreview.width / 2) {
+                    videoPreview.cornerPos = mouseX - width + videoPreview.width
+                    videoPreview.cornerType = "center"
+                } else {
+                    videoPreview.cornerPos = videoPreview.width / 2
+                    videoPreview.cornerType = "center"
+                }
+                videoPreview.seek(mouseX / width)
             }
-            videoPreview.seek(mouseX / width)
         }
     }
 
