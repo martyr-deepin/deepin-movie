@@ -119,8 +119,7 @@ if __name__ == "__main__":
     qml_context.setContextProperty("_menu_controller", menu_controller)
 
     windowView.setSource(QtCore.QUrl.fromLocalFile(MAIN_QML))
-    windowView.setX(100)
-    windowView.setY(100)
+    windowView.initWindowSize()
     windowView.show()
 
     movie_info.movie_file = movie_file

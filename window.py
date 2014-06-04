@@ -45,6 +45,10 @@ class Window(QQuickView):
         self.staysOnTop = False
         self.qml_context = self.rootContext()
 
+    def initWindowSize(self):
+        self.rootObject().initWindowSize()
+        self.moveToCenter()
+
     @pyqtProperty(int,constant=True)
     def defaultWidth(self):
         return DEFAULT_WIDTH

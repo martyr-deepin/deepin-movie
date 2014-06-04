@@ -28,8 +28,14 @@ Rectangle {
     Connections {
         target: windowView
 
-        onWidthChanged: root.width = windowView.width
-        onHeightChanged: root.height = windowView.height
+        onWidthChanged: { 
+            root.width = windowView.width
+            database.lastWindowSize = JSON.stringify({ "width":windowView.width, "height":windowView.height }) 
+        }
+        onHeightChanged: { 
+            root.height = windowView.height 
+            database.lastWindowSize = JSON.stringify({ "width":windowView.width, "height":windowView.height }) 
+        }
     }
 
     Constants { id: program_constants }
@@ -75,11 +81,26 @@ Rectangle {
         height: 480
     }
 
+    // translation tools
     property var dssLocale: DLocale {
         domain: "deepin-movie"
     }
     function dsTr(s) {
         return dssLocale.dsTr(s)
+    }
+
+    function initWindowSize() {
+        if (config.playerAdjustType == "ADJUST_TYPE_LAST_TIME") {
+            var lastSize = database.lastWindowSize
+            if(database.lastWindowSize != "") {
+                var lastSize = JSON.parse(lastSize)
+                windowView.setWidth(lastSize.width)
+                windowView.setHeight(lastSize.height)
+                return
+            }
+        }
+        windowView.setWidth(windowView.defaultWidth)
+        windowView.setHeight(windowView.defaultHeight)
     }
 
     function formatTime(millseconds) {

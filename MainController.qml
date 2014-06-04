@@ -40,27 +40,33 @@ MouseArea {
         onMovieHeightChanged: { height = movieInfo.movie_height; setSizeForRootWindow() }
 
         function setSizeForRootWindow() {
-            if (width != 0 && height != 0) {
-                if (primaryRect.width / primaryRect.height > movieInfo.movie_width / movieInfo.movie_height) {
-                    if (movieInfo.movie_height > primaryRect.height) {
-                        windowView.setHeight(primaryRect.height)
-                        windowView.setWidth(primaryRect.height * root.widthHeightScale)
+            if (config.playerAdjustType == "ADJUST_TYPE_VIDEO_WINDOW" || config.playerAdjustType == "ADJUST_TYPE_LAST_TIME") {
+                // nothing here
+            } else if (config.playerAdjustType == "ADJUST_TYPE_WINDOW_VIDEO") {
+                if (width != 0 && height != 0) {
+                    if (primaryRect.width / primaryRect.height > movieInfo.movie_width / movieInfo.movie_height) {
+                        if (movieInfo.movie_height > primaryRect.height) {
+                            windowView.setHeight(primaryRect.height)
+                            windowView.setWidth(primaryRect.height * root.widthHeightScale)
+                        } else {
+                            windowView.setHeight(movieInfo.movie_height)
+                            windowView.setWidth(movieInfo.movie_height * root.widthHeightScale)
+                        }
                     } else {
-                        windowView.setHeight(movieInfo.movie_height)
-                        windowView.setWidth(movieInfo.movie_height * root.widthHeightScale)
+                        if (movieInfo.movie_width > primaryRect.width) {
+                            windowView.setWidth(primaryRect.width)
+                            windowView.setHeight(primaryRect.width / root.widthHeightScale)
+                        } else {
+                            windowView.setWidth(movieInfo.movie_width)
+                            windowView.setHeight(movieInfo.movie_width / root.widthHeightScale)
+                        }
                     }
-                } else {
-                    if (movieInfo.movie_width > primaryRect.width) {
-                        windowView.setWidth(primaryRect.width)
-                        windowView.setHeight(primaryRect.width / root.widthHeightScale)
-                    } else {
-                        windowView.setWidth(movieInfo.movie_width)
-                        windowView.setHeight(movieInfo.movie_width / root.widthHeightScale)
-                    }
-                }
 
-                width = 0
-                height = 0
+                    width = 0
+                    height = 0
+                }
+            } else if (config.playerAdjustType == "ADJUST_TYPE_FULLSCREEN") {
+                fullscreen()
             }
         }
 

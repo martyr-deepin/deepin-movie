@@ -82,23 +82,31 @@ DPreferenceWindow {
                     Row {
                         spacing: 10
                         DRadio {
-                            text: "Fit video to player"
+                            text: dsTr("Fit video to player")
                             exclusiveGroup: group
+                            checked: config.playerAdjustType == "ADJUST_TYPE_VIDEO_WINDOW"
+                            onClicked: if(checked) { config.playerAdjustType = "ADJUST_TYPE_VIDEO_WINDOW" }
                         }
                         DRadio {
-                            text: "Fit player to video"
+                            text: dsTr("Fit player to video")
                             exclusiveGroup: group
+                            checked: config.playerAdjustType == "ADJUST_TYPE_WINDOW_VIDEO"
+                            onClicked: if(checked) { config.playerAdjustType = "ADJUST_TYPE_WINDOW_VIDEO" }
                         }
                     }
                     Row {
                         spacing: 10                        
                         DRadio {
-                            text: "Resize interface to last closed size"
+                            text: dsTr("Resize interface to last closed size")
                             exclusiveGroup: group
+                            checked: config.playerAdjustType == "ADJUST_TYPE_LAST_TIME"
+                            onClicked: if(checked) { config.playerAdjustType = "ADJUST_TYPE_LAST_TIME" }
                         }
                         DRadio {
-                            text: "Enter fullscreen mode"
+                            text: dsTr("Enter fullscreen mode")
+                            checked: config.playerAdjustType == "ADJUST_TYPE_FULLSCREEN"
                             exclusiveGroup: group
+                            onClicked: if(checked) { config.playerAdjustType = "ADJUST_TYPE_FULLSCREEN" }
                         }
                     }
                 }

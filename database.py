@@ -29,6 +29,7 @@ from PyQt5.QtCore import pyqtSlot, pyqtSignal, pyqtProperty, QObject
 class Database(QObject):
     localPlaylistChanged = pyqtSignal(str)
     lastPlayedFileChanged = pyqtSignal(str)
+    lastWindowSizeChanged = pyqtSignal(str)
 
     def __init__(self):
         QObject.__init__(self)
@@ -91,5 +92,14 @@ class Database(QObject):
     def lastPlayedFile(self, value):
         self.setValue("last_played_file", value)
         self.lastPlayedFileChanged.emit(value)
+
+    @pyqtProperty(str,notify=lastWindowSizeChanged)
+    def lastWindowSize(self):
+        return self.getValue("last_window_size") or ""
+
+    @lastWindowSize.setter
+    def lastWindowSize(self, value):
+        self.setValue("last_window_size", value)
+        self.lastWindowSizeChanged.emit(value)
 
 database = Database()
