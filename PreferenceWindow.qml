@@ -114,6 +114,8 @@ DPreferenceWindow {
 
             DCheckBox {
                 text: "Clear playlist when opening new file"
+                checked: config.playerCleanPlaylistOnOpenNewFile
+                onClicked: config.playerCleanPlaylistOnOpenNewFile = checked
             }
             DCheckBox {
                 text: "Resume playback after restarting player"

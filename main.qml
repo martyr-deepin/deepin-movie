@@ -260,9 +260,11 @@ Rectangle {
 
         // onSourceChanged doesn't ensures that the file is playable, this one did.
         onPlaying: { 
-            // playlist.addItem(urlToPlaylistItem(source)) // will resulting in duplicated added
             lastSource = source
-            database.lastPlayedFile = source  
+            database.lastPlayedFile = source 
+
+            if (config.playerCleanPlaylistOnOpenNewFile) playlist.clear()
+            main_controller.addPlayListItem(source.toString().substring(7))
         }
 
         onStopped: {
