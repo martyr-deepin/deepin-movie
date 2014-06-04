@@ -22,6 +22,7 @@
 
 import os
 import sys
+import codecs
 import ass
 import pysrt
 import tempfile
@@ -51,7 +52,21 @@ def get_file_encoding(file_name):
 			u.feed(line)
 			if index > 500: break
 		u.close()
-	return u.result["encoding"]
+	if u.result["encoding"].lower() == "gb2312":
+		try:
+			codecs.open(file_name, encoding="gb2312")
+			result = "gb2312"
+		except Exception, e:
+			print e
+		else:
+			try:
+				codecs.open(file_name, encoding="gbk")
+				result = "gbk"
+			except Exception, e:
+				print e
+			else:
+				result = "gb18030"
+	return result 
 
 	# if file_name != "":
 	# 	return get_command_output_first_line(["enca", "-i", file_name]).rstrip()
