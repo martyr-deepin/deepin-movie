@@ -2,6 +2,7 @@ import QtQuick 2.1
 import QtMultimedia 5.0
 import QtGraphicalEffects 1.0
 import QtQuick.Window 2.1
+import Deepin.Locale 1.0
 
 Rectangle {
     id: root
@@ -72,6 +73,13 @@ Rectangle {
         y: windowView.y + (windowView.height - height) / 2
         width: 560
         height: 480
+    }
+
+    property var dssLocale: DLocale {
+        domain: "deepin-movie"
+    }
+    function dsTr(s) {
+        return dssLocale.dsTr(s)
     }
 
     function formatTime(millseconds) {
