@@ -25,7 +25,7 @@ RectWithCorner {
                 rectWidth: 178
                 rectHeight: (rectWidth - previewPadding * 2) / widthHeightScale + previewPadding * 2 + preview.cornerHeight 
             }
-            PropertyChanges { target: player_loader; active: true }
+            PropertyChanges { target: player_loader; visible: true }
             PropertyChanges { target: time_bg; color: "#DD000000" }
         },
         State {
