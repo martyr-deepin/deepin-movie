@@ -183,8 +183,8 @@ DragableArea {
                     normal_image: "image/stop_normal.svg"
                     hover_image: "image/stop_hover_press.svg"
                     press_image: "image/stop_hover_press.svg"
-                    sourceSize.width: 28
-                    sourceSize.height: 28
+                    sourceSize.width: 26
+                    sourceSize.height: 26
 
                     anchors.verticalCenter: parent.verticalCenter
                     onClicked: control_bar.playStopButtonClicked()
