@@ -100,7 +100,9 @@ DragableArea {
 
         ProgressBar {
             id: progressbar
-            width: parent.width
+            width: control_bar.width
+
+            onWidthChanged: { progressbar.update() }
 
             Preview {
                 id: videoPreview

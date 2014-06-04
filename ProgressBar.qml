@@ -11,6 +11,8 @@ Item {
     signal mouseDrag (int mouseX)
     signal mouseExit ()
     signal percentageSet(real percentage)
+
+    function update() { pointer.x = progressbar.width * percentage - pointer.width / 2 }
     
     MouseArea {
         hoverEnabled: true
@@ -30,9 +32,7 @@ Item {
     }
 
     onPercentageChanged: {
-        if (!drag_area.drag.active) {
-           pointer.x = progressbar.width * percentage - pointer.width / 2           
-        }
+        if (!drag_area.drag.active) { update() }
     }
 
     Rectangle {
