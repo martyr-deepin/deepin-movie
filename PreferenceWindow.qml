@@ -137,12 +137,13 @@ DPreferenceWindow {
             }
             DCheckBox {
                 text: "Pause when minimized"
+                checked: config.playerPauseOnMinimized
+                onClicked: config.playerPauseOnMinimized = checked
             }
             DCheckBox {
                 text: "Enable system popup notification"
-            }
-            DCheckBox {
-                text: "Enable play popup notification"
+                checked: config.playerNotificationsEnabled
+                onClicked: config.playerNotificationsEnabled = checked
             }
         }
 

@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# Copyright (C) 2011 ~ 2013 Deepin, Inc.
-#               2011 ~ 2013 Hou ShaoHui
+# Copyright (C) 2011 ~ 2014 Deepin, Inc.
+#               2011 ~ 2014 Wang Yaohua
 #
-# Author:     Hou ShaoHui <houshao55@gmail.com>
-# Maintainer: Hou ShaoHui <houshao55@gmail.com>
+# Author:     Wang Yaohua <mr.asianwang@gmail.com>
+# Maintainer: Wang yaohua <mr.asianwang@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,6 +21,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import dbus
+from config import config
 
 NOTIFICATIONS_SERVICE = "org.freedesktop.Notifications"
 NOTIFICATIONS_PATH = "/org/freedesktop/Notifications"
@@ -29,6 +30,7 @@ NOTIFICATIONS_INTERFACE = "org.freedesktop.Notifications"
 bus = dbus.SessionBus()
 
 def notify(summary, body):
+    if not config.playerNotificationsEnabled: return 
     proxy = bus.get_object(NOTIFICATIONS_SERVICE,
                            NOTIFICATIONS_PATH)
     notify_interface = dbus.Interface(proxy, NOTIFICATIONS_INTERFACE)

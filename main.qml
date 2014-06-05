@@ -158,16 +158,18 @@ Rectangle {
         time_indicator.visible = (state == Qt.WindowFullScreen && 
                                   player.playbackState == MediaPlayer.PlayingState)
         if (windowLastState != state) {
-            if (state == Qt.WindowMinimized) {
-                if (player.playbackState == MediaPlayer.PlayingState) {
-                    main_controller.pause()
-                    videoStoppedByAppFlag = true
-                }
-            } else {                    
-                if (videoStoppedByAppFlag == true) {                      
-                    main_controller.play()
-                    videoStoppedByAppFlag = false
-                }
+            if (config.playerPauseOnMinimised) {
+                if (state == Qt.WindowMinimized) {
+                    if (player.playbackState == MediaPlayer.PlayingState) {
+                        main_controller.pause()
+                        videoStoppedByAppFlag = true
+                    }
+                } else {                    
+                    if (videoStoppedByAppFlag == true) {                      
+                        main_controller.play()
+                        videoStoppedByAppFlag = false
+                    }
+                }                
             }
             windowLastState = state
         }
