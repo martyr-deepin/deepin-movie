@@ -3,6 +3,7 @@ import QtQuick.Controls 1.1
 import Deepin.Widgets 1.0
 
 DPreferenceWindow {
+    id: window
     width: 560
     height: 480
 
@@ -302,12 +303,21 @@ DPreferenceWindow {
 
             ComboBoxRow {
                 title: "Left Click"
+                parentWindow: window
+                currentItem: config.othersLeftClick ? dsTr("Pause/Play") : dsTr("Disabled")
+                items: [dsTr("Pause/Play"), dsTr("Disabled")]
             }
             ComboBoxRow {
                 title: "Double Click"
+                parentWindow: window
+                currentItem: config.othersDoubleClick ? dsTr("Fullscreen") : dsTr("Disabled")
+                items: [dsTr("Fullscreen"), dsTr("Disabled")]
             }
             ComboBoxRow {
                 title: "Scroll"
+                parentWindow: window
+                currentItem: config.othersWheel ? dsTr("Volume") : dsTr("Disabled")
+                items: [dsTr("Volume"), dsTr("Disabled")]
             }
 
         }

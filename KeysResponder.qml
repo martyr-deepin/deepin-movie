@@ -43,15 +43,5 @@ Item {
 				}
 			}
 		} 
-		if (config.hotkeysOthersHotkeyEnabled) {
-			for(var i = 0; i < config.hotKeysOthers.length; i++) {
-				if (_utils.checkKeySequenceEqual(event.modifiers, event.key, 
-					config.hotKeysOthers[i].key)) 
-				{
-					eval("main_controller." + config.hotKeysPlay[i].command + "()")
-					return
-				}
-			}
-		}
 	}
 }

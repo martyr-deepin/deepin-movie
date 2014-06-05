@@ -80,6 +80,9 @@ DEFAULT_CONFIG = [
     ("fontBorderSize", "1"),
     ("fontBorderColor", "black"),
     ("verticalPosition", 0.0)]),
+("Others", [("leftClick", True),
+    ("doubleClick", True), 
+    ("wheel", True)]),
 ]
 
 class Config(QObject):
