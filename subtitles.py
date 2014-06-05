@@ -54,16 +54,19 @@ def get_file_encoding(file_name):
 		u.close()
 	if u.result["encoding"].lower() == "gb2312":
 		try:
-			codecs.open(file_name, encoding="gb2312")
+			_file = codecs.open(file_name, encoding="gb2312")
+			_file.readlines()
 			result = "gb2312"
 		except Exception, e:
 			print e
 			try:
-				codecs.open(file_name, encoding="gbk")
+				_file = codecs.open(file_name, encoding="gbk")
+				_file.readlines()
 				result = "gbk"
 			except Exception, e:
 				print e
 				result = "gb18030"
+	print result
 	return result 
 
 	# if file_name != "":
