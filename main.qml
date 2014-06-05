@@ -254,6 +254,7 @@ Rectangle {
 
         subtitleFontSize: Math.floor(config.subtitleFontSize * main_window.width / windowView.defaultWidth)
         subtitleFontColor: config.subtitleFontColor
+        subtitleVerticalPosition: config.subtitleVerticalPosition
 
         anchors.fill: main_window
 

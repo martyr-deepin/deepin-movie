@@ -346,6 +346,15 @@ MouseArea {
     function playNext() { movieInfo.movie_file = playlist.getNextSource() || "" }
     function playPrevious() { movieInfo.movie_file = playlist.getPreviousSource() || "" }
 
+    function setSubtitleVerticalPosition(percentage) {
+        config.subtitleVerticalPosition = Math.max(0, Math.min(1, percentage))
+        player.subtitleVerticalPosition = config.subtitleVerticalPosition
+    }
+
+    function subtitleMoveUp() { setSubtitleVerticalPosition(config.subtitleVerticalPosition + 0.05)}
+
+    function subtitleMoveDown() { setSubtitleVerticalPosition(config.subtitleVerticalPosition - 0.05)}
+
     Keys.onPressed: keys_responder.respondKey(event)
 
     onWheel: { 

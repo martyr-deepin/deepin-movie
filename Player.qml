@@ -11,6 +11,7 @@ Video {
     property alias subtitleContent: subtitle.text
     property alias subtitleFontSize: subtitle.fontSize
     property alias subtitleFontColor: subtitle.fontColor
+    property real subtitleVerticalPosition: 0.2
 
     property bool isPreview: false
 
@@ -69,6 +70,6 @@ Video {
         anchors.bottom: parent.bottom
         anchors.leftMargin: 20
         anchors.rightMargin: 20
-        anchors.bottomMargin: 30
+        anchors.bottomMargin: parent.subtitleVerticalPosition * (parent.height - subtitle.height)
     }
 }

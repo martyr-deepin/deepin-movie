@@ -75,7 +75,11 @@ DEFAULT_CONFIG = [
     ("playNext", "PgDown"),]),
 ("Subtitle", [("autoLoad", True),
     ("fontSize", 20),
-    ("fontColor", "#ffffff")]),
+    ("fontFamily", ""),
+    ("fontColor", "#ffffff"),
+    ("fontBorderSize", "1"),
+    ("fontBorderColor", "black"),
+    ("verticalPosition", 0.0)]),
 ]
 
 class Config(QObject):
