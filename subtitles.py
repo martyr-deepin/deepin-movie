@@ -58,13 +58,11 @@ def get_file_encoding(file_name):
 			result = "gb2312"
 		except Exception, e:
 			print e
-		else:
 			try:
 				codecs.open(file_name, encoding="gbk")
 				result = "gbk"
 			except Exception, e:
 				print e
-			else:
 				result = "gb18030"
 	return result 
 
