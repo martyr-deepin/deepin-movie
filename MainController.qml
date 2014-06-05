@@ -290,6 +290,21 @@ MouseArea {
     function forward() { forwardByDelta(5000) }
     function backward() { backwardByDelta(5000) }
 
+    function speedUp() { 
+        player.playbackRate = Math.min(2.0, (player.playbackRate + 0.1).toFixed(1))
+        notifybar.show("image/notify_forward.png", dsTr("Playback Rate: ") + player.playbackRate + dsTr("(Press %1 to restore)").arg(config.hotkeysPlayRestoreSpeed))
+    }
+
+    function slowDown() { 
+        player.playbackRate = Math.max(0.1, (player.playbackRate - 0.1).toFixed(1))
+        notifybar.show("image/notify_backward.png", dsTr("Playback Rate: ") + player.playbackRate + dsTr("(Press %1 to restore)").arg(config.hotkeysPlayRestoreSpeed))
+    }
+
+    function restoreSpeed() {
+        player.playbackRate = 1
+        notifybar.show("", dsTr("Playback Rate: ") + player.playbackRate)
+    }
+
     function increaseVolumeByDelta(delta) {
         config.playerVolume = Math.min(player.volume + delta, 1.0)
         notifybar.show("image/notify_volume.png", "音量: " + Math.round(player.volume * 100) + "%")
