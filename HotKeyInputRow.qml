@@ -8,6 +8,8 @@ Item {
 	property alias title: title.text
 	property alias hotKey: input.hotKey
 
+	signal hotkeySet (string hotkey)
+
 	DssH1 {
 		id: title
 		anchors.left: parent.left
@@ -19,5 +21,7 @@ Item {
 		width: 200
 		anchors.right: parent.right
 		anchors.verticalCenter: parent.verticalCenter
+
+		onHotkeySet: parent.hotkeySet(key)
 	}
 }

@@ -160,18 +160,23 @@ DPreferenceWindow {
 
             DCheckBox {
                 text: "Enable hotkeys"
+                checked: config.hotkeysPlayHotkeyEnabled
+                onClicked: config.hotkeysPlayHotkeyEnabled = checked
             }
             HotKeyInputRow {
                 title: "Pause/Play"
                 hotKey: config.hotkeysPlayTogglePlay
+                onHotkeySet: config.hotkeysPlayTogglePlay = hotkey
             }
             HotKeyInputRow {
                 title: "Forward"
                 hotKey: config.hotkeysPlayForward
+                onHotkeySet: config.hotkeysPlayForward = hotkey
             }
             HotKeyInputRow {
                 title: "Rewind"
                 hotKey: config.hotkeysPlayBackward
+                onHotkeySet: config.hotkeysPlayBackward = hotkey
             }
             HotKeyInputRow {
                 title: "Fullscreen"
@@ -197,6 +202,8 @@ DPreferenceWindow {
 
             DCheckBox {
                 text: "Enable hotkeys"
+                checked: config.hotkeysFrameSoundHotkeyEnabled
+                onClicked: config.hotkeysFrameSoundHotkeyEnabled = checked
             }
 
             HotKeyInputRow {
@@ -235,6 +242,8 @@ DPreferenceWindow {
 
             DCheckBox {
                 text: "Enable hotkeys"
+                checked: config.hotkeysFilesHotkeyEnabled
+                onClicked: config.hotkeysFilesHotkeyEnabled = checked                
             }
 
             HotKeyInputRow {
@@ -261,6 +270,8 @@ DPreferenceWindow {
 
             DCheckBox {
                 text: "Enable hotkeys"
+                checked: config.hotkeysSubtitlesHotkeyEnabled
+                onClicked: config.hotkeysSubtitlesHotkeyEnabled = checked                
             }
 
             HotKeyInputRow {

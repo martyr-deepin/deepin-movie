@@ -278,11 +278,13 @@ MouseArea {
     }
 
     function forwardByDelta(delta) {
+        player.playbackRate = 1.0
         player.seek(player.position + delta)
         notifybar.show("image/notify_forward.png", "快进至 " + formatTime(player.position))
     }
 
     function backwardByDelta(delta) {
+        player.playbackRate = 1.0
         player.seek(player.position - delta)
         notifybar.show("image/notify_backward.png", "快退至 " + formatTime(player.position))
     }

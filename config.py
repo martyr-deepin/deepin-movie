@@ -103,6 +103,27 @@ class Config(QObject):
         return result
 
     @pyqtProperty("QVariant")
+    def hotkeysFrameSound(self):
+        result = []
+        for item in self.config.items("HotkeysFrameSound"):
+            result.append({"command": item[0], "key": item[1]})
+        return result
+
+    @pyqtProperty("QVariant")
+    def hotkeysFiles(self):
+        result = []
+        for item in self.config.items("HotkeysFiles"):
+            result.append({"command": item[0], "key": item[1]})
+        return result
+
+    @pyqtProperty("QVariant")
+    def hotkeysSubtitles(self):
+        result = []
+        for item in self.config.items("HotkeysSubtitles"):
+            result.append({"command": item[0], "key": item[1]})
+        return result
+
+    @pyqtProperty("QVariant")
     def hotKeysOthers(self):
         result = []
         for item in self.config.items("HotkeysOthers"):
