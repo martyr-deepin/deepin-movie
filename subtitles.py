@@ -66,6 +66,7 @@ def get_file_encoding(file_name):
 			except Exception, e:
 				print e
 				result = "gb18030"
+	else: result = u.result["encoding"]
 	return result 
 
 	# if file_name != "":
