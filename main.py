@@ -44,6 +44,9 @@ if os.name == 'posix':
 from PyQt5.QtCore import pyqtSlot, QObject
 from PyQt5.QtWidgets import QApplication, QInputDialog
 
+import setproctitle
+setproctitle.setproctitle("deepin-movie")
+
 from window import Window
 from database import database
 from config import config
