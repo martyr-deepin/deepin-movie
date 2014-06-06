@@ -14,7 +14,7 @@ Item {
 	property string leftRuler
 	property string rightRuler
 
-	signal valueChanged (int value)
+	signal valueChanged (real value)
 
 	DssH1 {
 		id: title
