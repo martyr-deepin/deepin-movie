@@ -9,7 +9,7 @@ Row {
 	property alias title: txt.text
 	property alias showSep: sep.visible
 
-	DssH1 { 
+	DssH2 { 
 		id: txt
 		text: "hello"
 	}

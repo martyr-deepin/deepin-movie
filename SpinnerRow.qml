@@ -12,6 +12,8 @@ Item {
 
 	signal valueChanged (int value)
 
+	function setValue(i) { spinner.setValue(i) }
+
 	Text {
 		id: title
 		color: "#787878"

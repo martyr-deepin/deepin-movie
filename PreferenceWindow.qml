@@ -343,7 +343,7 @@ DPreferenceWindow {
             }
 
             ComboBoxRow {
-                title: dsTr("Font") + ":"
+                title: dsTr("Font")
                 input.parentWindow: window
                 input.selectIndex: config.subtitleFontFamily ? Qt.fontFamilies().indexOf(config.subtitleFontFamily) 
                                                             : Qt.fontFamilies().indexOf(getSystemFontFamily())
@@ -352,34 +352,22 @@ DPreferenceWindow {
                 onMenuSelect: config.subtitleFontFamily = Qt.fontFamilies()[index]
             }
 
-            ComboBoxRow {
-                title: dsTr("Size") + ":"
-                input.parentWindow: window
-                input.selectIndex: input.menu.labels.indexOf(config.subtitleFontSize)
-                input.menu.labels: {
-                    var result = new Array()
-                    for (var i = 10; i < 31; i++) {
-                        result.push(i)
-                    }
-                    return result
-                }
+            SpinnerRow {
+                title: dsTr("Size")
+                min: 10
+                max: 30
+                Component.onCompleted: setValue(config.subtitleFontSize)
 
-                onMenuSelect: config.subtitleFontSize = input.menu.labels[index]
+                onValueChanged: config.subtitleFontSize = value
             }
 
-            ComboBoxRow {
-                title: dsTr("Border") + ":"
-                input.parentWindow: window
-                input.selectIndex: input.menu.labels.indexOf(config.subtitleFontBorderSize)
-                input.menu.labels: {
-                    var result = new Array()
-                    for (var i = 0; i < 6; i++) {
-                        result.push(i)
-                    }
-                    return result
-                }
+            SpinnerRow {
+                title: dsTr("Border Width")
+                min: 0
+                max: 6
+                Component.onCompleted: setValue(config.subtitleFontBorderSize)
 
-                onMenuSelect: config.subtitleFontBorderSize = input.menu.labels[index]
+                onValueChanged: config.subtitleFontBorderSize = value
             }
 
             SliderRow {
