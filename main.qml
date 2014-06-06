@@ -90,6 +90,11 @@ Rectangle {
         return dssLocale.dsTr(s)
     }
 
+    function getSystemFontFamily() {
+        var text = Qt.createQmlObject('import QtQuick 2.1; Text {}', root, "");
+        return text.font.family
+    }
+
     function initWindowSize() {
         if (config.playerAdjustType == "ADJUST_TYPE_LAST_TIME") {
             var lastSize = database.lastWindowSize

@@ -303,21 +303,27 @@ DPreferenceWindow {
 
             ComboBoxRow {
                 title: "Left Click"
-                parentWindow: window
-                currentItem: config.othersLeftClick ? dsTr("Pause/Play") : dsTr("Disabled")
-                items: [dsTr("Pause/Play"), dsTr("Disabled")]
+                input.parentWindow: window
+                input.selectIndex: config.othersLeftClick ? 0 : 1
+                input.menu.labels: [dsTr("Pause/Play"), dsTr("Disabled")]
+
+                onMenuSelect: config.othersLeftClick = index == 0
             }
             ComboBoxRow {
                 title: "Double Click"
-                parentWindow: window
-                currentItem: config.othersDoubleClick ? dsTr("Fullscreen") : dsTr("Disabled")
-                items: [dsTr("Fullscreen"), dsTr("Disabled")]
+                input.parentWindow: window
+                input.selectIndex: config.othersDoubleClick ? 0 : 1
+                input.menu.labels: [dsTr("Fullscreen"), dsTr("Disabled")]
+
+                onMenuSelect: config.othersDoubleClick = index == 0
             }
             ComboBoxRow {
                 title: "Scroll"
-                parentWindow: window
-                currentItem: config.othersWheel ? dsTr("Volume") : dsTr("Disabled")
-                items: [dsTr("Volume"), dsTr("Disabled")]
+                input.parentWindow: window
+                input.selectIndex: config.othersWheel ? 0 : 1
+                input.menu.labels: [dsTr("Volume"), dsTr("Disabled")]
+
+                onMenuSelect: config.othersWheel = index == 0
             }
 
         }
@@ -329,6 +335,26 @@ DPreferenceWindow {
 
             DCheckBox {
                 text: "Load subtitles automatically"
+            }
+
+            ComboBoxRow {
+                title: dsTr("Font") + ":"
+                input.parentWindow: window
+                input.selectIndex: config.subtitleFontFamily ? Qt.fontFamilies().indexOf(config.subtitleFontFamily) 
+                                                            : Qt.fontFamilies().indexOf(getSystemFontFamily())
+                input.menu.labels: Qt.fontFamilies()
+            }
+
+            SliderRow {
+                title: dsTr("Position")
+                min: 0
+                max: 1
+                init: config.subtitleVerticalPosition
+                floatNumber: 1
+                leftRuler: dsTr("Bottom")
+                rightRuler: dsTr("Top")
+
+                onValueChanged: config.subtitleVerticalPosition = value
             }
 
             FileInputRow {
