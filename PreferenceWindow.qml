@@ -74,44 +74,41 @@ DPreferenceWindow {
             title: "Playback" 
             sectionId: "playback"
 
-            DGroupBox {
-                /* title: "On opening video:" */
-                tTitle: "On opening video:"
-                ExclusiveGroup { id: group }
-                Column {
-                    width: playback.width
-                    Row {
-                        spacing: 10
-                        DRadio {
-                            text: dsTr("Fit video to player")
-                            exclusiveGroup: group
-                            checked: config.playerAdjustType == "ADJUST_TYPE_VIDEO_WINDOW"
-                            onClicked: if(checked) { config.playerAdjustType = "ADJUST_TYPE_VIDEO_WINDOW" }
-                        }
-                        DRadio {
-                            text: dsTr("Fit player to video")
-                            exclusiveGroup: group
-                            checked: config.playerAdjustType == "ADJUST_TYPE_WINDOW_VIDEO"
-                            onClicked: if(checked) { config.playerAdjustType = "ADJUST_TYPE_WINDOW_VIDEO" }
-                        }
-                    }
-                    Row {
-                        spacing: 10                        
-                        DRadio {
-                            text: dsTr("Resize interface to last closed size")
-                            exclusiveGroup: group
-                            checked: config.playerAdjustType == "ADJUST_TYPE_LAST_TIME"
-                            onClicked: if(checked) { config.playerAdjustType = "ADJUST_TYPE_LAST_TIME" }
-                        }
-                        DRadio {
-                            text: dsTr("Enter fullscreen mode")
-                            checked: config.playerAdjustType == "ADJUST_TYPE_FULLSCREEN"
-                            exclusiveGroup: group
-                            onClicked: if(checked) { config.playerAdjustType = "ADJUST_TYPE_FULLSCREEN" }
-                        }
-                    }
+        Column {
+            width: playback.width
+            ExclusiveGroup { id: group }
+            
+            Row {
+                spacing: 10
+                DRadio {
+                    text: dsTr("Fit video to player")
+                    exclusiveGroup: group
+                    checked: config.playerAdjustType == "ADJUST_TYPE_VIDEO_WINDOW"
+                    onClicked: if(checked) { config.playerAdjustType = "ADJUST_TYPE_VIDEO_WINDOW" }
+                }
+                DRadio {
+                    text: dsTr("Fit player to video")
+                    exclusiveGroup: group
+                    checked: config.playerAdjustType == "ADJUST_TYPE_WINDOW_VIDEO"
+                    onClicked: if(checked) { config.playerAdjustType = "ADJUST_TYPE_WINDOW_VIDEO" }
                 }
             }
+            Row {
+                spacing: 10                        
+                DRadio {
+                    text: dsTr("Resize interface to last closed size")
+                    exclusiveGroup: group
+                    checked: config.playerAdjustType == "ADJUST_TYPE_LAST_TIME"
+                    onClicked: if(checked) { config.playerAdjustType = "ADJUST_TYPE_LAST_TIME" }
+                }
+                DRadio {
+                    text: dsTr("Enter fullscreen mode")
+                    checked: config.playerAdjustType == "ADJUST_TYPE_FULLSCREEN"
+                    exclusiveGroup: group
+                    onClicked: if(checked) { config.playerAdjustType = "ADJUST_TYPE_FULLSCREEN" }
+                }
+            }
+        }
 
             DCheckBox {
                 text: dsTr("Clear playlist when opening new file")
@@ -389,9 +386,9 @@ DPreferenceWindow {
                 onValueChanged: config.subtitleVerticalPosition = value
             }
 
-            FileInputRow {
-                title: "Subtitle directory:"
-            }
+            // FileInputRow {
+            //     title: "Subtitle directory:"
+            // }
         }
         SectionContent { 
             id: screenshot
