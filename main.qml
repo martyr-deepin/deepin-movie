@@ -79,6 +79,7 @@ Rectangle {
         y: windowView.y + (windowView.height - height) / 2
         width: 560
         height: 480
+        visible: true
     }
 
     // translation tools

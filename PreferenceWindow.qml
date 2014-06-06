@@ -341,11 +341,6 @@ DPreferenceWindow {
             sectionId: "screenshot"
             topSpaceHeight: 30
         }
-        SectionContent { 
-            id: about
-            title: "About" 
-            sectionId: "about"
-            topSpaceHeight: 30
-        }
+        AboutSection {}
     }
 }

@@ -1,7 +1,7 @@
 import QtQuick 2.1
 
 Item {
-	width: 300
+	width: 380
 	height: childrenRect.height
 
 	default property alias content: col.children
