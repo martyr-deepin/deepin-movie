@@ -187,19 +187,23 @@ MouseArea {
             return
         }
 
-        if (shouldPlayOrPause) {
-            if (player.playbackState == MediaPlayer.PausedState) {
-                play()
-            } else if (player.playbackState == MediaPlayer.PlayingState) {
-                pause()
+        if (config.othersLeftClick) {
+            if (shouldPlayOrPause) {
+                if (player.playbackState == MediaPlayer.PausedState) {
+                    play()
+                } else if (player.playbackState == MediaPlayer.PlayingState) {
+                    pause()
+                }
+            } else {
+                shouldPlayOrPause = true
             }
-        } else {
-            shouldPlayOrPause = true
         }
     }
 
     function doDoubleClick(mouse) {
-        toggleFullscreen()
+        if (config.othersDoubleClick) {
+            toggleFullscreen()
+        }
     }
 
     function urlToPlaylistItem(serie, url) {
@@ -358,9 +362,11 @@ MouseArea {
     Keys.onPressed: keys_responder.respondKey(event)
 
     onWheel: { 
-        wheel.angleDelta.y > 0 ? increaseVolumeByDelta(wheel.angleDelta.y / 120 * 0.05)
-                                :decreaseVolumeByDelta(-wheel.angleDelta.y / 120 * 0.05)
-        controlbar.emulateVolumeButtonHover()
+        if (config.othersWheel) {
+            wheel.angleDelta.y > 0 ? increaseVolumeByDelta(wheel.angleDelta.y / 120 * 0.05)
+                                    :decreaseVolumeByDelta(-wheel.angleDelta.y / 120 * 0.05)
+            controlbar.emulateVolumeButtonHover()
+        }
     }
 
     onPressed: {
