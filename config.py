@@ -77,7 +77,7 @@ DEFAULT_CONFIG = [
     ("fontSize", 20),
     ("fontFamily", ""),
     ("fontColor", "#ffffff"),
-    ("fontBorderSize", "1"),
+    ("fontBorderSize", 1),
     ("fontBorderColor", "black"),
     ("verticalPosition", 0.0)]),
 ("Others", [("leftClick", True),

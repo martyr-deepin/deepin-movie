@@ -2,6 +2,7 @@ import QtQuick 2.1
 import QtGraphicalEffects 1.0
 
 Item {
+	id: item
 	width: 1000
 	height: txt.implicitHeight
 
@@ -9,6 +10,8 @@ Item {
 	property alias fontColor: txt.color
 	property alias fontSize: txt.font.pixelSize
 	property alias fontFamily: txt.font.family
+	property alias fontBorderColor: glow.color
+	property alias fontBorderSize: glow.radius
 
 	Text {
 		id: txt
@@ -21,11 +24,16 @@ Item {
 	}
 
 	Glow {
+
+		Connections {
+			target: config
+			onSubtitleFontBorderSizeChanged: print(glow.radius)
+		}
+
+		id: glow
 		anchors.fill: parent
-		radius: 1
 		spread: 1
 		samples: 16
-		color: "black"
 		source: txt
 	}
 }

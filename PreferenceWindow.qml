@@ -347,6 +347,36 @@ DPreferenceWindow {
                 onMenuSelect: config.subtitleFontFamily = Qt.fontFamilies()[index]
             }
 
+            ComboBoxRow {
+                title: dsTr("Size") + ":"
+                input.parentWindow: window
+                input.selectIndex: input.menu.labels.indexOf(config.subtitleFontSize)
+                input.menu.labels: {
+                    var result = new Array()
+                    for (var i = 10; i < 31; i++) {
+                        result.push(i)
+                    }
+                    return result
+                }
+
+                onMenuSelect: config.subtitleFontSize = input.menu.labels[index]
+            }
+
+            ComboBoxRow {
+                title: dsTr("Border") + ":"
+                input.parentWindow: window
+                input.selectIndex: input.menu.labels.indexOf(config.subtitleFontBorderSize)
+                input.menu.labels: {
+                    var result = new Array()
+                    for (var i = 0; i < 6; i++) {
+                        result.push(i)
+                    }
+                    return result
+                }
+
+                onMenuSelect: config.subtitleFontBorderSize = input.menu.labels[index]
+            }
+
             SliderRow {
                 title: dsTr("Position")
                 min: 0
