@@ -259,6 +259,7 @@ Rectangle {
         source: movieInfo.movie_file
 
         subtitleFontSize: Math.floor(config.subtitleFontSize * main_window.width / windowView.defaultWidth)
+        subtitleFontFamily: config.subtitleFontFamily || getSystemFontFamily()
         subtitleFontColor: config.subtitleFontColor
         subtitleVerticalPosition: config.subtitleVerticalPosition
 

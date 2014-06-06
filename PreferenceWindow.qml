@@ -343,6 +343,8 @@ DPreferenceWindow {
                 input.selectIndex: config.subtitleFontFamily ? Qt.fontFamilies().indexOf(config.subtitleFontFamily) 
                                                             : Qt.fontFamilies().indexOf(getSystemFontFamily())
                 input.menu.labels: Qt.fontFamilies()
+
+                onMenuSelect: config.subtitleFontFamily = Qt.fontFamilies()[index]
             }
 
             SliderRow {

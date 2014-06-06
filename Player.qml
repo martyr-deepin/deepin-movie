@@ -11,6 +11,7 @@ Video {
     property alias subtitleContent: subtitle.text
     property alias subtitleFontSize: subtitle.fontSize
     property alias subtitleFontColor: subtitle.fontColor
+    property alias subtitleFontFamily: subtitle.fontFamily
     property real subtitleVerticalPosition: 0.2
 
     property bool isPreview: false

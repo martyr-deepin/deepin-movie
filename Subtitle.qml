@@ -8,6 +8,7 @@ Item {
 	property alias text: txt.text
 	property alias fontColor: txt.color
 	property alias fontSize: txt.font.pixelSize
+	property alias fontFamily: txt.font.family
 
 	Text {
 		id: txt
