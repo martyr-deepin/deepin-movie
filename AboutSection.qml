@@ -14,8 +14,8 @@ SectionContent {
     }
 
     DIcon { 
-    	width: 48
-    	height: 48
+    	width: 64
+    	height: 64
     	theme: "Deepin"
         icon: "deepin-movie"
         

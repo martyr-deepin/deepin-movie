@@ -73,42 +73,44 @@ DPreferenceWindow {
             id: playback
             title: "Playback" 
             sectionId: "playback"
+            bottomSpaceHeight: 10
 
-        Column {
-            width: playback.width
-            ExclusiveGroup { id: group }
-            
-            Row {
+            Column {
+                width: playback.width
                 spacing: 10
-                DRadio {
-                    text: dsTr("Fit video to player")
-                    exclusiveGroup: group
-                    checked: config.playerAdjustType == "ADJUST_TYPE_VIDEO_WINDOW"
-                    onClicked: if(checked) { config.playerAdjustType = "ADJUST_TYPE_VIDEO_WINDOW" }
+                ExclusiveGroup { id: group }
+
+                Row {
+                    spacing: 10
+                    DRadio {
+                        text: dsTr("Fit video to player")
+                        exclusiveGroup: group
+                        checked: config.playerAdjustType == "ADJUST_TYPE_VIDEO_WINDOW"
+                        onClicked: if(checked) { config.playerAdjustType = "ADJUST_TYPE_VIDEO_WINDOW" }
+                    }
+                    DRadio {
+                        text: dsTr("Fit player to video")
+                        exclusiveGroup: group
+                        checked: config.playerAdjustType == "ADJUST_TYPE_WINDOW_VIDEO"
+                        onClicked: if(checked) { config.playerAdjustType = "ADJUST_TYPE_WINDOW_VIDEO" }
+                    }
                 }
-                DRadio {
-                    text: dsTr("Fit player to video")
-                    exclusiveGroup: group
-                    checked: config.playerAdjustType == "ADJUST_TYPE_WINDOW_VIDEO"
-                    onClicked: if(checked) { config.playerAdjustType = "ADJUST_TYPE_WINDOW_VIDEO" }
+                Row {
+                    spacing: 10                        
+                    DRadio {
+                        text: dsTr("Resize interface to last closed size")
+                        exclusiveGroup: group
+                        checked: config.playerAdjustType == "ADJUST_TYPE_LAST_TIME"
+                        onClicked: if(checked) { config.playerAdjustType = "ADJUST_TYPE_LAST_TIME" }
+                    }
+                    DRadio {
+                        text: dsTr("Enter fullscreen mode")
+                        checked: config.playerAdjustType == "ADJUST_TYPE_FULLSCREEN"
+                        exclusiveGroup: group
+                        onClicked: if(checked) { config.playerAdjustType = "ADJUST_TYPE_FULLSCREEN" }
+                    }
                 }
             }
-            Row {
-                spacing: 10                        
-                DRadio {
-                    text: dsTr("Resize interface to last closed size")
-                    exclusiveGroup: group
-                    checked: config.playerAdjustType == "ADJUST_TYPE_LAST_TIME"
-                    onClicked: if(checked) { config.playerAdjustType = "ADJUST_TYPE_LAST_TIME" }
-                }
-                DRadio {
-                    text: dsTr("Enter fullscreen mode")
-                    checked: config.playerAdjustType == "ADJUST_TYPE_FULLSCREEN"
-                    exclusiveGroup: group
-                    onClicked: if(checked) { config.playerAdjustType = "ADJUST_TYPE_FULLSCREEN" }
-                }
-            }
-        }
 
             DCheckBox {
                 text: dsTr("Clear playlist when opening new file")
@@ -145,7 +147,7 @@ DPreferenceWindow {
             }
         }
 
-        SectionContent { title: "Keyboard"; sectionId: ""; topSpaceHeight: 30 }
+        SectionContent { title: "Keyboard"; sectionId: ""; topSpaceHeight: 30; bottomSpaceHeight: 10 }
 
         SectionContent { 
             id: keyboard_playback
@@ -153,6 +155,7 @@ DPreferenceWindow {
             sectionId: "keyboard_playback"
             showSep: false
             topSpaceHeight: 5
+            bottomSpaceHeight: 10
             anchors.left: parent.left
             anchors.leftMargin: 5
 
@@ -194,7 +197,8 @@ DPreferenceWindow {
             title: "Frame/Sound" 
             sectionId: "keyboard_frame_sound"
             showSep: false
-            topSpaceHeight: 5
+            topSpaceHeight: 10
+            bottomSpaceHeight: 10
             anchors.left: parent.left
             anchors.leftMargin: 5
 
@@ -234,7 +238,8 @@ DPreferenceWindow {
             title: "Files" 
             sectionId: "keyboard_files"
             showSep: false
-            topSpaceHeight: 5
+            topSpaceHeight: 10
+            bottomSpaceHeight: 10
             anchors.left: parent.left
             anchors.leftMargin: 5
 
@@ -262,7 +267,8 @@ DPreferenceWindow {
             title: "Subtitle" 
             sectionId: "keyboard_subtitle"
             showSep: false
-            topSpaceHeight: 5
+            topSpaceHeight: 10
+            bottomSpaceHeight: 10
             anchors.left: parent.left
             anchors.leftMargin: 5
 
@@ -294,7 +300,8 @@ DPreferenceWindow {
             title: "Other" 
             sectionId: "keyboard_other"
             showSep: false
-            topSpaceHeight: 5
+            topSpaceHeight: 10
+            bottomSpaceHeight: 10
             anchors.left: parent.left
             anchors.leftMargin: 5
 
@@ -329,6 +336,7 @@ DPreferenceWindow {
             title: "Subtitles" 
             sectionId: "subtitles"
             topSpaceHeight: 30
+            bottomSpaceHeight: 10
 
             DCheckBox {
                 text: "Load subtitles automatically"

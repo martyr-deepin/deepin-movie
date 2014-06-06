@@ -40,7 +40,8 @@ from PyQt5 import QtCore
 from PyQt5.QtCore import QCoreApplication
 if os.name == 'posix':
     QCoreApplication.setAttribute(QtCore.Qt.AA_X11InitThreads, True)
-    
+ 
+# from PyQt5.QtGui import QFont   
 from PyQt5.QtCore import pyqtSlot, QObject
 from PyQt5.QtWidgets import QApplication, QInputDialog
 
@@ -97,6 +98,7 @@ class InputDialog(QObject):
         
 if __name__ == "__main__":
     app = QApplication(sys.argv)    
+    # app.setFont(QFont("Arail"))
     
     movie_file = os.path.realpath(sys.argv[1]) if len(sys.argv) >= 2 else ""
     movie_info = MovieInfo()

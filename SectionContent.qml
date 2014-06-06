@@ -5,7 +5,8 @@ Item {
 	height: childrenRect.height
 
 	default property alias content: col.children
-	property alias topSpaceHeight: space.height
+	property alias topSpaceHeight: topSpace.height
+	property alias bottomSpaceHeight: bottomSpace.height
 
 	property string sectionId
 	property alias title: settings_title.title
@@ -16,18 +17,19 @@ Item {
 		onClicked: parent.focus = true
 	}
 
-	Item { id: space; width: parent.width; height: 0 }
+	Item { id: topSpace; width: parent.width; height: 0 }
 
-	SettingsTitle { id: settings_title; anchors.top: space.bottom }
+	SettingsTitle { id: settings_title; anchors.top: topSpace.bottom }
+
+	Item { id: bottomSpace; width: parent.width; height: 0; anchors.top: settings_title.bottom }
 
 	Column {
 		id: col
 		height: childrenRect.height
 		spacing: 10
-		anchors.top: settings_title.bottom
+		anchors.top: bottomSpace.bottom
 		anchors.left: parent.left
 		anchors.right: parent.right
-		anchors.topMargin: 5
 		anchors.leftMargin: 5
 		anchors.rightMargin: 5
 	}

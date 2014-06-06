@@ -10,8 +10,9 @@ Item {
 
 	signal menuSelect (int index)
 
-	DssH1 {
+	Text {
 		id: title
+		color: "#787878"
 		anchors.left: parent.left
 		anchors.verticalCenter: parent.verticalCenter
 	}
