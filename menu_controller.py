@@ -20,10 +20,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import os
 from PyQt5.QtCore import QObject, pyqtSlot, pyqtSignal
 from PyQt5.QtGui import QCursor
 from deepin_menu.menu import Menu, CheckableMenuItem
 
+from movie_info import movie_info, get_subtitle_from_movie
 from config import *
 from i18n import _
 
@@ -101,6 +103,22 @@ right_click_menu = [
     ("_information", _("Information")),
 ]
 
+FILE_START_TAG = "[[[[["
+FILE_END_TAG = "]]]]]"
+def _subtitle_menu_items_from_files(files):
+    def checkable_item_from_file(f, flag=[True,]):
+        item = CheckableMenuItem(
+                "_subtitles:radio:%s%s%s" % (FILE_START_TAG, f, FILE_END_TAG), 
+                os.path.basename(f),
+                flag[0])
+        flag[0] = False
+        return item
+    return map(checkable_item_from_file, filter(lambda x: x != "", files))
+
+def _subtitle_file_from_menu_item_id(id):
+    return id[id.index(FILE_START_TAG) + len(FILE_START_TAG):
+                                        id.index(FILE_END_TAG)]
+
 class MenuController(QObject):
     
     clockwiseRotate = pyqtSignal()
@@ -116,6 +134,7 @@ class MenuController(QObject):
     staysOnTop = pyqtSignal(bool,arguments=["onTop"])
     showPreference = pyqtSignal()
     showMovieInformation = pyqtSignal()
+    subtitleSelected = pyqtSignal(str,arguments=["subtitle"])
     
     def __init__(self, window):
         super(MenuController, self).__init__()
@@ -191,6 +210,8 @@ class MenuController(QObject):
             config.playerPlayOrderType = ORDER_TYPE_PLAYLIST_CYCLE
         elif _id == "_sound_muted":
             config.playerMuted = _checked
+        elif _id.startswith("_subtitles:radio"):
+            self.subtitleSelected.emit(_subtitle_file_from_menu_item_id(_id))
         elif _id == "_preferences":
             self.showPreference.emit()
         elif _id == "_information":
@@ -239,6 +260,9 @@ class MenuController(QObject):
 
         self.menu.getItemById("_subtitle_hide").checked = \
             config.playerSubtitleHide
+        subtitles = get_subtitle_from_movie(movie_info.movie_file)
+        subtitles = _subtitle_menu_items_from_files(subtitles)
+        self.menu.getItemById("_subtitle_choose").setSubMenu(Menu(subtitles))
 
         self.menu.itemClicked.connect(self._menu_item_invoked)
         self.menu.showRectMenu(QCursor.pos().x(), QCursor.pos().y())

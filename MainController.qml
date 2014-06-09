@@ -466,8 +466,13 @@ MouseArea {
 
             if (drop.hasUrls) {
                 var file_path = drop.urls[0].substring(7)
-                movieInfo.movie_file = decodeURIComponent(file_path)
-                addPlayListItem(file_path)
+                file_path = decodeURIComponent(file_path)
+                if (_utils.fileIsSubtitle(file_path)) {
+                    movieInfo.subtitle_file = file_path
+                } else  {
+                    movieInfo.movie_file = file_path
+                    addPlayListItem(file_path)
+                }
             }
         }
     }

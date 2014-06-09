@@ -27,6 +27,7 @@ from PyQt5.QtGui import QKeySequence
 from PyQt5.QtCore import QObject, pyqtSlot, pyqtProperty
 from PyQt5.QtDBus import QDBusInterface, QDBusConnection
 
+from subtitles import *
 
 def _longest_match(*strs):
     shortest_str = min(strs, key=len)
@@ -111,6 +112,10 @@ class Utils(QObject):
         clipboard = QApplication.clipboard()
         clipboard.clear(mode=clipboard.Clipboard)
         clipboard.setText(text, mode=clipboard.Clipboard)
+
+    @pyqtSlot(str,result=bool)
+    def fileIsSubtitle(self, file_path):
+        return get_file_type(file_path) in (FILE_TYPE_ASS, FILE_TYPE_SRT)
 
 utils = Utils()
 if __name__ == '__main__':

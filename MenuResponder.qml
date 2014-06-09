@@ -66,6 +66,8 @@ Connections {
         }
     }
 
+    onSubtitleSelected: movieInfo.subtitle_file = subtitle
+
     onShowPreference: { preference_window.show() }
 
     onShowMovieInformation: { player.source && player.hasVideo && info_window.show() }

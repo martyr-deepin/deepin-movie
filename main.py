@@ -48,7 +48,7 @@ from PyQt5.QtWidgets import QApplication, QInputDialog
 from window import Window
 from database import database
 from config import config
-from movie_info import MovieInfo
+from movie_info import movie_info
 from browser import Browser
 from utils import utils
 from constant import MAIN_QML
@@ -101,7 +101,6 @@ if __name__ == "__main__":
     # app.setFont(QFont("Arail"))
     
     movie_file = os.path.realpath(sys.argv[1]) if len(sys.argv) >= 2 else ""
-    movie_info = MovieInfo()
     
     windowView = Window()
     # page_manager = PageManager(windowView)

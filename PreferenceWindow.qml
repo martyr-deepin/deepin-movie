@@ -365,7 +365,7 @@ DPreferenceWindow {
                 title: dsTr("Border Width")
                 min: 0
                 max: 6
-                Component.onCompleted: setValue(config.subtitleFontBorderSize)
+                value: config.subtitleFontBorderSize
 
                 onValueChanged: config.subtitleFontBorderSize = value
             }

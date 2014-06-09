@@ -36,13 +36,12 @@ def get_subtitle_from_movie(movie_file):
     '''
     if movie_file.startswith("file://"): movie_file = movie_file[7:]
     name_without_ext = movie_file.rpartition(".")[0]
-    if name_without_ext == "": return ""
+    if name_without_ext == "": yield ""
     for ext in SUPPORTED_FILE_TYPES:
         try_sub_name = "%s.%s" % (name_without_ext, ext)
-        print try_sub_name
         if os.path.exists(try_sub_name):
-            return try_sub_name
-    return ""
+            yield try_sub_name
+    yield ""
 
 class MovieInfo(QObject):
     movieSourceChanged = pyqtSignal(str, arguments=["movie_file",])
@@ -121,8 +120,11 @@ class MovieInfo(QObject):
         self.movieHeightChanged.emit(self.media_height)
         self.movieDurationChanged.emit(self.media_duration) 
 
-        self.subtitle_file = get_subtitle_from_movie(self.filepath)
+        self.subtitle_file = get_subtitle_from_movie(self.filepath).next()
 
     @pyqtSlot(int, result=str)     
     def get_subtitle_at(self, timestamp):
         return self._parser.get_subtitle_at(timestamp)
+
+
+movie_info = MovieInfo()
