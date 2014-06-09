@@ -90,7 +90,7 @@ Window {
             id: tipText
             anchors.centerIn: parent
             font.pixelSize: 12
-            color: "#faca57"
+            color: "white"
         }
     }
 }
