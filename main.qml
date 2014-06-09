@@ -360,6 +360,7 @@ Rectangle {
         id: titlebar
         visible: false
         window: windowView
+        showMaximizButton: root.state != "fullscreen"
         title: movieInfo.movie_title
         anchors.horizontalCenter: main_window.horizontalCenter
 
