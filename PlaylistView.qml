@@ -204,8 +204,10 @@ ListView {
 					onEntered: {
 					    delete_button.visible = true
 					    delete_button.source = "image/delete_hover.png"
+					    tooltip.showTip(itemName)
 					}
 					onExited: {
+						tooltip.hideTip()
 					    delete_button.visible = false
 					    delete_button.source = "image/delete_normal.png"
 					}

@@ -40,7 +40,12 @@ Rectangle {
 
     Constants { id: program_constants }
 
-    ToolTip { id: tooltip }
+    ToolTip { 
+        id: tooltip 
+
+        window: windowView
+        screenSize: primaryRect
+    }
 
     OpenFileDialog {
         id: open_file_dialog
