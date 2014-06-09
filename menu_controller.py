@@ -96,8 +96,9 @@ right_click_menu = [
     ("_frame", _("Frame"), (), frame_sub_menu),
     ("_sound", _("Sound"), (), sound_sub_menu),
     ("_subtitle", _("Subtitle"), (), subtitle_sub_menu),
-    ("_information", _("Information")),
+    None,
     ("_preferences", _("Preferences")),
+    ("_information", _("Information")),
 ]
 
 class MenuController(QObject):
@@ -114,6 +115,7 @@ class MenuController(QObject):
     openDialog = pyqtSignal(str)
     staysOnTop = pyqtSignal(bool,arguments=["onTop"])
     showPreference = pyqtSignal()
+    showMovieInformation = pyqtSignal()
     
     def __init__(self, window):
         super(MenuController, self).__init__()
@@ -191,6 +193,8 @@ class MenuController(QObject):
             config.playerMuted = _checked
         elif _id == "_preferences":
             self.showPreference.emit()
+        elif _id == "_information":
+            self.showMovieInformation.emit()
 
     @pyqtSlot()
     def show_menu(self):

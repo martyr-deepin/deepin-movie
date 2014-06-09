@@ -22,6 +22,7 @@
 
 import os
 import json
+from PyQt5.QtWidgets import QApplication
 from PyQt5.QtGui import QKeySequence
 from PyQt5.QtCore import QObject, pyqtSlot, pyqtProperty
 from PyQt5.QtDBus import QDBusInterface, QDBusConnection
@@ -104,6 +105,12 @@ class Utils(QObject):
     @pyqtSlot(int, int, result=str)
     def keyEventToQKeySequenceString(self, modifier, key):
         return QKeySequence(modifier + key).toString()
+
+    @pyqtSlot(str)
+    def copyToClipboard(self, text):
+        clipboard = QApplication.clipboard()
+        clipboard.clear(mode=clipboard.Clipboard)
+        clipboard.setText(text, mode=clipboard.Clipboard)
 
 utils = Utils()
 if __name__ == '__main__':

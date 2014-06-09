@@ -81,6 +81,18 @@ Rectangle {
         height: 480
     }
 
+    InfomationWindow {
+        id: info_window
+        title: movieInfo.movie_title
+        fileType: movieInfo.movie_type
+        fileSize: formatSize(movieInfo.movie_size)
+        movieResolution: "%1x%2".arg(movieInfo.movie_width).arg(movieInfo.movie_height)
+        movieDuration: formatTime(movieInfo.movie_duration)
+        filePath: formatFilePath(movieInfo.movie_file)
+
+        onCopyToClipboard: _utils.copyToClipboard(text)
+    }
+
     // translation tools
     property var dssLocale: DLocale {
         domain: "deepin-movie"
@@ -120,6 +132,25 @@ Rectangle {
         if (sec < 10) {sec = "0" + sec;}
         if (!hr) {hr = "00";}
         return hr + ':' + min + ':' + sec;
+    }
+
+    function formatSize(capacity) {
+        var teras = capacity / (1024 * 1024 * 1024 * 1024)
+        capacity = capacity % (1024 * 1024 * 1024 * 1024)
+        var gigas = capacity / (1024 * 1024 * 1024)
+        capacity = capacity % (1024 * 1024 * 1024)
+        var megas = capacity / (1024 * 1024)
+        capacity = capacity % (1024 * 1024)
+        var kilos = capacity / 1024
+
+        return Math.floor(teras) ? teras.toFixed(1) + "TB" :
+                Math.floor(gigas) ? gigas.toFixed(1) + "GB":
+                Math.floor(megas) ? megas.toFixed(1) + "MB" :
+                kilos + "KB"
+    }
+
+    function formatFilePath(file_path) {
+        return file_path.indexOf("file://") != -1 ? file_path.substring(7) : file_path
     }
 
     function showControls() {

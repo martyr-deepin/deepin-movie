@@ -67,4 +67,6 @@ Connections {
     }
 
     onShowPreference: { preference_window.show() }
+
+    onShowMovieInformation: { player.source && player.hasVideo && info_window.show() }
 }
