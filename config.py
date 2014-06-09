@@ -79,7 +79,7 @@ DEFAULT_CONFIG = [
     ("fontColor", "#ffffff"),
     ("fontBorderSize", 1.0),
     ("fontBorderColor", "black"),
-    ("verticalPosition", 0.0)]),
+    ("verticalPosition", 0.05)]),
 ("Others", [("leftClick", True),
     ("doubleClick", True), 
     ("wheel", True)]),

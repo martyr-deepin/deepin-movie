@@ -9,10 +9,7 @@ Item {
 	property alias min: spinner.min
 	property alias max: spinner.max
 	property alias step: spinner.step
-
-	signal valueChanged (int value)
-
-	function setValue(i) { spinner.setValue(i) }
+	property alias value: spinner.value
 
 	Text {
 		id: title
@@ -27,7 +24,5 @@ Item {
 		width: 200
 		anchors.right: parent.right
 		anchors.verticalCenter: parent.verticalCenter
-
-		onValueChanged: parent.valueChanged(value)
 	}
 }

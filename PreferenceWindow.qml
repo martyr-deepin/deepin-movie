@@ -356,7 +356,7 @@ DPreferenceWindow {
                 title: dsTr("Size")
                 min: 10
                 max: 30
-                Component.onCompleted: setValue(config.subtitleFontSize)
+                value: config.subtitleFontSize
 
                 onValueChanged: config.subtitleFontSize = value
             }
