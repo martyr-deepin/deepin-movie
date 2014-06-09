@@ -19,6 +19,7 @@ Item {
 	Text {
 		id: title
 		color: "#787878"
+		font.pixelSize: 12
 		anchors.left: parent.left
 		anchors.verticalCenter: parent.verticalCenter
 	}
