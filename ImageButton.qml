@@ -1,23 +1,10 @@
 import QtQuick 2.1
+import Deepin.Widgets 1.0
 
-Image {
-    property string imageName: ""
-    source: imageName + "_normal.png"
-    signal clicked
+DImageButton {
+    property string imageName
 
-    MouseArea {
-        id: mouseArea
-        anchors.fill: parent
-        hoverEnabled: true
-        
-        onEntered: {
-            parent.source = imageName + "_hover.png"
-        }
-        onExited: {
-            parent.source = imageName + "_normal.png"
-        }
-        onPressed: {parent.source = imageName + "_press.png"}
-        onReleased: {parent.source = imageName + "_hover.png"}
-        onClicked: {parent.clicked()}
-    }
+    normal_image: imageName + "_normal.png"
+    hover_image: imageName + "_hover.png"
+    press_image: imageName + "_press.png"
 }

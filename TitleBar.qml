@@ -5,7 +5,7 @@ DragableArea {
     id: titlebar
     height: program_constants.titlebarHeight
 
-    property bool showMaximizButton: true
+    property bool windowNormalState: true
     property alias title: title_text.text
 
     signal minButtonClicked ()
@@ -76,7 +76,10 @@ DragableArea {
 
         Row {
             id: windowButtonArea
-            anchors {right: parent.right}
+            anchors.top: parent.top
+            anchors.right: parent.right
+            anchors.topMargin: 5
+            anchors.rightMargin: 5
 
             ImageButton {
                 id: minButton
@@ -86,8 +89,7 @@ DragableArea {
 
             ImageButton {
                 id: maxButton
-                imageName: "image/window_max"
-                visible: titlebar.showMaximizButton
+                imageName: titlebar.windowNormalState ? "image/window_max" : "image/window_unmax"
                 onClicked: { titlebar.maxButtonClicked() }
             }
 
