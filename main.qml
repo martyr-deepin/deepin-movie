@@ -49,10 +49,12 @@ Rectangle {
 
     OpenFileDialog {
         id: open_file_dialog
-        folder: _utils.homeDir
+        folder: database.lastOpenedPath || _utils.homeDir
 
         onAccepted: {
             if (fileUrls.length > 0) {
+                database.lastOpenedPath = fileUrls[0] // record last opened path
+
                 for (var i = 0; i < fileUrls.length; i++) {
                     var fileUrl = fileUrls[i] + ""
                     main_controller.addPlayListItem(fileUrl.substring(7))
@@ -65,9 +67,11 @@ Rectangle {
     OpenFolderDialog {
         id: open_folder_dialog
 
-        folder: _utils.homeDir
+        folder: database.lastOpenedPath || _utils.homeDir
 
         onAccepted: {
+            database.lastOpenedPath = fileUrl // record last opened path
+
             var fileUrls = _utils.getAllFilesInDir(fileUrl)
             if (fileUrls.length > 0) {
                 for (var i = 0; i < fileUrls.length; i++) {
@@ -307,6 +311,7 @@ Rectangle {
 
         // onSourceChanged doesn't ensures that the file is playable, this one did.
         onPlaying: { 
+            main_controller.setWindowTitle(movieInfo.movie_title)
             lastSource = source
             database.lastPlayedFile = source 
 

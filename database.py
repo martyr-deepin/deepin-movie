@@ -29,6 +29,7 @@ from PyQt5.QtCore import pyqtSlot, pyqtSignal, pyqtProperty, QObject
 class Database(QObject):
     localPlaylistChanged = pyqtSignal(str)
     lastPlayedFileChanged = pyqtSignal(str)
+    lastOpenedPathChanged = pyqtSignal(str)
     lastWindowSizeChanged = pyqtSignal(str)
 
     def __init__(self):
@@ -92,6 +93,17 @@ class Database(QObject):
     def lastPlayedFile(self, value):
         self.setValue("last_played_file", value)
         self.lastPlayedFileChanged.emit(value)
+
+    @pyqtProperty(str,notify=lastOpenedPathChanged)
+    def lastOpenedPath(self):
+        return self.getValue("last_opened_path") or ""
+
+    @lastOpenedPath.setter
+    def lastOpenedPath(self, value):
+        value = value[7:] if value.startswith("file://") else value
+        value = os.path.dirname(value) if os.path.isfile(value) else value
+        self.setValue("last_opened_path", value)
+        self.lastOpenedPathChanged.emit(value)
 
     @pyqtProperty(str,notify=lastWindowSizeChanged)
     def lastWindowSize(self):
