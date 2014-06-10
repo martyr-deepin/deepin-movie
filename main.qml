@@ -386,6 +386,14 @@ Rectangle {
 
         anchors.horizontalCenter: main_window.horizontalCenter
 
+        Timer {
+            id: delay_seek_timer
+            interval: 500
+            property int destPos
+
+            onTriggered: player.seek(destPos)
+        }
+
         onPreviousButtonClicked: main_controller.playPrevious()
         onNextButtonClicked: main_controller.playNext()
 
@@ -399,7 +407,10 @@ Rectangle {
         onPlayStopButtonClicked: { root.reset() }
         onOpenFileButtonClicked: { main_controller.openFile() }
         onPlaylistButtonClicked: { hideControls(); playlist.toggleShow() }
-        onPercentageSet: player.seek(movieInfo.movie_duration * percentage)
+        onPercentageSet: {
+            delay_seek_timer.destPos = movieInfo.movie_duration * percentage
+            delay_seek_timer.restart()
+        }
     }
 
     Playlist {
