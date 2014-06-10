@@ -57,14 +57,14 @@ Video {
         angle: 180
     }
 
-    onPlaying: { pause_notify.visible = false }
-    onPaused: { if(!isPreview) pause_notify.visible = true }
+    // onPlaying: { pause_notify.visible = false }
+    // onPaused: { if(!isPreview) pause_notify.visible = true }
 
-    PauseNotify { 
-        id: pause_notify
-         visible: false
-         anchors.centerIn: parent 
-    }
+    // PauseNotify { 
+    //     id: pause_notify
+    //      visible: false
+    //      anchors.centerIn: parent 
+    // }
 
     Subtitle { 
         id: subtitle
