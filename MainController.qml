@@ -289,13 +289,13 @@ MouseArea {
     function forwardByDelta(delta) {
         player.playbackRate = 1.0
         player.seek(player.position + delta)
-        notifybar.show("image/notify_forward.png", "快进至 " + formatTime(player.position))
+        notifybar.show(dsTr("Forward To ") + formatTime(player.position))
     }
 
     function backwardByDelta(delta) {
         player.playbackRate = 1.0
         player.seek(player.position - delta)
-        notifybar.show("image/notify_backward.png", "快退至 " + formatTime(player.position))
+        notifybar.show(dsTr("Backward To ") + formatTime(player.position))
     }
 
     function forward() { forwardByDelta(5000) }
@@ -303,27 +303,27 @@ MouseArea {
 
     function speedUp() { 
         player.playbackRate = Math.min(2.0, (player.playbackRate + 0.1).toFixed(1))
-        notifybar.show("image/notify_forward.png", dsTr("Playback Rate: ") + player.playbackRate + dsTr("(Press %1 to restore)").arg(config.hotkeysPlayRestoreSpeed))
+        notifybar.show(dsTr("Playback Rate: ") + player.playbackRate + dsTr("(Press %1 to restore)").arg(config.hotkeysPlayRestoreSpeed))
     }
 
     function slowDown() { 
         player.playbackRate = Math.max(0.1, (player.playbackRate - 0.1).toFixed(1))
-        notifybar.show("image/notify_backward.png", dsTr("Playback Rate: ") + player.playbackRate + dsTr("(Press %1 to restore)").arg(config.hotkeysPlayRestoreSpeed))
+        notifybar.show(dsTr("Playback Rate: ") + player.playbackRate + dsTr("(Press %1 to restore)").arg(config.hotkeysPlayRestoreSpeed))
     }
 
     function restoreSpeed() {
         player.playbackRate = 1
-        notifybar.show("", dsTr("Playback Rate: ") + player.playbackRate)
+        notifybar.show(dsTr("Playback Rate: ") + player.playbackRate)
     }
 
     function increaseVolumeByDelta(delta) {
         config.playerVolume = Math.min(player.volume + delta, 1.0)
-        notifybar.show("image/notify_volume.png", "音量: " + Math.round(player.volume * 100) + "%")
+        notifybar.show(dsTr("Volume: ") + Math.round(player.volume * 100) + "%")
     }
 
     function decreaseVolumeByDelta(delta) {
         config.playerVolume = Math.max(player.volume - delta, 0.0)
-        notifybar.show("image/notify_volume.png", "音量: " + Math.round(player.volume * 100) + "%")
+        notifybar.show(dsTr("Volume: ") + Math.round(player.volume * 100) + "%")
     }
 
     function increaseVolume() { increaseVolumeByDelta(0.05) }
@@ -331,7 +331,7 @@ MouseArea {
 
     function setVolume(volume) {
         config.playerVolume = volume
-        notifybar.show("image/notify_volume.png", "音量: " + Math.round(player.volume * 100) + "%")
+        notifybar.show(dsTr("Volume: ") + Math.round(player.volume * 100) + "%")
     }
 
     function setMute(muted) {
@@ -339,9 +339,9 @@ MouseArea {
         config.save("Player", "muted", muted)
 
         if (player.muted) {
-            notifybar.show("image/notify_volume.png", "静音")
+            notifybar.show(dsTr("Muted"))
         } else {
-            notifybar.show("image/notify_volume.png", "音量: " + Math.round(player.volume * 100) + "%")
+            notifybar.show(dsTr("Volume: ") + Math.round(player.volume * 100) + "%")
         }
     }
 

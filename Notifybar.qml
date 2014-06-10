@@ -1,44 +1,49 @@
 import QtQuick 2.1
+import QtGraphicalEffects 1.0
 
-Rectangle {
+Item {
     id: notify
-    property string notifyIcon: ""
-    property string notifyText: ""
-    opacity: 0
-    visible: true
+    width: txt.width
+    height: txt.height
+    visible: false
     
-    function show(icon, text) {
-        notifyIcon = icon
-        notifyText = text
-        opacity = 1
+    function show(text) {
+        visible = true
+        txt.text = text
         
-        hidingNotifyTimer.restart()
+        hide_notify_timer.restart()
     }
-    
-    Row {
-        spacing: 5
-        
-        Image {
-            anchors.verticalCenter: parent.verticalCenter
-            source: notifyIcon
-            visible: notify.visible
-        }
-        
+
+    Item {
+        id: background
+        width: txt.implicitWidth + glow.radius * 2
+        height: txt.implicitHeight + glow.radius * 2
+
         Text {
-            anchors.verticalCenter: parent.verticalCenter
-            text: notifyText
-            font.pixelSize: 17
-            color: "#80e6ff"
+            id: txt
+            font.pixelSize: 16
+            color: "#4fbbff"
             style: Text.Outline
-            styleColor: Qt.rgba(0, 0, 0, 0.6)
-            visible: notify.visible
+            styleColor: Qt.rgba(0, 0, 0, 0.2)
+
+            anchors.centerIn: parent
         }
+    }
+
+    Glow {
+        id: glow
+        anchors.fill: background
+        radius: 8
+        spread: 0.2
+        samples: 16
+        color: "black"
+        source: background
     }
     
     Timer {
-        id: hidingNotifyTimer
+        id: hide_notify_timer
         interval: 2000
         repeat: false
-        onTriggered: { notify.opacity = 0 }
+        onTriggered: { notify.visible = false }
     }   
 }
