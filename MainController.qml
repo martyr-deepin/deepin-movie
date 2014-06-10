@@ -289,13 +289,13 @@ MouseArea {
     function forwardByDelta(delta) {
         player.playbackRate = 1.0
         player.seek(player.position + delta)
-        notifybar.show(dsTr("Forward To ") + formatTime(player.position))
+        notifybar.show(dsTr("Forward To ") + formatTime(player.position) + "  %1%".arg(Math.floor(player.position / movieInfo.movie_duration * 100)))
     }
 
     function backwardByDelta(delta) {
         player.playbackRate = 1.0
         player.seek(player.position - delta)
-        notifybar.show(dsTr("Backward To ") + formatTime(player.position))
+        notifybar.show(dsTr("Backward To ") + formatTime(player.position) + "  %1%".arg(Math.floor(player.position / movieInfo.movie_duration * 100)))
     }
 
     function forward() { forwardByDelta(5000) }
