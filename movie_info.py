@@ -93,6 +93,7 @@ class MovieInfo(QObject):
 
     @subtitle_file.setter
     def subtitle_file(self, value):
+        value = value[7:] if value.startswith("file://") else value
         self._subtitle_file = value
         self.subtitleChanged.emit(value)
         self._parser = Parser(value)

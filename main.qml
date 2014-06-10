@@ -47,19 +47,31 @@ Rectangle {
         screenSize: primaryRect
     }
 
+    QtObject {
+        id: purposes
+        property string openVideoFile: "open_video_file"
+        property string openSubtitleFile: "open_subtitle_file"
+    }
+
     OpenFileDialog {
         id: open_file_dialog
         folder: database.lastOpenedPath || _utils.homeDir
+
+        property string purpose: purposes.OpenVideoFile
 
         onAccepted: {
             if (fileUrls.length > 0) {
                 database.lastOpenedPath = fileUrls[0] // record last opened path
 
-                for (var i = 0; i < fileUrls.length; i++) {
-                    var fileUrl = fileUrls[i] + ""
-                    main_controller.addPlayListItem(fileUrl.substring(7))
+                if (purpose == purposes.openVideoFile) {
+                    for (var i = 0; i < fileUrls.length; i++) {
+                        var fileUrl = fileUrls[i] + ""
+                        main_controller.addPlayListItem(fileUrl.substring(7))
+                    }
+                    movieInfo.movie_file = fileUrls[0]                    
+                } else if (purpose == purposes.openSubtitleFile) {
+                    movieInfo.subtitle_file = fileUrls[0]
                 }
-                movieInfo.movie_file = fileUrls[0]
             }
         }
     }

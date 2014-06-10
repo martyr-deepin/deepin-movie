@@ -66,6 +66,8 @@ Connections {
         }
     }
 
+    onOpenSubtitleFile: { open_file_dialog.purpose = purposes.openSubtitleFile; open_file_dialog.open() }
+
     onSubtitleSelected: movieInfo.subtitle_file = subtitle
 
     onShowPreference: { preference_window.show() }

@@ -349,7 +349,7 @@ MouseArea {
         setMute(!player.muted)
     }
 
-    function openFile() { open_file_dialog.open() }
+    function openFile() { open_file_dialog.purpose = purposes.openVideoFile; open_file_dialog.open() }
     function openDir() { open_folder_dialog.open() }
 
     function playNext() { movieInfo.movie_file = playlist.getNextSource() || "" }
