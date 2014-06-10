@@ -43,7 +43,7 @@ def get_subtitle_from_movie(movie_file):
     for ext in SUPPORTED_FILE_TYPES:
         try_sub_name = "%s*.%s" % (name_without_ext, ext)
         result += glob.glob(try_sub_name)
-    return result
+    return result or ("",)
 
 class MovieInfo(QObject):
     movieSourceChanged = pyqtSignal(str, arguments=["movie_file",])
