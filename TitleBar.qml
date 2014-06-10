@@ -56,28 +56,22 @@ DragableArea {
 
         TabButton {
             id: btn
-            text: "深度影院"
+            text: dsTr("Deepin Movie")
 
             anchors.left: appIcon.right
             anchors.leftMargin: 10
             anchors.verticalCenter: appIcon.verticalCenter
         }
 
-        Item {
-            width: parent.width - appIcon.width - btn.width - windowButtonArea.width
-            height: title_text.height
+        Text {
+            id: title_text
+            width: Math.min(titlebar.width - (btn.x + btn.width + 20) * 2, implicitWidth)
+            font.pixelSize: 15
+            color: Qt.rgba(1, 1, 1, 0.8)
+            elide: Text.ElideRight
             
             anchors.verticalCenter: appIcon.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
-            
-            Text {
-                id: title_text
-                font.pixelSize: 13
-                color: Qt.rgba(1, 1, 1, 0.8)
-                elide: Text.ElideRight
-                
-                anchors.centerIn: parent
-            }
         }
 
         Row {

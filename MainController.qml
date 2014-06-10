@@ -71,6 +71,7 @@ MouseArea {
         }
 
         onMovieSourceChanged: {
+            setWindowTitle(movieInfo.movie_title)
             var last_watched_pos = database.fetch_video_position(player.source)
             if (config.playerAutoPlayFromLast && Math.abs(last_watched_pos - movieInfo.movie_duration) > 1000) {
                 seek_to_last_watched_timer.schedule(last_watched_pos)
@@ -137,6 +138,11 @@ MouseArea {
             }
             mouse_area.clickCount = 0
         }
+    }
+
+    function setWindowTitle(title) {
+        titlebar.title = title
+        windowView.setTitle(title)
     }
 
     // resize operation related
