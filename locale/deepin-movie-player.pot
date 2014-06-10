@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-03 10:29+0800\n"
+"POT-Creation-Date: 2014-06-10 15:05+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,300 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../main.qml:333
-msgid "Banana"
+#: ../AboutSection.qml:11 ../TitleBar.qml:59
+msgid "Deepin Movie"
+msgstr ""
+
+#: ../AboutSection.qml:26
+msgid "Version"
+msgstr ""
+
+#: ../AboutSection.qml:42
+msgid ""
+"Deepin Movie is a video player designed for Linux users. It surpports a "
+"variety of video formats and features."
+msgstr ""
+
+#: ../AboutSection.qml:48
+msgid "Deepin Movie is free software licensed under GNU GPLv3"
+msgstr ""
+
+#: ../InfomationWindow.qml:28
+msgid "File Type"
+msgstr ""
+
+#: ../InfomationWindow.qml:35
+msgid "File Size"
+msgstr ""
+
+#: ../InfomationWindow.qml:42
+msgid "Resolution"
+msgstr ""
+
+#: ../InfomationWindow.qml:49
+msgid "Movie Duration"
+msgstr ""
+
+#: ../InfomationWindow.qml:56
+msgid "File Path"
+msgstr ""
+
+#: ../InfomationWindow.qml:65
+msgid "Copy To Clipboard"
+msgstr ""
+
+#: ../InfomationWindow.qml:80
+msgid "Confirm"
+msgstr ""
+
+#: ../MainController.qml:292
+msgid "Forward To "
+msgstr ""
+
+#: ../MainController.qml:298
+msgid "Backward To "
+msgstr ""
+
+#: ../MainController.qml:306 ../MainController.qml:311
+#: ../MainController.qml:316
+msgid "Playback Rate: "
+msgstr ""
+
+#: ../MainController.qml:306 ../MainController.qml:311
+#, qt-format
+msgid "(Press %1 to restore)"
+msgstr ""
+
+#: ../MainController.qml:321 ../MainController.qml:326
+#: ../MainController.qml:334 ../MainController.qml:344
+msgid "Volume: "
+msgstr ""
+
+#: ../MainController.qml:342 ../menu_controller.py:58
+msgid "Muted"
+msgstr ""
+
+#: ../OpenFileDialog.qml:5
+msgid "Please choose one or more file"
+msgstr ""
+
+#: ../OpenFolderDialog.qml:5
+msgid "Please choose folder"
+msgstr ""
+
+#: ../PreferenceWindow.qml:86
+msgid "Fit video to player"
+msgstr ""
+
+#: ../PreferenceWindow.qml:92
+msgid "Fit player to video"
+msgstr ""
+
+#: ../PreferenceWindow.qml:101
+msgid "Resize interface to last closed size"
+msgstr ""
+
+#: ../PreferenceWindow.qml:107
+msgid "Enter fullscreen mode"
+msgstr ""
+
+#: ../PreferenceWindow.qml:116
+msgid "Clear playlist when opening new file"
+msgstr ""
+
+#: ../PreferenceWindow.qml:121
+msgid "Resume playback after restarting player"
+msgstr ""
+
+#: ../PreferenceWindow.qml:126
+msgid "Continue to next video automatically"
+msgstr ""
+
+#: ../PreferenceWindow.qml:312
+msgid "Pause/Play"
+msgstr ""
+
+#: ../PreferenceWindow.qml:312 ../PreferenceWindow.qml:320
+#: ../PreferenceWindow.qml:328
+msgid "Disabled"
+msgstr ""
+
+#: ../PreferenceWindow.qml:320
+msgid "Fullscreen"
+msgstr ""
+
+#: ../PreferenceWindow.qml:328
+msgid "Volume"
+msgstr ""
+
+#: ../PreferenceWindow.qml:346
+msgid "Font"
+msgstr ""
+
+#: ../PreferenceWindow.qml:356
+msgid "Size"
+msgstr ""
+
+#: ../PreferenceWindow.qml:365
+msgid "Border Width"
+msgstr ""
+
+#: ../PreferenceWindow.qml:374
+msgid "Position"
+msgstr ""
+
+#: ../PreferenceWindow.qml:379
+msgid "Bottom"
+msgstr ""
+
+#: ../PreferenceWindow.qml:380
+msgid "Top"
+msgstr ""
+
+#: ../movie_info.py:113
+msgid "unknown"
+msgstr ""
+
+#: ../menu_controller.py:33
+msgid "Default"
+msgstr ""
+
+#: ../menu_controller.py:45
+msgid "Rotate 90 degree"
+msgstr ""
+
+#: ../menu_controller.py:46
+msgid "Rotate -90 degree"
+msgstr ""
+
+#: ../menu_controller.py:47
+msgid "Flip Horizontally"
+msgstr ""
+
+#: ../menu_controller.py:48
+msgid "Flip Vertically"
+msgstr ""
+
+#: ../menu_controller.py:52
+msgid "Sound Channels"
+msgstr ""
+
+#: ../menu_controller.py:53
+msgid "Sound Tracks"
+msgstr ""
+
+#: ../menu_controller.py:54
+msgid "Output Mode"
+msgstr ""
+
+#: ../menu_controller.py:56
+msgid "Increase Volume"
+msgstr ""
+
+#: ../menu_controller.py:57
+msgid "Decrease Volume"
+msgstr ""
+
+#: ../menu_controller.py:62
+msgid "Hide Subtitle"
+msgstr ""
+
+#: ../menu_controller.py:66
+msgid "Open Manually"
+msgstr ""
+
+#: ../menu_controller.py:67
+msgid "Select File"
+msgstr ""
+
+#: ../menu_controller.py:68
+msgid "Subtitle Settings"
+msgstr ""
+
+#: ../menu_controller.py:72
+msgid "In Order"
+msgstr ""
+
+#: ../menu_controller.py:73
+msgid "Random"
+msgstr ""
+
+#: ../menu_controller.py:74
+msgid "Single"
+msgstr ""
+
+#: ../menu_controller.py:75
+msgid "Single Cycle"
+msgstr ""
+
+#: ../menu_controller.py:76
+msgid "Playlist Cycle"
+msgstr ""
+
+#: ../menu_controller.py:80
+msgid "Previous"
+msgstr ""
+
+#: ../menu_controller.py:81
+msgid "Next"
+msgstr ""
+
+#: ../menu_controller.py:83
+msgid "Forward"
+msgstr ""
+
+#: ../menu_controller.py:84
+msgid "Backward"
+msgstr ""
+
+#: ../menu_controller.py:88
+msgid "Open File"
+msgstr ""
+
+#: ../menu_controller.py:89
+msgid "Open Directory"
+msgstr ""
+
+#: ../menu_controller.py:90
+msgid "Open URL"
+msgstr ""
+
+#: ../menu_controller.py:92
+msgid "Fullscreen/Quit Fullscreen"
+msgstr ""
+
+#: ../menu_controller.py:93
+msgid "Mini Mode"
+msgstr ""
+
+#: ../menu_controller.py:94
+msgid "On Top"
+msgstr ""
+
+#: ../menu_controller.py:96
+msgid "Play Sequence"
+msgstr ""
+
+#: ../menu_controller.py:97
+msgid "Play"
+msgstr ""
+
+#: ../menu_controller.py:98
+msgid "Frame"
+msgstr ""
+
+#: ../menu_controller.py:99
+msgid "Sound"
+msgstr ""
+
+#: ../menu_controller.py:100
+msgid "Subtitle"
+msgstr ""
+
+#: ../menu_controller.py:102
+msgid "Preferences"
+msgstr ""
+
+#: ../menu_controller.py:103
+msgid "Information"
 msgstr ""
