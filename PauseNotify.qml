@@ -2,6 +2,8 @@ import QtQuick 2.1
 
 Image {
     id: pauseNotify
+    sourceSize.width: 96
+    sourceSize.height: 96
     source: "image/pause_notify.svg"
     
     function notify() {

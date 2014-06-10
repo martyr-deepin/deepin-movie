@@ -57,7 +57,8 @@ Video {
         angle: 180
     }
 
-    onPaused: { if(!isPreview) pause_notify.notify() }
+    onPlaying: { pause_notify.visible = false }
+    onPaused: { if(!isPreview) pause_notify.visible = true }
 
     PauseNotify { 
         id: pause_notify
