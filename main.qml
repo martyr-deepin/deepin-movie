@@ -254,7 +254,7 @@ Rectangle {
         interval: 5000
 
         onTriggered: {
-            if (!mouseInControlsArea()) {
+            if (!mouseInControlsArea() && player.source && player.hasVideo) {
                 hideControls()
             } else {
                 hide_controls_timer.restart()
