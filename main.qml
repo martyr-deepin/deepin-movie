@@ -57,7 +57,7 @@ Rectangle {
         id: open_file_dialog
         folder: database.lastOpenedPath || _utils.homeDir
 
-        property string purpose: purposes.OpenVideoFile
+        property string purpose: purposes.openVideoFile
 
         onAccepted: {
             if (fileUrls.length > 0) {

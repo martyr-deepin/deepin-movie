@@ -21,6 +21,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
+import glob
 
 from PyQt5.QtCore import pyqtProperty, pyqtSignal, QObject, pyqtSlot
 
@@ -36,12 +37,13 @@ def get_subtitle_from_movie(movie_file):
     '''
     if movie_file.startswith("file://"): movie_file = movie_file[7:]
     name_without_ext = movie_file.rpartition(".")[0]
-    if name_without_ext == "": yield ""
+    if name_without_ext == "": return ("",)
+
+    result = []
     for ext in SUPPORTED_FILE_TYPES:
-        try_sub_name = "%s.%s" % (name_without_ext, ext)
-        if os.path.exists(try_sub_name):
-            yield try_sub_name
-    yield ""
+        try_sub_name = "%s*.%s" % (name_without_ext, ext)
+        result += glob.glob(try_sub_name)
+    return result
 
 class MovieInfo(QObject):
     movieSourceChanged = pyqtSignal(str, arguments=["movie_file",])
@@ -121,7 +123,7 @@ class MovieInfo(QObject):
         self.movieHeightChanged.emit(self.media_height)
         self.movieDurationChanged.emit(self.media_duration) 
 
-        self.subtitle_file = get_subtitle_from_movie(self.filepath).next()
+        self.subtitle_file = get_subtitle_from_movie(self.filepath)[0]
 
     @pyqtSlot(int, result=str)     
     def get_subtitle_at(self, timestamp):
