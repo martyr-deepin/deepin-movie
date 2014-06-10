@@ -57,11 +57,11 @@ DPreferenceWindow {
                 "sectionName": "Subtitles",
                 "subSections": []
             },
-            {
-                "sectionId": "screenshot",
-                "sectionName": "Screenshot",
-                "subSections": []
-            },
+            // {
+            //     "sectionId": "screenshot",
+            //     "sectionName": "Screenshot",
+            //     "subSections": []
+            // },
             {
                 "sectionId": "about",
                 "sectionName": "About",
@@ -386,12 +386,12 @@ DPreferenceWindow {
             //     title: "Subtitle directory:"
             // }
         }
-        SectionContent { 
-            id: screenshot
-            title: "Screenshot" 
-            sectionId: "screenshot"
-            topSpaceHeight: 30
-        }
+        // SectionContent { 
+        //     id: screenshot
+        //     title: "Screenshot" 
+        //     sectionId: "screenshot"
+        //     topSpaceHeight: 30
+        // }
         AboutSection {}
     }
 }
