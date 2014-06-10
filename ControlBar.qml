@@ -15,12 +15,12 @@ DragableArea {
     property alias widthHeightScale: videoPreview.widthHeightScale
     property bool previewHasVideo: false
 
-    signal togglePlay ()
     signal mutedSet (bool muted)
     signal changeVolume (real volume)
     signal percentageSet(real percentage)
     signal configButtonClicked ()
     signal playStopButtonClicked ()
+    signal playPauseButtonClicked ()
     signal openFileButtonClicked ()
     signal playlistButtonClicked ()
     signal previousButtonClicked ()
@@ -219,10 +219,7 @@ DragableArea {
 
                     property bool checkFlag: false
 
-                    onClicked: {
-                        checkFlag = !checkFlag
-                        control_bar.togglePlay()
-                    }
+                    onClicked: control_bar.playPauseButtonClicked()
                 }
 
                 Space {

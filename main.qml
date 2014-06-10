@@ -409,14 +409,11 @@ Rectangle {
         onPreviousButtonClicked: main_controller.playPrevious()
         onNextButtonClicked: main_controller.playNext()
 
-        onTogglePlay: {
-            main_controller.togglePlay()
-        }
-
         onChangeVolume: { main_controller.setVolume(volume) }
         onMutedSet: { main_controller.setMute(muted) }
 
         onPlayStopButtonClicked: { root.reset() }
+        onPlayPauseButtonClicked: { main_controller.togglePlay() }
         onOpenFileButtonClicked: { main_controller.openFile() }
         onPlaylistButtonClicked: { hideControls(); playlist.toggleShow() }
         onPercentageSet: {
