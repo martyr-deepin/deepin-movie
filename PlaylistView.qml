@@ -232,11 +232,11 @@ ListView {
 				}
                 
                 Image {
-                    width: 10
-                    height: 10
                     visible: column.isGroup ? false : column.isSelected ? true : false
                     source: "image/playing_indicator.png"
-                    anchors.centerIn: expand_button
+                    anchors.right: name.left
+                    anchors.rightMargin: 8
+                    anchors.verticalCenter: parent.verticalCenter
                 }
                 
 				Text {
@@ -245,7 +245,6 @@ ListView {
 					text: itemName
 					elide: Text.ElideRight
 					font.pixelSize: 14
-                    // color: column.isSelected ? Qt.rgba(43, 132, 206, 1) : mouse_area.containsMouse ? Qt.rgba(214, 214, 214, 1) : Qt.rgba(214, 214, 214, 0.5)
                     color: {
                     	if (column.isSelected) {
                     		return column.isGroup ? "#8853B6F5" : "#53B6F5"
@@ -257,7 +256,7 @@ ListView {
                     }
 
 					anchors.left: expand_button.right
-					anchors.leftMargin: 9
+					anchors.leftMargin: 6
                     anchors.right: delete_button.left
                     anchors.rightMargin: 6
 					anchors.verticalCenter: parent.verticalCenter 
@@ -286,14 +285,15 @@ ListView {
 
 			Loader {
 				id: sub
-				x: 10
+				x: 14
 				visible: false
 				active: column.isGroup
+				width: column.width - sub.x
 				source: "PlaylistView.qml"
 				asynchronous: true
 				onLoaded: {
 					item.model = column.propChild
-					item.width = column.width - sub.x
+					// item.width = Qt.binding(column.width - sub.x)
 					item.root = column.ListView.view.root
 					item.currentPlayingSource = Qt.binding(function () {return column.ListView.view.currentPlayingSource})
 				}

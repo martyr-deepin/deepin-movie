@@ -131,6 +131,7 @@ Rectangle {
     }
 
     Item {
+        width: parent.width
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.right: parent.right
@@ -146,7 +147,7 @@ Rectangle {
 
         PlaylistView {
             id: playlist
-            width: 181
+            width: parent.width - 14 * 2
             height: Math.min(parent.height, childrenRect.height)
             root: playlist
             visible: playlistPanel.expanded
