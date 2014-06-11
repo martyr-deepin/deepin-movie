@@ -115,14 +115,14 @@ class MovieInfo(QObject):
         self.media_height = int(self.media_height) + 2 * WINDOW_GLOW_RADIUS
         self.media_duration = int(self.media_duration)
 
-        self.movieSourceChanged.emit(filepath)
         self.movieTitleChanged.emit(os.path.basename(filepath))
         self.movieTypeChanged.emit(self.media_type)
         self.movieSizeChanged.emit(self.media_size)
         self.movieWidthChanged.emit(self.media_width)
         self.movieHeightChanged.emit(self.media_height)
         self.movieDurationChanged.emit(self.media_duration) 
-
+        self.movieSourceChanged.emit(filepath)
+        
         self.subtitle_file = get_subtitle_from_movie(self.filepath)[0]
 
     @pyqtSlot(int, result=str)     

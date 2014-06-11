@@ -75,41 +75,10 @@ DPreferenceWindow {
             sectionId: "playback"
             bottomSpaceHeight: 10
 
-            Column {
-                width: playback.width
-                spacing: 10
-                ExclusiveGroup { id: group }
-
-                Row {
-                    spacing: 10
-                    DRadio {
-                        text: dsTr("Fit video to player")
-                        exclusiveGroup: group
-                        checked: config.playerAdjustType == "ADJUST_TYPE_VIDEO_WINDOW"
-                        onClicked: if(checked) { config.playerAdjustType = "ADJUST_TYPE_VIDEO_WINDOW" }
-                    }
-                    DRadio {
-                        text: dsTr("Fit player to video")
-                        exclusiveGroup: group
-                        checked: config.playerAdjustType == "ADJUST_TYPE_WINDOW_VIDEO"
-                        onClicked: if(checked) { config.playerAdjustType = "ADJUST_TYPE_WINDOW_VIDEO" }
-                    }
-                }
-                Row {
-                    spacing: 10                        
-                    DRadio {
-                        text: dsTr("Resize interface to last closed size")
-                        exclusiveGroup: group
-                        checked: config.playerAdjustType == "ADJUST_TYPE_LAST_TIME"
-                        onClicked: if(checked) { config.playerAdjustType = "ADJUST_TYPE_LAST_TIME" }
-                    }
-                    DRadio {
-                        text: dsTr("Enter fullscreen mode")
-                        checked: config.playerAdjustType == "ADJUST_TYPE_FULLSCREEN"
-                        exclusiveGroup: group
-                        onClicked: if(checked) { config.playerAdjustType = "ADJUST_TYPE_FULLSCREEN" }
-                    }
-                }
+            DCheckBox {
+                text: dsTr("Enter fullscreen on opening file")
+                checked: config.playerFullscreenOnOpenFile
+                onClicked: config.playerFullscreenOnOpenFile = checked
             }
 
             DCheckBox {

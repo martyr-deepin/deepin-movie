@@ -34,40 +34,58 @@ MouseArea {
         // window to the given value(automatically adjusted by the WM or something),
         // though QWindow.height is set to the given value actually,
         // so QWindow.height is not reliable here to get the actual height of the window,
-        property int width: 0
-        property int height: 0
-        onMovieWidthChanged: { width = movieInfo.movie_width; setSizeForRootWindow() } 
-        onMovieHeightChanged: { height = movieInfo.movie_height; setSizeForRootWindow() }
 
-        function setSizeForRootWindow() {
-            if (config.playerAdjustType == "ADJUST_TYPE_VIDEO_WINDOW" || config.playerAdjustType == "ADJUST_TYPE_LAST_TIME") {
-                // nothing here
-            } else if (config.playerAdjustType == "ADJUST_TYPE_WINDOW_VIDEO") {
-                if (width != 0 && height != 0) {
-                    if (primaryRect.width / primaryRect.height > movieInfo.movie_width / movieInfo.movie_height) {
-                        if (movieInfo.movie_height > primaryRect.height) {
-                            windowView.setHeight(primaryRect.height)
-                            windowView.setWidth(primaryRect.height * root.widthHeightScale)
-                        } else {
-                            windowView.setHeight(movieInfo.movie_height)
-                            windowView.setWidth(movieInfo.movie_height * root.widthHeightScale)
-                        }
-                    } else {
-                        if (movieInfo.movie_width > primaryRect.width) {
-                            windowView.setWidth(primaryRect.width)
-                            windowView.setHeight(primaryRect.width / root.widthHeightScale)
-                        } else {
-                            windowView.setWidth(movieInfo.movie_width)
-                            windowView.setHeight(movieInfo.movie_width / root.widthHeightScale)
-                        }
-                    }
+        // property int width: 0
+        // property int height: 0
+        // onMovieWidthChanged: { width = movieInfo.movie_width; setSizeForRootWindow() } 
+        // onMovieHeightChanged: { height = movieInfo.movie_height; setSizeForRootWindow() }
 
-                    width = 0
-                    height = 0
-                }
-            } else if (config.playerAdjustType == "ADJUST_TYPE_FULLSCREEN") {
-                fullscreen()
+        // function setSizeForRootWindow() {
+        //     if (config.playerAdjustType == "ADJUST_TYPE_VIDEO_WINDOW" || config.playerAdjustType == "ADJUST_TYPE_LAST_TIME") {
+        //         // nothing here
+        //     } else if (config.playerAdjustType == "ADJUST_TYPE_WINDOW_VIDEO") {
+        //         if (width != 0 && height != 0) {
+        //             if (primaryRect.width / primaryRect.height > movieInfo.movie_width / movieInfo.movie_height) {
+        //                 if (movieInfo.movie_height > primaryRect.height) {
+        //                     windowView.setHeight(primaryRect.height)
+        //                     windowView.setWidth(primaryRect.height * root.widthHeightScale)
+        //                 } else {
+        //                     windowView.setHeight(movieInfo.movie_height)
+        //                     windowView.setWidth(movieInfo.movie_height * root.widthHeightScale)
+        //                 }
+        //             } else {
+        //                 if (movieInfo.movie_width > primaryRect.width) {
+        //                     windowView.setWidth(primaryRect.width)
+        //                     windowView.setHeight(primaryRect.width / root.widthHeightScale)
+        //                 } else {
+        //                     windowView.setWidth(movieInfo.movie_width)
+        //                     windowView.setHeight(movieInfo.movie_width / root.widthHeightScale)
+        //                 }
+        //             }
+
+        //             width = 0
+        //             height = 0
+        //         }
+        //     } else if (config.playerAdjustType == "ADJUST_TYPE_FULLSCREEN") {
+        //         fullscreen()
+        //     }
+        // }
+
+        function _setSizeForRootWindowWithWidth(destWidth) {
+            var destHeight = destWidth * movieInfo.movie_height / movieInfo.movie_width
+            if (destHeight > primaryRect.height) {
+                windowView.setWidth(primaryRect.height * movieInfo.movie_width / movieInfo.movie_height)
+                windowView.setHeight(primaryRect.height)
+            } else {
+                windowView.setWidth(destWidth)
+                windowView.setHeight(destHeight)
             }
+        }
+
+        onMovieWidthChanged: {
+            print(database.lastWindowWidth)
+            print(movieInfo.movie_width)
+            _setSizeForRootWindowWithWidth(database.lastWindowWidth || movieInfo.movie_width)
         }
 
         onMovieSourceChanged: {
@@ -486,13 +504,16 @@ MouseArea {
     onReleased: {
         resizeEdge = resize_edge.resizeNone
 
-        // do the actual resize action
         if (resize_visual.visible) {
             resize_visual.hide()
+            // do the actual resize action
             windowView.setX(resize_visual.frameX)
             windowView.setY(resize_visual.frameY)
             windowView.setWidth(resize_visual.frameWidth)
             windowView.setHeight(resize_visual.frameHeight)
+
+            // record last width
+            database.lastWindowWidth = windowView.width
         }
     }
 

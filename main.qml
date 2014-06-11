@@ -28,14 +28,8 @@ Rectangle {
     Connections {
         target: windowView
 
-        onWidthChanged: { 
-            root.width = windowView.width
-            database.lastWindowSize = JSON.stringify({ "width":windowView.width, "height":windowView.height }) 
-        }
-        onHeightChanged: { 
-            root.height = windowView.height 
-            database.lastWindowSize = JSON.stringify({ "width":windowView.width, "height":windowView.height }) 
-        }
+        onWidthChanged: root.width = windowView.width
+        onHeightChanged: root.height = windowView.height 
     }
 
     Constants { id: program_constants }
@@ -128,15 +122,15 @@ Rectangle {
     }
 
     function initWindowSize() {
-        if (config.playerAdjustType == "ADJUST_TYPE_LAST_TIME") {
-            var lastSize = database.lastWindowSize
-            if(database.lastWindowSize != "") {
-                var lastSize = JSON.parse(lastSize)
-                windowView.setWidth(lastSize.width)
-                windowView.setHeight(lastSize.height)
-                return
-            }
-        }
+        // if (config.playerAdjustType == "ADJUST_TYPE_LAST_TIME") {
+        //     var lastSize = database.lastWindowSize
+        //     if(database.lastWindowSize != "") {
+        //         var lastSize = JSON.parse(lastSize)
+        //         windowView.setWidth(lastSize.width)
+        //         windowView.setHeight(lastSize.height)
+        //         return
+        //     }
+        // }
         windowView.setWidth(windowView.defaultWidth)
         windowView.setHeight(windowView.defaultHeight)
     }
@@ -202,7 +196,7 @@ Rectangle {
     /* to perform like a newly started program  */
     function reset() {
         root.state = "normal"
-        movieInfo.movie_file = ""
+        player.source = ""
         main_controller.stop()
         controlbar.reset()
         showControls()
@@ -380,6 +374,7 @@ Rectangle {
         window: windowView
         anchors.horizontalCenter: main_window.horizontalCenter
 
+        onMenuButtonClicked: _menu_controller.show_menu()
         onMinButtonClicked: main_controller.minimize()
         onMaxButtonClicked: windowNormalState ? main_controller.maximize() : main_controller.normalize()
         onCloseButtonClicked: main_controller.close()

@@ -30,7 +30,7 @@ class Database(QObject):
     localPlaylistChanged = pyqtSignal(str)
     lastPlayedFileChanged = pyqtSignal(str)
     lastOpenedPathChanged = pyqtSignal(str)
-    lastWindowSizeChanged = pyqtSignal(str)
+    lastWindowWidthChanged = pyqtSignal(int)
 
     def __init__(self):
         QObject.__init__(self)
@@ -105,13 +105,13 @@ class Database(QObject):
         self.setValue("last_opened_path", value)
         self.lastOpenedPathChanged.emit(value)
 
-    @pyqtProperty(str,notify=lastWindowSizeChanged)
-    def lastWindowSize(self):
-        return self.getValue("last_window_size") or ""
+    @pyqtProperty(int,notify=lastWindowWidthChanged)
+    def lastWindowWidth(self):
+        return int(self.getValue("last_window_width") or 0)
 
-    @lastWindowSize.setter
-    def lastWindowSize(self, value):
-        self.setValue("last_window_size", value)
-        self.lastWindowSizeChanged.emit(value)
+    @lastWindowWidth.setter
+    def lastWindowWidth(self, value):
+        self.setValue("last_window_width", value)
+        self.lastWindowWidthChanged.emit(value)
 
 database = Database()

@@ -25,10 +25,10 @@ from deepin_utils import config
 from constant import CONFIG_DIR
 from PyQt5.QtCore import pyqtSlot, pyqtProperty, pyqtSignal, QObject
 
-ADJUST_TYPE_WINDOW_VIDEO = "ADJUST_TYPE_WINDOW_VIDEO"
-ADJUST_TYPE_VIDEO_WINDOW = "ADJUST_TYPE_VIDEO_WINDOW"
-ADJUST_TYPE_LAST_TIME = "ADJUST_TYPE_LAST_TIME"
-ADJUST_TYPE_FULLSCREEN = "ADJUST_TYPE_FULLSCREEN"
+# ADJUST_TYPE_WINDOW_VIDEO = "ADJUST_TYPE_WINDOW_VIDEO"
+# ADJUST_TYPE_VIDEO_WINDOW = "ADJUST_TYPE_VIDEO_WINDOW"
+# ADJUST_TYPE_LAST_TIME = "ADJUST_TYPE_LAST_TIME"
+# ADJUST_TYPE_FULLSCREEN = "ADJUST_TYPE_FULLSCREEN"
 
 ORDER_TYPE_RANDOM = "ORDER_TYPE_RANDOM"
 ORDER_TYPE_IN_ORDER = "ORDER_TYPE_RANDOM_IN_ORDER"
@@ -40,7 +40,8 @@ DEFAULT_CONFIG = [
 ("Player", [("volume", 1.0), 
     ("muted", False),
     ("subtitleHide", False),
-    ("adjustType", ADJUST_TYPE_WINDOW_VIDEO),
+    # ("adjustType", ADJUST_TYPE_WINDOW_VIDEO),
+    ("fullscreenOnOpenFile", False),
     ("playOrderType", ORDER_TYPE_PLAYLIST_CYCLE),
     ("cleanPlaylistOnOpenNewFile", False),
     ("autoPlayFromLast", True),
