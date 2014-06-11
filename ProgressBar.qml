@@ -3,6 +3,7 @@ import QtQuick 2.1
 Item {
     id: progressbar
     width: 300
+    height: 7
     state: "minimal"
 
     property real percentage: 0.0
@@ -32,11 +33,11 @@ Item {
             name: "normal"
             PropertyChanges {
                 target: progressbar
-                height: 7
                 showPointerSwitch: true
             }
             PropertyChanges {
                 target: background
+                height: 7
                 gradient: background_gradient
             }
             PropertyChanges {
@@ -56,11 +57,11 @@ Item {
             name: "minimal"
             PropertyChanges {
                 target: progressbar
-                height: 2
                 showPointerSwitch: false
             }
             PropertyChanges {
                 target: background
+                height: 2
                 gradient: undefined
             }
             PropertyChanges {
@@ -83,10 +84,11 @@ Item {
     Timer {
         id: became_minimal_timer
         interval: 3000
-        onTriggered: progressbar.state = "minimal"
+        onTriggered: mouse_area.containsMouse ? became_minimal_timer.restart() : (progressbar.state = "minimal")
     }
     
     MouseArea {
+        id: mouse_area
         hoverEnabled: true
         anchors.fill: parent
 
@@ -111,7 +113,7 @@ Item {
     Rectangle {
         id: background
         color: Qt.rgba(1, 1, 1, 0.2)
-        anchors.fill: parent
+        width: parent.width
 
         Rectangle {
             id: background_partner
