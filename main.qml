@@ -196,8 +196,8 @@ Rectangle {
     /* to perform like a newly started program  */
     function reset() {
         root.state = "normal"
-        player.source = ""
         titlebar.title = ""
+        movieInfo.movie_file = ""
         main_controller.stop()
         controlbar.reset()
         showControls()
