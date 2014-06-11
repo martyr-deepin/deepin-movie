@@ -222,7 +222,7 @@ MouseArea {
     }
 
     function doDoubleClick(mouse) {
-        if (player.source && player.hasVideo) {
+        if (player.playbackState != MediaPlayer.StoppedState) {
             if (config.othersDoubleClick) {
                 toggleFullscreen()
             }            
