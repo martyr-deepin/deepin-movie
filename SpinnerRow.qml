@@ -10,6 +10,7 @@ Item {
 	property alias max: spinner.max
 	property alias step: spinner.step
 	property alias value: spinner.value
+	property alias text: spinner.text
 
 	Text {
 		id: title

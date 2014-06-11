@@ -356,7 +356,7 @@ DPreferenceWindow {
                 title: dsTr("Size")
                 min: 10
                 max: 30
-                value: config.subtitleFontSize
+                text: config.subtitleFontSize
 
                 onValueChanged: config.subtitleFontSize = value
             }
@@ -365,7 +365,7 @@ DPreferenceWindow {
                 title: dsTr("Border Width")
                 min: 0
                 max: 6
-                value: config.subtitleFontBorderSize
+                text: config.subtitleFontBorderSize
 
                 onValueChanged: config.subtitleFontBorderSize = value
             }
