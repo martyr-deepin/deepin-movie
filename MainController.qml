@@ -71,17 +71,6 @@ MouseArea {
         //     }
         // }
 
-        function _setSizeForRootWindowWithWidth(destWidth) {
-            var destHeight = destWidth * movieInfo.movie_height / movieInfo.movie_width
-            if (destHeight > primaryRect.height) {
-                windowView.setWidth(primaryRect.height * movieInfo.movie_width / movieInfo.movie_height)
-                windowView.setHeight(primaryRect.height)
-            } else {
-                windowView.setWidth(destWidth)
-                windowView.setHeight(destHeight)
-            }
-        }
-
         onMovieWidthChanged: {
             _setSizeForRootWindowWithWidth(database.lastWindowWidth || movieInfo.movie_width)
         }
@@ -152,6 +141,17 @@ MouseArea {
                 mouse_area.doDoubleClick()
             }
             mouse_area.clickCount = 0
+        }
+    }
+
+    function _setSizeForRootWindowWithWidth(destWidth) {
+        var destHeight = destWidth * movieInfo.movie_height / movieInfo.movie_width
+        if (destHeight > primaryRect.height) {
+            windowView.setWidth(primaryRect.height * movieInfo.movie_width / movieInfo.movie_height)
+            windowView.setHeight(primaryRect.height)
+        } else {
+            windowView.setWidth(destWidth)
+            windowView.setHeight(destHeight)
         }
     }
 
@@ -287,8 +287,7 @@ MouseArea {
             backupWidth = windowView.width
             backupHeight = windowView.height
             titlebar.state = "minimal"
-            windowView.setWidth(program_constants.miniModeWidth)
-            windowView.setHeight(program_constants.miniModeHeight)
+            _setSizeForRootWindowWithWidth(program_constants.miniModeWidth)
         }
     }
 
