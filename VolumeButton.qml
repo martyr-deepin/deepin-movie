@@ -80,10 +80,22 @@ Row {
         width: volume_bar.width
         height: toggle_button.height
 
-        Image {
+        Item {
             id: volume_bar
-            source: "image/volume_background.png"
+            width: actual_background.width + 4
+            height: 7
+
             anchors.verticalCenter: parent.verticalCenter
+
+            Rectangle {
+                id: actual_background
+                width: 63
+                height: parent.height
+                radius: 4
+                color: "#e5e5e5"
+                antialiasing: true
+                anchors.centerIn: parent
+            }
 
             MouseArea {
                 id: volume_bar_mouse_area
@@ -99,18 +111,17 @@ Row {
                 }
             }
 
-            Image {
+            Rectangle {
                 id: left_part
-                anchors.left: parent.left
-                source: "image/volume_foreground_left.png"
-            }
-
-            Image {
-                id: center_part
-                anchors.left: left_part.right
-                anchors.right: volume_pointer.horizontalCenter
-                source: "image/volume_foreground_middle.png"
-                fillMode: Image.TileHorizontally
+                width: volume_pointer.x + volume_pointer.width / 2
+                height: parent.height
+                radius: 4
+                gradient: Gradient {
+                    GradientStop { position: 0.0; color: "#2b97dd"}
+                    GradientStop { position: 1.0; color: "#4fdaff"}
+                }
+                anchors.verticalCenter: parent.verticalCenter
+                antialiasing: true
             }
 
             Image {
