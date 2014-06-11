@@ -118,5 +118,14 @@ Window {
         radius: 3
         border.color: "#AAAEC1D5"
         border.width: 2
+
+
+        Text {
+            id: resolution
+            color: frame.border.color
+            font.pixelSize: 50
+            text: "%1x%2".arg(Math.floor(frame.width)).arg(Math.floor(frame.height))
+            anchors.centerIn: parent
+        }
     }
 }
