@@ -206,8 +206,12 @@ MouseArea {
     }
 
     function doDoubleClick(mouse) {
-        if (config.othersDoubleClick) {
-            toggleFullscreen()
+        if (player.source && player.hasVideo) {
+            if (config.othersDoubleClick) {
+                toggleFullscreen()
+            }            
+        } else {
+            openFile()
         }
     }
 
