@@ -10,6 +10,7 @@ DragableArea {
     property bool windowNormalState: true
     property alias title: title_text.text
 
+    signal menuButtonClicked ()
     signal minButtonClicked ()
     signal maxButtonClicked ()
     signal closeButtonClicked ()
@@ -104,7 +105,7 @@ DragableArea {
 
         TabButton {
             id: btn
-            text: dsTr("Deepin Movie")
+            text: "DMovie"
 
             anchors.left: appIcon.right
             anchors.leftMargin: 10
@@ -118,7 +119,7 @@ DragableArea {
             color: Qt.rgba(1, 1, 1, 0.8)
             elide: Text.ElideRight
             
-            anchors.verticalCenter: appIcon.verticalCenter
+            anchors.verticalCenter: windowButtonArea.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
         }
 
@@ -181,6 +182,12 @@ DragableArea {
             anchors.rightMargin: 5
 
             ImageButton {
+                id: menuButton
+                imageName: "image/window_menu"
+                onClicked: { titlebar.menuButtonClicked() }
+            }
+
+            ImageButton {
                 id: minButton
                 imageName: "image/window_min"
                 onClicked: { titlebar.minButtonClicked() }
@@ -188,7 +195,7 @@ DragableArea {
 
             ImageButton {
                 id: maxButton
-                imageName: titlebar.windowNormalState ? "image/window_max" : "image/window_unmax"
+                imageName: "image/window_max"
                 onClicked: { titlebar.maxButtonClicked() }
             }
 
