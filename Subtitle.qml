@@ -24,12 +24,6 @@ Item {
 	}
 
 	Glow {
-
-		Connections {
-			target: config
-			onSubtitleFontBorderSizeChanged: print(glow.radius)
-		}
-
 		id: glow
 		anchors.fill: parent
 		spread: 1

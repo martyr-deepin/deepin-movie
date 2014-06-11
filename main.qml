@@ -197,6 +197,7 @@ Rectangle {
     function reset() {
         root.state = "normal"
         player.source = ""
+        titlebar.title = ""
         main_controller.stop()
         controlbar.reset()
         showControls()

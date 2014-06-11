@@ -83,8 +83,6 @@ MouseArea {
         }
 
         onMovieWidthChanged: {
-            print(database.lastWindowWidth)
-            print(movieInfo.movie_width)
             _setSizeForRootWindowWithWidth(database.lastWindowWidth || movieInfo.movie_width)
         }
 

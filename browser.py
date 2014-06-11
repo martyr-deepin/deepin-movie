@@ -48,7 +48,6 @@ class Browser(StickWidget):
         self.view.page().linkClicked.connect(self.link_clicked)        
         
     def url_load_finished(self):
-        print "url_load_finished"
         # self.view.page().mainFrame().evaluateJavaScript("setTimeout(function () {startsearch(document)}, 3000)")
         self.view.page().mainFrame().evaluateJavaScript("setTimeout(function () {search()}, 3000)")
         
