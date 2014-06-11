@@ -31,6 +31,6 @@ MAIN_QML = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'main.qml')
 
 DEFAULT_WIDTH = 840
 DEFAULT_HEIGHT = 560
-MINIMIZE_WIDTH = 470
-MINIMIZE_HEIGHT = 250
+MINIMIZE_WIDTH = 320
+MINIMIZE_HEIGHT = 180
 WINDOW_GLOW_RADIUS = 8

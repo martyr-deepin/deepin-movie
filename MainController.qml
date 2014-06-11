@@ -256,12 +256,62 @@ MouseArea {
         windowView.doMinimized()
     }
 
+    property int backupWidth: 0
+    property int backupHeight: 0
+    function toggleMiniMode() {
+        if (titlebar.state == "minimal") {
+            titlebar.state = "normal"
+            windowView.setWidth(backupWidth)
+            windowView.setHeight(backupHeight)
+        } else {
+            backupWidth = windowView.width
+            backupHeight = windowView.height
+            titlebar.state = "minimal"
+            windowView.setWidth(program_constants.miniModeWidth)
+            windowView.setHeight(program_constants.miniModeHeight)
+        }
+    }
+
+    function setProportion(propWidth, propHeight) {
+        var widthHeightScale = propWidth / propHeight
+        if (root.height * widthHeightScale > primaryRect.width) {
+            windowView.setHeight((primaryRect.width) / widthHeightScale)
+            windowView.setWidth(primaryRect.width)
+        }
+        root.widthHeightScale = widthHeightScale
+        windowView.setWidth(root.height * widthHeightScale)
+    }
+
+    function setScale(scale) {
+        if (primaryRect.width / primaryRect.height > movieInfo.movie_width / movieInfo.movie_height) {
+            if (movieInfo.movie_width * scale > primaryRect.width) {
+                windowView.setWidth(primaryRect.width)
+                windowView.setHeight(primaryRect.width / root.widthHeightScale)
+            } else {
+                windowView.setWidth(movieInfo.movie_width * scale)
+                windowView.setHeight(movieInfo.movie_width * scale / root.widthHeightScale)
+            }
+        } else {
+            if (movieInfo.movie_height * scale > primaryRect.height) {
+                windowView.setHeight(primaryRect.height)
+                windowView.setWidth(primaryRect.height * root.widthHeightScale)
+            } else {
+                windowView.setHeight(movieInfo.movie_height * scale)
+                windowView.setWidth(movieInfo.movie_height * scale * root.widthHeightScale)
+            }
+        }
+    }
+
     function toggleFullscreen() {
         windowView.getState() == Qt.WindowFullScreen ? normalize() : fullscreen()
     }
 
     function toggleMaximized() {
         windowView.getState() == Qt.WindowMaximized ? normalize() : maximize()
+    }
+
+    function toggleStaysOnTop() {
+        windowView.staysOnTop = !windowView.staysOnTop
     }
 
     function flipHorizontal() { player.flipHorizontal(); controlbar.flipPreviewHorizontal() }

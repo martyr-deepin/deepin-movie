@@ -12,7 +12,8 @@ Row {
     property double volume: 1.0
     property alias muted: toggle_button.checkFlag
     
-    property bool showBarFlag: false
+    property bool showBarFlag: false // for internal useage
+    property bool showBarSwitch: true // for external useage
 
     signal changeVolume
     signal mutedSet (bool muted)
@@ -75,7 +76,7 @@ Row {
 
     Item {
         id: bar_item
-        visible: item.showBarFlag && !toggle_button.checkFlag
+        visible: item.showBarSwitch && item.showBarFlag && !toggle_button.checkFlag
         width: volume_bar.width
         height: toggle_button.height
 

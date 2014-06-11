@@ -383,6 +383,11 @@ Rectangle {
         onMinButtonClicked: main_controller.minimize()
         onMaxButtonClicked: windowNormalState ? main_controller.maximize() : main_controller.normalize()
         onCloseButtonClicked: main_controller.close()
+
+        onQuickNormalSize: main_controller.setScale(1)
+        onQuickOneHalfSize: main_controller.setScale(1.5)
+        onQuickFullscreen: main_controller.fullscreen()
+        onQuickToggleTop: main_controller.toggleStaysOnTop()
     }
 
     ControlBar {

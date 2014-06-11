@@ -124,7 +124,7 @@ DragableArea {
 
         Item {
             id: buttonArea
-            state: { width < windowView.minimumWidth ? "minimal" : "normal"}
+            state: { width < program_constants.simplifiedModeTriggerWidth ? "minimal" : "normal"}
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.top: parent.top
@@ -138,10 +138,12 @@ DragableArea {
                         visible: true
                     }
                     PropertyChanges {
-                        target: middleButtonArea
-                        anchors.centerIn: buttonArea
-                        anchors.left: undefined
-                        anchors.leftMargin: 0
+                        target: rightButtonArea
+                        visible: true
+                    }
+                    PropertyChanges {
+                        target: volume_button
+                        showBarSwitch: true
                     }
                 },
                 State {
@@ -151,10 +153,12 @@ DragableArea {
                         visible: false
                     }
                     PropertyChanges {
-                        target: middleButtonArea
-                        anchors.centerIn: undefined
-                        anchors.left: buttonArea.left
-                        anchors.leftMargin: 27
+                        target: rightButtonArea
+                        visible: false
+                    }
+                    PropertyChanges {
+                        target: volume_button
+                        showBarSwitch: false
                     }
                 }
             ]

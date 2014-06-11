@@ -58,7 +58,7 @@ DEFAULT_CONFIG = [
     ("slowDown", "Ctrl+Left"),
     ("restoreSpeed", "R")]),
 ("HotkeysFrameSound", [("hotkeyEnabled", True),
-    ("miniMode", "f2"),
+    ("toggleMiniMode", "f2"),
     ("rotateClockwise", "W"),
     ("rotateAnticlockwise", "E"),
     ("increaseVolume", "Up"),

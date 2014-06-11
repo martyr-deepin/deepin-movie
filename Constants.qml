@@ -8,6 +8,11 @@ Item {
     
     property int playlistWidth: 218
     property int playlistTriggerThreshold: 50
+
+    property int simplifiedModeTriggerWidth: 500
+
+    property int miniModeWidth: 400 + 2 * windowGlowRadius
+    property int miniModeHeight: 250 + 2 * windowGlowRadius
     
     property int windowRadius: 3
     property int windowGlowRadius: windowView.windowGlowRadius

@@ -210,7 +210,7 @@ DPreferenceWindow {
 
             HotKeyInputRow {
                 title: "Mini Mode"
-                hotKey: config.hotkeysFrameSoundMiniMode
+                hotKey: config.hotkeysFrameSoundToggleMiniMode
             }
             HotKeyInputRow {
                 title: "Rotate counterclockwise"

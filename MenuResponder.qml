@@ -24,34 +24,8 @@ Connections {
     onScreenShot: {
         windowView.screenShot()
     }
-    onProportionChanged: {
-        var widthHeightScale = propWidth / propHeight
-        if (root.height * widthHeightScale > primaryRect.width) {
-            windowView.setHeight((primaryRect.width) / widthHeightScale)
-            windowView.setWidth(primaryRect.width)
-        }
-        root.widthHeightScale = widthHeightScale
-        windowView.setWidth(root.height * widthHeightScale)
-    }
-    onScaleChanged: {
-        if (primaryRect.width / primaryRect.height > movieInfo.movie_width / movieInfo.movie_height) {
-            if (movieInfo.movie_width * scale > primaryRect.width) {
-                windowView.setWidth(primaryRect.width)
-                windowView.setHeight(primaryRect.width / root.widthHeightScale)
-            } else {
-                windowView.setWidth(movieInfo.movie_width * scale)
-                windowView.setHeight(movieInfo.movie_width * scale / root.widthHeightScale)
-            }
-        } else {
-            if (movieInfo.movie_height * scale > primaryRect.height) {
-                windowView.setHeight(primaryRect.height)
-                windowView.setWidth(primaryRect.height * root.widthHeightScale)
-            } else {
-                windowView.setHeight(movieInfo.movie_height * scale)
-                windowView.setWidth(movieInfo.movie_height * scale * root.widthHeightScale)
-            }
-        }
-    }
+    onProportionChanged: main_controller.setProportion(propWidth, propHeight)
+    onScaleChanged: main_controller.setScale(scale)
     onStaysOnTop: {
         windowView.staysOnTop = onTop
     }

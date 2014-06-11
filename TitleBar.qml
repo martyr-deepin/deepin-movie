@@ -1,8 +1,10 @@
 import QtQuick 2.1
 import QtGraphicalEffects 1.0
+import Deepin.Widgets 1.0
 
 DragableArea {
     id: titlebar
+    state: "normal"
     height: program_constants.titlebarHeight
 
     property bool windowNormalState: true
@@ -11,6 +13,52 @@ DragableArea {
     signal minButtonClicked ()
     signal maxButtonClicked ()
     signal closeButtonClicked ()
+
+    signal quickNormalSize()
+    signal quickOneHalfSize()
+    signal quickFullscreen()
+    signal quickToggleTop()
+
+    states: [
+        State {
+            name: "normal"
+            PropertyChanges {
+                target: appIcon
+                visible: true
+            }
+            PropertyChanges {
+                target: btn
+                visible: true
+            }
+            PropertyChanges {
+                target: title_text
+                visible: true
+            }
+            PropertyChanges {
+                target: quick_bar
+                visible: false
+            }
+        },
+        State {
+            name: "minimal"
+            PropertyChanges {
+                target: appIcon
+                visible: false
+            }
+            PropertyChanges {
+                target: btn
+                visible: false
+            }
+            PropertyChanges {
+                target: title_text
+                visible: false
+            }
+            PropertyChanges {
+                target: quick_bar
+                visible: true
+            }
+        }
+    ]
 
     function show() {
         visible = true
@@ -72,6 +120,57 @@ DragableArea {
             
             anchors.verticalCenter: appIcon.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
+        }
+
+        Row {
+            id: quick_bar
+            spacing: 5
+            anchors.left: parent.left
+            anchors.leftMargin: 10
+            anchors.top: parent.top
+            anchors.topMargin: 10
+
+            DImageButton {
+                normal_image: "image/quick_1_1_normal.svg"
+                hover_image: "image/quick_1_1_hover.svg"
+                press_image: "image/quick_1_1_hover.svg"
+
+                anchors.verticalCenter: parent.verticalCenter
+
+                onClicked: titlebar.quickNormalSize()
+            }
+            DImageButton {
+                normal_image: "image/quick_1_5_normal.svg"
+                hover_image: "image/quick_1_5_hover.svg"
+                press_image: "image/quick_1_5_hover.svg"
+
+                anchors.verticalCenter: parent.verticalCenter
+
+                onClicked: titlebar.quickOneHalfSize()
+            }
+            DImageButton {
+                normal_image: "image/quick_fullscreen_normal.svg"
+                hover_image: "image/quick_fullscreen_hover.svg"
+                press_image: "image/quick_fullscreen_hover.svg"
+
+                anchors.verticalCenter: parent.verticalCenter
+
+                onClicked: titlebar.quickFullscreen()
+            }
+            DImageButton {
+                normal_image: checkFlag ? "image/quick_untop_normal.svg" : "image/quick_top_normal.svg"
+                hover_image: checkFlag ? "image/quick_untop_hover.svg" : "image/quick_top_hover.svg"
+                press_image: checkFlag ? "image/quick_top_hover.svg" : "image/quick_top_hover.svg"
+
+                property bool checkFlag: false
+
+                anchors.verticalCenter: parent.verticalCenter
+
+                onClicked: {
+                    checkFlag = !checkFlag
+                    titlebar.quickToggleTop()
+                }
+            }
         }
 
         Row {
