@@ -71,7 +71,7 @@ class Utils(QObject):
     def getSeriesByName(self, name):
         dir = os.path.dirname(name)
         allFiles = self.getAllFilesInDir(dir)
-        allFiles.remove(name)
+        # allFiles.remove(name)
         allFiles = [os.path.basename(x) for x in allFiles]
         nameFilter = min((longest_match(x, os.path.basename(name)) for x in allFiles),
                          key=len)
