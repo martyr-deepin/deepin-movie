@@ -1,5 +1,6 @@
 import QtQuick 2.1
 import QtMultimedia 5.0
+import QtSystemInfo 5.0
 import DBus.Com.Deepin.Daemon.Power 1.0
  
 Video {
@@ -65,6 +66,14 @@ Video {
     //      visible: false
     //      anchors.centerIn: parent 
     // }
+
+    onPlaying: screen_saver.screenSaverEnabled = false
+    onStopped: screen_saver.screenSaverEnabled = true
+
+    ScreenSaver {
+        id: screen_saver
+        screenSaverEnabled: true
+    }
 
     Subtitle { 
         id: subtitle
