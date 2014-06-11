@@ -3,16 +3,88 @@ import QtQuick 2.1
 Item {
     id: progressbar
     width: 300
-    height: 7
+    state: "minimal"
 
     property real percentage: 0.0
+    property bool showPointerSwitch: true
+
+    onStateChanged: state == "normal" && became_minimal_timer.restart()
     
     signal mouseOver (int mouseX)
     signal mouseDrag (int mouseX)
     signal mouseExit ()
     signal percentageSet(real percentage)
 
+    Gradient {
+        id: background_gradient
+        GradientStop { position: 0.0; color: "#444a4a4a"}
+        GradientStop { position: 1.0; color: "#443c3c3c"}
+    }
+
+    Gradient {
+        id: foreground_gradient
+        GradientStop { position: 0.0; color: "#2b97dd"}
+        GradientStop { position: 1.0; color: "#4fdaff"}
+    }
+
+    states: [
+        State {
+            name: "normal"
+            PropertyChanges {
+                target: progressbar
+                height: 7
+                showPointerSwitch: true
+            }
+            PropertyChanges {
+                target: background
+                gradient: background_gradient
+            }
+            PropertyChanges {
+                target: background_partner
+                visible: true
+            }
+            PropertyChanges {
+                target: foreground
+                gradient: foreground_gradient
+            }
+            PropertyChanges {
+                target: foreground_partner
+                visible: true
+            }
+        },
+        State {
+            name: "minimal"
+            PropertyChanges {
+                target: progressbar
+                height: 2
+                showPointerSwitch: false
+            }
+            PropertyChanges {
+                target: background
+                gradient: undefined
+            }
+            PropertyChanges {
+                target: background_partner
+                visible: false
+            }
+            PropertyChanges {
+                target: foreground
+                gradient: undefined
+            }
+            PropertyChanges {
+                target: foreground_partner
+                visible: false
+            }
+        }
+    ]
+
     function update() { pointer.x = progressbar.width * percentage - pointer.width / 2 }
+
+    Timer {
+        id: became_minimal_timer
+        interval: 3000
+        onTriggered: progressbar.state = "minimal"
+    }
     
     MouseArea {
         hoverEnabled: true
@@ -23,6 +95,7 @@ Item {
         }
 
         onPositionChanged: {
+            progressbar.state = "normal"
             progressbar.mouseOver(mouse.x)
         }
 
@@ -37,15 +110,16 @@ Item {
 
     Rectangle {
         id: background
-        color: "#444a4a4a"
+        color: Qt.rgba(1, 1, 1, 0.2)
         anchors.fill: parent
 
         Rectangle {
+            id: background_partner
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.top: parent.top
             height: 1
-            color: "#443c3c3c"
+            color: Qt.rgba(1, 1, 1, 0.15)
         }
 
         Rectangle {
@@ -54,20 +128,21 @@ Item {
             anchors.top: parent.top
             height: parent.height
             width: pointer.x + pointer.width / 2
-            color: "#007cc2"
+            color: "#3a9efe"
 
             Rectangle {
+                id: foreground_partner
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.top: parent.top
                 height: 1
-                color: "#04a4ff"
+                color: "#3fa8fe"
             }
         }
 
         Image {
             id: pointer
-            opacity: 0 <= x && x <= background.width - width ? 1 : 0
+            opacity: progressbar.showPointerSwitch && 0 <= x && x <= background.width - width ? 1 : 0 
             source: "image/progress_pointer.png"
             anchors.verticalCenter: parent.verticalCenter
 
