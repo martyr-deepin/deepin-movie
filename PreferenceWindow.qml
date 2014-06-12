@@ -115,6 +115,8 @@ DPreferenceWindow {
                 onClicked: config.playerNotificationsEnabled = checked
             }
             
+            Space { width: parent.width; height: 10 }
+
             SpinnerRow {
                 title: dsTr("Forward/Rewind Step")
                 min: 1.0
