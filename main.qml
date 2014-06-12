@@ -25,6 +25,28 @@ Rectangle {
         return Qt.rect(0, 0, Screen.desktopAvailableWidth, Screen.desktopAvailableHeight)
     }
 
+    states: [
+        State {
+            name: "normal"
+
+            PropertyChanges { target: root; width: height * widthHeightScale; height: windowView.height }
+            PropertyChanges { target: main_window; width: root.width - program_constants.windowGlowRadius * 2;
+                              height: root.height - program_constants.windowGlowRadius * 2; }
+            PropertyChanges { target: titlebar; width: main_window.width; anchors.top: main_window.top }
+            PropertyChanges { target: controlbar; width: main_window.width; anchors.bottom: main_window.bottom}
+            PropertyChanges { target: playlist; height: main_window.height; anchors.right: main_window.right }
+        },
+        State {
+            name: "no_glow"
+
+            PropertyChanges { target: root; width: windowView.width; height: windowView.height }
+            PropertyChanges { target: main_window; width: root.width; height: root.height }
+            PropertyChanges { target: titlebar; width: root.width; anchors.top: root.top }
+            PropertyChanges { target: controlbar; width: root.width; anchors.bottom: root.bottom}
+            PropertyChanges { target: playlist; height: root.height; anchors.right: root.right }
+        }
+    ]
+
     Connections {
         target: windowView
 
@@ -236,28 +258,6 @@ Rectangle {
         database.record_video_position(player.source, player.position)
         database.playlist_local = playlist.getContent()
     }
-
-    states: [
-        State {
-            name: "normal"
-
-            PropertyChanges { target: root; width: height * widthHeightScale; height: windowView.height }
-            PropertyChanges { target: main_window; width: root.width - program_constants.windowGlowRadius * 2;
-                              height: root.height - program_constants.windowGlowRadius * 2; }
-            PropertyChanges { target: titlebar; width: main_window.width; anchors.top: main_window.top }
-            PropertyChanges { target: controlbar; width: main_window.width; anchors.bottom: main_window.bottom}
-            PropertyChanges { target: playlist; height: main_window.height; anchors.right: main_window.right }
-        },
-        State {
-            name: "fullscreen"
-
-            PropertyChanges { target: root; width: windowView.width; height: windowView.height }
-            PropertyChanges { target: main_window; width: root.width; height: root.height }
-            PropertyChanges { target: titlebar; width: root.width; anchors.top: root.top }
-            PropertyChanges { target: controlbar; width: root.width; anchors.bottom: root.bottom}
-            PropertyChanges { target: playlist; height: root.height; anchors.right: root.right }
-        }
-    ]
 
     Timer {
         id: hide_controls_timer

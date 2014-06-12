@@ -29,7 +29,7 @@ Window {
     }
     
     function _intelligentlyResize(window, x, y, flag) {
-        var widthHeightScale = window.width / window.height
+        var widthHeightScale = movieInfo.movie_width / movieInfo.movie_height
 
         if (flag == resize_edge.resizeTop) {
             var deltaY = -y

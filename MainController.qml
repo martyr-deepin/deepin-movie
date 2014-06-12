@@ -145,7 +145,7 @@ MouseArea {
     }
 
     function _setSizeForRootWindowWithWidth(destWidth) {
-        var destHeight = destWidth * movieInfo.movie_height / movieInfo.movie_width
+        var destHeight = (destWidth - program_constants.windowGlowRadius * 2) * movieInfo.movie_height / movieInfo.movie_width + program_constants.windowGlowRadius * 2
         if (destHeight > primaryRect.height) {
             windowView.setWidth(primaryRect.height * movieInfo.movie_width / movieInfo.movie_height)
             windowView.setHeight(primaryRect.height)
@@ -261,13 +261,13 @@ MouseArea {
     }
 
     function fullscreen() {
-        root.state = "fullscreen"
+        root.state = "no_glow"
         _utils.disable_zone()
         windowView.showFullScreen()
     }
 
     function maximize() {
-        root.state = "normal"
+        root.state = "no_glow"
         windowView.showMaximized()
     }
 
@@ -542,8 +542,7 @@ MouseArea {
             // do the actual resize action
             windowView.setX(resize_visual.frameX)
             windowView.setY(resize_visual.frameY)
-            windowView.setWidth(resize_visual.frameWidth)
-            windowView.setHeight(resize_visual.frameHeight)
+            _setSizeForRootWindowWithWidth(resize_visual.frameWidth)
 
             // record last width
             database.lastWindowWidth = windowView.width
