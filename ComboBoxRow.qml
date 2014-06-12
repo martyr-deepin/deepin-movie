@@ -21,6 +21,7 @@ Item {
 	DComboBox {
 		id: input
 		width: 200
+		menu.maxHeight: 100
 		anchors.right: parent.right
 		anchors.verticalCenter: parent.verticalCenter
 
