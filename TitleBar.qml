@@ -73,6 +73,7 @@ DragableArea {
 
     Item {
         id: titlebarBackground
+        layer.enabled: true
         anchors.fill: parent
 
         LinearGradient {
