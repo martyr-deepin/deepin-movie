@@ -16,7 +16,7 @@ Rectangle {
         id: label
 		font { pixelSize: 15 }
         anchors.centerIn: parent
-        color: "white"
+        color: Qt.rgba(1, 1, 1, 0.85)
         style: Text.Outline
         styleColor: "black"
     }

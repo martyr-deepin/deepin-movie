@@ -33,7 +33,7 @@ DragableArea {
             }
             PropertyChanges {
                 target: title_text
-                visible: true
+                visibleSwitch: true
             }
             PropertyChanges {
                 target: quick_bar
@@ -52,7 +52,7 @@ DragableArea {
             }
             PropertyChanges {
                 target: title_text
-                visible: false
+                visibleSwitch: false
             }
             PropertyChanges {
                 target: quick_bar
@@ -108,16 +108,20 @@ DragableArea {
             text: "DMovie"
 
             anchors.left: appIcon.right
-            anchors.leftMargin: 10
+            anchors.leftMargin: 3
             anchors.verticalCenter: appIcon.verticalCenter
+            anchors.verticalCenterOffset: 1
         }
 
         Text {
             id: title_text
             width: Math.min(titlebar.width - (btn.x + btn.width + 20) * 2, implicitWidth)
-            font.pixelSize: 15
-            color: Qt.rgba(1, 1, 1, 0.8)
+            font.pixelSize: 13
+            color: Qt.rgba(1, 1, 1, 0.6)
             elide: Text.ElideRight
+            visible: visibleSwitch && width > implicitWidth / 2
+
+            property bool visibleSwitch: true
             
             anchors.verticalCenter: windowButtonArea.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
