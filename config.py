@@ -47,6 +47,7 @@ DEFAULT_CONFIG = [
     ("autoPlayFromLast", False),
     ("autoPlaySeries", True),
     ("showPreview", True),
+    ("forwardRewindStep", 5.0),
     ("multipleProgramsAllowed", False),
     ("notificationsEnabled", True),
     ("pauseOnMinimized", True),]),

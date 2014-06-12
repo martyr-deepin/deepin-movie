@@ -114,6 +114,16 @@ DPreferenceWindow {
                 checked: config.playerNotificationsEnabled
                 onClicked: config.playerNotificationsEnabled = checked
             }
+            
+            SpinnerRow {
+                title: dsTr("Forward/Rewind Step")
+                min: 1.0
+                max: 30.0
+                text: config.playerForwardRewindStep
+                anchors.topMargin: 20
+
+                onValueChanged: config.playerForwardRewindStep = value + 0.0
+            }
         }
 
         SectionContent { title: "Keyboard"; sectionId: ""; topSpaceHeight: 30; bottomSpaceHeight: 10 }
