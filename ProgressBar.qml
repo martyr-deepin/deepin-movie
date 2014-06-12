@@ -83,7 +83,7 @@ Item {
 
     Timer {
         id: became_minimal_timer
-        interval: 3000
+        interval: 500
         onTriggered: mouse_area.containsMouse ? became_minimal_timer.restart() : (progressbar.state = "minimal")
     }
     
@@ -97,7 +97,7 @@ Item {
         }
 
         onPositionChanged: {
-            progressbar.percentage != 0 && (progressbar.state = "normal")
+            (progressbar.percentage > 0 && progressbar.percentage < 100) && (progressbar.state = "normal")
             progressbar.mouseOver(mouse.x)
         }
 
