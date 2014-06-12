@@ -273,6 +273,7 @@ class MenuController(QObject):
     @pyqtSlot()
     def show_mode_menu(self):
         self.menu = Menu(play_sequence_sub_menu)
+        self.menu.itemClicked.connect(self._menu_item_invoked)
 
         self.menu.getItemById("mode_group:radio:in_order").checked = \
             config.playerPlayOrderType == ORDER_TYPE_IN_ORDER
