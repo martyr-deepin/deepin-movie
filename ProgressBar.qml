@@ -97,7 +97,7 @@ Item {
         }
 
         onPositionChanged: {
-            progressbar.state = "normal"
+            progressbar.percentage != 0 && progressbar.state = "normal"
             progressbar.mouseOver(mouse.x)
         }
 
