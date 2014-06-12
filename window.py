@@ -30,6 +30,7 @@ from PyQt5.QtGui import QSurfaceFormat, QColor, QPixmap, QIcon
 from notification import notify
 from constant import (DEFAULT_WIDTH, DEFAULT_HEIGHT, WINDOW_GLOW_RADIUS,
     MINIMIZE_WIDTH, MINIMIZE_HEIGHT)
+from i18n import _
 
 HOME_DIR = os.path.expanduser("~")
 def icon_from_theme(theme_name, icon_name):
@@ -55,6 +56,7 @@ class Window(QQuickView):
         
         self.staysOnTop = False
         self.qml_context = self.rootContext()
+        self.setTitle(_("Deepin Movie"))
         self.setIcon(icon_from_theme("Deepin", "deepin-movie"))
 
     def initWindowSize(self):
