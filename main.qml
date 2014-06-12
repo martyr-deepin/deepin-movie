@@ -45,6 +45,7 @@ Rectangle {
         id: purposes
         property string openVideoFile: "open_video_file"
         property string openSubtitleFile: "open_subtitle_file"
+        property string addPlayListItem: "add_playlist_item"
     }
 
     OpenFileDialog {
@@ -65,6 +66,8 @@ Rectangle {
                     movieInfo.movie_file = fileUrls[0]                    
                 } else if (purpose == purposes.openSubtitleFile) {
                     movieInfo.subtitle_file = fileUrls[0]
+                } else if (purpose == purposes.addPlayListItem) {
+                    main_controller.addPlayListItem(fileUrls[0])
                 }
             }
         }
@@ -434,8 +437,10 @@ Rectangle {
 
         onNewSourceSelected: movieInfo.movie_file = path
         onModeButtonClicked: _menu_controller.show_mode_menu()
-        onAddButtonClicked: main_controller.openFile()
+        onAddButtonClicked: { open_file_dialog.purpose = purposes.addPlayListItem; open_file_dialog.open() }
         onClearButtonClicked: playlist.clear()
+
+        onDropFile: main_controller.addPlayListItem(path)
     }
     
     Component.onCompleted: showControls()

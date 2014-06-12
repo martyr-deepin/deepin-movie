@@ -18,6 +18,7 @@ Rectangle {
     signal deleteButtonClicked ()
     signal clearButtonClicked ()
     signal modeButtonClicked ()
+    signal dropFile (url path)
 
     states: [
         State {
@@ -126,6 +127,7 @@ Rectangle {
 
         onEntered: { playlistPanel.state = "active" }
         onWheel: {}
+        onClicked: { playlistPanel.hide() }
     }
 
     Item {
@@ -178,11 +180,11 @@ Rectangle {
                 anchors.verticalCenter: parent.verticalCenter
                 onClicked: { playlistPanel.modeButtonClicked() }
             }
-            OpacityImageButton {
-                imageName: "image/playlist_delete_button.png"
-                anchors.verticalCenter: parent.verticalCenter                
-                onClicked: { playlistPanel.deleteButtonClicked() }
-            }
+            // OpacityImageButton {
+            //     imageName: "image/playlist_delete_button.png"
+            //     anchors.verticalCenter: parent.verticalCenter                
+            //     onClicked: { playlistPanel.deleteButtonClicked() }
+            // }
             OpacityImageButton {
                 imageName: "image/playlist_add_button.png"
                 anchors.verticalCenter: parent.verticalCenter                
@@ -214,6 +216,18 @@ Rectangle {
 
             onClicked: {
                 hidingPlaylistPanelAnimation.restart()
+            }
+        }
+    }
+
+    DropArea {
+        anchors.fill: parent
+
+        onDropped: {
+            if (drop.hasUrls) {
+                var file_path = drop.urls[0].substring(7)
+                file_path = decodeURIComponent(file_path)
+                playlistPanel.dropFile(file_path)
             }
         }
     }

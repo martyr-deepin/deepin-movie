@@ -66,9 +66,9 @@ class Utils(QObject):
                 result.append(file_abs_path)
         return result
 
-    # name should has no "file://" prefix
     @pyqtSlot(str, result=str)
     def getSeriesByName(self, name):
+        name = name[7:] if name.startswith("file://") else name
         dir = os.path.dirname(name)
         allFiles = self.getAllFilesInDir(dir)
         # allFiles.remove(name)
