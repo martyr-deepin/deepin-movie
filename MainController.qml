@@ -349,6 +349,7 @@ MouseArea {
         } else {
             if (database.lastPlayedFile) {
                 movieInfo.movie_file = database.lastPlayedFile
+                notifybar.show(dsTr("Play your last played movie"))
             } else {
                 controlbar.reset()
             }
