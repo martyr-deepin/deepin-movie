@@ -421,8 +421,41 @@ MouseArea {
     function openFile() { open_file_dialog.purpose = purposes.openVideoFile; open_file_dialog.open() }
     function openDir() { open_folder_dialog.open() }
 
-    function playNext() { movieInfo.movie_file = playlist.getNextSource() || "" }
-    function playPrevious() { movieInfo.movie_file = playlist.getPreviousSource() || "" }
+    function playNext() { 
+        var next = null
+
+        if (config.playerPlayOrderType == "ORDER_TYPE_RANDOM") {
+            next = playlist.getRandom()
+        } else if (config.playerPlayOrderType == "ORDER_TYPE_RANDOM_IN_ORDER") {
+            next = playlist.getNextSource()
+        } else if (config.playerPlayOrderType == "ORDER_TYPE_SINGLE") {
+            next = null
+        } else if (config.playerPlayOrderType == "ORDER_TYPE_SINGLE_CYCLE") {
+            next = database.lastPlayedFile
+        } else if (config.playerPlayOrderType == "ORDER_TYPE_PLAYLIST_CYCLE") {
+            print(playlist.getNextSourceCycle())
+            next = playlist.getNextSourceCycle()
+        }
+
+        next ? (movieInfo.movie_file = next) : root.reset()
+    }
+    function playPrevious() { 
+        var next = null
+
+        if (config.playerPlayOrderType == "ORDER_TYPE_RANDOM") {
+            next = playlist.getRandom()
+        } else if (config.playerPlayOrderType == "ORDER_TYPE_RANDOM_IN_ORDER") {
+            next = playlist.getPreviousSource()
+        } else if (config.playerPlayOrderType == "ORDER_TYPE_SINGLE") {
+            next = null
+        } else if (config.playerPlayOrderType == "ORDER_TYPE_SINGLE_CYCLE") {
+            next = database.lastPlayedFile
+        } else if (config.playerPlayOrderType == "ORDER_TYPE_PLAYLIST_CYCLE") {
+            next = playlist.getPreviousSourceCycle()
+        }
+
+        next ? (movieInfo.movie_file = next) : root.reset()
+    }
 
     function setSubtitleVerticalPosition(percentage) {
         config.subtitleVerticalPosition = Math.max(0, Math.min(1, percentage))

@@ -75,13 +75,11 @@ Rectangle {
         database.playlist_local = ""
     }
     
-    function getPreviousSource() {
-        return playlist.getPreviousSource()
-    }
-
-    function getNextSource() {
-        return playlist.getNextSource()
-    }
+    function getRandom() { return playlist.getRandom() }
+    function getPreviousSource() { return playlist.getPreviousSource() }
+    function getNextSource() { return playlist.getNextSource() }
+    function getPreviousSourceCycle() { return playlist.getPreviousSourceCycle() }
+    function getNextSourceCycle() { return playlist.getNextSourceCycle() }
 
     Timer {
         id: hide_timer

@@ -273,4 +273,16 @@ class MenuController(QObject):
     @pyqtSlot()
     def show_mode_menu(self):
         self.menu = Menu(play_sequence_sub_menu)
+
+        self.menu.getItemById("mode_group:radio:in_order").checked = \
+            config.playerPlayOrderType == ORDER_TYPE_IN_ORDER
+        self.menu.getItemById("mode_group:radio:random").checked = \
+            config.playerPlayOrderType == ORDER_TYPE_RANDOM
+        self.menu.getItemById("mode_group:radio:single").checked = \
+            config.playerPlayOrderType == ORDER_TYPE_SINGLE
+        self.menu.getItemById("mode_group:radio:single_cycle").checked = \
+            config.playerPlayOrderType == ORDER_TYPE_SINGLE_CYCLE
+        self.menu.getItemById("mode_group:radio:playlist_cycle").checked = \
+            config.playerPlayOrderType == ORDER_TYPE_PLAYLIST_CYCLE
+            
         self.menu.showRectMenu(QCursor.pos().x() - 100, QCursor.pos().y())        

@@ -13,47 +13,40 @@ ListView {
 	property bool isSelected: false
 
 	signal newSourceSelected(string path)
+
+	function getRandom() {
+		var flatList = _flattenList()
+		var rand = Math.floor(Math.random() * flatList.length)
+		return flatList.length > 0 ? flatList[rand] : null
+	}
+
+	function getPreviousSourceCycle() { return _getPreviousSource(true) }
+
+	function getNextSourceCycle() { return _getNextSource(true) }
+
+	function getPreviousSource() { return _getPreviousSource(false) }
+
+	function getNextSource() { return _getNextSource(false) }
     
-	function getPreviousSource() {
-   		for (var i = 0; i < allItems.length; i++) {
-   			if (allItems[i].isSelected) { // seek which Column is selected
-   				if (allItems[i].isGroup) { // if the Column has child, then find recursively
-   					return allItems[i].child.getPreviousSource()
-   				} else {
-   					if (i == 0) { // the source current playing is the first one in this category
-   						return null
-   					} else {
-   						if (allItems[i - 1].isGroup) { // the previous item in this category has child
-   							return null
-   						} else {
-   							return allItems[i - 1].propUrl // finally, get what we want
-   						}
-   					}
-   				}
-   			}
+	function _getPreviousSource(cycle) {
+	   	var flatList = _flattenList()
+	   	for (var i = 0; i < flatList.length; i++) {
+	   		if (flatList[i] == currentPlayingSource) {
+	   			var destIndex = cycle ? (i + flatList.length - 1) % flatList.length : Math.max(i-1, 0)
+	   			return flatList[destIndex]
+	   		}
 	   	}
 	   	return null
 	}    
 
-	function getNextSource() {
-   		for (var i = 0; i < allItems.length; i++) {
-   			if (allItems[i].isSelected) { // seek which Column is selected
-   				if (allItems[i].isGroup) { // if the Column has child, then find recursively
-   					print("group")
-   					return allItems[i].child.getNextSource()
-   				} else {
-   					if (i == allItems.length - 1) { // the source current playing is the last one in this category
-   						return null
-   					} else {
-   						if (allItems[i + 1].isGroup) { // the next item in this category has child
-   							return null
-   						} else {
-   							return allItems[i + 1].propUrl // finally, get what we want
-   						}
-   					}
-   				}
-   			}
-   		}
+	function _getNextSource(cycle) {
+	   	var flatList = _flattenList()
+	   	for (var i = 0; i < flatList.length; i++) {
+	   		if (flatList[i] == currentPlayingSource) {
+	   			var destIndex = cycle ? (i + 1) % flatList.length : Math.min(i+1, flatList.length - 1)
+	   			return flatList[destIndex]
+	   		}
+	   	}
 	   	return null
 	}
 
@@ -119,6 +112,18 @@ ListView {
         	parent.propChild.append(item)
         }
         forceLayout()
+	}
+
+	function _flattenList() {
+		var result = []
+		for (var i = 0; i < allItems.length; i++) {
+		    if (allItems[i].isGroup) {
+		        result = result.concat(allItems[i].child._flattenList())
+		    } else {
+		        result.push(allItems[i].propUrl)
+		    }
+		}
+		return result
 	}
 
 	// playlist serialization

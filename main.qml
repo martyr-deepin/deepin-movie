@@ -329,13 +329,13 @@ Rectangle {
 
         onStopped: {
             database.record_video_position(lastSource, lastPosition)
-            if (Math.abs(position - movieInfo.movie_duration) < 1000) {
-                var next = playlist.getNextSource()
-                if (next) {
-                    movieInfo.movie_file = next
-                } else {
-                    root.reset()
-                }
+
+            if (Math.abs(position - movieInfo.movie_duration) < 1000) { 
+                // onStopped will be triggered when we change the movie source, 
+                // we do this to make sure that the follwing code executed only when 
+                // the movie played out naturally.
+                print("onStopped")
+                main_controller.playNext()
             }
         }
 
