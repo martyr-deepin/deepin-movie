@@ -336,7 +336,7 @@ DPreferenceWindow {
                 max: 6
                 text: config.subtitleFontBorderSize
 
-                onValueChanged: config.subtitleFontBorderSize = value
+                onValueChanged: config.subtitleFontBorderSize = value + 0.0
             }
 
             SliderRow {
