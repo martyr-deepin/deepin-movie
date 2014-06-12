@@ -8,6 +8,7 @@ DragableArea {
     height: program_constants.titlebarHeight
 
     property bool windowNormalState: true
+    property alias windowFullscreenState: quick_fullscreen_button.checkFlag
     property alias title: title_text.text
 
     signal menuButtonClicked ()
@@ -17,7 +18,7 @@ DragableArea {
 
     signal quickNormalSize()
     signal quickOneHalfSize()
-    signal quickFullscreen()
+    signal quickToggleFullscreen()
     signal quickToggleTop()
 
     states: [
@@ -155,13 +156,16 @@ DragableArea {
                 onClicked: titlebar.quickOneHalfSize()
             }
             DImageButton {
-                normal_image: "image/quick_fullscreen_normal.svg"
-                hover_image: "image/quick_fullscreen_hover.svg"
-                press_image: "image/quick_fullscreen_hover.svg"
+                id: quick_fullscreen_button
+                normal_image: checkFlag ? "image/quick_quit_fullscreen_normal.svg" : "image/quick_fullscreen_normal.svg"
+                hover_image: checkFlag ? "image/quick_quit_fullscreen_hover.svg" : "image/quick_fullscreen_hover.svg"
+                press_image: checkFlag ? "image/quick_quit_fullscreen_hover.svg" : "image/quick_fullscreen_hover.svg"
+
+                property bool checkFlag: false
 
                 anchors.verticalCenter: parent.verticalCenter
 
-                onClicked: titlebar.quickFullscreen()
+                onClicked: titlebar.quickToggleFullscreen()
             }
             DImageButton {
                 normal_image: checkFlag ? "image/quick_untop_normal.svg" : "image/quick_top_normal.svg"

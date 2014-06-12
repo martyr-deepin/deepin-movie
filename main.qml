@@ -236,7 +236,8 @@ Rectangle {
     // if it is ther user that stopped the player, we'll not play it automatically.
     property bool videoStoppedByAppFlag: false 
     function monitorWindowState(state) {
-        titlebar.windowNormalState = state == Qt.WindowNoState
+        titlebar.windowNormalState = (state == Qt.WindowNoState)
+        titlebar.windowFullscreenState = (state == Qt.WindowFullScreen)
         time_indicator.visible = (state == Qt.WindowFullScreen && 
                                   player.playbackState == MediaPlayer.PlayingState)
         if (windowLastState != state) {
@@ -392,7 +393,7 @@ Rectangle {
 
         onQuickNormalSize: main_controller.setScale(1)
         onQuickOneHalfSize: main_controller.setScale(1.5)
-        onQuickFullscreen: main_controller.fullscreen()
+        onQuickToggleFullscreen: main_controller.fullscreen()
         onQuickToggleTop: main_controller.toggleStaysOnTop()
     }
 
