@@ -438,6 +438,7 @@ Rectangle {
         width: 0
         visible: false
         window: windowView
+        maxWidth: main_window.width * 0.6
         currentPlayingSource: player.source
         anchors.right: main_window.right
         anchors.verticalCenter: parent.verticalCenter

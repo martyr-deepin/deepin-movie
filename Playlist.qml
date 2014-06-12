@@ -11,6 +11,7 @@ Rectangle {
     property bool expanded: width == program_constants.playlistWidth
     property url currentPlayingSource
     property alias window: playlistPanelArea.window
+    property int maxWidth: program_constants.playlistWidth
 
     signal newSourceSelected (string path)
     
@@ -28,7 +29,7 @@ Rectangle {
         },
         State {
             name: "inactive"
-            PropertyChanges { target: playlistPanel; color: "#1B1C1D"; opacity: 0.95 }
+            PropertyChanges { target: playlistPanel; color: "#1B1C1D"; opacity: 0.80 }
             PropertyChanges { target: hidePlaylistButton; source: "image/playlist_handle_bg.png"; opacity: 0.95 }
         }
     ]
@@ -97,7 +98,7 @@ Rectangle {
         target: playlistPanel
         property: "width"
         to: program_constants.playlistWidth
-        duration: 100
+        duration: 300
         easing.type: Easing.OutQuint
 
         onStopped: {
@@ -112,7 +113,7 @@ Rectangle {
         target: playlistPanel
         property: "width"
         to: 0
-        duration: 100
+        duration: 300
         easing.type: Easing.OutQuint
 
         onStopped: {
@@ -198,24 +199,43 @@ Rectangle {
         }
     }
 
-    Image {
-        id: hidePlaylistButton
-        width: implicitWidth
-        height: implicitHeight
+    MouseArea {
+        width: hidePlaylistButton.width
+        height: parent.height
+        hoverEnabled: true
+
         anchors.right: parent.left
-        anchors.verticalCenter: playlistPanel.verticalCenter
+        anchors.verticalCenter: parent.verticalCenter
 
-        DImageButton {
-            id: handle_arrow_button
-            normal_image: "image/playlist_handle_normal.png"
-            hover_image: "image/playlist_handle_hover.png"
-            press_image: "image/playlist_handle_press.png"
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-            anchors.leftMargin: 3
+        onPositionChanged: {
+            if (pressed) {
+                program_constants.playlistWidth = Math.min(playlistPanel.maxWidth, 
+                    Math.max(program_constants.playlistMinWidth, 
+                        playlistPanel.width - mouse.x))
+                playlistPanel.width = program_constants.playlistWidth
+            } else {
+                cursorShape = Qt.SizeHorCursor
+            }
+        }
 
-            onClicked: {
-                hidingPlaylistPanelAnimation.restart()
+        Image {
+            id: hidePlaylistButton
+            width: implicitWidth
+            height: implicitHeight
+            anchors.centerIn: parent
+
+            DImageButton {
+                id: handle_arrow_button
+                normal_image: "image/playlist_handle_normal.png"
+                hover_image: "image/playlist_handle_hover.png"
+                press_image: "image/playlist_handle_press.png"
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.left: parent.left
+                anchors.leftMargin: 3
+
+                onClicked: {
+                    hidingPlaylistPanelAnimation.restart()
+                }
             }
         }
     }

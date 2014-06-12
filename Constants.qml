@@ -7,6 +7,7 @@ Item {
     property int controlbarTriggerThreshold: 50
     
     property int playlistWidth: 218
+    property int playlistMinWidth: 218
     property int playlistTriggerThreshold: 50
 
     property int simplifiedModeTriggerWidth: 500
