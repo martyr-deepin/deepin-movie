@@ -8,7 +8,7 @@ Rectangle {
     id: root
     state: "normal"
     color: "transparent"
-    radius: main_window.radius
+    // radius: main_window.radius
     // QT takes care of WORKAREA for you which is thoughtful indeed, but it cause
     // problems sometime, we should be careful in case that it changes height for
     // you suddenly.

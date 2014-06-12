@@ -89,10 +89,10 @@ DragableArea {
             }
         }
 
-        TopRoundItem {
-            target: topPanelBackround
-            radius: program_constants.windowRadius
-        }
+        // TopRoundItem {
+        //     target: topPanelBackround
+        //     radius: program_constants.windowRadius
+        // }
 
         Image {
             id: appIcon
