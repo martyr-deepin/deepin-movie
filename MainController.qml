@@ -422,6 +422,8 @@ MouseArea {
     function openDir() { open_folder_dialog.open() }
 
     function playNext() { 
+        // to ensure that there's currentPlayingSource to track
+        playlist.currentPlayingSource = database.lastPlayedFile
         var next = null
 
         if (config.playerPlayOrderType == "ORDER_TYPE_RANDOM") {
@@ -433,13 +435,14 @@ MouseArea {
         } else if (config.playerPlayOrderType == "ORDER_TYPE_SINGLE_CYCLE") {
             next = database.lastPlayedFile
         } else if (config.playerPlayOrderType == "ORDER_TYPE_PLAYLIST_CYCLE") {
-            print(playlist.getNextSourceCycle())
             next = playlist.getNextSourceCycle()
         }
 
         next ? (movieInfo.movie_file = next) : root.reset()
     }
     function playPrevious() { 
+        // to ensure that there's currentPlayingSource to track
+        playlist.currentPlayingSource = database.lastPlayedFile
         var next = null
 
         if (config.playerPlayOrderType == "ORDER_TYPE_RANDOM") {
