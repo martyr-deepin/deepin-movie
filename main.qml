@@ -3,6 +3,7 @@ import QtMultimedia 5.0
 import QtGraphicalEffects 1.0
 import QtQuick.Window 2.1
 import Deepin.Locale 1.0
+import DBus.Org.Freedesktop.ScreenSaver 1.0
 
 Rectangle {
     id: root
@@ -20,6 +21,7 @@ Rectangle {
     property var windowLastState: ""
 
     property real widthHeightScale: movieInfo.movie_width / movieInfo.movie_height
+    property int inhibitCookie: 0
 
     property rect primaryRect: {
         return Qt.rect(0, 0, Screen.desktopAvailableWidth, Screen.desktopAvailableHeight)
@@ -53,6 +55,8 @@ Rectangle {
         onWidthChanged: root.width = windowView.width
         onHeightChanged: root.height = windowView.height 
     }
+
+    ScreenSaver { id: dbus_screensaver }
 
     Constants { id: program_constants }
 
@@ -254,6 +258,7 @@ Rectangle {
     }
 
     function monitorWindowClose() {
+        dbus_screensaver.UnInhibit(root.inhibitCookie)
         config.save("Normal", "volume", player.volume)
         database.record_video_position(player.source, player.position)
         database.playlist_local = playlist.getContent()
@@ -322,6 +327,7 @@ Rectangle {
 
         // onSourceChanged doesn't ensures that the file is playable, this one did.
         onPlaying: { 
+            root.inhibitCookie = dbus_screensaver.Inhibit("deepin-movie", "video playing")
             main_controller.setWindowTitle(movieInfo.movie_title)
             lastSource = source
             database.lastPlayedFile = source 
@@ -331,6 +337,7 @@ Rectangle {
         }
 
         onStopped: {
+            dbus_screensaver.UnInhibit(root.inhibitCookie)
             database.record_video_position(lastSource, lastPosition)
 
             if (Math.abs(position - movieInfo.movie_duration) < 1000) { 
