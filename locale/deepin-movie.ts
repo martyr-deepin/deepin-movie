@@ -65,13 +65,13 @@
 <context>
     <name>MainController</name>
     <message>
-        <location filename="../MainController.qml" line="362"/>
-        <source>Forward To </source>
+        <location filename="../MainController.qml" line="352"/>
+        <source>Play your last played movie</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="352"/>
-        <source>Play your last played movie</source>
+        <location filename="../MainController.qml" line="362"/>
+        <source>Forward To </source>
         <translation type="unfinished"></translation>
     </message>
     <message>

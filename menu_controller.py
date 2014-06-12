@@ -53,8 +53,8 @@ sound_sub_menu = [
     ("_sound_channel", _("Sound Tracks")),
     ("_sound_output_mode", _("Output Mode")),
     None,
-    ("_sound_increase", _("Increase Volume")),
-    ("_sound_decrease", _("Decrease Volume")),
+    ("_sound_increase", _("Volume Up")),
+    ("_sound_decrease", _("Volume Down")),
     CheckableMenuItem("_sound_muted", _("Muted"))
 ]
 
@@ -69,11 +69,11 @@ subtitle_sub_menu = [
 ]
 
 play_sequence_sub_menu = [
-    CheckableMenuItem("mode_group:radio:in_order", _("In Order"), True),
+    CheckableMenuItem("mode_group:radio:in_order", _("Order"), True),
     CheckableMenuItem("mode_group:radio:random", _("Random")),
     CheckableMenuItem("mode_group:radio:single", _("Single")),
-    CheckableMenuItem("mode_group:radio:single_cycle", _("Single Cycle")),
-    CheckableMenuItem("mode_group:radio:playlist_cycle", _("Playlist Cycle"))
+    CheckableMenuItem("mode_group:radio:single_cycle", _("Repeat (Single)")),
+    CheckableMenuItem("mode_group:radio:playlist_cycle", _("Repeat (Playlist)"))
 ]
 
 play_sub_menu = [
@@ -81,17 +81,17 @@ play_sub_menu = [
     ("_play_operation_next", _("Next")),
     None,
     ("_play_operation_forward", _("Forward")),
-    ("_play_operation_backward", _("Backward")),
+    ("_play_operation_backward", _("Rewind")),
 ]
     
 right_click_menu = [
     ("_open_file", _("Open File")),
-    ("_open_dir", _("Open Directory")),
+    ("_open_dir", _("Open Folder")),
     ("_open_url", _("Open URL")),
     None,
     ("_fullscreen_quit", _("Fullscreen/Quit Fullscreen")),
     CheckableMenuItem("_mini_mode", _("Mini Mode"), True),
-    CheckableMenuItem("_on_top", _("On Top"), False),
+    CheckableMenuItem("_on_top", _("Always On Top"), False),
     None,
     ("_play_sequence", _("Play Sequence"), (), play_sequence_sub_menu),
     ("_play", _("Play"), (), play_sub_menu),

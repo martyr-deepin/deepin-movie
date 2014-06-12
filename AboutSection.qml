@@ -39,7 +39,7 @@ SectionContent {
         font.pixelSize: 10
         width: parent.width
         wrapMode: Text.WordWrap
-        text: dsTr("Deepin Movie is a video player designed for Linux users. It surpports a variety of video formats and features.")
+        text: dsTr("Deepin Movie is a video player designed for Linux users. It supports a variety of video formats.")
     }
 
     Text {

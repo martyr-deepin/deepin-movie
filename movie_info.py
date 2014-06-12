@@ -110,7 +110,7 @@ class MovieInfo(QObject):
         self.media_height = self.media_info["video_height"] or DEFAULT_HEIGHT
         self.media_duration = self.media_info["general_duration"] or 0
         self.media_size = int(self.media_info["general_size"] or 0)
-        self.media_type = self.media_info["general_format"] or _("unknown")
+        self.media_type = self.media_info["general_format"] or _("Unknown")
         self.media_width = int(self.media_width) + 2 * WINDOW_GLOW_RADIUS
         self.media_height = int(self.media_height) + 2 * WINDOW_GLOW_RADIUS
         self.media_duration = int(self.media_duration)

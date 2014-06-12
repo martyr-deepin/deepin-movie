@@ -365,7 +365,7 @@ MouseArea {
     function backwardByDelta(delta) {
         player.playbackRate = 1.0
         player.seek(player.position - delta)
-        notifybar.show(dsTr("Backward To ") + formatTime(player.position) + "  %1%".arg(Math.floor(player.position / movieInfo.movie_duration * 100)))
+        notifybar.show(dsTr("Rewind To ") + formatTime(player.position) + "  %1%".arg(Math.floor(player.position / movieInfo.movie_duration * 100)))
     }
 
     function forward() { forwardByDelta(config.playerForwardRewindStep) }
