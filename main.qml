@@ -165,7 +165,7 @@ Rectangle {
     }
 
     function formatTime(millseconds) {
-        if (millseconds < 0) return "00:00:00";
+        if (millseconds <= 0) return "00:00:00";
         var secs = Math.floor(millseconds / 1000)
         var hr = Math.floor(secs / 3600);
         var min = Math.floor((secs - (hr * 3600))/60);
