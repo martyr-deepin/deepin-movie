@@ -90,7 +90,7 @@ right_click_menu = [
     ("_open_url", _("Open URL")),
     None,
     ("_fullscreen_quit", _("Fullscreen/Quit")),
-    CheckableMenuItem("_mini_mode", _("Mini mode"), True),
+    ("_mini_mode", _("Mini mode")),
     CheckableMenuItem("_on_top", _("Always on top"), False),
     None,
     ("_play_sequence", _("Play Sequence"), (), play_sequence_sub_menu),
@@ -136,6 +136,14 @@ class MenuController(QObject):
     showMovieInformation = pyqtSignal()
     openSubtitleFile = pyqtSignal()
     subtitleSelected = pyqtSignal(str,arguments=["subtitle"])
+    playNext = pyqtSignal()
+    playPrevious = pyqtSignal()
+    playForward = pyqtSignal()
+    playBackward = pyqtSignal()
+    volumeUp = pyqtSignal()
+    volumeDown = pyqtSignal()
+    volumeMuted = pyqtSignal()
+    showSubtitleSettings = pyqtSignal()
     
     def __init__(self, window):
         super(MenuController, self).__init__()
@@ -215,6 +223,22 @@ class MenuController(QObject):
             self.openSubtitleFile.emit()
         elif _id.startswith("_subtitles:radio"):
             self.subtitleSelected.emit(_subtitle_file_from_menu_item_id(_id))
+        elif _id == "_play_operation_forward":
+            self.playForward.emit()
+        elif _id == "_play_operation_backward":
+            self.playBackward.emit()
+        elif _id == "_play_operation_next":
+            self.playNext.emit()
+        elif _id == "_play_operation_previous":
+            self.playPrevious.emit()
+        elif _id == "_sound_increase":
+            self.volumeUp.emit()
+        elif _id == "_sound_decrease":
+            self.volumeDown.emit()
+        elif _id == "_sound_muted":
+            self.volumeMuted.emit()
+        elif _id == "_subtitle_settings":
+            self.showSubtitleSettings.emit()
         elif _id == "_preferences":
             self.showPreference.emit()
         elif _id == "_information":
@@ -224,6 +248,8 @@ class MenuController(QObject):
     def show_menu(self):
         self.menu = Menu(right_click_menu)
 
+        _mini_mode_item = self.menu.getItemById("_mini_mode")
+        _mini_mode_item.text += "(%s)" % config.hotkeysFrameSoundToggleMiniMode.upper()
         self.menu.getItemById("_on_top").checked = self._window.staysOnTop
 
         self.menu.getItemById("mode_group:radio:in_order").checked = \
@@ -262,7 +288,7 @@ class MenuController(QObject):
         self.menu.getItemById("_sound_muted").checked = config.playerMuted
 
         self.menu.getItemById("_subtitle_hide").checked = \
-            config.playerSubtitleHide
+            not config.subtitleAutoLoad
         subtitles = get_subtitle_from_movie(movie_info.movie_file)
         subtitles = _subtitle_menu_items_from_files(subtitles)
         self.menu.getItemById("_subtitle_choose").setSubMenu(Menu(subtitles))

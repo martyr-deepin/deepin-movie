@@ -314,6 +314,7 @@ Rectangle {
         volume: config.playerVolume
         source: movieInfo.movie_file
 
+        subtitleShow: config.subtitleAutoLoad
         subtitleFontSize: Math.floor(config.subtitleFontSize * main_window.width / windowView.defaultWidth)
         subtitleFontFamily: config.subtitleFontFamily || getSystemFontFamily()
         subtitleFontColor: config.subtitleFontColor

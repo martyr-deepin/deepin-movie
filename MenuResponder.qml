@@ -47,4 +47,15 @@ Connections {
     onShowPreference: { preference_window.show() }
 
     onShowMovieInformation: { player.source && player.hasVideo && info_window.show() }
+
+    onPlayPrevious: { main_controller.playPrevious() }
+    onPlayNext: { main_controller.playNext() }
+    onPlayForward: { main_controller.forward() }
+    onPlayBackward: { main_controller.backward() }
+
+    onVolumeUp: { main_controller.increaseVolume() }
+    onVolumeDown: { main_controller.decreaseVolume() }
+    onVolumeMuted: { main_controller.toggleMute() }
+
+    onShowSubtitleSettings: { preference_window.show(); preference_window.scrollToSubtitle() }
 }

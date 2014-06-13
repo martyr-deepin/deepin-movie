@@ -7,6 +7,20 @@ DPreferenceWindow {
     width: 560
     height: 480
 
+    property string currentSectionId
+
+    function scrollTo(sectionId) { scroll_to_timer.id = sectionId; scroll_to_timer.start() }
+
+    function scrollToSubtitle() { scrollTo("subtitles") }
+
+    Timer {
+        id: scroll_to_timer
+        interval: 1000
+        property string id
+
+        onTriggered: window.currentSectionId = id
+    }
+
     content: DPreferenceView {
         id: preference_view
         anchors.fill: parent
@@ -14,6 +28,10 @@ DPreferenceWindow {
         anchors.rightMargin: 10
         sectionListWidth:  100
         layer.enabled: true
+
+        property string curSectionId: window.currentSectionId
+
+        onCurSectionIdChanged: { scrollTo(curSectionId) }
         
         sections: [
             {
@@ -347,6 +365,8 @@ DPreferenceWindow {
 
             DCheckBox {
                 text: dsTr("Subtitles loaded automatically")
+                checked: config.subtitleAutoLoad
+                onClicked: config.subtitleAutoLoads = checked  
             }
 
             ComboBoxRow {
