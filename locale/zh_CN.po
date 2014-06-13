@@ -399,7 +399,7 @@ msgstr "下一个"
 
 #: ../menu_controller.py:89
 msgid "Open folder"
-msgstr "打开文件"
+msgstr "打开文件夹"
 
 #: ../menu_controller.py:90
 msgid "Open URL"
