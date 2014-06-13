@@ -17,7 +17,7 @@ DPreferenceWindow {
         
         sections: [
             {
-                "sectionId": "basic_settings",
+                "sectionId": "basic_playback",
                 "sectionName": dsTr("Basic settings"),
                 "subSections": [
                     {
@@ -33,7 +33,7 @@ DPreferenceWindow {
                 ]
             },
             {
-                "sectionId": "keyboard",
+                "sectionId": "keyboard_playback",
                 "sectionName": dsTr("Keyboard"),
                 "subSections": [
                     {
@@ -80,7 +80,7 @@ DPreferenceWindow {
             }
         ]
 
-        SectionContent { title: dsTr("Basic settings"); sectionId: ""; bottomSpaceHeight: 10 }
+        SectionContent { title: dsTr("Basic settings"); sectionId: "basic_playback"; bottomSpaceHeight: 10 }
 
         SectionContent { 
             id: basic_playback
