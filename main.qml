@@ -352,7 +352,7 @@ Rectangle {
 
         onPositionChanged: {
             position != 0 && (lastPosition = position)
-            subtitleContent = movieInfo.get_subtitle_at(position)
+            subtitleContent = movieInfo.get_subtitle_at(position + subtitleDelay)
             controlbar.percentage = position / movieInfo.movie_duration
         }
     }

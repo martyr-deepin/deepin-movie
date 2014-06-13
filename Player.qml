@@ -16,6 +16,7 @@ Video {
     property alias subtitleFontBorderColor: subtitle.fontBorderColor
     property alias subtitleShow: subtitle.visible
     property real subtitleVerticalPosition: 0.2
+    property int subtitleDelay: 0
 
     property bool isPreview: false
 
