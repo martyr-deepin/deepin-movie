@@ -370,8 +370,8 @@ MouseArea {
         notifybar.show(dsTr("Rewind to ") + formatTime(player.position) + "  %1%".arg(Math.floor(player.position / movieInfo.movie_duration * 100)))
     }
 
-    function forward() { forwardByDelta(config.playerForwardRewindStep) }
-    function backward() { backwardByDelta(config.playerForwardRewindStep) }
+    function forward() { forwardByDelta(Math.floor(config.playerForwardRewindStep * 1000)) }
+    function backward() { backwardByDelta(Math.floor(config.playerForwardRewindStep * 1000)) }
 
     function speedUp() { 
         player.playbackRate = Math.min(2.0, (player.playbackRate + 0.1).toFixed(1))
