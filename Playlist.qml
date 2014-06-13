@@ -227,11 +227,11 @@ Rectangle {
             DImageButton {
                 id: handle_arrow_button
                 normal_image: "image/playlist_handle_normal.png"
-                hover_image: "image/playlist_handle_hover.png"
-                press_image: "image/playlist_handle_press.png"
+                hover_image: "image/playlist_handle_hover_press.png"
+                press_image: "image/playlist_handle_hover_press.png"
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: parent.left
-                anchors.leftMargin: 3
+                anchors.leftMargin: 5
 
                 onClicked: {
                     hidingPlaylistPanelAnimation.restart()
