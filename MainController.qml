@@ -281,14 +281,14 @@ MouseArea {
     function toggleMiniMode() {
         if (titlebar.state == "minimal") {
             titlebar.state = "normal"
-            windowView.staysOnTop = true
+            windowView.staysOnTop = false
             windowView.setWidth(backupWidth)
             windowView.setHeight(backupHeight)
         } else {
             backupWidth = windowView.width
             backupHeight = windowView.height
             titlebar.state = "minimal"
-            windowView.staysOnTop = false
+            windowView.staysOnTop = true
             _setSizeForRootWindowWithWidth(program_constants.miniModeWidth)
         }
     }
