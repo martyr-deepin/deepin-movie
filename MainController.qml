@@ -232,7 +232,7 @@ MouseArea {
     }
 
     function urlToPlaylistItem(serie, url) {
-        url = "file://" + url
+        url = url.indexOf("file://") != -1 ? url : "file://" + url
         var pathDict = url.split("/")
         var result = pathDict.slice(pathDict.length - 2, pathDict.length + 1)
         return serie ? [serie, [result[result.length - 1].toString(), url.toString()]]
