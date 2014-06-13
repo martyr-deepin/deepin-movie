@@ -95,13 +95,26 @@ class InputDialog(QObject):
     def show(self):
         input, ok = self._dialog.getText(self.parent, self.title, self.label)
         return input if ok else ""
-        
+
 if __name__ == "__main__":
     app = QApplication(sys.argv)    
     # app.setFont(QFont("Arail"))
-    
     movie_file = os.path.realpath(sys.argv[1]) if len(sys.argv) >= 2 else ""
-    
+
+    from dbus_services import (DeepinMovieServie, check_multiple_instances, 
+        DeepinMovieInterface, session_bus, DBUS_PATH, DBUS_NAME)
+
+    result = check_multiple_instances()
+    if not config.playerMultipleProgramsAllowed:
+        if result: 
+            dbus_service = DeepinMovieServie()
+            session_bus.registerObject(DBUS_PATH, dbus_service)
+        else: 
+            if movie_file: 
+                dbus_interface = DeepinMovieInterface()
+                dbus_interface.play(movie_file)
+            os._exit(0)
+
     windowView = Window()
     # page_manager = PageManager(windowView)
     menu_controller = MenuController(windowView)
