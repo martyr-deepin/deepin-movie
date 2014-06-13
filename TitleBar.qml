@@ -10,6 +10,7 @@ DragableArea {
     property bool windowNormalState: true
     property alias windowFullscreenState: quick_fullscreen_button.checkFlag
     property alias title: title_text.text
+    property bool titleVisibleSwitch: titlebar.width > program_constants.simplifiedModeTriggerWidth
 
     signal menuButtonClicked ()
     signal minButtonClicked ()
@@ -34,7 +35,7 @@ DragableArea {
             }
             PropertyChanges {
                 target: title_text
-                visibleSwitch: true
+                visible: titlebar.titleVisibleSwitch
             }
             PropertyChanges {
                 target: quick_bar
@@ -53,7 +54,7 @@ DragableArea {
             }
             PropertyChanges {
                 target: title_text
-                visibleSwitch: false
+                visible: false
             }
             PropertyChanges {
                 target: quick_bar
@@ -121,9 +122,6 @@ DragableArea {
             font.pixelSize: 13
             color: Qt.rgba(1, 1, 1, 0.6)
             elide: Text.ElideRight
-            visible: visibleSwitch && width > implicitWidth / 2
-
-            property bool visibleSwitch: true
             
             anchors.verticalCenter: windowButtonArea.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
