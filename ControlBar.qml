@@ -267,6 +267,8 @@ DragableArea {
                 spacing: 25
 
                 DImageButton {
+                    sourceSize.width: 19
+                    sourceSize.height: 19
                     normal_image: "image/open_file_normal.svg"
                     hover_image: "image/open_file_hover_press.svg"
                     press_image: "image/open_file_hover_press.svg"
@@ -276,6 +278,8 @@ DragableArea {
                 }
 
                 DImageButton {
+                    sourceSize.width: 19
+                    sourceSize.height: 19                    
                     normal_image: "image/playlist_open_normal.svg"
                     hover_image: "image/playlist_open_hover_press.svg"
                     press_image: "image/playlist_open_hover_press.svg"
