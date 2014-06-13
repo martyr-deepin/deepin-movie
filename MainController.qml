@@ -386,15 +386,8 @@ MouseArea {
         notifybar.show(dsTr("Playback Rate: ") + player.playbackRate)
     }
 
-    function increaseVolumeByDelta(delta) {
-        config.playerVolume = Math.min(player.volume + delta, 1.0)
-        notifybar.show(dsTr("Volume: ") + Math.round(player.volume * 100) + "%")
-    }
-
-    function decreaseVolumeByDelta(delta) {
-        config.playerVolume = Math.max(player.volume - delta, 0.0)
-        notifybar.show(dsTr("Volume: ") + Math.round(player.volume * 100) + "%")
-    }
+    function increaseVolumeByDelta(delta) { setVolume(Math.min(player.volume + delta, 1.0)) }
+    function decreaseVolumeByDelta(delta) { setVolume(Math.max(player.volume - delta, 0.0)) }
 
     function increaseVolume() { increaseVolumeByDelta(0.05) }
     function decreaseVolume() { decreaseVolumeByDelta(0.05) }
@@ -406,7 +399,6 @@ MouseArea {
 
     function setMute(muted) {
         config.playerMuted = muted
-        config.save("Player", "muted", muted)
 
         if (player.muted) {
             notifybar.show(dsTr("Muted"))

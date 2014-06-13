@@ -15,7 +15,7 @@ Row {
     property bool showBarFlag: false // for internal useage
     property bool showBarSwitch: true // for external useage
 
-    signal changeVolume
+    signal changeVolume (double volume)
     signal mutedSet (bool muted)
 
     function emulateHover() {
@@ -132,8 +132,7 @@ Row {
 
                 onXChanged: {
                     if (pointer_mouse_area.pressed) {
-                        volume = x / (volume_bar.width - volume_pointer.width)
-                        item.changeVolume(volume)
+                        item.changeVolume(x / (volume_bar.width - volume_pointer.width))
                     }
                 }
 

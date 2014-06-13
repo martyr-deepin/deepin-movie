@@ -311,7 +311,7 @@ Rectangle {
     Player {
         id: player
         muted: config.playerMuted
-        volume: controlbar.volume
+        volume: config.playerVolume
         source: movieInfo.movie_file
 
         subtitleFontSize: Math.floor(config.subtitleFontSize * main_window.width / windowView.defaultWidth)
@@ -345,7 +345,6 @@ Rectangle {
                 // onStopped will be triggered when we change the movie source, 
                 // we do this to make sure that the follwing code executed only when 
                 // the movie played out naturally.
-                print("onStopped")
                 main_controller.playNext()
             }
         }
