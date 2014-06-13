@@ -351,7 +351,7 @@ MouseArea {
         } else {
             if (database.lastPlayedFile) {
                 movieInfo.movie_file = database.lastPlayedFile
-                notifybar.show(dsTr("Play your last played movie"))
+                notifybar.show(dsTr("Play last movie played"))
             } else {
                 controlbar.reset()
             }
@@ -361,13 +361,13 @@ MouseArea {
     function forwardByDelta(delta) {
         player.playbackRate = 1.0
         player.seek(player.position + delta)
-        notifybar.show(dsTr("Forward To ") + formatTime(player.position) + "  %1%".arg(Math.floor(player.position / movieInfo.movie_duration * 100)))
+        notifybar.show(dsTr("Forward to ") + formatTime(player.position) + "  %1%".arg(Math.floor(player.position / movieInfo.movie_duration * 100)))
     }
 
     function backwardByDelta(delta) {
         player.playbackRate = 1.0
         player.seek(player.position - delta)
-        notifybar.show(dsTr("Rewind To ") + formatTime(player.position) + "  %1%".arg(Math.floor(player.position / movieInfo.movie_duration * 100)))
+        notifybar.show(dsTr("Rewind to ") + formatTime(player.position) + "  %1%".arg(Math.floor(player.position / movieInfo.movie_duration * 100)))
     }
 
     function forward() { forwardByDelta(config.playerForwardRewindStep) }
@@ -375,17 +375,17 @@ MouseArea {
 
     function speedUp() { 
         player.playbackRate = Math.min(2.0, (player.playbackRate + 0.1).toFixed(1))
-        notifybar.show(dsTr("Playback Rate: ") + player.playbackRate + dsTr("(Press %1 to restore)").arg(config.hotkeysPlayRestoreSpeed))
+        notifybar.show(dsTr("Playback rate: ") + player.playbackRate + dsTr("(Press %1 to restore)").arg(config.hotkeysPlayRestoreSpeed))
     }
 
     function slowDown() { 
         player.playbackRate = Math.max(0.1, (player.playbackRate - 0.1).toFixed(1))
-        notifybar.show(dsTr("Playback Rate: ") + player.playbackRate + dsTr("(Press %1 to restore)").arg(config.hotkeysPlayRestoreSpeed))
+        notifybar.show(dsTr("Playback rate: ") + player.playbackRate + dsTr("(Press %1 to restore)").arg(config.hotkeysPlayRestoreSpeed))
     }
 
     function restoreSpeed() {
         player.playbackRate = 1
-        notifybar.show(dsTr("Playback Rate: ") + player.playbackRate)
+        notifybar.show(dsTr("Playback rate: ") + player.playbackRate)
     }
 
     function increaseVolumeByDelta(delta) { setVolume(Math.min(player.volume + delta, 1.0)) }

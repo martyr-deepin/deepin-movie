@@ -17,9 +17,20 @@ DPreferenceWindow {
         
         sections: [
             {
-                "sectionId": "playback",
-                "sectionName": dsTr("Playback"),
-                "subSections": []
+                "sectionId": "basic_settings",
+                "sectionName": dsTr("Basic settings"),
+                "subSections": [
+                    {
+                        "sectionId": "basic_playback",
+                        "sectionName": dsTr("Playback"),
+                        "subSections": []
+                    },                    
+                    {
+                        "sectionId": "basic_time_span",
+                        "sectionName": dsTr("Time span"),
+                        "subSections": []
+                    }
+                ]
             },
             {
                 "sectionId": "keyboard",
@@ -42,7 +53,7 @@ DPreferenceWindow {
                     },
                     {
                         "sectionId": "keyboard_subtitle",
-                        "sectionName": dsTr("Subtitle"),
+                        "sectionName": dsTr("Subtitles"),
                         "subSections": []
                     },
                     {
@@ -69,11 +80,17 @@ DPreferenceWindow {
             }
         ]
 
+        SectionContent { title: dsTr("Basic settings"); sectionId: ""; bottomSpaceHeight: 10 }
+
         SectionContent { 
-            id: playback
+            id: basic_playback
             title: dsTr("Playback")
-            sectionId: "playback"
+            sectionId: "basic_playback"
+            showSep: false
+            topSpaceHeight: 5
             bottomSpaceHeight: 10
+            anchors.left: parent.left
+            anchors.leftMargin: 5
 
             DCheckBox {
                 text: dsTr("Enter fullscreen on opening file")
@@ -82,7 +99,7 @@ DPreferenceWindow {
             }
 
             DCheckBox {
-                text: dsTr("Clear playlist when opening new file")
+                text: dsTr("Clear playlist on opening new file")
                 checked: config.playerCleanPlaylistOnOpenNewFile
                 onClicked: config.playerCleanPlaylistOnOpenNewFile = checked
             }
@@ -97,12 +114,12 @@ DPreferenceWindow {
                 onClicked: config.playerAutoPlaySeries = checked
             }
             DCheckBox {
-                text: dsTr("Show thumbnail when hovering over progress bar")
+                text: dsTr("Show preview when hovering over progress bar")
                 checked: config.playerShowPreview
                 onClicked: config.playerShowPreview = checked
             }
             DCheckBox {
-                text: dsTr("allow multiple instance")
+                text: dsTr("Allow multiple instance")
             }
             DCheckBox {
                 text: dsTr("Pause when minimized")
@@ -114,21 +131,30 @@ DPreferenceWindow {
                 checked: config.playerNotificationsEnabled
                 onClicked: config.playerNotificationsEnabled = checked
             }
+
+        }
             
-            Space { width: parent.width; height: 10 }
+        SectionContent { 
+            id: basic_time_step
+            title: dsTr("Time span")
+            sectionId: "basic_time_span"
+            showSep: false
+            topSpaceHeight: 10
+            bottomSpaceHeight: 10
+            anchors.left: parent.left
+            anchors.leftMargin: 5
 
             SpinnerRow {
-                title: dsTr("Forward/Rewind Step")
+                title: dsTr("Forward/Rewind")
                 min: 1.0
                 max: 30.0
                 text: config.playerForwardRewindStep
-                anchors.topMargin: 20
 
                 onValueChanged: config.playerForwardRewindStep = value + 0.0
             }
         }
 
-        SectionContent { title: "Keyboard"; sectionId: ""; topSpaceHeight: 30; bottomSpaceHeight: 10 }
+        SectionContent { title: dsTr("Keyboard"); sectionId: ""; topSpaceHeight: 30; bottomSpaceHeight: 10 }
 
         SectionContent { 
             id: keyboard_playback
@@ -141,7 +167,7 @@ DPreferenceWindow {
             anchors.leftMargin: 5
 
             DCheckBox {
-                text: dsTr("Enable hotkeys")
+                text: dsTr("Enable keyboard shortcuts")
                 checked: config.hotkeysPlayHotkeyEnabled
                 onClicked: config.hotkeysPlayHotkeyEnabled = checked
             }
@@ -175,7 +201,7 @@ DPreferenceWindow {
         }
         SectionContent { 
             id: keyboard_frame_sound
-            title: "Frame/Sound" 
+            title: dsTr("Frame/Sound")
             sectionId: "keyboard_frame_sound"
             showSep: false
             topSpaceHeight: 10
@@ -184,13 +210,13 @@ DPreferenceWindow {
             anchors.leftMargin: 5
 
             DCheckBox {
-                text: dsTr("Enable hotkeys")
+                text: dsTr("Enable keyboard shortcuts")
                 checked: config.hotkeysFrameSoundHotkeyEnabled
                 onClicked: config.hotkeysFrameSoundHotkeyEnabled = checked
             }
 
             HotKeyInputRow {
-                title: dsTr("Mini Mode")
+                title: dsTr("Mini mode")
                 hotKey: config.hotkeysFrameSoundToggleMiniMode
             }
             HotKeyInputRow {
@@ -202,11 +228,11 @@ DPreferenceWindow {
                 hotKey: config.hotkeysFrameSoundRotateClockwise
             }
             HotKeyInputRow {
-                title: dsTr("Increase Volume")
+                title: dsTr("Volume up")
                 hotKey: config.hotkeysFrameSoundIncreaseVolume
             }
             HotKeyInputRow {
-                title: dsTr("Decrease Volume")
+                title: dsTr("Volume down")
                 hotKey: config.hotkeysFrameSoundDecreaseVolume
             }
             HotKeyInputRow {
@@ -225,7 +251,7 @@ DPreferenceWindow {
             anchors.leftMargin: 5
 
             DCheckBox {
-                text: dsTr("Enable hotkeys")
+                text: dsTr("Enable keyboard shortcuts")
                 checked: config.hotkeysFilesHotkeyEnabled
                 onClicked: config.hotkeysFilesHotkeyEnabled = checked                
             }
@@ -235,17 +261,17 @@ DPreferenceWindow {
                 hotKey: config.hotkeysFilesOpenFile
             }
             HotKeyInputRow {
-                title: dsTr("Open Previous")
+                title: dsTr("Open previous")
                 hotKey: config.hotkeysFilesPlayPrevious
             }
             HotKeyInputRow {
-                title: dsTr("Open Next")
+                title: dsTr("Open next")
                 hotKey: config.hotkeysFilesPlayNext
             }
         }
         SectionContent { 
             id: keyboard_subtitle
-            title: dsTr("Subtitle")
+            title: dsTr("Subtitles")
             sectionId: "keyboard_subtitle"
             showSep: false
             topSpaceHeight: 10
@@ -254,25 +280,25 @@ DPreferenceWindow {
             anchors.leftMargin: 5
 
             DCheckBox {
-                text: dsTr("Enable hotkeys")
+                text: dsTr("Enable keyboard shortcuts")
                 checked: config.hotkeysSubtitlesHotkeyEnabled
                 onClicked: config.hotkeysSubtitlesHotkeyEnabled = checked                
             }
 
             HotKeyInputRow {
-                title: dsTr("Delay-0.5s")
+                title: dsTr("Forward 0.5s")
                 hotKey: config.hotkeysSubtitlesSubtitleForward
             }
             HotKeyInputRow {
-                title: dsTr("Delay+0.5s")
+                title: dsTr("Delay 0.5s")
                 hotKey: config.hotkeysSubtitlesSubtitleBackward
             }
             HotKeyInputRow {
-                title: dsTr("Subtitle move up")
+                title: dsTr("Subtitle up")
                 hotKey: config.hotkeysSubtitlesSubtitleMoveUp
             }
             HotKeyInputRow {
-                title: dsTr("Subtitle move down")
+                title: dsTr("Subtitle down")
                 hotKey: config.hotkeysSubtitlesSubtitleMoveDown
             }
         }
@@ -287,7 +313,7 @@ DPreferenceWindow {
             anchors.leftMargin: 5
 
             ComboBoxRow {
-                title: dsTr("Left Click")
+                title: dsTr("Left click")
                 input.parentWindow: window
                 input.selectIndex: config.othersLeftClick ? 0 : 1
                 input.menu.labels: [dsTr("Pause/Play"), dsTr("Disabled")]
@@ -295,7 +321,7 @@ DPreferenceWindow {
                 onMenuSelect: config.othersLeftClick = index == 0
             }
             ComboBoxRow {
-                title: dsTr("Double Click")
+                title: dsTr("Double click")
                 input.parentWindow: window
                 input.selectIndex: config.othersDoubleClick ? 0 : 1
                 input.menu.labels: [dsTr("Fullscreen"), dsTr("Disabled")]
@@ -320,7 +346,7 @@ DPreferenceWindow {
             bottomSpaceHeight: 10
 
             DCheckBox {
-                text: "Load subtitles automatically"
+                text: dsTr("Load subtitles automatically")
             }
 
             ComboBoxRow {
@@ -343,7 +369,7 @@ DPreferenceWindow {
             }
 
             SpinnerRow {
-                title: dsTr("Border Width")
+                title: dsTr("Border width")
                 min: 0
                 max: 6
                 text: config.subtitleFontBorderSize

@@ -3,7 +3,7 @@ import Deepin.Widgets 1.0
 
 SectionContent { 
     id: about
-    title: "About" 
+    title: dsTr("About")
     sectionId: "about"
     topSpaceHeight: 30
 

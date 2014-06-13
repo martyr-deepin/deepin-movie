@@ -25,14 +25,14 @@ DPreferenceWindow {
 			id: file_type
 			font.pixelSize: 12
 			color: "#b4b4b4"
-			text: dsTr("File Type") + ": " + info_window.fileType
+			text: dsTr("File type") + ": " + info_window.fileType
 		}
 
 		Text {
 			id: file_size
 			font.pixelSize: 12
 			color: "#b4b4b4"
-			text: dsTr("File Size") + ": " + info_window.fileSize
+			text: dsTr("File size") + ": " + info_window.fileSize
 		}
 
 		Text {
@@ -46,14 +46,14 @@ DPreferenceWindow {
 			id: movie_duration
 			font.pixelSize: 12
 			color: "#b4b4b4"
-			text: dsTr("Movie Duration") + ": " + info_window.movieDuration
+			text: dsTr("Movie duration") + ": " + info_window.movieDuration
 		}	
 
 		Text {
 			id: file_path
 			font.pixelSize: 12
 			color: "#b4b4b4"
-			text: dsTr("File Path") + ": " + info_window.filePath
+			text: dsTr("File path") + ": " + info_window.filePath
 		}
 
 		Item {
@@ -62,7 +62,7 @@ DPreferenceWindow {
 
 			DTextButton {
 				id: copy_button
-				text: dsTr("Copy To Clipboard")
+				text: dsTr("Copy to clipboard")
 				anchors.right: confirm_button.left
 				anchors.rightMargin: 15
 				anchors.bottom: parent.bottom

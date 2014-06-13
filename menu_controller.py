@@ -42,10 +42,10 @@ frame_sub_menu = [
     CheckableMenuItem("scale:radio:_s_1_5", "1.5"),        
     CheckableMenuItem("scale:radio:_s_2", "2"),        
     None,
-    ("_turn_right", _("Rotate 90 degree")),
-    ("_turn_left", _("Rotate -90 degree")),
-    ("_flip_horizontal", _("Flip Horizontally")),
-    ("_flip_vertial", _("Flip Vertically")),
+    ("_turn_right", _("Rotate 90 degree clockwise")),
+    ("_turn_left", _("Rotate 90 degree counterclockwise")),
+    ("_flip_horizontal", _("Flip horizontally")),
+    ("_flip_vertial", _("Flip vertically")),
 ]
 
 sound_sub_menu = [
@@ -59,13 +59,13 @@ sound_sub_menu = [
 ]
 
 subtitle_sub_menu = [
-    CheckableMenuItem("_subtitle_hide", _("Hide Subtitle")),
+    CheckableMenuItem("_subtitle_hide", _("Hide subtitle")),
     None,
     # ("_subtitle_online_match", "自动在线匹配"),
     # ("_subtitle_online_search", "在线查找"),
-    ("_subtitle_manual", _("Open Manually")),
-    ("_subtitle_choose", _("Select File")),
-    ("_subtitle_settings", _("Subtitle Settings"))
+    ("_subtitle_manual", _("Open manually")),
+    ("_subtitle_choose", _("Select file")),
+    ("_subtitle_settings", _("Subtitle setting"))
 ]
 
 play_sequence_sub_menu = [
@@ -85,21 +85,21 @@ play_sub_menu = [
 ]
     
 right_click_menu = [
-    ("_open_file", _("Open File")),
-    ("_open_dir", _("Open Folder")),
+    ("_open_file", _("Open file")),
+    ("_open_dir", _("Open folder")),
     ("_open_url", _("Open URL")),
     None,
-    ("_fullscreen_quit", _("Fullscreen/Quit Fullscreen")),
-    CheckableMenuItem("_mini_mode", _("Mini Mode"), True),
-    CheckableMenuItem("_on_top", _("Always On Top"), False),
+    ("_fullscreen_quit", _("Fullscreen/Quit")),
+    CheckableMenuItem("_mini_mode", _("Mini mode"), True),
+    CheckableMenuItem("_on_top", _("Always on top"), False),
     None,
     ("_play_sequence", _("Play Sequence"), (), play_sequence_sub_menu),
     ("_play", _("Play"), (), play_sub_menu),
     ("_frame", _("Frame"), (), frame_sub_menu),
     ("_sound", _("Sound"), (), sound_sub_menu),
-    ("_subtitle", _("Subtitle"), (), subtitle_sub_menu),
+    ("_subtitle", _("Subtitles"), (), subtitle_sub_menu),
     None,
-    ("_preferences", _("Preferences")),
+    ("_preferences", _("Options")),
     ("_information", _("Information")),
 ]
 
