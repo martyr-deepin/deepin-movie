@@ -27,6 +27,8 @@ Item {
 	DSliderEnhanced {
 		id: slider
 		width: 200
+		isBalance: true
+		completeColorVisible: false
 		anchors.right: parent.right
 		anchors.verticalCenter: parent.verticalCenter
 
