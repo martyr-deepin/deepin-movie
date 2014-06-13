@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-13 14:17+0800\n"
+"POT-Creation-Date: 2014-06-13 15:02+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -187,6 +187,10 @@ msgstr ""
 msgid "Double click"
 msgstr ""
 
+#: ../PreferenceWindow.qml:349
+msgid "Subtitles loaded automatically"
+msgstr ""
+
 #: ../PreferenceWindow.qml:372
 msgid "Border width"
 msgstr ""
@@ -280,10 +284,6 @@ msgstr ""
 
 #: ../PreferenceWindow.qml:335
 msgid "Volume"
-msgstr ""
-
-#: ../PreferenceWindow.qml:349
-msgid "Load subtitles automatically"
 msgstr ""
 
 #: ../PreferenceWindow.qml:353

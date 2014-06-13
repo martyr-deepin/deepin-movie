@@ -346,7 +346,7 @@ DPreferenceWindow {
             bottomSpaceHeight: 10
 
             DCheckBox {
-                text: dsTr("Load subtitles automatically")
+                text: dsTr("Subtitles loaded automatically")
             }
 
             ComboBoxRow {

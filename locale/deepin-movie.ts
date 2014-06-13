@@ -234,6 +234,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../PreferenceWindow.qml" line="349"/>
+        <source>Subtitles loaded automatically</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../PreferenceWindow.qml" line="372"/>
         <source>Border width</source>
         <translation type="unfinished"></translation>
@@ -364,11 +369,6 @@
     <message>
         <location filename="../PreferenceWindow.qml" line="335"/>
         <source>Volume</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../PreferenceWindow.qml" line="349"/>
-        <source>Load subtitles automatically</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
