@@ -87,7 +87,7 @@ play_sub_menu = [
 right_click_menu = [
     ("_open_file", _("Open file")),
     ("_open_dir", _("Open folder")),
-    ("_open_url", _("Open URL")),
+    # ("_open_url", _("Open URL")),
     None,
     ("_fullscreen_quit", _("Fullscreen/Quit")),
     ("_mini_mode", _("Mini mode")),
