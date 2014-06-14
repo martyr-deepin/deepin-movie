@@ -66,7 +66,7 @@ DPreferenceWindow {
             },
             {
                 "sectionId": "keyboard_playback",
-                "sectionName": dsTr("Keyboard"),
+                "sectionName": dsTr("Keyboard shortcuts"),
                 "subSections": [
                     {
                         "sectionId": "keyboard_playback",
@@ -192,7 +192,7 @@ DPreferenceWindow {
             }
         }
 
-        SectionContent { title: dsTr("Keyboard"); sectionId: ""; topSpaceHeight: 30; bottomSpaceHeight: 10 }
+        SectionContent { title: dsTr("Keyboard shortcuts"); sectionId: ""; topSpaceHeight: 30; bottomSpaceHeight: 10 }
 
         SectionContent { 
             id: keyboard_playback

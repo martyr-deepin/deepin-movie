@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-14 15:00+0800\n"
+"POT-Creation-Date: 2014-06-14 15:10+0800\n"
 "PO-Revision-Date: 2014-06-10 15:05+0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -204,10 +204,6 @@ msgstr "全屏"
 msgid "Playback"
 msgstr "播放"
 
-#: ../PreferenceWindow.qml:69 ../PreferenceWindow.qml:195
-msgid "Keyboard"
-msgstr "键盘"
-
 #: ../PreferenceWindow.qml:78 ../PreferenceWindow.qml:242
 msgid "Frame/Sound"
 msgstr "画面/声音"
@@ -281,6 +277,10 @@ msgstr "基础设置"
 #: ../PreferenceWindow.qml:62 ../PreferenceWindow.qml:177
 msgid "Time span"
 msgstr "时间跨度"
+
+#: ../PreferenceWindow.qml:69 ../PreferenceWindow.qml:195
+msgid "Keyboard shortcuts"
+msgstr "快捷键"
 
 #: ../PreferenceWindow.qml:134
 msgid "Apply the size last time closed"
@@ -492,6 +492,9 @@ msgstr "选项"
 #: ../menu_controller.py:103
 msgid "Information"
 msgstr "信息"
+
+#~ msgid "Keyboard"
+#~ msgstr "键盘"
 
 #~ msgid "Open URL"
 #~ msgstr "打开网址"

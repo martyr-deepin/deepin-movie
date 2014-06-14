@@ -258,12 +258,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PreferenceWindow.qml" line="69"/>
-        <location filename="../PreferenceWindow.qml" line="195"/>
-        <source>Keyboard</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../PreferenceWindow.qml" line="78"/>
         <location filename="../PreferenceWindow.qml" line="242"/>
         <source>Frame/Sound</source>
@@ -359,6 +353,12 @@
         <location filename="../PreferenceWindow.qml" line="62"/>
         <location filename="../PreferenceWindow.qml" line="177"/>
         <source>Time span</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../PreferenceWindow.qml" line="69"/>
+        <location filename="../PreferenceWindow.qml" line="195"/>
+        <source>Keyboard shortcuts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

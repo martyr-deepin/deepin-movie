@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-14 15:00+0800\n"
+"POT-Creation-Date: 2014-06-14 15:10+0800\n"
 "PO-Revision-Date: 2014-06-10 15:05+0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -203,10 +203,6 @@ msgstr ""
 msgid "Playback"
 msgstr ""
 
-#: ../PreferenceWindow.qml:69 ../PreferenceWindow.qml:195
-msgid "Keyboard"
-msgstr ""
-
 #: ../PreferenceWindow.qml:78 ../PreferenceWindow.qml:242
 msgid "Frame/Sound"
 msgstr ""
@@ -279,6 +275,10 @@ msgstr ""
 
 #: ../PreferenceWindow.qml:62 ../PreferenceWindow.qml:177
 msgid "Time span"
+msgstr ""
+
+#: ../PreferenceWindow.qml:69 ../PreferenceWindow.qml:195
+msgid "Keyboard shortcuts"
 msgstr ""
 
 #: ../PreferenceWindow.qml:134
