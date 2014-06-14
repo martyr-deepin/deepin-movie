@@ -25,7 +25,7 @@ import time
 from PyQt5 import QtGui, QtCore, QtQuick
 from PyQt5.QtCore import QSize
 from PyQt5.QtQuick import QQuickView
-from PyQt5.QtCore import pyqtSlot, pyqtProperty, QDir
+from PyQt5.QtCore import pyqtSlot, pyqtProperty, pyqtSignal, QDir
 from PyQt5.QtGui import QSurfaceFormat, QColor, QPixmap, QIcon
 from notification import notify
 from constant import (DEFAULT_WIDTH, DEFAULT_HEIGHT, WINDOW_GLOW_RADIUS,
@@ -43,6 +43,8 @@ def icon_from_theme(theme_name, icon_name):
     return QIcon.fromTheme(icon_name)
 
 class Window(QQuickView):
+
+    staysOnTopChanged = pyqtSignal()
 
     def __init__(self):
         QQuickView.__init__(self)
@@ -97,7 +99,7 @@ class Window(QQuickView):
         self.setWindowState(QtCore.Qt.WindowMinimized)
         self.setVisible(True)
         
-    @pyqtProperty(bool)
+    @pyqtProperty(bool,notify=staysOnTopChanged)
     def staysOnTop(self):
         return self._staysOnTop
 
@@ -109,6 +111,7 @@ class Window(QQuickView):
         self.setFlags(flags)
         self.hide()
         self.show()
+        self.staysOnTopChanged.emit()
 
     @pyqtSlot()
     def moveToCenter(self):

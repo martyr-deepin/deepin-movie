@@ -386,6 +386,7 @@ Rectangle {
         id: titlebar
         visible: false
         window: windowView
+        windowStaysOnTop: windowView.staysOnTop
         anchors.horizontalCenter: main_window.horizontalCenter
 
         onMenuButtonClicked: _menu_controller.show_menu()
