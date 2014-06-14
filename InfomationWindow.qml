@@ -53,6 +53,8 @@ DPreferenceWindow {
 			id: file_path
 			font.pixelSize: 12
 			color: "#b4b4b4"
+			width: parent.width
+			elide: Text.ElideRight
 			text: dsTr("File path") + ": " + info_window.filePath
 		}
 
