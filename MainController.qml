@@ -145,9 +145,10 @@ MouseArea {
     }
 
     function _setSizeForRootWindowWithWidth(destWidth) {
-        var destHeight = (destWidth - program_constants.windowGlowRadius * 2) * movieInfo.movie_height / movieInfo.movie_width + program_constants.windowGlowRadius * 2
+        var widthHeightScale = (movieInfo.movie_width - 2 * program_constants.windowGlowRadius) / (movieInfo.movie_height - 2 * program_constants.windowGlowRadius)
+        var destHeight = (destWidth - program_constants.windowGlowRadius * 2) * widthHeightScale + program_constants.windowGlowRadius * 2
         if (destHeight > primaryRect.height) {
-            windowView.setWidth(primaryRect.height * movieInfo.movie_width / movieInfo.movie_height)
+            windowView.setWidth((primaryRect.height - 2 * program_constants.windowGlowRadius) * widthHeightScale + 2 * program_constants.windowGlowRadius)
             windowView.setHeight(primaryRect.height)
         } else {
             windowView.setWidth(destWidth)
