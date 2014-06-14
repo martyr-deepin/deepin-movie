@@ -21,7 +21,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
-from PyQt5.QtCore import QObject, pyqtSlot, pyqtSignal
+from PyQt5.QtCore import QObject, pyqtSlot, pyqtSignal, Qt
 from PyQt5.QtGui import QCursor
 from deepin_menu.menu import Menu, CheckableMenuItem
 
@@ -252,7 +252,7 @@ class MenuController(QObject):
         self.menu.getItemById("_fullscreen_quit").isActive = hasVideo
         self.menu.getItemById("_mini_mode").isActive = hasVideo
         self.menu.getItemById("_play").isActive = hasVideo
-        self.menu.getItemById("_frame").isActive = hasVideo
+        self.menu.getItemById("_frame").isActive = hasVideo and self._window.getState() != Qt.WindowFullScreen
         self.menu.getItemById("_sound").isActive = hasVideo
         self.menu.getItemById("_information").isActive = hasVideo
 
