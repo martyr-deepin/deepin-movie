@@ -376,15 +376,19 @@ MouseArea {
     }
 
     function forwardByDelta(delta) {
+        var tempRate = player.playbackRate
         player.playbackRate = 1.0
         player.seek(player.position + delta)
         notifybar.show(dsTr("Forward to ") + formatTime(player.position) + "  %1%".arg(Math.floor(player.position / (movieInfo.movie_duration + 1) * 100)))
+        player.playbackRate = tempRate
     }
 
     function backwardByDelta(delta) {
+        var tempRate = player.playbackRate
         player.playbackRate = 1.0
         player.seek(player.position - delta)
         notifybar.show(dsTr("Rewind to ") + formatTime(player.position) + "  %1%".arg(Math.floor(player.position / (movieInfo.movie_duration + 1) * 100)))
+        player.playbackRate = tempRate
     }
 
     function forward() { forwardByDelta(Math.floor(config.playerForwardRewindStep * 1000)) }
