@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-13 15:02+0800\n"
+"POT-Creation-Date: 2014-06-14 15:00+0800\n"
 "PO-Revision-Date: 2014-06-10 15:05+0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../AboutSection.qml:6 ../PreferenceWindow.qml:78
+#: ../AboutSection.qml:6 ../PreferenceWindow.qml:110
 msgid "About"
 msgstr "关于"
 
@@ -55,45 +55,45 @@ msgstr "分辨率"
 msgid "Movie duration"
 msgstr "媒体时长"
 
-#: ../InfomationWindow.qml:56
+#: ../InfomationWindow.qml:58
 msgid "File path"
 msgstr "文件路径"
 
-#: ../InfomationWindow.qml:65
+#: ../InfomationWindow.qml:67
 msgid "Copy to clipboard"
 msgstr "复制到剪切板"
 
-#: ../InfomationWindow.qml:80
+#: ../InfomationWindow.qml:82
 msgid "Confirm"
 msgstr "确定"
 
-#: ../MainController.qml:354
+#: ../MainController.qml:371
 msgid "Play last movie played"
 msgstr "播放上次播放过的影片"
 
-#: ../MainController.qml:364
+#: ../MainController.qml:381
 msgid "Forward to "
 msgstr "快进到"
 
-#: ../MainController.qml:370
+#: ../MainController.qml:387
 msgid "Rewind to "
 msgstr "快退到"
 
-#: ../MainController.qml:378 ../MainController.qml:383
+#: ../MainController.qml:395 ../MainController.qml:400
 #, qt-format
 msgid "(Press %1 to restore)"
 msgstr "按 %1 键恢复原速"
 
-#: ../MainController.qml:378 ../MainController.qml:383
-#: ../MainController.qml:388
+#: ../MainController.qml:395 ../MainController.qml:400
+#: ../MainController.qml:405
 msgid "Playback rate: "
 msgstr "播放速度："
 
-#: ../MainController.qml:399 ../MainController.qml:408
+#: ../MainController.qml:416 ../MainController.qml:425
 msgid "Volume: "
 msgstr "音量："
 
-#: ../MainController.qml:406 ../menu_controller.py:58
+#: ../MainController.qml:423 ../menu_controller.py:58
 msgid "Muted"
 msgstr "静音"
 
@@ -105,204 +105,264 @@ msgstr "请选择一个或多个文件"
 msgid "Please choose folder"
 msgstr "请选择文件夹"
 
-#: ../PreferenceWindow.qml:96
+#: ../PreferenceWindow.qml:128
 msgid "Enter fullscreen on opening file"
 msgstr "全屏模式"
 
-#: ../PreferenceWindow.qml:102
+#: ../PreferenceWindow.qml:140
 msgid "Clear playlist on opening new file"
 msgstr "打开新文件时清空播放列表"
 
-#: ../PreferenceWindow.qml:107
+#: ../PreferenceWindow.qml:145
 msgid "Resume playback after restarting player"
 msgstr "自动从上次停止位置播放"
 
-#: ../PreferenceWindow.qml:112
+#: ../PreferenceWindow.qml:150
 msgid "Continue to next video automatically"
 msgstr "自动查找相似文件连续播放"
 
-#: ../PreferenceWindow.qml:117
+#: ../PreferenceWindow.qml:155
 msgid "Show preview when hovering over progress bar"
 msgstr "鼠标悬停进度条时显示预览"
 
-#: ../PreferenceWindow.qml:122
+#: ../PreferenceWindow.qml:160
 msgid "Allow multiple instance"
 msgstr "允许同时运行多个深度影院"
 
-#: ../PreferenceWindow.qml:170 ../PreferenceWindow.qml:213
-#: ../PreferenceWindow.qml:254 ../PreferenceWindow.qml:283
+#: ../PreferenceWindow.qml:208 ../PreferenceWindow.qml:251
+#: ../PreferenceWindow.qml:292 ../PreferenceWindow.qml:321
 msgid "Enable keyboard shortcuts"
 msgstr "启动快捷键"
 
-#: ../PreferenceWindow.qml:175 ../PreferenceWindow.qml:319
+#: ../PreferenceWindow.qml:213 ../PreferenceWindow.qml:357
 msgid "Pause/Play"
 msgstr "暂停/播放"
 
-#: ../PreferenceWindow.qml:219 ../menu_controller.py:93
+#: ../PreferenceWindow.qml:257 ../menu_controller.py:93
 msgid "Mini mode"
 msgstr "迷你模式"
 
-#: ../PreferenceWindow.qml:231
+#: ../PreferenceWindow.qml:269
 msgid "Volume up"
 msgstr "增大音量"
 
-#: ../PreferenceWindow.qml:235
+#: ../PreferenceWindow.qml:273
 msgid "Volume down"
 msgstr "减小音量"
 
-#: ../PreferenceWindow.qml:264
+#: ../PreferenceWindow.qml:302
 msgid "Open previous"
 msgstr "打开上一个"
 
-#: ../PreferenceWindow.qml:268
+#: ../PreferenceWindow.qml:306
 msgid "Open next"
 msgstr "打开下一个"
 
-#: ../PreferenceWindow.qml:289
+#: ../PreferenceWindow.qml:327
 msgid "Forward 0.5s"
 msgstr "字幕提前0.5秒"
 
-#: ../PreferenceWindow.qml:293
+#: ../PreferenceWindow.qml:331
 msgid "Delay 0.5s"
 msgstr "字幕延迟0.5秒"
 
-#: ../PreferenceWindow.qml:297
+#: ../PreferenceWindow.qml:335
 msgid "Subtitle up"
 msgstr "字幕上移"
 
-#: ../PreferenceWindow.qml:301
+#: ../PreferenceWindow.qml:339
 msgid "Subtitle down"
 msgstr "字幕下移"
 
-#: ../PreferenceWindow.qml:316
+#: ../PreferenceWindow.qml:354
 msgid "Left click"
 msgstr "左键单击"
 
-#: ../PreferenceWindow.qml:319 ../PreferenceWindow.qml:327
-#: ../PreferenceWindow.qml:335
+#: ../PreferenceWindow.qml:357 ../PreferenceWindow.qml:365
+#: ../PreferenceWindow.qml:373
 msgid "Disabled"
 msgstr "禁用"
 
-#: ../PreferenceWindow.qml:324
+#: ../PreferenceWindow.qml:362
 msgid "Double click"
 msgstr "双击"
 
-#: ../PreferenceWindow.qml:349
+#: ../PreferenceWindow.qml:387
 msgid "Subtitles loaded automatically"
 msgstr "自动加载字幕"
 
-#: ../PreferenceWindow.qml:372
+#: ../PreferenceWindow.qml:428
 msgid "Border width"
 msgstr "描边大小"
 
-#: ../PreferenceWindow.qml:190 ../PreferenceWindow.qml:327
+#: ../PreferenceWindow.qml:228 ../PreferenceWindow.qml:365
 msgid "Fullscreen"
 msgstr "全屏"
 
-#: ../PreferenceWindow.qml:25 ../PreferenceWindow.qml:41
-#: ../PreferenceWindow.qml:87 ../PreferenceWindow.qml:161
+#: ../PreferenceWindow.qml:57 ../PreferenceWindow.qml:73
+#: ../PreferenceWindow.qml:119 ../PreferenceWindow.qml:199
 msgid "Playback"
 msgstr "播放"
 
-#: ../PreferenceWindow.qml:37 ../PreferenceWindow.qml:157
+#: ../PreferenceWindow.qml:69 ../PreferenceWindow.qml:195
 msgid "Keyboard"
 msgstr "键盘"
 
-#: ../PreferenceWindow.qml:46 ../PreferenceWindow.qml:204
+#: ../PreferenceWindow.qml:78 ../PreferenceWindow.qml:242
 msgid "Frame/Sound"
 msgstr "画面/声音"
 
-#: ../PreferenceWindow.qml:51 ../PreferenceWindow.qml:245
+#: ../PreferenceWindow.qml:83 ../PreferenceWindow.qml:283
 msgid "Files"
 msgstr "文件"
 
-#: ../PreferenceWindow.qml:61 ../PreferenceWindow.qml:307
+#: ../PreferenceWindow.qml:93 ../PreferenceWindow.qml:345
 msgid "Other"
 msgstr "其他"
 
-#: ../PreferenceWindow.qml:56 ../PreferenceWindow.qml:68
-#: ../PreferenceWindow.qml:274 ../PreferenceWindow.qml:343
+#: ../PreferenceWindow.qml:88 ../PreferenceWindow.qml:100
+#: ../PreferenceWindow.qml:312 ../PreferenceWindow.qml:381
 #: ../menu_controller.py:100
 msgid "Subtitles"
 msgstr "字幕"
 
-#: ../PreferenceWindow.qml:21 ../PreferenceWindow.qml:83
+#: ../PreferenceWindow.qml:12
+msgid "bleu de France"
+msgstr "法国蓝"
+
+#: ../PreferenceWindow.qml:13
+msgid "Turquoise"
+msgstr "青石绿"
+
+#: ../PreferenceWindow.qml:14
+msgid "UFO green"
+msgstr "神秘绿"
+
+#: ../PreferenceWindow.qml:15
+msgid "Green yellow"
+msgstr "黄绿"
+
+#: ../PreferenceWindow.qml:16
+msgid "Gorse"
+msgstr "荆豆黄"
+
+#: ../PreferenceWindow.qml:17
+msgid "Energy yellow"
+msgstr "能量黄"
+
+#: ../PreferenceWindow.qml:18
+msgid "Sun"
+msgstr "阳橙"
+
+#: ../PreferenceWindow.qml:19
+msgid "Radical red"
+msgstr "激进红"
+
+#: ../PreferenceWindow.qml:20
+msgid "Lavender indigo"
+msgstr "薰衣草靛蓝"
+
+#: ../PreferenceWindow.qml:21
+msgid "Royal blue"
+msgstr "皇家蓝"
+
+#: ../PreferenceWindow.qml:22
+msgid "Aluminum"
+msgstr "铝灰"
+
+#: ../PreferenceWindow.qml:23
+msgid "Clean white"
+msgstr "纯白"
+
+#: ../PreferenceWindow.qml:53 ../PreferenceWindow.qml:115
 msgid "Basic settings"
 msgstr "基础设置"
 
-#: ../PreferenceWindow.qml:30 ../PreferenceWindow.qml:139
+#: ../PreferenceWindow.qml:62 ../PreferenceWindow.qml:177
 msgid "Time span"
 msgstr "时间跨度"
 
-#: ../PreferenceWindow.qml:125
+#: ../PreferenceWindow.qml:134
+msgid "Apply the size last time closed"
+msgstr "应用上次关闭时的尺寸"
+
+#: ../PreferenceWindow.qml:163
 msgid "Pause when minimized"
 msgstr "最小化时暂停"
 
-#: ../PreferenceWindow.qml:130
+#: ../PreferenceWindow.qml:168
 msgid "Enable system popup notification"
 msgstr "启用系统通知"
 
-#: ../PreferenceWindow.qml:148
+#: ../PreferenceWindow.qml:186
 msgid "Forward/Rewind"
 msgstr "快进/快退"
 
-#: ../PreferenceWindow.qml:180 ../menu_controller.py:83
+#: ../PreferenceWindow.qml:218 ../menu_controller.py:83
 msgid "Forward"
 msgstr "快进"
 
-#: ../PreferenceWindow.qml:185 ../menu_controller.py:84
+#: ../PreferenceWindow.qml:223 ../menu_controller.py:84
 msgid "Rewind"
 msgstr "快退"
 
-#: ../PreferenceWindow.qml:194
+#: ../PreferenceWindow.qml:232
 msgid "Speed up"
 msgstr "加速"
 
-#: ../PreferenceWindow.qml:198
+#: ../PreferenceWindow.qml:236
 msgid "Slow down"
 msgstr "减速"
 
-#: ../PreferenceWindow.qml:223
+#: ../PreferenceWindow.qml:261
 msgid "Rotate counterclockwise"
 msgstr "逆时针旋转"
 
-#: ../PreferenceWindow.qml:227
+#: ../PreferenceWindow.qml:265
 msgid "Rotate clockwise"
 msgstr "顺时针旋转"
 
-#: ../PreferenceWindow.qml:239
+#: ../PreferenceWindow.qml:277
 msgid "Mute"
 msgstr "静音"
 
-#: ../PreferenceWindow.qml:260 ../menu_controller.py:88
+#: ../PreferenceWindow.qml:298 ../menu_controller.py:88
 msgid "Open file"
 msgstr "打开文件"
 
-#: ../PreferenceWindow.qml:332
+#: ../PreferenceWindow.qml:370
 msgid "Scroll"
 msgstr "滚轮"
 
-#: ../PreferenceWindow.qml:335
+#: ../PreferenceWindow.qml:373
 msgid "Volume"
 msgstr "音量"
 
-#: ../PreferenceWindow.qml:353
+#: ../PreferenceWindow.qml:393
 msgid "Font"
 msgstr "字体"
 
-#: ../PreferenceWindow.qml:363
+#: ../PreferenceWindow.qml:403
+msgid "Font color"
+msgstr "字体颜色"
+
+#: ../PreferenceWindow.qml:419
 msgid "Size"
 msgstr "字号"
 
-#: ../PreferenceWindow.qml:381
+#: ../PreferenceWindow.qml:437
+msgid "Border color"
+msgstr "描边颜色"
+
+#: ../PreferenceWindow.qml:453
 msgid "Position"
 msgstr "位置"
 
-#: ../PreferenceWindow.qml:386
+#: ../PreferenceWindow.qml:458
 msgid "Bottom"
 msgstr "底部"
 
-#: ../PreferenceWindow.qml:387
+#: ../PreferenceWindow.qml:459
 msgid "Top"
 msgstr "顶部"
 
@@ -401,10 +461,6 @@ msgstr "下一个"
 msgid "Open folder"
 msgstr "打开文件夹"
 
-#: ../menu_controller.py:90
-msgid "Open URL"
-msgstr "打开网址"
-
 #: ../menu_controller.py:92
 msgid "Fullscreen/Quit"
 msgstr "全屏/退出"
@@ -436,6 +492,9 @@ msgstr "选项"
 #: ../menu_controller.py:103
 msgid "Information"
 msgstr "信息"
+
+#~ msgid "Open URL"
+#~ msgstr "打开网址"
 
 #~ msgid "Fit video to player"
 #~ msgstr "视频适应窗口"
