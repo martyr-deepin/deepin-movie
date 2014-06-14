@@ -131,6 +131,12 @@ DPreferenceWindow {
             }
 
             DCheckBox {
+                text: dsTr("Apply the size last time closed")
+                checked: config.playerApplyLastClosedSize
+                onClicked: config.playerApplyLastClosedSize = checked
+            }
+
+            DCheckBox {
                 text: dsTr("Clear playlist on opening new file")
                 checked: config.playerCleanPlaylistOnOpenNewFile
                 onClicked: config.playerCleanPlaylistOnOpenNewFile = checked

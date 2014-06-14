@@ -72,7 +72,17 @@ MouseArea {
         // }
 
         onMovieWidthChanged: {
-            _setSizeForRootWindowWithWidth(database.lastWindowWidth || movieInfo.movie_width)
+            if (movieInfo.movie_width == 856) {// first start
+                if (config.applyLastClosedSize) {
+                    _setSizeForRootWindowWithWidth(lastWindowWidth)
+                } else {
+                    windowView.setWidth(windowView.defaultWidth)
+                    windowView.setHeight(windowView.defaultHeight)    
+                }
+            } else {
+                var destWidth = hasResized ? windowView.width : movieInfo.movie_width 
+                _setSizeForRootWindowWithWidth(destWidth)    
+            }
         }
 
         onMovieSourceChanged: {
@@ -146,7 +156,7 @@ MouseArea {
 
     function _setSizeForRootWindowWithWidth(destWidth) {
         var widthHeightScale = (movieInfo.movie_width - 2 * program_constants.windowGlowRadius) / (movieInfo.movie_height - 2 * program_constants.windowGlowRadius)
-        var destHeight = (destWidth - program_constants.windowGlowRadius * 2) * widthHeightScale + program_constants.windowGlowRadius * 2
+        var destHeight = (destWidth - program_constants.windowGlowRadius * 2) / widthHeightScale + program_constants.windowGlowRadius * 2
         if (destHeight > primaryRect.height) {
             windowView.setWidth((primaryRect.height - 2 * program_constants.windowGlowRadius) * widthHeightScale + 2 * program_constants.windowGlowRadius)
             windowView.setHeight(primaryRect.height)
@@ -535,14 +545,12 @@ MouseArea {
         resizeEdge = resize_edge.resizeNone
 
         if (resize_visual.visible) {
+            hasResized = true
             resize_visual.hide()
             // do the actual resize action
             windowView.setX(resize_visual.frameX)
             windowView.setY(resize_visual.frameY)
             _setSizeForRootWindowWithWidth(resize_visual.frameWidth)
-
-            // record last width
-            database.lastWindowWidth = windowView.width
         }
     }
 

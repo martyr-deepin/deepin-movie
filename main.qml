@@ -20,8 +20,9 @@ Rectangle {
     
     property var windowLastState: ""
 
-    property real widthHeightScale: movieInfo.movie_width / movieInfo.movie_height
+    property real widthHeightScale: (movieInfo.movie_width - 2 * program_constants.windowGlowRadius) / (movieInfo.movie_height - 2 * program_constants.windowGlowRadius)
     property int inhibitCookie: 0
+    property bool hasResized: false
 
     property rect primaryRect: {
         return Qt.rect(0, 0, Screen.desktopAvailableWidth, Screen.desktopAvailableHeight)
@@ -263,6 +264,7 @@ Rectangle {
         config.save("Normal", "volume", player.volume)
         database.record_video_position(player.source, player.position)
         database.playlist_local = playlist.getContent()
+        database.lastWindowWidth = windowView.width
     }
 
     Timer {

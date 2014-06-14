@@ -41,6 +41,7 @@ DEFAULT_CONFIG = [
     ("muted", False),
     ("subtitleHide", False),
     # ("adjustType", ADJUST_TYPE_WINDOW_VIDEO),
+    ("applyLastClosedSize", False),
     ("fullscreenOnOpenFile", False),
     ("playOrderType", ORDER_TYPE_PLAYLIST_CYCLE),
     ("cleanPlaylistOnOpenNewFile", False),
