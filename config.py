@@ -45,7 +45,7 @@ DEFAULT_CONFIG = [
     ("fullscreenOnOpenFile", False),
     ("playOrderType", ORDER_TYPE_PLAYLIST_CYCLE),
     ("cleanPlaylistOnOpenNewFile", False),
-    ("autoPlayFromLast", False),
+    ("autoPlayFromLast", True),
     ("autoPlaySeries", True),
     ("showPreview", True),
     ("forwardRewindStep", 5.0),
