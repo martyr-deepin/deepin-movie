@@ -341,6 +341,7 @@ Rectangle {
         }
 
         onStopped: {
+            windowView.setTitle(dsTr("Deepin Movie"))
             dbus_screensaver.UnInhibit(root.inhibitCookie)
             database.record_video_position(lastSource, lastPosition)
 
