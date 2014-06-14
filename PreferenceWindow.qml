@@ -8,6 +8,20 @@ DPreferenceWindow {
     height: 480
 
     property string currentSectionId
+    property var presetColors: [
+                    {"label": dsTr("bleu de France"), "color": "#2e96ea"},
+                    {"label": dsTr("Turquoise"), "color": "#38ecd9"},
+                    {"label": dsTr("UFO green"), "color": "#37eb74"},
+                    {"label": dsTr("Green yellow"), "color": "#a9eb3c"},
+                    {"label": dsTr("Gorse"), "color": "#f9e741"},
+                    {"label": dsTr("Energy yellow"), "color": "#ebd950"},
+                    {"label": dsTr("Sun"), "color": "#fa8935"},
+                    {"label": dsTr("Radical red"), "color": "#f34257"},
+                    {"label": dsTr("Lavender indigo"), "color": "#b560f8"},
+                    {"label": dsTr("Royal blue"), "color": "#2a65e9"},
+                    {"label": dsTr("Aluminum"), "color": "#969696"},
+                    {"label": dsTr("Clean white"), "color": "#ffffff"},
+                ]
 
     function scrollTo(sectionId) { scroll_to_timer.id = sectionId; scroll_to_timer.start() }
 
@@ -379,6 +393,22 @@ DPreferenceWindow {
                 onMenuSelect: config.subtitleFontFamily = Qt.fontFamilies()[index]
             }
 
+            ColorComboBoxRow {
+                title: dsTr("Font color")
+                input.parentWindow: window
+                input.selectIndex: {
+                    for (var i = 0; i < presetColors.length; i++) {
+                        if (presetColors[i].color == config.subtitleFontColor) {
+                            return i
+                        }
+                    }
+                    return -1
+                }
+                input.menu.items: window.presetColors
+
+                onMenuSelect: config.subtitleFontColor = window.presetColors[index].color
+            }
+
             SpinnerRow {
                 title: dsTr("Size")
                 min: 10
@@ -395,6 +425,22 @@ DPreferenceWindow {
                 text: config.subtitleFontBorderSize
 
                 onValueChanged: config.subtitleFontBorderSize = value + 0.0
+            }
+
+            ColorComboBoxRow {
+                title: dsTr("Border color")
+                input.parentWindow: window
+                input.selectIndex: {
+                    for (var i = 0; i < presetColors.length; i++) {
+                        if (presetColors[i].color == config.subtitleFontBorderColor) {
+                            return i
+                        }
+                    }
+                    return -1
+                }
+                input.menu.items: window.presetColors
+
+                onMenuSelect: config.subtitleFontBorderColor = window.presetColors[index].color
             }
 
             SliderRow {
