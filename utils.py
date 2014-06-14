@@ -40,6 +40,10 @@ def _longest_match(*strs):
             else:
                 break
 
+def optimizeSerieName(serieName):
+    sep_chars = ("-", "_", ".")
+    idx = min(filter(lambda x: x > 0, map(lambda x: serieName.rfind(x), sep_chars)))
+    return serieName[0: idx]
 
 def longest_match(*strs):
     return "".join(list(_longest_match(*strs)))
@@ -75,6 +79,7 @@ class Utils(QObject):
         allFiles = [os.path.basename(x) for x in allFiles]
         nameFilter = min((longest_match(x, os.path.basename(name)) for x in allFiles),
                          key=len)
+        nameFilter = optimizeSerieName(nameFilter)
 
         result = filter(lambda x: nameFilter in x, allFiles)
         result = [os.path.join(dir, x) for x in result]
@@ -133,3 +138,5 @@ if __name__ == '__main__':
     print longest_match(*lst)
     result = utils.getSeriesByName("/home/hualet/Videos/1000种死法第五季/1000种死法第五季-第5集.rmvb")
     print result
+    print "*" * 80
+    print optimizeSerieName("1000种死法第五季-第")
