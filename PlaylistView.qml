@@ -188,7 +188,7 @@ ListView {
 		    property bool isGroup: propChild ? propChild.count > 0 : false
 			property bool isSelected: isGroup ? child.isSelected : playlist.currentPlayingSource == itemUrl
 			property bool isHover: mouse_area.containsMouse
-			onIsSelectedChanged: column.ListView.view.isSelected = column.ListView.view.isSelected || isSelected
+			onIsSelectedChanged: column.ListView.view.isSelected = isSelected
 
 			Component.onCompleted: ListView.view.allItems.push(column)
 			Component.onDestruction: {
