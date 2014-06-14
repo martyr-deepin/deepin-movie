@@ -13,11 +13,12 @@ Item {
     Rectangle {
         color: wrapper.ListView.view.currentIndex == index ? "#141414" : "#232323"
         anchors.fill: parent
+        anchors.leftMargin: 2
 
         Rectangle {
             id: color_block
             width: 24
-            height: 18
+            height: 10
             anchors.left: parent.left
             anchors.leftMargin: 6
             anchors.verticalCenter: parent.verticalCenter

@@ -99,7 +99,7 @@ Item {
         Rectangle {
             id: curerntColor
             width: 24
-            height: 18
+            height: 10
             anchors.left: parent.left
             anchors.leftMargin: 6
             anchors.verticalCenter: parent.verticalCenter
