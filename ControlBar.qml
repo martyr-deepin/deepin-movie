@@ -13,6 +13,7 @@ DragableArea {
     property alias videoPlaying: play_pause_button.checkFlag
     property alias muted: volume_button.muted
     property alias widthHeightScale: videoPreview.widthHeightScale
+    property alias dragbarVisible: drag_point.visible
     property bool previewHasVideo: false
 
     signal mutedSet (bool muted)

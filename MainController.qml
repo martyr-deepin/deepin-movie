@@ -173,6 +173,7 @@ MouseArea {
 
     // resize operation related
     function getEdge(mouse) {
+        if (windowView.getState() == Qt.WindowFullScreen) return resize_edge.resizeNone
         // four corners
         if (0 < mouse.x && mouse.x < cornerTriggerThreshold) {
             if (0 < mouse.y && mouse.y < cornerTriggerThreshold)

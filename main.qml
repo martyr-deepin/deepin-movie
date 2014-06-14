@@ -410,6 +410,7 @@ Rectangle {
         muted: config.playerMuted
         widthHeightScale: movieInfo.movie_width / movieInfo.movie_height
         previewHasVideo: player.hasVideo
+        dragbarVisible: root.state == "normal"
 
         anchors.horizontalCenter: main_window.horizontalCenter
 
