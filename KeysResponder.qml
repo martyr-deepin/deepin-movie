@@ -2,7 +2,7 @@ import QtQuick 2.1
 
 Item {
 	function respondKey(event) {
-		if (event.key == Qt.Key_Escape) { main_controller.toggleFullscreen(); return }
+		if (event.key == Qt.Key_Escape) { main_controller.quitFullscreen(); return }
 		if (config.hotkeysPlayHotkeyEnabled) {
 			for(var i = 0; i < config.hotKeysPlay.length; i++) {
 				if (_utils.checkKeySequenceEqual(event.modifiers, event.key, 
