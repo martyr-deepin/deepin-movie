@@ -20,18 +20,18 @@ ListView {
 		return flatList.length > 0 ? flatList[rand] : null
 	}
 
-	function getPreviousSourceCycle() { return _getPreviousSource(true) }
+	function getPreviousSourceCycle(source) { return _getPreviousSource(source, true) }
 
-	function getNextSourceCycle() { return _getNextSource(true) }
+	function getNextSourceCycle(source) { return _getNextSource(source, true) }
 
-	function getPreviousSource() { return _getPreviousSource(false) }
+	function getPreviousSource(source) { return _getPreviousSource(source, false) }
 
-	function getNextSource() { return _getNextSource(false) }
+	function getNextSource(source) { return _getNextSource(source, false) }
     
-	function _getPreviousSource(cycle) {
+	function _getPreviousSource(source, cycle) {
 	   	var flatList = _flattenList()
 	   	for (var i = 0; i < flatList.length; i++) {
-	   		if (flatList[i] == currentPlayingSource) {
+	   		if (flatList[i] == (currentPlayingSource || source)) {
 	   			var destIndex = cycle ? (i + flatList.length - 1) % flatList.length : Math.max(i-1, 0)
 	   			return flatList[destIndex]
 	   		}
@@ -39,10 +39,10 @@ ListView {
 	   	return null
 	}    
 
-	function _getNextSource(cycle) {
+	function _getNextSource(source, cycle) {
 	   	var flatList = _flattenList()
 	   	for (var i = 0; i < flatList.length; i++) {
-	   		if (flatList[i] == currentPlayingSource) {
+	   		if (flatList[i] == (currentPlayingSource || source)) {
 	   			var destIndex = cycle ? (i + 1) % flatList.length : Math.min(i+1, flatList.length - 1)
 	   			return flatList[destIndex]
 	   		}

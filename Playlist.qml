@@ -78,10 +78,10 @@ Rectangle {
     }
     
     function getRandom() { return playlist.getRandom() }
-    function getPreviousSource() { return playlist.getPreviousSource() }
-    function getNextSource() { return playlist.getNextSource() }
-    function getPreviousSourceCycle() { return playlist.getPreviousSourceCycle() }
-    function getNextSourceCycle() { return playlist.getNextSourceCycle() }
+    function getPreviousSource(source) { return playlist.getPreviousSource(source) }
+    function getNextSource(source) { return playlist.getNextSource(source) }
+    function getPreviousSourceCycle(source) { return playlist.getPreviousSourceCycle(source) }
+    function getNextSourceCycle(source) { return playlist.getNextSourceCycle(source) }
 
     Timer {
         id: hide_timer

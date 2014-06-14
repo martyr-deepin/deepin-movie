@@ -438,39 +438,35 @@ MouseArea {
     function openDir() { open_folder_dialog.open() }
 
     function playNext() { 
-        // to ensure that there's currentPlayingSource to track
-        playlist.currentPlayingSource = database.lastPlayedFile
         var next = null
 
         if (config.playerPlayOrderType == "ORDER_TYPE_RANDOM") {
             next = playlist.getRandom()
         } else if (config.playerPlayOrderType == "ORDER_TYPE_RANDOM_IN_ORDER") {
-            next = playlist.getNextSource()
+            next = playlist.getNextSource(database.lastPlayedFile)
         } else if (config.playerPlayOrderType == "ORDER_TYPE_SINGLE") {
             next = null
         } else if (config.playerPlayOrderType == "ORDER_TYPE_SINGLE_CYCLE") {
             next = database.lastPlayedFile
         } else if (config.playerPlayOrderType == "ORDER_TYPE_PLAYLIST_CYCLE") {
-            next = playlist.getNextSourceCycle()
+            next = playlist.getNextSourceCycle(database.lastPlayedFile)
         }
 
         next ? (movieInfo.movie_file = next) : root.reset()
     }
     function playPrevious() { 
-        // to ensure that there's currentPlayingSource to track
-        playlist.currentPlayingSource = database.lastPlayedFile
         var next = null
 
         if (config.playerPlayOrderType == "ORDER_TYPE_RANDOM") {
             next = playlist.getRandom()
         } else if (config.playerPlayOrderType == "ORDER_TYPE_RANDOM_IN_ORDER") {
-            next = playlist.getPreviousSource()
+            next = playlist.getPreviousSource(database.lastPlayedFile)
         } else if (config.playerPlayOrderType == "ORDER_TYPE_SINGLE") {
             next = null
         } else if (config.playerPlayOrderType == "ORDER_TYPE_SINGLE_CYCLE") {
             next = database.lastPlayedFile
         } else if (config.playerPlayOrderType == "ORDER_TYPE_PLAYLIST_CYCLE") {
-            next = playlist.getPreviousSourceCycle()
+            next = playlist.getPreviousSourceCycle(database.lastPlayedFile)
         }
 
         next ? (movieInfo.movie_file = next) : root.reset()
