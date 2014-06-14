@@ -19,7 +19,6 @@ Rectangle {
     signal deleteButtonClicked ()
     signal clearButtonClicked ()
     signal modeButtonClicked ()
-    signal dropFile (url path)
 
     states: [
         State {
@@ -236,18 +235,6 @@ Rectangle {
                 onClicked: {
                     hidingPlaylistPanelAnimation.restart()
                 }
-            }
-        }
-    }
-
-    DropArea {
-        anchors.fill: parent
-
-        onDropped: {
-            if (drop.hasUrls) {
-                var file_path = drop.urls[0].substring(7)
-                file_path = decodeURIComponent(file_path)
-                playlistPanel.dropFile(file_path)
             }
         }
     }

@@ -585,17 +585,30 @@ MouseArea {
     DropArea {
         anchors.fill: parent
 
-        onDropped: {
-            showControls()
+        onPositionChanged: {
+            if (drag.x > parent.width - program_constants.playlistWidth) {
+                playlist.show()
+            }
+        }
 
-            if (drop.hasUrls) {
-                var file_path = drop.urls[0].substring(7)
+        onDropped: {
+            for (var i = 0; i < drop.urls.length; i++) {
+                var file_path = drop.urls[i].substring(7)
                 file_path = decodeURIComponent(file_path)
-                if (_utils.fileIsSubtitle(file_path)) {
-                    movieInfo.subtitle_file = file_path
-                } else  {
-                    movieInfo.movie_file = file_path
+
+                if (drag.x > parent.width - program_constants.playlistWidth) {
                     addPlayListItem(file_path)
+                } else {
+                    showControls()
+
+                    if (_utils.fileIsSubtitle(file_path)) {
+                        movieInfo.subtitle_file = file_path
+                    } else  {
+                        if (i == 0) {
+                            movieInfo.movie_file = file_path    
+                        }
+                        addPlayListItem(file_path)
+                    }
                 }
             }
         }
