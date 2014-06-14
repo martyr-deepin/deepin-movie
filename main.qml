@@ -329,7 +329,7 @@ Rectangle {
 
         // onSourceChanged doesn't ensures that the file is playable, this one did.
         onPlaying: { 
-            root.inhibitCookie = dbus_screensaver.Inhibit("deepin-movie", "video playing")
+            root.inhibitCookie = dbus_screensaver.Inhibit("deepin-movie", "video playing") || 0
             main_controller.setWindowTitle(movieInfo.movie_title)
             lastSource = source
             database.lastPlayedFile = source 
