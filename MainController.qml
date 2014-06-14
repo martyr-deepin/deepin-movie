@@ -271,7 +271,9 @@ MouseArea {
         windowView.showNormal()
     }
 
+    property bool fullscreenFromMaximum: false
     function fullscreen() {
+        fullscreenFromMaximum = (windowView.getState() == Qt.WindowMaximized)
         root.state = "no_glow"
         _utils.disable_zone()
         windowView.showFullScreen()
@@ -279,11 +281,13 @@ MouseArea {
 
     function maximize() {
         root.state = "no_glow"
+        _utils.enable_zone()
         windowView.showMaximized()
     }
 
     function minimize() {
         root.state = "normal"
+        _utils.enable_zone()
         windowView.doMinimized()
     }
 
@@ -335,7 +339,9 @@ MouseArea {
     }
 
     function toggleFullscreen() {
-        windowView.getState() == Qt.WindowFullScreen ? normalize() : fullscreen()
+        windowView.getState() == Qt.WindowFullScreen ? fullscreenFromMaximum ? maximize() 
+                                                                            : normalize() 
+                                                        : fullscreen()
     }
 
     function toggleMaximized() {
