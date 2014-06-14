@@ -248,6 +248,14 @@ class MenuController(QObject):
     def show_menu(self):
         self.menu = Menu(right_click_menu)
 
+        hasVideo = movie_info.movie_file != ""
+        self.menu.getItemById("_fullscreen_quit").isActive = hasVideo
+        self.menu.getItemById("_mini_mode").isActive = hasVideo
+        self.menu.getItemById("_play").isActive = hasVideo
+        self.menu.getItemById("_frame").isActive = hasVideo
+        self.menu.getItemById("_sound").isActive = hasVideo
+        self.menu.getItemById("_information").isActive = hasVideo
+
         _mini_mode_item = self.menu.getItemById("_mini_mode")
         _mini_mode_item.text += "(%s)" % config.hotkeysFrameSoundToggleMiniMode.upper()
         self.menu.getItemById("_on_top").checked = self._window.staysOnTop
