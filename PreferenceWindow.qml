@@ -461,6 +461,15 @@ DPreferenceWindow {
                 onValueChanged: config.subtitleVerticalPosition = value
             }
 
+            SpinnerRow {
+                title: dsTr("Subtitle Delay")
+                min: -30
+                max: 30
+                text: player.subtitleDelay
+
+                onValueChanged: player.subtitleDelay = value * 1000
+            }
+
             // FileInputRow {
             //     title: "Subtitle directory:"
             // }
