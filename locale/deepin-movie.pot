@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-14 15:10+0800\n"
+"POT-Creation-Date: 2014-06-15 10:28+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-#: ../AboutSection.qml:11 ../window.py:59
+#: ../AboutSection.qml:11 ../main.qml:344 ../window.py:61
 msgid "Deepin Movie"
 msgstr ""
 
@@ -67,33 +67,33 @@ msgstr ""
 msgid "Confirm"
 msgstr ""
 
-#: ../MainController.qml:371
+#: ../MainController.qml:372
 msgid "Play last movie played"
 msgstr ""
 
-#: ../MainController.qml:381
+#: ../MainController.qml:383
 msgid "Forward to "
 msgstr ""
 
-#: ../MainController.qml:387
+#: ../MainController.qml:391
 msgid "Rewind to "
 msgstr ""
 
-#: ../MainController.qml:395 ../MainController.qml:400
+#: ../MainController.qml:400 ../MainController.qml:405
 #, qt-format
 msgid "(Press %1 to restore)"
 msgstr ""
 
-#: ../MainController.qml:395 ../MainController.qml:400
-#: ../MainController.qml:405
+#: ../MainController.qml:400 ../MainController.qml:405
+#: ../MainController.qml:410
 msgid "Playback rate: "
 msgstr ""
 
-#: ../MainController.qml:416 ../MainController.qml:425
+#: ../MainController.qml:421 ../MainController.qml:430
 msgid "Volume: "
 msgstr ""
 
-#: ../MainController.qml:423 ../menu_controller.py:58
+#: ../MainController.qml:428 ../menu_controller.py:58
 msgid "Muted"
 msgstr ""
 
@@ -366,7 +366,11 @@ msgstr ""
 msgid "Top"
 msgstr ""
 
-#: ../movie_info.py:113
+#: ../PreferenceWindow.qml:465
+msgid "Subtitle Delay"
+msgstr ""
+
+#: ../movie_info.py:115
 msgid "Unknown"
 msgstr ""
 

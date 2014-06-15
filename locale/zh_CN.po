@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-14 15:10+0800\n"
+"POT-Creation-Date: 2014-06-15 10:28+0800\n"
 "PO-Revision-Date: 2014-06-10 15:05+0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "About"
 msgstr "关于"
 
-#: ../AboutSection.qml:11 ../window.py:59
+#: ../AboutSection.qml:11 ../main.qml:344 ../window.py:61
 msgid "Deepin Movie"
 msgstr "深度影院"
 
@@ -67,33 +67,33 @@ msgstr "复制到剪切板"
 msgid "Confirm"
 msgstr "确定"
 
-#: ../MainController.qml:371
+#: ../MainController.qml:372
 msgid "Play last movie played"
 msgstr "播放上次播放过的影片"
 
-#: ../MainController.qml:381
+#: ../MainController.qml:383
 msgid "Forward to "
 msgstr "快进到"
 
-#: ../MainController.qml:387
+#: ../MainController.qml:391
 msgid "Rewind to "
 msgstr "快退到"
 
-#: ../MainController.qml:395 ../MainController.qml:400
+#: ../MainController.qml:400 ../MainController.qml:405
 #, qt-format
 msgid "(Press %1 to restore)"
 msgstr "按 %1 键恢复原速"
 
-#: ../MainController.qml:395 ../MainController.qml:400
-#: ../MainController.qml:405
+#: ../MainController.qml:400 ../MainController.qml:405
+#: ../MainController.qml:410
 msgid "Playback rate: "
 msgstr "播放速度："
 
-#: ../MainController.qml:416 ../MainController.qml:425
+#: ../MainController.qml:421 ../MainController.qml:430
 msgid "Volume: "
 msgstr "音量："
 
-#: ../MainController.qml:423 ../menu_controller.py:58
+#: ../MainController.qml:428 ../menu_controller.py:58
 msgid "Muted"
 msgstr "静音"
 
@@ -366,7 +366,11 @@ msgstr "底部"
 msgid "Top"
 msgstr "顶部"
 
-#: ../movie_info.py:113
+#: ../PreferenceWindow.qml:465
+msgid "Subtitle Delay"
+msgstr "字幕延时"
+
+#: ../movie_info.py:115
 msgid "Unknown"
 msgstr "未知"
 
