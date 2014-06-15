@@ -22,6 +22,7 @@
 
 import os
 import json
+from itertools import dropwhile
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtGui import QKeySequence
 from PyQt5.QtCore import QObject, pyqtSlot, pyqtProperty
@@ -40,14 +41,31 @@ def _longest_match(*strs):
             else:
                 break
 
-def optimizeSerieName(serieName):
-    sep_chars = ("-", "_", ".")
-    idx = min(filter(lambda x: x > 0, map(lambda x: serieName.rfind(x), sep_chars)))
-    return serieName[0: idx]
-
 def longest_match(*strs):
     return "".join(list(_longest_match(*strs)))
 
+def optimizeSerieName(serieName):
+    sep_chars = ("-", "_", ".", " ")
+    idxes = filter(lambda x: x > 0, map(lambda x: serieName.rfind(x), sep_chars))
+    idx = min(idxes) if idxes else len(serieName)
+    return serieName[0: idx]
+
+def getEpisode(serieName, serie):
+    # serie = serie.lstrip(serieName) lstrip is not reliable on Chinese
+    serie = serie[len(serieName):]
+    result = []
+    numFound = False
+    for ch in serie:
+        if ch.isdigit():
+            numFound = True
+            result.append(ch)
+        elif numFound:
+            break
+    return int("".join(result))
+
+def sortSeries(serieName, series):
+    epi_name_tuples = [(getEpisode(serieName, serie), serie) for serie in series]
+    return [ x[1] for x in sorted(epi_name_tuples, key=lambda x: x[0])]
 
 class Utils(QObject):
 
@@ -81,7 +99,8 @@ class Utils(QObject):
                          key=len)
         nameFilter = optimizeSerieName(nameFilter)
 
-        result = filter(lambda x: nameFilter in x, allFiles)
+        result = filter(lambda x: nameFilter in x, allFiles) if nameFilter else (name,)
+        result = sortSeries(nameFilter, result) if len(result) > 1 else result
         result = [os.path.join(dir, x) for x in result]
 
         return json.dumps({"name":nameFilter, "items":result})
@@ -135,8 +154,10 @@ if __name__ == '__main__':
         "权力的游戏.Game.of.Thrones.S04E07.中英字幕.HDTVrip.624x352.mp4",
     ]
 
+    print "*" * 80
     print longest_match(*lst)
-    result = utils.getSeriesByName("/home/hualet/Videos/1000种死法第五季/1000种死法第五季-第5集.rmvb")
-    print result
+    print "*" * 80
+    print utils.getSeriesByName("/home/hualet/Videos/1000种死法第五季/1000种死法第五季-第5集.rmvb")
     print "*" * 80
     print optimizeSerieName("1000种死法第五季-第")
+
