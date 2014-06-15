@@ -36,13 +36,15 @@ def get_subtitle_from_movie(movie_file):
     movie_file is like file:///home/user/movie.mp4
     '''
     if movie_file.startswith("file://"): movie_file = movie_file[7:]
+    dir_name = os.path.dirname(movie_file)
     name_without_ext = movie_file.rpartition(".")[0]
     if name_without_ext == "": return ("",)
 
     result = []
     for ext in SUPPORTED_FILE_TYPES:
-        try_sub_name = "%s*.%s" % (name_without_ext, ext)
-        result += glob.glob(try_sub_name)
+        try_ext = "%s/*.%s" % (dir_name, ext)
+        all_this_ext = glob.glob(try_ext)
+        result += filter(lambda x: name_without_ext in x, all_this_ext)
     return result or ("",)
 
 class MovieInfo(QObject):

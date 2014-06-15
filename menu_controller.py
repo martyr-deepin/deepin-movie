@@ -254,6 +254,7 @@ class MenuController(QObject):
         self.menu.getItemById("_play").isActive = hasVideo
         self.menu.getItemById("_frame").isActive = hasVideo and self._window.getState() != Qt.WindowFullScreen
         self.menu.getItemById("_sound").isActive = hasVideo
+        self.menu.getItemById("_subtitle_choose").isActive = bool(movie_info.subtitle_file)
         self.menu.getItemById("_information").isActive = hasVideo
 
         _mini_mode_item = self.menu.getItemById("_mini_mode")
