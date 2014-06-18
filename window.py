@@ -45,11 +45,11 @@ def icon_from_theme(theme_name, icon_name):
 class Window(QQuickView):
 
     staysOnTopChanged = pyqtSignal()
+    centerRequestCountChanged = pyqtSignal()
 
     def __init__(self, center=False):
         QQuickView.__init__(self)
-        self._center = center
-
+        self._center_request_count = 1 if center else 0
         surface_format = QSurfaceFormat()
         surface_format.setAlphaBufferSize(8)
         
@@ -65,7 +65,14 @@ class Window(QQuickView):
 
     def initWindowSize(self):
         self.rootObject().initWindowSize()
-        self._center and self.moveToCenter()
+
+    @pyqtProperty(int,centerRequestCountChanged)
+    def centerRequestCount(self):
+        return self._center_request_count
+
+    @centerRequestCount.setter
+    def centerRequestCount(self, count):
+        self._center_request_count = count
 
     @pyqtProperty(int,constant=True)
     def defaultWidth(self):
