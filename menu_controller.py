@@ -126,6 +126,7 @@ class MenuController(QObject):
     flipHorizontal = pyqtSignal()
     flipVertical = pyqtSignal()
     toggleFullscreen = pyqtSignal()
+    toggleMiniMode = pyqtSignal()
     screenShot = pyqtSignal()
     scaleChanged = pyqtSignal(float,arguments=["scale"])
     proportionChanged = pyqtSignal(float,float,
@@ -205,6 +206,8 @@ class MenuController(QObject):
             self.openDialog.emit("dir")
         elif _id == "_open_url":
             self.openDialog.emit("url")
+        elif _id == "_mini_mode":
+            self.toggleMiniMode.emit()
         elif _id == "_on_top":
             self.staysOnTop.emit(_checked)
         elif _id == "mode_group:radio:in_order":

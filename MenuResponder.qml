@@ -21,6 +21,9 @@ Connections {
     onToggleFullscreen: {
         main_controller.toggleFullscreen()
     }
+    onToggleMiniMode: {
+        main_controller.toggleMiniMode()
+    }
     onScreenShot: {
         windowView.screenShot()
     }
