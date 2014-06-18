@@ -10,8 +10,9 @@ Rectangle {
     property string tabId: "local"
     property bool expanded: width == program_constants.playlistWidth
     property url currentPlayingSource
-    property alias window: playlistPanelArea.window
+    property url clickedOnItemUrl
     property int maxWidth: program_constants.playlistWidth
+    property alias window: playlistPanelArea.window
 
     signal newSourceSelected (string path)
     
@@ -63,13 +64,15 @@ Rectangle {
         }
     }
 
-    function getContent(type) {
-        return playlist.getContent()
-    }
+    function getContent(type) { return playlist.getContent() }
 
-    function addItem(item) {
-        playlist.addItem(item)
-    }
+    function addItem(item) { playlist.addItem(item) }
+
+    function removeClickedItem() { playlist.removeItem(clickedOnItemUrl) }
+
+    function removeInvalidItems(valid_check_func) { playlist.removeInvalidItems(valid_check_func) }
+
+    function showClickedItemInFM() { _utils.showFileInFM(clickedOnItemUrl) }
 
     function clear() {
         playlist.clear()
@@ -124,10 +127,19 @@ Rectangle {
         id: playlistPanelArea
         anchors.fill: parent
         hoverEnabled: true
+        acceptedButtons: Qt.LeftButton | Qt.RightButton
 
         onEntered: { playlistPanel.state = "active" }
         onWheel: {}
-        onClicked: { playlistPanel.hide() }
+        onClicked: { 
+            var point = mapToItem(playlist, mouse.x, mouse.y)
+            if (mouse.button == Qt.RightButton) {
+                clickedOnItemUrl = playlist.getClickedItemUrl(point.x, point.y) || ""
+                _menu_controller.show_playlist_menu()
+            } else {
+                playlistPanel.hide() 
+            }
+        }
     }
 
     Item {
@@ -150,9 +162,21 @@ Rectangle {
             width: parent.width - 14 * 2
             height: Math.min(parent.height, childrenRect.height)
             root: playlist
+            currentIndex: -1 // this is important, getClickedItemInfo will sometimes works wrongly. 
             visible: playlistPanel.expanded
             currentPlayingSource: playlistPanel.currentPlayingSource
             anchors.horizontalCenter: parent.horizontalCenter
+
+            // x, y are all values related to playlist
+            function getClickedItemUrl(x, y) {
+                var playlistSubItem = childAt(x, y)
+                if (!playlistSubItem) return
+                var subItemPoint = mapToItem(playlistSubItem, x, y)
+                var listItem = playlistSubItem.childAt(subItemPoint.x, subItemPoint.y)
+                if (!listItem) return
+
+                return listItem.propUrl
+            }
 
             onNewSourceSelected: {
                 playlistPanel.newSourceSelected(path)

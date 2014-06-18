@@ -22,6 +22,7 @@
 
 import os
 import json
+import subprocess
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtGui import QKeySequence
 from PyQt5.QtCore import QObject, pyqtSlot, pyqtProperty
@@ -161,6 +162,17 @@ class Utils(QObject):
     @pyqtSlot(str,result=bool)
     def fileIsSubtitle(self, file_path):
         return get_file_type(file_path) in (FILE_TYPE_ASS, FILE_TYPE_SRT)
+
+    @pyqtSlot(str,result=bool)
+    def fileIsValidVideo(self, file_path):
+        file_path = file_path[7:] if file_path.startswith("file://") else file_path
+        return os.path.exists(file_path) and file_is_video_type(file_path)
+
+    @pyqtSlot(str)
+    def showFileInFM(self, file_path):
+        if not file_path: return
+        file_path = file_path[7:] if file_path.startswith("file://") else file_path
+        subprocess.Popen(["xdg-open", "%s" % os.path.dirname(file_path)])
 
 utils = Utils()
 if __name__ == '__main__':

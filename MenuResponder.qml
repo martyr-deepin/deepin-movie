@@ -43,7 +43,7 @@ Connections {
         }
     }
 
-    onOpenSubtitleFile: { open_file_dialog.purpose = purposes.openSubtitleFile; open_file_dialog.open() }
+    onOpenSubtitleFile: { main_controller.openFileForSubtitle() }
 
     onSubtitleSelected: movieInfo.subtitle_file = subtitle
 
@@ -61,4 +61,11 @@ Connections {
     onVolumeMuted: { main_controller.toggleMute() }
 
     onShowSubtitleSettings: { preference_window.show(); preference_window.scrollToSubtitle() }
+
+    onPlaylistPlay: movieInfo.movie_file = playlist.clickedOnItemUrl
+    onAddItemToPlaylist: main_controller.openFileForPlaylist()
+    onRemoveItemFromPlaylist: playlist.removeClickedItem()
+    onRemoveInvalidItemsFromPlaylist: playlist.removeInvalidItems(_utils.fileIsValidVideo)
+    onPlaylistClear: playlist.clear()
+    onPlaylistShowClickedItemInFM: playlist.showClickedItemInFM()
 }

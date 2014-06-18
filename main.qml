@@ -451,7 +451,7 @@ Rectangle {
 
         onNewSourceSelected: movieInfo.movie_file = path
         onModeButtonClicked: _menu_controller.show_mode_menu()
-        onAddButtonClicked: { open_file_dialog.purpose = purposes.addPlayListItem; open_file_dialog.open() }
+        onAddButtonClicked: main_controller.openFileForPlaylist()
         onClearButtonClicked: playlist.clear()
     }
     

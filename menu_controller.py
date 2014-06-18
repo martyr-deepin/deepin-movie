@@ -103,6 +103,19 @@ right_click_menu = [
     ("_information", _("Information")),
 ]
 
+playlist_right_menu = [
+    ("_playlist_play", _("Play")),
+    ("_playlist_add_item", _("Add file to playlist")),
+    None,
+    ("_playlist_remove_item", _("Remove from playlist")),
+    ("_playlist_remove_invalid", _("Remove invalid file")),
+    ("_playlist_clear", _("Clear playlist")),
+    None,
+] + play_sequence_sub_menu + [
+    None,
+    ("_playlist_open_position", _("Open file location")),
+]
+
 FILE_START_TAG = "[[[[["
 FILE_END_TAG = "]]]]]"
 def _subtitle_menu_items_from_files(files):
@@ -145,6 +158,13 @@ class MenuController(QObject):
     volumeDown = pyqtSignal()
     volumeMuted = pyqtSignal()
     showSubtitleSettings = pyqtSignal()
+
+    playlistPlay = pyqtSignal()
+    addItemToPlaylist = pyqtSignal()
+    removeItemFromPlaylist = pyqtSignal()
+    removeInvalidItemsFromPlaylist = pyqtSignal()
+    playlistClear = pyqtSignal()
+    playlistShowClickedItemInFM = pyqtSignal()
     
     def __init__(self, window):
         super(MenuController, self).__init__()
@@ -247,6 +267,20 @@ class MenuController(QObject):
         elif _id == "_information":
             self.showMovieInformation.emit()
 
+        # playlist menu 
+        elif _id == "_playlist_play": 
+            self.playlistPlay.emit()
+        elif _id == "_playlist_add_item":
+            self.addItemToPlaylist.emit()
+        elif _id == "_playlist_remove_item":
+            self.removeItemFromPlaylist.emit()
+        elif _id == "_playlist_remove_invalid":
+            self.removeInvalidItemsFromPlaylist.emit()
+        elif _id == "_playlist_clear":
+            self.playlistClear.emit()
+        elif _id == "_playlist_open_position":
+            self.playlistShowClickedItemInFM.emit()
+
     @pyqtSlot()
     def show_menu(self):
         self.menu = Menu(right_click_menu)
@@ -307,6 +341,24 @@ class MenuController(QObject):
 
         self.menu.itemClicked.connect(self._menu_item_invoked)
         self.menu.showRectMenu(QCursor.pos().x(), QCursor.pos().y())
+
+    @pyqtSlot()
+    def show_playlist_menu(self):
+        self.menu = Menu(playlist_right_menu)
+        self.menu.itemClicked.connect(self._menu_item_invoked)
+
+        self.menu.getItemById("mode_group:radio:in_order").checked = \
+            config.playerPlayOrderType == ORDER_TYPE_IN_ORDER
+        self.menu.getItemById("mode_group:radio:random").checked = \
+            config.playerPlayOrderType == ORDER_TYPE_RANDOM
+        self.menu.getItemById("mode_group:radio:single").checked = \
+            config.playerPlayOrderType == ORDER_TYPE_SINGLE
+        self.menu.getItemById("mode_group:radio:single_cycle").checked = \
+            config.playerPlayOrderType == ORDER_TYPE_SINGLE_CYCLE
+        self.menu.getItemById("mode_group:radio:playlist_cycle").checked = \
+            config.playerPlayOrderType == ORDER_TYPE_PLAYLIST_CYCLE
+
+        self.menu.showRectMenu(QCursor.pos().x() - 100, QCursor.pos().y())
         
     @pyqtSlot()
     def show_mode_menu(self):

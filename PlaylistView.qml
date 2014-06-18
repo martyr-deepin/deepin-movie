@@ -13,6 +13,7 @@ ListView {
 	property bool isSelected: false
 
 	signal newSourceSelected(string path)
+	signal removeItemPrivate(string url)
 
 	function getRandom() {
 		var flatList = _flattenList()
@@ -114,6 +115,16 @@ ListView {
         forceLayout()
 	}
 
+	function removeItem(url) { root.removeItemPrivate(url) }
+	function removeInvalidItems(valid_check_func) {
+	    var flatList = _flattenList()
+	    for (var i = 0; i < flatList.length; i++) {
+	    	if (!valid_check_func(flatList[i])) {
+	    		removeItem(flatList[i])
+	    	}
+	    }
+	}
+
 	function _flattenList() {
 		var result = []
 		for (var i = 0; i < allItems.length; i++) {
@@ -195,6 +206,15 @@ ListView {
 				var idx = column.ListView.view.allItems.indexOf(column)
 				if (idx != -1) {
 					column.ListView.view.allItems.splice(idx, 1)
+				}
+			}
+
+			Connections {
+				target: root
+				onRemoveItemPrivate: {
+					if (propUrl == url) {
+						column.ListView.view.model.remove(index, 1)
+					}
 				}
 			}
 

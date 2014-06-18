@@ -437,6 +437,8 @@ MouseArea {
 
     function openFile() { open_file_dialog.purpose = purposes.openVideoFile; open_file_dialog.open() }
     function openDir() { open_folder_dialog.open() }
+    function openFileForPlaylist() { open_file_dialog.purpose = purposes.addPlayListItem; open_file_dialog.open() }
+    function openFileForSubtitle() { open_file_dialog.purpose = purposes.openSubtitleFile; open_file_dialog.open() }
 
     function playNext() { 
         var next = null
