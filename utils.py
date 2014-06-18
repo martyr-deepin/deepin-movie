@@ -13,7 +13,7 @@
 # any later version.
 #
 # This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# but WITHOUT ANY WARRANTY"," without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
@@ -22,13 +22,24 @@
 
 import os
 import json
-from itertools import dropwhile
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtGui import QKeySequence
 from PyQt5.QtCore import QObject, pyqtSlot, pyqtProperty
 from PyQt5.QtDBus import QDBusInterface, QDBusConnection
 
 from subtitles import *
+
+all_supported_video_exts = [ "*.3g2","*.3gp","*.3gp2","*.3gpp","*.amv",
+                            "*.asf","*.avi","*.bin","*.divx","*.drc",
+                            "*.dv","*f4v","*.flv","*.gvi","*.gxf","*.iso",
+                            "*.m1v","*.m2v","*.m2t","*.m2ts","*.m4v","*.mkv",
+                            "*.mov","*.mp2","*.mp2v","*.mp4","*.mp4v","*.mpe",
+                            "*.mpeg","*.mpeg1","*.mpeg2","*.mpeg4","*.mpg",
+                            "*.mpv2","*.mts","*.mtv","*.mxf","*.mxg","*.nsv",
+                            "*.nuv","*.ogg","*.ogm","*.ogv","*.ogx","*.ps",
+                            "*.rec","*.rm","*.rmvb","*.tod","*.ts","*.tts",
+                            "*.vob","*.vro","*.webm","*.wm","*.wmv","*.wtv",
+                            "*.xesc"]
 
 def _longest_match(*strs):
     shortest_str = min(strs, key=len)
@@ -43,6 +54,10 @@ def _longest_match(*strs):
 
 def longest_match(*strs):
     return "".join(list(_longest_match(*strs)))
+
+def file_is_video_type(f):
+    name, ext = os.path.splitext(f)
+    return ext and "*%s" % ext in all_supported_video_exts
 
 def optimizeSerieName(serieName):
     sep_chars = ("-", "_", ".", " ")
@@ -88,12 +103,17 @@ class Utils(QObject):
                 result.append(file_abs_path)
         return result
 
+    def getAllVideoFilesInDir(self, dir):
+        allFiles = self.getAllFilesInDir(dir)
+        return filter(lambda x: file_is_video_type(x), allFiles)
+
     @pyqtSlot(str, result=str)
     def getSeriesByName(self, name):
         name = name[7:] if name.startswith("file://") else name
         dir = os.path.dirname(name)
-        allFiles = self.getAllFilesInDir(dir)
-        # allFiles.remove(name)
+        allFiles = self.getAllVideoFilesInDir(dir)
+        if not allFiles: return
+        
         allFiles = [os.path.basename(x) for x in allFiles]
         nameFilter = min((longest_match(x, os.path.basename(name)) for x in allFiles),
                          key=len)
