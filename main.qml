@@ -106,9 +106,9 @@ Rectangle {
         folder: database.lastOpenedPath || _utils.homeDir
 
         onAccepted: {
-            database.lastOpenedPath = fileUrl // record last opened path
-
-            var fileUrls = _utils.getAllFilesInDir(fileUrl)
+            var folderPath = fileUrl
+            database.lastOpenedPath = folderPath // record last opened path
+            var fileUrls = _utils.getAllVideoFilesInDir(folderPath)
             if (fileUrls.length > 0) {
                 for (var i = 0; i < fileUrls.length; i++) {
                     main_controller.addPlayListItem(fileUrls[i])

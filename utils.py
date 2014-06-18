@@ -103,6 +103,7 @@ class Utils(QObject):
                 result.append(file_abs_path)
         return result
 
+    @pyqtSlot(str, result="QVariant")
     def getAllVideoFilesInDir(self, dir):
         allFiles = self.getAllFilesInDir(dir)
         return filter(lambda x: file_is_video_type(x), allFiles)
@@ -113,7 +114,7 @@ class Utils(QObject):
         dir = os.path.dirname(name)
         allFiles = self.getAllVideoFilesInDir(dir)
         if not allFiles: return
-        
+
         allFiles = [os.path.basename(x) for x in allFiles]
         nameFilter = min((longest_match(x, os.path.basename(name)) for x in allFiles),
                          key=len)
