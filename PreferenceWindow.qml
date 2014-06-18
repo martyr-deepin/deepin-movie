@@ -96,8 +96,8 @@ DPreferenceWindow {
                 ]
             },
             {
-                "sectionId": "subtitles",
-                "sectionName": dsTr("Subtitles"),
+                "sectionId": "subtitle_settings",
+                "sectionName": dsTr("Subtitle settings"),
                 "subSections": []
             },
             // {
@@ -380,8 +380,8 @@ DPreferenceWindow {
         }
         SectionContent { 
             id: subtitles
-            title: dsTr("Subtitles")
-            sectionId: "subtitles"
+            title: dsTr("Subtitle settings")
+            sectionId: "subtitle_settings"
             topSpaceHeight: 30
             bottomSpaceHeight: 10
 
