@@ -102,14 +102,14 @@ if __name__ == "__main__":
     movie_file = os.path.realpath(sys.argv[1]) if len(sys.argv) >= 2 else ""
 
     from dbus_services import (DeepinMovieServie, check_multiple_instances, 
-        DeepinMovieInterface, session_bus, DBUS_PATH, DBUS_NAME)
+        DeepinMovieInterface, session_bus, DBUS_PATH)
 
     result = check_multiple_instances()
+    if result: 
+        dbus_service = DeepinMovieServie()
+        session_bus.registerObject(DBUS_PATH, dbus_service)
     if not config.playerMultipleProgramsAllowed:
-        if result: 
-            dbus_service = DeepinMovieServie()
-            session_bus.registerObject(DBUS_PATH, dbus_service)
-        else: 
+        if not result:
             if movie_file: 
                 dbus_interface = DeepinMovieInterface()
                 dbus_interface.play(movie_file)
