@@ -158,6 +158,8 @@ DPreferenceWindow {
             }
             DCheckBox {
                 text: dsTr("Allow multiple instance")
+                checked: config.playerMultipleProgramsAllowed
+                onClicked: config.playerMultipleProgramsAllowed = checked
             }
             DCheckBox {
                 text: dsTr("Pause when minimized")

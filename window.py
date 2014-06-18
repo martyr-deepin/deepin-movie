@@ -46,8 +46,10 @@ class Window(QQuickView):
 
     staysOnTopChanged = pyqtSignal()
 
-    def __init__(self):
+    def __init__(self, center=False):
         QQuickView.__init__(self)
+        self._center = center
+
         surface_format = QSurfaceFormat()
         surface_format.setAlphaBufferSize(8)
         
@@ -63,7 +65,7 @@ class Window(QQuickView):
 
     def initWindowSize(self):
         self.rootObject().initWindowSize()
-        self.moveToCenter()
+        self._center and self.moveToCenter()
 
     @pyqtProperty(int,constant=True)
     def defaultWidth(self):

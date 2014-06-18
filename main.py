@@ -115,7 +115,7 @@ if __name__ == "__main__":
                 dbus_interface.play(movie_file)
             os._exit(0)
 
-    windowView = Window()
+    windowView = Window(result)
     # page_manager = PageManager(windowView)
     menu_controller = MenuController(windowView)
     inputDialog = InputDialog(None)
