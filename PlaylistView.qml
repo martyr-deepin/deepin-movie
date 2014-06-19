@@ -11,9 +11,11 @@ ListView {
 	property var root
 	// isSelected is determined by its children
 	property bool isSelected: false
+	property url clickedOnItemUrl
 
 	signal newSourceSelected(string path)
 	signal removeItemPrivate(string url)
+	signal rightClickedOnItem(string url)
 
 	function getRandom() {
 		var flatList = _flattenList()
@@ -225,6 +227,7 @@ ListView {
 				MouseArea {
 					id: mouse_area
 					hoverEnabled: true
+					acceptedButtons: Qt.LeftButton | Qt.RightButton
 					anchors.fill: parent
 					onEntered: {
 					    delete_button.visible = true
@@ -237,8 +240,13 @@ ListView {
 					    delete_button.source = "image/delete_normal.png"
 					}
 					onClicked: {
-						if (column.isGroup) {
-							sub.visible = !sub.visible							
+						if (mouse.button == Qt.RightButton) {
+							column.ListView.view.root.clickedOnItemUrl = propUrl
+						    _menu_controller.show_playlist_menu(propUrl)
+						} else {
+							if (column.isGroup) {
+								sub.visible = !sub.visible							
+							}
 						}
 					}
 					onDoubleClicked: {
@@ -317,9 +325,9 @@ ListView {
 				source: "PlaylistView.qml"
 				asynchronous: true
 				onLoaded: {
+					item.root = column.ListView.view.root
 					item.model = column.propChild
 					// item.width = Qt.binding(column.width - sub.x)
-					item.root = column.ListView.view.root
 					item.currentPlayingSource = Qt.binding(function () {return column.ListView.view.currentPlayingSource})
 				}
 			}

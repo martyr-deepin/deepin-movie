@@ -10,7 +10,7 @@ Rectangle {
     property string tabId: "local"
     property bool expanded: width == program_constants.playlistWidth
     property url currentPlayingSource
-    property url clickedOnItemUrl
+    property url clickedOnItemUrl: playlist.clickedOnItemUrl
     property int maxWidth: program_constants.playlistWidth
     property alias window: playlistPanelArea.window
 
@@ -132,10 +132,8 @@ Rectangle {
         onEntered: { playlistPanel.state = "active" }
         onWheel: {}
         onClicked: { 
-            var point = mapToItem(playlist, mouse.x, mouse.y)
             if (mouse.button == Qt.RightButton) {
-                clickedOnItemUrl = playlist.getClickedItemUrl(point.x, point.y) || ""
-                _menu_controller.show_playlist_menu()
+                _menu_controller.show_playlist_menu("")
             } else {
                 playlistPanel.hide() 
             }
