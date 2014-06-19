@@ -30,6 +30,7 @@ from constant import DEFAULT_WIDTH, DEFAULT_HEIGHT, WINDOW_GLOW_RADIUS
 from media_info import parse_info
 from logger import logger
 from i18n import _
+from utils import utils
 
 def get_subtitle_from_movie(movie_file):
     '''
@@ -56,6 +57,7 @@ class MovieInfo(QObject):
     movieWidthChanged = pyqtSignal(int, arguments=["movie_width",])
     movieHeightChanged = pyqtSignal(int, arguments=["movie_height",])
     subtitleChanged = pyqtSignal(str, arguments=["subtitle_file",])
+    fileInvalid = pyqtSignal()
 
     def __init__(self, filepath=""):
         QObject.__init__(self)
@@ -104,7 +106,7 @@ class MovieInfo(QObject):
     
     @movie_file.setter
     def movie_file(self, filepath):
-        logger.info("set movie_file %s" % filepath)                
+        logger.info("set movie_file %s" % filepath)
         self.filepath = filepath
 
         self.media_info = parse_info(self.filepath)
@@ -116,6 +118,7 @@ class MovieInfo(QObject):
         self.media_width = int(self.media_width) + 2 * WINDOW_GLOW_RADIUS
         self.media_height = int(self.media_height) + 2 * WINDOW_GLOW_RADIUS
         self.media_duration = int(self.media_duration)
+        self.subtitle_file = get_subtitle_from_movie(self.filepath)[0]
 
         self.movieTitleChanged.emit(os.path.basename(filepath))
         self.movieTypeChanged.emit(self.media_type)
@@ -124,8 +127,9 @@ class MovieInfo(QObject):
         self.movieHeightChanged.emit(self.media_height)
         self.movieDurationChanged.emit(self.media_duration) 
         self.movieSourceChanged.emit(filepath)
-        
-        self.subtitle_file = get_subtitle_from_movie(self.filepath)[0]
+
+        if not (filepath == "" or utils.fileIsValidVideo(filepath)): 
+            self.fileInvalid.emit()
 
     @pyqtSlot(int, result=str)     
     def get_subtitle_at(self, timestamp):

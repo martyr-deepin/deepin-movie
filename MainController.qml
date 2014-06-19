@@ -98,6 +98,8 @@ MouseArea {
             titlebar.show()
             controlbar.show()
         }
+
+        onFileInvalid: root.reset()
     }
 
     Timer {
