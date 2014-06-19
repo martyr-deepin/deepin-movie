@@ -277,6 +277,8 @@ MouseArea {
 
     property bool fullscreenFromMaximum: false
     function fullscreen() {
+        backupWidth = windowView.width
+        backupHeight = windowView.height
         fullscreenFromMaximum = (windowView.getState() == Qt.WindowMaximized)
         root.state = "no_glow"
         _utils.disable_zone()
@@ -286,6 +288,8 @@ MouseArea {
     function quitFullscreen() { fullscreenFromMaximum ? maximize() : normalize() }
 
     function maximize() {
+        backupWidth = windowView.width
+        backupHeight = windowView.height
         root.state = "no_glow"
         _utils.enable_zone()
         windowView.showMaximized()
@@ -306,8 +310,12 @@ MouseArea {
             windowView.setWidth(backupWidth)
             windowView.setHeight(backupHeight)
         } else {
-            backupWidth = windowView.width
-            backupHeight = windowView.height
+            if (windowView.getState() != Qt.WindowMaximized 
+                && windowView.getState() != Qt.WindowFullScreen)
+            {
+                backupWidth = windowView.width
+                backupHeight = windowView.height
+            }
             titlebar.state = "minimal"
             windowView.staysOnTop = true
             _setSizeForRootWindowWithWidth(program_constants.miniModeWidth)

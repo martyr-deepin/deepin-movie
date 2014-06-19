@@ -210,7 +210,7 @@ ListView {
 			}
 
 			Connections {
-				target: root
+				target: column.ListView.view.root
 				onRemoveItemPrivate: {
 					if (propUrl == url) {
 						column.ListView.view.model.remove(index, 1)
