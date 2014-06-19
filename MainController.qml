@@ -253,8 +253,8 @@ MouseArea {
     }
 
     function addPlayListItem(url) { 
-        var serie = config.playerAutoPlaySeries ? JSON.parse(_utils.getSeriesByName(url)) : ""
-        if (serie.name != "") {
+        var serie = config.playerAutoPlaySeries ? JSON.parse(_utils.getSeriesByName(url)) : null
+        if (serie && serie.name != "") {
             for (var i = 0; i < serie.items.length; i++) {
                 playlist.addItem(urlToPlaylistItem(serie.name, serie.items[i]))
             }

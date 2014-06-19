@@ -99,9 +99,12 @@ class Utils(QObject):
         dir = dir[7:] if dir.startswith("file://") else dir
         result = []
         for entry in os.listdir(dir):
-            file_abs_path = os.path.join(dir, entry)
-            if os.path.isfile(file_abs_path):
-                result.append(file_abs_path)
+            try:
+                file_abs_path = os.path.join(dir, entry) 
+                if os.path.isfile(file_abs_path):
+                    result.append(file_abs_path)   
+            except Exception:
+                pass
         return result
 
     @pyqtSlot(str, result="QVariant")
