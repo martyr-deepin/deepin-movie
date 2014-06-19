@@ -397,17 +397,14 @@ msgstr "水平翻转"
 msgid "Flip vertically"
 msgstr "垂直翻转"
 
-# "Sound channels"
 #: ../menu_controller.py:52
 msgid "Sound Channels"
 msgstr "声道选择"
 
-# "Sound tracks"
 #: ../menu_controller.py:53
 msgid "Sound Tracks"
 msgstr "音轨选择"
 
-# "Output mode"
 #: ../menu_controller.py:54
 msgid "Output Mode"
 msgstr "输出模式"
@@ -502,23 +499,23 @@ msgstr "信息"
 
 #: ../menu_controller.py:108
 msgid "Add file to playlist"
-msgstr ""
+msgstr "添加文件至播放列表"
 
 #: ../menu_controller.py:110
 msgid "Remove from playlist"
-msgstr ""
+msgstr "从播放列表删除"
 
 #: ../menu_controller.py:111
 msgid "Remove invalid file"
-msgstr ""
+msgstr "删除无效文件"
 
 #: ../menu_controller.py:112
 msgid "Clear playlist"
-msgstr ""
+msgstr "清空播放列表"
 
 #: ../menu_controller.py:116
 msgid "Open file location"
-msgstr ""
+msgstr "打开文件所在位置"
 
 #~ msgid "Keyboard"
 #~ msgstr "键盘"
