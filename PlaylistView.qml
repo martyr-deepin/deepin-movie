@@ -320,7 +320,7 @@ ListView {
 			Loader {
 				id: sub
 				x: 14
-				visible: false
+				visible: column.isSelected
 				active: column.isGroup
 				width: column.width - sub.x
 				source: "PlaylistView.qml"
