@@ -94,6 +94,14 @@ class Utils(QObject):
     def homeDir(self):
         return os.path.expanduser("~")
 
+    @pyqtSlot(str, result=bool)
+    def pathIsFile(self, path):
+        return os.path.isfile(path)
+
+    @pyqtSlot(str, result=bool)
+    def pathIsDir(self, path):
+        return os.path.isdir(path)
+
     @pyqtSlot(str, result="QVariant")
     def getAllFilesInDir(self, dir):
         dir = dir[7:] if dir.startswith("file://") else dir

@@ -613,6 +613,8 @@ MouseArea {
                 var file_path = drop.urls[i].substring(7)
                 file_path = decodeURIComponent(file_path)
 
+                if (_utils.pathIsDir(file_path)) { return }
+
                 if (drag.x > parent.width - program_constants.playlistWidth) {
                     addPlayListItem(file_path)
                 } else {

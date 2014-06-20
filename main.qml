@@ -94,7 +94,10 @@ Rectangle {
                 } else if (purpose == purposes.openSubtitleFile) {
                     movieInfo.subtitle_file = fileUrls[0]
                 } else if (purpose == purposes.addPlayListItem) {
-                    main_controller.addPlayListItem(fileUrls[0])
+                    for (var i = 0; i < fileUrls.length; i++) {
+                        var fileUrl = fileUrls[i] + ""
+                        main_controller.addPlayListItem(fileUrl.substring(7))
+                    }
                 }
             }
         }
