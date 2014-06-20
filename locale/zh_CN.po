@@ -73,7 +73,7 @@ msgstr "无效文件"
 
 #: ../MainController.qml:387
 msgid "Play last movie played"
-msgstr "播放上次播放过的影片"
+msgstr "播放上次的影片"
 
 #: ../MainController.qml:398
 msgid "Forward to "
