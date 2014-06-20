@@ -316,6 +316,7 @@ MouseArea {
                 backupWidth = windowView.width
                 backupHeight = windowView.height
             }
+            normalize()
             titlebar.state = "minimal"
             windowView.staysOnTop = true
             _setSizeForRootWindowWithWidth(program_constants.miniModeWidth)
