@@ -125,7 +125,7 @@ class Utils(QObject):
         name = name[7:] if name.startswith("file://") else name
         dir = os.path.dirname(name)
         allFiles = self.getAllVideoFilesInDir(dir)
-        if not allFiles: return
+        if len(allFiles) < 2: return json.dumps({"name": "", "items": allFiles})
 
         allFiles = [os.path.basename(x) for x in allFiles]
         nameFilter = min((longest_match(x, os.path.basename(name)) for x in allFiles),

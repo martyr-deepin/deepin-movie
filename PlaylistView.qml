@@ -171,7 +171,7 @@ ListView {
     function fromContent(content) {
     	var result = []
 
-    	var list = JSON.parse(content)
+    	var list = JSON.parse(content || "[]")
     	for (var i = 0; i < list.length; i++) {
     		result.push({
     			"itemName": list[i].itemName,
