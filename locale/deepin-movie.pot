@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-19 16:38+0800\n"
+"POT-Creation-Date: 2014-06-20 13:32+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,33 +67,37 @@ msgstr ""
 msgid "Confirm"
 msgstr ""
 
-#: ../MainController.qml:378
+#: ../MainController.qml:103
+msgid "Invalid file"
+msgstr ""
+
+#: ../MainController.qml:387
 msgid "Play last movie played"
 msgstr ""
 
-#: ../MainController.qml:389
+#: ../MainController.qml:398
 msgid "Forward to "
 msgstr ""
 
-#: ../MainController.qml:397
+#: ../MainController.qml:406
 msgid "Rewind to "
 msgstr ""
 
-#: ../MainController.qml:406 ../MainController.qml:411
+#: ../MainController.qml:415 ../MainController.qml:420
 #, qt-format
 msgid "(Press %1 to restore)"
 msgstr ""
 
-#: ../MainController.qml:406 ../MainController.qml:411
-#: ../MainController.qml:416
+#: ../MainController.qml:415 ../MainController.qml:420
+#: ../MainController.qml:425
 msgid "Playback rate: "
 msgstr ""
 
-#: ../MainController.qml:427 ../MainController.qml:436
+#: ../MainController.qml:436 ../MainController.qml:445
 msgid "Volume: "
 msgstr ""
 
-#: ../MainController.qml:434 ../menu_controller.py:58
+#: ../MainController.qml:443 ../menu_controller.py:58
 msgid "Muted"
 msgstr ""
 

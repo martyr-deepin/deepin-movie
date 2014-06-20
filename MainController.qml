@@ -99,7 +99,10 @@ MouseArea {
             controlbar.show()
         }
 
-        onFileInvalid: root.reset()
+        onFileInvalid: {
+            notifybar.show(dsTr("Invalid file"))
+            root.reset()
+        }
     }
 
     Timer {
