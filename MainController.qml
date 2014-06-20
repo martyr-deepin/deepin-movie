@@ -613,21 +613,27 @@ MouseArea {
                 var file_path = drop.urls[i].substring(7)
                 file_path = decodeURIComponent(file_path)
 
-                if (_utils.pathIsDir(file_path)) { return }
+                var file_paths = []
+                if (_utils.pathIsDir(file_path)) { 
+                    file_paths = _utils.getAllVideoFilesInDir(file_path)
+                } else if (_utils.pathIsFile(file_path)) {
+                    file_paths.push(file_path)
+                }
 
-                if (drag.x > parent.width - program_constants.playlistWidth) {
-                    addPlayListItem(file_path)
-                } else {
-                    showControls()
+                var dragInPlaylist = drag.x > parent.width - program_constants.playlistWidth
 
-                    if (_utils.fileIsSubtitle(file_path)) {
-                        movieInfo.subtitle_file = file_path
-                    } else  {
-                        if (i == 0) {
-                            movieInfo.movie_file = file_path    
-                        }
-                        addPlayListItem(file_path)
+                for (var j = 0; j < file_paths.length; j++) {
+                    if (_utils.fileIsValidVideo(file_paths[j])) {
+                        addPlayListItem(file_paths[j])
                     }
+                }
+                if (!dragInPlaylist && file_paths.length > 0) {
+                    if (_utils.fileIsValidVideo(file_paths[0])) {
+                        movieInfo.movie_file = file_paths[0]
+                    } else {
+                        movieInfo.subtitle_file = file_paths[0]
+                    }
+                    showControls()
                 }
             }
         }
