@@ -25,7 +25,7 @@ DPreferenceWindow {
 
     function scrollTo(sectionId) { scroll_to_timer.id = sectionId; scroll_to_timer.start() }
 
-    function scrollToSubtitle() { scrollTo("subtitles") }
+    function scrollToSubtitle() { scrollTo("subtitle_settings") }
 
     Timer {
         id: scroll_to_timer
