@@ -53,6 +53,7 @@ from browser import Browser
 from utils import utils
 from constant import MAIN_QML
 from menu_controller import MenuController
+from file_monitor import FileMonitor
 
 class PageManager(QObject):
 
@@ -119,11 +120,13 @@ if __name__ == "__main__":
     # page_manager = PageManager(windowView)
     menu_controller = MenuController(windowView)
     inputDialog = InputDialog(None)
+    file_monitor = FileMonitor()
 
     qml_context = windowView.rootContext()
 
     qml_context.setContextProperty("config", config)
     qml_context.setContextProperty("_utils", utils)
+    qml_context.setContextProperty("_file_monitor", file_monitor)
     qml_context.setContextProperty("database", database)
 
     qml_context.setContextProperty("windowView", windowView)

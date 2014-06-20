@@ -16,6 +16,14 @@ ListView {
 	signal newSourceSelected(string path)
 	signal removeItemPrivate(string url)
 	signal rightClickedOnItem(string url)
+	signal fileMissing(string url)
+	signal fileBack(string url)
+
+	Connections {
+		target: _file_monitor
+		onFileMissing: playlist.fileMissing("file://"+file)
+		onFileBack: playlist.fileBack("file://"+file)
+	}
 
 	function getRandom() {
 		var flatList = _flattenList()
@@ -219,7 +227,19 @@ ListView {
 						column.ListView.view.model.remove(index, 1)
 					}
 				}
+				onFileMissing: if(url == propUrl) name.color = "#4f4f50"
+				onFileBack: if(url == propUrl) name.color = Qt.binding(getTextColor)
 			}
+
+			function getTextColor() {
+            	if (column.isSelected) {
+            		return column.isGroup ? "#8853B6F5" : "#53B6F5"
+            	} else if (column.isHover) {
+            		return "#FFFFFF"
+            	} else {
+            		return "#9F9F9F"
+            	}
+            }
 
 			Item {
 				width: column.width
@@ -279,15 +299,7 @@ ListView {
 					text: itemName
 					elide: Text.ElideRight
 					font.pixelSize: 14
-                    color: {
-                    	if (column.isSelected) {
-                    		return column.isGroup ? "#8853B6F5" : "#53B6F5"
-                    	} else if (column.isHover) {
-                    		return "#FFFFFF"
-                    	} else {
-                    		return "#9F9F9F"
-                    	}
-                    }
+                    color: column.isGroup ? getTextColor() : _file_monitor.addFile(propUrl) ? getTextColor() : "#4f4f50"
 
 					anchors.left: expand_button.right
 					anchors.leftMargin: 6
