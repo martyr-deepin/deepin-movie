@@ -191,6 +191,7 @@ ListView {
 	delegate: Component {
 		Column {
 			id: column
+			visible: isGroup ? propChild ? propChild.count > 0 : false : true
 			width: ListView.view.width
 
 			property var propName: itemName
@@ -198,7 +199,7 @@ ListView {
 			property var propChild: itemChild
 			property var child: sub.item 
 
-		    property bool isGroup: propChild ? propChild.count > 0 : false
+		    property bool isGroup: propUrl == ""
 			property bool isSelected: isGroup ? child.isSelected : playlist.currentPlayingSource == itemUrl
 			property bool isHover: mouse_area.containsMouse
 			onIsSelectedChanged: column.ListView.view.isSelected = isSelected
