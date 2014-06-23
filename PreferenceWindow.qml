@@ -103,20 +103,21 @@ DPreferenceWindow {
         ]
 
         Item {
+            visible: false
             Connections {
                 target: window
                 onScrollToPrivate: preference_view.scrollTo(sectionId)
             }
         }
 
-        SectionContent { title: dsTr("Basic settings"); sectionId: "basic_playback"; bottomSpaceHeight: 10 }
+        SectionContent { title: dsTr("Basic settings"); sectionId: "basic_playback"; topSpaceHeight: 10 }
 
         SectionContent { 
             id: basic_playback
             title: dsTr("Playback")
             sectionId: "basic_playback"
             showSep: false
-            topSpaceHeight: 5
+            topSpaceHeight: 10
             bottomSpaceHeight: 10
             anchors.left: parent.left
             anchors.leftMargin: 5
@@ -191,14 +192,14 @@ DPreferenceWindow {
             }
         }
 
-        SectionContent { title: dsTr("Keyboard shortcuts"); sectionId: ""; topSpaceHeight: 30; bottomSpaceHeight: 10 }
+        SectionContent { title: dsTr("Keyboard shortcuts"); sectionId: ""; topSpaceHeight: 10 }
 
         SectionContent { 
             id: keyboard_playback
             title: dsTr("Playback")
             sectionId: "keyboard_playback"
             showSep: false
-            topSpaceHeight: 5
+            topSpaceHeight: 10
             bottomSpaceHeight: 10
             anchors.left: parent.left
             anchors.leftMargin: 5
@@ -379,7 +380,7 @@ DPreferenceWindow {
             id: subtitles
             title: dsTr("Subtitle settings")
             sectionId: "subtitle_settings"
-            topSpaceHeight: 30
+            topSpaceHeight: 10
             bottomSpaceHeight: 10
 
             DCheckBox {
