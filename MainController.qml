@@ -93,7 +93,7 @@ MouseArea {
 
         onMovieSourceChanged: {
             var last_watched_pos = database.fetch_video_position(player.source)
-            if (config.playerAutoPlayFromLast && Math.abs(last_watched_pos - movieInfo.movie_duration) > 1000) {
+            if (config.playerAutoPlayFromLast && Math.abs(last_watched_pos - movieInfo.movie_duration) > 1000 * 5) {
                 seek_to_last_watched_timer.schedule(last_watched_pos)
             } else {
                 play()

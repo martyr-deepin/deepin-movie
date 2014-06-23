@@ -170,7 +170,7 @@ Rectangle {
 
     function formatTime(millseconds) {
         if (millseconds <= 0) return "00:00:00";
-        var secs = Math.floor(millseconds / 1000)
+        var secs = Math.ceil(millseconds / 1000)
         var hr = Math.floor(secs / 3600);
         var min = Math.floor((secs - (hr * 3600))/60);
         var sec = secs - (hr * 3600) - (min * 60);
@@ -349,7 +349,8 @@ Rectangle {
             dbus_screensaver.UnInhibit(root.inhibitCookie)
             database.record_video_position(lastSource, lastPosition)
 
-            if (movieInfo.movie_duration && Math.abs(position - movieInfo.movie_duration) < 1000) { 
+            if (movieInfo.movie_duration 
+                && Math.abs(position - movieInfo.movie_duration) < program_constants.videoEndsThreshold) { 
                 // onStopped will be triggered when we change the movie source, 
                 // we do this to make sure that the follwing code executed only when 
                 // the movie played out naturally.
