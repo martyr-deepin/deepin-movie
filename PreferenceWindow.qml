@@ -104,9 +104,23 @@ DPreferenceWindow {
 
         Item {
             visible: false
+            Timer {
+                id: scroll_to_timer
+                interval: 1000
+
+                property string sectionId
+
+                onTriggered: preference_view.scrollTo(sectionId)
+
+                function schedule(sectionId) {
+                    scroll_to_timer.sectionId = sectionId
+                    scroll_to_timer.start()
+                }
+            }
+
             Connections {
                 target: window
-                onScrollToPrivate: preference_view.scrollTo(sectionId)
+                onScrollToPrivate: scroll_to_timer.schedule(sectionId)
             }
         }
 
