@@ -72,6 +72,11 @@ MouseArea {
         // }
 
         onMovieWidthChanged: {
+            if (titlebar.state == "minimal") {
+                backupWidth = movieInfo.movie_width
+                _setSizeForRootWindowWithWidth(windowView.width)
+                return
+            }
             if (movieInfo.movie_width == 856) {// first start
                 if (config.applyLastClosedSize) {
                     _setSizeForRootWindowWithWidth(lastWindowWidth)
@@ -281,7 +286,6 @@ MouseArea {
     property bool fullscreenFromMaximum: false
     function fullscreen() {
         backupWidth = windowView.width
-        backupHeight = windowView.height
         fullscreenFromMaximum = (windowView.getState() == Qt.WindowMaximized)
         root.state = "no_glow"
         _utils.disable_zone()
@@ -292,7 +296,6 @@ MouseArea {
 
     function maximize() {
         backupWidth = windowView.width
-        backupHeight = windowView.height
         root.state = "no_glow"
         _utils.enable_zone()
         windowView.showMaximized()
@@ -305,19 +308,16 @@ MouseArea {
     }
 
     property int backupWidth: 0
-    property int backupHeight: 0
     function toggleMiniMode() {
         if (titlebar.state == "minimal") {
             titlebar.state = "normal"
             windowView.staysOnTop = false
-            windowView.setWidth(backupWidth)
-            windowView.setHeight(backupHeight)
+            _setSizeForRootWindowWithWidth(backupWidth)
         } else {
             if (windowView.getState() != Qt.WindowMaximized 
                 && windowView.getState() != Qt.WindowFullScreen)
             {
                 backupWidth = windowView.width
-                backupHeight = windowView.height
             }
             normalize()
             titlebar.state = "minimal"
