@@ -268,6 +268,7 @@ Rectangle {
         database.record_video_position(player.source, player.position)
         database.playlist_local = playlist.getContent()
         database.lastWindowWidth = windowView.width
+        movieInfo.movie_file && (database.lastPlayedFile = movieInfo.movie_file)
     }
 
     Timer {

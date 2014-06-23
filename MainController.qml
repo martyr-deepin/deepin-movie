@@ -433,6 +433,7 @@ MouseArea {
 
     function setVolume(volume) {
         config.playerVolume = volume
+        config.playerMuted = false
         notifybar.show(dsTr("Volume: ") + Math.round(player.volume * 100) + "%")
     }
 

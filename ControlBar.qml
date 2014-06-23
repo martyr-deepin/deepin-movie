@@ -248,6 +248,7 @@ DragableArea {
 
                 VolumeButton {
                     id: volume_button
+                    muted: control_bar.muted
                     anchors.verticalCenter: parent.verticalCenter
 
                     onChangeVolume: {
