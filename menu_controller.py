@@ -28,6 +28,7 @@ from deepin_menu.menu import Menu, CheckableMenuItem
 from movie_info import movie_info, get_subtitle_from_movie
 from config import *
 from i18n import _
+from utils import utils
 
 frame_sub_menu = [
     CheckableMenuItem("proportion:radio:_p_default", _("Default"), True),
@@ -114,6 +115,7 @@ playlist_right_menu = [
 ] + play_sequence_sub_menu + [
     None,
     ("_playlist_open_position", _("Open file location")),
+    ("_playlist_information", _("Information")),
 ]
 
 FILE_START_TAG = "[[[[["
@@ -165,6 +167,7 @@ class MenuController(QObject):
     removeInvalidItemsFromPlaylist = pyqtSignal()
     playlistClear = pyqtSignal()
     playlistShowClickedItemInFM = pyqtSignal()
+    playlistInformation = pyqtSignal()
     
     def __init__(self, window):
         super(MenuController, self).__init__()
@@ -280,6 +283,8 @@ class MenuController(QObject):
             self.playlistClear.emit()
         elif _id == "_playlist_open_position":
             self.playlistShowClickedItemInFM.emit()
+        elif _id == "_playlist_information":
+            self.playlistInformation.emit()
 
     @pyqtSlot()
     def show_menu(self):
@@ -344,7 +349,6 @@ class MenuController(QObject):
 
     @pyqtSlot(str)
     def show_playlist_menu(self, url):
-        print url != ""
         self.menu = Menu(playlist_right_menu)
         self.menu.itemClicked.connect(self._menu_item_invoked)
 
@@ -362,6 +366,8 @@ class MenuController(QObject):
         self.menu.getItemById("_playlist_play").isActive = url != ""
         self.menu.getItemById("_playlist_remove_item").isActive = url != ""
         self.menu.getItemById("_playlist_open_position").isActive = url != ""
+        self.menu.getItemById("_playlist_information").isActive = url != "" \
+            and utils.fileIsValidVideo(url)
 
         self.menu.showRectMenu(QCursor.pos().x() - 100, QCursor.pos().y())
         

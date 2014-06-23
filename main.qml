@@ -131,12 +131,6 @@ Rectangle {
 
     InformationWindow {
         id: info_window
-        fileTitle: movieInfo.movie_title
-        fileType: movieInfo.movie_type
-        fileSize: formatSize(movieInfo.movie_size)
-        movieResolution: "%1x%2".arg(movieInfo.movie_width).arg(movieInfo.movie_height)
-        movieDuration: formatTime(movieInfo.movie_duration)
-        filePath: formatFilePath(movieInfo.movie_file)
 
         onCopyToClipboard: _utils.copyToClipboard(text)
     }

@@ -15,6 +15,20 @@ DPreferenceWindow {
 
 	signal copyToClipboard (string text)
 
+	function showContent(content) {
+		if (!content) return
+
+		var movieInfo = JSON.parse(content)
+		fileTitle = movieInfo.movie_title
+		fileType = movieInfo.movie_type
+		fileSize = formatSize(parseInt(movieInfo.movie_size))
+		movieResolution = "%1x%2".arg(movieInfo.movie_width).arg(movieInfo.movie_height)
+		movieDuration = formatTime(parseInt(movieInfo.movie_duration))
+		filePath = formatFilePath(movieInfo.movie_path)
+
+		info_window.show()
+	}
+
 	content: Column {
 		spacing: 5
 		anchors.left: parent.left

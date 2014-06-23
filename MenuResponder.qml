@@ -49,7 +49,9 @@ Connections {
 
     onShowPreference: { preference_window.show() }
 
-    onShowMovieInformation: { player.source && player.hasVideo && info_window.show() }
+    onShowMovieInformation: { player.source && player.hasVideo 
+        && info_window.showContent(movieInfo.getMovieInfo(movieInfo.movie_file)) 
+    }
 
     onPlayPrevious: { main_controller.playPrevious() }
     onPlayNext: { main_controller.playNext() }
@@ -68,4 +70,5 @@ Connections {
     onRemoveInvalidItemsFromPlaylist: playlist.removeInvalidItems(_utils.fileIsValidVideo)
     onPlaylistClear: playlist.clear()
     onPlaylistShowClickedItemInFM: playlist.showClickedItemInFM()
+    onPlaylistInformation: movieInfo.getMovieInfo(playlist.clickedOnItemUrl)
 }

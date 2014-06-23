@@ -109,6 +109,8 @@ MouseArea {
             notifybar.show(dsTr("Invalid file"))
             root.reset()
         }
+
+        onInfoGotten: info_window.showContent(movie_info)
     }
 
     Timer {
