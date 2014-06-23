@@ -23,17 +23,11 @@ DPreferenceWindow {
                     {"label": dsTr("Clean white"), "color": "#ffffff"},
                 ]
 
-    function scrollTo(sectionId) { scroll_to_timer.id = sectionId; scroll_to_timer.start() }
+    signal scrollToPrivate (string sectionId)
+
+    function scrollTo(sectionId) { scrollToPrivate(sectionId) }
 
     function scrollToSubtitle() { scrollTo("subtitle_settings") }
-
-    Timer {
-        id: scroll_to_timer
-        interval: 1000
-        property string id
-
-        onTriggered: window.currentSectionId = id
-    }
 
     content: DPreferenceView {
         id: preference_view
@@ -43,10 +37,6 @@ DPreferenceWindow {
         sectionListWidth:  100
         layer.enabled: true
 
-        property string curSectionId: window.currentSectionId
-
-        onCurSectionIdChanged: { scrollTo(curSectionId) }
-        
         sections: [
             {
                 "sectionId": "basic_playback",
@@ -111,6 +101,13 @@ DPreferenceWindow {
                 "subSections": []
             }
         ]
+
+        Item {
+            Connections {
+                target: window
+                onScrollToPrivate: preference_view.scrollTo(sectionId)
+            }
+        }
 
         SectionContent { title: dsTr("Basic settings"); sectionId: "basic_playback"; bottomSpaceHeight: 10 }
 
