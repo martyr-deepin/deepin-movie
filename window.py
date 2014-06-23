@@ -22,6 +22,8 @@
 
 import os
 import time
+from random import randint
+
 from PyQt5 import QtGui, QtCore, QtQuick
 from PyQt5.QtCore import QSize
 from PyQt5.QtQuick import QQuickView
@@ -127,6 +129,13 @@ class Window(QQuickView):
         distance = self.screen().geometry().center() - self.geometry().center()
         self.setX(self.x() + distance.x())
         self.setY(self.y() + distance.y())
+
+    @pyqtSlot()
+    def moveToRandomPos(self):
+        randX = randint(0, int(self.screen().geometry().width() - self.geometry().width()))
+        randY = randint(0, int(self.screen().geometry().height() - self.geometry().height()))
+        self.setX(randX)
+        self.setY(randY)
 
     @pyqtSlot(result="QVariant")    
     def getCursorPos(self):
