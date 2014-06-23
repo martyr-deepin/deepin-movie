@@ -129,9 +129,9 @@ Rectangle {
         height: 480
     }
 
-    InfomationWindow {
+    InformationWindow {
         id: info_window
-        title: movieInfo.movie_title
+        fileTitle: movieInfo.movie_title
         fileType: movieInfo.movie_type
         fileSize: formatSize(movieInfo.movie_size)
         movieResolution: "%1x%2".arg(movieInfo.movie_width).arg(movieInfo.movie_height)

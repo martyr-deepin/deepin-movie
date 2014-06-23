@@ -4,8 +4,9 @@ import Deepin.Widgets 1.0
 DPreferenceWindow {
 	id: info_window
 	width: 400
-	height: 180
+	height: 210
 
+	property string fileTitle
 	property string fileType
 	property string fileSize
 	property string movieResolution
@@ -20,6 +21,18 @@ DPreferenceWindow {
 		anchors.leftMargin: 15
 		anchors.right: parent.right
 		anchors.rightMargin: 15
+
+		Text {
+			id: file_title
+			font.pixelSize: 12
+			font.bold: true
+			color: "#b4b4b4"
+			width: parent.width
+			elide: Text.ElideRight
+			text: info_window.fileTitle
+		}
+
+		Space { width: parent.width; height: 5}
 
 		Text {
 			id: file_type
@@ -69,7 +82,7 @@ DPreferenceWindow {
 				anchors.rightMargin: 15
 				anchors.bottom: parent.bottom
 
-				onClicked: info_window.copyToClipboard(info_window.title + "\n"
+				onClicked: info_window.copyToClipboard(file_title.text + "\n"
 					+ file_type.text + "\n"
 					+ file_size.text + "\n"
 					+ movie_resolution.text + "\n"
