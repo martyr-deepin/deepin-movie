@@ -142,9 +142,6 @@ DragableArea {
                     }
                     PropertyChanges {
                         target: middleButtonArea
-                        anchors.left: undefined
-                        anchors.leftMargin: undefined
-                        anchors.verticalCenter: undefined
                         anchors.centerIn: parent
                     }
                     PropertyChanges {
@@ -164,10 +161,7 @@ DragableArea {
                     }
                     PropertyChanges {
                         target: middleButtonArea
-                        anchors.left: parent.left
-                        anchors.leftMargin: 27
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.centerIn: undefined
+                        anchors.centerIn: left_and_middle_area
                     }
                     PropertyChanges {
                         target: rightButtonArea
@@ -186,9 +180,6 @@ DragableArea {
                     }
                     PropertyChanges {
                         target: middleButtonArea
-                        anchors.left: undefined
-                        anchors.leftMargin: undefined
-                        anchors.verticalCenter: undefined
                         anchors.centerIn: parent
                     }
                     PropertyChanges {
@@ -201,6 +192,13 @@ DragableArea {
                     }
                 }
             ]
+
+            PlaceHolder {
+                id: left_and_middle_area
+                height: parent.height
+                anchors.left: leftButtonArea.left
+                anchors.right: rightButtonArea.left
+            }
 
             Row {
                 id: leftButtonArea
