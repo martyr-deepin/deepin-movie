@@ -13,6 +13,7 @@ Item {
     property int playlistTriggerThreshold: 50
 
     property int simplifiedModeTriggerWidth: 438
+    property int hideVolumeBarTriggerWidth: 530
     property int transitionModeTriggerWidth: 638
 
     property int miniModeWidth: 400 + 2 * windowGlowRadius

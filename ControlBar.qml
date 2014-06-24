@@ -148,10 +148,6 @@ DragableArea {
                         target: rightButtonArea
                         visible: true
                     }
-                    PropertyChanges {
-                        target: volume_button
-                        showBarSwitch: true
-                    }
                 },
                 State {
                     name: "transition"
@@ -167,10 +163,6 @@ DragableArea {
                         target: rightButtonArea
                         visible: true
                     }
-                    PropertyChanges {
-                        target: volume_button
-                        showBarSwitch: true
-                    }
                 },
                 State {
                     name: "minimal"
@@ -185,10 +177,6 @@ DragableArea {
                     PropertyChanges {
                         target: rightButtonArea
                         visible: false
-                    }
-                    PropertyChanges {
-                        target: volume_button
-                        showBarSwitch: false
                     }
                 }
             ]
@@ -284,6 +272,7 @@ DragableArea {
                 VolumeButton {
                     id: volume_button
                     muted: control_bar.muted
+                    showBarSwitch: control_bar.width > program_constants.hideVolumeBarTriggerWidth
                     anchors.verticalCenter: parent.verticalCenter
 
                     onChangeVolume: {
