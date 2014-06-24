@@ -125,7 +125,9 @@ DragableArea {
 
         Item {
             id: buttonArea
-            state: { width < program_constants.simplifiedModeTriggerWidth ? "minimal" : "normal"}
+            state: width < program_constants.simplifiedModeTriggerWidth ? "minimal" 
+                                                                        : width < program_constants.transitionModeTriggerWidth ? "transition" 
+                                                                                                                            : "normal"
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.top: parent.top
@@ -137,6 +139,35 @@ DragableArea {
                     PropertyChanges {
                         target: leftButtonArea
                         visible: true
+                    }
+                    PropertyChanges {
+                        target: middleButtonArea
+                        anchors.left: undefined
+                        anchors.leftMargin: undefined
+                        anchors.verticalCenter: undefined
+                        anchors.centerIn: parent
+                    }
+                    PropertyChanges {
+                        target: rightButtonArea
+                        visible: true
+                    }
+                    PropertyChanges {
+                        target: volume_button
+                        showBarSwitch: true
+                    }
+                },
+                State {
+                    name: "transition"
+                    PropertyChanges {
+                        target: leftButtonArea
+                        visible: false
+                    }
+                    PropertyChanges {
+                        target: middleButtonArea
+                        anchors.left: parent.left
+                        anchors.leftMargin: 27
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.centerIn: undefined
                     }
                     PropertyChanges {
                         target: rightButtonArea
@@ -152,6 +183,13 @@ DragableArea {
                     PropertyChanges {
                         target: leftButtonArea
                         visible: false
+                    }
+                    PropertyChanges {
+                        target: middleButtonArea
+                        anchors.left: undefined
+                        anchors.leftMargin: undefined
+                        anchors.verticalCenter: undefined
+                        anchors.centerIn: parent
                     }
                     PropertyChanges {
                         target: rightButtonArea
@@ -183,7 +221,6 @@ DragableArea {
 
             Row {
                 id: middleButtonArea
-                anchors.centerIn: parent
                 spacing: 0
 
                 DImageButton {
