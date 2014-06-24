@@ -32,7 +32,7 @@ from subtitles import *
 
 all_supported_video_exts = [ "*.3g2","*.3gp","*.3gp2","*.3gpp","*.amv",
                             "*.asf","*.avi","*.bin","*.divx","*.drc",
-                            "*.dv","*f4v","*.flv","*.gvi","*.gxf","*.iso",
+                            "*.dv","*.f4v","*.flv","*.gvi","*.gxf","*.iso",
                             "*.m1v","*.m2v","*.m2t","*.m2ts","*.m4v","*.mkv",
                             "*.mov","*.mp2","*.mp2v","*.mp4","*.mp4v","*.mpe",
                             "*.mpeg","*.mpeg1","*.mpeg2","*.mpeg4","*.mpg",
