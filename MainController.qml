@@ -377,7 +377,7 @@ MouseArea {
     function rotateAnticlockwise() { player.rotateAnticlockwise(); controlbar.rotatePreviewAntilockwise() }
 
     // player control operation related
-    function play() { player.play() }
+    function play() { windowView.raise(); player.play() }
     function pause() { player.pause() }
     function stop() { player.stop() }
 

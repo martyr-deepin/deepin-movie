@@ -17,7 +17,6 @@ class DeepinMovieServie(QObject):
         self.__dbusAdaptor = DeepinMovieServiceAdaptor(self)
 
     def play(self, file_path):
-        print file_path
         movie_info.movie_file = file_path      
 
 class DeepinMovieServiceAdaptor(QDBusAbstractAdaptor):
