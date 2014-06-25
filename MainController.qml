@@ -557,7 +557,7 @@ MouseArea {
                 resize_visual.show()
                 resize_visual.intelligentlyResize(windowView, mouse.x, mouse.y)
             }
-            else {
+            else if (windowView.getState() != Qt.WindowFullScreen){
                 var pos = windowView.getCursorPos()
                 windowView.setX(windowLastX + pos.x - dragStartX)
                 windowView.setY(windowLastY + pos.y - dragStartY)

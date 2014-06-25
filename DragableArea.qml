@@ -17,7 +17,7 @@ MouseArea {
         dragStartY = pos.y 
     }
 	onPositionChanged: { 
-        if (pressed) {
+        if (pressed && window.getState() != Qt.WindowFullScreen) {
             var pos = window.getCursorPos()
             window.setX(windowLastX + pos.x - dragStartX)
             window.setY(windowLastY + pos.y - dragStartY)
