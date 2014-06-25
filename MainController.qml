@@ -627,6 +627,8 @@ MouseArea {
                 var dragInPlaylist = drag.x > parent.width - program_constants.playlistWidth
 
                 for (var j = 0; j < file_paths.length; j++) {
+                    print(file_paths[j])
+                    print(_utils.fileIsValidVideo(file_paths[j]))
                     if (_utils.fileIsValidVideo(file_paths[j])) {
                         addPlayListItem(file_paths[j])
                     }
@@ -634,7 +636,7 @@ MouseArea {
                 if (!dragInPlaylist && file_paths.length > 0) {
                     if (_utils.fileIsValidVideo(file_paths[0])) {
                         movieInfo.movie_file = file_paths[0]
-                    } else {
+                    } else if (_utils.fileIsSubtitle(file_paths[0])) {
                         movieInfo.subtitle_file = file_paths[0]
                     }
                     showControls()
