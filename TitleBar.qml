@@ -180,12 +180,15 @@ DragableArea {
             }
         }
 
+        // the -1 operation is all because that there's only 28x24 pics while 
+        // they demanding the 27 spacing.
         Row {
             id: windowButtonArea
+            spacing: -1
             anchors.top: parent.top
             anchors.right: parent.right
             anchors.topMargin: 5
-            anchors.rightMargin: 5
+            anchors.rightMargin: 5 - 1
 
             ImageButton {
                 id: menuButton
@@ -201,7 +204,7 @@ DragableArea {
 
             ImageButton {
                 id: maxButton
-                imageName: "image/window_max"
+                imageName: windowNormalState ? "image/window_max" : "image/window_unmax"
                 onClicked: { titlebar.maxButtonClicked() }
             }
 
