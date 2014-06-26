@@ -202,7 +202,13 @@ class Utils(QObject):
     def fileIsValidVideo(self, file_path):
         file_path = file_path[7:] if file_path.startswith("file://") else file_path
         if os.path.exists(file_path):
-            f = gio.File(file_path.encode("utf-8"))
+            try:
+                f = gio.File(file_path)
+            except Exception:
+                try:
+                    f = gio.File(file_path.encode("utf-8"))
+                except Exception:
+                    return False
             info = f.query_info("standard::content-type")
             return info.get_content_type() in all_supported_mime_types
         else: return False
