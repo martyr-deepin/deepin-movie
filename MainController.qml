@@ -385,8 +385,8 @@ MouseArea {
             player.playbackState == MediaPlayer.PlayingState ? pause() : play()
         } else {
             if (database.lastPlayedFile) {
-                movieInfo.movie_file = database.lastPlayedFile
                 notifybar.show(dsTr("Play last movie played"))
+                movieInfo.movie_file = database.lastPlayedFile
             } else {
                 controlbar.reset()
             }
