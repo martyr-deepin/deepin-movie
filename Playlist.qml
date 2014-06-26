@@ -130,6 +130,7 @@ Rectangle {
         acceptedButtons: Qt.LeftButton | Qt.RightButton
 
         onEntered: { playlistPanel.state = "active" }
+        onExited: { playlistPanel.state = "inactive" }
         onWheel: {}
         onClicked: { 
             if (mouse.button == Qt.RightButton) {
