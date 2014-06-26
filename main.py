@@ -36,6 +36,29 @@ import os
 import sys
 import signal
 
+#warning - below code should be deleted while releasing this product
+class MultiWriter(object):
+    """according to the python documentation, stdout and stderr may not
+    be normal files, it just should have one write(str) method, this class is 
+    intend to be used as stdout or stderr, which has multiple file like object,
+    and each of them will be filled with the content of stdout or stderr. 
+    """
+    def __init__(self, *fs):
+        super(MultiWriter, self).__init__()
+        self._fs = fs
+
+    def write(self, s):
+        map(lambda x: x.write(s) or x.flush(), self._fs)
+        
+
+import tempfile
+std_out = sys.stdout
+log_file = open(os.path.join(tempfile.gettempdir(), "deepin-movie.log"), "w")
+multi_writer = MultiWriter(std_out, log_file)
+sys.stdout = multi_writer
+sys.stderr = multi_writer
+#warning end
+
 from PyQt5 import QtCore
 from PyQt5.QtCore import QCoreApplication
 if os.name == 'posix':
