@@ -67,6 +67,7 @@ class Window(QQuickView):
 
     def initWindowSize(self):
         self.rootObject().initWindowSize()
+        self.moveToRandomPos()
 
     @pyqtProperty(int,centerRequestCountChanged)
     def centerRequestCount(self):

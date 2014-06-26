@@ -86,9 +86,9 @@ MouseArea {
                 }
             } else {
                 var destWidth = hasResized ? windowView.width : movieInfo.movie_width 
-                _setSizeForRootWindowWithWidth(destWidth)    
+                _setSizeForRootWindowWithWidth(destWidth)
             }
-            windowView.centerRequestCount-- > 0 ? windowView.moveToCenter() : windowView.moveToRandomPos()
+            windowView.centerRequestCount-- > 0 && windowView.moveToCenter()
         }
 
         onMovieSourceChanged: {
