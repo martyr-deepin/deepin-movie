@@ -214,13 +214,14 @@ Rectangle {
     }
 
     function mouseInControlsArea() {
-        var mouseInTitleBar = inRectCheck(Qt.point(main_controller.mouseX, main_controller.mouseY),
+        var mousePos = windowView.getCursorPos()
+        var mouseInTitleBar = inRectCheck(Qt.point(mousePos.x - windowView.x, mousePos.y - windowView.y),
                                             Qt.rect(0, 0, main_window.width, titlebar.height))
-        var mouseInControlBar = inRectCheck(Qt.point(main_controller.mouseX, main_controller.mouseY),
+        var mouseInControlBar = inRectCheck(Qt.point(mousePos.x - windowView.x, mousePos.y - windowView.y),
                                             Qt.rect(0, main_window.height - controlbar.height,
                                                     main_window.width, controlbar.height))
 
-        return  main_controller.containsMouse && mouseInTitleBar || mouseInControlBar
+        return mouseInTitleBar || mouseInControlBar
     }
 
     /* to perform like a newly started program  */
