@@ -45,7 +45,7 @@ all_supported_video_exts = [ "*.3g2","*.3gp","*.3gp2","*.3gpp","*.amv",
                             "*.xesc"]
 
 all_supported_mime_types = [
-    "video/dv", "video/mpeg", "video/x-mpeg", "video/msvideo", 
+    "video/dv", "video/mpeg", "video/x-mpeg", "video/msvideo", "video/3gpp",
     "video/quicktime", "video/x-anim", "video/x-avi", "video/x-ms-asf", 
     "video/x-ms-wmv", "video/x-msvideo", "video/x-nsv", "video/x-flc",
     "video/x-fli", "video/x-flv", "video/vnd.rn-realvideo", "video/mp4", 
