@@ -224,6 +224,13 @@ Rectangle {
         return mouseInTitleBar || mouseInControlBar
     }
 
+    function mouseInPlaylistArea() {
+        var mousePos = windowView.getCursorPos()
+        return playlist.expanded && inRectCheck(Qt.point(mousePos.x - windowView.x, mousePos.y - windowView.y),
+                                            Qt.rect(main_window.width - program_constants.playlistWidth, 0, 
+                                                program_constants.playlistWidth, main_window.height))        
+    }
+
     /* to perform like a newly started program  */
     function reset() {
         root.state = "normal"
