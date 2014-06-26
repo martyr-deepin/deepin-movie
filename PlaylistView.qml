@@ -271,7 +271,7 @@ ListView {
 						}
 					}
 					onDoubleClicked: {
-						if(!column.isSelected){
+						if(!column.isGroup && !column.isSelected){
 							column.ListView.view.root.newSourceSelected(propUrl)
 						}
 					}
