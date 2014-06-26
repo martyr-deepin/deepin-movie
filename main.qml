@@ -196,6 +196,7 @@ Rectangle {
     }
 
     function showControls() {
+        print("showControls")
         titlebar.show()
         controlbar.show()
         hide_controls_timer.restart()
@@ -214,10 +215,14 @@ Rectangle {
     }
 
     function mouseInControlsArea() {
-        return inRectCheck(Qt.point(main_controller.mouseX, main_controller.mouseY),
-                           Qt.rect(0, 0, main_window.width, titlebar.height)) || inRectCheck(
-            Qt.point(main_controller.mouseX, main_controller.mouseY),
-            Qt.rect(0, main_window.height - controlbar.height, main_window.width, controlbar.height))
+        var mouseNotActive = main_controller.mouseX == 0 && main_controller.mouseY == 0
+        var mouseInTitleBar = inRectCheck(Qt.point(main_controller.mouseX, main_controller.mouseY),
+                                            Qt.rect(0, 0, main_window.width, titlebar.height))
+        var mouseInControlBar = inRectCheck(Qt.point(main_controller.mouseX, main_controller.mouseY),
+                                            Qt.rect(0, main_window.height - controlbar.height,
+                                                    main_window.width, controlbar.height))
+
+        return  !mouseNotActive && mouseInTitleBar || mouseInControlBar
     }
 
     /* to perform like a newly started program  */
@@ -271,6 +276,7 @@ Rectangle {
         interval: 3000
 
         onTriggered: {
+            print("onTriggered", mouseInControlsArea())
             if (!mouseInControlsArea() && player.source && player.hasVideo) {
                 hideControls()
             } else {
