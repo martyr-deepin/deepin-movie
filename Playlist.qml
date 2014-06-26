@@ -188,6 +188,7 @@ Rectangle {
         id: bottom_rect
         width: parent.width
         height: 25
+        visible: playlistPanel.expanded
         color: Qt.rgba(1, 1, 1, 0.05)
         anchors.bottom: parent.bottom
 
