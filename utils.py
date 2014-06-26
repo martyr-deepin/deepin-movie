@@ -80,10 +80,6 @@ def _longest_match(*strs):
 def longest_match(*strs):
     return "".join(list(_longest_match(*strs)))
 
-def file_is_video_type(f):
-    name, ext = os.path.splitext(f)
-    return ext and "*%s" % ext in all_supported_video_exts
-
 def optimizeSerieName(serieName):
     sep_chars = ("-", "_", ".", " ")
     idxes = filter(lambda x: x > 0, map(lambda x: serieName.rfind(x), sep_chars))
@@ -142,7 +138,7 @@ class Utils(QObject):
     @pyqtSlot(str, result="QVariant")
     def getAllVideoFilesInDir(self, dir):
         allFiles = self.getAllFilesInDir(dir)
-        return filter(lambda x: file_is_video_type(x), allFiles)
+        return filter(lambda x: self.fileIsValidVideo(x), allFiles)
 
     @pyqtSlot(str, result=str)
     def getSeriesByName(self, name):
