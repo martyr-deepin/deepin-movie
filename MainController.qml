@@ -101,8 +101,7 @@ MouseArea {
             }
 
             playlist.hide()
-            titlebar.show()
-            controlbar.show()
+            showControls()
         }
 
         onFileInvalid: {
