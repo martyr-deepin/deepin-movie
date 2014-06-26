@@ -144,7 +144,7 @@ MouseArea {
 
     Timer {
         id: hide_mouse_timer
-        interval: 1000 * 10
+        interval: 1000 * 3
 
         onTriggered: {
             if (player.playbackState == MediaPlayer.PlayingState) 
