@@ -142,16 +142,6 @@ MouseArea {
         }
     }
 
-    Timer {
-        id: hide_mouse_timer
-        interval: 1000 * 3
-
-        onTriggered: {
-            if (player.playbackState == MediaPlayer.PlayingState) 
-                mouse_area.cursorShape = Qt.BlankCursor
-        }
-    }
-
     property int clickCount: 0
     Timer {
         id: double_click_check_timer
@@ -531,7 +521,6 @@ MouseArea {
         playlist.state = "inactive"
 
         mouse_area.cursorShape = Qt.ArrowCursor
-        hide_mouse_timer.restart()
 
         if (!pressed) {
             changeCursor(getEdge(mouse))

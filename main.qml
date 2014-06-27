@@ -287,6 +287,10 @@ Rectangle {
             } else {
                 hide_controls_timer.restart()
             }
+
+            if (player.playbackState == MediaPlayer.PlayingState) {
+                mouse_area.cursorShape = Qt.BlankCursor
+            } 
         }
     }
 
