@@ -21,7 +21,14 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
+import time
 from PyQt5.QtCore import QFileSystemWatcher, pyqtSignal, pyqtSlot
+
+def longest_path_exist_matches_path(path):
+	if os.path.exists(path) or path == "/":
+		return path 
+	else:
+		return longest_path_exist_matches_path(os.path.dirname(path))
 
 class FileMonitor(QFileSystemWatcher):
 	fileMissing = pyqtSignal(str, arguments=["file",])
@@ -35,6 +42,7 @@ class FileMonitor(QFileSystemWatcher):
 	def directoryChangedCallback(self, changedDir):
 		for file in self._monitored_files:
 			if file.startswith(changedDir):
+				time.sleep(0.5) # file's not exists yet.
 				if os.path.exists(file):
 					self.fileBack.emit(file)
 				else:
@@ -44,9 +52,7 @@ class FileMonitor(QFileSystemWatcher):
 	def addFile(self, file):
 		file = file[7:] if file.startswith("file://") else file
 		self._monitored_files.append(file)
+		if file: self.addPath(longest_path_exist_matches_path(
+			os.path.dirname(file)))
 
-		if os.path.exists(file):
-			self.addPath(os.path.dirname(file))
-			return True
-		else:
-			return False
+		return os.path.exists(file)
