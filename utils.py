@@ -23,6 +23,7 @@
 import os
 import json
 import subprocess
+from ConfigParser import ConfigParser
 
 import gio
 from PyQt5.QtWidgets import QApplication
@@ -44,27 +45,11 @@ all_supported_video_exts = [ "*.3g2","*.3gp","*.3gp2","*.3gpp","*.amv",
                             "*.vob","*.vro","*.webm","*.wm","*.wmv","*.wtv",
                             "*.xesc"]
 
-all_supported_mime_types = [
-    "video/dv", "video/mpeg", "video/x-mpeg", "video/msvideo", "video/3gpp",
-    "video/quicktime", "video/x-anim", "video/x-avi", "video/x-ms-asf", 
-    "video/x-ms-wmv", "video/x-msvideo", "video/x-nsv", "video/x-flc",
-    "video/x-fli", "video/x-flv", "video/vnd.rn-realvideo", "video/mp4", 
-    "video/mp4v-es", "video/mp2t", "application/ogg", "application/x-ogg", 
-    "video/x-ogm+ogg", "audio/x-vorbis+ogg", "application/x-matroska", 
-    "audio/x-matroska", "video/x-matroska", "video/webm", "audio/webm", 
-    "audio/x-mp3", "audio/x-mpeg", "audio/mpeg", "audio/x-wav", "audio/x-mpegurl",
-    "audio/x-scpls", "audio/x-m4a", "audio/x-ms-asf", "audio/x-ms-asx", 
-    "audio/x-ms-wax", "application/vnd.rn-realmedia", "audio/x-real-audio", 
-    "audio/x-pn-realaudio", "application/x-flac", "audio/x-flac", 
-    "application/x-shockwave-flash", "misc/ultravox", 
-    "audio/vnd.rn-realaudio", "audio/x-pn-aiff", "audio/x-pn-au", 
-    "audio/x-pn-wav", "audio/x-pn-windows-acm", "image/vnd.rn-realpix", 
-    "audio/x-pn-realaudio-plugin", "application/x-extension-mp4", 
-    "audio/mp4", "audio/amr", "audio/amr-wb", "x-content/video-vcd",
-    "x-content/video-svcd", "x-content/video-dvd", "x-content/audio-cdda", 
-    "x-content/audio-player", "application/xspf+xml", "x-scheme-handler/mms",
-    "x-scheme-handler/rtmp", "x-scheme-handler/rtsp",
-]
+all_supported_mime_types = []
+with open("/usr/share/applications/deepin-movie.desktop") as app_info:
+    cp = ConfigParser()
+    cp.readfp(app_info)
+    all_supported_mime_types = cp.get("Desktop Entry", "MimeType").split(";")
 
 def _longest_match(*strs):
     shortest_str = min(strs, key=len)
