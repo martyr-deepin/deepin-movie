@@ -284,13 +284,13 @@ Rectangle {
         onTriggered: {
             if (!mouseInControlsArea() && player.source && player.hasVideo) {
                 hideControls()
+
+                if (player.playbackState == MediaPlayer.PlayingState) {
+                    windowView.setCursorVisible(false)
+                } 
             } else {
                 hide_controls_timer.restart()
             }
-
-            if (player.playbackState == MediaPlayer.PlayingState) {
-                mouse_area.cursorShape = Qt.BlankCursor
-            } 
         }
     }
 

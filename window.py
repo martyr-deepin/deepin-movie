@@ -25,10 +25,10 @@ import time
 from random import randint
 
 from PyQt5 import QtGui, QtCore, QtQuick
-from PyQt5.QtCore import QSize
+from PyQt5.QtCore import Qt, QSize
 from PyQt5.QtQuick import QQuickView
 from PyQt5.QtCore import pyqtSlot, pyqtProperty, pyqtSignal, QDir
-from PyQt5.QtGui import QSurfaceFormat, QColor, QPixmap, QIcon
+from PyQt5.QtGui import QSurfaceFormat, QColor, QPixmap, QIcon, QCursor
 from notification import notify
 from constant import (DEFAULT_WIDTH, DEFAULT_HEIGHT, WINDOW_GLOW_RADIUS,
     MINIMIZE_WIDTH, MINIMIZE_HEIGHT)
@@ -140,8 +140,12 @@ class Window(QQuickView):
 
     @pyqtSlot(result="QVariant")    
     def getCursorPos(self):
-        return QtGui.QCursor.pos()        
-        
+        return QtGui.QCursor.pos()    
+
+    @pyqtSlot(bool)
+    def setCursorVisible(self, visible):
+        self.setCursor(QCursor(Qt.ArrowCursor if visible else Qt.BlankCursor))
+
     @pyqtSlot()
     def screenShot(self):
         self.rootObject().hideControls()
