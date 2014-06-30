@@ -181,7 +181,8 @@ class Utils(QObject):
 
     @pyqtSlot(str,result=bool)
     def fileIsValidVideo(self, file_path):
-        file_path = file_path[7:] if file_path.startswith("file://") else file_path
+        file_path = file_path[7:] if file_path.startswith("file://") \
+                                    else file_path
         if os.path.exists(file_path):
             try:
                 f = gio.File(file_path)
@@ -191,13 +192,15 @@ class Utils(QObject):
                 except Exception:
                     return False
             info = f.query_info("standard::content-type")
-            return info.get_content_type() in all_supported_mime_types
+            return info.get_content_type().startswith("video") \
+                    or info.get_content_type() in all_supported_mime_types
         else: return False
 
     @pyqtSlot(str)
     def showFileInFM(self, file_path):
         if not file_path: return
-        file_path = file_path[7:] if file_path.startswith("file://") else file_path
+        file_path = file_path[7:] if file_path.startswith("file://") \
+                                    else file_path
         subprocess.Popen(["xdg-open", "%s" % os.path.dirname(file_path)])
 
 utils = Utils()
