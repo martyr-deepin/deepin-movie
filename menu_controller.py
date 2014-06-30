@@ -50,10 +50,10 @@ frame_sub_menu = [
 ]
 
 sound_sub_menu = [
-    ("_sound_channel", _("Sound Channels")),
-    ("_sound_channel", _("Sound Tracks")),
-    ("_sound_output_mode", _("Output Mode")),
-    None,
+    # ("_sound_channel", _("Sound Channels")),
+    # ("_sound_channel", _("Sound Tracks")),
+    # ("_sound_output_mode", _("Output Mode")),
+    # None,
     ("_sound_increase", _("Volume Up")),
     ("_sound_decrease", _("Volume Down")),
     CheckableMenuItem("_sound_muted", _("Muted"))
@@ -293,10 +293,15 @@ class MenuController(QObject):
         hasVideo = movie_info.movie_file != ""
         self.menu.getItemById("_fullscreen_quit").isActive = hasVideo
         self.menu.getItemById("_mini_mode").isActive = hasVideo
-        self.menu.getItemById("_play").isActive = hasVideo
-        self.menu.getItemById("_frame").isActive = hasVideo and self._window.getState() != Qt.WindowFullScreen
-        self.menu.getItemById("_sound").isActive = hasVideo
-        self.menu.getItemById("_subtitle_choose").isActive = bool(movie_info.subtitle_file)
+        self.menu.getItemById("_play_operation_forward").isActive = hasVideo
+        self.menu.getItemById("_play_operation_backward").isActive = hasVideo
+        self.menu.getItemById("_frame").isActive = \
+            hasVideo and self._window.getState() != Qt.WindowFullScreen
+        self.menu.getItemById("_subtitle_hide").isActive = \
+            hasVideo and bool(movie_info.subtitle_file)
+        self.menu.getItemById("_subtitle_manual").isActive = hasVideo
+        self.menu.getItemById("_subtitle_choose").isActive = \
+            bool(movie_info.subtitle_file)
         self.menu.getItemById("_information").isActive = hasVideo
 
         _mini_mode_item = self.menu.getItemById("_mini_mode")
