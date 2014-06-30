@@ -520,6 +520,7 @@ MouseArea {
     onPositionChanged: {
         playlist.state = "inactive"
         windowView.setCursorVisible(true)
+        mouse_area.cursorShape = Qt.ArrowCursor
         hide_controls_timer.restart()
 
         if (!pressed) {
