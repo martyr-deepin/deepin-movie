@@ -79,7 +79,7 @@ Item {
         }
     ]
 
-    function update() { pointer.x = progressbar.width * percentage - pointer.width / 2 }
+    function update() { pointer.x = (progressbar.width - pointer.width) * percentage }
 
     Timer {
         id: became_minimal_timer
@@ -93,7 +93,7 @@ Item {
         anchors.fill: parent
 
         onClicked: {
-            progressbar.percentageSet(mouse.x / progressbar.width)
+            progressbar.percentageSet(mouse.x / (progressbar.width - pointer.width))
         }
 
         onPositionChanged: {
@@ -129,7 +129,7 @@ Item {
             anchors.left: parent.left
             anchors.top: parent.top
             height: parent.height
-            width: pointer.x + pointer.width / 2
+            width: parent.width * progressbar.percentage
             color: "#3a9efe"
 
             Rectangle {
@@ -144,7 +144,7 @@ Item {
 
         Image {
             id: pointer
-            opacity: progressbar.showPointerSwitch && 0 <= x && x <= background.width - width ? 1 : 0 
+            opacity: progressbar.showPointerSwitch
             source: "image/progress_pointer.png"
             anchors.verticalCenter: parent.verticalCenter
 
@@ -154,12 +154,12 @@ Item {
 
                 drag.target: parent
                 drag.axis: Drag.XAxis
-                drag.minimumX: -(pointer.width / 2)
-                drag.maximumX: background.width - (pointer.width / 2)
+                drag.minimumX: 0
+                drag.maximumX: background.width - pointer.width
 
                 onPositionChanged: {
                     progressbar.mouseDrag(pointer.x + pointer.width / 2)
-                    progressbar.percentageSet((pointer.x + pointer.width / 2) / Math.max(progressbar.width, 1))
+                    progressbar.percentageSet(pointer.x / Math.max(progressbar.width - pointer.width, 1))
                 }
             }
         }
