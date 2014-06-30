@@ -86,7 +86,7 @@ msgstr "快退到"
 #: ../MainController.qml:415 ../MainController.qml:420
 #, qt-format
 msgid "(Press %1 to restore)"
-msgstr "按 %1 键恢复原速"
+msgstr "(按 %1 键恢复原速)"
 
 #: ../MainController.qml:415 ../MainController.qml:420
 #: ../MainController.qml:425
