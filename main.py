@@ -48,6 +48,7 @@ class MultiWriter(object):
         self._fs = fs
 
     def write(self, s):
+        s = s.encode("utf-8")
         map(lambda x: x.write(s) or x.flush(), self._fs)
         
 
