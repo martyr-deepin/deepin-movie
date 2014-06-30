@@ -9,7 +9,6 @@ Rectangle {
     id: root
     state: "normal"
     color: "transparent"
-    // radius: main_window.radius
     // QT takes care of WORKAREA for you which is thoughtful indeed, but it cause
     // problems sometime, we should be careful in case that it changes height for
     // you suddenly.
@@ -310,13 +309,11 @@ Rectangle {
         height: root.height - program_constants.windowGlowRadius * 2
         clip: true
         color: "black"
-        radius: program_constants.windowRadius
         anchors.centerIn: parent
 
         Rectangle {
             id: bg
             color: "#050811"
-            radius: main_window.radius
             visible: { return !(player.hasVideo && player.visible) }
             anchors.fill: parent
             Image { anchors.centerIn: parent; source: "image/background.png" }
