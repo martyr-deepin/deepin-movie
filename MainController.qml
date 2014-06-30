@@ -526,13 +526,7 @@ MouseArea {
         if (!pressed) {
             changeCursor(getEdge(mouse))
 
-            if (inRectCheck(mouse, Qt.rect(0, 0, main_window.width,
-                                           program_constants.titlebarTriggerThreshold))) {
-                showControls()
-            } else if (inRectCheck(mouse, Qt.rect(0, main_window.height - controlbar.height,
-                                                  main_window.width, program_constants.controlbarTriggerThreshold))) {
-                showControls()
-            }
+            if (mouseInControlsArea()) showControls()
         /* else if (!playlist.expanded && inRectCheck(mouse,  */
         /*     Qt.rect(main_window.width - program_constants.playlistTriggerThreshold, 0,  */
         /*     program_constants.playlistTriggerThreshold, main_window.height))) { */
