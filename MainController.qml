@@ -105,8 +105,10 @@ MouseArea {
         }
 
         onFileInvalid: {
-            notifybar.show(dsTr("Invalid file"))
+            notifybar.showPermanently(dsTr("Invalid file") + ": " + movieInfo.movie_title)
             root.reset()
+            shouldAutoPlayNextOnInvalidFile ? auto_play_next_on_invalid_timer.restart() 
+                                            : (shouldAutoPlayNextOnInvalidFile = false)
         }
 
         onInfoGotten: info_window.showContent(movie_info)
@@ -155,6 +157,13 @@ MouseArea {
             }
             mouse_area.clickCount = 0
         }
+    }
+
+    Timer {
+        id: auto_play_next_on_invalid_timer
+        interval: 1000 * 3
+
+        onTriggered: playNext()
     }
 
     function _setSizeForRootWindowWithWidth(destWidth) {

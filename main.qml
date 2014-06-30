@@ -22,6 +22,7 @@ Rectangle {
     property real widthHeightScale: (movieInfo.movie_width - 2 * program_constants.windowGlowRadius) / (movieInfo.movie_height - 2 * program_constants.windowGlowRadius)
     property int inhibitCookie: 0
     property bool hasResized: false
+    property bool shouldAutoPlayNextOnInvalidFile: false
 
     property rect primaryRect: {
         return Qt.rect(0, 0, Screen.desktopAvailableWidth, Screen.desktopAvailableHeight)
@@ -341,6 +342,7 @@ Rectangle {
 
         // onSourceChanged doesn't ensures that the file is playable, this one did.
         onPlaying: { 
+            notifybar.hide()
             root.inhibitCookie = dbus_screensaver.Inhibit("deepin-movie", "video playing") || 0
             main_controller.setWindowTitle(movieInfo.movie_title)
             lastSource = source
@@ -360,6 +362,7 @@ Rectangle {
                 // onStopped will be triggered when we change the movie source, 
                 // we do this to make sure that the follwing code executed only when 
                 // the movie played out naturally.
+                shouldAutoPlayNextOnInvalidFile = true
                 main_controller.playNext()
             }
         }
@@ -388,6 +391,7 @@ Rectangle {
 
     Notifybar {
         id: notifybar
+        width: main_window.width / 2
         anchors.top: root.top
         anchors.left: root.left
         anchors.topMargin: 60

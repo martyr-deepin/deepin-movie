@@ -3,26 +3,36 @@ import QtGraphicalEffects 1.0
 
 Item {
     id: notify
-    width: txt.width
-    height: txt.height
+    width: 300
+    height: background.height
     visible: false
-    
-    function show(text) {
+
+    function showPermanently(text) {
         visible = true
         txt.text = text
-        
+        hide_notify_timer.stop()
+    }
+    
+    function show(text) {
+        showPermanently(text)
         hide_notify_timer.restart()
+    }
+
+    function hide() {
+        visible = false
     }
 
     Item {
         id: background
-        width: txt.implicitWidth + glow.radius * 2
+        width: notify.width
         height: txt.implicitHeight + glow.radius * 2
 
         Text {
             id: txt
+            width: parent.width - glow.radius * 2
             font.pixelSize: 16
             color: "#4fbbff"
+            wrapMode: Text.WordWrap
             style: Text.Outline
             styleColor: Qt.rgba(0, 0, 0, 0.2)
 
