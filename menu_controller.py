@@ -93,6 +93,7 @@ right_click_menu = [
     ("_fullscreen_quit", _("Fullscreen/Quit")),
     ("_mini_mode", _("Mini mode")),
     CheckableMenuItem("_on_top", _("Always on top"), False),
+    ("_toggle_playlist", _("PLaylist")),
     None,
     ("_play_sequence", _("Play Sequence"), (), play_sequence_sub_menu),
     ("_play", _("Play"), (), play_sub_menu),
@@ -168,6 +169,7 @@ class MenuController(QObject):
     playlistClear = pyqtSignal()
     playlistShowClickedItemInFM = pyqtSignal()
     playlistInformation = pyqtSignal()
+    togglePlaylist = pyqtSignal()
     
     def __init__(self, window):
         super(MenuController, self).__init__()
@@ -233,6 +235,8 @@ class MenuController(QObject):
             self.toggleMiniMode.emit()
         elif _id == "_on_top":
             self.staysOnTop.emit(_checked)
+        elif _id == "_toggle_playlist":
+        	self.togglePlaylist.emit()
         elif _id == "mode_group:radio:in_order":
             config.playerPlayOrderType = ORDER_TYPE_IN_ORDER
         elif _id == "mode_group:radio:random":

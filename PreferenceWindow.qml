@@ -243,6 +243,10 @@ DPreferenceWindow {
                 hotKey: config.hotkeysPlayToggleFullscreen
             }
             HotKeyInputRow {
+                title: dsTr("Playlist")
+                hotKey: config.hotkeysPlayTogglePlaylist
+            }
+            HotKeyInputRow {
                 title: dsTr("Speed up")
                 hotKey: config.hotkeysPlaySpeedUp
             }

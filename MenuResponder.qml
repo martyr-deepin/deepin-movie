@@ -18,6 +18,9 @@ Connections {
     onFlipVertical: {
         main_controller.flipVertical()
     }
+    onTogglePlaylist: {
+        main_controller.togglePlaylist()
+    }
     onToggleFullscreen: {
         main_controller.toggleFullscreen()
     }

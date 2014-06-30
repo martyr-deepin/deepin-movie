@@ -57,6 +57,7 @@ DEFAULT_CONFIG = [
     ("forward", "Right"),
     ("backward", "Left"),
     ("toggleFullscreen", "Return"),
+    ("togglePlaylist", "f3"),
     ("speedUp", "Ctrl+Right"),
     ("slowDown", "Ctrl+Left"),
     ("restoreSpeed", "R")]),

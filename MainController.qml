@@ -362,6 +362,14 @@ MouseArea {
         windowView.staysOnTop = !windowView.staysOnTop
     }
 
+    function togglePlaylist() {
+        if (playlist.expanded) {
+            playlist.hide()
+        } else {
+            playlist.show()
+        }
+    }
+
     function flipHorizontal() { player.flipHorizontal(); controlbar.flipPreviewHorizontal() }
     function flipVertical() { player.flipVertical(); controlbar.flipPreviewVertical() }
     function rotateClockwise() { player.rotateClockwise(); controlbar.rotatePreviewClockwise() }
