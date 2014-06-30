@@ -11,10 +11,14 @@ Item {
 
     onStateChanged: state == "normal" && became_minimal_timer.restart()
     
-    signal mouseOver (int mouseX)
-    signal mouseDrag (int mouseX)
+    signal mouseOver (int mouseX, real percentage)
+    signal mouseDrag (int mouseX, real percentage)
     signal mouseExit ()
     signal percentageSet(real percentage)
+
+    function properPercentage(percentage) {
+        return Math.min(1.0, Math.max(0.0, percentage))
+    }
 
     Gradient {
         id: background_gradient
@@ -93,12 +97,13 @@ Item {
         anchors.fill: parent
 
         onClicked: {
-            progressbar.percentageSet(mouse.x / (progressbar.width - pointer.width))
+            progressbar.percentageSet(progressbar.properPercentage((mouse.x - pointer.width / 2) / (progressbar.width - pointer.width)))
         }
 
         onPositionChanged: {
-            (progressbar.percentage > 0 && progressbar.percentage < 100) && (progressbar.state = "normal")
-            progressbar.mouseOver(mouse.x)
+            (progressbar.percentage > 0.0 && progressbar.percentage < 1.0) && (progressbar.state = "normal")
+            var destPercentage = progressbar.properPercentage((mouse.x - pointer.width / 2) / (progressbar.width - pointer.width))
+            progressbar.mouseOver(mouse.x, destPercentage)
         }
 
         onExited: {
@@ -129,7 +134,8 @@ Item {
             anchors.left: parent.left
             anchors.top: parent.top
             height: parent.height
-            width: parent.width * progressbar.percentage
+            width: progressbar.state == "normal" ? pointer.x + pointer.width / 2 
+                                                : progressbar.width * progressbar.percentage
             color: "#3a9efe"
 
             Rectangle {
@@ -158,7 +164,8 @@ Item {
                 drag.maximumX: background.width - pointer.width
 
                 onPositionChanged: {
-                    progressbar.mouseDrag(pointer.x + pointer.width / 2)
+                    var destPercentage = pointer.x / Math.max(progressbar.width - pointer.width, 1)
+                    progressbar.mouseDrag(pointer.x, destPercentage)
                     progressbar.percentageSet(pointer.x / Math.max(progressbar.width - pointer.width, 1))
                 }
             }

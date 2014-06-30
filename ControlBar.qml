@@ -44,7 +44,7 @@ DragableArea {
         play_pause_button.checkFlag = false
     }
 
-    function showPreview(mouseX, mode) {
+    function showPreview(mouseX, percentage, mode) {
         if (config.playerShowPreview) {
             videoPreview.state = mode
             if (control_bar.previewHasVideo && videoPreview.source != "") {
@@ -69,7 +69,7 @@ DragableArea {
                     videoPreview.cornerPos = videoPreview.width / 2
                     videoPreview.cornerType = "center"
                 }
-                videoPreview.seek(mouseX / width)
+                videoPreview.seek(percentage)
             }
         }
     }
@@ -113,8 +113,8 @@ DragableArea {
                 visible: false
             }
 
-            onMouseOver: { control_bar.showPreview(mouseX, "normal") }
-            onMouseDrag: { control_bar.showPreview(mouseX, "minimal") }
+            onMouseOver: { control_bar.showPreview(mouseX, percentage,  "normal") }
+            onMouseDrag: { control_bar.showPreview(mouseX, percentage, "minimal") }
 
             onMouseExit: {
                 videoPreview.visible = false

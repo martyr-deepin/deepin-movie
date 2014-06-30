@@ -277,6 +277,13 @@ Rectangle {
     }
 
     Timer {
+        id: auto_play_next_on_invalid_timer
+        interval: 1000 * 3
+
+        onTriggered: main_controller.playNext()
+    }
+
+    Timer {
         id: hide_controls_timer
         running: true
         interval: 3000
@@ -343,6 +350,7 @@ Rectangle {
         // onSourceChanged doesn't ensures that the file is playable, this one did.
         onPlaying: { 
             notifybar.hide()
+            auto_play_next_on_invalid_timer.stop()
             root.inhibitCookie = dbus_screensaver.Inhibit("deepin-movie", "video playing") || 0
             main_controller.setWindowTitle(movieInfo.movie_title)
             lastSource = source

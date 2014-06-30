@@ -159,13 +159,6 @@ MouseArea {
         }
     }
 
-    Timer {
-        id: auto_play_next_on_invalid_timer
-        interval: 1000 * 3
-
-        onTriggered: playNext()
-    }
-
     function _setSizeForRootWindowWithWidth(destWidth) {
         var widthHeightScale = (movieInfo.movie_width - 2 * program_constants.windowGlowRadius) / (movieInfo.movie_height - 2 * program_constants.windowGlowRadius)
         var destHeight = (destWidth - program_constants.windowGlowRadius * 2) / widthHeightScale + program_constants.windowGlowRadius * 2
