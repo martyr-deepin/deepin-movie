@@ -78,8 +78,8 @@ MouseArea {
                 return
             }
             if (movieInfo.movie_width == 856) {// first start
-                if (config.applyLastClosedSize) {
-                    _setSizeForRootWindowWithWidth(lastWindowWidth)
+                if (config.playerApplyLastClosedSize) {
+                    _setSizeForRootWindowWithWidth(database.lastWindowWidth)
                 } else {
                     windowView.setWidth(windowView.defaultWidth)
                     windowView.setHeight(windowView.defaultHeight)    
