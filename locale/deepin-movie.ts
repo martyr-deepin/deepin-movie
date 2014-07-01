@@ -30,6 +30,14 @@
     </message>
 </context>
 <context>
+    <name>HotKeyInput</name>
+    <message>
+        <location filename="../HotKeyInput.qml" line="14"/>
+        <source>Please input new shortcut</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>InformationWindow</name>
     <message>
         <location filename="../InformationWindow.qml" line="55"/>
@@ -164,93 +172,93 @@
     </message>
     <message>
         <location filename="../PreferenceWindow.qml" line="222"/>
-        <location filename="../PreferenceWindow.qml" line="269"/>
-        <location filename="../PreferenceWindow.qml" line="310"/>
-        <location filename="../PreferenceWindow.qml" line="339"/>
+        <location filename="../PreferenceWindow.qml" line="273"/>
+        <location filename="../PreferenceWindow.qml" line="314"/>
+        <location filename="../PreferenceWindow.qml" line="343"/>
         <source>Enable keyboard shortcuts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../PreferenceWindow.qml" line="227"/>
-        <location filename="../PreferenceWindow.qml" line="375"/>
+        <location filename="../PreferenceWindow.qml" line="379"/>
         <source>Pause/Play</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PreferenceWindow.qml" line="275"/>
+        <location filename="../PreferenceWindow.qml" line="279"/>
         <source>Mini mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PreferenceWindow.qml" line="287"/>
+        <location filename="../PreferenceWindow.qml" line="291"/>
         <source>Volume up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PreferenceWindow.qml" line="291"/>
+        <location filename="../PreferenceWindow.qml" line="295"/>
         <source>Volume down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PreferenceWindow.qml" line="320"/>
+        <location filename="../PreferenceWindow.qml" line="324"/>
         <source>Open previous</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PreferenceWindow.qml" line="324"/>
+        <location filename="../PreferenceWindow.qml" line="328"/>
         <source>Open next</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PreferenceWindow.qml" line="345"/>
+        <location filename="../PreferenceWindow.qml" line="349"/>
         <source>Forward 0.5s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PreferenceWindow.qml" line="349"/>
+        <location filename="../PreferenceWindow.qml" line="353"/>
         <source>Delay 0.5s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PreferenceWindow.qml" line="353"/>
+        <location filename="../PreferenceWindow.qml" line="357"/>
         <source>Subtitle up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PreferenceWindow.qml" line="357"/>
+        <location filename="../PreferenceWindow.qml" line="361"/>
         <source>Subtitle down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PreferenceWindow.qml" line="372"/>
+        <location filename="../PreferenceWindow.qml" line="376"/>
         <source>Left click</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PreferenceWindow.qml" line="375"/>
-        <location filename="../PreferenceWindow.qml" line="383"/>
-        <location filename="../PreferenceWindow.qml" line="391"/>
+        <location filename="../PreferenceWindow.qml" line="379"/>
+        <location filename="../PreferenceWindow.qml" line="387"/>
+        <location filename="../PreferenceWindow.qml" line="395"/>
         <source>Disabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PreferenceWindow.qml" line="380"/>
+        <location filename="../PreferenceWindow.qml" line="384"/>
         <source>Double click</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PreferenceWindow.qml" line="405"/>
+        <location filename="../PreferenceWindow.qml" line="409"/>
         <source>Subtitles loaded automatically</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PreferenceWindow.qml" line="446"/>
+        <location filename="../PreferenceWindow.qml" line="450"/>
         <source>Border width</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../PreferenceWindow.qml" line="242"/>
-        <location filename="../PreferenceWindow.qml" line="383"/>
+        <location filename="../PreferenceWindow.qml" line="387"/>
         <source>Fullscreen</source>
         <translation type="unfinished"></translation>
     </message>
@@ -264,25 +272,25 @@
     </message>
     <message>
         <location filename="../PreferenceWindow.qml" line="68"/>
-        <location filename="../PreferenceWindow.qml" line="260"/>
+        <location filename="../PreferenceWindow.qml" line="264"/>
         <source>Frame/Sound</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../PreferenceWindow.qml" line="73"/>
-        <location filename="../PreferenceWindow.qml" line="301"/>
+        <location filename="../PreferenceWindow.qml" line="305"/>
         <source>Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../PreferenceWindow.qml" line="83"/>
-        <location filename="../PreferenceWindow.qml" line="363"/>
+        <location filename="../PreferenceWindow.qml" line="367"/>
         <source>Other</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../PreferenceWindow.qml" line="78"/>
-        <location filename="../PreferenceWindow.qml" line="330"/>
+        <location filename="../PreferenceWindow.qml" line="334"/>
         <source>Subtitles</source>
         <translation type="unfinished"></translation>
     </message>
@@ -366,7 +374,7 @@
     </message>
     <message>
         <location filename="../PreferenceWindow.qml" line="90"/>
-        <location filename="../PreferenceWindow.qml" line="399"/>
+        <location filename="../PreferenceWindow.qml" line="403"/>
         <source>Subtitle settings</source>
         <translation type="unfinished"></translation>
     </message>
@@ -406,87 +414,87 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PreferenceWindow.qml" line="246"/>
+        <location filename="../PreferenceWindow.qml" line="247"/>
         <source>Playlist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PreferenceWindow.qml" line="250"/>
+        <location filename="../PreferenceWindow.qml" line="252"/>
         <source>Speed up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PreferenceWindow.qml" line="254"/>
+        <location filename="../PreferenceWindow.qml" line="257"/>
         <source>Slow down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PreferenceWindow.qml" line="279"/>
+        <location filename="../PreferenceWindow.qml" line="283"/>
         <source>Rotate counterclockwise</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PreferenceWindow.qml" line="283"/>
+        <location filename="../PreferenceWindow.qml" line="287"/>
         <source>Rotate clockwise</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PreferenceWindow.qml" line="295"/>
+        <location filename="../PreferenceWindow.qml" line="299"/>
         <source>Mute</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PreferenceWindow.qml" line="316"/>
+        <location filename="../PreferenceWindow.qml" line="320"/>
         <source>Open file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PreferenceWindow.qml" line="388"/>
+        <location filename="../PreferenceWindow.qml" line="392"/>
         <source>Scroll</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PreferenceWindow.qml" line="391"/>
+        <location filename="../PreferenceWindow.qml" line="395"/>
         <source>Volume</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PreferenceWindow.qml" line="411"/>
+        <location filename="../PreferenceWindow.qml" line="415"/>
         <source>Font</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PreferenceWindow.qml" line="421"/>
+        <location filename="../PreferenceWindow.qml" line="425"/>
         <source>Font color</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PreferenceWindow.qml" line="437"/>
+        <location filename="../PreferenceWindow.qml" line="441"/>
         <source>Size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PreferenceWindow.qml" line="455"/>
+        <location filename="../PreferenceWindow.qml" line="459"/>
         <source>Border color</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PreferenceWindow.qml" line="471"/>
+        <location filename="../PreferenceWindow.qml" line="475"/>
         <source>Position</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PreferenceWindow.qml" line="476"/>
+        <location filename="../PreferenceWindow.qml" line="480"/>
         <source>Bottom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PreferenceWindow.qml" line="477"/>
+        <location filename="../PreferenceWindow.qml" line="481"/>
         <source>Top</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PreferenceWindow.qml" line="483"/>
+        <location filename="../PreferenceWindow.qml" line="487"/>
         <source>Subtitle Delay</source>
         <translation type="unfinished"></translation>
     </message>

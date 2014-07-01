@@ -11,7 +11,7 @@ DTextInput {
 	signal hotkeySet (string key)
 
 	onHotkeySet: hotKey = key
-	onActiveFocusChanged: text = activeFocus ? "Please input new shortcuts" : hotKey
+	onActiveFocusChanged: text = activeFocus ? dsTr("Please input new shortcut") : hotKey
 
 	Keys.onPressed: {
 		var modifiers = [Qt.Key_Control, Qt.Key_Shift, Qt.Key_Alt, Qt.Key_Meta, Qt.Key_AltGr]

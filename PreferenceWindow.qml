@@ -241,18 +241,22 @@ DPreferenceWindow {
             HotKeyInputRow {
                 title: dsTr("Fullscreen")
                 hotKey: config.hotkeysPlayToggleFullscreen
+                onHotkeySet: config.hotkeysPlayToggleFullscreen = hotkey
             }
             HotKeyInputRow {
                 title: dsTr("Playlist")
                 hotKey: config.hotkeysPlayTogglePlaylist
+                onHotkeySet: config.hotkeysPlayTogglePlaylist = hotkey
             }
             HotKeyInputRow {
                 title: dsTr("Speed up")
                 hotKey: config.hotkeysPlaySpeedUp
+                onHotkeySet: config.hotkeysPlaySpeedUp = hotkey
             }
             HotKeyInputRow {
                 title: dsTr("Slow down")
                 hotKey: config.hotkeysPlaySlowDown
+                onHotkeySet: config.hotkeysPlaySlowDown = hotkey
             }
         }
         SectionContent { 
