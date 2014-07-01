@@ -43,8 +43,8 @@ frame_sub_menu = [
     CheckableMenuItem("scale:radio:_s_1_5", "1.5"),        
     CheckableMenuItem("scale:radio:_s_2", "2"),        
     None,
-    ("_turn_right", _("Rotate 90 degree clockwise")),
-    ("_turn_left", _("Rotate 90 degree counterclockwise")),
+    ("_turn_right", _("Rotate 90 degree clockwise"), (), (), config.hotkeysFrameSoundRotateClockwise),
+    ("_turn_left", _("Rotate 90 degree counterclockwise"), (), (), config.hotkeysFrameSoundRotateAnticlockwise),
     ("_flip_horizontal", _("Flip horizontally")),
     ("_flip_vertial", _("Flip vertically")),
 ]
@@ -54,9 +54,9 @@ sound_sub_menu = [
     # ("_sound_channel", _("Sound Tracks")),
     # ("_sound_output_mode", _("Output Mode")),
     # None,
-    ("_sound_increase", _("Volume Up")),
-    ("_sound_decrease", _("Volume Down")),
-    CheckableMenuItem("_sound_muted", _("Muted"))
+    ("_sound_increase", _("Volume Up"), (), (), config.hotkeysFrameSoundIncreaseVolume),
+    ("_sound_decrease", _("Volume Down"), (), (), config.hotkeysFrameSoundDecreaseVolume),
+    CheckableMenuItem("_sound_muted", _("Muted"), extra=config.hotkeysFrameSoundToggleMute)
 ]
 
 subtitle_sub_menu = [
@@ -78,22 +78,22 @@ play_sequence_sub_menu = [
 ]
 
 play_sub_menu = [
-    ("_play_operation_previous", _("Previous")),
-    ("_play_operation_next", _("Next")),
+    ("_play_operation_previous", _("Previous"), (), (), config.hotkeysFilesPlayPrevious),
+    ("_play_operation_next", _("Next"), (), (), config.hotkeysFilesPlayNext),
     None,
-    ("_play_operation_forward", _("Forward")),
-    ("_play_operation_backward", _("Rewind")),
+    ("_play_operation_forward", _("Forward"), (), (), config.hotkeysPlayForward),
+    ("_play_operation_backward", _("Rewind"), (), (), config.hotkeysPlayBackward),
 ]
     
 right_click_menu = [
-    ("_open_file", _("Open file")),
+    ("_open_file", _("Open file"), (), (), config.hotkeysFilesOpenFile),
     ("_open_dir", _("Open folder")),
     # ("_open_url", _("Open URL")),
     None,
-    ("_fullscreen_quit", _("Fullscreen/Quit")),
-    ("_mini_mode", _("Mini mode")),
+    ("_fullscreen_quit", _("Fullscreen/Quit"), (), (), config.hotkeysPlayToggleFullscreen),
+    ("_mini_mode", _("Mini mode"), (), (), config.hotkeysFrameSoundToggleMiniMode),
     CheckableMenuItem("_on_top", _("Always on top"), False),
-    ("_toggle_playlist", _("PLaylist")),
+    ("_toggle_playlist", _("PLaylist"), (), (), config.hotkeysPlayTogglePlaylist),
     None,
     ("_play_sequence", _("Play Sequence"), (), play_sequence_sub_menu),
     ("_play", _("Play"), (), play_sub_menu),
@@ -308,8 +308,6 @@ class MenuController(QObject):
             bool(movie_info.subtitle_file)
         self.menu.getItemById("_information").isActive = hasVideo
 
-        _mini_mode_item = self.menu.getItemById("_mini_mode")
-        _mini_mode_item.text += "(%s)" % config.hotkeysFrameSoundToggleMiniMode.upper()
         self.menu.getItemById("_on_top").checked = self._window.staysOnTop
 
         self.menu.getItemById("mode_group:radio:in_order").checked = \
