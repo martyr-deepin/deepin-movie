@@ -15,6 +15,7 @@ Window {
     property alias frameWidth: frame.width
     property alias frameHeight: frame.height
     property int resizeEdge
+    property real widthHeightScale
     
     function show() {
         root.visible = true
@@ -29,8 +30,6 @@ Window {
     }
     
     function _intelligentlyResize(window, x, y, flag) {
-        var widthHeightScale = movieInfo.movie_width / movieInfo.movie_height
-
         if (flag == resize_edge.resizeTop) {
             var deltaY = -y
             var deltaX = deltaY * widthHeightScale

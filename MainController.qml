@@ -160,8 +160,18 @@ MouseArea {
         }
     }
 
+    function _getActualWidthWithWidth(destWidth) {
+        var widthHeightScale = root.widthHeightScale
+        var destHeight = (destWidth - program_constants.windowGlowRadius * 2) / widthHeightScale + program_constants.windowGlowRadius * 2
+        if (destHeight > primaryRect.height) {
+            return (primaryRect.height - 2 * program_constants.windowGlowRadius) * widthHeightScale + 2 * program_constants.windowGlowRadius
+        } else {
+            return destWidth
+        }
+    }
+
     function _setSizeForRootWindowWithWidth(destWidth) {
-        var widthHeightScale = (movieInfo.movie_width - 2 * program_constants.windowGlowRadius) / (movieInfo.movie_height - 2 * program_constants.windowGlowRadius)
+        var widthHeightScale = root.widthHeightScale
         var destHeight = (destWidth - program_constants.windowGlowRadius * 2) / widthHeightScale + program_constants.windowGlowRadius * 2
         if (destHeight > primaryRect.height) {
             windowView.setWidth((primaryRect.height - 2 * program_constants.windowGlowRadius) * widthHeightScale + 2 * program_constants.windowGlowRadius)
@@ -322,33 +332,20 @@ MouseArea {
     }
 
     function setProportion(propWidth, propHeight) {
-        var widthHeightScale = propWidth / propHeight
-        if (root.height * widthHeightScale > primaryRect.width) {
-            windowView.setHeight((primaryRect.width) / widthHeightScale)
-            windowView.setWidth(primaryRect.width)
-        }
-        root.widthHeightScale = widthHeightScale
-        windowView.setWidth(root.height * widthHeightScale)
+        var destWidth = propWidth / propHeight * (movieInfo.movie_height - program_constants.windowGlowRadius * 2)
+                         + program_constants.windowGlowRadius * 2
+
+        root.widthHeightScale = propWidth / propHeight
+        player.fillMode = VideoOutput.Stretch
+
+        _setSizeForRootWindowWithWidth(destWidth)
     }
 
     function setScale(scale) {
-        if (primaryRect.width / primaryRect.height > movieInfo.movie_width / movieInfo.movie_height) {
-            if (movieInfo.movie_width * scale > primaryRect.width) {
-                windowView.setWidth(primaryRect.width)
-                windowView.setHeight(primaryRect.width / root.widthHeightScale)
-            } else {
-                windowView.setWidth(movieInfo.movie_width * scale)
-                windowView.setHeight(movieInfo.movie_width * scale / root.widthHeightScale)
-            }
-        } else {
-            if (movieInfo.movie_height * scale > primaryRect.height) {
-                windowView.setHeight(primaryRect.height)
-                windowView.setWidth(primaryRect.height * root.widthHeightScale)
-            } else {
-                windowView.setHeight(movieInfo.movie_height * scale)
-                windowView.setWidth(movieInfo.movie_height * scale * root.widthHeightScale)
-            }
-        }
+        var destWidth =  root.widthHeightScale * (movieInfo.movie_height - program_constants.windowGlowRadius * 2)
+                         + program_constants.windowGlowRadius * 2
+        var actualWidth = _getActualWidthWithWidth(destWidth)
+        _setSizeForRootWindowWithWidth((actualWidth - program_constants.windowGlowRadius * 2) * scale + program_constants.windowGlowRadius * 2)
     }
 
     function toggleFullscreen() {
@@ -590,11 +587,11 @@ MouseArea {
     ResizeVisual {
         id: resize_visual
 
-        // FixMe: we should also count the anchors.leftMaring here;
         frameY: windowView.y
         frameX: windowView.x
         frameWidth: window.width
         frameHeight: window.height
+        widthHeightScale: root.widthHeightScale
     }
 
     DropArea {

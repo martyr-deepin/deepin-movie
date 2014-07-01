@@ -38,6 +38,7 @@ Rectangle {
             PropertyChanges { target: titlebar; width: main_window.width; anchors.top: main_window.top }
             PropertyChanges { target: controlbar; width: main_window.width; anchors.bottom: main_window.bottom}
             PropertyChanges { target: playlist; height: main_window.height; anchors.right: main_window.right }
+            PropertyChanges { target: player; fillMode: VideoOutput.Stretch }
         },
         State {
             name: "no_glow"
@@ -47,6 +48,7 @@ Rectangle {
             PropertyChanges { target: titlebar; width: root.width; anchors.top: root.top }
             PropertyChanges { target: controlbar; width: root.width; anchors.bottom: root.bottom}
             PropertyChanges { target: playlist; height: root.height; anchors.right: root.right }
+            PropertyChanges { target: player; fillMode: VideoOutput.PreserveAspectFit }
         }
     ]
 
@@ -435,7 +437,7 @@ Rectangle {
         percentage: player.position / movieInfo.movie_duration
         videoPlaying: player.playbackState == MediaPlayer.PlayingState
         muted: config.playerMuted
-        widthHeightScale: movieInfo.movie_width / movieInfo.movie_height
+        widthHeightScale: root.widthHeightScale
         previewHasVideo: player.hasVideo
         dragbarVisible: root.state == "normal"
 
