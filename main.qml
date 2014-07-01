@@ -351,10 +351,13 @@ Rectangle {
         onPlaying: { 
             notifybar.hide()
             auto_play_next_on_invalid_timer.stop()
-            root.inhibitCookie = dbus_screensaver.Inhibit("deepin-movie", "video playing") || 0
             main_controller.setWindowTitle(movieInfo.movie_title)
+
+            root.inhibitCookie = dbus_screensaver.Inhibit("deepin-movie", "video playing") || 0
+
             lastSource = source
-            database.lastPlayedFile = source 
+            database.lastPlayedFile = source
+            if (config.playerFullscreenOnOpenFile) main_controller.fullscreen()
 
             if (config.playerCleanPlaylistOnOpenNewFile) playlist.clear()
             main_controller.addPlayListItem(source.toString().substring(7))
