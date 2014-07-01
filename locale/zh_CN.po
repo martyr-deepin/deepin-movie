@@ -381,7 +381,7 @@ msgstr "未知"
 
 #: ../menu_controller.py:34
 msgid "Default"
-msgstr "顺序播放"
+msgstr "默认"
 
 #: ../menu_controller.py:46
 msgid "Rotate 90 degree clockwise"
