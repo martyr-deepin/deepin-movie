@@ -148,12 +148,10 @@ MouseArea {
     property int clickCount: 0
     Timer {
         id: double_click_check_timer
-        interval: 300
+        interval: 400
 
         onTriggered: {
-            if (mouse_area.clickCount == 1) {
-                mouse_area.doSingleClick()
-            } else if (mouse_area.clickCount == 2) {
+            if (mouse_area.clickCount == 2) {
                 mouse_area.doDoubleClick()
             }
             mouse_area.clickCount = 0
@@ -577,6 +575,7 @@ MouseArea {
         if (mouse.button == Qt.RightButton) {
             _menu_controller.show_menu()
         } else {
+            doSingleClick()
             clickCount++
             if (!double_click_check_timer.running) {
                 double_click_check_timer.start()
