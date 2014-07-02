@@ -20,6 +20,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import os
+import json
 import sqlite3
 from constant import CONFIG_DIR
 from deepin_utils.file import touch_file
@@ -45,22 +46,25 @@ class Database(QObject):
     
     @pyqtSlot(str, int)    
     def record_video_position(self, video_path, video_position):
-        self.video_db_cursor.execute(
-            "INSERT OR REPLACE INTO settings VALUES(?, ?)", 
-            (unicode(video_path), str(video_position))
-        )
-        self.video_db_connect.commit()
+        movieInfo = json.loads(self.getMovieInfo(video_path))
+        movieInfo["position"] = video_position
+        self.updateMovieInfo(video_path, json.dumps(movieInfo))
         
     @pyqtSlot(str, result=int)
     def fetch_video_position(self, video_path):
-        self.video_db_cursor.execute(
-            "SELECT value FROM settings WHERE key=?" , [video_path]
-        )
-        results = self.video_db_cursor.fetchall()
-        if len(results) > 0:
-            return int(results[0][0])
-        else:
-            return 0
+        movieInfo = json.loads(self.getMovieInfo(video_path))
+        return int(movieInfo.get("position", 0))
+
+    @pyqtSlot(str, int)
+    def record_video_rotation(self, video_path, video_rotation):
+        movieInfo = json.loads(self.getMovieInfo(video_path))
+        movieInfo["rotation"] = video_rotation
+        self.updateMovieInfo(video_path, json.dumps(movieInfo))
+
+    @pyqtSlot(str, result=int)
+    def fetch_video_rotation(self, video_path):
+        movieInfo = json.loads(self.getMovieInfo(video_path))
+        return int(movieInfo.get("rotation", 0))
             
     def getValue(self, key):
         self.video_db_cursor.execute(
@@ -68,13 +72,22 @@ class Database(QObject):
         )
         result = self.video_db_cursor.fetchone()
         
-        return result and result[0]
+        return result[0] if result else ""
         
     def setValue(self, key, value):
         self.video_db_cursor.execute(
             "INSERT OR REPLACE INTO settings VALUES(?, ?)", (key, value)
         )
         self.video_db_connect.commit()
+
+    @pyqtSlot(str,result=str)
+    def getMovieInfo(self, video_path):
+        value = self.getValue(video_path)
+        return value if (value.startswith("{") and value.endswith("}")) else "{}"
+
+    @pyqtSlot(str,str,result=str)
+    def updateMovieInfo(self, video_path, info):
+        self.setValue(video_path, info)
         
     @pyqtProperty(str,notify=localPlaylistChanged)
     def playlist_local(self):

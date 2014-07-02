@@ -275,6 +275,7 @@ Rectangle {
         dbus_screensaver.UnInhibit(root.inhibitCookie)
         config.save("Normal", "volume", player.volume)
         database.record_video_position(player.source, player.position)
+        database.record_video_rotation(player.source, player.orientation)
         database.playlist_local = playlist.getContent()
         database.lastWindowWidth = windowView.width
         movieInfo.movie_file && (database.lastPlayedFile = movieInfo.movie_file)
@@ -386,6 +387,14 @@ Rectangle {
             position != 0 && (lastPosition = position)
             subtitleContent = movieInfo.get_subtitle_at(position + subtitleDelay)
             controlbar.percentage = position / movieInfo.movie_duration
+        }
+
+        onSourceChanged: {
+            var rotation = database.fetch_video_rotation(source)
+            var rotateClockwiseCount = Math.abs(Math.round((rotation % 360 - 360) % 360 / 90))
+            for (var i = 0; i < rotateClockwiseCount; i++) {
+                main_controller.rotateClockwise()
+            }
         }
     }
     
