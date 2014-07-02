@@ -86,6 +86,7 @@ MouseArea {
                     windowView.setHeight(windowView.defaultHeight)    
                 }
             } else {
+                print(movieInfo.movie_width)
                 var destWidth = hasResized ? windowView.width : movieInfo.movie_width 
                 _setSizeForRootWindowWithWidth(destWidth)
             }
@@ -371,8 +372,8 @@ MouseArea {
 
     function flipHorizontal() { player.flipHorizontal(); controlbar.flipPreviewHorizontal() }
     function flipVertical() { player.flipVertical(); controlbar.flipPreviewVertical() }
-    function rotateClockwise() { player.rotateClockwise(); controlbar.rotatePreviewClockwise() }
-    function rotateAnticlockwise() { player.rotateAnticlockwise(); controlbar.rotatePreviewAntilockwise() }
+    function rotateClockwise() { player.rotateClockwise(); controlbar.rotatePreviewClockwise(); movieInfo.rotate() }
+    function rotateAnticlockwise() { player.rotateAnticlockwise(); controlbar.rotatePreviewAntilockwise(); movieInfo.rotate() }
 
     // player control operation related
     function play() { windowView.raise(); player.play() }

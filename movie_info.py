@@ -176,6 +176,11 @@ class MovieInfo(QObject):
             self._thread.infoGotten.connect(lambda x: self.infoGotten.emit(x))
             self._thread.start()        
 
+    @pyqtSlot()
+    def rotate(self):
+        self.media_width, self.media_height = self.media_height, self.media_width
+        self.movieWidthChanged.emit(self.media_width)
+        self.movieHeightChanged.emit(self.media_height)
 
 movie_info = MovieInfo()
 

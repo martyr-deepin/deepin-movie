@@ -17,12 +17,14 @@ RectWithCorner {
 
     property alias video: player_loader.item
 
+    property var frameOperationsCache: []
+
     states: [
         State {
             name: "normal"
             PropertyChanges { 
                 target: preview
-                rectWidth: 178
+                rectWidth: widthHeightScale >= 1 ? 178 : 89
                 rectHeight: (rectWidth - previewPadding * 2) / widthHeightScale + previewPadding * 2 + preview.cornerHeight 
             }
             PropertyChanges { target: player_loader; visible: true }
@@ -41,10 +43,10 @@ RectWithCorner {
         videoTime.text = formatTime(movieInfo.movie_duration * percentage)
     }
 
-    function flipHorizontal() { video && video.flipHorizontal() }
-    function flipVertical() { video && video.flipVertical() }
-    function rotateClockwise() { video && video.rotateClockwise() }
-    function rotateAnticlockwise() { video && video.rotateAnticlockwise() }
+    function flipHorizontal() { frameOperationsCache.push("flipHorizontal") }
+    function flipVertical() { frameOperationsCache.push("flipVertical") }
+    function rotateClockwise() { frameOperationsCache.push("rotateClockwise") }
+    function rotateAnticlockwise() { frameOperationsCache.push("rotateAnticlockwise") }
 
     Component {
         id: player_component
@@ -68,6 +70,21 @@ RectWithCorner {
         anchors.bottomMargin: previewPadding + preview.cornerHeight
         anchors.leftMargin: previewPadding
         anchors.rightMargin: previewPadding
+
+        onLoaded: {
+            var operations = preview.frameOperationsCache
+            for (var i = 0; i < operations.length; i++) {
+                if (operations[i] == "flipVertical") {
+                    item.flipVertical()
+                } else if (operations[i] == "flipHorizontal") {
+                    item.flipHorizontal()
+                } else if (operations[i] == "rotateClockwise") {
+                    item.rotateClockwise()
+                } else if (operations[i] == "rotateAnticlockwise") {
+                    item.rotateAnticlockwise()
+                }
+            }
+        }
     }
     
     Rectangle {
