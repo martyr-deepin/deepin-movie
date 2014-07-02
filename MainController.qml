@@ -330,20 +330,23 @@ MouseArea {
     }
 
     function setProportion(propWidth, propHeight) {
-        var destWidth = propWidth / propHeight * (movieInfo.movie_height - program_constants.windowGlowRadius * 2)
-                         + program_constants.windowGlowRadius * 2
+        if (propWidth == 1 && propHeight == 1) { // indicates we should reset the proportion, see menu_controller.py for more details
+            root.widthHeightScale = (movieInfo.movie_width - program_constants.windowGlowRadius * 2) / (movieInfo.movie_height - program_constants.windowGlowRadius * 2)
+        } else {
+            root.widthHeightScale = propWidth / propHeight
+        }
 
-        root.widthHeightScale = propWidth / propHeight
+        var destWidth = (movieInfo.movie_width - program_constants.windowGlowRadius * 2) * root.actualScale + program_constants.windowGlowRadius * 2
         player.fillMode = VideoOutput.Stretch
 
         _setSizeForRootWindowWithWidth(destWidth)
     }
 
     function setScale(scale) {
-        var destWidth =  root.widthHeightScale * (movieInfo.movie_height - program_constants.windowGlowRadius * 2)
-                         + program_constants.windowGlowRadius * 2
-        var actualWidth = _getActualWidthWithWidth(destWidth)
-        _setSizeForRootWindowWithWidth((actualWidth - program_constants.windowGlowRadius * 2) * scale + program_constants.windowGlowRadius * 2)
+        root.actualScale = scale
+        var destWidth = (movieInfo.movie_width - program_constants.windowGlowRadius * 2) * root.actualScale + program_constants.windowGlowRadius * 2
+
+        _setSizeForRootWindowWithWidth(destWidth)
     }
 
     function toggleFullscreen() {

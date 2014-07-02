@@ -20,6 +20,8 @@ Rectangle {
     property var windowLastState: ""
 
     property real widthHeightScale: (movieInfo.movie_width - 2 * program_constants.windowGlowRadius) / (movieInfo.movie_height - 2 * program_constants.windowGlowRadius)
+    property real actualScale: 1.0
+
     property int inhibitCookie: 0
     property bool hasResized: false
     property bool shouldAutoPlayNextOnInvalidFile: false
