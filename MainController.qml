@@ -86,7 +86,6 @@ MouseArea {
                     windowView.setHeight(windowView.defaultHeight)    
                 }
             } else {
-                print(movieInfo.movie_width)
                 var destWidth = hasResized ? windowView.width : movieInfo.movie_width 
                 _setSizeForRootWindowWithWidth(destWidth)
             }
@@ -146,16 +145,12 @@ MouseArea {
         }
     }
 
-    property int clickCount: 0
     Timer {
         id: double_click_check_timer
-        interval: 400
+        interval: 200
 
         onTriggered: {
-            if (mouse_area.clickCount == 2) {
-                mouse_area.doDoubleClick()
-            }
-            mouse_area.clickCount = 0
+            doSingleClick()
         }
     }
 
@@ -579,12 +574,19 @@ MouseArea {
         if (mouse.button == Qt.RightButton) {
             _menu_controller.show_menu()
         } else {
-            doSingleClick()
-            clickCount++
             if (!double_click_check_timer.running) {
-                double_click_check_timer.start()
+                double_click_check_timer.restart()
             }
         }
+    }
+
+    onDoubleClicked: {
+        if (double_click_check_timer.running) {
+            double_click_check_timer.stop()
+        } else {
+            doSingleClick()
+        }
+        doDoubleClick()
     }
 
     ResizeVisual {
