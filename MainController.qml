@@ -367,8 +367,18 @@ MouseArea {
 
     function flipHorizontal() { player.flipHorizontal(); controlbar.flipPreviewHorizontal() }
     function flipVertical() { player.flipVertical(); controlbar.flipPreviewVertical() }
-    function rotateClockwise() { player.rotateClockwise(); controlbar.rotatePreviewClockwise(); movieInfo.rotate() }
-    function rotateAnticlockwise() { player.rotateAnticlockwise(); controlbar.rotatePreviewAntilockwise(); movieInfo.rotate() }
+    function rotateClockwise() { 
+        player.rotateClockwise()
+        controlbar.rotatePreviewClockwise()
+        movieInfo.rotate()
+        database.record_video_rotation(player.source, player.orientation)
+    }
+    function rotateAnticlockwise() { 
+        player.rotateAnticlockwise()
+        controlbar.rotatePreviewAntilockwise()
+        movieInfo.rotate()
+        database.record_video_rotation(player.source, player.orientation)
+    }
 
     // player control operation related
     function play() { windowView.raise(); player.play() }

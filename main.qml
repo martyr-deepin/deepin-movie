@@ -237,6 +237,7 @@ Rectangle {
 
     /* to perform like a newly started program  */
     function reset() {
+        player.resetRotationFlip()
         root.state = "normal"
         titlebar.title = ""
         movieInfo.movie_file = ""
@@ -390,6 +391,8 @@ Rectangle {
         }
 
         onSourceChanged: {
+            resetRotationFlip()
+
             var rotation = database.fetch_video_rotation(source)
             var rotateClockwiseCount = Math.abs(Math.round((rotation % 360 - 360) % 360 / 90))
             for (var i = 0; i < rotateClockwiseCount; i++) {

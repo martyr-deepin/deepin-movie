@@ -49,6 +49,14 @@ Video {
     function rotateClockwise() { video.orientation -= 90 }
     function rotateAnticlockwise() { video.orientation += 90 }
 
+    function resetRotationFlip() {
+        video.orientation = 0
+        flip.axis.x = 0
+        flip.axis.y = 0
+        flip.axis.z = 0
+        flip.angle = 180
+    }
+
     Rotation { 
         id: flip
         origin.x: width / 2
