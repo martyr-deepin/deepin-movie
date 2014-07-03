@@ -6,6 +6,7 @@ DPreferenceWindow {
 	width: 400
 	height: 210
 	flags: Qt.BypassWindowManagerHint
+	titleContentPadding: 0
 
 	property string fileTitle
 	property string fileType
