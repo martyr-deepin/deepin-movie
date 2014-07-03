@@ -1,0 +1,517 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# trid <tristan.denni@viacesi.fr>, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: Deepin Movie\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-07-01 09:25+0800\n"
+"PO-Revision-Date: 2014-07-03 05:53+0000\n"
+"Last-Translator: electricface <songwentai@linuxdeepin.com>\n"
+"Language-Team: French (http://www.transifex.com/projects/p/deepin-movie/language/fr/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: ../AboutSection.qml:6 ../PreferenceWindow.qml:100
+msgid "About"
+msgstr "À propos"
+
+#: ../AboutSection.qml:11 ../main.qml:364 ../window.py:65
+msgid "Deepin Movie"
+msgstr "Deepin Film"
+
+#: ../AboutSection.qml:26
+msgid "Version"
+msgstr "Version"
+
+#: ../AboutSection.qml:42
+msgid ""
+"Deepin Movie is a video player designed for Linux users. It supports a "
+"variety of video formats."
+msgstr "Deepin Movie est un lecteur vidéo conçu pour les utilisateurs Linux. Il supporte une grande variété de format vidéo différents."
+
+#: ../AboutSection.qml:48
+msgid "Deepin Movie is free software licensed under GNU GPLv3"
+msgstr "Deepin Move est un logiciel libre sous licence GNU GPLv3"
+
+#: ../HotKeyInput.qml:14
+msgid "Please input new shortcut"
+msgstr ""
+
+#: ../InformationWindow.qml:55
+msgid "File type"
+msgstr "Type du fichier"
+
+#: ../InformationWindow.qml:62
+msgid "File size"
+msgstr "Taille du fichier"
+
+#: ../InformationWindow.qml:69
+msgid "Resolution"
+msgstr "Résolution"
+
+#: ../InformationWindow.qml:76
+msgid "Movie duration"
+msgstr "Durée de la vidéo"
+
+#: ../InformationWindow.qml:85
+msgid "File path"
+msgstr "Emplacement du fichier"
+
+#: ../InformationWindow.qml:94
+msgid "Copy to clipboard"
+msgstr "Copier dans le presse-papiers"
+
+#: ../InformationWindow.qml:109
+msgid "Confirm"
+msgstr "Confirmer"
+
+#: ../MainController.qml:108
+msgid "Invalid file"
+msgstr ""
+
+#: ../MainController.qml:388
+msgid "Play last movie played"
+msgstr "Lire la dernière vidéo lue"
+
+#: ../MainController.qml:400 ../PreferenceWindow.qml:232
+#: ../menu_controller.py:84
+msgid "Forward"
+msgstr "Avancer"
+
+#: ../MainController.qml:408 ../PreferenceWindow.qml:237
+#: ../menu_controller.py:85
+msgid "Rewind"
+msgstr "Reculer"
+
+#: ../MainController.qml:417 ../MainController.qml:422
+#, qt-format
+msgid "(Press %1 to restore)"
+msgstr "(Appuyez sur %1 pour restaurer)"
+
+#: ../MainController.qml:417 ../MainController.qml:422
+#: ../MainController.qml:427
+msgid "Playback rate: "
+msgstr "Taux de Playback :"
+
+#: ../MainController.qml:439 ../MainController.qml:448
+msgid "Volume: "
+msgstr "Volume :"
+
+#: ../MainController.qml:446 ../menu_controller.py:59
+msgid "Muted"
+msgstr "Muet"
+
+#: ../OpenFileDialog.qml:5
+msgid "Please choose one file or more"
+msgstr "Veuillez choisir un fichier ou plus"
+
+#: ../OpenFolderDialog.qml:5
+msgid "Please choose folder"
+msgstr "Veuillez choisir un dossier"
+
+#: ../PreferenceWindow.qml:140
+msgid "Enter fullscreen on opening file"
+msgstr "Mettre en plein écran lors de l'ouverture de fichier"
+
+#: ../PreferenceWindow.qml:152
+msgid "Clear playlist on opening new file"
+msgstr "Vider la liste de lecture en ouvrant un nouveau fichier"
+
+#: ../PreferenceWindow.qml:157
+msgid "Resume playback after restarting player"
+msgstr "Reprendre la lecture après le redémarrage du lecteur"
+
+#: ../PreferenceWindow.qml:162
+msgid "Continue to next video automatically"
+msgstr "Passer automatiquement à la prochaine vidéo "
+
+#: ../PreferenceWindow.qml:167
+msgid "Show preview when hovering over progress bar"
+msgstr "Montrer une prévisualisation lors du survol de la barre de progression"
+
+#: ../PreferenceWindow.qml:172
+msgid "Allow multiple instance"
+msgstr "Autoriser les instances multiples"
+
+#: ../PreferenceWindow.qml:222 ../PreferenceWindow.qml:273
+#: ../PreferenceWindow.qml:314 ../PreferenceWindow.qml:343
+msgid "Enable keyboard shortcuts"
+msgstr "Activer les raccourcis claviers"
+
+#: ../PreferenceWindow.qml:227 ../PreferenceWindow.qml:379
+msgid "Pause/Play"
+msgstr "Pause/Lecture"
+
+#: ../PreferenceWindow.qml:279 ../menu_controller.py:94
+msgid "Mini mode"
+msgstr "Mode minmal"
+
+#: ../PreferenceWindow.qml:291
+msgid "Volume up"
+msgstr "Augmenter le volume"
+
+#: ../PreferenceWindow.qml:295
+msgid "Volume down"
+msgstr "Baisser le volume"
+
+#: ../PreferenceWindow.qml:324
+msgid "Open previous"
+msgstr "Ouvrir précédent"
+
+#: ../PreferenceWindow.qml:328
+msgid "Open next"
+msgstr "Ouvrir suivant"
+
+#: ../PreferenceWindow.qml:349
+msgid "Forward 0.5s"
+msgstr "Avancer de 0.5s"
+
+#: ../PreferenceWindow.qml:353
+msgid "Delay 0.5s"
+msgstr "Différer de 0.5s"
+
+#: ../PreferenceWindow.qml:357
+msgid "Subtitle up"
+msgstr "Monter les sous-titres"
+
+#: ../PreferenceWindow.qml:361
+msgid "Subtitle down"
+msgstr "Descendre les sous-titres"
+
+#: ../PreferenceWindow.qml:376
+msgid "Left click"
+msgstr "Clic gauche"
+
+#: ../PreferenceWindow.qml:379 ../PreferenceWindow.qml:387
+#: ../PreferenceWindow.qml:395
+msgid "Disabled"
+msgstr "Désactivé "
+
+#: ../PreferenceWindow.qml:384
+msgid "Double click"
+msgstr "Double clic"
+
+#: ../PreferenceWindow.qml:409
+msgid "Subtitles loaded automatically"
+msgstr "Sous-titres chargés automatiquement"
+
+#: ../PreferenceWindow.qml:450
+msgid "Border width"
+msgstr "Largeur de la bordure"
+
+#: ../PreferenceWindow.qml:242 ../PreferenceWindow.qml:387
+msgid "Fullscreen"
+msgstr "Plein écran"
+
+#: ../PreferenceWindow.qml:47 ../PreferenceWindow.qml:63
+#: ../PreferenceWindow.qml:131 ../PreferenceWindow.qml:213
+msgid "Playback"
+msgstr "Lecture"
+
+#: ../PreferenceWindow.qml:68 ../PreferenceWindow.qml:264
+msgid "Frame/Sound"
+msgstr "Image/Son"
+
+#: ../PreferenceWindow.qml:73 ../PreferenceWindow.qml:305
+msgid "Files"
+msgstr "Fichiers"
+
+#: ../PreferenceWindow.qml:83 ../PreferenceWindow.qml:367
+msgid "Other"
+msgstr "Autre"
+
+#: ../PreferenceWindow.qml:78 ../PreferenceWindow.qml:334
+#: ../menu_controller.py:102
+msgid "Subtitles"
+msgstr "Sous-titres"
+
+#: ../PreferenceWindow.qml:12
+msgid "bleu de France"
+msgstr "bleu de France"
+
+#: ../PreferenceWindow.qml:13
+msgid "Turquoise"
+msgstr "Turquoise"
+
+#: ../PreferenceWindow.qml:14
+msgid "UFO green"
+msgstr "Vert Alien"
+
+#: ../PreferenceWindow.qml:15
+msgid "Green yellow"
+msgstr "Vert Jaune"
+
+#: ../PreferenceWindow.qml:16
+msgid "Gorse"
+msgstr "Gorse"
+
+#: ../PreferenceWindow.qml:17
+msgid "Energy yellow"
+msgstr "Jaune énergie"
+
+#: ../PreferenceWindow.qml:18
+msgid "Sun"
+msgstr "Dim"
+
+#: ../PreferenceWindow.qml:19
+msgid "Radical red"
+msgstr "Rouge vif"
+
+#: ../PreferenceWindow.qml:20
+msgid "Lavender indigo"
+msgstr "Lavande indigo"
+
+#: ../PreferenceWindow.qml:21
+msgid "Royal blue"
+msgstr "Bleu royal"
+
+#: ../PreferenceWindow.qml:22
+msgid "Aluminum"
+msgstr "Aluminium"
+
+#: ../PreferenceWindow.qml:23
+msgid "Clean white"
+msgstr "Blanc propre"
+
+#: ../PreferenceWindow.qml:43 ../PreferenceWindow.qml:127
+msgid "Basic settings"
+msgstr "Réglages simples"
+
+#: ../PreferenceWindow.qml:52 ../PreferenceWindow.qml:191
+msgid "Time span"
+msgstr "Zone de temps"
+
+#: ../PreferenceWindow.qml:59 ../PreferenceWindow.qml:209
+msgid "Keyboard shortcuts"
+msgstr "Raccourcis claviers"
+
+#: ../PreferenceWindow.qml:90 ../PreferenceWindow.qml:403
+msgid "Subtitle settings"
+msgstr "Réglages des sous-titres"
+
+#: ../PreferenceWindow.qml:146
+msgid "Apply the size last time closed"
+msgstr "Appliquer la taille du dernier fermé"
+
+#: ../PreferenceWindow.qml:177
+msgid "Pause when minimized"
+msgstr "Suspendre lorsque réduit"
+
+#: ../PreferenceWindow.qml:182
+msgid "Enable system popup notification"
+msgstr "Activer la fenêtre de notification système "
+
+#: ../PreferenceWindow.qml:200
+msgid "Forward/Rewind"
+msgstr "Avancer/Reculer"
+
+#: ../PreferenceWindow.qml:247
+msgid "Playlist"
+msgstr ""
+
+#: ../PreferenceWindow.qml:252
+msgid "Speed up"
+msgstr "Accélerer"
+
+#: ../PreferenceWindow.qml:257
+msgid "Slow down"
+msgstr "Ralentir"
+
+#: ../PreferenceWindow.qml:283
+msgid "Rotate counterclockwise"
+msgstr "Faire une rotation"
+
+#: ../PreferenceWindow.qml:287
+msgid "Rotate clockwise"
+msgstr "Rotation sens horaire"
+
+#: ../PreferenceWindow.qml:299
+msgid "Mute"
+msgstr "Muet"
+
+#: ../PreferenceWindow.qml:320 ../menu_controller.py:89
+msgid "Open file"
+msgstr "Ouvrir le fichier"
+
+#: ../PreferenceWindow.qml:392
+msgid "Scroll"
+msgstr "Défiler"
+
+#: ../PreferenceWindow.qml:395
+msgid "Volume"
+msgstr "Volume"
+
+#: ../PreferenceWindow.qml:415
+msgid "Font"
+msgstr "Police"
+
+#: ../PreferenceWindow.qml:425
+msgid "Font color"
+msgstr "Couleur de la police"
+
+#: ../PreferenceWindow.qml:441
+msgid "Size"
+msgstr "Taille"
+
+#: ../PreferenceWindow.qml:459
+msgid "Border color"
+msgstr "Couleur de la bordure"
+
+#: ../PreferenceWindow.qml:475
+msgid "Position"
+msgstr "Position"
+
+#: ../PreferenceWindow.qml:480
+msgid "Bottom"
+msgstr "Bas"
+
+#: ../PreferenceWindow.qml:481
+msgid "Top"
+msgstr "Haut"
+
+#: ../PreferenceWindow.qml:487
+msgid "Subtitle Delay"
+msgstr "Décalage des sous-titres"
+
+#: ../movie_info.py:140
+msgid "Unknown"
+msgstr "Inconnu"
+
+#: ../menu_controller.py:34
+msgid "Default"
+msgstr "Par défaut"
+
+#: ../menu_controller.py:46
+msgid "Rotate 90 degree clockwise"
+msgstr "Rotation de 90° dans le sens des aiguilles d'un montre"
+
+#: ../menu_controller.py:47
+msgid "Rotate 90 degree counterclockwise"
+msgstr "Rotation de 90° dans le sens inverse des aiguilles d'une montre"
+
+#: ../menu_controller.py:48
+msgid "Flip horizontally"
+msgstr "Tourner horizontalement"
+
+#: ../menu_controller.py:49
+msgid "Flip vertically"
+msgstr "Tourner verticalement"
+
+#: ../menu_controller.py:57
+msgid "Volume Up"
+msgstr "Monter le volume"
+
+#: ../menu_controller.py:58
+msgid "Volume Down"
+msgstr "Baisser le volume"
+
+#: ../menu_controller.py:63
+msgid "Hide subtitle"
+msgstr "Cacher les sous-titres"
+
+#: ../menu_controller.py:67
+msgid "Open manually"
+msgstr "Ouvrir manuellement"
+
+#: ../menu_controller.py:68
+msgid "Select file"
+msgstr "Sélectionner le fichier"
+
+#: ../menu_controller.py:69
+msgid "Subtitle setting"
+msgstr "Réglages des sous-titres"
+
+#: ../menu_controller.py:73
+msgid "Order"
+msgstr "Lecture"
+
+#: ../menu_controller.py:74
+msgid "Random"
+msgstr "Aléatoire"
+
+#: ../menu_controller.py:75
+msgid "Single"
+msgstr "Simple"
+
+#: ../menu_controller.py:76
+msgid "Repeat (Single)"
+msgstr "Répéter (une seule fois)"
+
+#: ../menu_controller.py:77
+msgid "Repeat (Playlist)"
+msgstr "Répéter (la liste de lecture)"
+
+#: ../menu_controller.py:81
+msgid "Previous"
+msgstr "Précédent"
+
+#: ../menu_controller.py:82
+msgid "Next"
+msgstr "Suivant"
+
+#: ../menu_controller.py:90
+msgid "Open folder"
+msgstr "Ouvrir le dossier"
+
+#: ../menu_controller.py:93
+msgid "Fullscreen/Quit"
+msgstr "Plein écran/Quitter"
+
+#: ../menu_controller.py:95
+msgid "Always on top"
+msgstr "Toujours au dessus"
+
+#: ../menu_controller.py:96
+msgid "PLaylist"
+msgstr ""
+
+#: ../menu_controller.py:98
+msgid "Play Sequence"
+msgstr "Séquence de lecture"
+
+#: ../menu_controller.py:99 ../menu_controller.py:109
+msgid "Play"
+msgstr "Lire"
+
+#: ../menu_controller.py:100
+msgid "Frame"
+msgstr "Image"
+
+#: ../menu_controller.py:101
+msgid "Sound"
+msgstr "Son"
+
+#: ../menu_controller.py:104
+msgid "Options"
+msgstr "Options"
+
+#: ../menu_controller.py:105 ../menu_controller.py:119
+msgid "Information"
+msgstr "Information"
+
+#: ../menu_controller.py:110
+msgid "Add file to playlist"
+msgstr "Ajouter le fichier à la liste de lecture"
+
+#: ../menu_controller.py:112
+msgid "Remove from playlist"
+msgstr "Retirer de la liste de lecture"
+
+#: ../menu_controller.py:113
+msgid "Remove invalid file"
+msgstr "Retirer le fichier invalide"
+
+#: ../menu_controller.py:114
+msgid "Clear playlist"
+msgstr "Vider la liste de lecture"
+
+#: ../menu_controller.py:118
+msgid "Open file location"
+msgstr "Ouvrir le dossier du fichier"

@@ -1,0 +1,517 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# samson <sambelet@yahoo.com>, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: Deepin Movie\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-07-01 09:25+0800\n"
+"PO-Revision-Date: 2014-07-03 05:53+0000\n"
+"Last-Translator: electricface <songwentai@linuxdeepin.com>\n"
+"Language-Team: Amharic (http://www.transifex.com/projects/p/deepin-movie/language/am/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: am\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: ../AboutSection.qml:6 ../PreferenceWindow.qml:100
+msgid "About"
+msgstr "ስለ"
+
+#: ../AboutSection.qml:11 ../main.qml:364 ../window.py:65
+msgid "Deepin Movie"
+msgstr "ሙቪ"
+
+#: ../AboutSection.qml:26
+msgid "Version"
+msgstr "እትም"
+
+#: ../AboutSection.qml:42
+msgid ""
+"Deepin Movie is a video player designed for Linux users. It supports a "
+"variety of video formats."
+msgstr "ይህ የቪዲዮ ማጫወቻ የተዘጋጀው ለሊነክስ ተጠቃሚዎች ነው፡ የተለያዩ የቪዲዮ አቀራረቦችን ይደግፋል"
+
+#: ../AboutSection.qml:48
+msgid "Deepin Movie is free software licensed under GNU GPLv3"
+msgstr "Deepin Movie is free software licensed under GNU GPLv3"
+
+#: ../HotKeyInput.qml:14
+msgid "Please input new shortcut"
+msgstr ""
+
+#: ../InformationWindow.qml:55
+msgid "File type"
+msgstr "የፋይል አይነት"
+
+#: ../InformationWindow.qml:62
+msgid "File size"
+msgstr "የፋይል መጠን"
+
+#: ../InformationWindow.qml:69
+msgid "Resolution"
+msgstr "ሪዞሊሽን"
+
+#: ../InformationWindow.qml:76
+msgid "Movie duration"
+msgstr "ሙቪው የሚፈጀው ጊዜ"
+
+#: ../InformationWindow.qml:85
+msgid "File path"
+msgstr "የፋይል መንገድ"
+
+#: ../InformationWindow.qml:94
+msgid "Copy to clipboard"
+msgstr "ወደ ቁራጭ ሰሌዳ ኮፒ ማድረጊያ"
+
+#: ../InformationWindow.qml:109
+msgid "Confirm"
+msgstr "ማረጋገጫ"
+
+#: ../MainController.qml:108
+msgid "Invalid file"
+msgstr ""
+
+#: ../MainController.qml:388
+msgid "Play last movie played"
+msgstr "መጨረሻ የተጫወተውን ሙቪ ማጫወቻ"
+
+#: ../MainController.qml:400 ../PreferenceWindow.qml:232
+#: ../menu_controller.py:84
+msgid "Forward"
+msgstr "ወደ ፊት"
+
+#: ../MainController.qml:408 ../PreferenceWindow.qml:237
+#: ../menu_controller.py:85
+msgid "Rewind"
+msgstr "ወደ ኋላ ማጠንጠኛ"
+
+#: ../MainController.qml:417 ../MainController.qml:422
+#, qt-format
+msgid "(Press %1 to restore)"
+msgstr "(ይጫኑ %1 እንደ ነበር ለመመለስ)"
+
+#: ../MainController.qml:417 ../MainController.qml:422
+#: ../MainController.qml:427
+msgid "Playback rate: "
+msgstr "በድጋሚ ማጫወቻ መጠን: "
+
+#: ../MainController.qml:439 ../MainController.qml:448
+msgid "Volume: "
+msgstr "መጠን:"
+
+#: ../MainController.qml:446 ../menu_controller.py:59
+msgid "Muted"
+msgstr "መቀነሻ"
+
+#: ../OpenFileDialog.qml:5
+msgid "Please choose one file or more"
+msgstr "እባክዎን አንድ ወይንም ከዚያ በላይ ፋይል ይምረጡ"
+
+#: ../OpenFolderDialog.qml:5
+msgid "Please choose folder"
+msgstr "እባክዎን ፎልደር ይምረጡ"
+
+#: ../PreferenceWindow.qml:140
+msgid "Enter fullscreen on opening file"
+msgstr "ፋይሉ በሚከፈት ጊዜ በሙሉ መመልከቻው ማሳያ"
+
+#: ../PreferenceWindow.qml:152
+msgid "Clear playlist on opening new file"
+msgstr "አዲስ ፋይል በሚከፈትበት ጊዜ የማጫወቻውን ዝርዝር ማጽጃ"
+
+#: ../PreferenceWindow.qml:157
+msgid "Resume playback after restarting player"
+msgstr "ማጫወቻው እንደገና ሲጀምር በድጋሚ ማጫወቱን መቀጠያ"
+
+#: ../PreferenceWindow.qml:162
+msgid "Continue to next video automatically"
+msgstr "ወደሚቀጥለው ቪዲዮ ራስ በራሱ መቀጠያ"
+
+#: ../PreferenceWindow.qml:167
+msgid "Show preview when hovering over progress bar"
+msgstr "በሂደት መደርደሪያው ላይ በሚሳፈፍ ጊዜ በ ቅድመ እይታ ማሳያ"
+
+#: ../PreferenceWindow.qml:172
+msgid "Allow multiple instance"
+msgstr "በርካታ አስቸኳይ ማስቻያ"
+
+#: ../PreferenceWindow.qml:222 ../PreferenceWindow.qml:273
+#: ../PreferenceWindow.qml:314 ../PreferenceWindow.qml:343
+msgid "Enable keyboard shortcuts"
+msgstr "የፊደል ገበታ አቋራጮች ማስቻያ"
+
+#: ../PreferenceWindow.qml:227 ../PreferenceWindow.qml:379
+msgid "Pause/Play"
+msgstr "ማጫወቻ/ማስቆሚያ"
+
+#: ../PreferenceWindow.qml:279 ../menu_controller.py:94
+msgid "Mini mode"
+msgstr "በትንሽ ዘዴ"
+
+#: ../PreferenceWindow.qml:291
+msgid "Volume up"
+msgstr "መጠን መጨመሪያ"
+
+#: ../PreferenceWindow.qml:295
+msgid "Volume down"
+msgstr "መጠን መቀነሻ"
+
+#: ../PreferenceWindow.qml:324
+msgid "Open previous"
+msgstr "ቀደም ያለውን መክፈቻ"
+
+#: ../PreferenceWindow.qml:328
+msgid "Open next"
+msgstr "የሚቀጥለውን መክፈቻ"
+
+#: ../PreferenceWindow.qml:349
+msgid "Forward 0.5s"
+msgstr "ወደ ፊት 0.5s"
+
+#: ../PreferenceWindow.qml:353
+msgid "Delay 0.5s"
+msgstr "ማዘግያ 0.5s"
+
+#: ../PreferenceWindow.qml:357
+msgid "Subtitle up"
+msgstr "ንዑስ አርእስት ከ ላይ"
+
+#: ../PreferenceWindow.qml:361
+msgid "Subtitle down"
+msgstr "ንዑስ አርእስት ከ ታች"
+
+#: ../PreferenceWindow.qml:376
+msgid "Left click"
+msgstr "የ ግራ መጫኛ"
+
+#: ../PreferenceWindow.qml:379 ../PreferenceWindow.qml:387
+#: ../PreferenceWindow.qml:395
+msgid "Disabled"
+msgstr "ተሰናክሏል"
+
+#: ../PreferenceWindow.qml:384
+msgid "Double click"
+msgstr "ሁለት ጊዜ መጫኛ"
+
+#: ../PreferenceWindow.qml:409
+msgid "Subtitles loaded automatically"
+msgstr "ንዑስ አርእስቶችን ራሱ በራሱ መጫኛ"
+
+#: ../PreferenceWindow.qml:450
+msgid "Border width"
+msgstr "የ ድንበር ስፋት"
+
+#: ../PreferenceWindow.qml:242 ../PreferenceWindow.qml:387
+msgid "Fullscreen"
+msgstr "በሙሉ መመልከቻ ዘዴ"
+
+#: ../PreferenceWindow.qml:47 ../PreferenceWindow.qml:63
+#: ../PreferenceWindow.qml:131 ../PreferenceWindow.qml:213
+msgid "Playback"
+msgstr "በድጋሚ ማጫወቻ"
+
+#: ../PreferenceWindow.qml:68 ../PreferenceWindow.qml:264
+msgid "Frame/Sound"
+msgstr "ክፈፍ/ዽምፅ"
+
+#: ../PreferenceWindow.qml:73 ../PreferenceWindow.qml:305
+msgid "Files"
+msgstr "ፋይሎች"
+
+#: ../PreferenceWindow.qml:83 ../PreferenceWindow.qml:367
+msgid "Other"
+msgstr "ለላ"
+
+#: ../PreferenceWindow.qml:78 ../PreferenceWindow.qml:334
+#: ../menu_controller.py:102
+msgid "Subtitles"
+msgstr "ንዑስ አርእስቶች"
+
+#: ../PreferenceWindow.qml:12
+msgid "bleu de France"
+msgstr "ሰማያዊ"
+
+#: ../PreferenceWindow.qml:13
+msgid "Turquoise"
+msgstr "አረንጓዴ ሰማያዊ"
+
+#: ../PreferenceWindow.qml:14
+msgid "UFO green"
+msgstr "ቢጫ አረንጓዴ"
+
+#: ../PreferenceWindow.qml:15
+msgid "Green yellow"
+msgstr "አረንጓዴ ቢጫ"
+
+#: ../PreferenceWindow.qml:16
+msgid "Gorse"
+msgstr "ነጣ ያለ ቢጫ"
+
+#: ../PreferenceWindow.qml:17
+msgid "Energy yellow"
+msgstr "ቢጫ"
+
+#: ../PreferenceWindow.qml:18
+msgid "Sun"
+msgstr "ፀሐይ"
+
+#: ../PreferenceWindow.qml:19
+msgid "Radical red"
+msgstr "መሰረታዊ ቀይ"
+
+#: ../PreferenceWindow.qml:20
+msgid "Lavender indigo"
+msgstr "ወይን ጠጅ"
+
+#: ../PreferenceWindow.qml:21
+msgid "Royal blue"
+msgstr "ሰማያዊ"
+
+#: ../PreferenceWindow.qml:22
+msgid "Aluminum"
+msgstr "አሉሚኒየም"
+
+#: ../PreferenceWindow.qml:23
+msgid "Clean white"
+msgstr "ንጹህ ነጭ"
+
+#: ../PreferenceWindow.qml:43 ../PreferenceWindow.qml:127
+msgid "Basic settings"
+msgstr "መሰረታዊ ማሰናጃ"
+
+#: ../PreferenceWindow.qml:52 ../PreferenceWindow.qml:191
+msgid "Time span"
+msgstr "የሚፈጀው ጊዜ "
+
+#: ../PreferenceWindow.qml:59 ../PreferenceWindow.qml:209
+msgid "Keyboard shortcuts"
+msgstr "የፊደል ገበታ አቋራጮች"
+
+#: ../PreferenceWindow.qml:90 ../PreferenceWindow.qml:403
+msgid "Subtitle settings"
+msgstr "ንዑስ አርእስት ማሰናጃ"
+
+#: ../PreferenceWindow.qml:146
+msgid "Apply the size last time closed"
+msgstr "መጨረሻ ጊዜ ሲዘጋ የነበረውን መጠን መጠቀሚያ "
+
+#: ../PreferenceWindow.qml:177
+msgid "Pause when minimized"
+msgstr "በሚያንስ ጊዜ ማስቆሚያ"
+
+#: ../PreferenceWindow.qml:182
+msgid "Enable system popup notification"
+msgstr "የስርአቱን ብቅ ባይ ማስታወቂያ ማስቻያ"
+
+#: ../PreferenceWindow.qml:200
+msgid "Forward/Rewind"
+msgstr "ወደ ፊት/ማጠንጠኛ"
+
+#: ../PreferenceWindow.qml:247
+msgid "Playlist"
+msgstr ""
+
+#: ../PreferenceWindow.qml:252
+msgid "Speed up"
+msgstr "ማፍጠኛ"
+
+#: ../PreferenceWindow.qml:257
+msgid "Slow down"
+msgstr "ማዘግያ"
+
+#: ../PreferenceWindow.qml:283
+msgid "Rotate counterclockwise"
+msgstr "ማዞሪያ ከ ቀኝ ወደ ግራ"
+
+#: ../PreferenceWindow.qml:287
+msgid "Rotate clockwise"
+msgstr "ማዞሪያ ከ ግራ ወደ ቀኝ"
+
+#: ../PreferenceWindow.qml:299
+msgid "Mute"
+msgstr "መቀነሻ"
+
+#: ../PreferenceWindow.qml:320 ../menu_controller.py:89
+msgid "Open file"
+msgstr "ፋይል መክፈቻ"
+
+#: ../PreferenceWindow.qml:392
+msgid "Scroll"
+msgstr "መሸብለያ"
+
+#: ../PreferenceWindow.qml:395
+msgid "Volume"
+msgstr "መጠን"
+
+#: ../PreferenceWindow.qml:415
+msgid "Font"
+msgstr "ፊደል"
+
+#: ../PreferenceWindow.qml:425
+msgid "Font color"
+msgstr "የ ፊደል ቀለም"
+
+#: ../PreferenceWindow.qml:441
+msgid "Size"
+msgstr "መጠን"
+
+#: ../PreferenceWindow.qml:459
+msgid "Border color"
+msgstr "የድንበር ቀለም"
+
+#: ../PreferenceWindow.qml:475
+msgid "Position"
+msgstr "ቦታ"
+
+#: ../PreferenceWindow.qml:480
+msgid "Bottom"
+msgstr "ከ ታች"
+
+#: ../PreferenceWindow.qml:481
+msgid "Top"
+msgstr "ከ ላይ"
+
+#: ../PreferenceWindow.qml:487
+msgid "Subtitle Delay"
+msgstr "ንዑስ አርእስት ማዘግያ"
+
+#: ../movie_info.py:140
+msgid "Unknown"
+msgstr "ያልታወቀ"
+
+#: ../menu_controller.py:34
+msgid "Default"
+msgstr "ነባር"
+
+#: ../menu_controller.py:46
+msgid "Rotate 90 degree clockwise"
+msgstr "ማዞሪያ 90 ዲግሪ ከ ግራ ወደ ቀኝ"
+
+#: ../menu_controller.py:47
+msgid "Rotate 90 degree counterclockwise"
+msgstr "ማዞሪያ 90 ዲግሪ ከ ቀኝ ወደ ግራ"
+
+#: ../menu_controller.py:48
+msgid "Flip horizontally"
+msgstr "በ አግድም መገልበጫ"
+
+#: ../menu_controller.py:49
+msgid "Flip vertically"
+msgstr "በ ቁመት መገልበጫ"
+
+#: ../menu_controller.py:57
+msgid "Volume Up"
+msgstr "መጠን መጨመሪያ"
+
+#: ../menu_controller.py:58
+msgid "Volume Down"
+msgstr "መጠን መቀነሻ"
+
+#: ../menu_controller.py:63
+msgid "Hide subtitle"
+msgstr "ንዑስ አርእስት መደበቂያ"
+
+#: ../menu_controller.py:67
+msgid "Open manually"
+msgstr "በእጅ መክፈቻ"
+
+#: ../menu_controller.py:68
+msgid "Select file"
+msgstr "ፋይል ይምረጡ"
+
+#: ../menu_controller.py:69
+msgid "Subtitle setting"
+msgstr "ንዑስ አርእስት ማሰናጃ"
+
+#: ../menu_controller.py:73
+msgid "Order"
+msgstr "ቅደም ተከተል"
+
+#: ../menu_controller.py:74
+msgid "Random"
+msgstr "በደፈናው"
+
+#: ../menu_controller.py:75
+msgid "Single"
+msgstr "ነጠላ"
+
+#: ../menu_controller.py:76
+msgid "Repeat (Single)"
+msgstr "መድገሚያ (ነጠላ)"
+
+#: ../menu_controller.py:77
+msgid "Repeat (Playlist)"
+msgstr "መድገሚያ (የማጫወቻ ዝርዝር)"
+
+#: ../menu_controller.py:81
+msgid "Previous"
+msgstr "ቀደም ያለው"
+
+#: ../menu_controller.py:82
+msgid "Next"
+msgstr "ይቀጥሉ"
+
+#: ../menu_controller.py:90
+msgid "Open folder"
+msgstr "ፎልደር መክፈቻ"
+
+#: ../menu_controller.py:93
+msgid "Fullscreen/Quit"
+msgstr "ከ ሙሉ መመልከቻው ዘዴ መውጫ"
+
+#: ../menu_controller.py:95
+msgid "Always on top"
+msgstr "ሁል ጊዜ ከ ላይ"
+
+#: ../menu_controller.py:96
+msgid "PLaylist"
+msgstr ""
+
+#: ../menu_controller.py:98
+msgid "Play Sequence"
+msgstr "የማጫወቻ ቅደም ተከተል"
+
+#: ../menu_controller.py:99 ../menu_controller.py:109
+msgid "Play"
+msgstr "ማጫወቻ"
+
+#: ../menu_controller.py:100
+msgid "Frame"
+msgstr "ክፈፍ"
+
+#: ../menu_controller.py:101
+msgid "Sound"
+msgstr "ድምፅ"
+
+#: ../menu_controller.py:104
+msgid "Options"
+msgstr "ምርጫዎች"
+
+#: ../menu_controller.py:105 ../menu_controller.py:119
+msgid "Information"
+msgstr "መረጃ"
+
+#: ../menu_controller.py:110
+msgid "Add file to playlist"
+msgstr "ፋይል ወደ ዝርዝር ማጫወቻ መጨመሪያ"
+
+#: ../menu_controller.py:112
+msgid "Remove from playlist"
+msgstr "ከ ዝርዝር ማጫወቻ ማስወገጃ"
+
+#: ../menu_controller.py:113
+msgid "Remove invalid file"
+msgstr "ዋጋ የሌለውን ፋይል ማስወገጃ "
+
+#: ../menu_controller.py:114
+msgid "Clear playlist"
+msgstr "ዝርዝር ማጫወቻ ማጽጃ"
+
+#: ../menu_controller.py:118
+msgid "Open file location"
+msgstr "የፋይሉን አካባቢ መክፈቻ"
