@@ -4,7 +4,7 @@ import Deepin.Widgets 1.0
 DPreferenceWindow {
 	id: info_window
 	width: 400
-	height: 210
+	height: 200
 	flags: Qt.BypassWindowManagerHint
 	titleContentPadding: 0
 
@@ -32,26 +32,33 @@ DPreferenceWindow {
 	}
 
 	content: Column {
-		spacing: 5
+		id: column
+		spacing: 10
 		anchors.left: parent.left
 		anchors.leftMargin: 15
 		anchors.right: parent.right
 		anchors.rightMargin: 15
 
-		Text {
-			id: file_title
-			font.pixelSize: 12
-			font.bold: true
-			color: "#b4b4b4"
+		Column {
 			width: parent.width
-			elide: Text.ElideRight
-			text: info_window.fileTitle
-		}
+			height: childrenRect.height
 
-		Space { width: parent.width; height: 5}
+			Text {
+				id: file_title
+				font.pixelSize: 12
+				font.bold: true
+				color: "#b4b4b4"
+				width: parent.width
+				height: implicitHeight
+				elide: Text.ElideRight
+				text: info_window.fileTitle
+			}
+			Space { width: parent.width; height: 5}
+		}
 
 		Text {
 			id: file_type
+			height: implicitHeight
 			font.pixelSize: 12
 			color: "#b4b4b4"
 			text: dsTr("File type") + ": " + info_window.fileType
@@ -59,6 +66,7 @@ DPreferenceWindow {
 
 		Text {
 			id: file_size
+			height: implicitHeight
 			font.pixelSize: 12
 			color: "#b4b4b4"
 			text: dsTr("File size") + ": " + info_window.fileSize
@@ -66,6 +74,7 @@ DPreferenceWindow {
 
 		Text {
 			id: movie_resolution
+			height: implicitHeight
 			font.pixelSize: 12
 			color: "#b4b4b4"
 			text: dsTr("Resolution") + ": " + info_window.movieResolution
@@ -73,23 +82,40 @@ DPreferenceWindow {
 
 		Text {
 			id: movie_duration
+			height: implicitHeight
 			font.pixelSize: 12
 			color: "#b4b4b4"
 			text: dsTr("Movie duration") + ": " + info_window.movieDuration
 		}	
 
-		Text {
-			id: file_path
-			font.pixelSize: 12
-			color: "#b4b4b4"
+		Item {
 			width: parent.width
-			elide: Text.ElideRight
-			text: dsTr("File path") + ": " + info_window.filePath
+			height: file_path.height
+
+			Text {
+				id: file_path_title
+				font.pixelSize: 12
+				color: "#b4b4b4"
+				width: implicitWidth
+				text: dsTr("File path") + ": "
+			}
+			Text {
+				id: file_path
+				font.pixelSize: 12
+				color: "#b4b4b4"
+				width: parent.width - file_path_title.width
+				wrapMode: Text.WordWrap
+				text: info_window.filePath
+
+				anchors.left: file_path_title.right
+			}
 		}
 
 		Item {
 			width: parent.width
-			height: 30
+			height: copy_button.height + spc.height
+
+			Space { id: spc; width: parent.width; height: 6 }
 
 			DTextButton {
 				id: copy_button
@@ -114,6 +140,10 @@ DPreferenceWindow {
 
 				onClicked: info_window.hide()
 			}
+		}
+
+		Component.onCompleted: {
+			info_window.height = Qt.binding(function() { return childrenRect.height + 50 })
 		}
 	}
 }

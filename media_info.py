@@ -87,6 +87,7 @@ def parse_info(filename):
             'general_size' : None,
             'general_bitrate' : None,
             'general_duration' : None,
+            'general_extension' : None,
             'video_format' : '',
             'video_codec_id' : '',
             'video_codec' : '',
@@ -125,6 +126,7 @@ def parse_info(filename):
                 if key == 'File size': set_par(result,'general_size', value)
                 if key == 'Overall bit rate': set_par(result,'general_bitrate', value)
                 if key == 'Duration': set_par(result,'general_duration', value)
+                if key == 'File extension': set_par(result,'general_extension', value)
             if mode == 'Video':
                 if key == 'Format': set_par(result,'video_format', value)
                 if key == 'Codec ID': set_par(result,'video_codec_id', value)
