@@ -5,6 +5,7 @@ DPreferenceWindow {
 	id: info_window
 	width: 400
 	height: 210
+	flags: Qt.BypassWindowManagerHint
 
 	property string fileTitle
 	property string fileType

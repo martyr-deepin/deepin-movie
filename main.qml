@@ -127,16 +127,24 @@ Rectangle {
 
     PreferenceWindow {
         id: preference_window
-        x: windowView.x + (windowView.width - width) / 2
-        y: windowView.y + (windowView.height - height) / 2
         width: 560
         height: 480
+
+        onVisibleChanged: {
+            x = windowView.x + (windowView.width - width) / 2
+            y = windowView.y + (windowView.height - height) / 2
+        }
     }
 
     InformationWindow {
         id: info_window
 
         onCopyToClipboard: _utils.copyToClipboard(text)
+
+        onVisibleChanged: {
+            x = windowView.x + (windowView.width - width) / 2
+            y = windowView.y + (windowView.height - height) / 2
+        }
     }
 
     // translation tools

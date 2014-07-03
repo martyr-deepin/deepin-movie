@@ -6,6 +6,7 @@ DPreferenceWindow {
     id: window
     width: 560
     height: 480
+    flags: Qt.BypassWindowManagerHint
 
     property string currentSectionId
     property var presetColors: [
