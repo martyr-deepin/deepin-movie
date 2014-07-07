@@ -392,7 +392,7 @@ MouseArea {
     }
 
     // player control operation related
-    function play() { windowView.raise(); player.play() }
+    function play() { player.play() }
     function pause() { player.pause() }
     function stop() { player.stop() }
 

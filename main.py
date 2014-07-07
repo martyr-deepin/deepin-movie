@@ -130,8 +130,9 @@ if __name__ == "__main__":
         DeepinMovieInterface, session_bus, DBUS_PATH)
 
     result = check_multiple_instances()
+    windowView = Window(result)
     if result: 
-        dbus_service = DeepinMovieServie()
+        dbus_service = DeepinMovieServie(windowView)
         session_bus.registerObject(DBUS_PATH, dbus_service)
     if not config.playerMultipleProgramsAllowed:
         if not result:
@@ -140,7 +141,6 @@ if __name__ == "__main__":
                 dbus_interface.play(movie_file)
             os._exit(0)
 
-    windowView = Window(result)
     # page_manager = PageManager(windowView)
     menu_controller = MenuController(windowView)
     inputDialog = InputDialog(None)
