@@ -160,6 +160,7 @@ Rectangle {
             id: playlist
             width: parent.width - 14 * 2
             height: Math.min(parent.height, childrenRect.height)
+            interactive: height == parent.height
             root: playlist
             currentIndex: -1 // this is important, getClickedItemInfo will sometimes works wrongly. 
             visible: playlistPanel.expanded

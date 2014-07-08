@@ -250,6 +250,41 @@ ListView {
 					hoverEnabled: true
 					acceptedButtons: Qt.LeftButton | Qt.RightButton
 					anchors.fill: parent
+
+					drag {
+						target: column
+						axis: Drag.YAxis
+						onActiveChanged: {
+							if (drag.active) return
+
+							var listView = column.ListView.view
+							for (var i = 0; i < listView.allItems.length; i++) {
+								if (index == i) {
+									if (i < listView.model.count - 1) {
+										if (listView.allItems[i + 1].y > column.y) {
+											// move back to its position
+											print("here")
+											listView.model.move(index, 0, 1)
+											listView.model.move(index, listView.model.count - 1, 1)
+											listView.model.move(index, i, 1)
+											return
+										} else {
+											continue
+										}
+									} else {
+										listView.model.move(index, listView.model.count - 1, 1)
+										return
+									}
+								} else if (listView.allItems[i].y > column.y) {
+									listView.model.move(index, i, 1)
+									return
+								}
+							}
+
+							column.ListView.view.model.move(index, column.ListView.view.model.count - 1, 1)
+						}
+					}
+
 					onEntered: {
 					    delete_button.visible = true
 					    delete_button.source = "image/delete_hover.png"
