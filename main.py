@@ -35,6 +35,7 @@
 import os
 import sys
 import signal
+import weakref
 
 #warning - below code should be deleted while releasing this product
 class MultiWriter(object):
@@ -130,9 +131,8 @@ if __name__ == "__main__":
         DeepinMovieInterface, session_bus, DBUS_PATH)
 
     result = check_multiple_instances()
-    windowView = Window(result)
     if result: 
-        dbus_service = DeepinMovieServie(windowView)
+        dbus_service = DeepinMovieServie(app)
         session_bus.registerObject(DBUS_PATH, dbus_service)
     if not config.playerMultipleProgramsAllowed:
         if not result:
@@ -141,10 +141,11 @@ if __name__ == "__main__":
                 dbus_interface.play(movie_file)
             os._exit(0)
 
-    # page_manager = PageManager(windowView)
+    windowView = Window(result)
     menu_controller = MenuController(windowView)
     inputDialog = InputDialog(None)
     file_monitor = FileMonitor()
+    app._extra_window = weakref.ref(windowView)
 
     qml_context = windowView.rootContext()
 
@@ -152,10 +153,8 @@ if __name__ == "__main__":
     qml_context.setContextProperty("_utils", utils)
     qml_context.setContextProperty("_file_monitor", file_monitor)
     qml_context.setContextProperty("database", database)
-
     qml_context.setContextProperty("windowView", windowView)
     qml_context.setContextProperty("movieInfo", movie_info)
-    # qml_context.setContextProperty("pageManager", page_manager)
     qml_context.setContextProperty("_input_dialog", inputDialog)
     qml_context.setContextProperty("_menu_controller", menu_controller)
 

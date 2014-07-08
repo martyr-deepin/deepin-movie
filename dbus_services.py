@@ -12,13 +12,13 @@ def check_multiple_instances():
     return session_bus.registerService(DBUS_NAME)
 
 class DeepinMovieServie(QObject):
-    def __init__(self, mainWindow):
+    def __init__(self, application):
         super(DeepinMovieServie, self).__init__()
-        self.__mainWindow = mainWindow
+        self.__app = application
         self.__dbusAdaptor = DeepinMovieServiceAdaptor(self)
 
     def play(self, file_path):
-        self.__mainWindow.raise()
+        self.__app._extra_window().raise_()
         movie_info.movie_file = file_path      
 
 class DeepinMovieServiceAdaptor(QDBusAbstractAdaptor):
