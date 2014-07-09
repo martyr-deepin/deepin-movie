@@ -272,8 +272,6 @@ ListView {
 											column.moveItem(index, listView.model.count - 1, 1)
 											column.moveItem(index, i, 1)
 											return
-										} else {
-											continue
 										}
 									} else {
 										column.moveItem(index, 0, 1)
@@ -281,12 +279,16 @@ ListView {
 										return
 									}
 								} else if (listView.allItems[i].y > column.y) {
-									column.moveItem(index, i, 1)
+									if (i > index) {
+										column.moveItem(index, i - 1, 1)	
+									} else {
+										column.moveItem(index, i, 1)
+									}
 									return
 								}
 							}
 
-							listView.model.move(index, column.ListView.view.model.count - 1, 1)
+							listView.model.move(index, listView.model.count - 1, 1)
 						}
 					}
 
