@@ -241,6 +241,11 @@ ListView {
             	}
             }
 
+            function moveItem(from, to) {
+            	column.ListView.view.model.move(from, to, 1)
+            	column.ListView.view.allItems.splice(to, 0, column.ListView.view.allItems.splice(from, 1)[0])
+            }
+
 			Item {
 				width: column.width
 				height: 24
@@ -263,25 +268,25 @@ ListView {
 									if (i < listView.model.count - 1) {
 										if (listView.allItems[i + 1].y > column.y) {
 											// move back to its position
-											print("here")
-											listView.model.move(index, 0, 1)
-											listView.model.move(index, listView.model.count - 1, 1)
-											listView.model.move(index, i, 1)
+											column.moveItem(index, 0, 1)
+											column.moveItem(index, listView.model.count - 1, 1)
+											column.moveItem(index, i, 1)
 											return
 										} else {
 											continue
 										}
 									} else {
-										listView.model.move(index, listView.model.count - 1, 1)
+										column.moveItem(index, 0, 1)
+										column.moveItem(index, listView.model.count - 1, 1)
 										return
 									}
 								} else if (listView.allItems[i].y > column.y) {
-									listView.model.move(index, i, 1)
+									column.moveItem(index, i, 1)
 									return
 								}
 							}
 
-							column.ListView.view.model.move(index, column.ListView.view.model.count - 1, 1)
+							listView.model.move(index, column.ListView.view.model.count - 1, 1)
 						}
 					}
 
