@@ -8,6 +8,8 @@ Video {
     transform: flip
     visible: playbackState != MediaPlayer.StoppedState
 
+    property bool hasMedia: hasVideo || hasAudio
+
     property alias subtitleContent: subtitle.text
     property alias subtitleFontSize: subtitle.fontSize
     property alias subtitleFontColor: subtitle.fontColor
