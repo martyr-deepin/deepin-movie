@@ -8,7 +8,11 @@ MouseArea {
     property int windowLastX
     property int windowLastY
 
+    property bool shouldPerformClick
+
 	onPressed: { 
+        shouldPerformClick = true
+
         var pos = window.getCursorPos()
         
         windowLastX = window.x
@@ -18,6 +22,8 @@ MouseArea {
     }
 	onPositionChanged: { 
         if (pressed && window.getState() != Qt.WindowFullScreen) {
+            shouldPerformClick = false
+
             var pos = window.getCursorPos()
             window.setX(windowLastX + pos.x - dragStartX)
             window.setY(windowLastY + pos.y - dragStartY)

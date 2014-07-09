@@ -135,7 +135,7 @@ Rectangle {
         onClicked: { 
             if (mouse.button == Qt.RightButton) {
                 _menu_controller.show_playlist_menu("")
-            } else {
+            } else if(shouldPerformClick){
                 playlistPanel.hide() 
             }
         }
@@ -159,8 +159,8 @@ Rectangle {
         PlaylistView {
             id: playlist
             width: parent.width - 14 * 2
-            height: Math.min(parent.height, childrenRect.height)
-            interactive: height == parent.height
+            height: parent.height 
+            interactive: childrenRect.height > parent.height
             root: playlist
             currentIndex: -1 // this is important, getClickedItemInfo will sometimes works wrongly. 
             visible: playlistPanel.expanded
