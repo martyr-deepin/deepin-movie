@@ -142,7 +142,7 @@ DragableArea {
                     }
                     PropertyChanges {
                         target: middleButtonArea
-                        anchors.centerIn: parent
+                        anchors.centerIn: buttonArea
                     }
                     PropertyChanges {
                         target: rightButtonArea
@@ -172,7 +172,7 @@ DragableArea {
                     }
                     PropertyChanges {
                         target: middleButtonArea
-                        anchors.centerIn: parent
+                        anchors.centerIn: buttonArea
                     }
                     PropertyChanges {
                         target: rightButtonArea
@@ -198,10 +198,11 @@ DragableArea {
                 Text {
                     id: playTime
                     visible: control_bar.previewHasVideo && videoPreview.source != ""
-                    anchors.verticalCenter: parent.verticalCenter
                     text: formatTime(control_bar.percentage * movieInfo.movie_duration) + " / " + formatTime(movieInfo.movie_duration)
                     color: Qt.rgba(100, 100, 100, 1)
                     font.pixelSize: 12
+
+                    anchors.verticalCenter: parent.verticalCenter
                 }
             }
 
