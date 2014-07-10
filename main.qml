@@ -361,7 +361,7 @@ Rectangle {
         // QML automatically decodes the file name, if we don't
         // encode it before, we'll get 'gst cannot find file' like errors when 
         // the file name is url encoded.
-        source: encodeURI(movieInfo.movie_file) 
+        source: movieInfo.movie_file == decodeURI(movieInfo.movie_file) ? movieInfo.movie_file : encodeURI(movieInfo.movie_file) 
 
         subtitleShow: config.subtitleAutoLoad
         subtitleFontSize: Math.floor(config.subtitleFontSize * main_window.width / windowView.defaultWidth)
