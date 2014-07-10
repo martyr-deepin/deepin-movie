@@ -239,6 +239,7 @@ ListView {
 								sep.parent = parent
 								sep.x = parent.x
 								sep.y = listView.allItems[i].y + listView.allItems[i].height
+								sep.visible = true
 								listView.allItems[i].y -= height
 							}
 						} else if (y < lastY) {
@@ -248,6 +249,7 @@ ListView {
 								sep.parent = parent
 								sep.x = parent.x
 								sep.y = listView.allItems[i].y + listView.allItems[i].height
+								sep.visible = true
 								listView.allItems[i].y += height
 							}
 						}
