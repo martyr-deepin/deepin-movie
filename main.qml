@@ -294,7 +294,19 @@ Rectangle {
         id: auto_play_next_on_invalid_timer
         interval: 1000 * 3
 
-        onTriggered: main_controller.playNext()
+        property url invalidFile: ""
+
+        function startWidthFile(file) {
+            invalidFile = file
+            restart()
+        }
+
+        onTriggered: {
+            if (-1 == invalidFile.toString().indexOf("file://")) {
+                invalidFile = "file://" + invalidFile
+            }
+            main_controller.playNextOf(invalidFile)
+        }
     }
 
     Timer {
@@ -465,6 +477,7 @@ Rectangle {
         widthHeightScale: root.widthHeightScale
         previewHasVideo: player.hasVideo
         dragbarVisible: root.state == "normal"
+        timeInfoVisible: player.hasMedia && player.source != ""
 
         anchors.horizontalCenter: main_window.horizontalCenter
 

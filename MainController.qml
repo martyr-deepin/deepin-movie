@@ -108,9 +108,10 @@ MouseArea {
         }
 
         onFileInvalid: {
+            var invalidFile = movieInfo.movie_file
             notifybar.showPermanently(dsTr("Invalid file") + ": " + movieInfo.movie_title)
             root.reset()
-            shouldAutoPlayNextOnInvalidFile ? auto_play_next_on_invalid_timer.restart() 
+            shouldAutoPlayNextOnInvalidFile ? auto_play_next_on_invalid_timer.startWidthFile(invalidFile) 
                                             : (shouldAutoPlayNextOnInvalidFile = false)
         }
 
@@ -474,40 +475,44 @@ MouseArea {
     function openFileForPlaylist() { open_file_dialog.purpose = purposes.addPlayListItem; open_file_dialog.open() }
     function openFileForSubtitle() { open_file_dialog.purpose = purposes.openSubtitleFile; open_file_dialog.open() }
 
-    function playNext() { 
+    function playNextOf(file) {
         var next = null
 
         if (config.playerPlayOrderType == "ORDER_TYPE_RANDOM") {
             next = playlist.getRandom()
         } else if (config.playerPlayOrderType == "ORDER_TYPE_RANDOM_IN_ORDER") {
-            next = playlist.getNextSource(database.lastPlayedFile)
+            next = playlist.getNextSource(file)
         } else if (config.playerPlayOrderType == "ORDER_TYPE_SINGLE") {
             next = null
         } else if (config.playerPlayOrderType == "ORDER_TYPE_SINGLE_CYCLE") {
             next = database.lastPlayedFile
         } else if (config.playerPlayOrderType == "ORDER_TYPE_PLAYLIST_CYCLE") {
-            next = playlist.getNextSourceCycle(database.lastPlayedFile)
+            next = playlist.getNextSourceCycle(file)
         }
 
         next ? (movieInfo.movie_file = next) : root.reset()
     }
-    function playPrevious() { 
+
+    function playPreviousOf(file) {
         var next = null
 
         if (config.playerPlayOrderType == "ORDER_TYPE_RANDOM") {
             next = playlist.getRandom()
         } else if (config.playerPlayOrderType == "ORDER_TYPE_RANDOM_IN_ORDER") {
-            next = playlist.getPreviousSource(database.lastPlayedFile)
+            next = playlist.getPreviousSource(file)
         } else if (config.playerPlayOrderType == "ORDER_TYPE_SINGLE") {
             next = null
         } else if (config.playerPlayOrderType == "ORDER_TYPE_SINGLE_CYCLE") {
             next = database.lastPlayedFile
         } else if (config.playerPlayOrderType == "ORDER_TYPE_PLAYLIST_CYCLE") {
-            next = playlist.getPreviousSourceCycle(database.lastPlayedFile)
+            next = playlist.getPreviousSourceCycle(file)
         }
 
         next ? (movieInfo.movie_file = next) : root.reset()
     }
+
+    function playNext() { playNextOf(database.lastPlayedFile) }
+    function playPrevious() { playPreviousOf(database.lastPlayedFile) }
 
     function setSubtitleVerticalPosition(percentage) {
         config.subtitleVerticalPosition = Math.max(0, Math.min(1, percentage))

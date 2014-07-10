@@ -8,6 +8,7 @@ DragableArea {
     // make sure the 15 pixels upon the controlbar hasn't the ability to play or pause the video
     height: program_constants.controlbarHeight + 15 
     
+    property alias timeInfoVisible: playTime.visible
     property alias volume: volume_button.volume
     property alias percentage: progressbar.percentage
     property alias videoPlaying: play_pause_button.checkFlag
@@ -197,7 +198,6 @@ DragableArea {
 
                 Text {
                     id: playTime
-                    visible: control_bar.previewHasVideo && videoPreview.source != ""
                     text: formatTime(control_bar.percentage * movieInfo.movie_duration) + " / " + formatTime(movieInfo.movie_duration)
                     color: Qt.rgba(100, 100, 100, 1)
                     font.pixelSize: 12
