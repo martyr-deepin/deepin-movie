@@ -212,6 +212,30 @@ ListView {
 			property bool isHover: mouse_area.containsMouse
 			onIsSelectedChanged: column.ListView.view.isSelected = isSelected
 
+			property int lastY: y
+			onYChanged: {
+				if (mouse_area.drag.active) {
+					var listView = column.ListView.view			
+					for (var i = 0; i < listView.allItems.length; i++) {
+						if (y > lastY) {
+							if (listView.allItems[i].y < y + height 
+								&& y + height < listView.allItems[i].y + listView.allItems[i].height)
+							{
+								listView.allItems[i].y -= height
+							}
+						} else if (y < lastY) {
+							if (listView.allItems[i].y < y 
+								&& y < listView.allItems[i].y + listView.allItems[i].height)
+							{
+								listView.allItems[i].y += height
+							}
+						}
+					}
+				}
+
+				lastY = y
+			}
+
 			Component.onCompleted: ListView.view.allItems.push(column)
 			Component.onDestruction: {
 				var idx = column.ListView.view.allItems.indexOf(column)
@@ -268,27 +292,27 @@ ListView {
 									if (i < listView.model.count - 1) {
 										if (listView.allItems[i + 1].y > column.y) {
 											// move back to its position
-											column.moveItem(index, 0, 1)
-											column.moveItem(index, listView.model.count - 1, 1)
-											column.moveItem(index, i, 1)
+											column.moveItem(index, 0)
+											column.moveItem(index, listView.model.count - 1)
+											column.moveItem(index, i)
 											return
 										}
 									} else {
-										column.moveItem(index, 0, 1)
-										column.moveItem(index, listView.model.count - 1, 1)
+										column.moveItem(index, 0)
+										column.moveItem(index, listView.model.count - 1)
 										return
 									}
 								} else if (listView.allItems[i].y > column.y) {
 									if (i > index) {
-										column.moveItem(index, i - 1, 1)	
+										column.moveItem(index, i - 1)	
 									} else {
-										column.moveItem(index, i, 1)
+										column.moveItem(index, i)
 									}
 									return
 								}
 							}
 
-							listView.model.move(index, listView.model.count - 1, 1)
+							column.moveItem(index, listView.model.count - 1)
 						}
 					}
 
