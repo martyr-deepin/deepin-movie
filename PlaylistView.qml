@@ -195,6 +195,21 @@ ListView {
         model.clear()
     }
 
+    Rectangle {
+    	id: sep
+    	width: 1
+    	height: parent.width
+    	rotation: -90
+    	transformOrigin: Item.TopLeft
+    	gradient: Gradient {
+    		GradientStop { position: 0.0; color: Qt.rgba(1, 1, 1, 0.0)}
+    		GradientStop { position: 0.3; color: Qt.rgba(1, 1, 1, 1.0)}
+    		GradientStop { position: 0.5; color: Qt.rgba(1, 1, 1, 1.0)}
+    		GradientStop { position: 0.7; color: Qt.rgba(1, 1, 1, 1.0)}
+    		GradientStop { position: 1.0; color: Qt.rgba(1, 1, 1, 0.0)}
+    	}
+    }
+
 	model: ListModel {}
 	delegate: Component {
 		Column {
@@ -221,12 +236,18 @@ ListView {
 							if (listView.allItems[i].y < y + height 
 								&& y + height < listView.allItems[i].y + listView.allItems[i].height)
 							{
+								sep.parent = parent
+								sep.x = parent.x
+								sep.y = listView.allItems[i].y + listView.allItems[i].height
 								listView.allItems[i].y -= height
 							}
 						} else if (y < lastY) {
 							if (listView.allItems[i].y < y 
 								&& y < listView.allItems[i].y + listView.allItems[i].height)
 							{
+								sep.parent = parent
+								sep.x = parent.x
+								sep.y = listView.allItems[i].y + listView.allItems[i].height
 								listView.allItems[i].y += height
 							}
 						}
@@ -286,6 +307,7 @@ ListView {
 						onActiveChanged: {
 							if (drag.active) return
 
+							sep.visible = false
 							var listView = column.ListView.view
 							for (var i = 0; i < listView.allItems.length; i++) {
 								if (index == i) {
