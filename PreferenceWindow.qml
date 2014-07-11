@@ -279,26 +279,32 @@ DPreferenceWindow {
             HotKeyInputRow {
                 title: dsTr("Mini mode")
                 hotKey: config.hotkeysFrameSoundToggleMiniMode
+                onHotkeySet: config.hotkeysFrameSoundToggleMiniMode = hotkey
             }
             HotKeyInputRow {
                 title: dsTr("Rotate counterclockwise")
                 hotKey: config.hotkeysFrameSoundRotateAnticlockwise
+                onHotkeySet: config.hotkeysFrameSoundRotateAnticlockwise = hotkey
             }
             HotKeyInputRow {
                 title: dsTr("Rotate clockwise")
                 hotKey: config.hotkeysFrameSoundRotateClockwise
+                onHotkeySet: config.hotkeysFrameSoundRotateClockwise = hotkey
             }
             HotKeyInputRow {
                 title: dsTr("Volume up")
                 hotKey: config.hotkeysFrameSoundIncreaseVolume
+                onHotkeySet: config.hotkeysFrameSoundIncreaseVolume = hotkey
             }
             HotKeyInputRow {
                 title: dsTr("Volume down")
                 hotKey: config.hotkeysFrameSoundDecreaseVolume
+                onHotkeySet: config.hotkeysFrameSoundDecreaseVolume = hotkey
             }
             HotKeyInputRow {
                 title: dsTr("Mute")
                 hotKey: config.hotkeysFrameSoundToggleMute
+                onHotkeySet: config.hotkeysFrameSoundToggleMute = hotkey
             }
         }
         SectionContent { 
@@ -320,14 +326,17 @@ DPreferenceWindow {
             HotKeyInputRow {
                 title: dsTr("Open file")
                 hotKey: config.hotkeysFilesOpenFile
+                onHotkeySet: config.hotkeysFilesOpenFile = hotkey
             }
             HotKeyInputRow {
                 title: dsTr("Open previous")
                 hotKey: config.hotkeysFilesPlayPrevious
+                onHotkeySet: config.hotkeysFilesPlayPrevious = hotkey
             }
             HotKeyInputRow {
                 title: dsTr("Open next")
                 hotKey: config.hotkeysFilesPlayNext
+                onHotkeySet: config.hotkeysFilesPlayNext = hotkey
             }
         }
         SectionContent { 
@@ -349,18 +358,22 @@ DPreferenceWindow {
             HotKeyInputRow {
                 title: dsTr("Forward 0.5s")
                 hotKey: config.hotkeysSubtitlesSubtitleForward
+                onHotkeySet: config.hotkeysSubtitlesSubtitleForward = hotkey
             }
             HotKeyInputRow {
                 title: dsTr("Delay 0.5s")
                 hotKey: config.hotkeysSubtitlesSubtitleBackward
+                onHotkeySet: config.hotkeysSubtitlesSubtitleBackward = hotkey
             }
             HotKeyInputRow {
                 title: dsTr("Subtitle up")
                 hotKey: config.hotkeysSubtitlesSubtitleMoveUp
+                onHotkeySet: config.hotkeysSubtitlesSubtitleMoveUp = hotkey
             }
             HotKeyInputRow {
                 title: dsTr("Subtitle down")
                 hotKey: config.hotkeysSubtitlesSubtitleMoveDown
+                onHotkeySet: config.hotkeysSubtitlesSubtitleMoveDown = hotkey
             }
         }
         SectionContent { 
