@@ -168,9 +168,10 @@ class Config(QObject):
             
             def _get(section, key):
                 def f(self):
-                    try:
-                        return self.fetchBool(section, key)
-                    except Exception:
+                    result = self.fetch(section, key)
+                    if result in ("True", "False"):
+                        return eval(result)
+                    else:
                         try:
                             return self.fetchFloat(section, key)
                         except Exception:
