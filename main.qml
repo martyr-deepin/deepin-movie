@@ -263,7 +263,7 @@ Rectangle {
         time_indicator.visible = (state == Qt.WindowFullScreen && 
                                   player.playbackState == MediaPlayer.PlayingState)
         if (windowLastState != state) {
-            if (config.playerPauseOnMinimised) {
+            if (config.playerPauseOnMinimized) {
                 if (state == Qt.WindowMinimized) {
                     if (player.playbackState == MediaPlayer.PlayingState) {
                         main_controller.pause()
