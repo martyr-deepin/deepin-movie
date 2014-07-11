@@ -120,7 +120,7 @@ msgstr "双击"
 #: ../PreferenceWindow.qml:223 ../PreferenceWindow.qml:274
 #: ../PreferenceWindow.qml:315 ../PreferenceWindow.qml:344
 msgid "Enable keyboard shortcuts"
-msgstr "启动快捷键"
+msgstr "启用快捷键"
 
 #: ../PreferenceWindow.qml:183
 msgid "Enable system popup notification"
