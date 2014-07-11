@@ -422,7 +422,7 @@ DPreferenceWindow {
             DCheckBox {
                 text: dsTr("Subtitles loaded automatically")
                 checked: config.subtitleAutoLoad
-                onClicked: config.subtitleAutoLoads = checked  
+                onClicked: config.subtitleAutoLoad = checked  
             }
 
             ComboBoxRow {
