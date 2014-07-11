@@ -131,6 +131,7 @@ Rectangle {
         height: 480
 
         onVisibleChanged: {
+            flags = windowView.getState() == Qt.WindowFullScreen ? Qt.BypassWindowManagerHint : Qt.FramelessWindowHint | Qt.SubWindow
             x = windowView.x + (windowView.width - width) / 2
             y = windowView.y + (windowView.height - height) / 2
         }
@@ -142,6 +143,7 @@ Rectangle {
         onCopyToClipboard: _utils.copyToClipboard(text)
 
         onVisibleChanged: {
+            flags = windowView.getState() == Qt.WindowFullScreen ? Qt.BypassWindowManagerHint : Qt.FramelessWindowHint | Qt.SubWindow
             x = windowView.x + (windowView.width - width) / 2
             y = windowView.y + (windowView.height - height) / 2
         }
