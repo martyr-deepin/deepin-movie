@@ -197,6 +197,7 @@ ListView {
 
     Rectangle {
     	id: sep
+    	visible: false
     	width: 1
     	height: parent.width
     	rotation: -90
@@ -236,20 +237,20 @@ ListView {
 							if (listView.allItems[i].y < y + height 
 								&& y + height < listView.allItems[i].y + listView.allItems[i].height)
 							{
-								sep.parent = parent
-								sep.x = parent.x
-								sep.y = listView.allItems[i].y + listView.allItems[i].height
-								sep.visible = true
+								// sep.parent = parent
+								// sep.x = parent.x
+								// sep.y = listView.allItems[i].y + listView.allItems[i].height
+								// sep.visible = true
 								listView.allItems[i].y -= height
 							}
 						} else if (y < lastY) {
 							if (listView.allItems[i].y < y 
 								&& y < listView.allItems[i].y + listView.allItems[i].height)
 							{
-								sep.parent = parent
-								sep.x = parent.x
-								sep.y = listView.allItems[i].y + listView.allItems[i].height
-								sep.visible = true
+								// sep.parent = parent
+								// sep.x = parent.x
+								// sep.y = listView.allItems[i].y + listView.allItems[i].height
+								// sep.visible = true
 								listView.allItems[i].y += height
 							}
 						}
