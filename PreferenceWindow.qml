@@ -122,7 +122,6 @@ DPreferenceWindow {
             for (var i = 0; i < keyboard_sections.length; i++) {
                 for (var j = 0; j < keyboard_sections[i].content.length; j++) {
                     var entry = keyboard_sections[i].content[j]
-                    print(entry.title, entry.hotKey)
                     if (entry.title != entryName && entry.hotKey && entry.hotKey == shortcut) {
                         entry.disableShortcut()
                     }
@@ -254,191 +253,149 @@ DPreferenceWindow {
             HotKeyInputRow {
                 title: dsTr("Pause/Play")
                 hotKey: config.hotkeysPlayTogglePlay || dsTr("Disabled")
-
-                function disableShortcut() {
-                    config.hotkeysPlayTogglePlay = ""
-                    print(config.hotkeysPlayTogglePlay)
-                }
+                actualSettingEntry: "hotkeysPlayTogglePlay"
 
                 onHotkeySet: { 
-                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
                     } else {
-                        config.hotkeysPlayTogglePlay = hotkey 
+                        setShortcut(text)
                     }
                 }
 
                 onHotkeyReplaced: {
-                    preference_view.disableShortcut(title, hotKey)
-                    config.hotkeysPlayTogglePlay = hotKey
+                    preference_view.disableShortcut(title, text)
+                    setShortcut(text)
                 }
 
-                onHotkeyCancelled: {
-                    hotKey = Qt.binding(function() { return config.hotkeysPlayTogglePlay || dsTr("Disabled") })
-                }
+                onHotkeyCancelled: { setShortcut(config.hotkeysPlayTogglePlay) }
             }
             HotKeyInputRow {
                 title: dsTr("Forward")
                 hotKey: config.hotkeysPlayForward || dsTr("Disabled")
-
-                function disableShortcut() {
-                    config.hotkeysPlayForward = ""
-                }
+                actualSettingEntry: "hotkeysPlayForward"
 
                 onHotkeySet: { 
-                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
                     } else {
-                        config.hotkeysPlayForward = hotkey 
+                        setShortcut(text)
                     }
                 }
 
                 onHotkeyReplaced: {
-                    preference_view.disableShortcut(title, hotKey)
-                    config.hotkeysPlayForward = hotKey
+                    preference_view.disableShortcut(title, text)
+                    setShortcut(text)
                 }
 
-                onHotkeyCancelled: {
-                    text = config.hotkeysPlayForward
-                    hotKey = Qt.binding(function() { return config.hotkeysPlayForward || dsTr("Disabled") })
-                }
+                onHotkeyCancelled: { setShortcut(config.hotkeysPlayForward) }
             }
             HotKeyInputRow {
                 title: dsTr("Rewind")
                 hotKey: config.hotkeysPlayBackward || dsTr("Disabled")
-
-                function disableShortcut() {
-                    config.hotkeysPlayBackward = ""
-                }
+                actualSettingEntry: "hotkeysPlayBackward"
 
                 onHotkeySet: { 
-                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
                     } else {
-                        config.hotkeysPlayBackward = hotkey 
+                        setShortcut(text)
                     }
                 }
 
                 onHotkeyReplaced: {
-                    preference_view.disableShortcut(title, hotKey)
-                    config.hotkeysPlayBackward = hotKey
+                    preference_view.disableShortcut(title, text)
+                    setShortcut(text)
                 }
 
-                onHotkeyCancelled: {
-                    text = config.hotkeysPlayBackward
-                    hotKey = Qt.binding(function() { return config.hotkeysPlayBackward || dsTr("Disabled") })
-                }
+                onHotkeyCancelled: { setShortcut(config.hotkeysPlayBackward) }
             }
             HotKeyInputRow {
                 title: dsTr("Fullscreen")
                 hotKey: config.hotkeysPlayToggleFullscreen || dsTr("Disabled")
-
-                function disableShortcut() {
-                    config.hotkeysPlayToggleFullscreen = ""
-                }
+                actualSettingEntry: "hotkeysPlayToggleFullscreen"
 
                 onHotkeySet: { 
-                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
                     } else {
-                        config.hotkeysPlayToggleFullscreen = hotkey 
+                        setShortcut(text)
                     }
                 }
 
                 onHotkeyReplaced: {
-                    preference_view.disableShortcut(title, hotKey)
-                    config.hotkeysPlayToggleFullscreen = hotKey
+                    preference_view.disableShortcut(title, text)
+                    setShortcut(text)
                 }
 
-                onHotkeyCancelled: {
-                    text = config.hotkeysPlayToggleFullscreen
-                    hotKey = Qt.binding(function() { return config.hotkeysPlayToggleFullscreen || dsTr("Disabled") })
-                }
+                onHotkeyCancelled: { setShortcut(config.hotkeysPlayToggleFullscreen) }
             }
             HotKeyInputRow {
                 title: dsTr("Playlist")
                 hotKey: config.hotkeysPlayTogglePlaylist || dsTr("Disabled")
-
-                function disableShortcut() {
-                    config.hotkeysPlayTogglePlaylist = ""
-                }
+                actualSettingEntry: "hotkeysPlayTogglePlaylist"
 
                 onHotkeySet: { 
-                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
                     } else {
-                        config.hotkeysPlayTogglePlaylist = hotkey 
+                        setShortcut(text)
                     }
                 }
 
                 onHotkeyReplaced: {
-                    preference_view.disableShortcut(title, hotKey)
-                    config.hotkeysPlayTogglePlaylist = hotKey
+                    preference_view.disableShortcut(title, text)
+                    setShortcut(text)
                 }
 
-                onHotkeyCancelled: {
-                    text = config.hotkeysPlayTogglePlaylist
-                    hotKey = Qt.binding(function() { return config.hotkeysPlayTogglePlaylist || dsTr("Disabled") })
-                }
+                onHotkeyCancelled: { setShortcut(config.hotkeysPlayTogglePlaylist) }
             }
             HotKeyInputRow {
                 title: dsTr("Speed up")
                 hotKey: config.hotkeysPlaySpeedUp || dsTr("Disabled")
-
-                function disableShortcut() {
-                    config.hotkeysPlaySpeedUp = ""
-                }
+                actualSettingEntry: "hotkeysPlaySpeedUp"
 
                 onHotkeySet: { 
-                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
                     } else {
-                        config.hotkeysPlaySpeedUp = hotkey 
+                        setShortcut(text)
                     }
                 }
 
                 onHotkeyReplaced: {
-                    preference_view.disableShortcut(title, hotKey)
-                    config.hotkeysPlaySpeedUp = hotKey
+                    preference_view.disableShortcut(title, text)
+                    setShortcut(text)
                 }
 
-                onHotkeyCancelled: {
-                    text = config.hotkeysPlaySpeedUp
-                    hotKey = Qt.binding(function() { return config.hotkeysPlaySpeedUp || dsTr("Disabled") })
-                }
+                onHotkeyCancelled: { setShortcut(config.hotkeysPlaySpeedUp) }
             }
             HotKeyInputRow {
                 title: dsTr("Slow down")
                 hotKey: config.hotkeysPlaySlowDown || dsTr("Disabled")
-
-                function disableShortcut() {
-                    config.hotkeysPlaySlowDown = ""
-                }
+                actualSettingEntry: "hotkeysPlaySlowDown"
 
                 onHotkeySet: { 
-                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
                     } else {
-                        config.hotkeysPlaySlowDown = hotkey 
+                        setShortcut(text)
                     }
                 }
 
                 onHotkeyReplaced: {
-                    preference_view.disableShortcut(title, hotKey)
-                    config.hotkeysPlaySlowDown = hotKey
+                    preference_view.disableShortcut(title, text)
+                    setShortcut(text)
                 }
 
-                onHotkeyCancelled: {
-                    text = config.hotkeysPlaySlowDown
-                    hotKey = Qt.binding(function() { return config.hotkeysPlaySlowDown || dsTr("Disabled") })
-                }
+                onHotkeyCancelled: { setShortcut(config.hotkeysPlaySlowDown) }
             }
         }
         SectionContent { 
@@ -460,164 +417,128 @@ DPreferenceWindow {
             HotKeyInputRow {
                 title: dsTr("Mini mode")
                 hotKey: config.hotkeysFrameSoundToggleMiniMode || dsTr("Disabled")
-
-                function disableShortcut() {
-                    config.hotkeysFrameSoundToggleMiniMode = ""
-                }
+                actualSettingEntry: "hotkeysFrameSoundToggleMiniMode"
 
                 onHotkeySet: { 
-                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
                     } else {
-                        config.hotkeysFrameSoundToggleMiniMode = hotkey 
+                        setShortcut(text)
                     }
                 }
 
                 onHotkeyReplaced: {
-                    preference_view.disableShortcut(title, hotKey)
-                    config.hotkeysFrameSoundToggleMiniMode = hotKey
+                    preference_view.disableShortcut(title, text)
+                    setShortcut(text)
                 }
 
-                onHotkeyCancelled: {
-                    text = config.hotkeysFrameSoundToggleMiniMode
-                    hotKey = Qt.binding(function() { return config.hotkeysFrameSoundToggleMiniMode || dsTr("Disabled") })
-                }
+                onHotkeyCancelled: { setShortcut(config.hotkeysFrameSoundToggleMiniMode) }
             }
             HotKeyInputRow {
                 title: dsTr("Rotate counterclockwise")
                 hotKey: config.hotkeysFrameSoundRotateAnticlockwise || dsTr("Disabled")
-
-                function disableShortcut() {
-                    config.hotkeysFrameSoundRotateAnticlockwise = ""
-                }
+                actualSettingEntry: "hotkeysFrameSoundRotateAnticlockwise"
 
                 onHotkeySet: { 
-                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
                     } else {
-                        config.hotkeysFrameSoundRotateAnticlockwise = hotkey 
+                        setShortcut(text)
                     }
                 }
 
                 onHotkeyReplaced: {
-                    preference_view.disableShortcut(title, hotKey)
-                    config.hotkeysFrameSoundRotateAnticlockwise = hotKey
+                    preference_view.disableShortcut(title, text)
+                    setShortcut(text)
                 }
 
-                onHotkeyCancelled: {
-                    text = config.hotkeysFrameSoundRotateAnticlockwise
-                    hotKey = Qt.binding(function() { return config.hotkeysFrameSoundRotateAnticlockwise || dsTr("Disabled") })
-                }
+                onHotkeyCancelled: { setShortcut(config.hotkeysFrameSoundRotateAnticlockwise) }
             }
             HotKeyInputRow {
                 title: dsTr("Rotate clockwise")
                 hotKey: config.hotkeysFrameSoundRotateClockwise || dsTr("Disabled")
-
-                function disableShortcut() {
-                    config.hotkeysFrameSoundRotateClockwise = ""
-                }
+                actualSettingEntry: "hotkeysFrameSoundRotateClockwise"
 
                 onHotkeySet: { 
-                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
                     } else {
-                        config.hotkeysFrameSoundRotateClockwise = hotkey 
+                        setShortcut(text)
                     }
                 }
 
                 onHotkeyReplaced: {
-                    preference_view.disableShortcut(title, hotKey)
-                    config.hotkeysFrameSoundRotateClockwise = hotKey
+                    preference_view.disableShortcut(title, text)
+                    setShortcut(text)
                 }
 
-                onHotkeyCancelled: {
-                    text = config.hotkeysFrameSoundRotateClockwise
-                    hotKey = Qt.binding(function() { return config.hotkeysFrameSoundRotateClockwise || dsTr("Disabled") })
-                }
+                onHotkeyCancelled: { setShortcut(config.hotkeysFrameSoundRotateClockwise) }
             }
             HotKeyInputRow {
                 title: dsTr("Volume up")
                 hotKey: config.hotkeysFrameSoundIncreaseVolume || dsTr("Disabled")
-
-                function disableShortcut() {
-                    config.hotkeysFrameSoundIncreaseVolume = ""
-                }
+                actualSettingEntry: "hotkeysFrameSoundIncreaseVolume"
 
                 onHotkeySet: { 
-                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
                     } else {
-                        config.hotkeysFrameSoundIncreaseVolume = hotkey 
+                        setShortcut(text)
                     }
                 }
 
                 onHotkeyReplaced: {
-                    preference_view.disableShortcut(title, hotKey)
-                    config.hotkeysFrameSoundIncreaseVolume = hotKey
+                    preference_view.disableShortcut(title, text)
+                    setShortcut(text)
                 }
 
-                onHotkeyCancelled: {
-                    text = config.hotkeysFrameSoundIncreaseVolume
-                    hotKey = Qt.binding(function() { return config.hotkeysFrameSoundIncreaseVolume || dsTr("Disabled") })
-                }
+                onHotkeyCancelled: { setShortcut(config.hotkeysFrameSoundIncreaseVolume) }
             }
             HotKeyInputRow {
                 title: dsTr("Volume down")
                 hotKey: config.hotkeysFrameSoundDecreaseVolume || dsTr("Disabled")
-
-                function disableShortcut() {
-                    config.hotkeysFrameSoundDecreaseVolume = ""
-                }
+                actualSettingEntry: "hotkeysFrameSoundDecreaseVolume"
 
                 onHotkeySet: { 
-                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
                     } else {
-                        config.hotkeysFrameSoundDecreaseVolume = hotkey 
+                        setShortcut(text)
                     }
                 }
 
                 onHotkeyReplaced: {
-                    preference_view.disableShortcut(title, hotKey)
-                    config.hotkeysFrameSoundDecreaseVolume = hotKey
+                    preference_view.disableShortcut(title, text)
+                    setShortcut(text)
                 }
 
-                onHotkeyCancelled: {
-                    text = config.hotkeysFrameSoundDecreaseVolume
-                    hotKey = Qt.binding(function() { return config.hotkeysFrameSoundDecreaseVolume || dsTr("Disabled") })
-                }
+                onHotkeyCancelled: { setShortcut(config.hotkeysFrameSoundDecreaseVolume) }
             }
             HotKeyInputRow {
                 title: dsTr("Mute")
                 hotKey: config.hotkeysFrameSoundToggleMute || dsTr("Disabled")
-
-                function disableShortcut() {
-                    config.hotkeysFrameSoundToggleMute = ""
-                }
+                actualSettingEntry: "hotkeysFrameSoundToggleMute"
 
                 onHotkeySet: { 
-                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
                     } else {
-                        config.hotkeysFrameSoundToggleMute = hotkey 
+                        setShortcut(text)
                     }
                 }
 
                 onHotkeyReplaced: {
-                    preference_view.disableShortcut(title, hotKey)
-                    config.hotkeysFrameSoundToggleMute = hotKey
+                    preference_view.disableShortcut(title, text)
+                    setShortcut(text)
                 }
 
-                onHotkeyCancelled: {
-                    text = config.hotkeysFrameSoundToggleMute
-                    hotKey = Qt.binding(function() { return config.hotkeysFrameSoundToggleMute || dsTr("Disabled") })
-                }
+                onHotkeyCancelled: { setShortcut(config.hotkeysFrameSoundToggleMute) }
             }
         }
         SectionContent { 
@@ -639,83 +560,65 @@ DPreferenceWindow {
             HotKeyInputRow {
                 title: dsTr("Open file")
                 hotKey: config.hotkeysFilesOpenFile || dsTr("Disabled")
-
-                function disableShortcut() {
-                    config.hotkeysFilesOpenFile = ""
-                }
+                actualSettingEntry: "hotkeysFilesOpenFile"
 
                 onHotkeySet: { 
-                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
                     } else {
-                        config.hotkeysFilesOpenFile = hotkey 
+                        setShortcut(text)
                     }
                 }
 
                 onHotkeyReplaced: {
-                    preference_view.disableShortcut(title, hotKey)
-                    config.hotkeysFilesOpenFile = hotKey
+                    preference_view.disableShortcut(title, text)
+                    setShortcut(text)
                 }
 
-                onHotkeyCancelled: {
-                    text = config.hotkeysFilesOpenFile
-                    hotKey = Qt.binding(function() { return config.hotkeysFilesOpenFile || dsTr("Disabled") })
-                }
+                onHotkeyCancelled: { setShortcut(config.hotkeysFilesOpenFile) }
             }
             HotKeyInputRow {
                 title: dsTr("Open previous")
                 hotKey: config.hotkeysFilesPlayPrevious || dsTr("Disabled")
-
-                function disableShortcut() {
-                    config.hotkeysFilesPlayPrevious = ""
-                }
+                actualSettingEntry: "hotkeysFilesPlayPrevious"
 
                 onHotkeySet: { 
-                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
                     } else {
-                        config.hotkeysFilesPlayPrevious = hotkey 
+                        setShortcut(text)
                     }
                 }
 
                 onHotkeyReplaced: {
-                    preference_view.disableShortcut(title, hotKey)
-                    config.hotkeysFilesPlayPrevious = hotKey
+                    preference_view.disableShortcut(title, text)
+                    setShortcut(text)
                 }
 
-                onHotkeyCancelled: {
-                    text = config.hotkeysFilesPlayPrevious
-                    hotKey = Qt.binding(function() { return config.hotkeysFilesPlayPrevious || dsTr("Disabled") })
-                }
+                onHotkeyCancelled: { setShortcut(config.hotkeysFilesPlayPrevious) }
             }
             HotKeyInputRow {
                 title: dsTr("Open next")
                 hotKey: config.hotkeysFilesPlayNext || dsTr("Disabled")
-
-                function disableShortcut() {
-                    config.hotkeysFilesPlayNext = ""
-                }
+                actualSettingEntry: "hotkeysFilesPlayNext"
 
                 onHotkeySet: { 
-                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
                     } else {
-                        config.hotkeysFilesPlayNext = hotkey 
+                        setShortcut(text)
                     }
                 }
 
                 onHotkeyReplaced: {
-                    preference_view.disableShortcut(title, hotKey)
-                    config.hotkeysFilesPlayNext = hotKey
+                    preference_view.disableShortcut(title, text)
+                    setShortcut(text)
                 }
 
-                onHotkeyCancelled: {
-                    text = config.hotkeysFilesPlayNext
-                    hotKey = Qt.binding(function() { return config.hotkeysFilesPlayNext || dsTr("Disabled") })
-                }
+                onHotkeyCancelled: { setShortcut(config.hotkeysFilesPlayNext) }
             }
         }
         SectionContent { 
@@ -737,110 +640,86 @@ DPreferenceWindow {
             HotKeyInputRow {
                 title: dsTr("Forward 0.5s")
                 hotKey: config.hotkeysSubtitlesSubtitleForward || dsTr("Disabled")
-
-                function disableShortcut() {
-                    config.hotkeysSubtitlesSubtitleForward = ""
-                }
+                actualSettingEntry: "hotkeysSubtitlesSubtitleForward"
 
                 onHotkeySet: { 
-                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
                     } else {
-                        config.hotkeysSubtitlesSubtitleForward = hotkey 
+                        setShortcut(text)
                     }
                 }
 
                 onHotkeyReplaced: {
-                    preference_view.disableShortcut(title, hotKey)
-                    config.hotkeysSubtitlesSubtitleForward = hotKey
+                    preference_view.disableShortcut(title, text)
+                    setShortcut(text)
                 }
 
-                onHotkeyCancelled: {
-                    text = config.hotkeysSubtitlesSubtitleForward
-                    hotKey = Qt.binding(function() { return config.hotkeysSubtitlesSubtitleForward || dsTr("Disabled") })
-                }
+                onHotkeyCancelled: { setShortcut(config.hotkeysSubtitlesSubtitleForward) }
             }
             HotKeyInputRow {
                 title: dsTr("Delay 0.5s")
                 hotKey: config.hotkeysSubtitlesSubtitleBackward || dsTr("Disabled")
-
-                function disableShortcut() {
-                    config.hotkeysSubtitlesSubtitleBackward = ""
-                }
+                actualSettingEntry: "hotkeysSubtitlesSubtitleBackward"
 
                 onHotkeySet: { 
-                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
                     } else {
-                        config.hotkeysSubtitlesSubtitleBackward = hotkey 
+                        setShortcut(text)
                     }
                 }
 
                 onHotkeyReplaced: {
-                    preference_view.disableShortcut(title, hotKey)
-                    config.hotkeysSubtitlesSubtitleBackward = hotKey
+                    preference_view.disableShortcut(title, text)
+                    setShortcut(text)
                 }
 
-                onHotkeyCancelled: {
-                    text = config.hotkeysSubtitlesSubtitleBackward
-                    hotKey = Qt.binding(function() { return config.hotkeysSubtitlesSubtitleBackward || dsTr("Disabled") })
-                }
+                onHotkeyCancelled: { setShortcut(config.hotkeysSubtitlesSubtitleBackward) }
             }
             HotKeyInputRow {
                 title: dsTr("Subtitle up")
                 hotKey: config.hotkeysSubtitlesSubtitleMoveUp || dsTr("Disabled")
-
-                function disableShortcut() {
-                    config.hotkeysSubtitlesSubtitleMoveUp = ""
-                }
+                actualSettingEntry: "hotkeysSubtitlesSubtitleMoveUp"
 
                 onHotkeySet: { 
-                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
                     } else {
-                        config.hotkeysSubtitlesSubtitleMoveUp = hotkey 
+                        setShortcut(text)
                     }
                 }
 
                 onHotkeyReplaced: {
-                    preference_view.disableShortcut(title, hotKey)
-                    config.hotkeysSubtitlesSubtitleMoveUp = hotKey
+                    preference_view.disableShortcut(title, text)
+                    setShortcut(text)
                 }
 
-                onHotkeyCancelled: {
-                    text = config.hotkeysSubtitlesSubtitleMoveUp
-                    hotKey = Qt.binding(function() { return config.hotkeysSubtitlesSubtitleMoveUp || dsTr("Disabled") })
-                }
+                onHotkeyCancelled: { setShortcut(config.hotkeysSubtitlesSubtitleMoveUp) }
             }
             HotKeyInputRow {
                 title: dsTr("Subtitle down")
                 hotKey: config.hotkeysSubtitlesSubtitleMoveDown || dsTr("Disabled")
-
-                function disableShortcut() {
-                    config.hotkeysSubtitlesSubtitleMoveDown = ""
-                }
+                actualSettingEntry: "hotkeysSubtitlesSubtitleMoveDown"
 
                 onHotkeySet: { 
-                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
                     } else {
-                        config.hotkeysSubtitlesSubtitleMoveDown = hotkey 
+                        setShortcut(text)
                     }
                 }
 
                 onHotkeyReplaced: {
-                    preference_view.disableShortcut(title, hotKey)
-                    config.hotkeysSubtitlesSubtitleMoveDown = hotKey
+                    preference_view.disableShortcut(title, text)
+                    setShortcut(text)
                 }
 
-                onHotkeyCancelled: {
-                    text = config.hotkeysSubtitlesSubtitleMoveDown
-                    hotKey = Qt.binding(function() { return config.hotkeysSubtitlesSubtitleMoveDown || dsTr("Disabled") })
-                }
+                onHotkeyCancelled: { setShortcut(config.hotkeysSubtitlesSubtitleMoveDown) }
             }
         }
         SectionContent { 

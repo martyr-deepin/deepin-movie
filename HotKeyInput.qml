@@ -10,14 +10,15 @@ DTextInput {
 
 	signal hotkeySet (string key)
 
-	onHotkeySet: { hotKey = key; focus = false }
+	onHotkeySet: { text = key; focus = false }
+	onHotKeyChanged: text = hotKey
 	onActiveFocusChanged: text = activeFocus ? dsTr("Please input new shortcut") : hotKey
 
 	Keys.onPressed: {
 		var modifiers = [Qt.Key_Control, Qt.Key_Shift, Qt.Key_Alt, Qt.Key_Meta, Qt.Key_AltGr]
 		if (modifiers.indexOf(event.key) == -1) {
-			input.hotkeySet(_utils.keyEventToQKeySequenceString(event.modifiers, event.key))
 			input.focus = false
+			input.hotkeySet(_utils.keyEventToQKeySequenceString(event.modifiers, event.key))
 		}
 	}
 }

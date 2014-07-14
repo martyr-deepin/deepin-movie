@@ -11,9 +11,20 @@ Item {
 	property alias text: input.text
 	property alias hotKey: input.hotKey
 
-	signal hotkeySet (string hotkey)
+	property var actualSettingEntry
+
+	signal hotkeySet
 	signal hotkeyReplaced
 	signal hotkeyCancelled
+
+	function disableShortcut() { setShortcut("") }
+
+	function setShortcut(shortcut) {
+		print(actualSettingEntry)
+		print("setShortcut", shortcut)
+	    hotKey = Qt.binding(function() { return config[actualSettingEntry] || dsTr("Disabled") })
+	    config[actualSettingEntry] = shortcut
+	}
 
 	function warning(shortcutsEntry, shortcutsCategory) {
 		warning_msg.text = dsTr("The shortcut you set ") 
