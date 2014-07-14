@@ -103,6 +103,33 @@ DPreferenceWindow {
             }
         ]
 
+        function checkShortcutsDuplication(entryName, shortcut) {
+            var keyboard_sections = [keyboard_playback, keyboard_frame_sound, keyboard_files, keyboard_subtitle]
+            for (var i = 0; i < keyboard_sections.length; i++) {
+                for (var j = 0; j < keyboard_sections[i].content.length; j++) {
+                    var entry = keyboard_sections[i].content[j]
+                    if (entry.title != entryName && entry.hotKey && entry.hotKey == shortcut) {
+                        return [entry.title, keyboard_sections[i].title]
+                    }
+                }
+            }
+
+            return null
+        }
+
+        function disableShortcut(entryName, shortcut) {
+            var keyboard_sections = [keyboard_playback, keyboard_frame_sound, keyboard_files, keyboard_subtitle]
+            for (var i = 0; i < keyboard_sections.length; i++) {
+                for (var j = 0; j < keyboard_sections[i].content.length; j++) {
+                    var entry = keyboard_sections[i].content[j]
+                    print(entry.title, entry.hotKey)
+                    if (entry.title != entryName && entry.hotKey && entry.hotKey == shortcut) {
+                        entry.disableShortcut()
+                    }
+                }
+            }
+        }
+
         Item {
             visible: false
             Timer {
@@ -226,38 +253,192 @@ DPreferenceWindow {
             }
             HotKeyInputRow {
                 title: dsTr("Pause/Play")
-                hotKey: config.hotkeysPlayTogglePlay
-                onHotkeySet: config.hotkeysPlayTogglePlay = hotkey
+                hotKey: config.hotkeysPlayTogglePlay || dsTr("Disabled")
+
+                function disableShortcut() {
+                    config.hotkeysPlayTogglePlay = ""
+                    print(config.hotkeysPlayTogglePlay)
+                }
+
+                onHotkeySet: { 
+                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    if (checkResult != null) {
+                        warning(checkResult[0], checkResult[1])
+                    } else {
+                        config.hotkeysPlayTogglePlay = hotkey 
+                    }
+                }
+
+                onHotkeyReplaced: {
+                    preference_view.disableShortcut(title, hotKey)
+                    config.hotkeysPlayTogglePlay = hotKey
+                }
+
+                onHotkeyCancelled: {
+                    hotKey = Qt.binding(function() { return config.hotkeysPlayTogglePlay || dsTr("Disabled") })
+                }
             }
             HotKeyInputRow {
                 title: dsTr("Forward")
-                hotKey: config.hotkeysPlayForward
-                onHotkeySet: config.hotkeysPlayForward = hotkey
+                hotKey: config.hotkeysPlayForward || dsTr("Disabled")
+
+                function disableShortcut() {
+                    config.hotkeysPlayForward = ""
+                }
+
+                onHotkeySet: { 
+                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    if (checkResult != null) {
+                        warning(checkResult[0], checkResult[1])
+                    } else {
+                        config.hotkeysPlayForward = hotkey 
+                    }
+                }
+
+                onHotkeyReplaced: {
+                    preference_view.disableShortcut(title, hotKey)
+                    config.hotkeysPlayForward = hotKey
+                }
+
+                onHotkeyCancelled: {
+                    text = config.hotkeysPlayForward
+                    hotKey = Qt.binding(function() { return config.hotkeysPlayForward || dsTr("Disabled") })
+                }
             }
             HotKeyInputRow {
                 title: dsTr("Rewind")
-                hotKey: config.hotkeysPlayBackward
-                onHotkeySet: config.hotkeysPlayBackward = hotkey
+                hotKey: config.hotkeysPlayBackward || dsTr("Disabled")
+
+                function disableShortcut() {
+                    config.hotkeysPlayBackward = ""
+                }
+
+                onHotkeySet: { 
+                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    if (checkResult != null) {
+                        warning(checkResult[0], checkResult[1])
+                    } else {
+                        config.hotkeysPlayBackward = hotkey 
+                    }
+                }
+
+                onHotkeyReplaced: {
+                    preference_view.disableShortcut(title, hotKey)
+                    config.hotkeysPlayBackward = hotKey
+                }
+
+                onHotkeyCancelled: {
+                    text = config.hotkeysPlayBackward
+                    hotKey = Qt.binding(function() { return config.hotkeysPlayBackward || dsTr("Disabled") })
+                }
             }
             HotKeyInputRow {
                 title: dsTr("Fullscreen")
-                hotKey: config.hotkeysPlayToggleFullscreen
-                onHotkeySet: config.hotkeysPlayToggleFullscreen = hotkey
+                hotKey: config.hotkeysPlayToggleFullscreen || dsTr("Disabled")
+
+                function disableShortcut() {
+                    config.hotkeysPlayToggleFullscreen = ""
+                }
+
+                onHotkeySet: { 
+                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    if (checkResult != null) {
+                        warning(checkResult[0], checkResult[1])
+                    } else {
+                        config.hotkeysPlayToggleFullscreen = hotkey 
+                    }
+                }
+
+                onHotkeyReplaced: {
+                    preference_view.disableShortcut(title, hotKey)
+                    config.hotkeysPlayToggleFullscreen = hotKey
+                }
+
+                onHotkeyCancelled: {
+                    text = config.hotkeysPlayToggleFullscreen
+                    hotKey = Qt.binding(function() { return config.hotkeysPlayToggleFullscreen || dsTr("Disabled") })
+                }
             }
             HotKeyInputRow {
                 title: dsTr("Playlist")
-                hotKey: config.hotkeysPlayTogglePlaylist
-                onHotkeySet: config.hotkeysPlayTogglePlaylist = hotkey
+                hotKey: config.hotkeysPlayTogglePlaylist || dsTr("Disabled")
+
+                function disableShortcut() {
+                    config.hotkeysPlayTogglePlaylist = ""
+                }
+
+                onHotkeySet: { 
+                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    if (checkResult != null) {
+                        warning(checkResult[0], checkResult[1])
+                    } else {
+                        config.hotkeysPlayTogglePlaylist = hotkey 
+                    }
+                }
+
+                onHotkeyReplaced: {
+                    preference_view.disableShortcut(title, hotKey)
+                    config.hotkeysPlayTogglePlaylist = hotKey
+                }
+
+                onHotkeyCancelled: {
+                    text = config.hotkeysPlayTogglePlaylist
+                    hotKey = Qt.binding(function() { return config.hotkeysPlayTogglePlaylist || dsTr("Disabled") })
+                }
             }
             HotKeyInputRow {
                 title: dsTr("Speed up")
-                hotKey: config.hotkeysPlaySpeedUp
-                onHotkeySet: config.hotkeysPlaySpeedUp = hotkey
+                hotKey: config.hotkeysPlaySpeedUp || dsTr("Disabled")
+
+                function disableShortcut() {
+                    config.hotkeysPlaySpeedUp = ""
+                }
+
+                onHotkeySet: { 
+                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    if (checkResult != null) {
+                        warning(checkResult[0], checkResult[1])
+                    } else {
+                        config.hotkeysPlaySpeedUp = hotkey 
+                    }
+                }
+
+                onHotkeyReplaced: {
+                    preference_view.disableShortcut(title, hotKey)
+                    config.hotkeysPlaySpeedUp = hotKey
+                }
+
+                onHotkeyCancelled: {
+                    text = config.hotkeysPlaySpeedUp
+                    hotKey = Qt.binding(function() { return config.hotkeysPlaySpeedUp || dsTr("Disabled") })
+                }
             }
             HotKeyInputRow {
                 title: dsTr("Slow down")
-                hotKey: config.hotkeysPlaySlowDown
-                onHotkeySet: config.hotkeysPlaySlowDown = hotkey
+                hotKey: config.hotkeysPlaySlowDown || dsTr("Disabled")
+
+                function disableShortcut() {
+                    config.hotkeysPlaySlowDown = ""
+                }
+
+                onHotkeySet: { 
+                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    if (checkResult != null) {
+                        warning(checkResult[0], checkResult[1])
+                    } else {
+                        config.hotkeysPlaySlowDown = hotkey 
+                    }
+                }
+
+                onHotkeyReplaced: {
+                    preference_view.disableShortcut(title, hotKey)
+                    config.hotkeysPlaySlowDown = hotKey
+                }
+
+                onHotkeyCancelled: {
+                    text = config.hotkeysPlaySlowDown
+                    hotKey = Qt.binding(function() { return config.hotkeysPlaySlowDown || dsTr("Disabled") })
+                }
             }
         }
         SectionContent { 
@@ -278,33 +459,165 @@ DPreferenceWindow {
 
             HotKeyInputRow {
                 title: dsTr("Mini mode")
-                hotKey: config.hotkeysFrameSoundToggleMiniMode
-                onHotkeySet: config.hotkeysFrameSoundToggleMiniMode = hotkey
+                hotKey: config.hotkeysFrameSoundToggleMiniMode || dsTr("Disabled")
+
+                function disableShortcut() {
+                    config.hotkeysFrameSoundToggleMiniMode = ""
+                }
+
+                onHotkeySet: { 
+                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    if (checkResult != null) {
+                        warning(checkResult[0], checkResult[1])
+                    } else {
+                        config.hotkeysFrameSoundToggleMiniMode = hotkey 
+                    }
+                }
+
+                onHotkeyReplaced: {
+                    preference_view.disableShortcut(title, hotKey)
+                    config.hotkeysFrameSoundToggleMiniMode = hotKey
+                }
+
+                onHotkeyCancelled: {
+                    text = config.hotkeysFrameSoundToggleMiniMode
+                    hotKey = Qt.binding(function() { return config.hotkeysFrameSoundToggleMiniMode || dsTr("Disabled") })
+                }
             }
             HotKeyInputRow {
                 title: dsTr("Rotate counterclockwise")
-                hotKey: config.hotkeysFrameSoundRotateAnticlockwise
-                onHotkeySet: config.hotkeysFrameSoundRotateAnticlockwise = hotkey
+                hotKey: config.hotkeysFrameSoundRotateAnticlockwise || dsTr("Disabled")
+
+                function disableShortcut() {
+                    config.hotkeysFrameSoundRotateAnticlockwise = ""
+                }
+
+                onHotkeySet: { 
+                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    if (checkResult != null) {
+                        warning(checkResult[0], checkResult[1])
+                    } else {
+                        config.hotkeysFrameSoundRotateAnticlockwise = hotkey 
+                    }
+                }
+
+                onHotkeyReplaced: {
+                    preference_view.disableShortcut(title, hotKey)
+                    config.hotkeysFrameSoundRotateAnticlockwise = hotKey
+                }
+
+                onHotkeyCancelled: {
+                    text = config.hotkeysFrameSoundRotateAnticlockwise
+                    hotKey = Qt.binding(function() { return config.hotkeysFrameSoundRotateAnticlockwise || dsTr("Disabled") })
+                }
             }
             HotKeyInputRow {
                 title: dsTr("Rotate clockwise")
-                hotKey: config.hotkeysFrameSoundRotateClockwise
-                onHotkeySet: config.hotkeysFrameSoundRotateClockwise = hotkey
+                hotKey: config.hotkeysFrameSoundRotateClockwise || dsTr("Disabled")
+
+                function disableShortcut() {
+                    config.hotkeysFrameSoundRotateClockwise = ""
+                }
+
+                onHotkeySet: { 
+                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    if (checkResult != null) {
+                        warning(checkResult[0], checkResult[1])
+                    } else {
+                        config.hotkeysFrameSoundRotateClockwise = hotkey 
+                    }
+                }
+
+                onHotkeyReplaced: {
+                    preference_view.disableShortcut(title, hotKey)
+                    config.hotkeysFrameSoundRotateClockwise = hotKey
+                }
+
+                onHotkeyCancelled: {
+                    text = config.hotkeysFrameSoundRotateClockwise
+                    hotKey = Qt.binding(function() { return config.hotkeysFrameSoundRotateClockwise || dsTr("Disabled") })
+                }
             }
             HotKeyInputRow {
                 title: dsTr("Volume up")
-                hotKey: config.hotkeysFrameSoundIncreaseVolume
-                onHotkeySet: config.hotkeysFrameSoundIncreaseVolume = hotkey
+                hotKey: config.hotkeysFrameSoundIncreaseVolume || dsTr("Disabled")
+
+                function disableShortcut() {
+                    config.hotkeysFrameSoundIncreaseVolume = ""
+                }
+
+                onHotkeySet: { 
+                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    if (checkResult != null) {
+                        warning(checkResult[0], checkResult[1])
+                    } else {
+                        config.hotkeysFrameSoundIncreaseVolume = hotkey 
+                    }
+                }
+
+                onHotkeyReplaced: {
+                    preference_view.disableShortcut(title, hotKey)
+                    config.hotkeysFrameSoundIncreaseVolume = hotKey
+                }
+
+                onHotkeyCancelled: {
+                    text = config.hotkeysFrameSoundIncreaseVolume
+                    hotKey = Qt.binding(function() { return config.hotkeysFrameSoundIncreaseVolume || dsTr("Disabled") })
+                }
             }
             HotKeyInputRow {
                 title: dsTr("Volume down")
-                hotKey: config.hotkeysFrameSoundDecreaseVolume
-                onHotkeySet: config.hotkeysFrameSoundDecreaseVolume = hotkey
+                hotKey: config.hotkeysFrameSoundDecreaseVolume || dsTr("Disabled")
+
+                function disableShortcut() {
+                    config.hotkeysFrameSoundDecreaseVolume = ""
+                }
+
+                onHotkeySet: { 
+                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    if (checkResult != null) {
+                        warning(checkResult[0], checkResult[1])
+                    } else {
+                        config.hotkeysFrameSoundDecreaseVolume = hotkey 
+                    }
+                }
+
+                onHotkeyReplaced: {
+                    preference_view.disableShortcut(title, hotKey)
+                    config.hotkeysFrameSoundDecreaseVolume = hotKey
+                }
+
+                onHotkeyCancelled: {
+                    text = config.hotkeysFrameSoundDecreaseVolume
+                    hotKey = Qt.binding(function() { return config.hotkeysFrameSoundDecreaseVolume || dsTr("Disabled") })
+                }
             }
             HotKeyInputRow {
                 title: dsTr("Mute")
-                hotKey: config.hotkeysFrameSoundToggleMute
-                onHotkeySet: config.hotkeysFrameSoundToggleMute = hotkey
+                hotKey: config.hotkeysFrameSoundToggleMute || dsTr("Disabled")
+
+                function disableShortcut() {
+                    config.hotkeysFrameSoundToggleMute = ""
+                }
+
+                onHotkeySet: { 
+                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    if (checkResult != null) {
+                        warning(checkResult[0], checkResult[1])
+                    } else {
+                        config.hotkeysFrameSoundToggleMute = hotkey 
+                    }
+                }
+
+                onHotkeyReplaced: {
+                    preference_view.disableShortcut(title, hotKey)
+                    config.hotkeysFrameSoundToggleMute = hotKey
+                }
+
+                onHotkeyCancelled: {
+                    text = config.hotkeysFrameSoundToggleMute
+                    hotKey = Qt.binding(function() { return config.hotkeysFrameSoundToggleMute || dsTr("Disabled") })
+                }
             }
         }
         SectionContent { 
@@ -325,18 +638,84 @@ DPreferenceWindow {
 
             HotKeyInputRow {
                 title: dsTr("Open file")
-                hotKey: config.hotkeysFilesOpenFile
-                onHotkeySet: config.hotkeysFilesOpenFile = hotkey
+                hotKey: config.hotkeysFilesOpenFile || dsTr("Disabled")
+
+                function disableShortcut() {
+                    config.hotkeysFilesOpenFile = ""
+                }
+
+                onHotkeySet: { 
+                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    if (checkResult != null) {
+                        warning(checkResult[0], checkResult[1])
+                    } else {
+                        config.hotkeysFilesOpenFile = hotkey 
+                    }
+                }
+
+                onHotkeyReplaced: {
+                    preference_view.disableShortcut(title, hotKey)
+                    config.hotkeysFilesOpenFile = hotKey
+                }
+
+                onHotkeyCancelled: {
+                    text = config.hotkeysFilesOpenFile
+                    hotKey = Qt.binding(function() { return config.hotkeysFilesOpenFile || dsTr("Disabled") })
+                }
             }
             HotKeyInputRow {
                 title: dsTr("Open previous")
-                hotKey: config.hotkeysFilesPlayPrevious
-                onHotkeySet: config.hotkeysFilesPlayPrevious = hotkey
+                hotKey: config.hotkeysFilesPlayPrevious || dsTr("Disabled")
+
+                function disableShortcut() {
+                    config.hotkeysFilesPlayPrevious = ""
+                }
+
+                onHotkeySet: { 
+                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    if (checkResult != null) {
+                        warning(checkResult[0], checkResult[1])
+                    } else {
+                        config.hotkeysFilesPlayPrevious = hotkey 
+                    }
+                }
+
+                onHotkeyReplaced: {
+                    preference_view.disableShortcut(title, hotKey)
+                    config.hotkeysFilesPlayPrevious = hotKey
+                }
+
+                onHotkeyCancelled: {
+                    text = config.hotkeysFilesPlayPrevious
+                    hotKey = Qt.binding(function() { return config.hotkeysFilesPlayPrevious || dsTr("Disabled") })
+                }
             }
             HotKeyInputRow {
                 title: dsTr("Open next")
-                hotKey: config.hotkeysFilesPlayNext
-                onHotkeySet: config.hotkeysFilesPlayNext = hotkey
+                hotKey: config.hotkeysFilesPlayNext || dsTr("Disabled")
+
+                function disableShortcut() {
+                    config.hotkeysFilesPlayNext = ""
+                }
+
+                onHotkeySet: { 
+                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    if (checkResult != null) {
+                        warning(checkResult[0], checkResult[1])
+                    } else {
+                        config.hotkeysFilesPlayNext = hotkey 
+                    }
+                }
+
+                onHotkeyReplaced: {
+                    preference_view.disableShortcut(title, hotKey)
+                    config.hotkeysFilesPlayNext = hotKey
+                }
+
+                onHotkeyCancelled: {
+                    text = config.hotkeysFilesPlayNext
+                    hotKey = Qt.binding(function() { return config.hotkeysFilesPlayNext || dsTr("Disabled") })
+                }
             }
         }
         SectionContent { 
@@ -357,23 +736,111 @@ DPreferenceWindow {
 
             HotKeyInputRow {
                 title: dsTr("Forward 0.5s")
-                hotKey: config.hotkeysSubtitlesSubtitleForward
-                onHotkeySet: config.hotkeysSubtitlesSubtitleForward = hotkey
+                hotKey: config.hotkeysSubtitlesSubtitleForward || dsTr("Disabled")
+
+                function disableShortcut() {
+                    config.hotkeysSubtitlesSubtitleForward = ""
+                }
+
+                onHotkeySet: { 
+                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    if (checkResult != null) {
+                        warning(checkResult[0], checkResult[1])
+                    } else {
+                        config.hotkeysSubtitlesSubtitleForward = hotkey 
+                    }
+                }
+
+                onHotkeyReplaced: {
+                    preference_view.disableShortcut(title, hotKey)
+                    config.hotkeysSubtitlesSubtitleForward = hotKey
+                }
+
+                onHotkeyCancelled: {
+                    text = config.hotkeysSubtitlesSubtitleForward
+                    hotKey = Qt.binding(function() { return config.hotkeysSubtitlesSubtitleForward || dsTr("Disabled") })
+                }
             }
             HotKeyInputRow {
                 title: dsTr("Delay 0.5s")
-                hotKey: config.hotkeysSubtitlesSubtitleBackward
-                onHotkeySet: config.hotkeysSubtitlesSubtitleBackward = hotkey
+                hotKey: config.hotkeysSubtitlesSubtitleBackward || dsTr("Disabled")
+
+                function disableShortcut() {
+                    config.hotkeysSubtitlesSubtitleBackward = ""
+                }
+
+                onHotkeySet: { 
+                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    if (checkResult != null) {
+                        warning(checkResult[0], checkResult[1])
+                    } else {
+                        config.hotkeysSubtitlesSubtitleBackward = hotkey 
+                    }
+                }
+
+                onHotkeyReplaced: {
+                    preference_view.disableShortcut(title, hotKey)
+                    config.hotkeysSubtitlesSubtitleBackward = hotKey
+                }
+
+                onHotkeyCancelled: {
+                    text = config.hotkeysSubtitlesSubtitleBackward
+                    hotKey = Qt.binding(function() { return config.hotkeysSubtitlesSubtitleBackward || dsTr("Disabled") })
+                }
             }
             HotKeyInputRow {
                 title: dsTr("Subtitle up")
-                hotKey: config.hotkeysSubtitlesSubtitleMoveUp
-                onHotkeySet: config.hotkeysSubtitlesSubtitleMoveUp = hotkey
+                hotKey: config.hotkeysSubtitlesSubtitleMoveUp || dsTr("Disabled")
+
+                function disableShortcut() {
+                    config.hotkeysSubtitlesSubtitleMoveUp = ""
+                }
+
+                onHotkeySet: { 
+                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    if (checkResult != null) {
+                        warning(checkResult[0], checkResult[1])
+                    } else {
+                        config.hotkeysSubtitlesSubtitleMoveUp = hotkey 
+                    }
+                }
+
+                onHotkeyReplaced: {
+                    preference_view.disableShortcut(title, hotKey)
+                    config.hotkeysSubtitlesSubtitleMoveUp = hotKey
+                }
+
+                onHotkeyCancelled: {
+                    text = config.hotkeysSubtitlesSubtitleMoveUp
+                    hotKey = Qt.binding(function() { return config.hotkeysSubtitlesSubtitleMoveUp || dsTr("Disabled") })
+                }
             }
             HotKeyInputRow {
                 title: dsTr("Subtitle down")
-                hotKey: config.hotkeysSubtitlesSubtitleMoveDown
-                onHotkeySet: config.hotkeysSubtitlesSubtitleMoveDown = hotkey
+                hotKey: config.hotkeysSubtitlesSubtitleMoveDown || dsTr("Disabled")
+
+                function disableShortcut() {
+                    config.hotkeysSubtitlesSubtitleMoveDown = ""
+                }
+
+                onHotkeySet: { 
+                    var checkResult = preference_view.checkShortcutsDuplication(title, hotkey)
+                    if (checkResult != null) {
+                        warning(checkResult[0], checkResult[1])
+                    } else {
+                        config.hotkeysSubtitlesSubtitleMoveDown = hotkey 
+                    }
+                }
+
+                onHotkeyReplaced: {
+                    preference_view.disableShortcut(title, hotKey)
+                    config.hotkeysSubtitlesSubtitleMoveDown = hotKey
+                }
+
+                onHotkeyCancelled: {
+                    text = config.hotkeysSubtitlesSubtitleMoveDown
+                    hotKey = Qt.binding(function() { return config.hotkeysSubtitlesSubtitleMoveDown || dsTr("Disabled") })
+                }
             }
         }
         SectionContent { 

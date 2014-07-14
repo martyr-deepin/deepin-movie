@@ -2,28 +2,105 @@ import QtQuick 2.1
 import Deepin.Widgets 1.0
 
 Item {
+	id: hotkey_input_row
 	width: 370
-	height: Math.max(title.implicitHeight, input.height)
+	height: warning_dialog.visible ? top_row.height + warning_dialog.height
+									: top_row.height
 
 	property alias title: title.text
+	property alias text: input.text
 	property alias hotKey: input.hotKey
 
 	signal hotkeySet (string hotkey)
+	signal hotkeyReplaced
+	signal hotkeyCancelled
 
-	Text {
-		id: title
-		color: "#787878"
-		font.pixelSize: 12
-		anchors.left: parent.left
-		anchors.verticalCenter: parent.verticalCenter
+	function warning(shortcutsEntry, shortcutsCategory) {
+		warning_msg.text = dsTr("The shortcut you set ") 
+							+ dsTr("conflicts with the one used for \"%2\" in the \"%1\" category. ").arg(shortcutsCategory).arg(shortcutsEntry)
+							+ dsTr("Do you want to replace it?")
+		warning_dialog.visible = true
 	}
-    
-	HotKeyInput {
-		id: input
-		width: 200
-		anchors.right: parent.right
-		anchors.verticalCenter: parent.verticalCenter
 
-		onHotkeySet: parent.hotkeySet(key)
+	DConstants { id: dconstants }
+
+	Item {
+		id: top_row
+		width: parent.width
+		height: Math.max(title.implicitHeight, input.height)
+
+		Text {
+			id: title
+			color: "#787878"
+			font.pixelSize: 12
+			anchors.left: parent.left
+			anchors.verticalCenter: parent.verticalCenter
+		}
+
+		HotKeyInput {
+			id: input
+			width: 200
+			anchors.right: parent.right
+			anchors.verticalCenter: parent.verticalCenter
+
+			onHotkeySet: hotkey_input_row.hotkeySet(key)
+		}
+	}
+
+	ArrowRect {
+		id: warning_dialog
+		visible: false
+		radius: 0
+		lineWidth: 0
+		arrowPosition: 0.6
+		stroke: false
+		fillStyle: dconstants.bgColor
+
+		contentTopMargin: 5
+		contentBottomMargin: 5
+		contentLeftMargin: 5
+		contentRightMargin: 5
+
+		anchors.top: top_row.bottom
+		anchors.topMargin: 5
+
+		Column {
+			spacing: 10
+			width: top_row.width
+
+			DssH2 {
+				id: warning_msg
+				width: parent.width - warning_dialog.contentLeftMargin - warning_dialog.contentRightMargin
+				wrapMode: Text.WordWrap
+			}
+
+			Item {
+				width: parent.width
+				height: warning_cancel.height
+
+				DTextButton {
+					id: warning_cancel
+					text: dsTr("Cancel")
+					anchors.right: warning_accept.left
+					anchors.rightMargin: 10
+
+					onClicked: {
+						warning_dialog.visible = false
+						hotkey_input_row.hotkeyCancelled()
+					}
+				}
+				DTextButton {
+					id: warning_accept
+					text: dsTr("Replace")
+					anchors.right: parent.right
+					anchors.rightMargin: 10
+
+					onClicked: {
+						warning_dialog.visible = false
+						hotkey_input_row.hotkeyReplaced()
+					}
+				}
+			}
+		}
 	}
 }

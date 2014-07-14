@@ -2,7 +2,7 @@ import QtQuick 2.1
 
 Item {
 	width: 380
-	height: childrenRect.height
+	height: settings_title.height + top_space.height + col.height + bottom_space.height
 
 	default property alias content: col.children
 	property alias topSpaceHeight: top_space.height
