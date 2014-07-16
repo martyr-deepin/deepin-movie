@@ -350,7 +350,7 @@ Rectangle {
         Rectangle {
             id: bg
             color: "#050811"
-            visible: { return !(player.hasVideo && player.visible) }
+            visible: !(player.hasVideo && player.source != "")
             anchors.fill: parent
             Image { anchors.centerIn: parent; source: "image/background.png" }
         }
