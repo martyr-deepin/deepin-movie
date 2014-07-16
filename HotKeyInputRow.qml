@@ -62,7 +62,7 @@ Item {
 		visible: false
 		radius: 0
 		lineWidth: 0
-		arrowPosition: 0.6
+		arrowPosition: 0.75
 		strokeStyle: "#313131"
 		stroke: true
 		fillStyle: "#1d1e1e"

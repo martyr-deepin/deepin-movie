@@ -22,11 +22,6 @@ Canvas {
     property color strokeStyle: "black"
     // need init
 
-    property int rectx: shadowWidth + lineWidth
-    property int rectWidth: width - 2*rectx
-    property int recty: shadowWidth + 2 * lineWidth + arrowHeight
-    property int rectHeight: height - rectx - recty
-
     property int contentTopMargin: 0
     property int contentBottomMargin: 0
     property int contentLeftMargin: 0
@@ -41,6 +36,11 @@ Canvas {
 
     onPaint: {
         var ctx = getContext("2d");
+        var rectx = 1
+        var recty = arrowHeight + 1
+        var rectWidth = width - 2
+        var rectHeight = height - arrowHeight - 2
+
         ctx.save();
         ctx.clearRect(0,0,canvas.width, canvas.height);
         ctx.strokeStyle = canvas.strokeStyle;
