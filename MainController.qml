@@ -335,6 +335,7 @@ MouseArea {
         }
         windowView.setX(backupCenter.x - windowView.width / 2)
         windowView.setY(backupCenter.y - windowView.height / 2)
+        windowView.requestActivate()
     }
 
     function setProportion(propWidth, propHeight) {
