@@ -63,8 +63,9 @@ Item {
 		radius: 0
 		lineWidth: 0
 		arrowPosition: 0.6
-		stroke: false
-		fillStyle: dconstants.bgColor
+		strokeStyle: "#313131"
+		stroke: true
+		fillStyle: "#1d1e1e"
 
 		contentTopMargin: 5
 		contentBottomMargin: 5
@@ -76,7 +77,7 @@ Item {
 
 		Column {
 			spacing: 10
-			width: top_row.width
+			width: top_row.width - warning_dialog.contentLeftMargin - warning_dialog.contentRightMargin
 
 			DssH2 {
 				id: warning_msg
