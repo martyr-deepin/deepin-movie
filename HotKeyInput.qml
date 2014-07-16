@@ -11,7 +11,6 @@ DTextInput {
 	signal hotkeySet (string key)
 
 	onHotkeySet: { text = key; focus = false }
-	onHotKeyChanged: text = hotKey
 	onActiveFocusChanged: text = activeFocus ? dsTr("Please input new shortcut") : hotKey
 
 	Keys.onPressed: {
