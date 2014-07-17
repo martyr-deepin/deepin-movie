@@ -350,7 +350,7 @@ Rectangle {
         Rectangle {
             id: bg
             color: "#050811"
-            visible: !(player.hasVideo && player.source != "")
+            visible: !player.visible
             anchors.fill: parent
             Image { anchors.centerIn: parent; source: "image/background.png" }
         }
@@ -360,6 +360,7 @@ Rectangle {
         id: player
         muted: config.playerMuted
         volume: config.playerVolume
+        visible: hasVideo && source != ""
         // QML automatically decodes the file name, if we don't
         // encode it before, we'll get 'gst cannot find file' like errors when 
         // the file name is url encoded.
