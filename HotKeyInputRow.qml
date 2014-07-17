@@ -20,7 +20,7 @@ Item {
 	function disableShortcut() { setShortcut("") }
 
 	function setShortcut(shortcut) {
-	    hotKey = Qt.binding(function() { return config[actualSettingEntry] || dsTr("Disabled") })
+	    hotKey = Qt.binding(function() { return config[actualSettingEntry]+"" || dsTr("Disabled") })
 	    config[actualSettingEntry] = shortcut
 	    text = hotKey
 	}
