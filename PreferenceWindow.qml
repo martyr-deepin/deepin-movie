@@ -356,7 +356,7 @@ DPreferenceWindow {
                 onHotkeyCancelled: { setShortcut(config.hotkeysPlayTogglePlaylist) }
             }
             HotKeyInputRow {
-                title: dsTr("Speed up")
+                title: dsTr("Accelerate playback")
                 hotKey: config.hotkeysPlaySpeedUp+"" || dsTr("Disabled")
                 actualSettingEntry: "hotkeysPlaySpeedUp"
 
@@ -377,7 +377,7 @@ DPreferenceWindow {
                 onHotkeyCancelled: { setShortcut(config.hotkeysPlaySpeedUp) }
             }
             HotKeyInputRow {
-                title: dsTr("Slow down")
+                title: dsTr("Decelerate playback")
                 hotKey: config.hotkeysPlaySlowDown+"" || dsTr("Disabled")
                 actualSettingEntry: "hotkeysPlaySlowDown"
 
@@ -396,6 +396,27 @@ DPreferenceWindow {
                 }
 
                 onHotkeyCancelled: { setShortcut(config.hotkeysPlaySlowDown) }
+            }
+            HotKeyInputRow {
+                title: dsTr("Restore playback speed")
+                hotKey: config.hotkeysPlayRestoreSpeed+"" || dsTr("Disabled")
+                actualSettingEntry: "hotkeysPlayRestoreSpeed"
+
+                onHotkeySet: { 
+                    var checkResult = preference_view.checkShortcutsDuplication(title, text)
+                    if (checkResult != null) {
+                        warning(checkResult[0], checkResult[1])
+                    } else {
+                        setShortcut(text)
+                    }
+                }
+
+                onHotkeyReplaced: {
+                    preference_view.disableShortcut(title, text)
+                    setShortcut(text)
+                }
+
+                onHotkeyCancelled: { setShortcut(config.hotkeysPlayRestoreSpeed) }
             }
         }
         SectionContent { 

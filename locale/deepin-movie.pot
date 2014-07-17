@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-17 13:28+0800\n"
+"POT-Creation-Date: 2014-07-17 14:04+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,14 +47,15 @@ msgstr ""
 #: ../PreferenceWindow.qml:276 ../PreferenceWindow.qml:297
 #: ../PreferenceWindow.qml:318 ../PreferenceWindow.qml:339
 #: ../PreferenceWindow.qml:360 ../PreferenceWindow.qml:381
-#: ../PreferenceWindow.qml:419 ../PreferenceWindow.qml:440
+#: ../PreferenceWindow.qml:402 ../PreferenceWindow.qml:440
 #: ../PreferenceWindow.qml:461 ../PreferenceWindow.qml:482
 #: ../PreferenceWindow.qml:503 ../PreferenceWindow.qml:524
-#: ../PreferenceWindow.qml:562 ../PreferenceWindow.qml:583
-#: ../PreferenceWindow.qml:604 ../PreferenceWindow.qml:642
+#: ../PreferenceWindow.qml:545 ../PreferenceWindow.qml:583
+#: ../PreferenceWindow.qml:604 ../PreferenceWindow.qml:625
 #: ../PreferenceWindow.qml:663 ../PreferenceWindow.qml:684
-#: ../PreferenceWindow.qml:705 ../PreferenceWindow.qml:739
-#: ../PreferenceWindow.qml:747 ../PreferenceWindow.qml:755
+#: ../PreferenceWindow.qml:705 ../PreferenceWindow.qml:726
+#: ../PreferenceWindow.qml:760 ../PreferenceWindow.qml:768
+#: ../PreferenceWindow.qml:776
 msgid "Disabled"
 msgstr ""
 
@@ -175,68 +176,80 @@ msgstr ""
 msgid "Allow multiple instance"
 msgstr ""
 
-#: ../PreferenceWindow.qml:249 ../PreferenceWindow.qml:412
-#: ../PreferenceWindow.qml:555 ../PreferenceWindow.qml:635
+#: ../PreferenceWindow.qml:249 ../PreferenceWindow.qml:433
+#: ../PreferenceWindow.qml:576 ../PreferenceWindow.qml:656
 msgid "Enable keyboard shortcuts"
 msgstr ""
 
-#: ../PreferenceWindow.qml:254 ../PreferenceWindow.qml:739
+#: ../PreferenceWindow.qml:254 ../PreferenceWindow.qml:760
 msgid "Pause/Play"
 msgstr ""
 
-#: ../PreferenceWindow.qml:418 ../menu_controller.py:94
+#: ../PreferenceWindow.qml:359
+msgid "Accelerate playback"
+msgstr ""
+
+#: ../PreferenceWindow.qml:380
+msgid "Decelerate playback"
+msgstr ""
+
+#: ../PreferenceWindow.qml:401
+msgid "Restore playback speed"
+msgstr ""
+
+#: ../PreferenceWindow.qml:439 ../menu_controller.py:94
 msgid "Mini mode"
 msgstr ""
 
-#: ../PreferenceWindow.qml:481
+#: ../PreferenceWindow.qml:502
 msgid "Volume up"
 msgstr ""
 
-#: ../PreferenceWindow.qml:502
+#: ../PreferenceWindow.qml:523
 msgid "Volume down"
 msgstr ""
 
-#: ../PreferenceWindow.qml:582
+#: ../PreferenceWindow.qml:603
 msgid "Open previous"
 msgstr ""
 
-#: ../PreferenceWindow.qml:603
+#: ../PreferenceWindow.qml:624
 msgid "Open next"
 msgstr ""
 
-#: ../PreferenceWindow.qml:641
+#: ../PreferenceWindow.qml:662
 msgid "Forward 0.5s"
 msgstr ""
 
-#: ../PreferenceWindow.qml:662
+#: ../PreferenceWindow.qml:683
 msgid "Delay 0.5s"
 msgstr ""
 
-#: ../PreferenceWindow.qml:683
+#: ../PreferenceWindow.qml:704
 msgid "Subtitle up"
 msgstr ""
 
-#: ../PreferenceWindow.qml:704
+#: ../PreferenceWindow.qml:725
 msgid "Subtitle down"
 msgstr ""
 
-#: ../PreferenceWindow.qml:736
+#: ../PreferenceWindow.qml:757
 msgid "Left click"
 msgstr ""
 
-#: ../PreferenceWindow.qml:744
+#: ../PreferenceWindow.qml:765
 msgid "Double click"
 msgstr ""
 
-#: ../PreferenceWindow.qml:769
+#: ../PreferenceWindow.qml:790
 msgid "Subtitles loaded automatically"
 msgstr ""
 
-#: ../PreferenceWindow.qml:810
+#: ../PreferenceWindow.qml:831
 msgid "Border width"
 msgstr ""
 
-#: ../PreferenceWindow.qml:317 ../PreferenceWindow.qml:747
+#: ../PreferenceWindow.qml:317 ../PreferenceWindow.qml:768
 msgid "Fullscreen"
 msgstr ""
 
@@ -245,19 +258,19 @@ msgstr ""
 msgid "Playback"
 msgstr ""
 
-#: ../PreferenceWindow.qml:69 ../PreferenceWindow.qml:403
+#: ../PreferenceWindow.qml:69 ../PreferenceWindow.qml:424
 msgid "Frame/Sound"
 msgstr ""
 
-#: ../PreferenceWindow.qml:74 ../PreferenceWindow.qml:546
+#: ../PreferenceWindow.qml:74 ../PreferenceWindow.qml:567
 msgid "Files"
 msgstr ""
 
-#: ../PreferenceWindow.qml:84 ../PreferenceWindow.qml:727
+#: ../PreferenceWindow.qml:84 ../PreferenceWindow.qml:748
 msgid "Other"
 msgstr ""
 
-#: ../PreferenceWindow.qml:79 ../PreferenceWindow.qml:626
+#: ../PreferenceWindow.qml:79 ../PreferenceWindow.qml:647
 #: ../menu_controller.py:102
 msgid "Subtitles"
 msgstr ""
@@ -322,7 +335,7 @@ msgstr ""
 msgid "Keyboard shortcuts"
 msgstr ""
 
-#: ../PreferenceWindow.qml:91 ../PreferenceWindow.qml:763
+#: ../PreferenceWindow.qml:91 ../PreferenceWindow.qml:784
 msgid "Subtitle settings"
 msgstr ""
 
@@ -346,67 +359,59 @@ msgstr ""
 msgid "Playlist"
 msgstr ""
 
-#: ../PreferenceWindow.qml:359
-msgid "Speed up"
-msgstr ""
-
-#: ../PreferenceWindow.qml:380
-msgid "Slow down"
-msgstr ""
-
-#: ../PreferenceWindow.qml:439
+#: ../PreferenceWindow.qml:460
 msgid "Rotate counterclockwise"
 msgstr ""
 
-#: ../PreferenceWindow.qml:460
+#: ../PreferenceWindow.qml:481
 msgid "Rotate clockwise"
 msgstr ""
 
-#: ../PreferenceWindow.qml:523
+#: ../PreferenceWindow.qml:544
 msgid "Mute"
 msgstr ""
 
-#: ../PreferenceWindow.qml:561 ../menu_controller.py:89
+#: ../PreferenceWindow.qml:582 ../menu_controller.py:89
 msgid "Open file"
 msgstr ""
 
-#: ../PreferenceWindow.qml:752
+#: ../PreferenceWindow.qml:773
 msgid "Scroll"
 msgstr ""
 
-#: ../PreferenceWindow.qml:755
+#: ../PreferenceWindow.qml:776
 msgid "Volume"
 msgstr ""
 
-#: ../PreferenceWindow.qml:775
+#: ../PreferenceWindow.qml:796
 msgid "Font"
 msgstr ""
 
-#: ../PreferenceWindow.qml:785
+#: ../PreferenceWindow.qml:806
 msgid "Font color"
 msgstr ""
 
-#: ../PreferenceWindow.qml:801
+#: ../PreferenceWindow.qml:822
 msgid "Size"
 msgstr ""
 
-#: ../PreferenceWindow.qml:819
+#: ../PreferenceWindow.qml:840
 msgid "Border color"
 msgstr ""
 
-#: ../PreferenceWindow.qml:835
+#: ../PreferenceWindow.qml:856
 msgid "Position"
 msgstr ""
 
-#: ../PreferenceWindow.qml:840
+#: ../PreferenceWindow.qml:861
 msgid "Bottom"
 msgstr ""
 
-#: ../PreferenceWindow.qml:841
+#: ../PreferenceWindow.qml:862
 msgid "Top"
 msgstr ""
 
-#: ../PreferenceWindow.qml:847
+#: ../PreferenceWindow.qml:868
 msgid "Subtitle Delay"
 msgstr ""
 
