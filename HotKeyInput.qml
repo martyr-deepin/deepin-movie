@@ -5,6 +5,7 @@ DTextInput {
 	id: input
 	readOnly: true
 	text: hotKey
+	keyboardOperationsEnabled: false
 
 	property string hotKey: "hotkey"
 
@@ -13,7 +14,7 @@ DTextInput {
 	onHotkeySet: { text = key; focus = false }
 	onActiveFocusChanged: text = activeFocus ? dsTr("Please input new shortcut") : hotKey
 
-	Keys.onPressed: {
+	onKeyPressed: {
 		var modifiers = [Qt.Key_Control, Qt.Key_Shift, Qt.Key_Alt, Qt.Key_Meta, Qt.Key_AltGr]
 		if (modifiers.indexOf(event.key) == -1) {
 			input.focus = false
