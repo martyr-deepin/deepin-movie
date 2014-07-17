@@ -241,6 +241,11 @@ ListView {
 								// sep.x = parent.x
 								// sep.y = listView.allItems[i].y + listView.allItems[i].height
 								// sep.visible = true
+								for (var j = 0; j < listView.allItems.length; j++) {
+									if (listView.allItems[j].y == listView.allItems[i].y - height) {
+										listView.allItems[j].y -= height
+									}
+								}
 								listView.allItems[i].y -= height
 							}
 						} else if (y < lastY) {
@@ -251,6 +256,11 @@ ListView {
 								// sep.x = parent.x
 								// sep.y = listView.allItems[i].y + listView.allItems[i].height
 								// sep.visible = true
+								for (var j = 0; j < listView.allItems.length; j++) {
+									if (listView.allItems[j].y == listView.allItems[i].y + height) {
+										listView.allItems[j].y += height
+									}
+								}
 								listView.allItems[i].y += height
 							}
 						}
