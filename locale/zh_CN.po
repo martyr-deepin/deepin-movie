@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-16 10:20+0800\n"
+"POT-Creation-Date: 2014-07-17 13:28+0800\n"
 "PO-Revision-Date: 2014-06-10 15:05+0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -39,7 +39,7 @@ msgstr "深度影院是一款专为Linux用户设计的播放器。它支持多�
 msgid "Deepin Movie is free software licensed under GNU GPLv3"
 msgstr "深度影院是一款遵循GNU GPLv3（GUN通用公共许可协议）的免费软件。"
 
-#: ../HotKeyInput.qml:14
+#: ../HotKeyInput.qml:15
 msgid "Please input new shortcut"
 msgstr "请输入新的快捷键"
 
@@ -111,35 +111,35 @@ msgstr "确定"
 msgid "Invalid file"
 msgstr "无效文件"
 
-#: ../MainController.qml:405
+#: ../MainController.qml:406
 msgid "Play last movie played"
 msgstr "播放上次的影片"
 
-#: ../MainController.qml:417 ../PreferenceWindow.qml:275
+#: ../MainController.qml:418 ../PreferenceWindow.qml:275
 #: ../menu_controller.py:84
 msgid "Forward"
 msgstr "快进"
 
-#: ../MainController.qml:425 ../PreferenceWindow.qml:296
+#: ../MainController.qml:426 ../PreferenceWindow.qml:296
 #: ../menu_controller.py:85
 msgid "Rewind"
 msgstr "快退"
 
-#: ../MainController.qml:434 ../MainController.qml:439
+#: ../MainController.qml:435 ../MainController.qml:440
 #, qt-format
 msgid "(Press %1 to restore)"
 msgstr "(按 %1 键恢复原速)"
 
-#: ../MainController.qml:434 ../MainController.qml:439
-#: ../MainController.qml:444
+#: ../MainController.qml:435 ../MainController.qml:440
+#: ../MainController.qml:445
 msgid "Playback rate: "
 msgstr "播放速度："
 
-#: ../MainController.qml:456 ../MainController.qml:465
+#: ../MainController.qml:457 ../MainController.qml:466
 msgid "Volume: "
 msgstr "音量："
 
-#: ../MainController.qml:463 ../menu_controller.py:59
+#: ../MainController.qml:464 ../menu_controller.py:59
 msgid "Muted"
 msgstr "静音"
 
@@ -342,7 +342,7 @@ msgstr "启用系统通知"
 msgid "Forward/Rewind"
 msgstr "快进/快退"
 
-#: ../PreferenceWindow.qml:338
+#: ../PreferenceWindow.qml:338 ../menu_controller.py:96
 msgid "Playlist"
 msgstr "播放列表"
 
@@ -498,10 +498,6 @@ msgstr "全屏/退出"
 msgid "Always on top"
 msgstr "置顶"
 
-#: ../menu_controller.py:96
-msgid "PLaylist"
-msgstr "播放列表"
-
 #: ../menu_controller.py:98
 msgid "Play Sequence"
 msgstr "播放顺序"
@@ -545,6 +541,9 @@ msgstr "清空播放列表"
 #: ../menu_controller.py:118
 msgid "Open file location"
 msgstr "打开文件所在位置"
+
+#~ msgid "PLaylist"
+#~ msgstr "播放列表"
 
 #~ msgid "Fit player to video"
 #~ msgstr "窗口适应视频"

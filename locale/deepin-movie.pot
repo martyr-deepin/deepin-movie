@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-16 10:20+0800\n"
+"POT-Creation-Date: 2014-07-17 13:28+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,7 +39,7 @@ msgstr ""
 msgid "Deepin Movie is free software licensed under GNU GPLv3"
 msgstr ""
 
-#: ../HotKeyInput.qml:14
+#: ../HotKeyInput.qml:15
 msgid "Please input new shortcut"
 msgstr ""
 
@@ -111,35 +111,35 @@ msgstr ""
 msgid "Invalid file"
 msgstr ""
 
-#: ../MainController.qml:405
+#: ../MainController.qml:406
 msgid "Play last movie played"
 msgstr ""
 
-#: ../MainController.qml:417 ../PreferenceWindow.qml:275
+#: ../MainController.qml:418 ../PreferenceWindow.qml:275
 #: ../menu_controller.py:84
 msgid "Forward"
 msgstr ""
 
-#: ../MainController.qml:425 ../PreferenceWindow.qml:296
+#: ../MainController.qml:426 ../PreferenceWindow.qml:296
 #: ../menu_controller.py:85
 msgid "Rewind"
 msgstr ""
 
-#: ../MainController.qml:434 ../MainController.qml:439
+#: ../MainController.qml:435 ../MainController.qml:440
 #, qt-format
 msgid "(Press %1 to restore)"
 msgstr ""
 
-#: ../MainController.qml:434 ../MainController.qml:439
-#: ../MainController.qml:444
+#: ../MainController.qml:435 ../MainController.qml:440
+#: ../MainController.qml:445
 msgid "Playback rate: "
 msgstr ""
 
-#: ../MainController.qml:456 ../MainController.qml:465
+#: ../MainController.qml:457 ../MainController.qml:466
 msgid "Volume: "
 msgstr ""
 
-#: ../MainController.qml:463 ../menu_controller.py:59
+#: ../MainController.qml:464 ../menu_controller.py:59
 msgid "Muted"
 msgstr ""
 
@@ -342,7 +342,7 @@ msgstr ""
 msgid "Forward/Rewind"
 msgstr ""
 
-#: ../PreferenceWindow.qml:338
+#: ../PreferenceWindow.qml:338 ../menu_controller.py:96
 msgid "Playlist"
 msgstr ""
 
@@ -496,10 +496,6 @@ msgstr ""
 
 #: ../menu_controller.py:95
 msgid "Always on top"
-msgstr ""
-
-#: ../menu_controller.py:96
-msgid "PLaylist"
 msgstr ""
 
 #: ../menu_controller.py:98

@@ -93,7 +93,7 @@ right_click_menu = [
     ("_fullscreen_quit", _("Fullscreen/Quit"), (), (), config.hotkeysPlayToggleFullscreen),
     ("_mini_mode", _("Mini mode"), (), (), config.hotkeysFrameSoundToggleMiniMode),
     CheckableMenuItem("_on_top", _("Always on top"), False),
-    ("_toggle_playlist", _("PLaylist"), (), (), config.hotkeysPlayTogglePlaylist),
+    ("_toggle_playlist", _("Playlist"), (), (), config.hotkeysPlayTogglePlaylist),
     None,
     ("_play_sequence", _("Play Sequence"), (), play_sequence_sub_menu),
     ("_play", _("Play"), (), play_sub_menu),

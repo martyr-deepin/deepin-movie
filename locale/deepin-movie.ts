@@ -32,7 +32,7 @@
 <context>
     <name>HotKeyInput</name>
     <message>
-        <location filename="../HotKeyInput.qml" line="14"/>
+        <location filename="../HotKeyInput.qml" line="15"/>
         <source>Please input new shortcut</source>
         <translation type="unfinished"></translation>
     </message>
@@ -116,41 +116,41 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="405"/>
+        <location filename="../MainController.qml" line="406"/>
         <source>Play last movie played</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="417"/>
+        <location filename="../MainController.qml" line="418"/>
         <source>Forward</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="425"/>
+        <location filename="../MainController.qml" line="426"/>
         <source>Rewind</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="434"/>
-        <location filename="../MainController.qml" line="439"/>
+        <location filename="../MainController.qml" line="435"/>
+        <location filename="../MainController.qml" line="440"/>
         <source>(Press %1 to restore)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="434"/>
-        <location filename="../MainController.qml" line="439"/>
-        <location filename="../MainController.qml" line="444"/>
+        <location filename="../MainController.qml" line="435"/>
+        <location filename="../MainController.qml" line="440"/>
+        <location filename="../MainController.qml" line="445"/>
         <source>Playback rate: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="456"/>
-        <location filename="../MainController.qml" line="465"/>
+        <location filename="../MainController.qml" line="457"/>
+        <location filename="../MainController.qml" line="466"/>
         <source>Volume: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="463"/>
+        <location filename="../MainController.qml" line="464"/>
         <source>Muted</source>
         <translation type="unfinished"></translation>
     </message>
