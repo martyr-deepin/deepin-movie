@@ -129,7 +129,7 @@ DPreferenceWindow {
 					+ file_size.text + "\n"
 					+ movie_resolution.text + "\n"
 					+ movie_duration.text + "\n"
-					+ file_path.text)
+					+ file_path_title.text + file_path.text)
 			}
 
 			DTextButton {
