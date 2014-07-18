@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-17 14:04+0800\n"
+"POT-Creation-Date: 2014-07-18 17:51+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-#: ../AboutSection.qml:11 ../main.qml:398 ../window.py:69
+#: ../AboutSection.qml:11 ../main.qml:399 ../window.py:69
 msgid "Deepin Movie"
 msgstr ""
 
@@ -126,21 +126,21 @@ msgstr ""
 msgid "Rewind"
 msgstr ""
 
-#: ../MainController.qml:435 ../MainController.qml:440
+#: ../MainController.qml:434 ../MainController.qml:440
 #, qt-format
 msgid "(Press %1 to restore)"
 msgstr ""
 
-#: ../MainController.qml:435 ../MainController.qml:440
-#: ../MainController.qml:445
+#: ../MainController.qml:436 ../MainController.qml:442
+#: ../MainController.qml:447
 msgid "Playback rate: "
 msgstr ""
 
-#: ../MainController.qml:457 ../MainController.qml:466
+#: ../MainController.qml:459 ../MainController.qml:468
 msgid "Volume: "
 msgstr ""
 
-#: ../MainController.qml:464 ../menu_controller.py:59
+#: ../MainController.qml:466 ../menu_controller.py:59
 msgid "Muted"
 msgstr ""
 
@@ -170,10 +170,6 @@ msgstr ""
 
 #: ../PreferenceWindow.qml:194
 msgid "Show preview when hovering over progress bar"
-msgstr ""
-
-#: ../PreferenceWindow.qml:199
-msgid "Allow multiple instance"
 msgstr ""
 
 #: ../PreferenceWindow.qml:249 ../PreferenceWindow.qml:433
@@ -341,6 +337,10 @@ msgstr ""
 
 #: ../PreferenceWindow.qml:173
 msgid "Apply the size last time closed"
+msgstr ""
+
+#: ../PreferenceWindow.qml:199
+msgid "Allow multiple instances"
 msgstr ""
 
 #: ../PreferenceWindow.qml:204

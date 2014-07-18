@@ -196,7 +196,7 @@ DPreferenceWindow {
                 onClicked: config.playerShowPreview = checked
             }
             DCheckBox {
-                text: dsTr("Allow multiple instance")
+                text: dsTr("Allow multiple instances")
                 checked: config.playerMultipleProgramsAllowed
                 onClicked: config.playerMultipleProgramsAllowed = checked
             }

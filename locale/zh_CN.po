@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-17 14:04+0800\n"
+"POT-Creation-Date: 2014-07-18 17:51+0800\n"
 "PO-Revision-Date: 2014-06-10 15:05+0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "About"
 msgstr "关于"
 
-#: ../AboutSection.qml:11 ../main.qml:398 ../window.py:69
+#: ../AboutSection.qml:11 ../main.qml:399 ../window.py:69
 msgid "Deepin Movie"
 msgstr "深度影院"
 
@@ -126,21 +126,21 @@ msgstr "快进"
 msgid "Rewind"
 msgstr "快退"
 
-#: ../MainController.qml:435 ../MainController.qml:440
+#: ../MainController.qml:434 ../MainController.qml:440
 #, qt-format
 msgid "(Press %1 to restore)"
 msgstr "(按 %1 键恢复原速)"
 
-#: ../MainController.qml:435 ../MainController.qml:440
-#: ../MainController.qml:445
+#: ../MainController.qml:436 ../MainController.qml:442
+#: ../MainController.qml:447
 msgid "Playback rate: "
 msgstr "播放速度："
 
-#: ../MainController.qml:457 ../MainController.qml:466
+#: ../MainController.qml:459 ../MainController.qml:468
 msgid "Volume: "
 msgstr "音量："
 
-#: ../MainController.qml:464 ../menu_controller.py:59
+#: ../MainController.qml:466 ../menu_controller.py:59
 msgid "Muted"
 msgstr "静音"
 
@@ -171,10 +171,6 @@ msgstr "自动查找相似文件连续播放"
 #: ../PreferenceWindow.qml:194
 msgid "Show preview when hovering over progress bar"
 msgstr "鼠标悬停进度条时显示预览"
-
-#: ../PreferenceWindow.qml:199
-msgid "Allow multiple instance"
-msgstr "允许同时运行多个深度影院"
 
 #: ../PreferenceWindow.qml:249 ../PreferenceWindow.qml:433
 #: ../PreferenceWindow.qml:576 ../PreferenceWindow.qml:656
@@ -342,6 +338,10 @@ msgstr "字幕设置"
 #: ../PreferenceWindow.qml:173
 msgid "Apply the size last time closed"
 msgstr "应用上次关闭时的尺寸"
+
+#: ../PreferenceWindow.qml:199
+msgid "Allow multiple instances"
+msgstr "允许同时运行多个深度影院"
 
 #: ../PreferenceWindow.qml:204
 msgid "Pause when minimized"

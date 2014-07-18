@@ -131,26 +131,26 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="435"/>
+        <location filename="../MainController.qml" line="434"/>
         <location filename="../MainController.qml" line="440"/>
         <source>(Press %1 to restore)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="435"/>
-        <location filename="../MainController.qml" line="440"/>
-        <location filename="../MainController.qml" line="445"/>
+        <location filename="../MainController.qml" line="436"/>
+        <location filename="../MainController.qml" line="442"/>
+        <location filename="../MainController.qml" line="447"/>
         <source>Playback rate: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="457"/>
-        <location filename="../MainController.qml" line="466"/>
+        <location filename="../MainController.qml" line="459"/>
+        <location filename="../MainController.qml" line="468"/>
         <source>Volume: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="464"/>
+        <location filename="../MainController.qml" line="466"/>
         <source>Muted</source>
         <translation type="unfinished"></translation>
     </message>
@@ -196,11 +196,6 @@
     <message>
         <location filename="../PreferenceWindow.qml" line="194"/>
         <source>Show preview when hovering over progress bar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../PreferenceWindow.qml" line="199"/>
-        <source>Allow multiple instance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -458,6 +453,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../PreferenceWindow.qml" line="199"/>
+        <source>Allow multiple instances</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../PreferenceWindow.qml" line="204"/>
         <source>Pause when minimized</source>
         <translation type="unfinished"></translation>
@@ -561,7 +561,7 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../main.qml" line="398"/>
+        <location filename="../main.qml" line="399"/>
         <source>Deepin Movie</source>
         <translation type="unfinished"></translation>
     </message>

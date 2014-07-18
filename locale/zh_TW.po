@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-17 14:04+0800\n"
+"POT-Creation-Date: 2014-07-18 17:51+0800\n"
 "PO-Revision-Date: 2014-07-03 05:53+0000\n"
 "Last-Translator: electricface <songwentai@linuxdeepin.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/deepin-"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "About"
 msgstr "關於"
 
-#: ../AboutSection.qml:11 ../main.qml:398 ../window.py:69
+#: ../AboutSection.qml:11 ../main.qml:399 ../window.py:69
 msgid "Deepin Movie"
 msgstr ""
 
@@ -127,21 +127,21 @@ msgstr "前進"
 msgid "Rewind"
 msgstr "後退"
 
-#: ../MainController.qml:435 ../MainController.qml:440
+#: ../MainController.qml:434 ../MainController.qml:440
 #, qt-format
 msgid "(Press %1 to restore)"
 msgstr ""
 
-#: ../MainController.qml:435 ../MainController.qml:440
-#: ../MainController.qml:445
+#: ../MainController.qml:436 ../MainController.qml:442
+#: ../MainController.qml:447
 msgid "Playback rate: "
 msgstr ""
 
-#: ../MainController.qml:457 ../MainController.qml:466
+#: ../MainController.qml:459 ../MainController.qml:468
 msgid "Volume: "
 msgstr ""
 
-#: ../MainController.qml:464 ../menu_controller.py:59
+#: ../MainController.qml:466 ../menu_controller.py:59
 msgid "Muted"
 msgstr ""
 
@@ -171,10 +171,6 @@ msgstr "自動搜尋相似檔案連續播放"
 
 #: ../PreferenceWindow.qml:194
 msgid "Show preview when hovering over progress bar"
-msgstr ""
-
-#: ../PreferenceWindow.qml:199
-msgid "Allow multiple instance"
 msgstr ""
 
 #: ../PreferenceWindow.qml:249 ../PreferenceWindow.qml:433
@@ -342,6 +338,10 @@ msgstr ""
 
 #: ../PreferenceWindow.qml:173
 msgid "Apply the size last time closed"
+msgstr ""
+
+#: ../PreferenceWindow.qml:199
+msgid "Allow multiple instances"
 msgstr ""
 
 #: ../PreferenceWindow.qml:204
