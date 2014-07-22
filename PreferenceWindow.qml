@@ -8,6 +8,8 @@ DPreferenceWindow {
     height: 480
     flags: Qt.BypassWindowManagerHint
 
+    actionButtonText: dsTr("Reset")
+
     property string currentSectionId
     property var presetColors: [
                     {"label": dsTr("bleu de France"), "color": "#2e96ea"},
@@ -25,6 +27,10 @@ DPreferenceWindow {
                 ]
 
     signal scrollToPrivate (string sectionId)
+
+    onAction: { resetHotkeys() }
+
+    function resetHotkeys() { config.resetHotkeys() }
 
     function scrollTo(sectionId) { scrollToPrivate(sectionId) }
 
@@ -102,6 +108,10 @@ DPreferenceWindow {
                 "subSections": []
             }
         ]
+
+        onCurrentSectionIdChanged: {
+            window.showActionButton = currentSectionId.indexOf("keyboard") != -1
+        }
 
         function checkShortcutsDuplication(entryName, shortcut) {
             var keyboard_sections = [keyboard_playback, keyboard_frame_sound, keyboard_files, keyboard_subtitle]

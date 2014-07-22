@@ -89,6 +89,10 @@ DEFAULT_CONFIG = [
     ("wheel", True)]),
 ]
 
+property_name_func = lambda section, key: "%s%s" % (
+    section[0].lower() + section[1:], 
+    key[0].upper() + key[1:])
+
 class Config(QObject):
     def __init__(self):
         super(QObject, self).__init__()
@@ -158,10 +162,19 @@ class Config(QObject):
         self.config.set(section, option, value)
         self.config.write()
 
+    @pyqtSlot()
+    def resetHotkeys(self):
+        for section, items in DEFAULT_CONFIG:
+            if not section.startswith("Hotkeys"): continue
+            for key, value in items:
+                itemName = property_name_func(section, key)
+
+                setattr(config, itemName, value)
+
     # automatically make config entries accessable as qt properties.
     for section, items in DEFAULT_CONFIG:
         for key, value in items:
-            itemName = "%s%s" % (section[0].lower() + section[1:], key[0].upper() + key[1:])
+            itemName = property_name_func(section, key)
             itemNotify = "%sChanged" % itemName
 
             nfy = locals()[itemNotify] = pyqtSignal()
