@@ -53,7 +53,8 @@ Item {
 			anchors.right: parent.right
 			anchors.verticalCenter: parent.verticalCenter
 
-			onHotkeySet: hotkey_input_row.hotkeySet(key)
+			onHotkeySet: hotkey_input_row.hotkeySet()
+			onHotkeyDisabled: hotkey_input_row.disableShortcut()
 		}
 	}
 

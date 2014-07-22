@@ -10,15 +10,20 @@ DTextInput {
 	property string hotKey: "hotkey"
 
 	signal hotkeySet (string key)
+	signal hotkeyDisabled
 
-	onHotkeySet: { text = key; focus = false }
+	onHotkeySet: { text = key || dsTr("Disabled"); focus = false }
 	onActiveFocusChanged: text = activeFocus ? dsTr("Please input new shortcut") : hotKey
 
 	onKeyPressed: {
 		var modifiers = [Qt.Key_Control, Qt.Key_Shift, Qt.Key_Alt, Qt.Key_Meta, Qt.Key_AltGr]
 		if (modifiers.indexOf(event.key) == -1) {
-			input.focus = false
-			input.hotkeySet(_utils.keyEventToQKeySequenceString(event.modifiers, event.key))
+			if (event.key != Qt.Key_Backspace) {
+				input.focus = false
+				input.hotkeySet(_utils.keyEventToQKeySequenceString(event.modifiers, event.key))	
+			} else {
+				input.hotkeyDisabled()
+			}
 		}
 	}
 }
