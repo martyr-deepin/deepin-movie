@@ -32,6 +32,7 @@ from PyQt5.QtCore import QObject, pyqtSlot, pyqtProperty
 from PyQt5.QtDBus import QDBusInterface, QDBusConnection
 
 from subtitles import *
+from dbus_interfaces import screenSaverInterface
 
 all_supported_video_exts = [ "*.3g2","*.3gp","*.3gp2","*.3gpp","*.amv",
                             "*.asf","*.avi","*.bin","*.divx","*.drc",
@@ -202,6 +203,14 @@ class Utils(QObject):
         file_path = file_path[7:] if file_path.startswith("file://") \
                                     else file_path
         subprocess.Popen(["xdg-open", "%s" % os.path.dirname(file_path)])
+
+    @pyqtSlot()
+    def screenSaverInhibit(self):
+        screenSaverInterface.inhibit()
+
+    @pyqtSlot()
+    def screenSaverUninhibit(self):
+        screenSaverInterface.uninhibit()
 
 utils = Utils()
 if __name__ == '__main__':

@@ -3,7 +3,6 @@ import QtMultimedia 5.0
 import QtGraphicalEffects 1.0
 import QtQuick.Window 2.1
 import Deepin.Locale 1.0
-import DBus.Org.Freedesktop.ScreenSaver 1.0
 
 Rectangle {
     id: root
@@ -22,7 +21,6 @@ Rectangle {
     property real widthHeightScale: (movieInfo.movie_width - 2 * program_constants.windowGlowRadius) / (movieInfo.movie_height - 2 * program_constants.windowGlowRadius)
     property real actualScale: 1.0
 
-    property int inhibitCookie: 0
     property bool hasResized: false
     property bool shouldAutoPlayNextOnInvalidFile: false
 
@@ -60,8 +58,6 @@ Rectangle {
         onWidthChanged: root.width = windowView.width
         onHeightChanged: root.height = windowView.height 
     }
-
-    ScreenSaver { id: dbus_screensaver }
 
     Constants { id: program_constants }
 
@@ -283,7 +279,7 @@ Rectangle {
     }
 
     function monitorWindowClose() {
-        dbus_screensaver.UnInhibit(root.inhibitCookie)
+        _utils.screenSaverUninhibit()
         config.save("Normal", "volume", player.volume)
         database.record_video_position(player.source, player.position)
         database.record_video_rotation(player.source, player.orientation)
@@ -385,7 +381,7 @@ Rectangle {
             auto_play_next_on_invalid_timer.stop()
             main_controller.setWindowTitle(movieInfo.movie_title)
 
-            root.inhibitCookie = dbus_screensaver.Inhibit("deepin-movie", "video playing") || 0
+            _utils.screenSaverInhibit()
 
             lastSource = source
             database.lastPlayedFile = source
@@ -397,7 +393,7 @@ Rectangle {
 
         onStopped: {
             windowView.setTitle(dsTr("Deepin Movie"))
-            dbus_screensaver.UnInhibit(root.inhibitCookie)
+            _utils.screenSaverUninhibit()
             database.record_video_position(lastSource, lastPosition)
 
             if (movieInfo.movie_duration 
