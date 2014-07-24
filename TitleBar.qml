@@ -74,33 +74,26 @@ DragableArea {
 
     Timer {
         id: show_for_playlist_timer
-        interval: 300
+        interval: 200
         onTriggered: {
             topPanelBackround.visible = false
             appIcon.visible = false
             btn.visible = false 
+            title_text.visible = false
             visible = true
         }
     }
 
-    Timer {
-        id: hide_for_playlist_timer
-        interval: 300
-        onTriggered: {
-            visible = false
-            topPanelBackround.visible = true
-            appIcon.visible = true
-            btn.visible = true   
-        }
-    }
-
     function showForPlaylist() { 
-        hide_for_playlist_timer.stop()
         show_for_playlist_timer.restart() 
     }
     function hideForPlaylist() { 
         show_for_playlist_timer.stop()
-        hide_for_playlist_timer.restart() 
+        visible = false
+        topPanelBackround.visible = true
+        appIcon.visible = true
+        title_text.visible = true
+        btn.visible = true  
     }
 
     onDoubleClicked: titlebar.maxButtonClicked()
