@@ -39,6 +39,7 @@ Rectangle {
 
     onStateChanged: {
         if (state == "inactive") {
+            moveOutWindowButtons()
             hide_timer.restart()
         } else {
             hide_timer.stop()
@@ -59,14 +60,7 @@ Rectangle {
         }
     }
 
-    function toggleShow() {
-        if (expanded) {
-            hidingPlaylistPanelAnimation.restart()
-        } else {
-            visible = true
-            showingPlaylistPanelAnimation.restart()
-        }
-    }
+    function toggleShow() { expanded ? hide() : show() }
 
     function getContent(type) { return playlist.getContent() }
 
@@ -94,7 +88,7 @@ Rectangle {
         interval: 5000
         repeat: false
 
-        onTriggered: hidingPlaylistPanelAnimation.start()
+        onTriggered: hide()
     }
 
     PropertyAnimation {
@@ -134,11 +128,7 @@ Rectangle {
         acceptedButtons: Qt.LeftButton | Qt.RightButton
 
         onEntered: { playlistPanel.state = "active" }
-        onExited: { 
-            var result = mouseInPlaylistArea()
-            result || (playlistPanel.state = "inactive") 
-            result || playlistPanel.moveOutWindowButtons() 
-        }
+        onExited: { mouseInPlaylistArea() || (playlistPanel.state = "inactive") }
         onWheel: {}
         onClicked: { 
             if (mouse.button == Qt.RightButton) {

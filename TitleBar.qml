@@ -89,11 +89,12 @@ DragableArea {
     }
     function hideForPlaylist() { 
         show_for_playlist_timer.stop()
-        visible = false
+
         topPanelBackround.visible = true
         appIcon.visible = true
         title_text.visible = true
         btn.visible = true  
+        visible = false
     }
 
     onDoubleClicked: titlebar.maxButtonClicked()
