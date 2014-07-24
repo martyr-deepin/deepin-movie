@@ -21,6 +21,9 @@ Rectangle {
     signal clearButtonClicked ()
     signal modeButtonClicked ()
 
+    signal moveInWindowButtons
+    signal moveOutWindowButtons 
+
     states: [
         State {
             name: "active"
@@ -51,6 +54,7 @@ Rectangle {
 
     function hide() {
         if (expanded) {
+            moveOutWindowButtons()
             hidingPlaylistPanelAnimation.restart()
         }
     }
@@ -130,13 +134,21 @@ Rectangle {
         acceptedButtons: Qt.LeftButton | Qt.RightButton
 
         onEntered: { playlistPanel.state = "active" }
-        onExited: { mouseInPlaylistArea() || (playlistPanel.state = "inactive") }
+        onExited: { mouseInPlaylistArea() || (playlistPanel.state = "inactive"); 
+                    playlistPanel.moveOutWindowButtons() }
         onWheel: {}
         onClicked: { 
             if (mouse.button == Qt.RightButton) {
                 _menu_controller.show_playlist_menu("")
             } else if(shouldPerformClick){
                 playlistPanel.hide() 
+            }
+        }
+        onPositionChanged: {
+            if (inRectCheck(mouse, Qt.rect(0, 0, width, 30))) {
+                playlistPanel.moveInWindowButtons()
+            } else {
+                playlistPanel.moveOutWindowButtons()
             }
         }
     }
@@ -147,7 +159,7 @@ Rectangle {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: bottom_rect.top
-        anchors.topMargin: 20
+        anchors.topMargin: 20 + 6 
         anchors.bottomMargin: 20
 
         DScrollBar {

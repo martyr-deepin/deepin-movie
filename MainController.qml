@@ -374,6 +374,7 @@ MouseArea {
         if (playlist.expanded) {
             playlist.hide()
         } else {
+            hideControls()
             playlist.show()
         }
     }

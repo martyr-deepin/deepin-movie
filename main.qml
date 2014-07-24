@@ -451,6 +451,25 @@ Rectangle {
         anchors.leftMargin: 30
     }
 
+    Playlist {
+        id: playlist
+        width: 0
+        visible: false
+        window: windowView
+        maxWidth: main_window.width * 0.6
+        currentPlayingSource: player.source
+        anchors.right: main_window.right
+        anchors.verticalCenter: parent.verticalCenter
+
+        onNewSourceSelected: movieInfo.movie_file = path
+        onModeButtonClicked: _menu_controller.show_mode_menu()
+        onAddButtonClicked: main_controller.openFileForPlaylist()
+        onClearButtonClicked: playlist.clear()
+
+        onMoveInWindowButtons: titlebar.showForPlaylist()
+        onMoveOutWindowButtons: titlebar.hideForPlaylist()
+    }
+
     TitleBar {
         id: titlebar
         visible: false
@@ -506,22 +525,6 @@ Rectangle {
             delay_seek_timer.destPos = movieInfo.movie_duration * percentage
             delay_seek_timer.restart()
         }
-    }
-
-    Playlist {
-        id: playlist
-        width: 0
-        visible: false
-        window: windowView
-        maxWidth: main_window.width * 0.6
-        currentPlayingSource: player.source
-        anchors.right: main_window.right
-        anchors.verticalCenter: parent.verticalCenter
-
-        onNewSourceSelected: movieInfo.movie_file = path
-        onModeButtonClicked: _menu_controller.show_mode_menu()
-        onAddButtonClicked: main_controller.openFileForPlaylist()
-        onClearButtonClicked: playlist.clear()
     }
     
     Component.onCompleted: showControls()

@@ -72,6 +72,37 @@ DragableArea {
         visible = false
     }
 
+    Timer {
+        id: show_for_playlist_timer
+        interval: 300
+        onTriggered: {
+            topPanelBackround.visible = false
+            appIcon.visible = false
+            btn.visible = false 
+            visible = true
+        }
+    }
+
+    Timer {
+        id: hide_for_playlist_timer
+        interval: 300
+        onTriggered: {
+            visible = false
+            topPanelBackround.visible = true
+            appIcon.visible = true
+            btn.visible = true   
+        }
+    }
+
+    function showForPlaylist() { 
+        hide_for_playlist_timer.stop()
+        show_for_playlist_timer.restart() 
+    }
+    function hideForPlaylist() { 
+        show_for_playlist_timer.stop()
+        hide_for_playlist_timer.restart() 
+    }
+
     onDoubleClicked: titlebar.maxButtonClicked()
 
     Item {
