@@ -15,6 +15,7 @@ DragableArea {
     property alias muted: volume_button.muted
     property alias widthHeightScale: videoPreview.widthHeightScale
     property alias dragbarVisible: drag_point.visible
+    property alias windowFullscreen: toggle_fullscreen_button.checkFlag
     property bool previewHasVideo: false
 
     signal mutedSet (bool muted)
@@ -27,6 +28,7 @@ DragableArea {
     signal playlistButtonClicked ()
     signal previousButtonClicked ()
     signal nextButtonClicked ()
+    signal toggleFullscreenClicked ()
 
     Behavior on opacity {
         NumberAnimation { duration: 300 }
@@ -292,6 +294,23 @@ DragableArea {
                 anchors.rightMargin: 27
                 anchors.verticalCenter: parent.verticalCenter
                 spacing: 25
+
+                DImageButton {
+                    id: toggle_fullscreen_button
+                    sourceSize.width: 22
+                    sourceSize.height: 22
+                    normal_image: checkFlag ? "image/cancel_fullscreen_normal.svg" 
+                                            : "image/fullscreen_normal.svg"
+                    hover_image: checkFlag ? "image/cancel_fullscreen_hover_press.svg" 
+                                            : "image/fullscreen_hover_press.svg" 
+                    press_image: checkFlag ? "image/cancel_fullscreen_hover_press.svg"
+                                            : "image/fullscreen_hover_press.svg"
+
+                    property bool checkFlag: false
+
+                    anchors.verticalCenter: parent.verticalCenter
+                    onClicked: control_bar.toggleFullscreenClicked()
+                }
 
                 DImageButton {
                     sourceSize.width: 19

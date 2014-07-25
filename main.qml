@@ -57,6 +57,7 @@ Rectangle {
 
         onWidthChanged: root.width = windowView.width
         onHeightChanged: root.height = windowView.height 
+        onWindowStateChanged: controlbar.windowFullscreen = windowState == Qt.WindowFullScreen
     }
 
     Constants { id: program_constants }
@@ -514,6 +515,8 @@ Rectangle {
 
         onChangeVolume: { main_controller.setVolume(volume) }
         onMutedSet: { main_controller.setMute(muted) }
+
+        onToggleFullscreenClicked: main_controller.toggleFullscreen()
 
         onPlayStopButtonClicked: { root.reset() }
         onPlayPauseButtonClicked: { main_controller.togglePlay() }
