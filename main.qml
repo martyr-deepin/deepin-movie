@@ -242,6 +242,13 @@ Rectangle {
                                                 program_constants.playlistWidth, main_window.height))        
     }
 
+    function mouseInPlaylistTriggerArea() {
+        var mousePos = windowView.getCursorPos()
+        return !playlist.expanded && inRectCheck(Qt.point(mousePos.x - windowView.x, mousePos.y - windowView.y),
+                                            Qt.rect(main_window.width - program_constants.playlistTriggerThreshold, titlebar.height,  
+                                                    program_constants.playlistTriggerThreshold + 10, main_window.height - controlbar.height))   
+    }
+
     /* to perform like a newly started program  */
     function reset() {
         player.resetRotationFlip()

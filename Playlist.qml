@@ -49,6 +49,7 @@ Rectangle {
 
     function show() {
         visible = true
+        hide_handle_timer.stop()
         showingPlaylistPanelAnimation.restart()
     }
 
@@ -59,6 +60,7 @@ Rectangle {
 
     function showHandle() {
         visible = true
+        hide_handle_timer.restart()
     }
 
     function toggleShow() { expanded ? hide() : show() }
@@ -90,6 +92,19 @@ Rectangle {
         repeat: false
 
         onTriggered: hide()
+    }
+
+    Timer {
+        id: hide_handle_timer
+        interval: 300
+
+        onTriggered: {
+            if (mouseInPlaylistTriggerArea()) {
+                hide_handle_timer.restart()
+            } else {
+                hide()
+            }
+        }
     }
 
     PropertyAnimation {
@@ -158,6 +173,7 @@ Rectangle {
         anchors.bottomMargin: 20
 
         DScrollBar {
+            visible: playlistPanel.expanded
             flickable: playlist
             anchors.right: parent.right
             anchors.rightMargin: 5

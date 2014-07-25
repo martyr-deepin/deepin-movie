@@ -137,7 +137,7 @@ MouseArea {
 
     Timer {
         id: show_playlist_timer
-        interval: 600
+        interval: 100
 
         onTriggered: {
             if (mouseX >= main_window.width - program_constants.playlistTriggerThreshold) {
@@ -558,10 +558,7 @@ MouseArea {
             if (mouseInControlsArea() && !playlist.expanded) {
                 showControls()
             } 
-            else if (!playlist.expanded && inRectCheck(mouse,  
-               Qt.rect(main_window.width - program_constants.playlistTriggerThreshold, titlebar.height,  
-                       program_constants.playlistTriggerThreshold, main_window.height - controlbar.height))) 
-            { 
+            else if (mouseInPlaylistTriggerArea) { 
                 show_playlist_timer.restart() 
             } 
         }
