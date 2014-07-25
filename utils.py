@@ -115,9 +115,11 @@ class Utils(QObject):
         for entry in os.listdir(dir):
             try:
                 file_abs_path = os.path.join(dir, entry) 
-                if os.path.isfile(file_abs_path):
-                    result.append(file_abs_path)   
+                # to test if the file path is encoding recognizable
+                os.path.isfile(file_abs_path)
+                result.append(file_abs_path)  
             except Exception:
+                # bypass the files whose path is not encoding recognizable
                 pass
         return result
 
@@ -125,6 +127,16 @@ class Utils(QObject):
     def getAllVideoFilesInDir(self, dir):
         allFiles = self.getAllFilesInDir(dir)
         return filter(lambda x: self.fileIsValidVideo(x), allFiles)
+
+    @pyqtSlot(str, result="QVariant")
+    def getAllVideoFilesInDirRecursively(self, dir):
+        result = []
+        for _file in self.getAllFilesInDir(dir):
+            if self.fileIsValidVideo(_file):
+                result.append(_file)
+            elif os.path.isdir(_file):
+                result.extend(self.getAllVideoFilesInDirRecursively(_file))
+        return result
 
     @pyqtSlot(str, result=str)
     def getSeriesByName(self, name):

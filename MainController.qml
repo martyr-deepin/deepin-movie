@@ -642,7 +642,7 @@ MouseArea {
 
                 var file_paths = []
                 if (_utils.pathIsDir(file_path)) { 
-                    file_paths = _utils.getAllVideoFilesInDir(file_path)
+                    file_paths = _utils.getAllVideoFilesInDirRecursively(file_path)
                 } else if (_utils.pathIsFile(file_path)) {
                     file_paths.push(file_path)
                 }
@@ -650,9 +650,7 @@ MouseArea {
                 var dragInPlaylist = drag.x > parent.width - program_constants.playlistWidth
 
                 for (var j = 0; j < file_paths.length; j++) {
-                    if (_utils.fileIsValidVideo(file_paths[j])) {
-                        addPlayListItem(file_paths[j])
-                    }
+                    addPlayListItem(file_paths[j])
                 }
                 if (!dragInPlaylist && file_paths.length > 0) {
                     if (_utils.fileIsValidVideo(file_paths[0])) {
