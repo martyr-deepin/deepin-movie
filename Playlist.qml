@@ -14,6 +14,7 @@ Rectangle {
     property int maxWidth: program_constants.playlistWidth
     property alias window: playlistPanelArea.window
 
+    signal showed
     signal newSourceSelected (string path)
     
     signal addButtonClicked ()
@@ -28,12 +29,12 @@ Rectangle {
         State {
             name: "active"
             PropertyChanges { target: playlistPanel; color: "#1B1C1D"; opacity: 1 }
-            PropertyChanges { target: hidePlaylistButton; source: "image/playlist_handle_bg.png"; opacity: 1 }
+            PropertyChanges { target: hidePlaylistButton; opacity: 1 }
         },
         State {
             name: "inactive"
             PropertyChanges { target: playlistPanel; color: "#1B1C1D"; opacity: 0.80 }
-            PropertyChanges { target: hidePlaylistButton; source: "image/playlist_handle_bg.png"; opacity: 0.95 }
+            PropertyChanges { target: hidePlaylistButton; opacity: 0.95 }
         }
     ]
 
@@ -47,17 +48,17 @@ Rectangle {
     }
 
     function show() {
-        if (!expanded) {
-            visible = true
-            showingPlaylistPanelAnimation.restart()
-        }
+        visible = true
+        showingPlaylistPanelAnimation.restart()
     }
 
     function hide() {
-        if (expanded) {
-            moveOutWindowButtons()
-            hidingPlaylistPanelAnimation.restart()
-        }
+        moveOutWindowButtons()
+        hidingPlaylistPanelAnimation.restart()
+    }
+
+    function showHandle() {
+        visible = true
     }
 
     function toggleShow() { expanded ? hide() : show() }
@@ -102,6 +103,7 @@ Rectangle {
         easing.type: Easing.OutQuint
 
         onStopped: {
+            playlistPanel.showed()
             playlistPanel.state = "active"
         }
     }
@@ -237,13 +239,15 @@ Rectangle {
         anchors.verticalCenter: parent.verticalCenter
 
         onPositionChanged: {
-            if (pressed) {
-                program_constants.playlistWidth = Math.min(playlistPanel.maxWidth, 
-                    Math.max(program_constants.playlistMinWidth, 
-                        playlistPanel.width - mouse.x))
-                playlistPanel.width = program_constants.playlistWidth
-            } else {
-                cursorShape = Qt.SizeHorCursor
+            if (playlistPanel.expanded) {
+                if (pressed) {
+                    program_constants.playlistWidth = Math.min(playlistPanel.maxWidth, 
+                        Math.max(program_constants.playlistMinWidth, 
+                            playlistPanel.width - mouse.x))
+                    playlistPanel.width = program_constants.playlistWidth
+                } else {
+                    cursorShape = Qt.SizeHorCursor
+                }
             }
         }
 
@@ -251,20 +255,34 @@ Rectangle {
             id: hidePlaylistButton
             width: implicitWidth
             height: implicitHeight
+            source: "image/playlist_handle_bg.png"
             anchors.centerIn: parent
+
+            function buttonClicked() {
+                if (handle_arrow_button.rotation == 180) {
+                    playlistPanel.show()
+                } else {
+                    playlistPanel.hide()
+                }
+            }
+
+            MouseArea {
+                anchors.fill: parent
+                onClicked: { hidePlaylistButton.buttonClicked() }
+                onPositionChanged: { playlistPanel.state = "active" }
+            }
 
             DImageButton {
                 id: handle_arrow_button
                 normal_image: "image/playlist_handle_normal.png"
                 hover_image: "image/playlist_handle_hover_press.png"
                 press_image: "image/playlist_handle_hover_press.png"
+                rotation: playlistPanel.expanded ? 0 : 180
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: parent.left
-                anchors.leftMargin: 5
+                anchors.leftMargin: 3
 
-                onClicked: {
-                    hidingPlaylistPanelAnimation.restart()
-                }
+                onClicked: { hidePlaylistButton.buttonClicked() }
             }
         }
     }

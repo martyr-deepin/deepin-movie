@@ -81,20 +81,25 @@ DragableArea {
             btn.visible = false 
             title_text.visible = false
             visible = true
+
+            visibleForPlaylist = true
         }
     }
 
+    property bool visibleForPlaylist: false
     function showForPlaylist() { 
         show_for_playlist_timer.restart() 
     }
     function hideForPlaylist() { 
         show_for_playlist_timer.stop()
 
-        topPanelBackround.visible = true
-        appIcon.visible = true
-        title_text.visible = true
-        btn.visible = true  
-        visible = false
+        if (visibleForPlaylist) {
+            topPanelBackround.visible = true
+            appIcon.visible = true
+            title_text.visible = true
+            btn.visible = true  
+            visible = false
+        }
     }
 
     onDoubleClicked: titlebar.maxButtonClicked()

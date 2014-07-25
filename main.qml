@@ -457,6 +457,8 @@ Rectangle {
         anchors.right: main_window.right
         anchors.verticalCenter: parent.verticalCenter
 
+        onShowed: root.hideControls()
+
         onNewSourceSelected: movieInfo.movie_file = path
         onModeButtonClicked: _menu_controller.show_mode_menu()
         onAddButtonClicked: main_controller.openFileForPlaylist()
@@ -516,7 +518,7 @@ Rectangle {
         onPlayStopButtonClicked: { root.reset() }
         onPlayPauseButtonClicked: { main_controller.togglePlay() }
         onOpenFileButtonClicked: { main_controller.openFile() }
-        onPlaylistButtonClicked: { hideControls(); playlist.toggleShow() }
+        onPlaylistButtonClicked: { playlist.toggleShow() }
         onPercentageSet: {
             delay_seek_timer.destPos = movieInfo.movie_duration * percentage
             delay_seek_timer.restart()

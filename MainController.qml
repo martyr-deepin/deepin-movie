@@ -137,13 +137,11 @@ MouseArea {
 
     Timer {
         id: show_playlist_timer
-        interval: 3000
+        interval: 600
 
         onTriggered: {
             if (mouseX >= main_window.width - program_constants.playlistTriggerThreshold) {
-                hideControls()
-                playlist.state = "active"
-                playlist.show()
+                playlist.showHandle()
             }
         }
     }
@@ -228,10 +226,7 @@ MouseArea {
     }
 
     function doSingleClick() {
-        if (playlist.expanded) {
-            playlist.hide()
-            return
-        }
+        playlist.hide()
 
         if (config.othersLeftClick) {
             if (shouldPlayOrPause) {
@@ -374,7 +369,6 @@ MouseArea {
         if (playlist.expanded) {
             playlist.hide()
         } else {
-            hideControls()
             playlist.show()
         }
     }
@@ -561,12 +555,15 @@ MouseArea {
         if (!pressed) {
             changeCursor(getEdge(mouse))
 
-            if (mouseInControlsArea() && !playlist.expanded) showControls()
-        /* else if (!playlist.expanded && inRectCheck(mouse,  */
-        /*     Qt.rect(main_window.width - program_constants.playlistTriggerThreshold, 0,  */
-        /*     program_constants.playlistTriggerThreshold, main_window.height))) { */
-        /*     show_playlist_timer.restart() */
-        /* } */
+            if (mouseInControlsArea() && !playlist.expanded) {
+                showControls()
+            } 
+            else if (!playlist.expanded && inRectCheck(mouse,  
+               Qt.rect(main_window.width - program_constants.playlistTriggerThreshold, titlebar.height,  
+                       program_constants.playlistTriggerThreshold, main_window.height - controlbar.height))) 
+            { 
+                show_playlist_timer.restart() 
+            } 
         }
         else {
             // prevent play or pause event from happening if we intend to move or resize the window
