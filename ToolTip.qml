@@ -90,7 +90,7 @@ Window {
             id: tipText
             anchors.centerIn: parent
             font.pixelSize: 12
-            color: "white"
+            color: Qt.rgba(1, 1, 1, 0.7)
         }
     }
 }
