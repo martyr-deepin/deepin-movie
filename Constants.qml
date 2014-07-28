@@ -10,7 +10,7 @@ Item {
     
     property int playlistWidth: 218
     property int playlistMinWidth: 218
-    property int playlistTriggerThreshold: 100
+    property int playlistTriggerThreshold: 60
 
     property int simplifiedModeTriggerWidth: 438
     property int hideVolumeBarTriggerWidth: 530

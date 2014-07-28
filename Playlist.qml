@@ -250,6 +250,7 @@ Rectangle {
         width: hidePlaylistButton.width
         height: parent.height
         hoverEnabled: true
+        enabled: playlistPanel.expanded
 
         anchors.right: parent.left
         anchors.verticalCenter: parent.verticalCenter
