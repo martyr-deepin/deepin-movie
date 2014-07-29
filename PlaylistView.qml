@@ -308,6 +308,16 @@ ListView {
 				width: column.width
 				height: 24
 
+				Timer {
+					id: show_tooltip_timer
+					interval: 1000
+					onTriggered: {
+						if (mouse_area.containsMouse) {
+							tooltip.showTip(itemName)
+						}
+					}
+				}
+
 				MouseArea {
 					id: mouse_area
 					hoverEnabled: true
@@ -354,7 +364,7 @@ ListView {
 					onEntered: {
 					    delete_button.visible = true
 					    delete_button.source = "image/delete_hover.png"
-					    tooltip.showTip(itemName)
+					    show_tooltip_timer.restart()
 					}
 					onExited: {
 						tooltip.hideTip()
