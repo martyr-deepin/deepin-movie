@@ -222,25 +222,33 @@ DragableArea {
 
             ImageButton {
                 id: menuButton
-                imageName: "image/window_menu"
+                normal_image: "image/window_menu_normal.png"
+                hover_image: "image/window_menu_hover.png"
+                press_image: "image/window_menu_press.png"
                 onClicked: { titlebar.menuButtonClicked() }
             }
 
             ImageButton {
                 id: minButton
-                imageName: "image/window_min"
+                normal_image: "image/window_min_normal.png"
+                hover_image: "image/window_min_hover.png"
+                press_image: "image/window_min_press.png"
                 onClicked: { titlebar.minButtonClicked() }
             }
 
             ImageButton {
                 id: maxButton
-                imageName: windowNormalState ? "image/window_max" : "image/window_unmax"
+                normal_image: windowNormalState ? "image/window_max_normal.png" : "image/window_unmax_normal.png"
+                hover_image: windowNormalState ? "image/window_max_hover.png" : "image/window_unmax_hover.png"
+                press_image: windowNormalState ? "image/window_max_press.png" : "image/window_unmax_press.png"
                 onClicked: { titlebar.maxButtonClicked() }
             }
 
             ImageButton {
                 id: closeButton
-                imageName: "image/window_close"
+                normal_image: "image/window_close_normal.png"
+                hover_image: "image/window_close_hover.png"
+                press_image: "image/window_close_press.png"
                 onClicked: { titlebar.closeButtonClicked() }
             }
         }
