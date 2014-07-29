@@ -638,7 +638,7 @@
     <name>TitleBar</name>
     <message>
         <location filename="../TitleBar.qml" line="171"/>
-        <source>Shown in 1.1 times</source>
+        <source>Shown in a proportion of 1:1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

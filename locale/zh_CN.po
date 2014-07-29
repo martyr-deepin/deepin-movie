@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-29 14:11+0800\n"
+"POT-Creation-Date: 2014-07-29 14:27+0800\n"
 "PO-Revision-Date: 2014-06-10 15:05+0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -460,8 +460,8 @@ msgid "Subtitle Delay"
 msgstr "字幕延时"
 
 #: ../TitleBar.qml:171
-msgid "Shown in 1.1 times"
-msgstr "1.1倍显示"
+msgid "Shown in a proportion of 1:1"
+msgstr "1:1显示"
 
 #: ../TitleBar.qml:183
 msgid "Shown in 1.5 times"
@@ -598,6 +598,9 @@ msgstr "删除无效文件"
 #: ../menu_controller.py:118
 msgid "Open file location"
 msgstr "打开文件所在位置"
+
+#~ msgid "Shown in 1.1 times"
+#~ msgstr "1.1倍显示"
 
 #~ msgid "Speed up"
 #~ msgstr "加速"

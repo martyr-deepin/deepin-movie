@@ -168,7 +168,7 @@ DragableArea {
             anchors.topMargin: 10
 
             ImageButton {
-                tooltip: dsTr("Shown in 1.1 times")
+                tooltip: dsTr("Shown in a proportion of 1:1")
                 tooltipItem: titlebar.tooltipItem
 
                 normal_image: "image/quick_1_1_normal.svg"

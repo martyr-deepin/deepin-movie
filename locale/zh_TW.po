@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-29 14:11+0800\n"
+"POT-Creation-Date: 2014-07-29 14:27+0800\n"
 "PO-Revision-Date: 2014-07-03 05:53+0000\n"
 "Last-Translator: electricface <songwentai@linuxdeepin.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/deepin-"
@@ -465,7 +465,7 @@ msgid "Subtitle Delay"
 msgstr ""
 
 #: ../TitleBar.qml:171
-msgid "Shown in 1.1 times"
+msgid "Shown in a proportion of 1:1"
 msgstr ""
 
 #: ../TitleBar.qml:183
