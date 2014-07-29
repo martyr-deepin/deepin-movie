@@ -12,6 +12,7 @@ DragableArea {
     property alias windowStaysOnTop: quick_stays_on_top.checkFlag
     property alias title: title_text.text
     property bool titleVisibleSwitch: titlebar.width > program_constants.simplifiedModeTriggerWidth
+    property QtObject tooltipItem
 
     signal menuButtonClicked ()
     signal minButtonClicked ()
@@ -166,7 +167,10 @@ DragableArea {
             anchors.top: parent.top
             anchors.topMargin: 10
 
-            DImageButton {
+            ImageButton {
+                tooltip: dsTr("Shown in 1.1 times")
+                tooltipItem: titlebar.tooltipItem
+
                 normal_image: "image/quick_1_1_normal.svg"
                 hover_image: "image/quick_1_1_hover.svg"
                 press_image: "image/quick_1_1_hover.svg"
@@ -175,7 +179,10 @@ DragableArea {
 
                 onClicked: titlebar.quickNormalSize()
             }
-            DImageButton {
+            ImageButton {
+                tooltip: dsTr("Shown in 1.5 times")
+                tooltipItem: titlebar.tooltipItem
+
                 normal_image: "image/quick_1_5_normal.svg"
                 hover_image: "image/quick_1_5_hover.svg"
                 press_image: "image/quick_1_5_hover.svg"
@@ -184,8 +191,11 @@ DragableArea {
 
                 onClicked: titlebar.quickOneHalfSize()
             }
-            DImageButton {
+            ImageButton {
                 id: quick_fullscreen_button
+                tooltip: checkFlag ? dsTr("Return to mini mode") : dsTr("Shown in full screen")
+                tooltipItem: titlebar.tooltipItem
+
                 normal_image: checkFlag ? "image/quick_quit_fullscreen_normal.svg" : "image/quick_fullscreen_normal.svg"
                 hover_image: checkFlag ? "image/quick_quit_fullscreen_hover.svg" : "image/quick_fullscreen_hover.svg"
                 press_image: checkFlag ? "image/quick_quit_fullscreen_hover.svg" : "image/quick_fullscreen_hover.svg"
@@ -196,14 +206,16 @@ DragableArea {
 
                 onClicked: titlebar.quickToggleFullscreen()
             }
-            DImageButton {
+            ImageButton {
                 id: quick_stays_on_top
+                tooltip: checkFlag ? dsTr("Cancel \"On Top\"") : dsTr("On Top")
+                tooltipItem: titlebar.tooltipItem
+
                 normal_image: checkFlag ? "image/quick_untop_normal.svg" : "image/quick_top_normal.svg"
                 hover_image: checkFlag ? "image/quick_untop_hover.svg" : "image/quick_top_hover.svg"
                 press_image: checkFlag ? "image/quick_untop_hover.svg" : "image/quick_top_hover.svg"
 
                 property bool checkFlag: false
-
                 anchors.verticalCenter: parent.verticalCenter
 
                 onClicked: { titlebar.quickToggleTop() }

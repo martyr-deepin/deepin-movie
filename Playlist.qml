@@ -13,6 +13,7 @@ Rectangle {
     property url clickedOnItemUrl: playlist.clickedOnItemUrl
     property int maxWidth: program_constants.playlistWidth
     property alias window: playlistPanelArea.window
+    property QtObject tooltipItem
 
     signal showed
     signal newSourceSelected (string path)
@@ -224,6 +225,9 @@ Rectangle {
             spacing: 10
 
             OpacityImageButton {
+                tooltip: dsTr("Play mode")
+                tooltipItem: playlistPanel.tooltipItem
+
                 imageName: "image/playlist_mode_button.png"
                 anchors.verticalCenter: parent.verticalCenter
                 onClicked: { playlistPanel.modeButtonClicked() }
@@ -234,11 +238,17 @@ Rectangle {
             //     onClicked: { playlistPanel.deleteButtonClicked() }
             // }
             OpacityImageButton {
+                tooltip: dsTr("Add file")
+                tooltipItem: playlistPanel.tooltipItem
+
                 imageName: "image/playlist_add_button.png"
                 anchors.verticalCenter: parent.verticalCenter                
                 onClicked: { playlistPanel.addButtonClicked() }
             }            
             OpacityImageButton {
+                tooltip: dsTr("Clear playlist")
+                tooltipItem: playlistPanel.tooltipItem
+
                 imageName: "image/playlist_clear_button.png"
                 anchors.verticalCenter: parent.verticalCenter                
                 onClicked: { playlistPanel.clearButtonClicked() }

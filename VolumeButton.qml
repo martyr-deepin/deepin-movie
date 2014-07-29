@@ -11,6 +11,7 @@ Row {
 
     property double volume: 1.0
     property alias muted: toggle_button.checkFlag
+    property alias tooltipItem: toggle_button.tooltipItem
     
     property bool showBarFlag: false // for internal useage
     property bool showBarSwitch: true // for external useage
@@ -38,8 +39,10 @@ Row {
         }
     }
 
-    DImageButton {
+    ImageButton {
         id: toggle_button
+        tooltip: dsTr("Volume")
+
         sourceSize.width: 28
         sourceSize.height: 28
         normal_image: checkFlag ? "image/volume_muted_normal.svg" : 

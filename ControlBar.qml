@@ -18,6 +18,8 @@ DragableArea {
     property alias windowFullscreen: toggle_fullscreen_button.checkFlag
     property bool previewHasVideo: false
 
+    property QtObject tooltipItem
+
     signal mutedSet (bool muted)
     signal changeVolume (real volume)
     signal percentageSet(real percentage)
@@ -212,7 +214,10 @@ DragableArea {
                 id: middleButtonArea
                 spacing: 0
 
-                DImageButton {
+                ImageButton {
+                    tooltip: dsTr("Stop playing")
+                    tooltipItem: control_bar.tooltipItem
+
                     normal_image: "image/stop_normal.svg"
                     hover_image: "image/stop_hover_press.svg"
                     press_image: "image/stop_hover_press.svg"
@@ -227,7 +232,10 @@ DragableArea {
                     width: 32
                 }
 
-                DImageButton {
+                ImageButton {
+                    tooltip: dsTr("Previous")
+                    tooltipItem: control_bar.tooltipItem
+
                     normal_image: "image/previous_normal.svg"
                     hover_image: "image/previous_hover_press.svg"
                     press_image: "image/previous_hover_press.svg"
@@ -242,8 +250,11 @@ DragableArea {
                     width: 25
                 }
 
-                DImageButton {
+                ImageButton {
                     id: play_pause_button
+                    tooltip: checkFlag ? dsTr("Pause") : dsTr("Play")
+                    tooltipItem: control_bar.tooltipItem
+
                     normal_image: checkFlag ? "image/pause_normal.svg" : "image/play_normal.svg"
                     hover_image: checkFlag ? "image/pause_hover_press.svg" : "image/play_hover_press.svg"
                     press_image: checkFlag ? "image/pause_hover_press.svg" : "image/play_hover_press.svg"
@@ -257,7 +268,10 @@ DragableArea {
                     width: 25
                 }
 
-                DImageButton {
+                ImageButton {
+                    tooltip: dsTr("Next")
+                    tooltipItem: control_bar.tooltipItem
+
                     normal_image: "image/next_normal.svg"
                     hover_image: "image/next_hover_press.svg"
                     press_image: "image/next_hover_press.svg"
@@ -274,6 +288,7 @@ DragableArea {
 
                 VolumeButton {
                     id: volume_button
+                    tooltipItem: control_bar.tooltipItem
                     muted: control_bar.muted
                     showBarSwitch: control_bar.width > program_constants.hideVolumeBarTriggerWidth
                     anchors.verticalCenter: parent.verticalCenter
@@ -295,8 +310,11 @@ DragableArea {
                 anchors.verticalCenter: parent.verticalCenter
                 spacing: 25
 
-                DImageButton {
+                ImageButton {
                     id: toggle_fullscreen_button
+                    tooltip: checkFlag ? dsTr("Exit full screen") : dsTr("Full screen")
+                    tooltipItem: control_bar.tooltipItem
+
                     sourceSize.width: 22
                     sourceSize.height: 22
                     normal_image: checkFlag ? "image/cancel_fullscreen_normal.svg" 
@@ -312,7 +330,9 @@ DragableArea {
                     onClicked: control_bar.toggleFullscreenClicked()
                 }
 
-                DImageButton {
+                ImageButton {
+                    tooltip: dsTr("Open file")
+                    tooltipItem: control_bar.tooltipItem
                     sourceSize.width: 19
                     sourceSize.height: 19
                     normal_image: "image/open_file_normal.svg"
@@ -323,7 +343,9 @@ DragableArea {
                     onClicked: control_bar.openFileButtonClicked()
                 }
 
-                DImageButton {
+                ImageButton {
+                    tooltip: dsTr("Playlist")
+                    tooltipItem: control_bar.tooltipItem
                     sourceSize.width: 19
                     sourceSize.height: 19                    
                     normal_image: "image/playlist_open_normal.svg"

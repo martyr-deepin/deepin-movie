@@ -13,60 +13,26 @@ Window {
 
     function showTip(s){
         tipText.text = s
-        timeoutShow.restart()
-        freshBackground.restart()
+
+        var cursorPosition = tooltip.window.getCursorPos()
+        var screenSize = tooltip.screenSize
+        toolTip.x = cursorPosition.x + 10
+        toolTip.y = cursorPosition.y + 10
+        if (toolTip.x + toolTip.width > screenSize.width){
+            toolTip.x = screenSize.width - toolTip.width
+        }
+        // if (toolTip.y + toolTip.height > screenSize.height){
+            // toolTip.y = screenSize.height - 10 - toolTip.height
+        // }
+        toolTip.show()
+        toolTip.visible = true
+        toolTip.raise()
+        timeoutHide.restart()
     }
 
     function hideTip(){
-        timeoutShow.stop()
         toolTip.hide()
         toolTip.visible = false
-    }
-
-    Timer{
-        id: freshBackground
-        interval: 200
-        repeat: true
-        property int repeatTime: 0
-
-        onTriggered: {
-            if(repeatTime > 10){
-                freshBackground.stop()
-                freshBackground.repeat = false
-            }
-            else{
-                repeatTime += 1
-                if (background.color == Qt.rgba(0, 0, 0, 0.9)){
-                    background.color = Qt.rgba(0, 0, 0, 0.91)
-                }
-                else{
-                    background.color = Qt.rgba(0, 0, 0, 0.9)
-                }
-            }
-        }
-    }
-
-    Timer {
-        id: timeoutShow
-        interval: 500
-        running: false
-        repeat: false
-        onTriggered: {
-            var cursorPosition = tooltip.window.getCursorPos()
-            var screenSize = tooltip.screenSize
-            toolTip.x = cursorPosition.x + 10
-            toolTip.y = cursorPosition.y + 10
-            if (toolTip.x + toolTip.width > screenSize.width){
-                toolTip.x = screenSize.width - toolTip.width
-            }
-            if (toolTip.y + toolTip.height > screenSize.height){
-                toolTip.y = pos[1] - 10 - toolTip.height
-            }
-            toolTip.show()
-            toolTip.visible = true
-            toolTip.raise()
-            timeoutHide.restart()
-        }
     }
 
     Timer {

@@ -462,6 +462,7 @@ Rectangle {
         window: windowView
         maxWidth: main_window.width * 0.6
         currentPlayingSource: player.source
+        tooltipItem: tooltip
         anchors.right: main_window.right
         anchors.verticalCenter: parent.verticalCenter
 
@@ -482,6 +483,7 @@ Rectangle {
         window: windowView
         windowStaysOnTop: windowView.staysOnTop
         anchors.horizontalCenter: main_window.horizontalCenter
+        tooltipItem: tooltip
 
         onMenuButtonClicked: _menu_controller.show_menu()
         onMinButtonClicked: main_controller.minimize()
@@ -506,6 +508,7 @@ Rectangle {
         previewHasVideo: player.hasVideo
         dragbarVisible: root.state == "normal"
         timeInfoVisible: player.hasMedia && player.source != ""
+        tooltipItem: tooltip
 
         anchors.horizontalCenter: main_window.horizontalCenter
 
