@@ -57,7 +57,6 @@ Rectangle {
 
         onWidthChanged: root.width = windowView.width
         onHeightChanged: root.height = windowView.height 
-        onWindowStateChanged: controlbar.windowFullscreen = windowState == Qt.WindowFullScreen
     }
 
     Constants { id: program_constants }
@@ -266,6 +265,7 @@ Rectangle {
     function monitorWindowState(state) {
         titlebar.windowNormalState = (state == Qt.WindowNoState)
         titlebar.windowFullscreenState = (state == Qt.WindowFullScreen)
+        controlbar.windowFullscreenState = (state == Qt.WindowFullScreen)
         time_indicator.visible = (state == Qt.WindowFullScreen && 
                                   player.playbackState == MediaPlayer.PlayingState)
         if (windowLastState != state) {
@@ -492,7 +492,7 @@ Rectangle {
 
         onQuickNormalSize: main_controller.setScale(1)
         onQuickOneHalfSize: main_controller.setScale(1.5)
-        onQuickToggleFullscreen: main_controller.fullscreen()
+        onQuickToggleFullscreen: main_controller.toggleFullscreen()
         onQuickToggleTop: main_controller.toggleStaysOnTop()
     }
 

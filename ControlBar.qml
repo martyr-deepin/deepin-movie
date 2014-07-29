@@ -15,7 +15,7 @@ DragableArea {
     property alias muted: volume_button.muted
     property alias widthHeightScale: videoPreview.widthHeightScale
     property alias dragbarVisible: drag_point.visible
-    property alias windowFullscreen: toggle_fullscreen_button.checkFlag
+    property alias windowFullscreenState: toggle_fullscreen_button.checkFlag
     property bool previewHasVideo: false
 
     property QtObject tooltipItem
