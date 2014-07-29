@@ -605,6 +605,8 @@ MouseArea {
     }
 
     onDoubleClicked: {
+        if (mouse.button == Qt.RightButton) return
+        
         if (double_click_check_timer.running) {
             double_click_check_timer.stop()
         } else {
