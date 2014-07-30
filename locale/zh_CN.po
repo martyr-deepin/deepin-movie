@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-29 14:27+0800\n"
+"POT-Creation-Date: 2014-07-30 13:11+0800\n"
 "PO-Revision-Date: 2014-06-10 15:05+0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -524,8 +524,8 @@ msgid "Open manually"
 msgstr "手动载入"
 
 #: ../menu_controller.py:68
-msgid "Select file"
-msgstr "选择文件"
+msgid "Subtitle selection"
+msgstr "字幕选择"
 
 #: ../menu_controller.py:69
 msgid "Subtitle setting"
@@ -598,6 +598,9 @@ msgstr "删除无效文件"
 #: ../menu_controller.py:118
 msgid "Open file location"
 msgstr "打开文件所在位置"
+
+#~ msgid "Select file"
+#~ msgstr "选择文件"
 
 #~ msgid "Shown in 1.1 times"
 #~ msgstr "1.1倍显示"

@@ -65,7 +65,7 @@ subtitle_sub_menu = [
     # ("_subtitle_online_match", "自动在线匹配"),
     # ("_subtitle_online_search", "在线查找"),
     ("_subtitle_manual", _("Open manually")),
-    ("_subtitle_choose", _("Select file")),
+    ("_subtitle_choose", _("Subtitle selection")),
     ("_subtitle_settings", _("Subtitle setting"))
 ]
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-29 14:27+0800\n"
+"POT-Creation-Date: 2014-07-30 13:11+0800\n"
 "PO-Revision-Date: 2014-07-03 05:53+0000\n"
 "Last-Translator: electricface <songwentai@linuxdeepin.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/deepin-"
@@ -530,8 +530,9 @@ msgid "Open manually"
 msgstr ""
 
 #: ../menu_controller.py:68
-msgid "Select file"
-msgstr "選擇檔案"
+#, fuzzy
+msgid "Subtitle selection"
+msgstr "字幕"
 
 #: ../menu_controller.py:69
 msgid "Subtitle setting"
@@ -604,3 +605,6 @@ msgstr ""
 #: ../menu_controller.py:118
 msgid "Open file location"
 msgstr ""
+
+#~ msgid "Select file"
+#~ msgstr "選擇檔案"
