@@ -21,6 +21,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+from PyQt5.QtCore import QVariant
 from PyQt5.QtDBus import QDBusAbstractInterface, QDBusConnection, QDBusReply
 
 class ScreenSaverInterface(QDBusAbstractInterface):
@@ -39,6 +40,9 @@ class ScreenSaverInterface(QDBusAbstractInterface):
         return self._inhibit_cookie
 
     def uninhibit(self, cookie=None):
-        self._inhibit_cookie and self.call('UnInhibit', cookie or self._inhibit_cookie)
+        if self._inhibit_cookie:
+            arg = QVariant(cookie or self._inhibit_cookie)
+            arg.convert(QVariant.UInt)
+            self.call('UnInhibit', arg)
 
 screenSaverInterface = ScreenSaverInterface()
