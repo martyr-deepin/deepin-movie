@@ -146,7 +146,7 @@ Rectangle {
         acceptedButtons: Qt.LeftButton | Qt.RightButton
 
         onEntered: { playlistPanel.state = "active" }
-        onExited: { mouseInPlaylistArea() || (playlistPanel.state = "inactive") }
+        onExited: { mouseInPlaylistArea() || (playlistPanel.state = "inactive"); playlistPanel.moveOutWindowButtons() }
         onWheel: {}
         onClicked: { 
             if (mouse.button == Qt.RightButton) {

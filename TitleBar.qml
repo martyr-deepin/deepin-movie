@@ -29,38 +29,38 @@ DragableArea {
             name: "normal"
             PropertyChanges {
                 target: appIcon
-                visible: true
+                visible: true && !visibleForPlaylist
             }
             PropertyChanges {
                 target: btn
-                visible: true
+                visible: true && !visibleForPlaylist
             }
             PropertyChanges {
                 target: title_text
-                visible: titlebar.titleVisibleSwitch
+                visible: titlebar.titleVisibleSwitch && !visibleForPlaylist
             }
             PropertyChanges {
                 target: quick_bar
-                visible: false
+                visible: false && !visibleForPlaylist
             }
         },
         State {
             name: "minimal"
             PropertyChanges {
                 target: appIcon
-                visible: false
+                visible: false && !visibleForPlaylist
             }
             PropertyChanges {
                 target: btn
-                visible: false
+                visible: false && !visibleForPlaylist
             }
             PropertyChanges {
                 target: title_text
-                visible: false
+                visible: false && !visibleForPlaylist
             }
             PropertyChanges {
                 target: quick_bar
-                visible: true
+                visible: true && !visibleForPlaylist
             }
         }
     ]
@@ -78,12 +78,8 @@ DragableArea {
         interval: 200
         onTriggered: {
             topPanelBackround.visible = false
-            appIcon.visible = false
-            btn.visible = false 
-            title_text.visible = false
-            visible = true
-
             visibleForPlaylist = true
+            show()
         }
     }
 
@@ -96,10 +92,8 @@ DragableArea {
 
         if (visibleForPlaylist) {
             topPanelBackround.visible = true
-            appIcon.visible = true
-            title_text.visible = true
-            btn.visible = true  
-            visible = false
+            visibleForPlaylist = false
+            hide()
         }
     }
 
