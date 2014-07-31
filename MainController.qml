@@ -649,7 +649,7 @@ MouseArea {
                 var dragInPlaylist = drag.x > parent.width - program_constants.playlistWidth
 
                 for (var j = 0; j < file_paths.length; j++) {
-                    addPlayListItem(file_paths[j])
+                    file_paths.length > 1 && addPlayListItem(file_paths[j])
                 }
                 if (!dragInPlaylist && file_paths.length > 0) {
                     if (_utils.fileIsValidVideo(file_paths[0])) {

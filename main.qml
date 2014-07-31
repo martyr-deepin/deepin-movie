@@ -96,7 +96,9 @@ Rectangle {
                 } else if (purpose == purposes.addPlayListItem) {
                     for (var i = 0; i < fileUrls.length; i++) {
                         var fileUrl = fileUrls[i] + ""
-                        main_controller.addPlayListItem(fileUrl.substring(7))
+                        if (_utils.fileIsValidVideo(fileUrl)) {
+                            main_controller.addPlayListItem(fileUrl.substring(7))    
+                        }
                     }
                 }
             }
