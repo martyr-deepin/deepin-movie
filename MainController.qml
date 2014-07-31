@@ -113,6 +113,10 @@ MouseArea {
             root.reset()
             shouldAutoPlayNextOnInvalidFile ? auto_play_next_on_invalid_timer.startWidthFile(invalidFile) 
                                             : (shouldAutoPlayNextOnInvalidFile = false)
+
+            // don't know why, but everytime the player encountered a "File invalid" situation,
+            // the videoPlaying binding thing goes wrong, so I re-bind it here.
+            controlbar.videoPlaying = Qt.binding(function () { return player.playbackState == MediaPlayer.PlayingState })
         }
 
         onInfoGotten: info_window.showContent(movie_info)
