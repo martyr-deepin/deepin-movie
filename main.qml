@@ -320,7 +320,7 @@ Rectangle {
     Timer {
         id: hide_controls_timer
         running: true
-        interval: 3000
+        interval: 1500
 
         onTriggered: {
             if (!mouseInControlsArea() && player.source && player.hasVideo) {
