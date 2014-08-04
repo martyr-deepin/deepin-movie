@@ -16,6 +16,7 @@ DragableArea {
     property alias widthHeightScale: videoPreview.widthHeightScale
     property alias dragbarVisible: drag_point.visible
     property alias windowFullscreenState: toggle_fullscreen_button.checkFlag
+    property alias status: buttonArea.state
     property bool previewHasVideo: false
 
     property QtObject tooltipItem

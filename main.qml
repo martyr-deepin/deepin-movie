@@ -465,6 +465,7 @@ Rectangle {
         maxWidth: main_window.width * 0.6
         currentPlayingSource: player.source
         tooltipItem: tooltip
+        canExpand: controlbar.status != "minimal"
         anchors.right: main_window.right
         anchors.verticalCenter: parent.verticalCenter
 

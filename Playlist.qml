@@ -9,6 +9,7 @@ Rectangle {
     property var currentItem
     property string tabId: "local"
     property bool expanded: width == program_constants.playlistWidth
+    property bool canExpand: true
     property url currentPlayingSource
     property url clickedOnItemUrl: playlist.clickedOnItemUrl
     property int maxWidth: program_constants.playlistWidth
@@ -49,9 +50,11 @@ Rectangle {
     }
 
     function show() {
-        visible = true
-        hide_handle_timer.stop()
-        showingPlaylistPanelAnimation.restart()
+        if (canExpand) {
+            visible = true
+            hide_handle_timer.stop()
+            showingPlaylistPanelAnimation.restart()
+        }
     }
 
     function hide() {
