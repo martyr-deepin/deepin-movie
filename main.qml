@@ -29,7 +29,6 @@ Rectangle {
         State {
             name: "normal"
 
-            PropertyChanges { target: root; width: height * widthHeightScale; height: windowView.height }
             PropertyChanges { target: main_window; width: root.width - program_constants.windowGlowRadius * 2;
                               height: root.height - program_constants.windowGlowRadius * 2; }
             PropertyChanges { target: titlebar; width: main_window.width; anchors.top: main_window.top }
@@ -40,7 +39,6 @@ Rectangle {
         State {
             name: "no_glow"
 
-            PropertyChanges { target: root; width: windowView.width; height: windowView.height }
             PropertyChanges { target: main_window; width: root.width; height: root.height }
             PropertyChanges { target: titlebar; width: root.width; anchors.top: root.top }
             PropertyChanges { target: controlbar; width: root.width; anchors.bottom: root.bottom}
@@ -151,15 +149,6 @@ Rectangle {
     }
 
     function initWindowSize() {
-        // if (config.playerAdjustType == "ADJUST_TYPE_LAST_TIME") {
-        //     var lastSize = database.lastWindowSize
-        //     if(database.lastWindowSize != "") {
-        //         var lastSize = JSON.parse(lastSize)
-        //         windowView.setWidth(lastSize.width)
-        //         windowView.setHeight(lastSize.height)
-        //         return
-        //     }
-        // }
         windowView.setWidth(windowView.defaultWidth)
         windowView.setHeight(windowView.defaultHeight)
     }
@@ -337,7 +326,7 @@ Rectangle {
 
     Rectangle {
         id: main_window
-        width: root.width - program_constants.windowGlowRadius * 2 //height * (movieInfo.movie_width / movieInfo.movie_height)
+        width: root.width - program_constants.windowGlowRadius * 2 
         height: root.height - program_constants.windowGlowRadius * 2
         clip: true
         color: "black"
