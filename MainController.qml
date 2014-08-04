@@ -530,7 +530,7 @@ MouseArea {
                 showControls()
             } 
             else if (mouseInPlaylistTriggerArea) { 
-                show_playlist_timer.restart() 
+                controlbar.status != "minimal" && show_playlist_timer.restart() 
             } 
         }
         else {
