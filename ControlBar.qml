@@ -316,8 +316,6 @@ DragableArea {
                     tooltip: checkFlag ? dsTr("Exit full screen") : dsTr("Full screen")
                     tooltipItem: control_bar.tooltipItem
 
-                    sourceSize.width: 22
-                    sourceSize.height: 22
                     normal_image: checkFlag ? "image/cancel_fullscreen_normal.svg" 
                                             : "image/fullscreen_normal.svg"
                     hover_image: checkFlag ? "image/cancel_fullscreen_hover_press.svg" 
@@ -334,8 +332,7 @@ DragableArea {
                 ImageButton {
                     tooltip: dsTr("Open file")
                     tooltipItem: control_bar.tooltipItem
-                    sourceSize.width: 19
-                    sourceSize.height: 19
+
                     normal_image: "image/open_file_normal.svg"
                     hover_image: "image/open_file_hover_press.svg"
                     press_image: "image/open_file_hover_press.svg"
@@ -347,8 +344,7 @@ DragableArea {
                 ImageButton {
                     tooltip: dsTr("Playlist")
                     tooltipItem: control_bar.tooltipItem
-                    sourceSize.width: 19
-                    sourceSize.height: 19                    
+                    
                     normal_image: "image/playlist_open_normal.svg"
                     hover_image: "image/playlist_open_hover_press.svg"
                     press_image: "image/playlist_open_hover_press.svg"
