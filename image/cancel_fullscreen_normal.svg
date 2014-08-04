@@ -3,26 +3,14 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 16 16" enable-background="new 0 0 16 16" xml:space="preserve">
-<g>
-	<polyline fill="none" stroke="#A2A2A2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="2.5,0.5 
-		2.5,2.5 0.6,2.5 	"/>
-	<line fill="none" stroke="#A2A2A2" stroke-linecap="round" stroke-miterlimit="10" x1="0.6" y1="0.5" x2="2.2" y2="2.2"/>
-</g>
-<g>
-	<polyline fill="none" stroke="#A2A2A2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="15.5,2.5 
-		13.5,2.5 13.5,0.5 	"/>
-	<line fill="none" stroke="#A2A2A2" stroke-linecap="round" stroke-miterlimit="10" x1="15.5" y1="0.5" x2="13.8" y2="2.2"/>
-</g>
-<g>
-	<polyline fill="none" stroke="#A2A2A2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="13.6,15.5 
-		13.6,13.5 15.5,13.5 	"/>
-	<line fill="none" stroke="#A2A2A2" stroke-linecap="round" stroke-miterlimit="10" x1="15.5" y1="15.5" x2="13.9" y2="13.8"/>
-</g>
-<g>
-	<polyline fill="none" stroke="#A2A2A2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="0.6,13.5 
-		2.6,13.5 2.6,15.5 	"/>
-	<line fill="none" stroke="#A2A2A2" stroke-linecap="round" stroke-miterlimit="10" x1="0.6" y1="15.5" x2="2.3" y2="13.8"/>
-</g>
-<path fill="#A2A2A2" d="M13,12.2c0,0.5-0.4,0.8-0.8,0.8H3.8C3.4,13,3,12.6,3,12.2V3.8C3,3.4,3.4,3,3.8,3h8.3C12.6,3,13,3.4,13,3.8
-	V12.2z"/>
+<path fill="#A2A2A2" d="M12,11.2c0,0.4-0.4,0.8-0.8,0.8H4.8C4.4,12,4,11.6,4,11.2V4.8C4,4.4,4.4,4,4.8,4h6.4C11.6,4,12,4.4,12,4.8
+	V11.2z"/>
+<path fill="#A2A2A2" d="M0.2,1.2L2,3L0.5,4.5C0.3,4.7,0.5,5,0.7,5h4C4.9,5,5,4.9,5,4.7v-4c0-0.3-0.3-0.4-0.5-0.2L3,2L1.2,0.2
+	C1,0,0.7,0,0.5,0.2L0.2,0.5C0,0.7,0,1,0.2,1.2z"/>
+<path fill="#A2A2A2" d="M14.8,0.2L13,2l-1.5-1.5C11.3,0.3,11,0.5,11,0.7v4C11,4.9,11.1,5,11.3,5h4c0.3,0,0.4-0.3,0.2-0.5L14,3
+	l1.8-1.8C16,1,16,0.7,15.8,0.5l-0.3-0.3C15.3,0,15,0,14.8,0.2z"/>
+<path fill="#A2A2A2" d="M15.8,14.8L14,13l1.5-1.5c0.2-0.2,0.1-0.5-0.2-0.5h-4c-0.2,0-0.3,0.1-0.3,0.3v4c0,0.3,0.3,0.4,0.5,0.2L13,14
+	l1.8,1.8c0.2,0.2,0.5,0.2,0.7,0l0.3-0.3C16,15.3,16,15,15.8,14.8z"/>
+<path fill="#A2A2A2" d="M1.2,15.8L3,14l1.5,1.5C4.7,15.7,5,15.5,5,15.3v-4C5,11.1,4.8,11,4.7,11h-4c-0.3,0-0.4,0.3-0.2,0.5L2,13
+	l-1.8,1.8C0,15,0,15.3,0.2,15.5l0.3,0.3C0.7,16,1,16,1.2,15.8z"/>
 </svg>
