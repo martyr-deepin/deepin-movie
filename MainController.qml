@@ -53,6 +53,15 @@ MouseArea {
         }
 
         onMovieSourceChanged: {
+            // NOTE
+            // a work around here, the player source should be bound to 
+            // movieInfo.movie_file as I used to, but we should force the 
+            // sourceChanged signal to be emitted.
+            player.stop()
+            player.source = ""
+            player.source = movieInfo.movie_file
+            // NOTE END
+
             var last_watched_pos = database.fetch_video_position(player.source)
             if (config.playerAutoPlayFromLast 
                 && Math.abs(last_watched_pos - movieInfo.movie_duration) > program_constants.videoEndsThreshold) {
