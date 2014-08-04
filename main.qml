@@ -52,13 +52,6 @@ Rectangle {
         }
     ]
 
-    Connections {
-        target: windowView
-
-        onWidthChanged: root.width = windowView.width
-        onHeightChanged: root.height = windowView.height 
-    }
-
     Constants { id: program_constants }
 
     ToolTip { 
