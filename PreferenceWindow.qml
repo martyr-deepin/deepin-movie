@@ -446,7 +446,7 @@ DPreferenceWindow {
             }
 
             HotKeyInputRow {
-                title: dsTr("Mini mode/Quit")
+                title: dsTr("Mini mode")
                 hotKey: config.hotkeysFrameSoundToggleMiniMode+"" || dsTr("Disabled")
                 actualSettingEntry: "hotkeysFrameSoundToggleMiniMode"
 

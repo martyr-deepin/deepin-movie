@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-04 14:14+0800\n"
+"POT-Creation-Date: 2014-08-04 17:30+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-#: ../AboutSection.qml:11 ../main.qml:395 ../window.py:69
+#: ../AboutSection.qml:11 ../main.qml:386 ../window.py:69
 msgid "Deepin Movie"
 msgstr ""
 
@@ -59,19 +59,21 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: ../ControlBar.qml:316
-msgid "Exit full screen"
+#: ../ControlBar.qml:316 ../menu_controller.py:355
+msgid "Exit fullscreen"
 msgstr ""
 
-#: ../ControlBar.qml:316
-msgid "Full screen"
+#: ../ControlBar.qml:316 ../PreferenceWindow.qml:327
+#: ../PreferenceWindow.qml:778 ../menu_controller.py:93
+#: ../menu_controller.py:354
+msgid "Fullscreen"
 msgstr ""
 
-#: ../ControlBar.qml:335 ../PreferenceWindow.qml:592 ../menu_controller.py:89
+#: ../ControlBar.qml:333 ../PreferenceWindow.qml:592 ../menu_controller.py:89
 msgid "Open file"
 msgstr ""
 
-#: ../ControlBar.qml:348 ../PreferenceWindow.qml:348 ../menu_controller.py:96
+#: ../ControlBar.qml:345 ../PreferenceWindow.qml:348 ../menu_controller.py:96
 msgid "Playlist"
 msgstr ""
 
@@ -188,15 +190,15 @@ msgstr ""
 msgid "Please choose folder"
 msgstr ""
 
-#: ../Playlist.qml:232
+#: ../Playlist.qml:230
 msgid "Play mode"
 msgstr ""
 
-#: ../Playlist.qml:245
+#: ../Playlist.qml:243
 msgid "Add file"
 msgstr ""
 
-#: ../Playlist.qml:253 ../menu_controller.py:114
+#: ../Playlist.qml:251 ../menu_controller.py:114
 msgid "Clear playlist"
 msgstr ""
 
@@ -239,6 +241,11 @@ msgstr ""
 
 #: ../PreferenceWindow.qml:411
 msgid "Restore playback speed"
+msgstr ""
+
+#: ../PreferenceWindow.qml:449 ../menu_controller.py:94
+#: ../menu_controller.py:357
+msgid "Mini mode"
 msgstr ""
 
 #: ../PreferenceWindow.qml:512
@@ -287,10 +294,6 @@ msgstr ""
 
 #: ../PreferenceWindow.qml:841
 msgid "Border width"
-msgstr ""
-
-#: ../PreferenceWindow.qml:327 ../PreferenceWindow.qml:778
-msgid "Fullscreen"
 msgstr ""
 
 #: ../PreferenceWindow.qml:54 ../PreferenceWindow.qml:70
@@ -403,10 +406,6 @@ msgstr ""
 msgid "Forward/Rewind"
 msgstr ""
 
-#: ../PreferenceWindow.qml:449 ../menu_controller.py:94
-msgid "Mini mode/Quit"
-msgstr ""
-
 #: ../PreferenceWindow.qml:470
 msgid "Rotate counterclockwise"
 msgstr ""
@@ -472,7 +471,7 @@ msgid "Return to mini mode"
 msgstr ""
 
 #: ../TitleBar.qml:190
-msgid "Shown in full screen"
+msgid "Shown in fullscreen"
 msgstr ""
 
 #: ../TitleBar.qml:205
@@ -555,10 +554,6 @@ msgstr ""
 msgid "Open folder"
 msgstr ""
 
-#: ../menu_controller.py:93
-msgid "Fullscreen/Quit"
-msgstr ""
-
 #: ../menu_controller.py:95
 msgid "Always on top"
 msgstr ""
@@ -597,4 +592,8 @@ msgstr ""
 
 #: ../menu_controller.py:118
 msgid "Open file location"
+msgstr ""
+
+#: ../menu_controller.py:356
+msgid "Exit mini mode"
 msgstr ""

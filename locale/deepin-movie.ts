@@ -58,21 +58,21 @@
     </message>
     <message>
         <location filename="../ControlBar.qml" line="316"/>
-        <source>Exit full screen</source>
+        <source>Exit fullscreen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ControlBar.qml" line="316"/>
-        <source>Full screen</source>
+        <source>Fullscreen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ControlBar.qml" line="335"/>
+        <location filename="../ControlBar.qml" line="333"/>
         <source>Open file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ControlBar.qml" line="348"/>
+        <location filename="../ControlBar.qml" line="345"/>
         <source>Playlist</source>
         <translation type="unfinished"></translation>
     </message>
@@ -227,17 +227,17 @@
 <context>
     <name>Playlist</name>
     <message>
-        <location filename="../Playlist.qml" line="232"/>
+        <location filename="../Playlist.qml" line="230"/>
         <source>Play mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Playlist.qml" line="245"/>
+        <location filename="../Playlist.qml" line="243"/>
         <source>Add file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Playlist.qml" line="253"/>
+        <location filename="../Playlist.qml" line="251"/>
         <source>Clear playlist</source>
         <translation type="unfinished"></translation>
     </message>
@@ -296,6 +296,11 @@
     <message>
         <location filename="../PreferenceWindow.qml" line="411"/>
         <source>Restore playback speed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../PreferenceWindow.qml" line="449"/>
+        <source>Mini mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -559,11 +564,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PreferenceWindow.qml" line="449"/>
-        <source>Mini mode/Quit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../PreferenceWindow.qml" line="470"/>
         <source>Rotate counterclockwise</source>
         <translation type="unfinished"></translation>
@@ -653,7 +653,7 @@
     </message>
     <message>
         <location filename="../TitleBar.qml" line="190"/>
-        <source>Shown in full screen</source>
+        <source>Shown in fullscreen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -678,7 +678,7 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../main.qml" line="395"/>
+        <location filename="../main.qml" line="386"/>
         <source>Deepin Movie</source>
         <translation type="unfinished"></translation>
     </message>

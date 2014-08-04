@@ -153,6 +153,8 @@ Rectangle {
         windowView.setHeight(windowView.defaultHeight)
     }
 
+    function miniModeState() { return titlebar.state == "minimal" }
+
     function formatTime(millseconds) {
         if (millseconds <= 0) return "00:00:00";
         var secs = Math.ceil(millseconds / 1000)

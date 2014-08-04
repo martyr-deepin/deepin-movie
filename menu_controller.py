@@ -90,8 +90,8 @@ right_click_menu = [
     ("_open_dir", _("Open folder")),
     # ("_open_url", _("Open URL")),
     None,
-    ("_fullscreen_quit", _("Fullscreen/Quit"), (), (), config.hotkeysPlayToggleFullscreen),
-    ("_mini_mode", _("Mini mode/Quit"), (), (), config.hotkeysFrameSoundToggleMiniMode),
+    ("_fullscreen_quit", _("Fullscreen"), (), (), config.hotkeysPlayToggleFullscreen),
+    ("_mini_mode", _("Mini mode"), (), (), config.hotkeysFrameSoundToggleMiniMode),
     CheckableMenuItem("_on_top", _("Always on top"), False),
     ("_toggle_playlist", _("Playlist"), (), (), config.hotkeysPlayTogglePlaylist),
     None,
@@ -350,6 +350,11 @@ class MenuController(QObject):
         subtitles = get_subtitle_from_movie(movie_info.movie_file)
         subtitles = _subtitle_menu_items_from_files(subtitles)
         self.menu.getItemById("_subtitle_choose").setSubMenu(Menu(subtitles))
+
+        self.menu.getItemById("_fullscreen_quit").text = _("Fullscreen") if \
+            self._window.getState() != Qt.WindowFullScreen else _("Exit fullscreen")
+        self.menu.getItemById("_mini_mode").text = _("Exit mini mode") if \
+            self._window.miniModeState() else _("Mini mode")
 
         self.menu.itemClicked.connect(self._menu_item_invoked)
         self.menu.showRectMenu(QCursor.pos().x(), QCursor.pos().y())

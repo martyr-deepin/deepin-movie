@@ -187,7 +187,7 @@ DragableArea {
             }
             ImageButton {
                 id: quick_fullscreen_button
-                tooltip: checkFlag ? dsTr("Return to mini mode") : dsTr("Shown in full screen")
+                tooltip: checkFlag ? dsTr("Return to mini mode") : dsTr("Shown in fullscreen")
                 tooltipItem: titlebar.tooltipItem
 
                 normal_image: checkFlag ? "image/quick_quit_fullscreen_normal.svg" : "image/quick_fullscreen_normal.svg"

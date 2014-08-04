@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-04 14:14+0800\n"
+"POT-Creation-Date: 2014-08-04 17:30+0800\n"
 "PO-Revision-Date: 2014-06-10 15:05+0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "About"
 msgstr "关于"
 
-#: ../AboutSection.qml:11 ../main.qml:395 ../window.py:69
+#: ../AboutSection.qml:11 ../main.qml:386 ../window.py:69
 msgid "Deepin Movie"
 msgstr "深度影院"
 
@@ -59,19 +59,21 @@ msgstr "播放"
 msgid "Next"
 msgstr "下一个"
 
-#: ../ControlBar.qml:316
-msgid "Exit full screen"
+#: ../ControlBar.qml:316 ../menu_controller.py:355
+msgid "Exit fullscreen"
 msgstr "退出全屏"
 
-#: ../ControlBar.qml:316
-msgid "Full screen"
+#: ../ControlBar.qml:316 ../PreferenceWindow.qml:327
+#: ../PreferenceWindow.qml:778 ../menu_controller.py:93
+#: ../menu_controller.py:354
+msgid "Fullscreen"
 msgstr "全屏"
 
-#: ../ControlBar.qml:335 ../PreferenceWindow.qml:592 ../menu_controller.py:89
+#: ../ControlBar.qml:333 ../PreferenceWindow.qml:592 ../menu_controller.py:89
 msgid "Open file"
 msgstr "打开文件"
 
-#: ../ControlBar.qml:348 ../PreferenceWindow.qml:348 ../menu_controller.py:96
+#: ../ControlBar.qml:345 ../PreferenceWindow.qml:348 ../menu_controller.py:96
 msgid "Playlist"
 msgstr "播放列表"
 
@@ -188,15 +190,15 @@ msgstr "请选择一个或多个文件"
 msgid "Please choose folder"
 msgstr "请选择文件夹"
 
-#: ../Playlist.qml:232
+#: ../Playlist.qml:230
 msgid "Play mode"
 msgstr "播放模式"
 
-#: ../Playlist.qml:245
+#: ../Playlist.qml:243
 msgid "Add file"
 msgstr "添加文件"
 
-#: ../Playlist.qml:253 ../menu_controller.py:114
+#: ../Playlist.qml:251 ../menu_controller.py:114
 msgid "Clear playlist"
 msgstr "清空播放列表"
 
@@ -240,6 +242,11 @@ msgstr "减速播放"
 #: ../PreferenceWindow.qml:411
 msgid "Restore playback speed"
 msgstr "还原播放速度"
+
+#: ../PreferenceWindow.qml:449 ../menu_controller.py:94
+#: ../menu_controller.py:357
+msgid "Mini mode"
+msgstr "迷你模式"
 
 #: ../PreferenceWindow.qml:512
 msgid "Volume up"
@@ -288,10 +295,6 @@ msgstr "自动加载字幕"
 #: ../PreferenceWindow.qml:841
 msgid "Border width"
 msgstr "描边大小"
-
-#: ../PreferenceWindow.qml:327 ../PreferenceWindow.qml:778
-msgid "Fullscreen"
-msgstr "全屏"
 
 #: ../PreferenceWindow.qml:54 ../PreferenceWindow.qml:70
 #: ../PreferenceWindow.qml:168 ../PreferenceWindow.qml:250
@@ -403,10 +406,6 @@ msgstr "启用系统通知"
 msgid "Forward/Rewind"
 msgstr "快进/快退"
 
-#: ../PreferenceWindow.qml:449 ../menu_controller.py:94
-msgid "Mini mode/Quit"
-msgstr "迷你模式/退出"
-
 #: ../PreferenceWindow.qml:470
 msgid "Rotate counterclockwise"
 msgstr "逆时针旋转"
@@ -472,7 +471,7 @@ msgid "Return to mini mode"
 msgstr "返回迷你模式"
 
 #: ../TitleBar.qml:190
-msgid "Shown in full screen"
+msgid "Shown in fullscreen"
 msgstr "全屏显示"
 
 #: ../TitleBar.qml:205
@@ -555,10 +554,6 @@ msgstr "列表循环"
 msgid "Open folder"
 msgstr "打开文件夹"
 
-#: ../menu_controller.py:93
-msgid "Fullscreen/Quit"
-msgstr "全屏/退出"
-
 #: ../menu_controller.py:95
 msgid "Always on top"
 msgstr "置顶"
@@ -599,8 +594,18 @@ msgstr "删除无效文件"
 msgid "Open file location"
 msgstr "打开文件所在位置"
 
-#~ msgid "Mini mode"
-#~ msgstr "迷你模式"
+#: ../menu_controller.py:356
+msgid "Exit mini mode"
+msgstr "退出迷你模式"
+
+#~ msgid "Full screen"
+#~ msgstr "全屏"
+
+#~ msgid "Mini mode/Quit"
+#~ msgstr "迷你模式/退出"
+
+#~ msgid "Fullscreen/Quit"
+#~ msgstr "全屏/退出"
 
 #~ msgid "Select file"
 #~ msgstr "选择文件"

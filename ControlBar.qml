@@ -313,7 +313,7 @@ DragableArea {
 
                 ImageButton {
                     id: toggle_fullscreen_button
-                    tooltip: checkFlag ? dsTr("Exit full screen") : dsTr("Full screen")
+                    tooltip: checkFlag ? dsTr("Exit fullscreen") : dsTr("Fullscreen")
                     tooltipItem: control_bar.tooltipItem
 
                     normal_image: checkFlag ? "image/cancel_fullscreen_normal.svg" 

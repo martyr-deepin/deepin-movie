@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-04 14:14+0800\n"
+"POT-Creation-Date: 2014-08-04 17:30+0800\n"
 "PO-Revision-Date: 2014-07-03 05:53+0000\n"
 "Last-Translator: electricface <songwentai@linuxdeepin.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/deepin-"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "About"
 msgstr "關於"
 
-#: ../AboutSection.qml:11 ../main.qml:395 ../window.py:69
+#: ../AboutSection.qml:11 ../main.qml:386 ../window.py:69
 msgid "Deepin Movie"
 msgstr ""
 
@@ -61,21 +61,22 @@ msgstr "播放"
 msgid "Next"
 msgstr "下一首"
 
-#: ../ControlBar.qml:316
+#: ../ControlBar.qml:316 ../menu_controller.py:355
 #, fuzzy
-msgid "Exit full screen"
+msgid "Exit fullscreen"
 msgstr "全螢幕"
 
-#: ../ControlBar.qml:316
-#, fuzzy
-msgid "Full screen"
+#: ../ControlBar.qml:316 ../PreferenceWindow.qml:327
+#: ../PreferenceWindow.qml:778 ../menu_controller.py:93
+#: ../menu_controller.py:354
+msgid "Fullscreen"
 msgstr "全螢幕"
 
-#: ../ControlBar.qml:335 ../PreferenceWindow.qml:592 ../menu_controller.py:89
+#: ../ControlBar.qml:333 ../PreferenceWindow.qml:592 ../menu_controller.py:89
 msgid "Open file"
 msgstr "開啟檔案"
 
-#: ../ControlBar.qml:348 ../PreferenceWindow.qml:348 ../menu_controller.py:96
+#: ../ControlBar.qml:345 ../PreferenceWindow.qml:348 ../menu_controller.py:96
 msgid "Playlist"
 msgstr ""
 
@@ -192,16 +193,16 @@ msgstr ""
 msgid "Please choose folder"
 msgstr ""
 
-#: ../Playlist.qml:232
+#: ../Playlist.qml:230
 #, fuzzy
 msgid "Play mode"
 msgstr "播放"
 
-#: ../Playlist.qml:245
+#: ../Playlist.qml:243
 msgid "Add file"
 msgstr ""
 
-#: ../Playlist.qml:253 ../menu_controller.py:114
+#: ../Playlist.qml:251 ../menu_controller.py:114
 msgid "Clear playlist"
 msgstr ""
 
@@ -244,6 +245,11 @@ msgstr ""
 
 #: ../PreferenceWindow.qml:411
 msgid "Restore playback speed"
+msgstr ""
+
+#: ../PreferenceWindow.qml:449 ../menu_controller.py:94
+#: ../menu_controller.py:357
+msgid "Mini mode"
 msgstr ""
 
 #: ../PreferenceWindow.qml:512
@@ -293,10 +299,6 @@ msgstr ""
 #: ../PreferenceWindow.qml:841
 msgid "Border width"
 msgstr ""
-
-#: ../PreferenceWindow.qml:327 ../PreferenceWindow.qml:778
-msgid "Fullscreen"
-msgstr "全螢幕"
 
 #: ../PreferenceWindow.qml:54 ../PreferenceWindow.qml:70
 #: ../PreferenceWindow.qml:168 ../PreferenceWindow.qml:250
@@ -408,10 +410,6 @@ msgstr "開啟系統氣泡提示"
 msgid "Forward/Rewind"
 msgstr ""
 
-#: ../PreferenceWindow.qml:449 ../menu_controller.py:94
-msgid "Mini mode/Quit"
-msgstr ""
-
 #: ../PreferenceWindow.qml:470
 msgid "Rotate counterclockwise"
 msgstr ""
@@ -478,7 +476,7 @@ msgstr ""
 
 #: ../TitleBar.qml:190
 #, fuzzy
-msgid "Shown in full screen"
+msgid "Shown in fullscreen"
 msgstr "全螢幕"
 
 #: ../TitleBar.qml:205
@@ -562,10 +560,6 @@ msgstr ""
 msgid "Open folder"
 msgstr "開啟資料夾"
 
-#: ../menu_controller.py:93
-msgid "Fullscreen/Quit"
-msgstr ""
-
 #: ../menu_controller.py:95
 msgid "Always on top"
 msgstr ""
@@ -605,6 +599,14 @@ msgstr ""
 #: ../menu_controller.py:118
 msgid "Open file location"
 msgstr ""
+
+#: ../menu_controller.py:356
+msgid "Exit mini mode"
+msgstr ""
+
+#, fuzzy
+#~ msgid "Full screen"
+#~ msgstr "全螢幕"
 
 #~ msgid "Select file"
 #~ msgstr "選擇檔案"

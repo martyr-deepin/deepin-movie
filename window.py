@@ -125,6 +125,10 @@ class Window(QQuickView):
     @pyqtSlot(result=int)    
     def getState(self):
         return self.windowState()
+
+    @pyqtSlot(result=bool)
+    def miniModeState(self):
+        return self.rootObject().miniModeState()
     
     @pyqtSlot()
     def doMinimized(self):
