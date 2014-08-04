@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-30 13:11+0800\n"
+"POT-Creation-Date: 2014-08-04 14:14+0800\n"
 "PO-Revision-Date: 2014-06-10 15:05+0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "About"
 msgstr "关于"
 
-#: ../AboutSection.qml:11 ../main.qml:403 ../window.py:69
+#: ../AboutSection.qml:11 ../main.qml:395 ../window.py:69
 msgid "Deepin Movie"
 msgstr "深度影院"
 
@@ -39,39 +39,39 @@ msgstr "深度影院是一款专为Linux用户设计的播放器。它支持多�
 msgid "Deepin Movie is free software licensed under GNU GPLv3"
 msgstr "深度影院是一款遵循GNU GPLv3（GUN通用公共许可协议）的免费软件。"
 
-#: ../ControlBar.qml:218
+#: ../ControlBar.qml:219
 msgid "Stop playing"
 msgstr "停止播放"
 
-#: ../ControlBar.qml:236 ../menu_controller.py:81
+#: ../ControlBar.qml:237 ../menu_controller.py:81
 msgid "Previous"
 msgstr "上一个"
 
-#: ../ControlBar.qml:255
+#: ../ControlBar.qml:256
 msgid "Pause"
 msgstr "暂停"
 
-#: ../ControlBar.qml:255 ../menu_controller.py:99 ../menu_controller.py:109
+#: ../ControlBar.qml:256 ../menu_controller.py:99 ../menu_controller.py:109
 msgid "Play"
 msgstr "播放"
 
-#: ../ControlBar.qml:272 ../menu_controller.py:82
+#: ../ControlBar.qml:273 ../menu_controller.py:82
 msgid "Next"
 msgstr "下一个"
 
-#: ../ControlBar.qml:315
+#: ../ControlBar.qml:316
 msgid "Exit full screen"
 msgstr "退出全屏"
 
-#: ../ControlBar.qml:315
+#: ../ControlBar.qml:316
 msgid "Full screen"
 msgstr "全屏"
 
-#: ../ControlBar.qml:334 ../PreferenceWindow.qml:592 ../menu_controller.py:89
+#: ../ControlBar.qml:335 ../PreferenceWindow.qml:592 ../menu_controller.py:89
 msgid "Open file"
 msgstr "打开文件"
 
-#: ../ControlBar.qml:347 ../PreferenceWindow.qml:348 ../menu_controller.py:96
+#: ../ControlBar.qml:348 ../PreferenceWindow.qml:348 ../menu_controller.py:96
 msgid "Playlist"
 msgstr "播放列表"
 
@@ -144,39 +144,39 @@ msgstr "复制到剪切板"
 msgid "Confirm"
 msgstr "确定"
 
-#: ../MainController.qml:112
+#: ../MainController.qml:79
 msgid "Invalid file"
 msgstr "无效文件"
 
-#: ../MainController.qml:401
+#: ../MainController.qml:372
 msgid "Play last movie played"
 msgstr "播放上次的影片"
 
-#: ../MainController.qml:413 ../PreferenceWindow.qml:285
+#: ../MainController.qml:384 ../PreferenceWindow.qml:285
 #: ../menu_controller.py:84
 msgid "Forward"
 msgstr "快进"
 
-#: ../MainController.qml:421 ../PreferenceWindow.qml:306
+#: ../MainController.qml:392 ../PreferenceWindow.qml:306
 #: ../menu_controller.py:85
 msgid "Rewind"
 msgstr "快退"
 
-#: ../MainController.qml:429 ../MainController.qml:435
+#: ../MainController.qml:400 ../MainController.qml:406
 #, qt-format
 msgid "(Press %1 to restore)"
 msgstr "(按 %1 键恢复原速)"
 
-#: ../MainController.qml:431 ../MainController.qml:437
-#: ../MainController.qml:442
+#: ../MainController.qml:402 ../MainController.qml:408
+#: ../MainController.qml:413
 msgid "Playback rate: "
 msgstr "播放速度："
 
-#: ../MainController.qml:454 ../MainController.qml:463
+#: ../MainController.qml:425 ../MainController.qml:434
 msgid "Volume: "
 msgstr "音量："
 
-#: ../MainController.qml:461 ../menu_controller.py:59
+#: ../MainController.qml:432 ../menu_controller.py:59
 msgid "Muted"
 msgstr "静音"
 
@@ -188,15 +188,15 @@ msgstr "请选择一个或多个文件"
 msgid "Please choose folder"
 msgstr "请选择文件夹"
 
-#: ../Playlist.qml:228
+#: ../Playlist.qml:232
 msgid "Play mode"
 msgstr "播放模式"
 
-#: ../Playlist.qml:241
+#: ../Playlist.qml:245
 msgid "Add file"
 msgstr "添加文件"
 
-#: ../Playlist.qml:249 ../menu_controller.py:114
+#: ../Playlist.qml:253 ../menu_controller.py:114
 msgid "Clear playlist"
 msgstr "清空播放列表"
 
@@ -240,10 +240,6 @@ msgstr "减速播放"
 #: ../PreferenceWindow.qml:411
 msgid "Restore playback speed"
 msgstr "还原播放速度"
-
-#: ../PreferenceWindow.qml:449 ../menu_controller.py:94
-msgid "Mini mode"
-msgstr "迷你模式"
 
 #: ../PreferenceWindow.qml:512
 msgid "Volume up"
@@ -407,6 +403,10 @@ msgstr "启用系统通知"
 msgid "Forward/Rewind"
 msgstr "快进/快退"
 
+#: ../PreferenceWindow.qml:449 ../menu_controller.py:94
+msgid "Mini mode/Quit"
+msgstr "迷你模式/退出"
+
 #: ../PreferenceWindow.qml:470
 msgid "Rotate counterclockwise"
 msgstr "逆时针旋转"
@@ -459,27 +459,27 @@ msgstr "顶部"
 msgid "Subtitle Delay"
 msgstr "字幕延时"
 
-#: ../TitleBar.qml:171
+#: ../TitleBar.qml:165
 msgid "Shown in a proportion of 1:1"
 msgstr "1:1显示"
 
-#: ../TitleBar.qml:183
+#: ../TitleBar.qml:177
 msgid "Shown in 1.5 times"
 msgstr "1.5倍显示"
 
-#: ../TitleBar.qml:196
+#: ../TitleBar.qml:190
 msgid "Return to mini mode"
 msgstr "返回迷你模式"
 
-#: ../TitleBar.qml:196
+#: ../TitleBar.qml:190
 msgid "Shown in full screen"
 msgstr "全屏显示"
 
-#: ../TitleBar.qml:211
+#: ../TitleBar.qml:205
 msgid "Cancel \"On Top\""
 msgstr "取消置顶"
 
-#: ../TitleBar.qml:211
+#: ../TitleBar.qml:205
 msgid "On Top"
 msgstr "置顶"
 
@@ -598,6 +598,9 @@ msgstr "删除无效文件"
 #: ../menu_controller.py:118
 msgid "Open file location"
 msgstr "打开文件所在位置"
+
+#~ msgid "Mini mode"
+#~ msgstr "迷你模式"
 
 #~ msgid "Select file"
 #~ msgstr "选择文件"

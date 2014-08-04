@@ -32,47 +32,47 @@
 <context>
     <name>ControlBar</name>
     <message>
-        <location filename="../ControlBar.qml" line="218"/>
+        <location filename="../ControlBar.qml" line="219"/>
         <source>Stop playing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ControlBar.qml" line="236"/>
+        <location filename="../ControlBar.qml" line="237"/>
         <source>Previous</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ControlBar.qml" line="255"/>
+        <location filename="../ControlBar.qml" line="256"/>
         <source>Pause</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ControlBar.qml" line="255"/>
+        <location filename="../ControlBar.qml" line="256"/>
         <source>Play</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ControlBar.qml" line="272"/>
+        <location filename="../ControlBar.qml" line="273"/>
         <source>Next</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ControlBar.qml" line="315"/>
+        <location filename="../ControlBar.qml" line="316"/>
         <source>Exit full screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ControlBar.qml" line="315"/>
+        <location filename="../ControlBar.qml" line="316"/>
         <source>Full screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ControlBar.qml" line="334"/>
+        <location filename="../ControlBar.qml" line="335"/>
         <source>Open file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ControlBar.qml" line="347"/>
+        <location filename="../ControlBar.qml" line="348"/>
         <source>Playlist</source>
         <translation type="unfinished"></translation>
     </message>
@@ -164,46 +164,46 @@
 <context>
     <name>MainController</name>
     <message>
-        <location filename="../MainController.qml" line="112"/>
+        <location filename="../MainController.qml" line="79"/>
         <source>Invalid file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="401"/>
+        <location filename="../MainController.qml" line="372"/>
         <source>Play last movie played</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="413"/>
+        <location filename="../MainController.qml" line="384"/>
         <source>Forward</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="421"/>
+        <location filename="../MainController.qml" line="392"/>
         <source>Rewind</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="429"/>
-        <location filename="../MainController.qml" line="435"/>
+        <location filename="../MainController.qml" line="400"/>
+        <location filename="../MainController.qml" line="406"/>
         <source>(Press %1 to restore)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="431"/>
-        <location filename="../MainController.qml" line="437"/>
-        <location filename="../MainController.qml" line="442"/>
+        <location filename="../MainController.qml" line="402"/>
+        <location filename="../MainController.qml" line="408"/>
+        <location filename="../MainController.qml" line="413"/>
         <source>Playback rate: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="454"/>
-        <location filename="../MainController.qml" line="463"/>
+        <location filename="../MainController.qml" line="425"/>
+        <location filename="../MainController.qml" line="434"/>
         <source>Volume: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="461"/>
+        <location filename="../MainController.qml" line="432"/>
         <source>Muted</source>
         <translation type="unfinished"></translation>
     </message>
@@ -227,17 +227,17 @@
 <context>
     <name>Playlist</name>
     <message>
-        <location filename="../Playlist.qml" line="228"/>
+        <location filename="../Playlist.qml" line="232"/>
         <source>Play mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Playlist.qml" line="241"/>
+        <location filename="../Playlist.qml" line="245"/>
         <source>Add file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Playlist.qml" line="249"/>
+        <location filename="../Playlist.qml" line="253"/>
         <source>Clear playlist</source>
         <translation type="unfinished"></translation>
     </message>
@@ -296,11 +296,6 @@
     <message>
         <location filename="../PreferenceWindow.qml" line="411"/>
         <source>Restore playback speed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../PreferenceWindow.qml" line="449"/>
-        <source>Mini mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -564,6 +559,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../PreferenceWindow.qml" line="449"/>
+        <source>Mini mode/Quit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../PreferenceWindow.qml" line="470"/>
         <source>Rotate counterclockwise</source>
         <translation type="unfinished"></translation>
@@ -637,32 +637,32 @@
 <context>
     <name>TitleBar</name>
     <message>
-        <location filename="../TitleBar.qml" line="171"/>
+        <location filename="../TitleBar.qml" line="165"/>
         <source>Shown in a proportion of 1:1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TitleBar.qml" line="183"/>
+        <location filename="../TitleBar.qml" line="177"/>
         <source>Shown in 1.5 times</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TitleBar.qml" line="196"/>
+        <location filename="../TitleBar.qml" line="190"/>
         <source>Return to mini mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TitleBar.qml" line="196"/>
+        <location filename="../TitleBar.qml" line="190"/>
         <source>Shown in full screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TitleBar.qml" line="211"/>
+        <location filename="../TitleBar.qml" line="205"/>
         <source>Cancel &quot;On Top&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TitleBar.qml" line="211"/>
+        <location filename="../TitleBar.qml" line="205"/>
         <source>On Top</source>
         <translation type="unfinished"></translation>
     </message>
@@ -678,7 +678,7 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../main.qml" line="403"/>
+        <location filename="../main.qml" line="395"/>
         <source>Deepin Movie</source>
         <translation type="unfinished"></translation>
     </message>

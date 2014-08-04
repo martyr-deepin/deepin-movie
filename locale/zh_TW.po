@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-30 13:11+0800\n"
+"POT-Creation-Date: 2014-08-04 14:14+0800\n"
 "PO-Revision-Date: 2014-07-03 05:53+0000\n"
 "Last-Translator: electricface <songwentai@linuxdeepin.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/deepin-"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "About"
 msgstr "關於"
 
-#: ../AboutSection.qml:11 ../main.qml:403 ../window.py:69
+#: ../AboutSection.qml:11 ../main.qml:395 ../window.py:69
 msgid "Deepin Movie"
 msgstr ""
 
@@ -40,42 +40,42 @@ msgstr ""
 msgid "Deepin Movie is free software licensed under GNU GPLv3"
 msgstr ""
 
-#: ../ControlBar.qml:218
+#: ../ControlBar.qml:219
 msgid "Stop playing"
 msgstr ""
 
-#: ../ControlBar.qml:236 ../menu_controller.py:81
+#: ../ControlBar.qml:237 ../menu_controller.py:81
 msgid "Previous"
 msgstr "上一首"
 
-#: ../ControlBar.qml:255
+#: ../ControlBar.qml:256
 #, fuzzy
 msgid "Pause"
 msgstr "暫停/播放"
 
-#: ../ControlBar.qml:255 ../menu_controller.py:99 ../menu_controller.py:109
+#: ../ControlBar.qml:256 ../menu_controller.py:99 ../menu_controller.py:109
 msgid "Play"
 msgstr "播放"
 
-#: ../ControlBar.qml:272 ../menu_controller.py:82
+#: ../ControlBar.qml:273 ../menu_controller.py:82
 msgid "Next"
 msgstr "下一首"
 
-#: ../ControlBar.qml:315
+#: ../ControlBar.qml:316
 #, fuzzy
 msgid "Exit full screen"
 msgstr "全螢幕"
 
-#: ../ControlBar.qml:315
+#: ../ControlBar.qml:316
 #, fuzzy
 msgid "Full screen"
 msgstr "全螢幕"
 
-#: ../ControlBar.qml:334 ../PreferenceWindow.qml:592 ../menu_controller.py:89
+#: ../ControlBar.qml:335 ../PreferenceWindow.qml:592 ../menu_controller.py:89
 msgid "Open file"
 msgstr "開啟檔案"
 
-#: ../ControlBar.qml:347 ../PreferenceWindow.qml:348 ../menu_controller.py:96
+#: ../ControlBar.qml:348 ../PreferenceWindow.qml:348 ../menu_controller.py:96
 msgid "Playlist"
 msgstr ""
 
@@ -148,39 +148,39 @@ msgstr "儲存到剪貼簿"
 msgid "Confirm"
 msgstr "確認"
 
-#: ../MainController.qml:112
+#: ../MainController.qml:79
 msgid "Invalid file"
 msgstr ""
 
-#: ../MainController.qml:401
+#: ../MainController.qml:372
 msgid "Play last movie played"
 msgstr ""
 
-#: ../MainController.qml:413 ../PreferenceWindow.qml:285
+#: ../MainController.qml:384 ../PreferenceWindow.qml:285
 #: ../menu_controller.py:84
 msgid "Forward"
 msgstr "前進"
 
-#: ../MainController.qml:421 ../PreferenceWindow.qml:306
+#: ../MainController.qml:392 ../PreferenceWindow.qml:306
 #: ../menu_controller.py:85
 msgid "Rewind"
 msgstr "後退"
 
-#: ../MainController.qml:429 ../MainController.qml:435
+#: ../MainController.qml:400 ../MainController.qml:406
 #, qt-format
 msgid "(Press %1 to restore)"
 msgstr ""
 
-#: ../MainController.qml:431 ../MainController.qml:437
-#: ../MainController.qml:442
+#: ../MainController.qml:402 ../MainController.qml:408
+#: ../MainController.qml:413
 msgid "Playback rate: "
 msgstr ""
 
-#: ../MainController.qml:454 ../MainController.qml:463
+#: ../MainController.qml:425 ../MainController.qml:434
 msgid "Volume: "
 msgstr ""
 
-#: ../MainController.qml:461 ../menu_controller.py:59
+#: ../MainController.qml:432 ../menu_controller.py:59
 msgid "Muted"
 msgstr ""
 
@@ -192,16 +192,16 @@ msgstr ""
 msgid "Please choose folder"
 msgstr ""
 
-#: ../Playlist.qml:228
+#: ../Playlist.qml:232
 #, fuzzy
 msgid "Play mode"
 msgstr "播放"
 
-#: ../Playlist.qml:241
+#: ../Playlist.qml:245
 msgid "Add file"
 msgstr ""
 
-#: ../Playlist.qml:249 ../menu_controller.py:114
+#: ../Playlist.qml:253 ../menu_controller.py:114
 msgid "Clear playlist"
 msgstr ""
 
@@ -244,10 +244,6 @@ msgstr ""
 
 #: ../PreferenceWindow.qml:411
 msgid "Restore playback speed"
-msgstr ""
-
-#: ../PreferenceWindow.qml:449 ../menu_controller.py:94
-msgid "Mini mode"
 msgstr ""
 
 #: ../PreferenceWindow.qml:512
@@ -412,6 +408,10 @@ msgstr "開啟系統氣泡提示"
 msgid "Forward/Rewind"
 msgstr ""
 
+#: ../PreferenceWindow.qml:449 ../menu_controller.py:94
+msgid "Mini mode/Quit"
+msgstr ""
+
 #: ../PreferenceWindow.qml:470
 msgid "Rotate counterclockwise"
 msgstr ""
@@ -464,28 +464,28 @@ msgstr "頂端"
 msgid "Subtitle Delay"
 msgstr ""
 
-#: ../TitleBar.qml:171
+#: ../TitleBar.qml:165
 msgid "Shown in a proportion of 1:1"
 msgstr ""
 
-#: ../TitleBar.qml:183
+#: ../TitleBar.qml:177
 msgid "Shown in 1.5 times"
 msgstr ""
 
-#: ../TitleBar.qml:196
+#: ../TitleBar.qml:190
 msgid "Return to mini mode"
 msgstr ""
 
-#: ../TitleBar.qml:196
+#: ../TitleBar.qml:190
 #, fuzzy
 msgid "Shown in full screen"
 msgstr "全螢幕"
 
-#: ../TitleBar.qml:211
+#: ../TitleBar.qml:205
 msgid "Cancel \"On Top\""
 msgstr ""
 
-#: ../TitleBar.qml:211
+#: ../TitleBar.qml:205
 msgid "On Top"
 msgstr ""
 

@@ -91,7 +91,7 @@ right_click_menu = [
     # ("_open_url", _("Open URL")),
     None,
     ("_fullscreen_quit", _("Fullscreen/Quit"), (), (), config.hotkeysPlayToggleFullscreen),
-    ("_mini_mode", _("Mini mode"), (), (), config.hotkeysFrameSoundToggleMiniMode),
+    ("_mini_mode", _("Mini mode/Quit"), (), (), config.hotkeysFrameSoundToggleMiniMode),
     CheckableMenuItem("_on_top", _("Always on top"), False),
     ("_toggle_playlist", _("Playlist"), (), (), config.hotkeysPlayTogglePlaylist),
     None,
