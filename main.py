@@ -69,6 +69,7 @@ if os.name == 'posix':
 # from PyQt5.QtGui import QFont   
 from PyQt5.QtCore import pyqtSlot, QObject
 from PyQt5.QtWidgets import QApplication, QInputDialog
+app = QApplication(sys.argv)
 
 from window import Window
 from database import database
@@ -123,8 +124,6 @@ class InputDialog(QObject):
         return input if ok else ""
 
 if __name__ == "__main__":
-    app = QApplication(sys.argv)    
-    # app.setFont(QFont("Arail"))
     movie_file = os.path.realpath(sys.argv[1]) if len(sys.argv) >= 2 else ""
 
     from dbus_services import (DeepinMovieServie, check_multiple_instances, 
