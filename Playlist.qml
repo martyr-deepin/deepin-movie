@@ -51,6 +51,7 @@ Rectangle {
 
     function show() {
         if (canExpand) {
+            program_constants.playlistWidth = Math.min(maxWidth, program_constants.playlistWidth)
             visible = true
             hide_handle_timer.stop()
             showingPlaylistPanelAnimation.restart()
