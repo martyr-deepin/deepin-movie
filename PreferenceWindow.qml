@@ -12,6 +12,7 @@ DPreferenceWindow {
 
     property string currentSectionId
     property var presetColors: [
+                    {"label": dsTr("Black"), "color": "black"},
                     {"label": dsTr("bleu de France"), "color": "#2e96ea"},
                     {"label": dsTr("Turquoise"), "color": "#38ecd9"},
                     {"label": dsTr("UFO green"), "color": "#37eb74"},
