@@ -101,13 +101,7 @@ Rectangle {
         onAccepted: {
             var folderPath = fileUrl
             database.lastOpenedPath = folderPath // record last opened path
-            var fileUrls = _utils.getAllVideoFilesInDir(folderPath)
-            if (fileUrls.length > 0) {
-                for (var i = 0; i < fileUrls.length; i++) {
-                    main_controller.addPlayListItem(fileUrls[i])
-                }                
-            }
-            movieInfo.movie_file = fileUrls[0]
+            _utils.getAllVideoFilesInDirRecursively(folderPath)
         }
     }
 
