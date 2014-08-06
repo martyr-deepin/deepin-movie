@@ -169,41 +169,41 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="372"/>
+        <location filename="../MainController.qml" line="379"/>
         <source>Play last movie played</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="384"/>
+        <location filename="../MainController.qml" line="391"/>
         <source>Forward</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="392"/>
+        <location filename="../MainController.qml" line="399"/>
         <source>Rewind</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="400"/>
-        <location filename="../MainController.qml" line="406"/>
+        <location filename="../MainController.qml" line="407"/>
+        <location filename="../MainController.qml" line="413"/>
         <source>(Press %1 to restore)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="402"/>
-        <location filename="../MainController.qml" line="408"/>
-        <location filename="../MainController.qml" line="413"/>
+        <location filename="../MainController.qml" line="409"/>
+        <location filename="../MainController.qml" line="415"/>
+        <location filename="../MainController.qml" line="420"/>
         <source>Playback rate: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="425"/>
-        <location filename="../MainController.qml" line="434"/>
+        <location filename="../MainController.qml" line="432"/>
+        <location filename="../MainController.qml" line="441"/>
         <source>Volume: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="432"/>
+        <location filename="../MainController.qml" line="439"/>
         <source>Muted</source>
         <translation type="unfinished"></translation>
     </message>
@@ -683,7 +683,7 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../main.qml" line="386"/>
+        <location filename="../main.qml" line="380"/>
         <source>Deepin Movie</source>
         <translation type="unfinished"></translation>
     </message>
