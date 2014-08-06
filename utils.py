@@ -29,7 +29,6 @@ import gio
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtGui import QKeySequence
 from PyQt5.QtCore import QObject, pyqtSlot, pyqtProperty
-from PyQt5.QtDBus import QDBusInterface, QDBusConnection
 
 from subtitles import *
 from dbus_interfaces import screenSaverInterface
@@ -155,24 +154,6 @@ class Utils(QObject):
         result = [os.path.join(dir, x) for x in result]
 
         return json.dumps({"name":nameFilter, "items":result})
-
-    @pyqtSlot()
-    def enable_zone(self):
-        try:
-            iface = QDBusInterface(
-                "com.deepin.daemon.Zone", "/com/deepin/daemon/Zone", '', QDBusConnection.sessionBus())
-            iface.asyncCall("EnableZoneDetected", True)
-        except:
-            pass
-
-    @pyqtSlot()
-    def disable_zone(self):
-        try:
-            iface = QDBusInterface(
-                "com.deepin.daemon.Zone", "/com/deepin/daemon/Zone", '', QDBusConnection.sessionBus())
-            iface.asyncCall("EnableZoneDetected", False)
-        except:
-            pass
 
     @pyqtSlot(int, int, str, result=bool)
     def checkKeySequenceEqual(self, modifier, key, targetKeySequence):

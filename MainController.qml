@@ -247,7 +247,6 @@ MouseArea {
 
     function normalize() {
         root.state = "normal"
-        _utils.enable_zone()
         windowView.showNormal()
     }
 
@@ -258,7 +257,6 @@ MouseArea {
             windowView.y + windowView.height / 2)
         fullscreenFromMaximum = (windowView.getState() == Qt.WindowMaximized)
         root.state = "no_glow"
-        _utils.disable_zone()
         windowView.showFullScreen()
     }
 
@@ -269,13 +267,11 @@ MouseArea {
         backupCenter = Qt.point(windowView.x + windowView.width / 2,
             windowView.y + windowView.height / 2)
         root.state = "no_glow"
-        _utils.enable_zone()
         windowView.showMaximized()
     }
 
     function minimize() {
         root.state = "normal"
-        _utils.enable_zone()
         windowView.doMinimized()
     }
 
