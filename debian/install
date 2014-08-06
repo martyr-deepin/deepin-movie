@@ -1,0 +1,7 @@
+deepin-movie.desktop /usr/share/applications/
+image/deepin-movie.svg /usr/share/icons/hicolor/scalable/apps/
+*.py /usr/share/deepin-movie/
+*.qml /usr/share/deepin-movie/
+image /usr/share/deepin-movie/
+qvod /usr/share/deepin-movie/
+locale/mo/* /usr/share/locale/

@@ -1,0 +1,1223 @@
+deepin-movie (0.1+20140804173829~d5f41bcbf9) trusty; urgency=low
+
+  * Build from git d5f41bcbf940547d509109bb645e22afa1b0974a
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Mon, 04 Aug 2014 17:38:30 +0800
+
+deepin-movie (0.1+20140804151335~281896ade7) trusty; urgency=low
+
+  * Build from git 281896ade7e440914e8bb36590b651dedc978b0c
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Mon, 04 Aug 2014 15:13:35 +0800
+
+deepin-movie (0.1+20140804150226~52585c14d2) trusty; urgency=low
+
+  * Build from git 52585c14d220a93b661987c09009d10512b1f704
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Mon, 04 Aug 2014 15:02:26 +0800
+
+deepin-movie (0.1+20140804113904~07ed54e3ff) trusty; urgency=low
+
+  * Build from git 07ed54e3ff744a7fc7a426d25e38ebae496d64fb
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Mon, 04 Aug 2014 11:39:04 +0800
+
+deepin-movie (0.1+20140804105705~6bcb22cf63) trusty; urgency=low
+
+  * Build from git 6bcb22cf63d20e76fee7c693c5062294e4591522
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Mon, 04 Aug 2014 10:57:06 +0800
+
+deepin-movie (0.1+20140801125535~10af89c8b1) trusty; urgency=low
+
+  * Build from git 10af89c8b1fc0f3d2ba9cb38ec82bf7a24237d70
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Fri, 01 Aug 2014 12:55:35 +0800
+
+deepin-movie (0.1+20140731101820~607a37602f) trusty; urgency=low
+
+  * Build from git 607a37602ff828924bdcee3769aa887409d27f7b
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 31 Jul 2014 10:18:21 +0800
+
+deepin-movie (0.1+20140731095559~e5c31a3404) trusty; urgency=low
+
+  * Build from git e5c31a3404917dd1f1dc530bb58ab3c72545686e
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 31 Jul 2014 09:56:00 +0800
+
+deepin-movie (0.1+20140730113624~abe0bbb288) trusty; urgency=low
+
+  * Build from git abe0bbb28840868735a7114dbeb391bbd41961c3
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 30 Jul 2014 11:36:25 +0800
+
+deepin-movie (0.1+20140730095700~2f286c2b74) trusty; urgency=low
+
+  * Build from git 2f286c2b74453e904c599987ea23043ee72576c4
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 30 Jul 2014 09:57:00 +0800
+
+deepin-movie (0.1+20140729173313~c04a09b4d6) trusty; urgency=low
+
+  * Build from git c04a09b4d63cff8b0d7501bf55e99838b58daeb5
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Tue, 29 Jul 2014 17:33:13 +0800
+
+deepin-movie (0.1+20140729154529~9957ce2795) trusty; urgency=low
+
+  * Build from git 9957ce27957f00fc15aa3e5c5c4c5380d9594cf5
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Tue, 29 Jul 2014 15:45:29 +0800
+
+deepin-movie (0.1+20140729150347~c4e74bdf08) trusty; urgency=low
+
+  * Build from git c4e74bdf08616dca4cd67535f1c138708f2bdeef
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Tue, 29 Jul 2014 15:03:47 +0800
+
+deepin-movie (0.1+20140725165753~7dec02c9eb) trusty; urgency=low
+
+  * Build from git 7dec02c9ebc128d07d96dcd8dbab1d8e476af6d8
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Fri, 25 Jul 2014 16:57:54 +0800
+
+deepin-movie (0.1+20140725163220~bc53caf6b9) trusty; urgency=low
+
+  * Build from git bc53caf6b919b5d93623adc9f25da8d7f3ee9d6b
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Fri, 25 Jul 2014 16:32:21 +0800
+
+deepin-movie (0.1+20140725153103~06dfe6ac3c) trusty; urgency=low
+
+  * Build from git 06dfe6ac3cb96cb5b623ae3a3d65b9cc42f12bcd
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Fri, 25 Jul 2014 15:31:03 +0800
+
+deepin-movie (0.1+20140725142025~3bac5b04d2) trusty; urgency=low
+
+  * Build from git 3bac5b04d2757c35d1d36168ef935ccaea2779f6
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Fri, 25 Jul 2014 14:20:25 +0800
+
+deepin-movie (0.1+20140724213726~c6ff6587d6) trusty; urgency=low
+
+  * Build from git c6ff6587d614e8690b03d0bd0a3e41d67f890523
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 24 Jul 2014 21:37:26 +0800
+
+deepin-movie (0.1+20140724211439~c6ff6587d6) trusty; urgency=low
+
+  * Build from git c6ff6587d614e8690b03d0bd0a3e41d67f890523
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 24 Jul 2014 21:14:39 +0800
+
+deepin-movie (0.1+20140724172449~fabc495f78) trusty; urgency=low
+
+  * Build from git fabc495f78f2c3c775a5aaa9a1142b23c3262605
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 24 Jul 2014 17:24:49 +0800
+
+deepin-movie (0.1+20140724165036~fabc495f78) trusty; urgency=low
+
+  * Build from git fabc495f78f2c3c775a5aaa9a1142b23c3262605
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 24 Jul 2014 16:50:36 +0800
+
+deepin-movie (0.1+20140724155138~1e901417d5) trusty; urgency=low
+
+  * Build from git 1e901417d5fa117af01f81fe7440c584de02ea0f
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 24 Jul 2014 15:51:38 +0800
+
+deepin-movie (0.1+20140722175438~8a7b88456b) trusty; urgency=low
+
+  * Build from git 8a7b88456bcff4a436bf0fd89b6c7d7a9107343f
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Tue, 22 Jul 2014 17:54:40 +0800
+
+deepin-movie (0.1+20140721143511~d10abb47a4) trusty; urgency=low
+
+  * Build from git d10abb47a4096d53acac706826f7970319bd6d99
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Mon, 21 Jul 2014 14:35:12 +0800
+
+deepin-movie (0.1+20140718175614~b39de33ceb) trusty; urgency=low
+
+  * Build from git b39de33cebe35481f2cfdbe30a9533e93642917a
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Fri, 18 Jul 2014 17:56:15 +0800
+
+deepin-movie (0.1+20140717152125~658f7831d8) trusty; urgency=low
+
+  * Build from git 658f7831d86a0ce54e9016df8f635c09f37efe41
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 17 Jul 2014 15:21:26 +0800
+
+deepin-movie (0.1+20140717151435~c013017507) trusty; urgency=low
+
+  * Build from git c013017507fd28f7d615245b7480250fcb14fe05
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 17 Jul 2014 15:14:37 +0800
+
+deepin-movie (0.1+20140717143631~51a3049cfc) trusty; urgency=low
+
+  * Build from git 51a3049cfc356737a5a5aa59bc66b17792affc9d
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 17 Jul 2014 14:36:31 +0800
+
+deepin-movie (0.1+20140717142051~ff303aa051) trusty; urgency=low
+
+  * Build from git ff303aa051b443f1fd1880e5570567b6b1d874f5
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 17 Jul 2014 14:20:51 +0800
+
+deepin-movie (0.1+20140717141525~7df0c5b556) trusty; urgency=low
+
+  * Build from git 7df0c5b556aca7fe6b9f2bf0e5ac64b204309cbb
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 17 Jul 2014 14:15:26 +0800
+
+deepin-movie (0.1+20140717104016~afe8dec3d0) trusty; urgency=low
+
+  * Build from git afe8dec3d084933dddda45d8081abf0bde2113f8
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 17 Jul 2014 10:40:17 +0800
+
+deepin-movie (0.1+20140717102652~0c2461177d) trusty; urgency=low
+
+  * Build from git 0c2461177d2ee93d7b43c5c49f833a9001d373aa
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 17 Jul 2014 10:26:53 +0800
+
+deepin-movie (0.1+20140716174439~0c2461177d) trusty; urgency=low
+
+  * Build from git 0c2461177d2ee93d7b43c5c49f833a9001d373aa
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 16 Jul 2014 17:44:39 +0800
+
+deepin-movie (0.1+20140716171441~556f0b281f) trusty; urgency=low
+
+  * Build from git 556f0b281f5523b47a8ffedb77b1ede195b3df5f
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 16 Jul 2014 17:14:42 +0800
+
+deepin-movie (0.1+20140716170844~d3bf0d0052) trusty; urgency=low
+
+  * Build from git d3bf0d0052d78156151132d965c40ce1e6bcf693
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 16 Jul 2014 17:08:45 +0800
+
+deepin-movie (0.1+20140716103457~6e3b9585e3) trusty; urgency=low
+
+  * Build from git 6e3b9585e31ff742889f7ee58aa06b3a640d8c06
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 16 Jul 2014 10:34:57 +0800
+
+deepin-movie (0.1+20140716093516~6e3b9585e3) trusty; urgency=low
+
+  * Build from git 6e3b9585e31ff742889f7ee58aa06b3a640d8c06
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 16 Jul 2014 09:35:17 +0800
+
+deepin-movie (0.1+20140711163744~6e3b9585e3) trusty; urgency=low
+
+  * Build from git 6e3b9585e31ff742889f7ee58aa06b3a640d8c06
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Fri, 11 Jul 2014 16:37:45 +0800
+
+deepin-movie (0.1+20140711162430~6e3b9585e3) trusty; urgency=low
+
+  * Build from git 6e3b9585e31ff742889f7ee58aa06b3a640d8c06
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Fri, 11 Jul 2014 16:24:30 +0800
+
+deepin-movie (0.1+20140711162236~6e3b9585e3) trusty; urgency=low
+
+  * Build from git 6e3b9585e31ff742889f7ee58aa06b3a640d8c06
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Fri, 11 Jul 2014 16:22:37 +0800
+
+deepin-movie (0.1+20140711155113~61f9951fee) trusty; urgency=low
+
+  * Build from git 61f9951fee7b9e76f1105604ec7ef127b7334c79
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Fri, 11 Jul 2014 15:51:14 +0800
+
+deepin-movie (0.1+20140711095351~38b48702fc) trusty; urgency=low
+
+  * Build from git 38b48702fcca4a2e83de410c2b8bc0f2272b6d1a
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Fri, 11 Jul 2014 09:53:52 +0800
+
+deepin-movie (0.1+20140710171040~f556dbb905) trusty; urgency=low
+
+  * Build from git f556dbb905337f71d3526c78ce2d1f506967d3cc
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 10 Jul 2014 17:10:41 +0800
+
+deepin-movie (0.1+20140710170247~9a53429625) trusty; urgency=low
+
+  * Build from git 9a534296255c8a17c55d571b442e2e384c46ce94
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 10 Jul 2014 17:02:47 +0800
+
+deepin-movie (0.1+20140710164124~9a53429625) trusty; urgency=low
+
+  * Build from git 9a534296255c8a17c55d571b442e2e384c46ce94
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 10 Jul 2014 16:41:24 +0800
+
+deepin-movie (0.1+20140710155519~9a53429625) trusty; urgency=low
+
+  * Build from git 9a534296255c8a17c55d571b442e2e384c46ce94
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 10 Jul 2014 15:55:20 +0800
+
+deepin-movie (0.1+20140709165044~9e01eacb3f) trusty; urgency=low
+
+  * Build from git 9e01eacb3f2e56e5873a40d4868dadfddc7b3caf
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 09 Jul 2014 16:50:44 +0800
+
+deepin-movie (0.1+20140709150632~391f043edc) trusty; urgency=low
+
+  * Build from git 391f043edcef7625db771bab1d1f5c4c96601f96
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 09 Jul 2014 15:06:33 +0800
+
+deepin-movie (0.1+20140709143809~391f043edc) trusty; urgency=low
+
+  * Build from git 391f043edcef7625db771bab1d1f5c4c96601f96
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 09 Jul 2014 14:38:09 +0800
+
+deepin-movie (0.1+20140709111838~d11dc5214b) trusty; urgency=low
+
+  * Build from git d11dc5214bd65a101215ddeba8e8801ff789e7c1
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 09 Jul 2014 11:18:38 +0800
+
+deepin-movie (0.1+20140709105132~d11dc5214b) trusty; urgency=low
+
+  * Build from git d11dc5214bd65a101215ddeba8e8801ff789e7c1
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 09 Jul 2014 10:51:32 +0800
+
+deepin-movie (0.1+20140709102010~256c054d5d) trusty; urgency=low
+
+  * Build from git 256c054d5d09117bf59fe389308abd519d733a29
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 09 Jul 2014 10:20:10 +0800
+
+deepin-movie (0.1+20140709095028~5e3805ac50) trusty; urgency=low
+
+  * Build from git 5e3805ac508a6d14f1a088232be210df303acf82
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 09 Jul 2014 09:50:28 +0800
+
+deepin-movie (0.1+20140708163112~1e272388ca) trusty; urgency=low
+
+  * Build from git 1e272388cab5d3b5c873f0f1c96be25f8ab1cdca
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Tue, 08 Jul 2014 16:31:13 +0800
+
+deepin-movie (0.1+20140708131140~1e272388ca) trusty; urgency=low
+
+  * Build from git 1e272388cab5d3b5c873f0f1c96be25f8ab1cdca
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Tue, 08 Jul 2014 13:11:41 +0800
+
+deepin-movie (0.1+20140708100612~1e272388ca) trusty; urgency=low
+
+  * Build from git 1e272388cab5d3b5c873f0f1c96be25f8ab1cdca
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Tue, 08 Jul 2014 10:06:13 +0800
+
+deepin-movie (0.1+20140708093534~20ddbe94ec) trusty; urgency=low
+
+  * Build from git 20ddbe94ecdc7440e891b0896f3293ce76676b87
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Tue, 08 Jul 2014 09:35:34 +0800
+
+deepin-movie (0.1+20140703163040~adcc9004bf) trusty; urgency=low
+
+  * Build from git adcc9004bf4f4bb308f2a55d7262b30ad4ae28c0
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 03 Jul 2014 16:30:41 +0800
+
+deepin-movie (0.1+20140703160215~adcc9004bf) trusty; urgency=low
+
+  * Build from git adcc9004bf4f4bb308f2a55d7262b30ad4ae28c0
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 03 Jul 2014 16:02:16 +0800
+
+deepin-movie (0.1+20140703151502~adcc9004bf) trusty; urgency=low
+
+  * Build from git adcc9004bf4f4bb308f2a55d7262b30ad4ae28c0
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 03 Jul 2014 15:15:03 +0800
+
+deepin-movie (0.1+20140703100404~34efff5d83) trusty; urgency=low
+
+  * Build from git 34efff5d832e59864fffe822ec22765ccfadb7bf
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 03 Jul 2014 10:04:04 +0800
+
+deepin-movie (0.1+20140703095821~2bdb166415) trusty; urgency=low
+
+  * Build from git 2bdb1664150e4e3e7b422624103c14f95bef3558
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 03 Jul 2014 09:58:21 +0800
+
+deepin-movie (0.1+20140702174729~9b60c62305) trusty; urgency=low
+
+  * Build from git 9b60c6230525d2a4c0b78878c1a9103f8dcbf199
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 02 Jul 2014 17:47:29 +0800
+
+deepin-movie (0.1+20140702162619~27b2a5c3eb) trusty; urgency=low
+
+  * Build from git 27b2a5c3eb802354e9510840e4c8158aae560fb5
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 02 Jul 2014 16:26:20 +0800
+
+deepin-movie (0.1+20140702153149~d6a10f15d8) trusty; urgency=low
+
+  * Build from git d6a10f15d82ec904ad384623fdc3e6cc45541036
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 02 Jul 2014 15:31:49 +0800
+
+deepin-movie (0.1+20140702144349~46d70f2355) trusty; urgency=low
+
+  * Build from git 46d70f2355024f9144980169709bd34613634046
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 02 Jul 2014 14:43:49 +0800
+
+deepin-movie (0.1-20140702093138~d797177a9a) trusty; urgency=low
+
+  * Build from git d797177a9ade89393bb0db48e4fa7800a0e6f78f
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 02 Jul 2014 09:31:38 +0800
+
+deepin-movie (0.1-20140701175418~d797177a9a) trusty; urgency=low
+
+  * Build from git d797177a9ade89393bb0db48e4fa7800a0e6f78f
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Tue, 01 Jul 2014 17:54:19 +0800
+
+deepin-movie (0.1-20140701103601~aa7155f592) trusty; urgency=low
+
+  * Build from git aa7155f5927f8ca923464d815155368ecc0bbb72
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Tue, 01 Jul 2014 10:36:02 +0800
+
+deepin-movie (0.1-20140701100031~aa7155f592) trusty; urgency=low
+
+  * Build from git aa7155f5927f8ca923464d815155368ecc0bbb72
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Tue, 01 Jul 2014 10:00:32 +0800
+
+deepin-movie (0.1-20140701091655~1801278175) trusty; urgency=low
+
+  * Build from git 18012781757aa21fca76eb524d819719789417ff
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Tue, 01 Jul 2014 09:16:56 +0800
+
+deepin-movie (0.1-20140701090901~48f38106cf) trusty; urgency=low
+
+  * Build from git 48f38106cf86d2e291b659e1830e0067b9d717e3
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Tue, 01 Jul 2014 09:09:02 +0800
+
+deepin-movie (0.1-20140630165307~3af4147e23) trusty; urgency=low
+
+  * Build from git 3af4147e232db735d64ee5823450d46e589a6df3
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Mon, 30 Jun 2014 16:53:07 +0800
+
+deepin-movie (0.1-20140630164551~d7104a02ae) trusty; urgency=low
+
+  * Build from git d7104a02ae66e4a8ad83c788b3d10faee9d216cc
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Mon, 30 Jun 2014 16:45:52 +0800
+
+deepin-movie (0.1-20140630144009~52453c9c5e) trusty; urgency=low
+
+  * Build from git 52453c9c5e4cf9b4d9b45d35f56f4774ed97d06d
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Mon, 30 Jun 2014 14:40:10 +0800
+
+deepin-movie (0.1-20140630134008~df56374e9e) trusty; urgency=low
+
+  * Build from git df56374e9ef41860b8dcf4ccfa6a4d201312e502
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Mon, 30 Jun 2014 13:40:09 +0800
+
+deepin-movie (0.1-20140627171036~f819c0b2ea) trusty; urgency=low
+
+  * Build from git f819c0b2eaca975efbab2b3a660a7e41384a03d8
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Fri, 27 Jun 2014 17:10:37 +0800
+
+deepin-movie (0.1-20140627163638~81dfa2d86b) trusty; urgency=low
+
+  * Build from git 81dfa2d86b47349d183a7ec181504b72bc08cacd
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Fri, 27 Jun 2014 16:36:39 +0800
+
+deepin-movie (0.1-20140627155738~f1bb06bcc7) trusty; urgency=low
+
+  * Build from git f1bb06bcc7d067968b670d5740d69ea2b63085ec
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Fri, 27 Jun 2014 15:57:39 +0800
+
+deepin-movie (0.1-20140626170532~070ffd2c49) trusty; urgency=low
+
+  * Build from git 070ffd2c49976889e5c79a8ad94e9c6d3ceda4b1
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 26 Jun 2014 17:05:32 +0800
+
+deepin-movie (0.1-20140626153204~0b11807047) trusty; urgency=low
+
+  * Build from git 0b1180704754b21d25117b0df569f5bf185e9741
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 26 Jun 2014 15:32:05 +0800
+
+deepin-movie (0.1-20140626150313~17c48f8447) trusty; urgency=low
+
+  * Build from git 17c48f8447f1fa11c353dcfcd2968f70758da289
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 26 Jun 2014 15:03:14 +0800
+
+deepin-movie (0.1-20140626142649~e74770a095) trusty; urgency=low
+
+  * Build from git e74770a09535c78a2ff9d1a3aeaa0145858bf7fb
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 26 Jun 2014 14:26:50 +0800
+
+deepin-movie (0.1-20140626112655~7052208117) trusty; urgency=low
+
+  * Build from git 70522081170d9974093db7e82bfa81f5a68f36b2
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 26 Jun 2014 11:26:56 +0800
+
+deepin-movie (0.1-20140626110544~3057818b05) trusty; urgency=low
+
+  * Build from git 3057818b05416ba9c70030fff2c9057fbf64fad1
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 26 Jun 2014 11:05:45 +0800
+
+deepin-movie (0.1-20140625170132~e6c6a4e861) trusty; urgency=low
+
+  * Build from git e6c6a4e86136c2c47ea9cbe02fd8e3a5902cefee
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 25 Jun 2014 17:01:33 +0800
+
+deepin-movie (0.1-20140625162400~42196d14c1) trusty; urgency=low
+
+  * Build from git 42196d14c18be60b9a0213f9b42beeb29adda682
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 25 Jun 2014 16:24:02 +0800
+
+deepin-movie (0.1-20140625113305~d8814c1549) trusty; urgency=low
+
+  * Build from git d8814c1549f432a1b9d1bd018738561c9021e8fc
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 25 Jun 2014 11:33:05 +0800
+
+deepin-movie (0.1-20140625094259~d4527543e8) trusty; urgency=low
+
+  * Build from git d4527543e843c4df1fb97609df5ac2604a3a7776
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 25 Jun 2014 09:43:01 +0800
+
+deepin-movie (0.1-20140624171837~c3feb56b0c) trusty; urgency=low
+
+  * Build from git c3feb56b0cae9b896a3540586f895fa537fb8b73
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Tue, 24 Jun 2014 17:18:37 +0800
+
+deepin-movie (0.1-20140624170328~c0cf7d0567) trusty; urgency=low
+
+  * Build from git c0cf7d0567214684a5ce443fd6d9c4e3e41fbcc7
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Tue, 24 Jun 2014 17:03:29 +0800
+
+deepin-movie (0.1-20140624155451~3a490014c3) trusty; urgency=low
+
+  * Build from git 3a490014c32c612ac79c0bd53f616ff5ab72dde1
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Tue, 24 Jun 2014 15:54:53 +0800
+
+deepin-movie (0.1-20140624103456~6a9f165695) trusty; urgency=low
+
+  * Build from git 6a9f1656957f518f58ef0ca19b04b4bcbf75f007
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Tue, 24 Jun 2014 10:34:56 +0800
+
+deepin-movie (0.1-20140624093539~86dfea459f) trusty; urgency=low
+
+  * Build from git 86dfea459f9128fcd546188ae8dd2b6f019f8116
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Tue, 24 Jun 2014 09:35:39 +0800
+
+deepin-movie (0.1-20140623174650~b1162c24a2) trusty; urgency=low
+
+  * Build from git b1162c24a27bcaf93fba44efe8a204fcf065bdd0
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Mon, 23 Jun 2014 17:46:51 +0800
+
+deepin-movie (0.1-20140623165716~b1162c24a2) trusty; urgency=low
+
+  * Build from git b1162c24a27bcaf93fba44efe8a204fcf065bdd0
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Mon, 23 Jun 2014 16:57:17 +0800
+
+deepin-movie (0.1-20140623151250~a3d7fd1c52) trusty; urgency=low
+
+  * Build from git a3d7fd1c528922feb3aad8133979fa9db6dd3e4a
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Mon, 23 Jun 2014 15:12:51 +0800
+
+deepin-movie (0.1-20140623144502~caab8fdb45) trusty; urgency=low
+
+  * Build from git caab8fdb45eb96b7db63b7275fb94cd41d820160
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Mon, 23 Jun 2014 14:45:03 +0800
+
+deepin-movie (0.1-20140623141927~8ea04ac8bb) trusty; urgency=low
+
+  * Build from git 8ea04ac8bb20664e5adb36ac222a49808f660acb
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Mon, 23 Jun 2014 14:19:28 +0800
+
+deepin-movie (0.1-20140623140005~08a6d22423) trusty; urgency=low
+
+  * Build from git 08a6d22423c10142655a3e55df05a6dfafdade56
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Mon, 23 Jun 2014 14:00:07 +0800
+
+deepin-movie (0.1-20140623114208~08a6d22423) trusty; urgency=low
+
+  * Build from git 08a6d22423c10142655a3e55df05a6dfafdade56
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Mon, 23 Jun 2014 11:42:09 +0800
+
+deepin-movie (0.1-20140623101658~b56487fbf7) trusty; urgency=low
+
+  * Build from git b56487fbf75e147514a419493e5fd9347c8da3b4
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Mon, 23 Jun 2014 10:16:59 +0800
+
+deepin-movie (0.1-20140620162935~0a84598e67) trusty; urgency=low
+
+  * Build from git 0a84598e6747d1c12ecc9dd350587c1fab78c784
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Fri, 20 Jun 2014 16:29:36 +0800
+
+deepin-movie (0.1-20140620144617~591dee2624) trusty; urgency=low
+
+  * Build from git 591dee2624f42d60b31083c9b7faf7d896313834
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Fri, 20 Jun 2014 14:46:18 +0800
+
+deepin-movie (0.1-20140620095703~61b045dc6c) trusty; urgency=low
+
+  * Build from git 61b045dc6cd089638810d6f1c0eabe53f50ad531
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Fri, 20 Jun 2014 09:57:04 +0800
+
+deepin-movie (0.1-20140619155947~c42d6e6c3d) trusty; urgency=low
+
+  * Build from git c42d6e6c3dc6d35d9ff2f42bff2066986ecb0df8
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 19 Jun 2014 15:59:48 +0800
+
+deepin-movie (0.1-20140619153449~e612316eb4) trusty; urgency=low
+
+  * Build from git e612316eb4ad087a4568d835262d31aadfff2492
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 19 Jun 2014 15:34:50 +0800
+
+deepin-movie (0.1-20140618172000~f0e9c713d4) trusty; urgency=low
+
+  * Build from git f0e9c713d409871ff62cd245f9b14df42a00a675
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 18 Jun 2014 17:20:01 +0800
+
+deepin-movie (0.1-20140618152622~85c5aae51d) trusty; urgency=low
+
+  * Build from git 85c5aae51dcd87daeeecde66cf5e98ec9effa29b
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 18 Jun 2014 15:26:23 +0800
+
+deepin-movie (0.1-20140618143255~a49e33db69) trusty; urgency=low
+
+  * Build from git a49e33db69479cfa907d79c000df7fe6867ac74e
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 18 Jun 2014 14:32:56 +0800
+
+deepin-movie (0.1-20140614162616~973f6118e2) trusty; urgency=low
+
+  * Build from git 973f6118e2214f8db77315444a9246389fdb4f24
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Sat, 14 Jun 2014 16:26:17 +0800
+
+deepin-movie (0.1-20140614161930~a99a30e0c9) trusty; urgency=low
+
+  * Build from git a99a30e0c9fe8b4c6b37165074131e92fdaccfa4
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Sat, 14 Jun 2014 16:19:31 +0800
+
+deepin-movie (0.1-20140614151957~f6bcf0e896) trusty; urgency=low
+
+  * Build from git f6bcf0e89642302c81cb5f2f0ebe979cda661ef7
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Sat, 14 Jun 2014 15:19:57 +0800
+
+deepin-movie (0.1-20140614145833~566002c851) trusty; urgency=low
+
+  * Build from git 566002c85168c67911f58910a30bd31534d807fa
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Sat, 14 Jun 2014 14:58:34 +0800
+
+deepin-movie (0.1-20140614145511~566002c851) trusty; urgency=low
+
+  * Build from git 566002c85168c67911f58910a30bd31534d807fa
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Sat, 14 Jun 2014 14:55:13 +0800
+
+deepin-movie (0.1-20140614142242~ca51e2361f) trusty; urgency=low
+
+  * Build from git ca51e2361f4f4449f7fa47a1551e9cc6f1ddf75e
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Sat, 14 Jun 2014 14:22:43 +0800
+
+deepin-movie (0.1-20140614091600~6ff4cf5783) trusty; urgency=low
+
+  * Build from git 6ff4cf5783d4e67d8abce06391c84b0b17092832
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Sat, 14 Jun 2014 09:16:00 +0800
+
+deepin-movie (0.1-20140613121351~9eaa87df35) trusty; urgency=low
+
+  * Build from git 9eaa87df35bda835538fd8910e0112bb57e288f4
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Fri, 13 Jun 2014 12:13:51 +0800
+
+deepin-movie (0.1-20140613110436~964ebc018f) trusty; urgency=low
+
+  * Build from git 964ebc018f5721ee5aa657713c59bcbc8f861ab2
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Fri, 13 Jun 2014 11:04:36 +0800
+
+deepin-movie (0.1-20140613105843~964ebc018f) trusty; urgency=low
+
+  * Build from git 964ebc018f5721ee5aa657713c59bcbc8f861ab2
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Fri, 13 Jun 2014 10:58:44 +0800
+
+deepin-movie (0.1-20140613103036~964ebc018f) trusty; urgency=low
+
+  * Build from git 964ebc018f5721ee5aa657713c59bcbc8f861ab2
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Fri, 13 Jun 2014 10:30:36 +0800
+
+deepin-movie (0.1-20140613090828~2d4ce97838) trusty; urgency=low
+
+  * Build from git 2d4ce978388c059debf25e1c79402ccaa4d58bd7
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Fri, 13 Jun 2014 09:08:29 +0800
+
+deepin-movie (0.1-20140612174255~2bc5569723) trusty; urgency=low
+
+  * Build from git 2bc5569723d5eb816d684ac39d484acc37879600
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 12 Jun 2014 17:42:56 +0800
+
+deepin-movie (0.1-20140612164650~0281d26c37) trusty; urgency=low
+
+  * Build from git 0281d26c377f0b3e792f7b9ca86417f4a7b43dc2
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 12 Jun 2014 16:46:51 +0800
+
+deepin-movie (0.1-20140612154542~70aa1aaad8) trusty; urgency=low
+
+  * Build from git 70aa1aaad8808a43ecdc5465004b1cb0f75bc958
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 12 Jun 2014 15:45:42 +0800
+
+deepin-movie (0.1-20140612114345~8fc32f3ed3) trusty; urgency=low
+
+  * Build from git 8fc32f3ed3ba1c4e62fd8995a8eba03d9af0cda7
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 12 Jun 2014 11:43:46 +0800
+
+deepin-movie (0.1-20140612094709~3587fd1bb7) trusty; urgency=low
+
+  * Build from git 3587fd1bb798aac3bbeb285eb712df48cc1eadaa
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 12 Jun 2014 09:47:10 +0800
+
+deepin-movie (0.1-20140611180338~c8e19d0aa7) trusty; urgency=low
+
+  * Build from git c8e19d0aa70961453ab44a4c7022370c1094fd94
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 11 Jun 2014 18:03:39 +0800
+
+deepin-movie (0.1-20140611172702~669c1c221a) trusty; urgency=low
+
+  * Build from git 669c1c221a74410165ad17d934dcb9de69ced4c7
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 11 Jun 2014 17:27:03 +0800
+
+deepin-movie (0.1-20140611163300~f51359c04e) trusty; urgency=low
+
+  * Build from git f51359c04e1bc47a591ae91a5e38fe8f3f68e7f5
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 11 Jun 2014 16:33:00 +0800
+
+deepin-movie (0.1-20140611141611~08d38dcbc5) trusty; urgency=low
+
+  * Build from git 08d38dcbc5262c81e6fa288c22109ec0792bbc60
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 11 Jun 2014 14:16:12 +0800
+
+deepin-movie (0.1-20140611134834~08d38dcbc5) trusty; urgency=low
+
+  * Build from git 08d38dcbc5262c81e6fa288c22109ec0792bbc60
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 11 Jun 2014 13:48:34 +0800
+
+deepin-movie (0.1-20140610162400~6637ab11df) trusty; urgency=low
+
+  * Build from git 6637ab11df047a9c10eed23b87ac3802180563f4
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Tue, 10 Jun 2014 16:24:01 +0800
+
+deepin-movie (0.1-20140610154552~d09ed0a271) trusty; urgency=low
+
+  * Build from git d09ed0a2719b5cdc479ab8eb275025a79d4ad27b
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Tue, 10 Jun 2014 15:45:53 +0800
+
+deepin-movie (0.1-20140610150255~b735467f28) trusty; urgency=low
+
+  * Build from git b735467f287a6add374248aa471d8a496055e09a
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Tue, 10 Jun 2014 15:02:56 +0800
+
+deepin-movie (0.1-20140610110332~0f9a4df2b9) trusty; urgency=low
+
+  * Build from git 0f9a4df2b9f05bf2eb13a869336b3faa1ccfd57a
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Tue, 10 Jun 2014 11:03:32 +0800
+
+deepin-movie (0.1-20140610091858~63671901e1) trusty; urgency=low
+
+  * Build from git 63671901e1fc7df17b189e477255b59c8899bef2
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Tue, 10 Jun 2014 09:18:59 +0800
+
+deepin-movie (0.1-20140609174113~63671901e1) trusty; urgency=low
+
+  * Build from git 63671901e1fc7df17b189e477255b59c8899bef2
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Mon, 09 Jun 2014 17:41:13 +0800
+
+deepin-movie (0.1-20140609172914~f5e3aaa7ae) trusty; urgency=low
+
+  * Build from git f5e3aaa7aef48cbb69fb6e7f7631b34f8b11a398
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Mon, 09 Jun 2014 17:29:15 +0800
+
+deepin-movie (0.1-20140609125735~9ca5fad1fe) trusty; urgency=low
+
+  * Build from git 9ca5fad1fe82cf01f4d37483dd75ae354ff02329
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Mon, 09 Jun 2014 12:57:35 +0800
+
+deepin-movie (0.1-20140609124424~17fdb78984) trusty; urgency=low
+
+  * Build from git 17fdb789847622d0f70880a8b2140feafb0dfc13
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Mon, 09 Jun 2014 12:44:25 +0800
+
+deepin-movie (0.1-20140606164742~1b216d46d2) trusty; urgency=low
+
+  * Build from git 1b216d46d20072c7deace6d48d94e9e8609ec3ac
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Fri, 06 Jun 2014 16:47:42 +0800
+
+deepin-movie (0.1-20140606122042~20e1b5f473) trusty; urgency=low
+
+  * Build from git 20e1b5f4731915e19e22ec982d61ba953ced66ef
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Fri, 06 Jun 2014 12:20:42 +0800
+
+deepin-movie (0.1-20140606103519~61a33f4379) trusty; urgency=low
+
+  * Build from git 61a33f4379d97c6444eec3978824ca0b35ce11cb
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Fri, 06 Jun 2014 10:35:20 +0800
+
+deepin-movie (0.1-20140605165720~8c116b130f) trusty; urgency=low
+
+  * Build from git 8c116b130fbdb6d37209c39c23991c67b77eda36
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 05 Jun 2014 16:57:20 +0800
+
+deepin-movie (0.1-20140605155741~acfd0e9ac2) trusty; urgency=low
+
+  * Build from git acfd0e9ac22e3c9675d6edad98ff3a095f39c8e1
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 05 Jun 2014 15:57:42 +0800
+
+deepin-movie (0.1-20140605152647~acfd0e9ac2) trusty; urgency=low
+
+  * Build from git acfd0e9ac22e3c9675d6edad98ff3a095f39c8e1
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 05 Jun 2014 15:26:47 +0800
+
+deepin-movie (0.1-20140604172219~9ed6cbad05) trusty; urgency=low
+
+  * Build from git 9ed6cbad05639032be8e16ef940104988070478f
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 04 Jun 2014 17:22:20 +0800
+
+deepin-movie (0.1-20140604162612~21cdee2030) trusty; urgency=low
+
+  * Build from git 21cdee20305df2b4246feec46048437b9d3e79b4
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 04 Jun 2014 16:26:13 +0800
+
+deepin-movie (0.1-20140604152645~3a785785ab) trusty; urgency=low
+
+  * Build from git 3a785785abc0cd3f56066e373c6abb5b144d519a
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 04 Jun 2014 15:26:46 +0800
+
+deepin-movie (0.1-20140604140210~831ae09186) trusty; urgency=low
+
+  * Build from git 831ae091865f9800f457e41c48eb4f184ba825e3
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 04 Jun 2014 14:02:10 +0800
+
+deepin-movie (0.1-20140604110405~8ad645b393) trusty; urgency=low
+
+  * Build from git 8ad645b393c80f1b605ca10ba93aa973ed9d5cdd
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 04 Jun 2014 11:04:05 +0800
+
+deepin-movie (0.1-20140604105649~8ad645b393) trusty; urgency=low
+
+  * Build from git 8ad645b393c80f1b605ca10ba93aa973ed9d5cdd
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 04 Jun 2014 10:56:50 +0800
+
+deepin-movie (0.1-20140604105339~8ad645b393) trusty; urgency=low
+
+  * Build from git 8ad645b393c80f1b605ca10ba93aa973ed9d5cdd
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 04 Jun 2014 10:53:40 +0800
+
+deepin-movie (0.1-20140530100352~5eb1f6fd34) trusty; urgency=low
+
+  * Build from git 5eb1f6fd344a860e4be8857f176f657f481e6472
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Fri, 30 May 2014 10:03:53 +0800
+
+deepin-movie (0.1-20140529105532~f2ebadbed0) trusty; urgency=low
+
+  * Build from git f2ebadbed02a4c3b3a81c3d6e4bb923ece51aa86
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 29 May 2014 10:55:33 +0800
+
+deepin-movie (0.1-20140529104831~a06b91e82c) trusty; urgency=low
+
+  * Build from git a06b91e82c9a067dbaa41aaddd94f62704eca836
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 29 May 2014 10:48:32 +0800
+
+deepin-movie (0.1-20140528123726~08a5dde2e7) trusty; urgency=low
+
+  * Build from git 08a5dde2e72cebc5d66171ceb4e333468c1361de
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 28 May 2014 12:37:26 +0800
+
+deepin-movie (0.1-20140527154038~7e9d0655d3) trusty; urgency=low
+
+  * Build from git 7e9d0655d396769614508c8282e68030a518b680
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Tue, 27 May 2014 15:40:39 +0800
+
+deepin-movie (0.1-20140527153115~5a56462c8b) trusty; urgency=low
+
+  * Build from git 5a56462c8bd13dc7171c608a968fb5a83280ae72
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Tue, 27 May 2014 15:31:15 +0800
+
+deepin-movie (0.1-20140527150143~b304bcbff0) trusty; urgency=low
+
+  * Build from git b304bcbff09b6ae125ea0dbad938342953397864
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Tue, 27 May 2014 15:01:44 +0800
+
+deepin-movie (0.1-20140527143903~04c772c8c0) trusty; urgency=low
+
+  * Build from git 04c772c8c0be0821410575b939989e1b713c2219
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Tue, 27 May 2014 14:39:03 +0800
+
+deepin-movie (0.1-20140527143016~04c772c8c0) trusty; urgency=low
+
+  * Build from git 04c772c8c0be0821410575b939989e1b713c2219
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Tue, 27 May 2014 14:30:17 +0800
+
+deepin-movie (0.1-20140526102340~6b50da61c7) trusty; urgency=low
+
+  * Build from git 6b50da61c7dd5dfbd05320393fa6bccba6e3ff44
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Mon, 26 May 2014 10:23:40 +0800
+
+deepin-movie (0.1-20140526100636~19c72497fd) trusty; urgency=low
+
+  * Build from git 19c72497fd4db61ab79e9eb5525b87808bf26d2b
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Mon, 26 May 2014 10:06:37 +0800
+
+deepin-movie (0.1-20140526095804~5b011bded5) trusty; urgency=low
+
+  * Build from git 5b011bded52968552af39ff8d2670d4f02767970
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Mon, 26 May 2014 09:58:05 +0800
+
+deepin-movie (0.1-20140526095044~5b011bded5) trusty; urgency=low
+
+  * Build from git 5b011bded52968552af39ff8d2670d4f02767970
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Mon, 26 May 2014 09:50:45 +0800
+
+deepin-movie (0.1-20140526094600~5b011bded5) trusty; urgency=low
+
+  * Build from git 5b011bded52968552af39ff8d2670d4f02767970
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Mon, 26 May 2014 09:46:00 +0800
+
+deepin-movie (0.1-20140526084545~5b011bded5) trusty; urgency=low
+
+  * Build from git 5b011bded52968552af39ff8d2670d4f02767970
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Mon, 26 May 2014 08:45:46 +0800
+
+deepin-movie (0.1-20140523104624~3df6a8847d) trusty; urgency=low
+
+  * Build from git 3df6a8847dd9fe51a5b8dc0033e8bbe14805de38
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Fri, 23 May 2014 10:46:24 +0800
+
+deepin-movie (0.1-20140523090152~3df6a8847d) trusty; urgency=low
+
+  * Build from git 3df6a8847dd9fe51a5b8dc0033e8bbe14805de38
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Fri, 23 May 2014 09:01:53 +0800
+
+deepin-movie (0.1-20140522154130~15755ac6bb) trusty; urgency=low
+
+  * Build from git 15755ac6bbd0650b5287c13dd8d282a8e9f42918
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 22 May 2014 15:41:31 +0800
+
+deepin-movie (0.1-20140516163149~996fc3a6cd) trusty; urgency=low
+
+  * Build from git 996fc3a6cd039a079da06239f18de6d45e718943
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Fri, 16 May 2014 16:31:49 +0800
+
+deepin-movie (0.1-20140516155051~95effb5003) trusty; urgency=low
+
+  * Build from git 95effb500349fd3d60ea0eed7a89a80ca6e31ad8
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Fri, 16 May 2014 15:50:51 +0800
+
+deepin-movie (0.1-20140516141458~779f67a195) trusty; urgency=low
+
+  * Build from git 779f67a19561a0e793d0362936e582609e8f00f7
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Fri, 16 May 2014 14:14:59 +0800
+
+deepin-movie (0.1-20140516093109~a521b09d55) trusty; urgency=low
+
+  * Build from git a521b09d55cfe0d07e2712cbbbba3907dd02b8da
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Fri, 16 May 2014 09:31:09 +0800
+
+deepin-movie (0.1-20140516091751~be23ae8bbb) trusty; urgency=low
+
+  * Build from git be23ae8bbb9288769985712d642fa2b1eb15ef2a
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Fri, 16 May 2014 09:17:52 +0800
+
+deepin-movie (0.1-20140515155909~be23ae8bbb) trusty; urgency=low
+
+  * Build from git be23ae8bbb9288769985712d642fa2b1eb15ef2a
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 15 May 2014 15:59:10 +0800
+
+deepin-movie (0.1-20140515150222~be23ae8bbb) trusty; urgency=low
+
+  * Build from git be23ae8bbb9288769985712d642fa2b1eb15ef2a
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 15 May 2014 15:02:22 +0800
+
+deepin-movie (0.1-20140514151137~08ba9ea892) trusty; urgency=low
+
+  * Build from git 08ba9ea892a0d2f302cef979308fafc544f25e7d
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 14 May 2014 15:11:38 +0800
+
+deepin-movie (0.1-20140514145904~bc88699bfe) trusty; urgency=low
+
+  * Build from git bc88699bfedefd87f9183bd420f9e74c9ea27788
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Wed, 14 May 2014 14:59:04 +0800
+
+deepin-movie (0.1-20140513173632~bf90191384) trusty; urgency=low
+
+  * Build from git bf9019138472c2b927aac11648c92021dae7b8d3
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Tue, 13 May 2014 17:36:32 +0800
+
+deepin-movie (0.1-20140513172539~2c646b5580) trusty; urgency=low
+
+  * Build from git 2c646b5580bbec5926a20d965339729990771726
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Tue, 13 May 2014 17:25:39 +0800
+
+deepin-movie (0.1-20140513134825~574993a4a2) trusty; urgency=low
+
+  * Build from git 574993a4a2bb43335b437991c52dafd893b35ad3
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Tue, 13 May 2014 13:48:26 +0800
+
+deepin-movie (0.1-20140513111927~41fc514bfe) trusty; urgency=low
+
+  * Build from git 41fc514bfe99f312e7b8668616fcb5b462e9e7a4
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Tue, 13 May 2014 11:19:28 +0800
+
+deepin-movie (0.1-20140513110653~d018d62986) trusty; urgency=low
+
+  * Build from git d018d62986b553f2fceb36517cf1f5adb005f865
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Tue, 13 May 2014 11:06:54 +0800
+
+deepin-movie (0.1-20140513103228~c2800caa25) trusty; urgency=low
+
+  * Build from git c2800caa258185bce46931b5645d18e1601fef77
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Tue, 13 May 2014 10:32:29 +0800
+
+deepin-movie (0.1-20140513100254~c2800caa25) trusty; urgency=low
+
+  * Build from git c2800caa258185bce46931b5645d18e1601fef77
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Tue, 13 May 2014 10:02:55 +0800
+
+deepin-movie (0.1-20140513081425~989756c5ee) trusty; urgency=low
+
+  * Build from git 989756c5ee53d0aa22bbf7820d89f2c696ed1a87
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Tue, 13 May 2014 08:14:26 +0800
+
+deepin-movie (0.1-20140512163324~989756c5ee) trusty; urgency=low
+
+  * Build from git 989756c5ee53d0aa22bbf7820d89f2c696ed1a87
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Mon, 12 May 2014 16:33:25 +0800
+
+deepin-movie (0.1-20140512162935~3fff194a60) trusty; urgency=low
+
+  * Build from git 3fff194a60575dc4f8391db6cd0b02e3d091cb50
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Mon, 12 May 2014 16:29:35 +0800
+
+deepin-movie (0.1-20140512155342~3fff194a60) trusty; urgency=low
+
+  * Build from git 3fff194a60575dc4f8391db6cd0b02e3d091cb50
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Mon, 12 May 2014 15:53:43 +0800
+
+deepin-movie (0.1-20140512133053~283d5f244d) trusty; urgency=low
+
+  * Build from git 283d5f244dc511f3bc02e7f9e08914b19ce0515e
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Mon, 12 May 2014 13:30:53 +0800
+
+deepin-movie (0.1-20140509170936~283d5f244d) trusty; urgency=low
+
+  * Build from git 283d5f244dc511f3bc02e7f9e08914b19ce0515e
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Fri, 09 May 2014 17:09:36 +0800
+
+deepin-movie (0.1-20140508174257~6f539704c7) trusty; urgency=low
+
+  * Build from git 6f539704c7ee9f1cd30eeebd525f70e79b9afe25
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 08 May 2014 17:42:57 +0800
+
+deepin-movie (0.1-20140508143920~be66333763) trusty; urgency=low
+
+  * Build from git be6633376399721da779121cf2d38cc0e7ab2dbf
+
+ -- Yueqian Zhang <zhangyueqian@linuxdeepin.com>  Thu, 08 May 2014 14:39:21 +0800
+
+deepin-movie (0.0-1+git20140506105435~b6b5316fc1~new-arch) trusty; urgency=low
+
+  * Build from git revision b6b5316fc1cfc1bd636cec59c35f0f3301327111
+
+ -- Deepin Packages Builder <packages@linuxdeepin.com>  Tue, 06 May 2014 10:54:35 +0800
+
+deepin-movie (0.0-1+git20140505144420~ada32c3e24~new-arch) trusty; urgency=low
+
+  * Build from git revision ada32c3e24e21b12356d165dc596f3b5a8d58af3
+
+ -- Deepin Packages Builder <packages@linuxdeepin.com>  Mon, 05 May 2014 14:44:20 +0800
+
+deepin-movie (0.0-1+git20140504112054~ada32c3e24~new-arch) trusty; urgency=low
+
+  * Build from git revision ada32c3e24e21b12356d165dc596f3b5a8d58af3
+
+ -- Deepin Packages Builder <packages@linuxdeepin.com>  Sun, 04 May 2014 11:20:54 +0800
+
+deepin-movie (0.0-1+git20140428143032~bcc8008ff0~new-arch) trusty; urgency=low
+
+  * Build from git revision bcc8008ff052f86a001e7430545c64770583bcfc
+
+ -- Deepin Packages Builder <packages@linuxdeepin.com>  Mon, 28 Apr 2014 14:30:33 +0800
+
+deepin-movie (0.0-1+git20140424155225~bcc8008ff0~new-arch) trusty; urgency=low
+
+  * Build from git revision bcc8008ff052f86a001e7430545c64770583bcfc
+
+ -- Deepin Packages Builder <packages@linuxdeepin.com>  Thu, 24 Apr 2014 15:52:26 +0800
+
+deepin-movie (0.0-1+git20140424151418~bcc8008ff0~new-arch) trusty; urgency=low
+
+  * Build from git revision bcc8008ff052f86a001e7430545c64770583bcfc
+
+ -- Deepin Packages Builder <packages@linuxdeepin.com>  Thu, 24 Apr 2014 15:14:19 +0800
+
+deepin-movie (0.0-1+git20140401132252~56246cb632~new-arch) trusty; urgency=low
+
+  * Build from git revision 56246cb632b965915f96e0049018402dc5220fe1
+
+ -- Deepin Packages Builder <packages@linuxdeepin.com>  Tue, 01 Apr 2014 13:22:52 +0800
+
+deepin-movie (0.0-1+git20140326142207~74d2da549a~2014) trusty; urgency=low
+
+  * Build from git revision 74d2da549a63df52cd8ec3218eab7141bd154b1a
+
+ -- Deepin Packages Builder <packages@linuxdeepin.com>  Wed, 26 Mar 2014 14:22:07 +0800

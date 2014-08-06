@@ -1,0 +1,24 @@
+Source: deepin-movie
+Section: misc
+Priority: extra
+Maintainer: Li Longyu (Ai Kotoba) <leaeasy@gmail.com>
+Build-Depends: debhelper (>= 8.0.0),
+Standards-Version: 3.9.2
+Homepage: http://www.linuxdeepin.com
+
+Package: deepin-movie
+Architecture: all
+Depends: ${shlibs:Depends},
+ ${misc:Depends},
+ python-pyqt5,
+ mediainfo,
+ qt5-extra,
+ python-ass,
+ python-pysrt,
+ enca,
+ qtdeclarative5-systeminfo-plugin,
+ deepin-menu (>= 1.1+20140730105532),
+ dde-go-dbus-factory (>= 0.0.2+20140723102903),
+ dde-qml-gettext-plugin,
+Description: deepin movie for linuxdeepin desktop environment
+ Deepin movie with linuxdeepin desktop environment.
