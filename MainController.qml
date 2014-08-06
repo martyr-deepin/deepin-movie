@@ -89,6 +89,17 @@ MouseArea {
         onInfoGotten: info_window.showContent(movie_info)
     }
 
+    property bool shouldPlayThefirst: true
+    Connections {
+        target: _utils
+
+        onVideoFound: { addPlayListItem(path) }
+        onFindVideoDone: { 
+            main_controller.shouldPlayThefirst && (movieInfo.movie_file = path)
+            main_controller.shouldPlayThefirst = true 
+        }
+    }
+
     Timer {
         id: seek_to_last_watched_timer
         interval: 500
@@ -437,6 +448,7 @@ MouseArea {
 
     function openFile() { open_file_dialog.purpose = purposes.openVideoFile; open_file_dialog.open() }
     function openDir() { open_folder_dialog.open() }
+    function findVideoInDirRecursively(dir) { _utils.getAllVideoFilesInDirRecursively(dir) }
     function openFileForPlaylist() { open_file_dialog.purpose = purposes.addPlayListItem; open_file_dialog.open() }
     function openFileForSubtitle() { open_file_dialog.purpose = purposes.openSubtitleFile; open_file_dialog.open() }
 
@@ -606,25 +618,21 @@ MouseArea {
                 var file_path = drop.urls[i].substring(7)
                 file_path = decodeURIComponent(file_path)
 
-                var file_paths = []
-                if (_utils.pathIsDir(file_path)) { 
-                    file_paths = _utils.getAllVideoFilesInDirRecursively(file_path)
-                } else if (_utils.pathIsFile(file_path)) {
-                    file_paths.push(file_path)
-                }
-
                 var dragInPlaylist = drag.x > parent.width - program_constants.playlistWidth
-
-                for (var j = 0; j < file_paths.length; j++) {
-                    file_paths.length > 1 && addPlayListItem(file_paths[j])
-                }
-                if (!dragInPlaylist && file_paths.length > 0) {
-                    if (_utils.fileIsValidVideo(file_paths[0])) {
-                        movieInfo.movie_file = file_paths[0]
-                    } else if (_utils.fileIsSubtitle(file_paths[0])) {
-                        movieInfo.subtitle_file = file_paths[0]
+                if (_utils.pathIsDir(file_path)) { 
+                    main_controller.shouldPlayThefirst = !dragInPlaylist
+                    _utils.getAllVideoFilesInDirRecursively(file_path)
+                } else if (_utils.pathIsFile(file_path)) {
+                    if (dragInPlaylist && _utils.fileIsValidVideo(file_path)) {
+                        addPlayListItem(file_path)
+                    } else if (!dragInPlaylist) {
+                        if (_utils.fileIsValidVideo(file_path)) {
+                            movieInfo.movie_file = file_path
+                        } else if (_utils.fileIsSubtitle(file_path)) {
+                            movieInfo.subtitle_file = file_path
+                        }
+                        showControls()
                     }
-                    showControls()
                 }
             }
         }

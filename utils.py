@@ -28,7 +28,7 @@ from ConfigParser import ConfigParser
 import gio
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtGui import QKeySequence
-from PyQt5.QtCore import QObject, pyqtSlot, pyqtProperty
+from PyQt5.QtCore import QObject, QThread, pyqtSignal, pyqtSlot, pyqtProperty
 
 from subtitles import *
 from dbus_interfaces import screenSaverInterface
@@ -88,9 +88,31 @@ def sortSeries(serieName, series):
     epi_name_tuples = [(getEpisode(serieName, serie), serie) for serie in series]
     return [ x[1] for x in sorted(epi_name_tuples, key=lambda x: x[0])]
 
-class Utils(QObject):
+class FindVideoThread(QThread):
+    videoFound = pyqtSignal(str, arguments=["path",])
+    findVideoDone = pyqtSignal(str, arguments=["path",])
 
-    """docstring for Utils"""
+    def __init__(self, dir):
+        super(FindVideoThread, self).__init__()
+        self._dir = dir
+        self._first_video = None
+
+    def _get_all_videos_in_dir_recursively(self, dir):
+        for _file in utils.getAllFilesInDir(dir):
+            if utils.fileIsValidVideo(_file):
+                self._first_video = self._first_video or _file
+                self.videoFound.emit(_file)
+            elif os.path.isdir(_file):
+                self._get_all_videos_in_dir_recursively(_file)
+
+    def run(self):
+        self._get_all_videos_in_dir_recursively(self._dir)
+        self.findVideoDone.emit(self._first_video)
+        self._first_video = None
+
+class Utils(QObject):
+    videoFound = pyqtSignal(str, arguments=["path",])
+    findVideoDone = pyqtSignal(str, arguments=["path",])
 
     def __init__(self):
         super(Utils, self).__init__()
@@ -129,13 +151,10 @@ class Utils(QObject):
 
     @pyqtSlot(str, result="QVariant")
     def getAllVideoFilesInDirRecursively(self, dir):
-        result = []
-        for _file in self.getAllFilesInDir(dir):
-            if self.fileIsValidVideo(_file):
-                result.append(_file)
-            elif os.path.isdir(_file):
-                result.extend(self.getAllVideoFilesInDirRecursively(_file))
-        return result
+        self._thread = FindVideoThread(dir)
+        self._thread.videoFound.connect(self.videoFound)
+        self._thread.findVideoDone.connect(self.findVideoDone)
+        self._thread.start()
 
     @pyqtSlot(str, result=str)
     def getSeriesByName(self, name):
