@@ -47,6 +47,14 @@ Rectangle {
         }
     ]
 
+    onStateChanged: {
+        if (state == "normal") {
+            windowView.setDeepinWindowShadowHint(windowView.windowGlowRadius)
+        } else if (state == "no_glow") {
+            windowView.setDeepinWindowShadowHint(0)
+        }
+    }
+
     Constants { id: program_constants }
 
     ToolTip { 
@@ -448,7 +456,7 @@ Rectangle {
 
         onNewSourceSelected: movieInfo.movie_file = path
         onModeButtonClicked: _menu_controller.show_mode_menu()
-        onAddButtonClicked: main_controller.openFileForPlaylist()
+        onAddButtonClicked: _menu_controller.show_add_button_menu()
         onClearButtonClicked: playlist.clear()
 
         onMoveInWindowButtons: titlebar.showForPlaylist()

@@ -22,11 +22,9 @@
 
 import os
 import time
-import struct
 from random import randint
 
-import xcb
-import xcb.xproto as xproto
+from deepin_utils.xutils import set_window_property_by_id
 
 from PyQt5 import QtGui, QtCore, QtQuick
 from PyQt5.QtCore import Qt, QSize
@@ -69,30 +67,11 @@ class Window(QQuickView):
         self.setTitle(_("Deepin Movie"))
         self.setIcon(icon_from_theme("Deepin", "deepin-movie"))
 
+        self.setDeepinWindowShadowHint(self.windowGlowRadius)
+
     def initWindowSize(self):
         self.rootObject().initWindowSize()
         self.moveToRandomPos()
-
-    @pyqtSlot(int, int) # cannot work
-    def move(self, x, y):
-        print self.winId().__int__()
-        conn = xcb.connect()
-        root = conn.get_setup().roots[0].root
-        event_mask = xproto.EventMask.SubstructureNotify \
-                    | xproto.EventMask.SubstructureRedirect
-        data = (xcb.xproto.Gravity.BitForget | 2 << 12 | 1 << 8 | 1 << 9,
-                x, 
-                y, 
-                0, 
-                0)
-        atom = conn.core.InternAtomUnchecked(True, 
-            len('_NET_MOVERESIZE_WINDOW'),
-            '_NET_MOVERESIZE_WINDOW').reply().atom
-
-        event = struct.pack('BBH7I', 34, 32, 0, self.winId(),
-                       atom, *data)
-
-        conn.core.SendEvent(False, root, event_mask, event)
 
     @pyqtProperty(int,centerRequestCountChanged)
     def centerRequestCount(self):
@@ -121,6 +100,11 @@ class Window(QQuickView):
     @pyqtProperty(int,constant=True)
     def windowGlowRadius(self):
         return WINDOW_GLOW_RADIUS
+
+    @pyqtSlot(int)
+    def setDeepinWindowShadowHint(self, width):
+        set_window_property_by_id(self.winId().__int__(), 
+            "DEEPIN_WINDOW_SHADOW", str(width))
         
     @pyqtSlot(result=int)    
     def getState(self):

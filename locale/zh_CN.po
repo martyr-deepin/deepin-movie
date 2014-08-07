@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-05 14:20+0800\n"
+"POT-Creation-Date: 2014-08-06 17:37+0800\n"
 "PO-Revision-Date: 2014-06-10 15:05+0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "About"
 msgstr "关于"
 
-#: ../AboutSection.qml:11 ../main.qml:386 ../window.py:69
+#: ../AboutSection.qml:11 ../main.qml:380 ../window.py:69
 msgid "Deepin Movie"
 msgstr "深度影院"
 
@@ -59,13 +59,13 @@ msgstr "播放"
 msgid "Next"
 msgstr "下一个"
 
-#: ../ControlBar.qml:316 ../menu_controller.py:355
+#: ../ControlBar.qml:316 ../menu_controller.py:364
 msgid "Exit fullscreen"
 msgstr "退出全屏"
 
 #: ../ControlBar.qml:316 ../PreferenceWindow.qml:328
 #: ../PreferenceWindow.qml:779 ../menu_controller.py:93
-#: ../menu_controller.py:354
+#: ../menu_controller.py:363
 msgid "Fullscreen"
 msgstr "全屏"
 
@@ -150,35 +150,35 @@ msgstr "确定"
 msgid "Invalid file"
 msgstr "无效文件"
 
-#: ../MainController.qml:372
+#: ../MainController.qml:379
 msgid "Play last movie played"
 msgstr "播放上次的影片"
 
-#: ../MainController.qml:384 ../PreferenceWindow.qml:286
+#: ../MainController.qml:391 ../PreferenceWindow.qml:286
 #: ../menu_controller.py:84
 msgid "Forward"
 msgstr "快进"
 
-#: ../MainController.qml:392 ../PreferenceWindow.qml:307
+#: ../MainController.qml:399 ../PreferenceWindow.qml:307
 #: ../menu_controller.py:85
 msgid "Rewind"
 msgstr "快退"
 
-#: ../MainController.qml:400 ../MainController.qml:406
+#: ../MainController.qml:407 ../MainController.qml:413
 #, qt-format
 msgid "(Press %1 to restore)"
 msgstr "(按 %1 键恢复原速)"
 
-#: ../MainController.qml:402 ../MainController.qml:408
-#: ../MainController.qml:413
+#: ../MainController.qml:409 ../MainController.qml:415
+#: ../MainController.qml:420
 msgid "Playback rate: "
 msgstr "播放速度："
 
-#: ../MainController.qml:425 ../MainController.qml:434
+#: ../MainController.qml:432 ../MainController.qml:441
 msgid "Volume: "
 msgstr "音量："
 
-#: ../MainController.qml:432 ../menu_controller.py:59
+#: ../MainController.qml:439 ../menu_controller.py:59
 msgid "Muted"
 msgstr "静音"
 
@@ -194,11 +194,11 @@ msgstr "请选择文件夹"
 msgid "Play mode"
 msgstr "播放模式"
 
-#: ../Playlist.qml:243
+#: ../Playlist.qml:243 ../menu_controller.py:110 ../menu_controller.py:124
 msgid "Add file"
 msgstr "添加文件"
 
-#: ../Playlist.qml:251 ../menu_controller.py:114
+#: ../Playlist.qml:251 ../menu_controller.py:115
 msgid "Clear playlist"
 msgstr "清空播放列表"
 
@@ -244,7 +244,7 @@ msgid "Restore playback speed"
 msgstr "还原播放速度"
 
 #: ../PreferenceWindow.qml:450 ../menu_controller.py:94
-#: ../menu_controller.py:357
+#: ../menu_controller.py:366
 msgid "Mini mode"
 msgstr "迷你模式"
 
@@ -578,29 +578,32 @@ msgstr "声音"
 msgid "Options"
 msgstr "选项"
 
-#: ../menu_controller.py:105 ../menu_controller.py:119
+#: ../menu_controller.py:105 ../menu_controller.py:120
 msgid "Information"
 msgstr "信息"
 
-#: ../menu_controller.py:110
-msgid "Add file to playlist"
-msgstr "添加文件至播放列表"
+#: ../menu_controller.py:111 ../menu_controller.py:125
+msgid "Add folder(subdirectories contained)"
+msgstr "添加文件夹(含子目录)"
 
-#: ../menu_controller.py:112
+#: ../menu_controller.py:113
 msgid "Remove from playlist"
 msgstr "从播放列表删除"
 
-#: ../menu_controller.py:113
+#: ../menu_controller.py:114
 msgid "Remove invalid file"
 msgstr "删除无效文件"
 
-#: ../menu_controller.py:118
+#: ../menu_controller.py:119
 msgid "Open file location"
 msgstr "打开文件所在位置"
 
-#: ../menu_controller.py:356
+#: ../menu_controller.py:365
 msgid "Exit mini mode"
 msgstr "退出迷你模式"
+
+#~ msgid "Add file to playlist"
+#~ msgstr "添加文件至播放列表"
 
 #~ msgid "Full screen"
 #~ msgstr "全屏"

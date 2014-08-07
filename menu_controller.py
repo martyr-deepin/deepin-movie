@@ -107,7 +107,8 @@ right_click_menu = [
 
 playlist_right_menu = [
     ("_playlist_play", _("Play")),
-    ("_playlist_add_item", _("Add file to playlist")),
+    ("_playlist_add_item", _("Add file")),
+    ("_playlist_add_folder", _("Add folder(subdirectories contained)")),
     None,
     ("_playlist_remove_item", _("Remove from playlist")),
     ("_playlist_remove_invalid", _("Remove invalid file")),
@@ -118,6 +119,11 @@ playlist_right_menu = [
     ("_playlist_open_position", _("Open file location")),
     ("_playlist_information", _("Information")),
 ]
+
+playlist_add_button_menu = (
+    ("_playlist_add_item", _("Add file")),
+    ("_playlist_add_folder", _("Add folder(subdirectories contained)"))
+)
 
 FILE_START_TAG = "[[[[["
 FILE_END_TAG = "]]]]]"
@@ -164,6 +170,7 @@ class MenuController(QObject):
 
     playlistPlay = pyqtSignal()
     addItemToPlaylist = pyqtSignal()
+    addFolderToPlaylist = pyqtSignal()
     removeItemFromPlaylist = pyqtSignal()
     removeInvalidItemsFromPlaylist = pyqtSignal()
     playlistClear = pyqtSignal()
@@ -279,6 +286,8 @@ class MenuController(QObject):
             self.playlistPlay.emit()
         elif _id == "_playlist_add_item":
             self.addItemToPlaylist.emit()
+        elif _id == "_playlist_add_folder":
+            self.addFolderToPlaylist.emit()
         elif _id == "_playlist_remove_item":
             self.removeItemFromPlaylist.emit()
         elif _id == "_playlist_remove_invalid":
@@ -381,7 +390,7 @@ class MenuController(QObject):
         self.menu.getItemById("_playlist_information").isActive = url != "" \
             and utils.fileIsValidVideo(url)
 
-        self.menu.showRectMenu(QCursor.pos().x() - 100, QCursor.pos().y())
+        self.menu.showRectMenu(QCursor.pos().x(), QCursor.pos().y())
         
     @pyqtSlot()
     def show_mode_menu(self):
@@ -399,4 +408,11 @@ class MenuController(QObject):
         self.menu.getItemById("mode_group:radio:playlist_cycle").checked = \
             config.playerPlayOrderType == ORDER_TYPE_PLAYLIST_CYCLE
             
-        self.menu.showRectMenu(QCursor.pos().x() - 100, QCursor.pos().y())        
+        self.menu.showRectMenu(QCursor.pos().x(), QCursor.pos().y())        
+
+    @pyqtSlot()
+    def show_add_button_menu(self):
+        self.menu = Menu(playlist_add_button_menu)
+        self.menu.itemClicked.connect(self._menu_item_invoked)
+
+        self.menu.showRectMenu(QCursor.pos().x(), QCursor.pos().y())
