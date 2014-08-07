@@ -47,6 +47,14 @@ Rectangle {
         }
     ]
 
+    onStateChanged: {
+        if (state == "normal") {
+            windowView.setDeepinWindowShadowHint(windowView.windowGlowRadius)
+        } else if (state == "no_glow") {
+            windowView.setDeepinWindowShadowHint(0)
+        }
+    }
+
     Constants { id: program_constants }
 
     ToolTip { 

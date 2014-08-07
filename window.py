@@ -24,6 +24,8 @@ import os
 import time
 from random import randint
 
+from deepin_utils.xutils import set_window_property_by_id
+
 from PyQt5 import QtGui, QtCore, QtQuick
 from PyQt5.QtCore import Qt, QSize
 from PyQt5.QtQuick import QQuickView
@@ -65,6 +67,8 @@ class Window(QQuickView):
         self.setTitle(_("Deepin Movie"))
         self.setIcon(icon_from_theme("Deepin", "deepin-movie"))
 
+        self.setDeepinWindowShadowHint(self.windowGlowRadius)
+
     def initWindowSize(self):
         self.rootObject().initWindowSize()
         self.moveToRandomPos()
@@ -96,6 +100,11 @@ class Window(QQuickView):
     @pyqtProperty(int,constant=True)
     def windowGlowRadius(self):
         return WINDOW_GLOW_RADIUS
+
+    @pyqtSlot(int)
+    def setDeepinWindowShadowHint(self, width):
+        set_window_property_by_id(self.winId().__int__(), 
+            "DEEPIN_WINDOW_SHADOW", str(width))
         
     @pyqtSlot(result=int)    
     def getState(self):
