@@ -22,11 +22,7 @@
 
 import os
 import time
-import struct
 from random import randint
-
-import xcb
-import xcb.xproto as xproto
 
 from PyQt5 import QtGui, QtCore, QtQuick
 from PyQt5.QtCore import Qt, QSize
@@ -72,27 +68,6 @@ class Window(QQuickView):
     def initWindowSize(self):
         self.rootObject().initWindowSize()
         self.moveToRandomPos()
-
-    @pyqtSlot(int, int) # cannot work
-    def move(self, x, y):
-        print self.winId().__int__()
-        conn = xcb.connect()
-        root = conn.get_setup().roots[0].root
-        event_mask = xproto.EventMask.SubstructureNotify \
-                    | xproto.EventMask.SubstructureRedirect
-        data = (xcb.xproto.Gravity.BitForget | 2 << 12 | 1 << 8 | 1 << 9,
-                x, 
-                y, 
-                0, 
-                0)
-        atom = conn.core.InternAtomUnchecked(True, 
-            len('_NET_MOVERESIZE_WINDOW'),
-            '_NET_MOVERESIZE_WINDOW').reply().atom
-
-        event = struct.pack('BBH7I', 34, 32, 0, self.winId(),
-                       atom, *data)
-
-        conn.core.SendEvent(False, root, event_mask, event)
 
     @pyqtProperty(int,centerRequestCountChanged)
     def centerRequestCount(self):
