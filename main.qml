@@ -12,7 +12,7 @@ Rectangle {
     // problems sometime, we should be careful in case that it changes height for
     // you suddenly.
     layer.enabled: true
-    
+
     property var windowLastState: ""
 
     property real widthHeightScale: (movieInfo.movie_width - 2 * program_constants.windowGlowRadius) / (movieInfo.movie_height - 2 * program_constants.windowGlowRadius)
@@ -57,8 +57,8 @@ Rectangle {
 
     Constants { id: program_constants }
 
-    ToolTip { 
-        id: tooltip 
+    ToolTip {
+        id: tooltip
 
         window: windowView
         screenSize: primaryRect
@@ -86,14 +86,14 @@ Rectangle {
                         var fileUrl = fileUrls[i] + ""
                         main_controller.addPlayListItem(fileUrl.substring(7))
                     }
-                    movieInfo.movie_file = fileUrls[0]                    
+                    movieInfo.movie_file = fileUrls[0]
                 } else if (purpose == purposes.openSubtitleFile) {
                     movieInfo.subtitle_file = fileUrls[0]
                 } else if (purpose == purposes.addPlayListItem) {
                     for (var i = 0; i < fileUrls.length; i++) {
                         var fileUrl = fileUrls[i] + ""
                         if (_utils.fileIsValidVideo(fileUrl)) {
-                            main_controller.addPlayListItem(fileUrl.substring(7))    
+                            main_controller.addPlayListItem(fileUrl.substring(7))
                         }
                     }
                 }
@@ -222,15 +222,15 @@ Rectangle {
     function mouseInPlaylistArea() {
         var mousePos = windowView.getCursorPos()
         return playlist.expanded && inRectCheck(Qt.point(mousePos.x - windowView.x, mousePos.y - windowView.y),
-                                            Qt.rect(main_window.width - program_constants.playlistWidth, 0, 
-                                                program_constants.playlistWidth, main_window.height))        
+                                            Qt.rect(main_window.width - program_constants.playlistWidth, 0,
+                                                program_constants.playlistWidth, main_window.height))
     }
 
     function mouseInPlaylistTriggerArea() {
         var mousePos = windowView.getCursorPos()
         return !playlist.expanded && inRectCheck(Qt.point(mousePos.x - windowView.x, mousePos.y - windowView.y),
-                                            Qt.rect(main_window.width - program_constants.playlistTriggerThreshold, titlebar.height,  
-                                                    program_constants.playlistTriggerThreshold + 10, main_window.height - controlbar.height))   
+                                            Qt.rect(main_window.width - program_constants.playlistTriggerThreshold, titlebar.height,
+                                                    program_constants.playlistTriggerThreshold + 10, main_window.height - controlbar.height))
     }
 
     /* to perform like a newly started program  */
@@ -246,13 +246,12 @@ Rectangle {
 
     // To check wether the player is stopped by the app or by the user
     // if it is ther user that stopped the player, we'll not play it automatically.
-    property bool videoStoppedByAppFlag: false 
+    property bool videoStoppedByAppFlag: false
     function monitorWindowState(state) {
         titlebar.windowNormalState = (state == Qt.WindowNoState)
         titlebar.windowFullscreenState = (state == Qt.WindowFullScreen)
         controlbar.windowFullscreenState = (state == Qt.WindowFullScreen)
-        time_indicator.visible = (state == Qt.WindowFullScreen && 
-                                  player.playbackState == MediaPlayer.PlayingState)
+        time_indicator.visible = (state == Qt.WindowFullScreen && player.hasMedia)
         if (windowLastState != state) {
             if (config.playerPauseOnMinimized) {
                 if (state == Qt.WindowMinimized) {
@@ -260,12 +259,12 @@ Rectangle {
                         main_controller.pause()
                         videoStoppedByAppFlag = true
                     }
-                } else {                    
-                    if (videoStoppedByAppFlag == true) {                      
+                } else {
+                    if (videoStoppedByAppFlag == true) {
                         main_controller.play()
                         videoStoppedByAppFlag = false
                     }
-                }                
+                }
             }
             windowLastState = state
         }
@@ -311,7 +310,7 @@ Rectangle {
 
                 if (player.playbackState == MediaPlayer.PlayingState) {
                     windowView.setCursorVisible(false)
-                } 
+                }
             } else {
                 hide_controls_timer.restart()
             }
@@ -330,7 +329,7 @@ Rectangle {
 
     Rectangle {
         id: main_window
-        width: root.width - program_constants.windowGlowRadius * 2 
+        width: root.width - program_constants.windowGlowRadius * 2
         height: root.height - program_constants.windowGlowRadius * 2
         clip: true
         color: "black"
@@ -351,9 +350,9 @@ Rectangle {
         volume: config.playerVolume
         visible: hasVideo && source != ""
         // QML automatically decodes the file name, if we don't
-        // encode it before, we'll get 'gst cannot find file' like errors when 
+        // encode it before, we'll get 'gst cannot find file' like errors when
         // the file name is url encoded.
-        source: movieInfo.movie_file == decodeURI(movieInfo.movie_file) ? movieInfo.movie_file : encodeURI(movieInfo.movie_file) 
+        source: movieInfo.movie_file == decodeURI(movieInfo.movie_file) ? movieInfo.movie_file : encodeURI(movieInfo.movie_file)
 
         subtitleShow: config.subtitleAutoLoad
         subtitleFontSize: Math.floor(config.subtitleFontSize * main_window.width / windowView.defaultWidth)
@@ -369,7 +368,7 @@ Rectangle {
         property int lastPosition: 0
 
         // onSourceChanged doesn't ensures that the file is playable, this one did.
-        onPlaying: { 
+        onPlaying: {
             notifybar.hide()
             auto_play_next_on_invalid_timer.stop()
             main_controller.setWindowTitle(movieInfo.movie_title)
@@ -389,10 +388,10 @@ Rectangle {
             _utils.screenSaverUninhibit()
             database.record_video_position(lastSource, lastPosition)
 
-            if (movieInfo.movie_duration 
-                && Math.abs(position - movieInfo.movie_duration) < program_constants.videoEndsThreshold) { 
-                // onStopped will be triggered when we change the movie source, 
-                // we do this to make sure that the follwing code executed only when 
+            if (movieInfo.movie_duration
+                && Math.abs(position - movieInfo.movie_duration) < program_constants.videoEndsThreshold) {
+                // onStopped will be triggered when we change the movie source,
+                // we do this to make sure that the follwing code executed only when
                 // the movie played out naturally.
                 shouldAutoPlayNextOnInvalidFile = true
                 main_controller.playNext()
@@ -415,7 +414,7 @@ Rectangle {
             }
         }
     }
-    
+
     TimeIndicator {
         id: time_indicator
         visible: false
@@ -523,6 +522,6 @@ Rectangle {
             delay_seek_timer.restart()
         }
     }
-    
+
     Component.onCompleted: showControls()
 }
