@@ -135,10 +135,10 @@ class Utils(QObject):
         result = []
         for entry in os.listdir(dir):
             try:
-                file_abs_path = os.path.join(dir, entry) 
+                file_abs_path = os.path.join(dir, entry)
                 # to test if the file path is encoding recognizable
                 os.path.isfile(file_abs_path)
-                result.append(file_abs_path)  
+                result.append(file_abs_path)
             except Exception:
                 # bypass the files whose path is not encoding recognizable
                 pass
@@ -166,13 +166,17 @@ class Utils(QObject):
         allFiles = [os.path.basename(x) for x in allFiles]
         nameFilter = min((longest_match(x, os.path.basename(name)) for x in allFiles),
                          key=len)
-        nameFilter = optimizeSerieName(nameFilter)
+        # can't do this here, because the following three steps relies on the
+        # uglier but yet more specific version of the nameFilter.
+        # serieName = optimizeSerieName(nameFilter)
 
         result = filter(lambda x: nameFilter in x, allFiles) if nameFilter else (name,)
         result = sortSeries(nameFilter, result) if len(result) > 1 else result
         result = [os.path.join(dir, x) for x in result]
 
-        return json.dumps({"name":nameFilter, "items":result})
+        serieName = optimizeSerieName(nameFilter)
+
+        return json.dumps({"name":serieName, "items":result})
 
     @pyqtSlot(int, int, str, result=bool)
     def checkKeySequenceEqual(self, modifier, key, targetKeySequence):
