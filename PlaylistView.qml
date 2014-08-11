@@ -38,7 +38,7 @@ ListView {
 	function getPreviousSource(source) { return _getPreviousSource(source, false) }
 
 	function getNextSource(source) { return _getNextSource(source, false) }
-    
+
 	function _getPreviousSource(source, cycle) {
 	   	var flatList = _flattenList()
 	   	for (var i = 0; i < flatList.length; i++) {
@@ -48,7 +48,7 @@ ListView {
 	   		}
 	   	}
 	   	return null
-	}    
+	}
 
 	function _getNextSource(source, cycle) {
 	   	var flatList = _flattenList()
@@ -153,7 +153,7 @@ ListView {
         for (var i = 0; i < allItems.length; i++) {
             if (allItems[i].isGroup) {
                 result.push({
-                    "itemName": allItems[i].propName, 
+                    "itemName": allItems[i].propName,
                     "itemUrl": allItems[i].propUrl,
                     "itemChild": allItems[i].child.getContent()})
             } else {
@@ -185,7 +185,7 @@ ListView {
 
     // Note: this function is solely used for _initialization_
     function initializeWithContent(content) {
-     	var eles = fromContent(content)   
+     	var eles = fromContent(content)
      	for (var i = 0; i < eles.length; i++) {
      		model.append(eles[i])
      	}
@@ -195,21 +195,21 @@ ListView {
         model.clear()
     }
 
-    Rectangle {
-    	id: sep
-    	visible: false
-    	width: 1
-    	height: parent.width
-    	rotation: -90
-    	transformOrigin: Item.TopLeft
-    	gradient: Gradient {
-    		GradientStop { position: 0.0; color: Qt.rgba(1, 1, 1, 0.0)}
-    		GradientStop { position: 0.3; color: Qt.rgba(1, 1, 1, 1.0)}
-    		GradientStop { position: 0.5; color: Qt.rgba(1, 1, 1, 1.0)}
-    		GradientStop { position: 0.7; color: Qt.rgba(1, 1, 1, 1.0)}
-    		GradientStop { position: 1.0; color: Qt.rgba(1, 1, 1, 0.0)}
-    	}
-    }
+    // Rectangle {
+    // 	id: sep
+    // 	visible: false
+    // 	width: 1
+    // 	height: parent.width
+    // 	rotation: -90
+    // 	transformOrigin: Item.TopLeft
+    // 	gradient: Gradient {
+    // 		GradientStop { position: 0.0; color: Qt.rgba(1, 1, 1, 0.0)}
+    // 		GradientStop { position: 0.3; color: Qt.rgba(1, 1, 1, 1.0)}
+    // 		GradientStop { position: 0.5; color: Qt.rgba(1, 1, 1, 1.0)}
+    // 		GradientStop { position: 0.7; color: Qt.rgba(1, 1, 1, 1.0)}
+    // 		GradientStop { position: 1.0; color: Qt.rgba(1, 1, 1, 0.0)}
+    // 	}
+    // }
 
 	model: ListModel {}
 	delegate: Component {
@@ -221,7 +221,7 @@ ListView {
 			property var propName: itemName
 			property var propUrl: itemUrl
 			property var propChild: itemChild
-			property var child: sub.item 
+			property var child: sub.item
 
 		    property bool isGroup: propUrl == ""
 			property bool isSelected: isGroup ? child.isSelected : playlist.currentPlayingSource == itemUrl
@@ -231,10 +231,10 @@ ListView {
 			property int lastY: y
 			onYChanged: {
 				if (mouse_area.drag.active) {
-					var listView = column.ListView.view			
+					var listView = column.ListView.view
 					for (var i = 0; i < listView.allItems.length; i++) {
 						if (y > lastY) {
-							if (listView.allItems[i].y < y + height 
+							if (listView.allItems[i].y < y + height
 								&& y + height < listView.allItems[i].y + listView.allItems[i].height)
 							{
 								// sep.parent = parent
@@ -249,7 +249,7 @@ ListView {
 								listView.allItems[i].y -= height
 							}
 						} else if (y < lastY) {
-							if (listView.allItems[i].y < y 
+							if (listView.allItems[i].y < y
 								&& y < listView.allItems[i].y + listView.allItems[i].height)
 							{
 								// sep.parent = parent
@@ -349,7 +349,7 @@ ListView {
 									}
 								} else if (listView.allItems[i].y > column.y) {
 									if (i > index) {
-										column.moveItem(index, i - 1)	
+										column.moveItem(index, i - 1)
 									} else {
 										column.moveItem(index, i)
 									}
@@ -377,7 +377,7 @@ ListView {
 						    _menu_controller.show_playlist_menu(propUrl)
 						} else {
 							if (column.isGroup) {
-								sub.visible = !sub.visible							
+								sub.visible = !sub.visible
 							}
 						}
 					}
@@ -395,7 +395,7 @@ ListView {
 
 					anchors.verticalCenter: parent.verticalCenter
 				}
-                
+
                 Image {
                     visible: column.isGroup ? false : column.isSelected ? true : false
                     source: "image/playing_indicator.png"
@@ -403,7 +403,7 @@ ListView {
                     anchors.rightMargin: 8
                     anchors.verticalCenter: parent.verticalCenter
                 }
-                
+
 				Text {
 					id: name
 					width: parent.width - expand_button.width - anchors.leftMargin - anchors.rightMargin - delete_button.width
@@ -416,9 +416,9 @@ ListView {
 					anchors.leftMargin: 6
                     anchors.right: delete_button.left
                     anchors.rightMargin: 6
-					anchors.verticalCenter: parent.verticalCenter 
+					anchors.verticalCenter: parent.verticalCenter
 				}
-                
+
 				Image {
 					id: delete_button
 					visible: false
