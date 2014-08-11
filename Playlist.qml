@@ -18,14 +18,14 @@ Rectangle {
 
     signal showed
     signal newSourceSelected (string path)
-    
+
     signal addButtonClicked ()
     signal deleteButtonClicked ()
     signal clearButtonClicked ()
     signal modeButtonClicked ()
 
     signal moveInWindowButtons
-    signal moveOutWindowButtons 
+    signal moveOutWindowButtons
 
     states: [
         State {
@@ -82,7 +82,7 @@ Rectangle {
         playlist.clear()
         database.playlist_local = ""
     }
-    
+
     function getRandom() { return playlist.getRandom() }
     function getPreviousSource(source) { return playlist.getPreviousSource(source) }
     function getNextSource(source) { return playlist.getNextSource(source) }
@@ -148,13 +148,18 @@ Rectangle {
         acceptedButtons: Qt.LeftButton | Qt.RightButton
 
         onEntered: { playlistPanel.state = "active" }
-        onExited: { mouseInPlaylistArea() || (playlistPanel.state = "inactive"); playlistPanel.moveOutWindowButtons() }
+        onExited: {
+            if (!mouseInPlaylistArea()) {
+                playlistPanel.state = "inactive"
+                playlistPanel.moveOutWindowButtons()
+            }
+        }
         onWheel: {}
-        onClicked: { 
+        onClicked: {
             if (mouse.button == Qt.RightButton) {
                 _menu_controller.show_playlist_menu("")
             } else if(shouldPerformClick){
-                playlistPanel.hide() 
+                playlistPanel.hide()
             }
         }
         onPositionChanged: {
@@ -172,7 +177,7 @@ Rectangle {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: bottom_rect.top
-        anchors.topMargin: 20 + 6 
+        anchors.topMargin: 20 + 6
         anchors.bottomMargin: 20
 
         DScrollBar {
@@ -185,10 +190,10 @@ Rectangle {
         PlaylistView {
             id: playlist
             width: parent.width - 14 * 2
-            height: parent.height 
+            height: parent.height
             interactive: childrenRect.height > parent.height
             root: playlist
-            currentIndex: -1 // this is important, getClickedItemInfo will sometimes works wrongly. 
+            currentIndex: -1 // this is important, getClickedItemInfo will sometimes works wrongly.
             visible: playlistPanel.expanded
             currentPlayingSource: playlistPanel.currentPlayingSource
             anchors.horizontalCenter: parent.horizontalCenter
@@ -236,7 +241,7 @@ Rectangle {
             }
             // OpacityImageButton {
             //     imageName: "image/playlist_delete_button.png"
-            //     anchors.verticalCenter: parent.verticalCenter                
+            //     anchors.verticalCenter: parent.verticalCenter
             //     onClicked: { playlistPanel.deleteButtonClicked() }
             // }
             OpacityImageButton {
@@ -244,17 +249,17 @@ Rectangle {
                 tooltipItem: playlistPanel.tooltipItem
 
                 imageName: "image/playlist_add_button.png"
-                anchors.verticalCenter: parent.verticalCenter                
+                anchors.verticalCenter: parent.verticalCenter
                 onClicked: { playlistPanel.addButtonClicked() }
-            }            
+            }
             OpacityImageButton {
                 tooltip: dsTr("Clear playlist")
                 tooltipItem: playlistPanel.tooltipItem
 
                 imageName: "image/playlist_clear_button.png"
-                anchors.verticalCenter: parent.verticalCenter                
+                anchors.verticalCenter: parent.verticalCenter
                 onClicked: { playlistPanel.clearButtonClicked() }
-            }            
+            }
         }
     }
 
@@ -270,8 +275,8 @@ Rectangle {
         onPositionChanged: {
             if (playlistPanel.expanded) {
                 if (pressed) {
-                    program_constants.playlistWidth = Math.min(playlistPanel.maxWidth, 
-                        Math.max(program_constants.playlistMinWidth, 
+                    program_constants.playlistWidth = Math.min(playlistPanel.maxWidth,
+                        Math.max(program_constants.playlistMinWidth,
                             playlistPanel.width - mouse.x))
                     playlistPanel.width = program_constants.playlistWidth
                 } else {
