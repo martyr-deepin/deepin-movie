@@ -181,7 +181,7 @@ Rectangle {
         anchors.bottomMargin: 20
 
         DScrollBar {
-            visible: playlistPanel.expanded
+            visible: playlistPanel.expanded && playlist.interactive
             flickable: playlist
             anchors.right: parent.right
             anchors.rightMargin: 5
