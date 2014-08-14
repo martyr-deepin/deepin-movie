@@ -82,7 +82,7 @@ def getEpisode(serieName, serie):
             result.append(ch)
         elif numFound:
             break
-    return int("".join(result))
+    return int("".join(result)) if result else 0
 
 def sortSeries(serieName, series):
     epi_name_tuples = [(getEpisode(serieName, serie), serie) for serie in series]
@@ -164,8 +164,10 @@ class Utils(QObject):
         if len(allFiles) < 2: return json.dumps({"name": "", "items": allFiles})
 
         allFiles = [os.path.basename(x) for x in allFiles]
-        nameFilter = min((longest_match(x, os.path.basename(name)) for x in allFiles),
-                         key=len)
+        allMatches = (longest_match(x, os.path.basename(name)) for x in allFiles)
+        matchesFilter = lambda x: x and x != os.path.basename(name)
+        filteredMatches = filter(matchesFilter, allMatches)
+        nameFilter = min(filteredMatches, key=len) if filteredMatches else ""
         # can't do this here, because the following three steps relies on the
         # uglier but yet more specific version of the nameFilter.
         # serieName = optimizeSerieName(nameFilter)

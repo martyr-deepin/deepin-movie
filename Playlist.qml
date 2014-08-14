@@ -70,6 +70,8 @@ Rectangle {
 
     function getContent(type) { return playlist.getContent() }
 
+    function contains(url) { return playlist.contains(url) }
+
     function addItem(item) { playlist.addItem(item) }
 
     function removeClickedItem() { playlist.removeItem(clickedOnItemUrl) }

@@ -135,10 +135,18 @@ ListView {
 	    }
 	}
 
+	function contains(url) {
+		var list = _flattenList()
+		for (var i = 0; i< list.length; i++) {
+			if (list[i] == url) return true
+		}
+		return false
+	}
+
 	function _flattenList() {
 		var result = []
 		for (var i = 0; i < allItems.length; i++) {
-		    if (allItems[i].isGroup) {
+		    if (allItems[i].isGroup && allItems[i].child) {
 		        result = result.concat(allItems[i].child._flattenList())
 		    } else {
 		        result.push(allItems[i].propUrl)
