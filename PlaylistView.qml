@@ -338,7 +338,7 @@ ListView {
 						onActiveChanged: {
 							if (drag.active) return
 
-							sep.visible = false
+							// sep.visible = false
 							var listView = column.ListView.view
 							for (var i = 0; i < listView.allItems.length; i++) {
 								if (index == i) {
