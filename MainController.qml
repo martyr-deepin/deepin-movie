@@ -18,7 +18,7 @@ MouseArea {
     property int windowLastX
     property int windowLastY
 
-    property bool shouldPlayOrPause: true
+    property bool shouldPerformClick: true
 
     property int movieDuration: movieInfo.movie_duration
 
@@ -43,10 +43,10 @@ MouseArea {
                     _setSizeForRootWindowWithWidth(database.lastWindowWidth)
                 } else {
                     windowView.setWidth(windowView.defaultWidth)
-                    windowView.setHeight(windowView.defaultHeight)    
+                    windowView.setHeight(windowView.defaultHeight)
                 }
             } else {
-                var destWidth = hasResized ? windowView.width : movieInfo.movie_width 
+                var destWidth = hasResized ? windowView.width : movieInfo.movie_width
                 _setSizeForRootWindowWithWidth(destWidth)
             }
             windowView.centerRequestCount-- > 0 && windowView.moveToCenter()
@@ -54,8 +54,8 @@ MouseArea {
 
         onMovieSourceChanged: {
             // NOTE
-            // a work around here, the player source should be bound to 
-            // movieInfo.movie_file as I used to, but we should force the 
+            // a work around here, the player source should be bound to
+            // movieInfo.movie_file as I used to, but we should force the
             // sourceChanged signal to be emitted.
             player.stop()
             player.source = ""
@@ -63,7 +63,7 @@ MouseArea {
             // NOTE END
 
             var last_watched_pos = database.fetch_video_position(player.source)
-            if (config.playerAutoPlayFromLast 
+            if (config.playerAutoPlayFromLast
                 && Math.abs(last_watched_pos - movieInfo.movie_duration) > program_constants.videoEndsThreshold) {
                 seek_to_last_watched_timer.schedule(last_watched_pos)
             } else {
@@ -78,7 +78,7 @@ MouseArea {
             var invalidFile = movieInfo.movie_file
             notifybar.showPermanently(dsTr("Invalid file") + ": " + movieInfo.movie_title)
             root.reset()
-            shouldAutoPlayNextOnInvalidFile ? auto_play_next_on_invalid_timer.startWidthFile(invalidFile) 
+            shouldAutoPlayNextOnInvalidFile ? auto_play_next_on_invalid_timer.startWidthFile(invalidFile)
                                             : (shouldAutoPlayNextOnInvalidFile = false)
 
             // don't know why, but everytime the player encountered a "File invalid" situation,
@@ -94,9 +94,9 @@ MouseArea {
         target: _utils
 
         onVideoFound: { addPlayListItem(path) }
-        onFindVideoDone: { 
+        onFindVideoDone: {
             main_controller.shouldPlayThefirst && (movieInfo.movie_file = path)
-            main_controller.shouldPlayThefirst = true 
+            main_controller.shouldPlayThefirst = true
         }
     }
 
@@ -135,6 +135,11 @@ MouseArea {
         onTriggered: {
             doSingleClick()
         }
+    }
+
+    Timer {
+        id: click_hide_playlist_timer
+        interval: 500
     }
 
     function _getActualWidthWithWidth(destWidth) {
@@ -188,7 +193,7 @@ MouseArea {
             return resize_edge.resizeTop
         } else if (window.height - triggerThreshold < mouse.y && mouse.y < window.height) {
             return resize_edge.resizeBottom
-        } 
+        }
 
         return resize_edge.resizeNone
     }
@@ -208,26 +213,24 @@ MouseArea {
     }
 
     function doSingleClick() {
-        playlist.hide()
+        if (click_hide_playlist_timer.running) return
 
         if (config.othersLeftClick) {
-            if (shouldPlayOrPause) {
-                if (player.playbackState == MediaPlayer.PausedState) {
-                    play()
-                } else if (player.playbackState == MediaPlayer.PlayingState) {
-                    pause()
-                }
-            } else {
-                shouldPlayOrPause = true
+            if (player.playbackState == MediaPlayer.PausedState) {
+                play()
+            } else if (player.playbackState == MediaPlayer.PlayingState) {
+                pause()
             }
         }
     }
 
     function doDoubleClick(mouse) {
+        if(click_hide_playlist_timer.running) playlist.hide()
+
         if (player.playbackState != MediaPlayer.StoppedState) {
             if (config.othersDoubleClick) {
                 toggleFullscreen()
-            }            
+            }
         } else {
             openFile()
         }
@@ -241,7 +244,7 @@ MouseArea {
                         : [[result[result.length - 1].toString(), url.toString()]]
     }
 
-    function addPlayListItem(url) { 
+    function addPlayListItem(url) {
         var serie = config.playerAutoPlaySeries ? JSON.parse(_utils.getSeriesByName(url)) : null
         if (serie && serie.name != "") {
             for (var i = 0; i < serie.items.length; i++) {
@@ -294,7 +297,7 @@ MouseArea {
             windowView.staysOnTop = false
             _setSizeForRootWindowWithWidth(backupWidth)
         } else {
-            if (windowView.getState() != Qt.WindowMaximized 
+            if (windowView.getState() != Qt.WindowMaximized
                 && windowView.getState() != Qt.WindowFullScreen)
             {
                 backupWidth = windowView.width
@@ -353,13 +356,13 @@ MouseArea {
 
     function flipHorizontal() { player.flipHorizontal(); controlbar.flipPreviewHorizontal() }
     function flipVertical() { player.flipVertical(); controlbar.flipPreviewVertical() }
-    function rotateClockwise() { 
+    function rotateClockwise() {
         player.rotateClockwise()
         controlbar.rotatePreviewClockwise()
         movieInfo.rotate()
         database.record_video_rotation(player.source, player.orientation)
     }
-    function rotateAnticlockwise() { 
+    function rotateAnticlockwise() {
         player.rotateAnticlockwise()
         controlbar.rotatePreviewAntilockwise()
         movieInfo.rotate()
@@ -403,13 +406,13 @@ MouseArea {
     function forward() { forwardByDelta(Math.floor(config.playerForwardRewindStep * 1000)) }
     function backward() { backwardByDelta(Math.floor(config.playerForwardRewindStep * 1000)) }
 
-    function speedUp() { 
+    function speedUp() {
         var restoreInfo = config.hotkeysPlayRestoreSpeed+"" ? dsTr("(Press %1 to restore)").arg(config.hotkeysPlayRestoreSpeed) : ""
         player.playbackRate = Math.min(2.0, (player.playbackRate + 0.1).toFixed(1))
         notifybar.show(dsTr("Playback rate: ") + player.playbackRate + restoreInfo)
     }
 
-    function slowDown() { 
+    function slowDown() {
         var restoreInfo = config.hotkeysPlayRestoreSpeed+"" ? dsTr("(Press %1 to restore)").arg(config.hotkeysPlayRestoreSpeed) : ""
         player.playbackRate = Math.max(0.1, (player.playbackRate - 0.1).toFixed(1))
         notifybar.show(dsTr("Playback rate: ") + player.playbackRate + restoreInfo)
@@ -504,7 +507,7 @@ MouseArea {
 
     Keys.onPressed: keys_responder.respondKey(event)
 
-    onWheel: { 
+    onWheel: {
         if (config.othersWheel) {
             wheel.angleDelta.y > 0 ? increaseVolumeByDelta(wheel.angleDelta.y / 120 * 0.05)
                                     :decreaseVolumeByDelta(-wheel.angleDelta.y / 120 * 0.05)
@@ -537,14 +540,14 @@ MouseArea {
 
             if (mouseInControlsArea() && !playlist.expanded) {
                 showControls()
-            } 
-            else if (mouseInPlaylistTriggerArea) { 
-                controlbar.status != "minimal" && show_playlist_timer.restart() 
-            } 
+            }
+            else if (mouseInPlaylistTriggerArea) {
+                controlbar.status != "minimal" && show_playlist_timer.restart()
+            }
         }
         else {
             // prevent play or pause event from happening if we intend to move or resize the window
-            shouldPlayOrPause = false
+            shouldPerformClick = false
             if (resizeEdge != resize_edge.resizeNone) {
                 resize_visual.show()
                 resize_visual.intelligentlyResize(windowView, mouse.x, mouse.y)
@@ -575,6 +578,16 @@ MouseArea {
     }
 
     onClicked: {
+        if (!shouldPerformClick) {
+            shouldPerformClick = true
+            return
+        }
+
+        if (playlist.expanded) {
+            playlist.hide()
+            click_hide_playlist_timer.start()
+        }
+
         if (mouse.button == Qt.RightButton) {
             _menu_controller.show_menu()
         } else {
@@ -586,7 +599,12 @@ MouseArea {
 
     onDoubleClicked: {
         if (mouse.button == Qt.RightButton) return
-        
+
+        if (click_hide_playlist_timer.running) {
+            click_hide_playlist_timer.stop()
+            playlist.hide()
+        }
+
         if (double_click_check_timer.running) {
             double_click_check_timer.stop()
         } else {
@@ -620,7 +638,7 @@ MouseArea {
                 file_path = decodeURIComponent(file_path)
 
                 var dragInPlaylist = drag.x > parent.width - program_constants.playlistWidth
-                if (_utils.pathIsDir(file_path)) { 
+                if (_utils.pathIsDir(file_path)) {
                     main_controller.shouldPlayThefirst = !dragInPlaylist
                     _utils.getAllVideoFilesInDirRecursively(file_path)
                 } else if (_utils.pathIsFile(file_path)) {
