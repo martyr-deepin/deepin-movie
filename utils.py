@@ -46,6 +46,8 @@ all_supported_video_exts = [ "*.3g2","*.3gp","*.3gp2","*.3gpp","*.amv",
                             "*.xesc"]
 
 all_supported_mime_types = []
+sep_chars = ("-", "_", ".", " ")
+
 with open("/usr/share/applications/deepin-movie.desktop") as app_info:
     cp = ConfigParser()
     cp.readfp(app_info)
@@ -66,7 +68,7 @@ def longest_match(*strs):
     return "".join(list(_longest_match(*strs)))
 
 def optimizeSerieName(serieName):
-    sep_chars = ("-", "_", ".", " ")
+    global sep_chars
     idxes = filter(lambda x: x > 0, map(lambda x: serieName.rfind(x), sep_chars))
     idx = min(idxes) if idxes else len(serieName)
     return serieName[0: idx]
@@ -158,6 +160,7 @@ class Utils(QObject):
 
     @pyqtSlot(str, result=str)
     def getSeriesByName(self, name):
+        global sep_chars
         name = name[7:] if name.startswith("file://") else name
         dir = os.path.dirname(name)
         allFiles = self.getAllVideoFilesInDir(dir)
@@ -165,7 +168,7 @@ class Utils(QObject):
 
         allFiles = [os.path.basename(x) for x in allFiles]
         allMatches = (longest_match(x, os.path.basename(name)) for x in allFiles)
-        matchesFilter = lambda x: x and x != os.path.basename(name)
+        matchesFilter = lambda x: x and x != os.path.basename(name) and (len(x) > 5 or any(map(lambda ch: ch in x, sep_chars)))
         filteredMatches = filter(matchesFilter, allMatches)
         nameFilter = min(filteredMatches, key=len) if filteredMatches else ""
         # can't do this here, because the following three steps relies on the
