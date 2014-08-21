@@ -330,7 +330,7 @@ DragableArea {
                 }
 
                 ImageButton {
-                    tooltip: dsTr("Open file")
+                    tooltip: dsTr("Open a file")
                     tooltipItem: control_bar.tooltipItem
 
                     normal_image: "image/open_file_normal.svg"

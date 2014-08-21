@@ -86,8 +86,8 @@ play_sub_menu = [
 ]
     
 right_click_menu = [
-    ("_open_file", _("Open file"), (), (), config.hotkeysFilesOpenFile),
-    ("_open_dir", _("Open folder")),
+    ("_open_file", _("Open a file"), (), (), config.hotkeysFilesOpenFile),
+    ("_open_dir", _("Open a folder")),
     # ("_open_url", _("Open URL")),
     None,
     ("_fullscreen_quit", _("Fullscreen"), (), (), config.hotkeysPlayToggleFullscreen),
@@ -108,7 +108,7 @@ right_click_menu = [
 playlist_right_menu = [
     ("_playlist_play", _("Play")),
     ("_playlist_add_item", _("Add file")),
-    ("_playlist_add_folder", _("Add folder(subdirectories contained)")),
+    ("_playlist_add_folder", _("Add folder")),
     None,
     ("_playlist_remove_item", _("Remove from playlist")),
     ("_playlist_remove_invalid", _("Remove invalid file")),
@@ -122,7 +122,7 @@ playlist_right_menu = [
 
 playlist_add_button_menu = (
     ("_playlist_add_item", _("Add file")),
-    ("_playlist_add_folder", _("Add folder(subdirectories contained)"))
+    ("_playlist_add_folder", _("Add folder"))
 )
 
 FILE_START_TAG = "[[[[["

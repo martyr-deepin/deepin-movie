@@ -13,7 +13,7 @@ DTextInput {
 	signal hotkeyDisabled
 
 	onHotkeySet: { text = key || dsTr("Disabled"); focus = false }
-	onActiveFocusChanged: text = activeFocus ? dsTr("Please input new shortcut") : hotKey
+	onActiveFocusChanged: text = activeFocus ? dsTr("Please input a new shortcut") : hotKey
 
 	onKeyPressed: {
 		var modifiers = [Qt.Key_Control, Qt.Key_Shift, Qt.Key_Alt, Qt.Key_Meta, Qt.Key_AltGr]

@@ -68,7 +68,7 @@
     </message>
     <message>
         <location filename="../ControlBar.qml" line="333"/>
-        <source>Open file</source>
+        <source>Open a file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -86,7 +86,7 @@
     </message>
     <message>
         <location filename="../HotKeyInput.qml" line="16"/>
-        <source>Please input new shortcut</source>
+        <source>Please input a new shortcut</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -169,41 +169,41 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="379"/>
+        <location filename="../MainController.qml" line="384"/>
         <source>Play last movie played</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="391"/>
+        <location filename="../MainController.qml" line="396"/>
         <source>Forward</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="399"/>
+        <location filename="../MainController.qml" line="404"/>
         <source>Rewind</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="407"/>
-        <location filename="../MainController.qml" line="413"/>
+        <location filename="../MainController.qml" line="412"/>
+        <location filename="../MainController.qml" line="418"/>
         <source>(Press %1 to restore)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="409"/>
-        <location filename="../MainController.qml" line="415"/>
+        <location filename="../MainController.qml" line="414"/>
         <location filename="../MainController.qml" line="420"/>
+        <location filename="../MainController.qml" line="425"/>
         <source>Playback rate: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="432"/>
-        <location filename="../MainController.qml" line="441"/>
+        <location filename="../MainController.qml" line="437"/>
+        <location filename="../MainController.qml" line="446"/>
         <source>Volume: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="439"/>
+        <location filename="../MainController.qml" line="444"/>
         <source>Muted</source>
         <translation type="unfinished"></translation>
     </message>
@@ -220,24 +220,24 @@
     <name>OpenFolderDialog</name>
     <message>
         <location filename="../OpenFolderDialog.qml" line="5"/>
-        <source>Please choose folder</source>
+        <source>Please choose a folder</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>Playlist</name>
     <message>
-        <location filename="../Playlist.qml" line="230"/>
+        <location filename="../Playlist.qml" line="237"/>
         <source>Play mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Playlist.qml" line="243"/>
+        <location filename="../Playlist.qml" line="250"/>
         <source>Add file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Playlist.qml" line="251"/>
+        <location filename="../Playlist.qml" line="258"/>
         <source>Clear playlist</source>
         <translation type="unfinished"></translation>
     </message>
@@ -311,6 +311,11 @@
     <message>
         <location filename="../PreferenceWindow.qml" line="534"/>
         <source>Volume down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../PreferenceWindow.qml" line="593"/>
+        <source>Open a file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -584,11 +589,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PreferenceWindow.qml" line="593"/>
-        <source>Open file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../PreferenceWindow.qml" line="784"/>
         <source>Scroll</source>
         <translation type="unfinished"></translation>
@@ -683,7 +683,7 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../main.qml" line="380"/>
+        <location filename="../main.qml" line="387"/>
         <source>Deepin Movie</source>
         <translation type="unfinished"></translation>
     </message>
