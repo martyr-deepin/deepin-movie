@@ -3,20 +3,20 @@
 
 # Copyright (C) 2011 ~ 2012 Deepin, Inc.
 #               2011 ~ 2012 Wang Yong
-# 
+#
 # Author:     Wang Yong <lazycat.manatee@gmail.com>
 # Maintainer: Wang Yong <lazycat.manatee@gmail.com>
-# 
+#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -38,10 +38,10 @@ from i18n import _
 
 HOME_DIR = os.path.expanduser("~")
 def icon_from_theme(theme_name, icon_name):
-    QIcon.setThemeSearchPaths([os.path.join(HOME_DIR, ".icons"), 
+    QIcon.setThemeSearchPaths([os.path.join(HOME_DIR, ".icons"),
         os.path.join(HOME_DIR, ".local/share/icons"),
-        "/usr/local/share/icons", 
-        "/usr/share/icons", 
+        "/usr/local/share/icons",
+        "/usr/share/icons",
         ":/icons"])
     QIcon.setThemeName(theme_name)
     return QIcon.fromTheme(icon_name)
@@ -56,12 +56,12 @@ class Window(QQuickView):
         self._center_request_count = 1 if center else 0
         surface_format = QSurfaceFormat()
         surface_format.setAlphaBufferSize(8)
-        
+
         self.setColor(QColor(0, 0, 0, 0))
         self.setMinimumSize(QSize(MINIMIZE_WIDTH, MINIMIZE_HEIGHT))
         self.setResizeMode(QtQuick.QQuickView.SizeRootObjectToView)
         self.setFormat(surface_format)
-        
+
         self.staysOnTop = False
         self.qml_context = self.rootContext()
         self.setTitle(_("Deepin Movie"))
@@ -103,27 +103,27 @@ class Window(QQuickView):
 
     @pyqtSlot(int)
     def setDeepinWindowShadowHint(self, width):
-        set_window_property_by_id(self.winId().__int__(), 
+        set_window_property_by_id(self.winId().__int__(),
             "DEEPIN_WINDOW_SHADOW", str(width))
-        
-    @pyqtSlot(result=int)    
+
+    @pyqtSlot(result=int)
     def getState(self):
         return self.windowState()
 
     @pyqtSlot(result=bool)
     def miniModeState(self):
         return self.rootObject().miniModeState()
-    
+
     @pyqtSlot()
     def doMinimized(self):
         # NOTE: This is bug of Qt5 that showMinimized() just can work once after restore window.
         # I change window state before set it as WindowMinimized to fixed this bug!
         self.setWindowState(QtCore.Qt.WindowNoState)
-        
+
         # Do minimized.
         self.setWindowState(QtCore.Qt.WindowMinimized)
         self.setVisible(True)
-        
+
     @pyqtProperty(bool,notify=staysOnTopChanged)
     def staysOnTop(self):
         return self._staysOnTop
@@ -146,14 +146,16 @@ class Window(QQuickView):
 
     @pyqtSlot()
     def moveToRandomPos(self):
-        randX = randint(0, int(self.screen().geometry().width() - self.geometry().width()))
-        randY = randint(0, int(self.screen().geometry().height() - self.geometry().height()))
+        widthSpare = int(self.screen().geometry().width() - self.geometry().width())
+        heightSpare = int(self.screen().geometry().height() - self.geometry().height())
+        randX = randint(0, max(0, widthSpare))
+        randY = randint(0, max(0, heightSpare))
         self.setX(randX)
         self.setY(randY)
 
-    @pyqtSlot(result="QVariant")    
+    @pyqtSlot(result="QVariant")
     def getCursorPos(self):
-        return QtGui.QCursor.pos()    
+        return QtGui.QCursor.pos()
 
     @pyqtSlot(bool)
     def setCursorVisible(self, visible):
@@ -162,10 +164,10 @@ class Window(QQuickView):
     @pyqtSlot()
     def screenShot(self):
         self.rootObject().hideControls()
-        
+
         name = "%s-%s" % (self.title(), time.strftime("%y-%m-%d-%H-%M-%S", time.localtime()))
         path = QDir.homePath() +"/%s.jpg" % name
         p = QPixmap.fromImage(self.grabWindow())
         p.save(path, "jpg")
-        
+
         notify(u"截图成功", u"文件已保存到%s" % path)
