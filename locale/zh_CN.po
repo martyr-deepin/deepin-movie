@@ -1,21 +1,22 @@
-# Chinese translations for PACKAGE package
-# PACKAGE 软件包的简体中文翻译.
-# Copyright (C) 2014 THE PACKAGE'S COPYRIGHT HOLDER
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Automatically generated, 2014.
-#
+# 
+# Translators:
+# Automatically generated, 2014
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-21 17:16+0800\n"
-"PO-Revision-Date: 2014-06-10 15:05+0800\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
-"Language: zh_CN\n"
+"PO-Revision-Date: 2014-08-22 05:29+0000\n"
+"Last-Translator: szd_liufei <liufei@linuxdeepin.com>\n"
+"Language-Team: Chinese (China) (http://www.transifex.com/projects/p/deepin-movie/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../AboutSection.qml:6 ../PreferenceWindow.qml:108
 msgid "About"
@@ -601,63 +602,3 @@ msgstr "打开文件所在位置"
 #: ../menu_controller.py:365
 msgid "Exit mini mode"
 msgstr "退出迷你模式"
-
-#~ msgid "Add folder(subdirectories contained)"
-#~ msgstr "添加文件夹(含子目录)"
-
-#~ msgid "Add file to playlist"
-#~ msgstr "添加文件至播放列表"
-
-#~ msgid "Full screen"
-#~ msgstr "全屏"
-
-#~ msgid "Mini mode/Quit"
-#~ msgstr "迷你模式/退出"
-
-#~ msgid "Fullscreen/Quit"
-#~ msgstr "全屏/退出"
-
-#~ msgid "Select file"
-#~ msgstr "选择文件"
-
-#~ msgid "Shown in 1.1 times"
-#~ msgstr "1.1倍显示"
-
-#~ msgid "Speed up"
-#~ msgstr "加速"
-
-#~ msgid "Slow down"
-#~ msgstr "减速"
-
-#~ msgid "PLaylist"
-#~ msgstr "播放列表"
-
-#~ msgid "Fit player to video"
-#~ msgstr "窗口适应视频"
-
-#~ msgid "Fit video to player"
-#~ msgstr "视频适应窗口"
-
-#~ msgid "Forward to "
-#~ msgstr "快进到"
-
-#~ msgid "Keyboard"
-#~ msgstr "键盘"
-
-#~ msgid "Open URL"
-#~ msgstr "打开网址"
-
-#~ msgid "Output Mode"
-#~ msgstr "输出模式"
-
-#~ msgid "Resize interface to last closed size"
-#~ msgstr "上次关闭尺寸"
-
-#~ msgid "Rewind to "
-#~ msgstr "快退到"
-
-#~ msgid "Sound Channels"
-#~ msgstr "声道选择"
-
-#~ msgid "Sound Tracks"
-#~ msgstr "音轨选择"

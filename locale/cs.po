@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-01 09:25+0800\n"
-"PO-Revision-Date: 2014-07-03 05:53+0000\n"
-"Last-Translator: electricface <songwentai@linuxdeepin.com>\n"
+"POT-Creation-Date: 2014-08-21 17:16+0800\n"
+"PO-Revision-Date: 2014-08-22 11:21+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/projects/p/deepin-movie/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,11 +20,11 @@ msgstr ""
 "Language: cs\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: ../AboutSection.qml:6 ../PreferenceWindow.qml:100
+#: ../AboutSection.qml:6 ../PreferenceWindow.qml:108
 msgid "About"
 msgstr "O programu"
 
-#: ../AboutSection.qml:11 ../main.qml:364 ../window.py:65
+#: ../AboutSection.qml:11 ../main.qml:387 ../window.py:67
 msgid "Deepin Movie"
 msgstr "Filmy"
 
@@ -42,71 +42,146 @@ msgstr "Deepin Movie je přehrávač videa navržený pro uživatele Linux. Podp
 msgid "Deepin Movie is free software licensed under GNU GPLv3"
 msgstr "Deepin Movie je svobodný software licencovaný pod GNU GPLv3"
 
-#: ../HotKeyInput.qml:14
-msgid "Please input new shortcut"
-msgstr ""
+#: ../ControlBar.qml:219
+msgid "Stop playing"
+msgstr "Zastavit přehrávání"
 
-#: ../InformationWindow.qml:55
+#: ../ControlBar.qml:237 ../menu_controller.py:81
+msgid "Previous"
+msgstr "Předchozí"
+
+#: ../ControlBar.qml:256
+msgid "Pause"
+msgstr "Pozastavit"
+
+#: ../ControlBar.qml:256 ../menu_controller.py:99 ../menu_controller.py:109
+msgid "Play"
+msgstr "Přehrát"
+
+#: ../ControlBar.qml:273 ../menu_controller.py:82
+msgid "Next"
+msgstr "Další"
+
+#: ../ControlBar.qml:316 ../menu_controller.py:364
+msgid "Exit fullscreen"
+msgstr "Opustit celou obrazovku"
+
+#: ../ControlBar.qml:316 ../PreferenceWindow.qml:328
+#: ../PreferenceWindow.qml:779 ../menu_controller.py:93
+#: ../menu_controller.py:363
+msgid "Fullscreen"
+msgstr "Celá obrazovka"
+
+#: ../ControlBar.qml:333 ../PreferenceWindow.qml:593 ../menu_controller.py:89
+msgid "Open a file"
+msgstr "Otevřít soubor"
+
+#: ../ControlBar.qml:345 ../PreferenceWindow.qml:349 ../menu_controller.py:96
+msgid "Playlist"
+msgstr "Seznam skladeb"
+
+#: ../HotKeyInput.qml:15 ../HotKeyInputRow.qml:23 ../PreferenceWindow.qml:266
+#: ../PreferenceWindow.qml:287 ../PreferenceWindow.qml:308
+#: ../PreferenceWindow.qml:329 ../PreferenceWindow.qml:350
+#: ../PreferenceWindow.qml:371 ../PreferenceWindow.qml:392
+#: ../PreferenceWindow.qml:413 ../PreferenceWindow.qml:451
+#: ../PreferenceWindow.qml:472 ../PreferenceWindow.qml:493
+#: ../PreferenceWindow.qml:514 ../PreferenceWindow.qml:535
+#: ../PreferenceWindow.qml:556 ../PreferenceWindow.qml:594
+#: ../PreferenceWindow.qml:615 ../PreferenceWindow.qml:636
+#: ../PreferenceWindow.qml:674 ../PreferenceWindow.qml:695
+#: ../PreferenceWindow.qml:716 ../PreferenceWindow.qml:737
+#: ../PreferenceWindow.qml:771 ../PreferenceWindow.qml:779
+#: ../PreferenceWindow.qml:787
+msgid "Disabled"
+msgstr "Zakázáno"
+
+#: ../HotKeyInput.qml:16
+msgid "Please input a new shortcut"
+msgstr "Zadejte, prosím, novou zkratku"
+
+#: ../HotKeyInputRow.qml:29
+msgid "The shortcut you set "
+msgstr "Zkratka, kterou jste nastavil "
+
+#: ../HotKeyInputRow.qml:30
+#, qt-format
+msgid "conflicts with the one used for \"%2\" in the \"%1\" category. "
+msgstr "je ve střetu s tou, která se používá pro \"%2\" ve skupině \"%1\"."
+
+#: ../HotKeyInputRow.qml:31
+msgid "Do you want to replace it?"
+msgstr "Chcete ji nahradit?"
+
+#: ../HotKeyInputRow.qml:95
+msgid "Cancel"
+msgstr "Zrušit"
+
+#: ../HotKeyInputRow.qml:106
+msgid "Replace"
+msgstr "Nahradit"
+
+#: ../InformationWindow.qml:64
 msgid "File type"
 msgstr "Typ souboru"
 
-#: ../InformationWindow.qml:62
+#: ../InformationWindow.qml:72
 msgid "File size"
 msgstr "Velikost"
 
-#: ../InformationWindow.qml:69
+#: ../InformationWindow.qml:80
 msgid "Resolution"
 msgstr "Rozlišení"
 
-#: ../InformationWindow.qml:76
+#: ../InformationWindow.qml:88
 msgid "Movie duration"
 msgstr "Doba trvání filmu"
 
-#: ../InformationWindow.qml:85
+#: ../InformationWindow.qml:100
 msgid "File path"
 msgstr "Cesta"
 
-#: ../InformationWindow.qml:94
+#: ../InformationWindow.qml:122
 msgid "Copy to clipboard"
 msgstr "Kopírovat do schránky"
 
-#: ../InformationWindow.qml:109
+#: ../InformationWindow.qml:137
 msgid "Confirm"
 msgstr "Potvrdit"
 
-#: ../MainController.qml:108
+#: ../MainController.qml:79
 msgid "Invalid file"
-msgstr ""
+msgstr "Neplatný soubor"
 
-#: ../MainController.qml:388
+#: ../MainController.qml:384
 msgid "Play last movie played"
 msgstr "Přehrát naposledy přehrávaný film"
 
-#: ../MainController.qml:400 ../PreferenceWindow.qml:232
+#: ../MainController.qml:396 ../PreferenceWindow.qml:286
 #: ../menu_controller.py:84
 msgid "Forward"
 msgstr "Přetočit vpřed"
 
-#: ../MainController.qml:408 ../PreferenceWindow.qml:237
+#: ../MainController.qml:404 ../PreferenceWindow.qml:307
 #: ../menu_controller.py:85
 msgid "Rewind"
 msgstr "Přetočit zpět"
 
-#: ../MainController.qml:417 ../MainController.qml:422
+#: ../MainController.qml:412 ../MainController.qml:418
 #, qt-format
 msgid "(Press %1 to restore)"
 msgstr "(Stiskněte %1 pro obnovení)"
 
-#: ../MainController.qml:417 ../MainController.qml:422
-#: ../MainController.qml:427
+#: ../MainController.qml:414 ../MainController.qml:420
+#: ../MainController.qml:425
 msgid "Playback rate: "
 msgstr "Rychlost přehrávání: "
 
-#: ../MainController.qml:439 ../MainController.qml:448
+#: ../MainController.qml:437 ../MainController.qml:446
 msgid "Volume: "
 msgstr "Hlasitost: "
 
-#: ../MainController.qml:446 ../menu_controller.py:59
+#: ../MainController.qml:444 ../menu_controller.py:59
 msgid "Muted"
 msgstr "Ztlumeno"
 
@@ -115,272 +190,304 @@ msgid "Please choose one file or more"
 msgstr "Vyberte, prosím, jeden nebo více souborů"
 
 #: ../OpenFolderDialog.qml:5
-msgid "Please choose folder"
+msgid "Please choose a folder"
 msgstr "Vyberte, prosím, složku"
 
-#: ../PreferenceWindow.qml:140
+#: ../Playlist.qml:237
+msgid "Play mode"
+msgstr "Režim přehrávání"
+
+#: ../Playlist.qml:250 ../menu_controller.py:110 ../menu_controller.py:124
+msgid "Add file"
+msgstr "Přidat soubor"
+
+#: ../Playlist.qml:258 ../menu_controller.py:115
+msgid "Clear playlist"
+msgstr "Vyprázdnit seznam skladeb"
+
+#: ../PreferenceWindow.qml:178
 msgid "Enter fullscreen on opening file"
 msgstr "Při otevření souboru vstoupit do režimu celé obrazovky"
 
-#: ../PreferenceWindow.qml:152
+#: ../PreferenceWindow.qml:190
 msgid "Clear playlist on opening new file"
 msgstr "Při otevření nového souboru smazat seznam skladeb"
 
-#: ../PreferenceWindow.qml:157
+#: ../PreferenceWindow.qml:195
 msgid "Resume playback after restarting player"
 msgstr "Po opětovném spuštění přehrávače obnovit přehrávání"
 
-#: ../PreferenceWindow.qml:162
+#: ../PreferenceWindow.qml:200
 msgid "Continue to next video automatically"
 msgstr "Pokračovat dalším obrazovým záznamem automaticky"
 
-#: ../PreferenceWindow.qml:167
+#: ../PreferenceWindow.qml:205
 msgid "Show preview when hovering over progress bar"
 msgstr "Při přejetí nad pruhem ukazujícím postup ukázat náhled"
 
-#: ../PreferenceWindow.qml:172
-msgid "Allow multiple instance"
-msgstr "Povolit více instancí"
-
-#: ../PreferenceWindow.qml:222 ../PreferenceWindow.qml:273
-#: ../PreferenceWindow.qml:314 ../PreferenceWindow.qml:343
+#: ../PreferenceWindow.qml:260 ../PreferenceWindow.qml:444
+#: ../PreferenceWindow.qml:587 ../PreferenceWindow.qml:667
 msgid "Enable keyboard shortcuts"
 msgstr "Povolit klávesové zkratky"
 
-#: ../PreferenceWindow.qml:227 ../PreferenceWindow.qml:379
+#: ../PreferenceWindow.qml:265 ../PreferenceWindow.qml:771
 msgid "Pause/Play"
 msgstr "Přehrát/Pozastavit"
 
-#: ../PreferenceWindow.qml:279 ../menu_controller.py:94
+#: ../PreferenceWindow.qml:370
+msgid "Accelerate playback"
+msgstr "Zrychlit přehrávání"
+
+#: ../PreferenceWindow.qml:391
+msgid "Decelerate playback"
+msgstr "Zpomalit přehrávání"
+
+#: ../PreferenceWindow.qml:412
+msgid "Restore playback speed"
+msgstr "Obnovit rychlost přehrávání"
+
+#: ../PreferenceWindow.qml:450 ../menu_controller.py:94
+#: ../menu_controller.py:366
 msgid "Mini mode"
 msgstr "Malý režim"
 
-#: ../PreferenceWindow.qml:291
+#: ../PreferenceWindow.qml:513
 msgid "Volume up"
 msgstr "Hlasitěji"
 
-#: ../PreferenceWindow.qml:295
+#: ../PreferenceWindow.qml:534
 msgid "Volume down"
 msgstr "Tišeji"
 
-#: ../PreferenceWindow.qml:324
+#: ../PreferenceWindow.qml:614
 msgid "Open previous"
 msgstr "Otevřít předchozí"
 
-#: ../PreferenceWindow.qml:328
+#: ../PreferenceWindow.qml:635
 msgid "Open next"
 msgstr "Otevřít další"
 
-#: ../PreferenceWindow.qml:349
+#: ../PreferenceWindow.qml:673
 msgid "Forward 0.5s"
 msgstr "Dopředu o 0,5 s"
 
-#: ../PreferenceWindow.qml:353
+#: ../PreferenceWindow.qml:694
 msgid "Delay 0.5s"
 msgstr "Zpoždění 0,5 s"
 
-#: ../PreferenceWindow.qml:357
+#: ../PreferenceWindow.qml:715
 msgid "Subtitle up"
 msgstr "Titulky nahoru"
 
-#: ../PreferenceWindow.qml:361
+#: ../PreferenceWindow.qml:736
 msgid "Subtitle down"
 msgstr "Titulky dolů"
 
-#: ../PreferenceWindow.qml:376
+#: ../PreferenceWindow.qml:768
 msgid "Left click"
 msgstr "Klepnutí levým tlačítkem myši"
 
-#: ../PreferenceWindow.qml:379 ../PreferenceWindow.qml:387
-#: ../PreferenceWindow.qml:395
-msgid "Disabled"
-msgstr "Zakázáno"
-
-#: ../PreferenceWindow.qml:384
+#: ../PreferenceWindow.qml:776
 msgid "Double click"
 msgstr "Dvojité klepnutí"
 
-#: ../PreferenceWindow.qml:409
+#: ../PreferenceWindow.qml:801
 msgid "Subtitles loaded automatically"
 msgstr "Titulky nahrány automaticky"
 
-#: ../PreferenceWindow.qml:450
+#: ../PreferenceWindow.qml:842
 msgid "Border width"
 msgstr "Šířka okraje"
 
-#: ../PreferenceWindow.qml:242 ../PreferenceWindow.qml:387
-msgid "Fullscreen"
-msgstr "Celá obrazovka"
-
-#: ../PreferenceWindow.qml:47 ../PreferenceWindow.qml:63
-#: ../PreferenceWindow.qml:131 ../PreferenceWindow.qml:213
+#: ../PreferenceWindow.qml:55 ../PreferenceWindow.qml:71
+#: ../PreferenceWindow.qml:169 ../PreferenceWindow.qml:251
 msgid "Playback"
 msgstr "Přehrávání"
 
-#: ../PreferenceWindow.qml:68 ../PreferenceWindow.qml:264
+#: ../PreferenceWindow.qml:76 ../PreferenceWindow.qml:435
 msgid "Frame/Sound"
 msgstr "Snímek/Zvuk"
 
-#: ../PreferenceWindow.qml:73 ../PreferenceWindow.qml:305
+#: ../PreferenceWindow.qml:81 ../PreferenceWindow.qml:578
 msgid "Files"
 msgstr "Soubory"
 
-#: ../PreferenceWindow.qml:83 ../PreferenceWindow.qml:367
+#: ../PreferenceWindow.qml:91 ../PreferenceWindow.qml:759
 msgid "Other"
 msgstr "Jiné"
 
-#: ../PreferenceWindow.qml:78 ../PreferenceWindow.qml:334
+#: ../PreferenceWindow.qml:86 ../PreferenceWindow.qml:658
 #: ../menu_controller.py:102
 msgid "Subtitles"
 msgstr "Titulky"
 
-#: ../PreferenceWindow.qml:12
+#: ../PreferenceWindow.qml:11
+msgid "Reset"
+msgstr "Resetovat"
+
+#: ../PreferenceWindow.qml:15
+msgid "Black"
+msgstr "Černá"
+
+#: ../PreferenceWindow.qml:16
 msgid "bleu de France"
 msgstr "Francouzská modř"
 
-#: ../PreferenceWindow.qml:13
+#: ../PreferenceWindow.qml:17
 msgid "Turquoise"
 msgstr "Tyrkysově modrá"
 
-#: ../PreferenceWindow.qml:14
+#: ../PreferenceWindow.qml:18
 msgid "UFO green"
 msgstr "Zelená létajících talířů"
 
-#: ../PreferenceWindow.qml:15
+#: ../PreferenceWindow.qml:19
 msgid "Green yellow"
 msgstr "Žlutozelená"
 
-#: ../PreferenceWindow.qml:16
+#: ../PreferenceWindow.qml:20
 msgid "Gorse"
 msgstr "Hlodáš evropský"
 
-#: ../PreferenceWindow.qml:17
+#: ../PreferenceWindow.qml:21
 msgid "Energy yellow"
 msgstr "Žlutá je dobrá"
 
-#: ../PreferenceWindow.qml:18
+#: ../PreferenceWindow.qml:22
 msgid "Sun"
 msgstr "Slunce"
 
-#: ../PreferenceWindow.qml:19
+#: ../PreferenceWindow.qml:23
 msgid "Radical red"
 msgstr "Rozhodně červená"
 
-#: ../PreferenceWindow.qml:20
+#: ../PreferenceWindow.qml:24
 msgid "Lavender indigo"
 msgstr "Světle fialovomodrá"
 
-#: ../PreferenceWindow.qml:21
+#: ../PreferenceWindow.qml:25
 msgid "Royal blue"
 msgstr "Královská modř"
 
-#: ../PreferenceWindow.qml:22
+#: ../PreferenceWindow.qml:26
 msgid "Aluminum"
 msgstr "Hliníková"
 
-#: ../PreferenceWindow.qml:23
+#: ../PreferenceWindow.qml:27
 msgid "Clean white"
 msgstr "Čistá bílá"
 
-#: ../PreferenceWindow.qml:43 ../PreferenceWindow.qml:127
+#: ../PreferenceWindow.qml:51 ../PreferenceWindow.qml:165
 msgid "Basic settings"
 msgstr "Základní nastavení"
 
-#: ../PreferenceWindow.qml:52 ../PreferenceWindow.qml:191
+#: ../PreferenceWindow.qml:60 ../PreferenceWindow.qml:229
 msgid "Time span"
 msgstr "Časový úsek"
 
-#: ../PreferenceWindow.qml:59 ../PreferenceWindow.qml:209
+#: ../PreferenceWindow.qml:67 ../PreferenceWindow.qml:247
 msgid "Keyboard shortcuts"
 msgstr "Klávesové zkratky"
 
-#: ../PreferenceWindow.qml:90 ../PreferenceWindow.qml:403
+#: ../PreferenceWindow.qml:98 ../PreferenceWindow.qml:795
 msgid "Subtitle settings"
 msgstr "Nastavení titulků"
 
-#: ../PreferenceWindow.qml:146
+#: ../PreferenceWindow.qml:184
 msgid "Apply the size last time closed"
 msgstr "Zachovat velikost okna, jak byla při posledním zavření programu"
 
-#: ../PreferenceWindow.qml:177
+#: ../PreferenceWindow.qml:210
+msgid "Allow multiple instances"
+msgstr "Povolit více instancí"
+
+#: ../PreferenceWindow.qml:215
 msgid "Pause when minimized"
 msgstr "Pozastavit při zmenšení"
 
-#: ../PreferenceWindow.qml:182
+#: ../PreferenceWindow.qml:220
 msgid "Enable system popup notification"
 msgstr "Povolit vyskakovací oznámení systému"
 
-#: ../PreferenceWindow.qml:200
+#: ../PreferenceWindow.qml:238
 msgid "Forward/Rewind"
 msgstr "Přetočit vpřed/Přetočit zpět"
 
-#: ../PreferenceWindow.qml:247
-msgid "Playlist"
-msgstr ""
-
-#: ../PreferenceWindow.qml:252
-msgid "Speed up"
-msgstr "Zrychlit"
-
-#: ../PreferenceWindow.qml:257
-msgid "Slow down"
-msgstr "Zpomalit"
-
-#: ../PreferenceWindow.qml:283
+#: ../PreferenceWindow.qml:471
 msgid "Rotate counterclockwise"
 msgstr "Otočit proti směru hodinových ručiček"
 
-#: ../PreferenceWindow.qml:287
+#: ../PreferenceWindow.qml:492
 msgid "Rotate clockwise"
 msgstr "Otočit po směru hodinových ručiček"
 
-#: ../PreferenceWindow.qml:299
+#: ../PreferenceWindow.qml:555
 msgid "Mute"
 msgstr "Ztlumit"
 
-#: ../PreferenceWindow.qml:320 ../menu_controller.py:89
-msgid "Open file"
-msgstr "Otevřít soubor"
-
-#: ../PreferenceWindow.qml:392
+#: ../PreferenceWindow.qml:784
 msgid "Scroll"
 msgstr "Otáčet kolečkem myši"
 
-#: ../PreferenceWindow.qml:395
+#: ../PreferenceWindow.qml:787 ../VolumeButton.qml:44
 msgid "Volume"
 msgstr "Hlasitost"
 
-#: ../PreferenceWindow.qml:415
+#: ../PreferenceWindow.qml:807
 msgid "Font"
 msgstr "Písmo"
 
-#: ../PreferenceWindow.qml:425
+#: ../PreferenceWindow.qml:817
 msgid "Font color"
 msgstr "Barva písma"
 
-#: ../PreferenceWindow.qml:441
+#: ../PreferenceWindow.qml:833
 msgid "Size"
 msgstr "Velikost"
 
-#: ../PreferenceWindow.qml:459
+#: ../PreferenceWindow.qml:851
 msgid "Border color"
 msgstr "Barva ohraničení"
 
-#: ../PreferenceWindow.qml:475
+#: ../PreferenceWindow.qml:867
 msgid "Position"
 msgstr "Poloha"
 
-#: ../PreferenceWindow.qml:480
+#: ../PreferenceWindow.qml:872
 msgid "Bottom"
 msgstr "Dole"
 
-#: ../PreferenceWindow.qml:481
+#: ../PreferenceWindow.qml:873
 msgid "Top"
 msgstr "Nahoře"
 
-#: ../PreferenceWindow.qml:487
+#: ../PreferenceWindow.qml:879
 msgid "Subtitle Delay"
 msgstr "Zpoždění titulků"
+
+#: ../TitleBar.qml:165
+msgid "Shown in a proportion of 1:1"
+msgstr "Předvedeno v poměru 1:1"
+
+#: ../TitleBar.qml:177
+msgid "Shown in 1.5 times"
+msgstr "Předvedeno v poměru 1,5"
+
+#: ../TitleBar.qml:190
+msgid "Return to mini mode"
+msgstr "Vrátit do malého režimu"
+
+#: ../TitleBar.qml:190
+msgid "Shown in fullscreen"
+msgstr "Ukázáno na celou obrazovku"
+
+#: ../TitleBar.qml:205
+msgid "Cancel \"On Top\""
+msgstr "Zrušit zobrazení Nahoře"
+
+#: ../TitleBar.qml:205
+msgid "On Top"
+msgstr "Nahoře"
 
 #: ../movie_info.py:140
 msgid "Unknown"
@@ -423,8 +530,8 @@ msgid "Open manually"
 msgstr "Otevřít ručně"
 
 #: ../menu_controller.py:68
-msgid "Select file"
-msgstr "Vybrat soubor"
+msgid "Subtitle selection"
+msgstr "Výběr titulků"
 
 #: ../menu_controller.py:69
 msgid "Subtitle setting"
@@ -450,37 +557,17 @@ msgstr "Opakovat (nynější záznam)"
 msgid "Repeat (Playlist)"
 msgstr "Opakovat (seznam skladeb)"
 
-#: ../menu_controller.py:81
-msgid "Previous"
-msgstr "Předchozí"
-
-#: ../menu_controller.py:82
-msgid "Next"
-msgstr "Další"
-
 #: ../menu_controller.py:90
-msgid "Open folder"
+msgid "Open a folder"
 msgstr "Otevřít složku"
-
-#: ../menu_controller.py:93
-msgid "Fullscreen/Quit"
-msgstr "Celá obrazovka/Ukončit"
 
 #: ../menu_controller.py:95
 msgid "Always on top"
 msgstr "Vždy navrchu"
 
-#: ../menu_controller.py:96
-msgid "PLaylist"
-msgstr ""
-
 #: ../menu_controller.py:98
 msgid "Play Sequence"
 msgstr "Přehrát pořadí"
-
-#: ../menu_controller.py:99 ../menu_controller.py:109
-msgid "Play"
-msgstr "Přehrát"
 
 #: ../menu_controller.py:100
 msgid "Frame"
@@ -494,26 +581,26 @@ msgstr "Zvuk"
 msgid "Options"
 msgstr "Volby"
 
-#: ../menu_controller.py:105 ../menu_controller.py:119
+#: ../menu_controller.py:105 ../menu_controller.py:120
 msgid "Information"
 msgstr "Informace"
 
-#: ../menu_controller.py:110
-msgid "Add file to playlist"
-msgstr "Přidat soubor do seznamu skladeb"
+#: ../menu_controller.py:111 ../menu_controller.py:125
+msgid "Add folder"
+msgstr "Přidat složku"
 
-#: ../menu_controller.py:112
+#: ../menu_controller.py:113
 msgid "Remove from playlist"
 msgstr "Odstranit ze seznamu skladeb"
 
-#: ../menu_controller.py:113
+#: ../menu_controller.py:114
 msgid "Remove invalid file"
 msgstr "Odstranit neplatný soubor"
 
-#: ../menu_controller.py:114
-msgid "Clear playlist"
-msgstr "Vyprázdnit seznam skladeb"
-
-#: ../menu_controller.py:118
+#: ../menu_controller.py:119
 msgid "Open file location"
 msgstr "Otevřít umístění souboru"
+
+#: ../menu_controller.py:365
+msgid "Exit mini mode"
+msgstr "Opustit malý režim"

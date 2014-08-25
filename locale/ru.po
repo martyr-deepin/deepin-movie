@@ -3,15 +3,16 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Fox909 <ffox909@mail.ru>, 2014
+# Анатолий Валерианович <ffox909@mail.ru>, 2014
 # Serge Kukharski, 2014
+# Анатолий Валерианович <ffox909@mail.ru>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-01 09:25+0800\n"
-"PO-Revision-Date: 2014-07-03 05:53+0000\n"
-"Last-Translator: electricface <songwentai@linuxdeepin.com>\n"
+"POT-Creation-Date: 2014-08-21 17:16+0800\n"
+"PO-Revision-Date: 2014-08-26 02:30+0000\n"
+"Last-Translator: Анатолий Валерианович <ffox909@mail.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/deepin-movie/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,11 +20,11 @@ msgstr ""
 "Language: ru\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: ../AboutSection.qml:6 ../PreferenceWindow.qml:100
+#: ../AboutSection.qml:6 ../PreferenceWindow.qml:108
 msgid "About"
 msgstr "О программе"
 
-#: ../AboutSection.qml:11 ../main.qml:364 ../window.py:65
+#: ../AboutSection.qml:11 ../main.qml:387 ../window.py:67
 msgid "Deepin Movie"
 msgstr "Видеоплеер Deepin"
 
@@ -41,71 +42,146 @@ msgstr "Видеоплеер Deepin - это видеоплеер, создан�
 msgid "Deepin Movie is free software licensed under GNU GPLv3"
 msgstr "Видеоплеер Deepin - свободное программное обеспечение под лицензией GNU GPLv3"
 
-#: ../HotKeyInput.qml:14
-msgid "Please input new shortcut"
-msgstr ""
+#: ../ControlBar.qml:219
+msgid "Stop playing"
+msgstr "Остановить воспроизведение"
 
-#: ../InformationWindow.qml:55
+#: ../ControlBar.qml:237 ../menu_controller.py:81
+msgid "Previous"
+msgstr "Предыдущий"
+
+#: ../ControlBar.qml:256
+msgid "Pause"
+msgstr "Пауза"
+
+#: ../ControlBar.qml:256 ../menu_controller.py:99 ../menu_controller.py:109
+msgid "Play"
+msgstr "Играть"
+
+#: ../ControlBar.qml:273 ../menu_controller.py:82
+msgid "Next"
+msgstr "Следующий"
+
+#: ../ControlBar.qml:316 ../menu_controller.py:364
+msgid "Exit fullscreen"
+msgstr "Выйти из полного экрана"
+
+#: ../ControlBar.qml:316 ../PreferenceWindow.qml:328
+#: ../PreferenceWindow.qml:779 ../menu_controller.py:93
+#: ../menu_controller.py:363
+msgid "Fullscreen"
+msgstr "Полный экран"
+
+#: ../ControlBar.qml:333 ../PreferenceWindow.qml:593 ../menu_controller.py:89
+msgid "Open a file"
+msgstr "Открыть файл"
+
+#: ../ControlBar.qml:345 ../PreferenceWindow.qml:349 ../menu_controller.py:96
+msgid "Playlist"
+msgstr "Плейлист"
+
+#: ../HotKeyInput.qml:15 ../HotKeyInputRow.qml:23 ../PreferenceWindow.qml:266
+#: ../PreferenceWindow.qml:287 ../PreferenceWindow.qml:308
+#: ../PreferenceWindow.qml:329 ../PreferenceWindow.qml:350
+#: ../PreferenceWindow.qml:371 ../PreferenceWindow.qml:392
+#: ../PreferenceWindow.qml:413 ../PreferenceWindow.qml:451
+#: ../PreferenceWindow.qml:472 ../PreferenceWindow.qml:493
+#: ../PreferenceWindow.qml:514 ../PreferenceWindow.qml:535
+#: ../PreferenceWindow.qml:556 ../PreferenceWindow.qml:594
+#: ../PreferenceWindow.qml:615 ../PreferenceWindow.qml:636
+#: ../PreferenceWindow.qml:674 ../PreferenceWindow.qml:695
+#: ../PreferenceWindow.qml:716 ../PreferenceWindow.qml:737
+#: ../PreferenceWindow.qml:771 ../PreferenceWindow.qml:779
+#: ../PreferenceWindow.qml:787
+msgid "Disabled"
+msgstr "Отключено"
+
+#: ../HotKeyInput.qml:16
+msgid "Please input a new shortcut"
+msgstr "Введите новое сочетание клавиш"
+
+#: ../HotKeyInputRow.qml:29
+msgid "The shortcut you set "
+msgstr "Установленные вами сочетания"
+
+#: ../HotKeyInputRow.qml:30
+#, qt-format
+msgid "conflicts with the one used for \"%2\" in the \"%1\" category. "
+msgstr "конфликт с использованием \"%2\" в категории \"%1\"."
+
+#: ../HotKeyInputRow.qml:31
+msgid "Do you want to replace it?"
+msgstr "Желаете заменить это?"
+
+#: ../HotKeyInputRow.qml:95
+msgid "Cancel"
+msgstr "Отмена"
+
+#: ../HotKeyInputRow.qml:106
+msgid "Replace"
+msgstr "Заменить"
+
+#: ../InformationWindow.qml:64
 msgid "File type"
 msgstr "Тип файла"
 
-#: ../InformationWindow.qml:62
+#: ../InformationWindow.qml:72
 msgid "File size"
 msgstr "Размер файла"
 
-#: ../InformationWindow.qml:69
+#: ../InformationWindow.qml:80
 msgid "Resolution"
 msgstr "Разрешение"
 
-#: ../InformationWindow.qml:76
+#: ../InformationWindow.qml:88
 msgid "Movie duration"
 msgstr "Продолжительность фильма"
 
-#: ../InformationWindow.qml:85
+#: ../InformationWindow.qml:100
 msgid "File path"
 msgstr "Путь к файлу"
 
-#: ../InformationWindow.qml:94
+#: ../InformationWindow.qml:122
 msgid "Copy to clipboard"
 msgstr "Копировать в буфер"
 
-#: ../InformationWindow.qml:109
+#: ../InformationWindow.qml:137
 msgid "Confirm"
 msgstr "Подтвердить"
 
-#: ../MainController.qml:108
+#: ../MainController.qml:79
 msgid "Invalid file"
-msgstr ""
+msgstr "Неверный файл"
 
-#: ../MainController.qml:388
+#: ../MainController.qml:384
 msgid "Play last movie played"
 msgstr "Играть последний проигранный фильм"
 
-#: ../MainController.qml:400 ../PreferenceWindow.qml:232
+#: ../MainController.qml:396 ../PreferenceWindow.qml:286
 #: ../menu_controller.py:84
 msgid "Forward"
 msgstr "Перемотка вперед"
 
-#: ../MainController.qml:408 ../PreferenceWindow.qml:237
+#: ../MainController.qml:404 ../PreferenceWindow.qml:307
 #: ../menu_controller.py:85
 msgid "Rewind"
 msgstr "Перемотка назад"
 
-#: ../MainController.qml:417 ../MainController.qml:422
+#: ../MainController.qml:412 ../MainController.qml:418
 #, qt-format
 msgid "(Press %1 to restore)"
 msgstr "(Нажать %1 для восставновления)"
 
-#: ../MainController.qml:417 ../MainController.qml:422
-#: ../MainController.qml:427
+#: ../MainController.qml:414 ../MainController.qml:420
+#: ../MainController.qml:425
 msgid "Playback rate: "
 msgstr "Скорость воспроизведения:"
 
-#: ../MainController.qml:439 ../MainController.qml:448
+#: ../MainController.qml:437 ../MainController.qml:446
 msgid "Volume: "
 msgstr "Громкость: "
 
-#: ../MainController.qml:446 ../menu_controller.py:59
+#: ../MainController.qml:444 ../menu_controller.py:59
 msgid "Muted"
 msgstr "Заглушенный"
 
@@ -114,272 +190,304 @@ msgid "Please choose one file or more"
 msgstr "Пожалуйста, выберите один или несколько файлов"
 
 #: ../OpenFolderDialog.qml:5
-msgid "Please choose folder"
-msgstr "Пожалуйста, выберите папку"
+msgid "Please choose a folder"
+msgstr "Выберите папку"
 
-#: ../PreferenceWindow.qml:140
+#: ../Playlist.qml:237
+msgid "Play mode"
+msgstr "Режим воспроизведения"
+
+#: ../Playlist.qml:250 ../menu_controller.py:110 ../menu_controller.py:124
+msgid "Add file"
+msgstr "Добавить файл"
+
+#: ../Playlist.qml:258 ../menu_controller.py:115
+msgid "Clear playlist"
+msgstr "Очистить плейлист"
+
+#: ../PreferenceWindow.qml:178
 msgid "Enter fullscreen on opening file"
 msgstr "Войти в полноэкранный режим при открытии файла"
 
-#: ../PreferenceWindow.qml:152
+#: ../PreferenceWindow.qml:190
 msgid "Clear playlist on opening new file"
 msgstr "Очистить плейлист при открытии нового файла"
 
-#: ../PreferenceWindow.qml:157
+#: ../PreferenceWindow.qml:195
 msgid "Resume playback after restarting player"
 msgstr "Возобновить воспроизведение после перезапуска плеера"
 
-#: ../PreferenceWindow.qml:162
+#: ../PreferenceWindow.qml:200
 msgid "Continue to next video automatically"
 msgstr "Перейти к следующему видео автоматически"
 
-#: ../PreferenceWindow.qml:167
+#: ../PreferenceWindow.qml:205
 msgid "Show preview when hovering over progress bar"
 msgstr "Предпросмотр при наведении курсора на прогресс-бар"
 
-#: ../PreferenceWindow.qml:172
-msgid "Allow multiple instance"
-msgstr "Разрешить несколько экземпляров"
-
-#: ../PreferenceWindow.qml:222 ../PreferenceWindow.qml:273
-#: ../PreferenceWindow.qml:314 ../PreferenceWindow.qml:343
+#: ../PreferenceWindow.qml:260 ../PreferenceWindow.qml:444
+#: ../PreferenceWindow.qml:587 ../PreferenceWindow.qml:667
 msgid "Enable keyboard shortcuts"
 msgstr "Включить сочетания клавиш"
 
-#: ../PreferenceWindow.qml:227 ../PreferenceWindow.qml:379
+#: ../PreferenceWindow.qml:265 ../PreferenceWindow.qml:771
 msgid "Pause/Play"
 msgstr "Пауза/Воспроизведение"
 
-#: ../PreferenceWindow.qml:279 ../menu_controller.py:94
+#: ../PreferenceWindow.qml:370
+msgid "Accelerate playback"
+msgstr "Ускоренное воспроизведение"
+
+#: ../PreferenceWindow.qml:391
+msgid "Decelerate playback"
+msgstr "Замедленное воспроизведение"
+
+#: ../PreferenceWindow.qml:412
+msgid "Restore playback speed"
+msgstr "Восстановить скорость воспроизведения"
+
+#: ../PreferenceWindow.qml:450 ../menu_controller.py:94
+#: ../menu_controller.py:366
 msgid "Mini mode"
 msgstr "Компактный вид"
 
-#: ../PreferenceWindow.qml:291
+#: ../PreferenceWindow.qml:513
 msgid "Volume up"
 msgstr "Громче"
 
-#: ../PreferenceWindow.qml:295
+#: ../PreferenceWindow.qml:534
 msgid "Volume down"
 msgstr "Тише"
 
-#: ../PreferenceWindow.qml:324
+#: ../PreferenceWindow.qml:614
 msgid "Open previous"
 msgstr "Открыть предыдущий"
 
-#: ../PreferenceWindow.qml:328
+#: ../PreferenceWindow.qml:635
 msgid "Open next"
 msgstr "Открыть следующий"
 
-#: ../PreferenceWindow.qml:349
+#: ../PreferenceWindow.qml:673
 msgid "Forward 0.5s"
 msgstr "Вперед на 0.5 сек"
 
-#: ../PreferenceWindow.qml:353
+#: ../PreferenceWindow.qml:694
 msgid "Delay 0.5s"
 msgstr "Задержка 0.5 сек"
 
-#: ../PreferenceWindow.qml:357
+#: ../PreferenceWindow.qml:715
 msgid "Subtitle up"
 msgstr "Субтитры выше"
 
-#: ../PreferenceWindow.qml:361
+#: ../PreferenceWindow.qml:736
 msgid "Subtitle down"
 msgstr "Субтитры ниже"
 
-#: ../PreferenceWindow.qml:376
+#: ../PreferenceWindow.qml:768
 msgid "Left click"
 msgstr "Левый клик"
 
-#: ../PreferenceWindow.qml:379 ../PreferenceWindow.qml:387
-#: ../PreferenceWindow.qml:395
-msgid "Disabled"
-msgstr "Отключено"
-
-#: ../PreferenceWindow.qml:384
+#: ../PreferenceWindow.qml:776
 msgid "Double click"
 msgstr "Двойной клик"
 
-#: ../PreferenceWindow.qml:409
+#: ../PreferenceWindow.qml:801
 msgid "Subtitles loaded automatically"
 msgstr "Субтитры загружаются автоматически"
 
-#: ../PreferenceWindow.qml:450
+#: ../PreferenceWindow.qml:842
 msgid "Border width"
 msgstr "Ширина границы"
 
-#: ../PreferenceWindow.qml:242 ../PreferenceWindow.qml:387
-msgid "Fullscreen"
-msgstr "Полный экран"
-
-#: ../PreferenceWindow.qml:47 ../PreferenceWindow.qml:63
-#: ../PreferenceWindow.qml:131 ../PreferenceWindow.qml:213
+#: ../PreferenceWindow.qml:55 ../PreferenceWindow.qml:71
+#: ../PreferenceWindow.qml:169 ../PreferenceWindow.qml:251
 msgid "Playback"
 msgstr "Воспроизведение"
 
-#: ../PreferenceWindow.qml:68 ../PreferenceWindow.qml:264
+#: ../PreferenceWindow.qml:76 ../PreferenceWindow.qml:435
 msgid "Frame/Sound"
 msgstr "Кадр/Звук"
 
-#: ../PreferenceWindow.qml:73 ../PreferenceWindow.qml:305
+#: ../PreferenceWindow.qml:81 ../PreferenceWindow.qml:578
 msgid "Files"
 msgstr "Файлы"
 
-#: ../PreferenceWindow.qml:83 ../PreferenceWindow.qml:367
+#: ../PreferenceWindow.qml:91 ../PreferenceWindow.qml:759
 msgid "Other"
 msgstr "Другое"
 
-#: ../PreferenceWindow.qml:78 ../PreferenceWindow.qml:334
+#: ../PreferenceWindow.qml:86 ../PreferenceWindow.qml:658
 #: ../menu_controller.py:102
 msgid "Subtitles"
 msgstr "Субтитры"
 
-#: ../PreferenceWindow.qml:12
+#: ../PreferenceWindow.qml:11
+msgid "Reset"
+msgstr "Сброс"
+
+#: ../PreferenceWindow.qml:15
+msgid "Black"
+msgstr "Чёрный"
+
+#: ../PreferenceWindow.qml:16
 msgid "bleu de France"
 msgstr "блю-де-франс"
 
-#: ../PreferenceWindow.qml:13
+#: ../PreferenceWindow.qml:17
 msgid "Turquoise"
 msgstr "Бирюзовый"
 
-#: ../PreferenceWindow.qml:14
+#: ../PreferenceWindow.qml:18
 msgid "UFO green"
 msgstr "Зеленый НЛО"
 
-#: ../PreferenceWindow.qml:15
+#: ../PreferenceWindow.qml:19
 msgid "Green yellow"
 msgstr "Зелено-желтый"
 
-#: ../PreferenceWindow.qml:16
+#: ../PreferenceWindow.qml:20
 msgid "Gorse"
 msgstr "Дрок"
 
-#: ../PreferenceWindow.qml:17
+#: ../PreferenceWindow.qml:21
 msgid "Energy yellow"
 msgstr "Энергия жёлтого"
 
-#: ../PreferenceWindow.qml:18
+#: ../PreferenceWindow.qml:22
 msgid "Sun"
 msgstr "Вс"
 
-#: ../PreferenceWindow.qml:19
+#: ../PreferenceWindow.qml:23
 msgid "Radical red"
 msgstr "Радикально-красный"
 
-#: ../PreferenceWindow.qml:20
+#: ../PreferenceWindow.qml:24
 msgid "Lavender indigo"
 msgstr "Лавандовый индиго"
 
-#: ../PreferenceWindow.qml:21
+#: ../PreferenceWindow.qml:25
 msgid "Royal blue"
 msgstr "Ярко-синий"
 
-#: ../PreferenceWindow.qml:22
+#: ../PreferenceWindow.qml:26
 msgid "Aluminum"
 msgstr "Алюминиевый"
 
-#: ../PreferenceWindow.qml:23
+#: ../PreferenceWindow.qml:27
 msgid "Clean white"
 msgstr "Белый"
 
-#: ../PreferenceWindow.qml:43 ../PreferenceWindow.qml:127
+#: ../PreferenceWindow.qml:51 ../PreferenceWindow.qml:165
 msgid "Basic settings"
 msgstr "Основные настройки"
 
-#: ../PreferenceWindow.qml:52 ../PreferenceWindow.qml:191
+#: ../PreferenceWindow.qml:60 ../PreferenceWindow.qml:229
 msgid "Time span"
 msgstr "Промежуток времени"
 
-#: ../PreferenceWindow.qml:59 ../PreferenceWindow.qml:209
+#: ../PreferenceWindow.qml:67 ../PreferenceWindow.qml:247
 msgid "Keyboard shortcuts"
 msgstr "Клавиатурные сокращения"
 
-#: ../PreferenceWindow.qml:90 ../PreferenceWindow.qml:403
+#: ../PreferenceWindow.qml:98 ../PreferenceWindow.qml:795
 msgid "Subtitle settings"
 msgstr "Настройки субтитров"
 
-#: ../PreferenceWindow.qml:146
+#: ../PreferenceWindow.qml:184
 msgid "Apply the size last time closed"
 msgstr "Применить размер, как был при последнем закрытии"
 
-#: ../PreferenceWindow.qml:177
+#: ../PreferenceWindow.qml:210
+msgid "Allow multiple instances"
+msgstr "Разрешить несколько экземпляров"
+
+#: ../PreferenceWindow.qml:215
 msgid "Pause when minimized"
 msgstr "Пауза при сворачивании"
 
-#: ../PreferenceWindow.qml:182
+#: ../PreferenceWindow.qml:220
 msgid "Enable system popup notification"
 msgstr "Включить систему всплывающих уведомлений"
 
-#: ../PreferenceWindow.qml:200
+#: ../PreferenceWindow.qml:238
 msgid "Forward/Rewind"
 msgstr "Вперед/Назад"
 
-#: ../PreferenceWindow.qml:247
-msgid "Playlist"
-msgstr ""
-
-#: ../PreferenceWindow.qml:252
-msgid "Speed up"
-msgstr "Ускорить"
-
-#: ../PreferenceWindow.qml:257
-msgid "Slow down"
-msgstr "Замедлить"
-
-#: ../PreferenceWindow.qml:283
+#: ../PreferenceWindow.qml:471
 msgid "Rotate counterclockwise"
 msgstr "Повернуть против часовой стрелки"
 
-#: ../PreferenceWindow.qml:287
+#: ../PreferenceWindow.qml:492
 msgid "Rotate clockwise"
 msgstr "Повернуть по часовой стрелке"
 
-#: ../PreferenceWindow.qml:299
+#: ../PreferenceWindow.qml:555
 msgid "Mute"
 msgstr "Заглушить"
 
-#: ../PreferenceWindow.qml:320 ../menu_controller.py:89
-msgid "Open file"
-msgstr "Открыть файл"
-
-#: ../PreferenceWindow.qml:392
+#: ../PreferenceWindow.qml:784
 msgid "Scroll"
 msgstr "Прокрутка"
 
-#: ../PreferenceWindow.qml:395
+#: ../PreferenceWindow.qml:787 ../VolumeButton.qml:44
 msgid "Volume"
 msgstr "Громкость"
 
-#: ../PreferenceWindow.qml:415
+#: ../PreferenceWindow.qml:807
 msgid "Font"
 msgstr "Шрифт"
 
-#: ../PreferenceWindow.qml:425
+#: ../PreferenceWindow.qml:817
 msgid "Font color"
 msgstr "Цвет шрифта"
 
-#: ../PreferenceWindow.qml:441
+#: ../PreferenceWindow.qml:833
 msgid "Size"
 msgstr "Размер"
 
-#: ../PreferenceWindow.qml:459
+#: ../PreferenceWindow.qml:851
 msgid "Border color"
 msgstr "Цвет границы"
 
-#: ../PreferenceWindow.qml:475
+#: ../PreferenceWindow.qml:867
 msgid "Position"
 msgstr "Положение"
 
-#: ../PreferenceWindow.qml:480
+#: ../PreferenceWindow.qml:872
 msgid "Bottom"
 msgstr "Низ"
 
-#: ../PreferenceWindow.qml:481
+#: ../PreferenceWindow.qml:873
 msgid "Top"
 msgstr "Верх"
 
-#: ../PreferenceWindow.qml:487
+#: ../PreferenceWindow.qml:879
 msgid "Subtitle Delay"
 msgstr "Задержка субтитров"
+
+#: ../TitleBar.qml:165
+msgid "Shown in a proportion of 1:1"
+msgstr "Показывать в соотношении 1:1"
+
+#: ../TitleBar.qml:177
+msgid "Shown in 1.5 times"
+msgstr "Показывать в 1.5 раза"
+
+#: ../TitleBar.qml:190
+msgid "Return to mini mode"
+msgstr "Вернуть в режим мини"
+
+#: ../TitleBar.qml:190
+msgid "Shown in fullscreen"
+msgstr "Показывать полный экран"
+
+#: ../TitleBar.qml:205
+msgid "Cancel \"On Top\""
+msgstr "Отменить \"Поверх окон\""
+
+#: ../TitleBar.qml:205
+msgid "On Top"
+msgstr "Поверх окон"
 
 #: ../movie_info.py:140
 msgid "Unknown"
@@ -422,8 +530,8 @@ msgid "Open manually"
 msgstr "Открыть вручную"
 
 #: ../menu_controller.py:68
-msgid "Select file"
-msgstr "Выбрать файл"
+msgid "Subtitle selection"
+msgstr "Выбор субтитров"
 
 #: ../menu_controller.py:69
 msgid "Subtitle setting"
@@ -449,37 +557,17 @@ msgstr "Повтор (один файл)"
 msgid "Repeat (Playlist)"
 msgstr "Повтор (плейлист)"
 
-#: ../menu_controller.py:81
-msgid "Previous"
-msgstr "Предыдущий"
-
-#: ../menu_controller.py:82
-msgid "Next"
-msgstr "Следующий"
-
 #: ../menu_controller.py:90
-msgid "Open folder"
+msgid "Open a folder"
 msgstr "Открыть папку"
-
-#: ../menu_controller.py:93
-msgid "Fullscreen/Quit"
-msgstr "На весь экран / Выход"
 
 #: ../menu_controller.py:95
 msgid "Always on top"
 msgstr "Всегда поверх окон"
 
-#: ../menu_controller.py:96
-msgid "PLaylist"
-msgstr ""
-
 #: ../menu_controller.py:98
 msgid "Play Sequence"
 msgstr "Порядок проигрывания"
-
-#: ../menu_controller.py:99 ../menu_controller.py:109
-msgid "Play"
-msgstr "Играть"
 
 #: ../menu_controller.py:100
 msgid "Frame"
@@ -493,26 +581,26 @@ msgstr "Звук"
 msgid "Options"
 msgstr "Опции"
 
-#: ../menu_controller.py:105 ../menu_controller.py:119
+#: ../menu_controller.py:105 ../menu_controller.py:120
 msgid "Information"
 msgstr "Информация"
 
-#: ../menu_controller.py:110
-msgid "Add file to playlist"
-msgstr "Добавить файл в плейлист"
+#: ../menu_controller.py:111 ../menu_controller.py:125
+msgid "Add folder"
+msgstr "Добавить папку"
 
-#: ../menu_controller.py:112
+#: ../menu_controller.py:113
 msgid "Remove from playlist"
 msgstr "Удалить из плейлиста"
 
-#: ../menu_controller.py:113
+#: ../menu_controller.py:114
 msgid "Remove invalid file"
 msgstr "Удалить неверный файл"
 
-#: ../menu_controller.py:114
-msgid "Clear playlist"
-msgstr "Очистить плейлист"
-
-#: ../menu_controller.py:118
+#: ../menu_controller.py:119
 msgid "Open file location"
 msgstr "Открыть расположение файла"
+
+#: ../menu_controller.py:365
+msgid "Exit mini mode"
+msgstr "Выход из мини-режима"
