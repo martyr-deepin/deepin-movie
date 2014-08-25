@@ -251,7 +251,7 @@ Rectangle {
         titlebar.windowNormalState = (state == Qt.WindowNoState)
         titlebar.windowFullscreenState = (state == Qt.WindowFullScreen)
         controlbar.windowFullscreenState = (state == Qt.WindowFullScreen)
-        time_indicator.visible = (state == Qt.WindowFullScreen && player.hasMedia)
+        time_indicator.visibleSwitch = (state == Qt.WindowFullScreen && player.hasMedia)
         if (windowLastState != state) {
             if (config.playerPauseOnMinimized) {
                 if (state == Qt.WindowMinimized) {
@@ -417,8 +417,11 @@ Rectangle {
 
     TimeIndicator {
         id: time_indicator
-        visible: false
+        visible: visibleSwitch && !titlebar.visible
         percentage: controlbar.percentage
+
+        property bool visibleSwitch: false
+
         anchors.top: main_window.top
         anchors.right: main_window.right
         anchors.topMargin: 10
