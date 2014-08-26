@@ -50,6 +50,7 @@ class Window(QQuickView):
 
     staysOnTopChanged = pyqtSignal()
     centerRequestCountChanged = pyqtSignal()
+    subtitleVisibleChanged = pyqtSignal()
 
     def __init__(self, center=False):
         QQuickView.__init__(self)
@@ -160,6 +161,15 @@ class Window(QQuickView):
     @pyqtSlot(bool)
     def setCursorVisible(self, visible):
         self.setCursor(QCursor(Qt.ArrowCursor if visible else Qt.BlankCursor))
+
+    @pyqtProperty(bool,notify=subtitleVisibleChanged)
+    def subtitleVisible(self):
+        return self.rootObject().subtitleVisible()
+
+    @subtitleVisible.setter
+    def subtitleVisible(self, visible):
+        self.rootObject().setSubtitleVisible(visible)
+        self.subtitleVisibleChanged.emit()
 
     @pyqtSlot()
     def screenShot(self):

@@ -54,7 +54,7 @@ DPreferenceWindow {
                         "sectionId": "basic_playback",
                         "sectionName": dsTr("Playback"),
                         "subSections": []
-                    },                    
+                    },
                     {
                         "sectionId": "basic_time_span",
                         "sectionName": dsTr("Time span"),
@@ -70,12 +70,12 @@ DPreferenceWindow {
                         "sectionId": "keyboard_playback",
                         "sectionName": dsTr("Playback"),
                         "subSections": []
-                    },                    
+                    },
                     {
                         "sectionId": "keyboard_frame_sound",
                         "sectionName": dsTr("Frame/Sound"),
                         "subSections": []
-                    },                    
+                    },
                     {
                         "sectionId": "keyboard_files",
                         "sectionName": dsTr("Files"),
@@ -164,7 +164,7 @@ DPreferenceWindow {
 
         SectionContent { title: dsTr("Basic settings"); sectionId: "basic_playback"; topSpaceHeight: 10 }
 
-        SectionContent { 
+        SectionContent {
             id: basic_playback
             title: dsTr("Playback")
             sectionId: "basic_playback"
@@ -223,8 +223,8 @@ DPreferenceWindow {
             }
 
         }
-            
-        SectionContent { 
+
+        SectionContent {
             id: basic_time_step
             title: dsTr("Time span")
             sectionId: "basic_time_span"
@@ -246,7 +246,7 @@ DPreferenceWindow {
 
         SectionContent { title: dsTr("Keyboard shortcuts"); sectionId: ""; topSpaceHeight: 10 }
 
-        SectionContent { 
+        SectionContent {
             id: keyboard_playback
             title: dsTr("Playback")
             sectionId: "keyboard_playback"
@@ -266,7 +266,7 @@ DPreferenceWindow {
                 hotKey: config.hotkeysPlayTogglePlay+"" || dsTr("Disabled")
                 actualSettingEntry: "hotkeysPlayTogglePlay"
 
-                onHotkeySet: { 
+                onHotkeySet: {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
@@ -287,7 +287,7 @@ DPreferenceWindow {
                 hotKey: config.hotkeysPlayForward+"" || dsTr("Disabled")
                 actualSettingEntry: "hotkeysPlayForward"
 
-                onHotkeySet: { 
+                onHotkeySet: {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
@@ -308,7 +308,7 @@ DPreferenceWindow {
                 hotKey: config.hotkeysPlayBackward+"" || dsTr("Disabled")
                 actualSettingEntry: "hotkeysPlayBackward"
 
-                onHotkeySet: { 
+                onHotkeySet: {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
@@ -329,7 +329,7 @@ DPreferenceWindow {
                 hotKey: config.hotkeysPlayToggleFullscreen+"" || dsTr("Disabled")
                 actualSettingEntry: "hotkeysPlayToggleFullscreen"
 
-                onHotkeySet: { 
+                onHotkeySet: {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
@@ -350,7 +350,7 @@ DPreferenceWindow {
                 hotKey: config.hotkeysPlayTogglePlaylist+"" || dsTr("Disabled")
                 actualSettingEntry: "hotkeysPlayTogglePlaylist"
 
-                onHotkeySet: { 
+                onHotkeySet: {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
@@ -371,7 +371,7 @@ DPreferenceWindow {
                 hotKey: config.hotkeysPlaySpeedUp+"" || dsTr("Disabled")
                 actualSettingEntry: "hotkeysPlaySpeedUp"
 
-                onHotkeySet: { 
+                onHotkeySet: {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
@@ -392,7 +392,7 @@ DPreferenceWindow {
                 hotKey: config.hotkeysPlaySlowDown+"" || dsTr("Disabled")
                 actualSettingEntry: "hotkeysPlaySlowDown"
 
-                onHotkeySet: { 
+                onHotkeySet: {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
@@ -413,7 +413,7 @@ DPreferenceWindow {
                 hotKey: config.hotkeysPlayRestoreSpeed+"" || dsTr("Disabled")
                 actualSettingEntry: "hotkeysPlayRestoreSpeed"
 
-                onHotkeySet: { 
+                onHotkeySet: {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
@@ -430,7 +430,7 @@ DPreferenceWindow {
                 onHotkeyCancelled: { setShortcut(config.hotkeysPlayRestoreSpeed) }
             }
         }
-        SectionContent { 
+        SectionContent {
             id: keyboard_frame_sound
             title: dsTr("Frame/Sound")
             sectionId: "keyboard_frame_sound"
@@ -451,7 +451,7 @@ DPreferenceWindow {
                 hotKey: config.hotkeysFrameSoundToggleMiniMode+"" || dsTr("Disabled")
                 actualSettingEntry: "hotkeysFrameSoundToggleMiniMode"
 
-                onHotkeySet: { 
+                onHotkeySet: {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
@@ -472,7 +472,7 @@ DPreferenceWindow {
                 hotKey: config.hotkeysFrameSoundRotateAnticlockwise+"" || dsTr("Disabled")
                 actualSettingEntry: "hotkeysFrameSoundRotateAnticlockwise"
 
-                onHotkeySet: { 
+                onHotkeySet: {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
@@ -493,7 +493,7 @@ DPreferenceWindow {
                 hotKey: config.hotkeysFrameSoundRotateClockwise+"" || dsTr("Disabled")
                 actualSettingEntry: "hotkeysFrameSoundRotateClockwise"
 
-                onHotkeySet: { 
+                onHotkeySet: {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
@@ -514,7 +514,7 @@ DPreferenceWindow {
                 hotKey: config.hotkeysFrameSoundIncreaseVolume+"" || dsTr("Disabled")
                 actualSettingEntry: "hotkeysFrameSoundIncreaseVolume"
 
-                onHotkeySet: { 
+                onHotkeySet: {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
@@ -535,7 +535,7 @@ DPreferenceWindow {
                 hotKey: config.hotkeysFrameSoundDecreaseVolume+"" || dsTr("Disabled")
                 actualSettingEntry: "hotkeysFrameSoundDecreaseVolume"
 
-                onHotkeySet: { 
+                onHotkeySet: {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
@@ -556,7 +556,7 @@ DPreferenceWindow {
                 hotKey: config.hotkeysFrameSoundToggleMute+"" || dsTr("Disabled")
                 actualSettingEntry: "hotkeysFrameSoundToggleMute"
 
-                onHotkeySet: { 
+                onHotkeySet: {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
@@ -573,7 +573,7 @@ DPreferenceWindow {
                 onHotkeyCancelled: { setShortcut(config.hotkeysFrameSoundToggleMute) }
             }
         }
-        SectionContent { 
+        SectionContent {
             id: keyboard_files
             title: dsTr("Files")
             sectionId: "keyboard_files"
@@ -586,7 +586,7 @@ DPreferenceWindow {
             DCheckBox {
                 text: dsTr("Enable keyboard shortcuts")
                 checked: config.hotkeysFilesHotkeyEnabled
-                onClicked: config.hotkeysFilesHotkeyEnabled = checked                
+                onClicked: config.hotkeysFilesHotkeyEnabled = checked
             }
 
             HotKeyInputRow {
@@ -594,7 +594,7 @@ DPreferenceWindow {
                 hotKey: config.hotkeysFilesOpenFile+"" || dsTr("Disabled")
                 actualSettingEntry: "hotkeysFilesOpenFile"
 
-                onHotkeySet: { 
+                onHotkeySet: {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
@@ -615,7 +615,7 @@ DPreferenceWindow {
                 hotKey: config.hotkeysFilesPlayPrevious+"" || dsTr("Disabled")
                 actualSettingEntry: "hotkeysFilesPlayPrevious"
 
-                onHotkeySet: { 
+                onHotkeySet: {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
@@ -636,7 +636,7 @@ DPreferenceWindow {
                 hotKey: config.hotkeysFilesPlayNext+"" || dsTr("Disabled")
                 actualSettingEntry: "hotkeysFilesPlayNext"
 
-                onHotkeySet: { 
+                onHotkeySet: {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
@@ -653,7 +653,7 @@ DPreferenceWindow {
                 onHotkeyCancelled: { setShortcut(config.hotkeysFilesPlayNext) }
             }
         }
-        SectionContent { 
+        SectionContent {
             id: keyboard_subtitle
             title: dsTr("Subtitles")
             sectionId: "keyboard_subtitle"
@@ -666,7 +666,7 @@ DPreferenceWindow {
             DCheckBox {
                 text: dsTr("Enable keyboard shortcuts")
                 checked: config.hotkeysSubtitlesHotkeyEnabled
-                onClicked: config.hotkeysSubtitlesHotkeyEnabled = checked                
+                onClicked: config.hotkeysSubtitlesHotkeyEnabled = checked
             }
 
             HotKeyInputRow {
@@ -674,7 +674,7 @@ DPreferenceWindow {
                 hotKey: config.hotkeysSubtitlesSubtitleForward+"" || dsTr("Disabled")
                 actualSettingEntry: "hotkeysSubtitlesSubtitleForward"
 
-                onHotkeySet: { 
+                onHotkeySet: {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
@@ -695,7 +695,7 @@ DPreferenceWindow {
                 hotKey: config.hotkeysSubtitlesSubtitleBackward+"" || dsTr("Disabled")
                 actualSettingEntry: "hotkeysSubtitlesSubtitleBackward"
 
-                onHotkeySet: { 
+                onHotkeySet: {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
@@ -716,7 +716,7 @@ DPreferenceWindow {
                 hotKey: config.hotkeysSubtitlesSubtitleMoveUp+"" || dsTr("Disabled")
                 actualSettingEntry: "hotkeysSubtitlesSubtitleMoveUp"
 
-                onHotkeySet: { 
+                onHotkeySet: {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
@@ -737,7 +737,7 @@ DPreferenceWindow {
                 hotKey: config.hotkeysSubtitlesSubtitleMoveDown+"" || dsTr("Disabled")
                 actualSettingEntry: "hotkeysSubtitlesSubtitleMoveDown"
 
-                onHotkeySet: { 
+                onHotkeySet: {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
@@ -754,7 +754,7 @@ DPreferenceWindow {
                 onHotkeyCancelled: { setShortcut(config.hotkeysSubtitlesSubtitleMoveDown) }
             }
         }
-        SectionContent { 
+        SectionContent {
             id: keyboard_other
             title: dsTr("Other")
             sectionId: "keyboard_other"
@@ -790,7 +790,7 @@ DPreferenceWindow {
             }
 
         }
-        SectionContent { 
+        SectionContent {
             id: subtitles
             title: dsTr("Subtitle settings")
             sectionId: "subtitle_settings"
@@ -800,13 +800,13 @@ DPreferenceWindow {
             DCheckBox {
                 text: dsTr("Subtitles loaded automatically")
                 checked: config.subtitleAutoLoad
-                onClicked: config.subtitleAutoLoad = checked  
+                onClicked: config.subtitleAutoLoad = checked
             }
 
             ComboBoxRow {
                 title: dsTr("Font")
                 input.parentWindow: window
-                input.selectIndex: config.subtitleFontFamily ? Qt.fontFamilies().indexOf(config.subtitleFontFamily) 
+                input.selectIndex: config.subtitleFontFamily ? Qt.fontFamilies().indexOf(config.subtitleFontFamily)
                                                             : Qt.fontFamilies().indexOf(getSystemFontFamily())
                 input.menu.labels: Qt.fontFamilies()
 
@@ -888,9 +888,9 @@ DPreferenceWindow {
             //     title: "Subtitle directory:"
             // }
         }
-        // SectionContent { 
+        // SectionContent {
         //     id: screenshot
-        //     title: "Screenshot" 
+        //     title: "Screenshot"
         //     sectionId: "screenshot"
         //     topSpaceHeight: 30
         // }

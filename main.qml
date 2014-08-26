@@ -202,6 +202,14 @@ Rectangle {
         hide_controls_timer.stop()
     }
 
+    function subtitleVisible() {
+        return player.subtitleShow
+    }
+
+    function setSubtitleVisible(visible) {
+        player.subtitleShow = visible;
+    }
+
     // Utils functions
     function inRectCheck(point, rect) {
         return rect.x <= point.x && point.x <= rect.x + rect.width &&

@@ -3,20 +3,20 @@
 
 # Copyright (C) 2011 ~ 2014 Deepin, Inc.
 #               2011 ~ 2014 Wang YaoHua
-# 
+#
 # Author:     Wang YaoHua <mr.asianwang@gmail.com>
 # Maintainer: Wang YaoHua <mr.asianwang@gmail.com>
-# 
+#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -38,10 +38,10 @@ frame_sub_menu = [
     CheckableMenuItem("proportion:radio:_p_1_85_1", "1.85:1"),
     CheckableMenuItem("proportion:radio:_p_2_35_1", "2.35:1"),
     None,
-    CheckableMenuItem("scale:radio:_s_0_5", "0.5"),        
-    CheckableMenuItem("scale:radio:_s_1", "1", True),        
-    CheckableMenuItem("scale:radio:_s_1_5", "1.5"),        
-    CheckableMenuItem("scale:radio:_s_2", "2"),        
+    CheckableMenuItem("scale:radio:_s_0_5", "0.5"),
+    CheckableMenuItem("scale:radio:_s_1", "1", True),
+    CheckableMenuItem("scale:radio:_s_1_5", "1.5"),
+    CheckableMenuItem("scale:radio:_s_2", "2"),
     None,
     ("_turn_right", _("Rotate 90 degree clockwise"), (), (), config.hotkeysFrameSoundRotateClockwise),
     ("_turn_left", _("Rotate 90 degree counterclockwise"), (), (), config.hotkeysFrameSoundRotateAnticlockwise),
@@ -84,7 +84,7 @@ play_sub_menu = [
     ("_play_operation_forward", _("Forward"), (), (), config.hotkeysPlayForward),
     ("_play_operation_backward", _("Rewind"), (), (), config.hotkeysPlayBackward),
 ]
-    
+
 right_click_menu = [
     ("_open_file", _("Open a file"), (), (), config.hotkeysFilesOpenFile),
     ("_open_dir", _("Open a folder")),
@@ -130,7 +130,7 @@ FILE_END_TAG = "]]]]]"
 def _subtitle_menu_items_from_files(files):
     def checkable_item_from_file(f, flag=[True,]):
         item = CheckableMenuItem(
-                "_subtitles:radio:%s%s%s" % (FILE_START_TAG, f, FILE_END_TAG), 
+                "_subtitles:radio:%s%s%s" % (FILE_START_TAG, f, FILE_END_TAG),
                 os.path.basename(f),
                 flag[0])
         flag[0] = False
@@ -142,7 +142,7 @@ def _subtitle_file_from_menu_item_id(id):
                                         id.index(FILE_END_TAG)]
 
 class MenuController(QObject):
-    
+
     clockwiseRotate = pyqtSignal()
     antiClosewiseRotate = pyqtSignal()
     flipHorizontal = pyqtSignal()
@@ -177,17 +177,17 @@ class MenuController(QObject):
     playlistShowClickedItemInFM = pyqtSignal()
     playlistInformation = pyqtSignal()
     togglePlaylist = pyqtSignal()
-    
+
     def __init__(self, window):
         super(MenuController, self).__init__()
         self._window = window
 
         self._proportion = "proportion:radio:_p_default"
         self._scale = "scale:radio:_s_1"
-        
-    # if actions-like menu items are clicked, we should send signals to inform 
-    # the main controller that actions should be taken, if configs-like menu 
-    # items are clicked, we just change the configuration, config.py will takes 
+
+    # if actions-like menu items are clicked, we should send signals to inform
+    # the main controller that actions should be taken, if configs-like menu
+    # items are clicked, we just change the configuration, config.py will takes
     # care of it for you .
     def _menu_item_invoked(self, _id, _checked):
         if _id == "_turn_right":
@@ -256,6 +256,8 @@ class MenuController(QObject):
             config.playerPlayOrderType = ORDER_TYPE_PLAYLIST_CYCLE
         elif _id == "_sound_muted":
             config.playerMuted = _checked
+        elif _id == "_subtitle_hide":
+            self._window.subtitleVisible = not _checked
         elif _id == "_subtitle_manual":
             self.openSubtitleFile.emit()
         elif _id.startswith("_subtitles:radio"):
@@ -281,8 +283,8 @@ class MenuController(QObject):
         elif _id == "_information":
             self.showMovieInformation.emit()
 
-        # playlist menu 
-        elif _id == "_playlist_play": 
+        # playlist menu
+        elif _id == "_playlist_play":
             self.playlistPlay.emit()
         elif _id == "_playlist_add_item":
             self.addItemToPlaylist.emit()
@@ -344,18 +346,18 @@ class MenuController(QObject):
             self._proportion == "proportion:radio:_p_2_35_1"
 
         self.menu.getItemById("scale:radio:_s_0_5").checked = \
-            self._scale == "scale:radio:_s_0_5"        
+            self._scale == "scale:radio:_s_0_5"
         self.menu.getItemById("scale:radio:_s_1").checked = \
-            self._scale == "scale:radio:_s_1"      
+            self._scale == "scale:radio:_s_1"
         self.menu.getItemById("scale:radio:_s_1_5").checked = \
-            self._scale == "scale:radio:_s_1_5"        
+            self._scale == "scale:radio:_s_1_5"
         self.menu.getItemById("scale:radio:_s_2").checked = \
             self._scale == "scale:radio:_s_2"
 
         self.menu.getItemById("_sound_muted").checked = config.playerMuted
 
         self.menu.getItemById("_subtitle_hide").checked = \
-            not config.subtitleAutoLoad
+            not self._window.subtitleVisible
         subtitles = get_subtitle_from_movie(movie_info.movie_file)
         subtitles = _subtitle_menu_items_from_files(subtitles)
         self.menu.getItemById("_subtitle_choose").setSubMenu(Menu(subtitles))
@@ -391,7 +393,7 @@ class MenuController(QObject):
             and utils.fileIsValidVideo(url)
 
         self.menu.showRectMenu(QCursor.pos().x(), QCursor.pos().y())
-        
+
     @pyqtSlot()
     def show_mode_menu(self):
         self.menu = Menu(play_sequence_sub_menu)
@@ -407,8 +409,8 @@ class MenuController(QObject):
             config.playerPlayOrderType == ORDER_TYPE_SINGLE_CYCLE
         self.menu.getItemById("mode_group:radio:playlist_cycle").checked = \
             config.playerPlayOrderType == ORDER_TYPE_PLAYLIST_CYCLE
-            
-        self.menu.showRectMenu(QCursor.pos().x(), QCursor.pos().y())        
+
+        self.menu.showRectMenu(QCursor.pos().x(), QCursor.pos().y())
 
     @pyqtSlot()
     def show_add_button_menu(self):
