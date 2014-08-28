@@ -47,7 +47,7 @@ DPreferenceWindow {
 
         sections: [
             {
-                "sectionId": "basic_playback",
+                "sectionId": "basic_settings",
                 "sectionName": dsTr("Basic settings"),
                 "subSections": [
                     {
@@ -63,7 +63,7 @@ DPreferenceWindow {
                 ]
             },
             {
-                "sectionId": "keyboard_playback",
+                "sectionId": "keyboard_shortcuts",
                 "sectionName": dsTr("Keyboard shortcuts"),
                 "subSections": [
                     {
@@ -162,7 +162,7 @@ DPreferenceWindow {
             }
         }
 
-        SectionContent { title: dsTr("Basic settings"); sectionId: "basic_playback"; topSpaceHeight: 10 }
+        SectionContent { title: dsTr("Basic settings"); sectionId: "basic_settings"; topSpaceHeight: 10 }
 
         SectionContent {
             id: basic_playback
@@ -244,7 +244,7 @@ DPreferenceWindow {
             }
         }
 
-        SectionContent { title: dsTr("Keyboard shortcuts"); sectionId: ""; topSpaceHeight: 10 }
+        SectionContent { title: dsTr("Keyboard shortcuts"); sectionId: "keyboard_shortcuts"; topSpaceHeight: 10 }
 
         SectionContent {
             id: keyboard_playback
