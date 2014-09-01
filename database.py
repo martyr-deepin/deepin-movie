@@ -3,20 +3,20 @@
 
 # Copyright (C) 2011 ~ 2012 Deepin, Inc.
 #               2011 ~ 2012 Wang Yong
-# 
+#
 # Author:     Wang Yong <lazycat.manatee@gmail.com>
 # Maintainer: Wang Yong <lazycat.manatee@gmail.com>
-# 
+#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import os
@@ -26,6 +26,7 @@ from constant import CONFIG_DIR
 from deepin_utils.file import touch_file
 from PyQt5.QtCore import pyqtSlot, pyqtSignal, pyqtProperty, QObject
 
+from playlist import DMPlaylist
 
 class Database(QObject):
     localPlaylistChanged = pyqtSignal(str)
@@ -33,23 +34,26 @@ class Database(QObject):
     lastOpenedPathChanged = pyqtSignal(str)
     lastWindowWidthChanged = pyqtSignal(int)
 
+    importItemFound = pyqtSignal(str, str, str, str,
+        arguments=["categroyName", "itemName", "itemSource", "itemPlayed"])
+
     def __init__(self):
         QObject.__init__(self)
         self.video_db_path = os.path.join(CONFIG_DIR, "video_db")
         touch_file(self.video_db_path)
         self.video_db_connect = sqlite3.connect(self.video_db_path)
         self.video_db_cursor = self.video_db_connect.cursor()
-        
+
         self.video_db_cursor.execute(
             "CREATE TABLE IF NOT EXISTS settings(key PRIMARY KEY NOT NULL, value)"
         )
-    
-    @pyqtSlot(str, int)    
+
+    @pyqtSlot(str, int)
     def record_video_position(self, video_path, video_position):
         movieInfo = json.loads(self.getMovieInfo(video_path))
         movieInfo["position"] = video_position
         self.updateMovieInfo(video_path, json.dumps(movieInfo))
-        
+
     @pyqtSlot(str, result=int)
     def fetch_video_position(self, video_path):
         movieInfo = json.loads(self.getMovieInfo(video_path))
@@ -65,15 +69,15 @@ class Database(QObject):
     def fetch_video_rotation(self, video_path):
         movieInfo = json.loads(self.getMovieInfo(video_path))
         return int(movieInfo.get("rotation", 0))
-            
+
     def getValue(self, key):
         self.video_db_cursor.execute(
             "SELECT value FROM settings WHERE key=?", (key,)
         )
         result = self.video_db_cursor.fetchone()
-        
+
         return result[0] if result else ""
-        
+
     def setValue(self, key, value):
         self.video_db_cursor.execute(
             "INSERT OR REPLACE INTO settings VALUES(?, ?)", (key, value)
@@ -88,11 +92,11 @@ class Database(QObject):
     @pyqtSlot(str,str,result=str)
     def updateMovieInfo(self, video_path, info):
         self.setValue(video_path, info)
-        
+
     @pyqtProperty(str,notify=localPlaylistChanged)
     def playlist_local(self):
         return self.getValue("playlist_local") or ""
-        
+
     @playlist_local.setter
     def playlist_local(self, value):
         self.setValue("playlist_local", value)
@@ -126,5 +130,42 @@ class Database(QObject):
     def lastWindowWidth(self, value):
         self.setValue("last_window_width", value)
         self.lastWindowWidthChanged.emit(value)
+
+    @pyqtSlot(str)
+    def exportPlaylist(self, filename):
+        playlist = DMPlaylist()
+        playlistItems = json.loads(self.playlist_local)
+
+        for item in playlistItems:
+            try:
+                itemChild = json.loads(item["itemChild"])
+                if len(itemChild) != 0 and item["itemUrl"] == "":
+                    cate = playlist.appendCategory(
+                        item["itemName"].encode("utf-8"))
+                    for child in itemChild:
+                        cate.appendItem(child["itemName"].encode("utf-8"),
+                            child["itemUrl"].encode("utf-8"),
+                            str(self.fetch_video_position(child["itemUrl"])))
+                else:
+                    playlist.appendItem(item["itemName"].encode("utf-8"),
+                        item["itemUrl"].encode("utf-8"),
+                        str(self.fetch_video_position(item["itemUrl"])))
+            except Exception, e:
+                print e
+
+        playlist.writeTo(filename)
+
+    @pyqtSlot(str)
+    def importPlaylist(self, filename):
+        playlist = DMPlaylist.readFrom(filename)
+        for category in playlist.getAllCategories():
+            for item in category.getAllItems():
+                print category.name, "       ", item.name
+                self.importItemFound.emit(category.name, item.name,
+                    item.source, item.played)
+        for item in playlist.getAllItems():
+            print item.name
+            self.importItemFound.emit(None, item.name, item.source, item.played)
+
 
 database = Database()

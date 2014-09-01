@@ -100,6 +100,15 @@ MouseArea {
         }
     }
 
+    Connections {
+        target: database
+
+        onImportItemFound: {
+            playlist.addItem(urlToPlaylistItem(categroyName, itemSource))
+            database.record_video_position(itemSource, itemPlayed)
+        }
+    }
+
     Timer {
         id: seek_to_last_watched_timer
         interval: 500

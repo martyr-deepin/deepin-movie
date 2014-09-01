@@ -112,6 +112,8 @@ playlist_right_menu = [
     None,
     ("_playlist_remove_item", _("Remove from playlist")),
     ("_playlist_remove_invalid", _("Remove invalid file")),
+    ("_playlist_export", _("Export")),
+    ("_playlist_import", _("Import")),
     ("_playlist_clear", _("Clear playlist")),
     None,
 ] + play_sequence_sub_menu + [
@@ -173,6 +175,8 @@ class MenuController(QObject):
     addFolderToPlaylist = pyqtSignal()
     removeItemFromPlaylist = pyqtSignal()
     removeInvalidItemsFromPlaylist = pyqtSignal()
+    playlistExport = pyqtSignal()
+    playlistImport = pyqtSignal()
     playlistClear = pyqtSignal()
     playlistShowClickedItemInFM = pyqtSignal()
     playlistInformation = pyqtSignal()
@@ -300,6 +304,10 @@ class MenuController(QObject):
             self.playlistShowClickedItemInFM.emit()
         elif _id == "_playlist_information":
             self.playlistInformation.emit()
+        elif _id == "_playlist_export":
+            self.playlistExport.emit()
+        elif _id == "_playlist_import":
+            self.playlistImport.emit()
 
     @pyqtSlot()
     def show_menu(self):

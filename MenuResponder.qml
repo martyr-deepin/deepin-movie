@@ -1,11 +1,11 @@
 import QtQuick 2.1
 
 // After some digging you will find that this file is somehow twisted with
-// main.qml(where some ids are from), because the content of this file is 
+// main.qml(where some ids are from), because the content of this file is
 // mainly extracted from main.qml :)
 Connections {
     target: _menu_controller
-    
+
     onClockwiseRotate: {
         main_controller.rotateClockwise()
     }
@@ -52,8 +52,8 @@ Connections {
 
     onShowPreference: { preference_window.show() }
 
-    onShowMovieInformation: { player.source && player.hasVideo 
-        && info_window.showContent(movieInfo.getMovieInfo(movieInfo.movie_file)) 
+    onShowMovieInformation: { player.source && player.hasVideo
+        && info_window.showContent(movieInfo.getMovieInfo(movieInfo.movie_file))
     }
 
     onPlayPrevious: { main_controller.playPrevious() }
@@ -75,4 +75,6 @@ Connections {
     onPlaylistClear: playlist.clear()
     onPlaylistShowClickedItemInFM: playlist.showClickedItemInFM()
     onPlaylistInformation: movieInfo.getMovieInfo(playlist.clickedOnItemUrl)
+    onPlaylistExport: open_new_file_dialog.open()
+    onPlaylistImport: { open_file_dialog.purpose = purposes.importPlaylist; open_file_dialog.open() }
 }

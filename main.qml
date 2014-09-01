@@ -69,6 +69,7 @@ Rectangle {
         property string openVideoFile: "open_video_file"
         property string openSubtitleFile: "open_subtitle_file"
         property string addPlayListItem: "add_playlist_item"
+        property string importPlaylist: "export_playlist"
     }
 
     OpenFileDialog {
@@ -96,7 +97,23 @@ Rectangle {
                             main_controller.addPlayListItem(fileUrl.substring(7))
                         }
                     }
+                } else if (purpose == purposes.importPlaylist) {
+                    var filename = fileUrls[0].toString().replace("file://", "")
+                    database.importPlaylist(filename)
                 }
+            }
+        }
+    }
+
+    OpenFileDialog {
+        id: open_new_file_dialog
+        folder: database.lastOpenedPath || _utils.homeDir
+        selectExisting: false
+
+        onAccepted: {
+            if (fileUrl) {
+                var filename = fileUrl.toString().replace("file://", "")
+                database.exportPlaylist(filename)
             }
         }
     }

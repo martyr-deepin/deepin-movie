@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<DMPlaylist>
+    <Category name="The Game of Thorn">
+        <Item played="645" source="file:///videos/001.rm">001</Item>
+        <Item played="" source="file:///videos/002.rm">002</Item>
+    </Category>
+    <Item played="" source="file:///videos/tbbt001.mkv">The Big Bang Theory</Item>
+    <Item played="" source="">The game of thorn 002</Item>
+</DMPlaylist>
