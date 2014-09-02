@@ -154,6 +154,12 @@ Rectangle {
         }
     }
 
+    ShortcutsViewer {
+        id: shortcuts_viewer
+        x: windowView.x + (windowView.width - width) / 2
+        y: windowView.y + (windowView.height - height) / 2
+    }
+
     // translation tools
     property var dssLocale: DLocale {
         domain: "deepin-movie"

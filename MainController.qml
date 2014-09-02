@@ -517,6 +517,7 @@ MouseArea {
     function subtitleBackward() { player.subtitleDelay -= 500 }
 
     Keys.onPressed: keys_responder.respondKey(event)
+    Keys.onReleased: if(!event.isAutoRepeat) shortcuts_viewer.hide()
 
     onWheel: {
         if (config.othersWheel) {
