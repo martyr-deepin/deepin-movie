@@ -41,8 +41,7 @@ Connections {
         } else if (arguments[0] == "dir") {
             main_controller.openDir()
         } else {
-            var value = _input_dialog.show()
-            if (value != "") { movieInfo.movie_file = value }
+            main_controller.openUrl()
         }
     }
 

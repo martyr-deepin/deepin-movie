@@ -3,6 +3,7 @@ import QtMultimedia 5.0
 import QtGraphicalEffects 1.0
 import QtQuick.Window 2.1
 import Deepin.Locale 1.0
+import Deepin.Widgets 1.0
 
 Rectangle {
     id: root
@@ -127,6 +128,23 @@ Rectangle {
             var folderPath = fileUrl
             database.lastOpenedPath = folderPath // record last opened path
             _utils.getAllVideoFilesInDirRecursively(folderPath)
+        }
+    }
+
+    DInputDialog {
+        id: open_url_dialog
+        message: dsTr("Please input the url of play file:")
+        confirmButtonLabel: dsTr("Confirm")
+        cancelButtonLabel: dsTr("Cancel")
+
+        function open() {
+            x = windowView.x + (windowView.width - width) / 2
+            y = windowView.y + (windowView.height - height) / 2
+            show()
+        }
+
+        onConfirmed: {
+            player.source = input
         }
     }
 

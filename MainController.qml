@@ -462,6 +462,7 @@ MouseArea {
 
     function openFile() { open_file_dialog.purpose = purposes.openVideoFile; open_file_dialog.open() }
     function openDir() { shouldPlayThefirst = true; open_folder_dialog.open() }
+    function openUrl() { open_url_dialog.open() }
     function openDirForPlaylist() { shouldPlayThefirst = false; open_folder_dialog.open() }
     function findVideoInDirRecursively(dir) { _utils.getAllVideoFilesInDirRecursively(dir) }
     function openFileForPlaylist() { open_file_dialog.purpose = purposes.addPlayListItem; open_file_dialog.open() }

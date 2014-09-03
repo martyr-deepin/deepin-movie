@@ -88,7 +88,7 @@ play_sub_menu = [
 right_click_menu = [
     ("_open_file", _("Open a file"), (), (), config.hotkeysFilesOpenFile),
     ("_open_dir", _("Open a folder")),
-    # ("_open_url", _("Open URL")),
+    ("_open_url", _("Open URL")),
     None,
     ("_fullscreen_quit", _("Fullscreen"), (), (), config.hotkeysPlayToggleFullscreen),
     ("_mini_mode", _("Mini mode"), (), (), config.hotkeysFrameSoundToggleMiniMode),

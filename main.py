@@ -44,7 +44,7 @@ if os.name == 'posix':
 
 # from PyQt5.QtGui import QFont
 from PyQt5.QtCore import pyqtSlot, QObject
-from PyQt5.QtWidgets import QApplication, QInputDialog
+from PyQt5.QtWidgets import QApplication
 app = QApplication(sys.argv)
 
 from window import Window
@@ -86,19 +86,6 @@ class PageManager(QObject):
         self.movie_store_page.hide()
         self.movie_search_page.hide()
 
-class InputDialog(QObject):
-    def __init__(self, parent):
-        super(InputDialog, self).__init__()
-        self.parent = parent
-        self.title = "Open URL:"
-        self.label = "URL to open:"
-        self._dialog = QInputDialog()
-
-    @pyqtSlot(result=str)
-    def show(self):
-        input, ok = self._dialog.getText(self.parent, self.title, self.label)
-        return input if ok else ""
-
 if __name__ == "__main__":
     movie_file = os.path.realpath(sys.argv[1]) if len(sys.argv) >= 2 else ""
 
@@ -118,7 +105,6 @@ if __name__ == "__main__":
 
     windowView = Window(result)
     menu_controller = MenuController(windowView)
-    inputDialog = InputDialog(None)
     file_monitor = FileMonitor()
     app._extra_window = weakref.ref(windowView)
 
@@ -130,7 +116,6 @@ if __name__ == "__main__":
     qml_context.setContextProperty("database", database)
     qml_context.setContextProperty("windowView", windowView)
     qml_context.setContextProperty("movieInfo", movie_info)
-    qml_context.setContextProperty("_input_dialog", inputDialog)
     qml_context.setContextProperty("_menu_controller", menu_controller)
 
     windowView.setSource(QtCore.QUrl.fromLocalFile(MAIN_QML))
