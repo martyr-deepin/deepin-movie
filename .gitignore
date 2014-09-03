@@ -4,6 +4,7 @@ nohup.out
 *.~
 build
 dist
+*.mo
 *.po~
 *.swp
 apidocs
