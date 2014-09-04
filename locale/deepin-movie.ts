@@ -169,41 +169,41 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="384"/>
+        <location filename="../MainController.qml" line="393"/>
         <source>Play last movie played</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="396"/>
+        <location filename="../MainController.qml" line="405"/>
         <source>Forward</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="404"/>
+        <location filename="../MainController.qml" line="413"/>
         <source>Rewind</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="412"/>
-        <location filename="../MainController.qml" line="418"/>
+        <location filename="../MainController.qml" line="421"/>
+        <location filename="../MainController.qml" line="427"/>
         <source>(Press %1 to restore)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="414"/>
-        <location filename="../MainController.qml" line="420"/>
-        <location filename="../MainController.qml" line="425"/>
+        <location filename="../MainController.qml" line="423"/>
+        <location filename="../MainController.qml" line="429"/>
+        <location filename="../MainController.qml" line="434"/>
         <source>Playback rate: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="437"/>
         <location filename="../MainController.qml" line="446"/>
+        <location filename="../MainController.qml" line="455"/>
         <source>Volume: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainController.qml" line="444"/>
+        <location filename="../MainController.qml" line="453"/>
         <source>Muted</source>
         <translation type="unfinished"></translation>
     </message>
@@ -640,6 +640,189 @@
     </message>
 </context>
 <context>
+    <name>ShortcutsViewer</name>
+    <message>
+        <location filename="../ShortcutsViewer.qml" line="29"/>
+        <source>Playback</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ShortcutsViewer.qml" line="32"/>
+        <location filename="../ShortcutsViewer.qml" line="120"/>
+        <source>Pause/Play</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ShortcutsViewer.qml" line="33"/>
+        <location filename="../ShortcutsViewer.qml" line="37"/>
+        <location filename="../ShortcutsViewer.qml" line="41"/>
+        <location filename="../ShortcutsViewer.qml" line="45"/>
+        <location filename="../ShortcutsViewer.qml" line="49"/>
+        <location filename="../ShortcutsViewer.qml" line="53"/>
+        <location filename="../ShortcutsViewer.qml" line="57"/>
+        <location filename="../ShortcutsViewer.qml" line="61"/>
+        <location filename="../ShortcutsViewer.qml" line="70"/>
+        <location filename="../ShortcutsViewer.qml" line="74"/>
+        <location filename="../ShortcutsViewer.qml" line="78"/>
+        <location filename="../ShortcutsViewer.qml" line="91"/>
+        <location filename="../ShortcutsViewer.qml" line="95"/>
+        <location filename="../ShortcutsViewer.qml" line="99"/>
+        <location filename="../ShortcutsViewer.qml" line="103"/>
+        <location filename="../ShortcutsViewer.qml" line="107"/>
+        <location filename="../ShortcutsViewer.qml" line="111"/>
+        <location filename="../ShortcutsViewer.qml" line="120"/>
+        <location filename="../ShortcutsViewer.qml" line="125"/>
+        <location filename="../ShortcutsViewer.qml" line="130"/>
+        <location filename="../ShortcutsViewer.qml" line="140"/>
+        <location filename="../ShortcutsViewer.qml" line="144"/>
+        <location filename="../ShortcutsViewer.qml" line="148"/>
+        <location filename="../ShortcutsViewer.qml" line="152"/>
+        <source>Disabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ShortcutsViewer.qml" line="36"/>
+        <source>Forward</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ShortcutsViewer.qml" line="40"/>
+        <source>Rewind</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ShortcutsViewer.qml" line="44"/>
+        <location filename="../ShortcutsViewer.qml" line="125"/>
+        <source>Fullscreen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ShortcutsViewer.qml" line="48"/>
+        <source>Playlist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ShortcutsViewer.qml" line="52"/>
+        <source>Accelerate playback</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ShortcutsViewer.qml" line="56"/>
+        <source>Decelerate playback</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ShortcutsViewer.qml" line="60"/>
+        <source>Restore playback speed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ShortcutsViewer.qml" line="66"/>
+        <source>Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ShortcutsViewer.qml" line="69"/>
+        <source>Open a file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ShortcutsViewer.qml" line="73"/>
+        <source>Open previous</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ShortcutsViewer.qml" line="77"/>
+        <source>Open next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ShortcutsViewer.qml" line="87"/>
+        <source>Frame/Sound</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ShortcutsViewer.qml" line="90"/>
+        <source>Mini mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ShortcutsViewer.qml" line="94"/>
+        <source>Rotate counterclockwise</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ShortcutsViewer.qml" line="98"/>
+        <source>Rotate clockwise</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ShortcutsViewer.qml" line="102"/>
+        <source>Volume up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ShortcutsViewer.qml" line="106"/>
+        <source>Volume down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ShortcutsViewer.qml" line="110"/>
+        <source>Mute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ShortcutsViewer.qml" line="116"/>
+        <source>Other</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ShortcutsViewer.qml" line="119"/>
+        <source>Left click</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ShortcutsViewer.qml" line="124"/>
+        <source>Double click</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ShortcutsViewer.qml" line="129"/>
+        <source>Scroll</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ShortcutsViewer.qml" line="130"/>
+        <source>Volume</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ShortcutsViewer.qml" line="136"/>
+        <source>Subtitles</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ShortcutsViewer.qml" line="139"/>
+        <source>Forward 0.5s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ShortcutsViewer.qml" line="143"/>
+        <source>Delay 0.5s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ShortcutsViewer.qml" line="147"/>
+        <source>Subtitle up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ShortcutsViewer.qml" line="151"/>
+        <source>Subtitle down</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>TitleBar</name>
     <message>
         <location filename="../TitleBar.qml" line="165"/>
@@ -683,7 +866,22 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../main.qml" line="387"/>
+        <location filename="../main.qml" line="136"/>
+        <source>Please input the url of play file:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main.qml" line="137"/>
+        <source>Confirm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main.qml" line="138"/>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main.qml" line="436"/>
         <source>Deepin Movie</source>
         <translation type="unfinished"></translation>
     </message>

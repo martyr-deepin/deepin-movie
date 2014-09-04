@@ -5,6 +5,11 @@ mode = developer
 
 [deepin-movie.deepin-movie-20140619]
 file_filter = locale/<lang>.po
+source_file = locale/deepin-movie.pot
 source_lang = en
 type = PO
 
+[deepin-movie.desktop]
+source_file = deepin-movie.desktop
+source_lang = en
+type = DESKTOP
