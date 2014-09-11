@@ -243,6 +243,11 @@ Rectangle {
         hide_controls_timer.stop()
     }
 
+    function hideTransientWindows() {
+        shortcuts_viewer.hide()
+        resize_visual.hide()
+    }
+
     function subtitleVisible() {
         return player.subtitleShow
     }
@@ -573,6 +578,16 @@ Rectangle {
             delay_seek_timer.destPos = movieInfo.movie_duration * percentage
             delay_seek_timer.restart()
         }
+    }
+
+    ResizeVisual {
+        id: resize_visual
+
+        frameY: windowView.y
+        frameX: windowView.x
+        frameWidth: root.width
+        frameHeight: root.height
+        widthHeightScale: root.widthHeightScale
     }
 
     Component.onCompleted: showControls()

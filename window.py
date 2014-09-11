@@ -171,6 +171,10 @@ class Window(QQuickView):
         self.rootObject().setSubtitleVisible(visible)
         self.subtitleVisibleChanged.emit()
 
+    @pyqtSlot("QVariant")
+    def focusWindowChangedSlot(self, win):
+        if not win: self.rootObject().hideTransientWindows()
+
     @pyqtSlot()
     def screenShot(self):
         self.rootObject().hideControls()

@@ -46,6 +46,7 @@ if os.name == 'posix':
 from PyQt5.QtCore import pyqtSlot, QObject
 from PyQt5.QtWidgets import QApplication
 app = QApplication(sys.argv)
+app.setQuitOnLastWindowClosed(True)
 
 from window import Window
 from database import database
@@ -126,7 +127,7 @@ if __name__ == "__main__":
 
     windowView.windowStateChanged.connect(windowView.rootObject().monitorWindowState)
     app.lastWindowClosed.connect(windowView.rootObject().monitorWindowClose)
-    app.setQuitOnLastWindowClosed(True)
+    app.focusWindowChanged.connect(windowView.focusWindowChangedSlot)
 
     signal.signal(signal.SIGINT, signal.SIG_DFL)
     sys.exit(app.exec_())

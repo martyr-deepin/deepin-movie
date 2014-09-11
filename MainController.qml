@@ -626,16 +626,6 @@ MouseArea {
         doDoubleClick()
     }
 
-    ResizeVisual {
-        id: resize_visual
-
-        frameY: windowView.y
-        frameX: windowView.x
-        frameWidth: window.width
-        frameHeight: window.height
-        widthHeightScale: root.widthHeightScale
-    }
-
     DropArea {
         anchors.fill: parent
 
