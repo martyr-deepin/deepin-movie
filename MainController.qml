@@ -164,9 +164,10 @@ MouseArea {
     function _setSizeForRootWindowWithWidth(destWidth) {
         var widthHeightScale = root.widthHeightScale
         var destHeight = (destWidth - program_constants.windowGlowRadius * 2) / widthHeightScale + program_constants.windowGlowRadius * 2
-        if (destHeight > primaryRect.height) {
-            windowView.setWidth((primaryRect.height - 2 * program_constants.windowGlowRadius) * widthHeightScale + 2 * program_constants.windowGlowRadius)
-            windowView.setHeight(primaryRect.height)
+        var screenHeight = primaryRect.height - 100
+        if (destHeight > screenHeight) {
+            windowView.setWidth((screenHeight - 2 * program_constants.windowGlowRadius) * widthHeightScale + 2 * program_constants.windowGlowRadius)
+            windowView.setHeight(screenHeight)
         } else {
             windowView.setWidth(destWidth)
             windowView.setHeight(destHeight)
