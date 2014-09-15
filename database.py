@@ -32,8 +32,10 @@ class Database(QObject):
     localPlaylistChanged = pyqtSignal(str)
     lastPlayedFileChanged = pyqtSignal(str)
     lastOpenedPathChanged = pyqtSignal(str)
+    lastOpenedPlaylistPathChanged = pyqtSignal(str)
     lastWindowWidthChanged = pyqtSignal(int)
 
+    clearPlaylistItems = pyqtSignal()
     importItemFound = pyqtSignal(str, str, str, str,
         arguments=["categroyName", "itemName", "itemSource", "itemPlayed"])
 
@@ -122,6 +124,17 @@ class Database(QObject):
         self.setValue("last_opened_path", value)
         self.lastOpenedPathChanged.emit(value)
 
+    @pyqtProperty(str,notify=lastOpenedPlaylistPathChanged)
+    def lastOpenedPlaylistPath(self):
+        return self.getValue("last_opened_playlist_path") or ""
+
+    @lastOpenedPlaylistPath.setter
+    def lastOpenedPlaylistPath(self, value):
+        value = value[7:] if value.startswith("file://") else value
+        value = os.path.dirname(value) if os.path.isfile(value) else value
+        self.setValue("last_opened_playlist_path", value)
+        self.lastOpenedPlaylistPathChanged.emit(value)
+
     @pyqtProperty(int,notify=lastWindowWidthChanged)
     def lastWindowWidth(self):
         return int(self.getValue("last_window_width") or 0)
@@ -157,14 +170,14 @@ class Database(QObject):
 
     @pyqtSlot(str)
     def importPlaylist(self, filename):
+        self.clearPlaylistItems.emit()
+
         playlist = DMPlaylist.readFrom(filename)
         for category in playlist.getAllCategories():
             for item in category.getAllItems():
-                print category.name, "       ", item.name
                 self.importItemFound.emit(category.name, item.name,
                     item.source, item.played)
         for item in playlist.getAllItems():
-            print item.name
             self.importItemFound.emit(None, item.name, item.source, item.played)
 
 

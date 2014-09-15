@@ -74,6 +74,6 @@ Connections {
     onPlaylistClear: playlist.clear()
     onPlaylistShowClickedItemInFM: playlist.showClickedItemInFM()
     onPlaylistInformation: movieInfo.getMovieInfo(playlist.clickedOnItemUrl)
-    onPlaylistExport: open_new_file_dialog.open()
-    onPlaylistImport: { open_file_dialog.purpose = purposes.importPlaylist; open_file_dialog.open() }
+    onPlaylistExport: main_controller.exportPlaylist()
+    onPlaylistImport: main_controller.importPlaylist()
 }

@@ -90,6 +90,18 @@ def sortSeries(serieName, series):
     epi_name_tuples = [(getEpisode(serieName, serie), serie) for serie in series]
     return [ x[1] for x in sorted(epi_name_tuples, key=lambda x: x[0])]
 
+def getFileMimeType(filename):
+    f = None
+    try:
+        f = gio.File(filename)
+    except Exception:
+        try:
+            f = gio.File(filename.encode("utf-8"))
+        except Exception:
+            return None
+    info = f.query_info("standard::content-type") if f else None
+    return info.get_content_type() if info else None
+
 class FindVideoThread(QThread):
     videoFound = pyqtSignal(str, arguments=["path",])
     findVideoDone = pyqtSignal(str, arguments=["path",])
@@ -198,24 +210,21 @@ class Utils(QObject):
         clipboard.setText(text, mode=clipboard.Clipboard)
 
     @pyqtSlot(str,result=bool)
+    def fileIsPlaylist(self, file_path):
+        mime_type = getFileMimeType(file_path)
+        return file_path.endswith(".dmpl") and mime_type == "application/xml"
+
+    @pyqtSlot(str,result=bool)
     def fileIsSubtitle(self, file_path):
         return get_file_type(file_path) in (FILE_TYPE_ASS, FILE_TYPE_SRT)
 
     @pyqtSlot(str,result=bool)
     def fileIsValidVideo(self, file_path):
-        file_path = file_path[7:] if file_path.startswith("file://") \
-                                    else file_path
-        if os.path.exists(file_path):
-            try:
-                f = gio.File(file_path)
-            except Exception:
-                try:
-                    f = gio.File(file_path.encode("utf-8"))
-                except Exception:
-                    return False
-            info = f.query_info("standard::content-type")
-            return info.get_content_type().startswith("video") \
-                    or info.get_content_type() in all_supported_mime_types
+        if file_path.startswith("file://"):
+            file_path = file_path[7:]
+        mime_type = getFileMimeType(file_path)
+        if os.path.exists(file_path) and mime_type:
+            return mime_type in all_supported_mime_types
         else: return False
 
     @pyqtSlot(str)

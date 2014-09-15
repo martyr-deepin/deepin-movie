@@ -65,56 +65,46 @@ Rectangle {
         screenSize: primaryRect
     }
 
-    QtObject {
-        id: purposes
-        property string openVideoFile: "open_video_file"
-        property string openSubtitleFile: "open_subtitle_file"
-        property string addPlayListItem: "add_playlist_item"
-        property string importPlaylist: "export_playlist"
-    }
-
     OpenFileDialog {
         id: open_file_dialog
-        folder: database.lastOpenedPath || _utils.homeDir
-
-        property string purpose: purposes.openVideoFile
 
         onAccepted: {
             if (fileUrls.length > 0) {
-                database.lastOpenedPath = fileUrls[0] // record last opened path
+                if (state == "open_video_file") {
+                    database.lastOpenedPath = folder
 
-                if (purpose == purposes.openVideoFile) {
                     for (var i = 0; i < fileUrls.length; i++) {
                         var fileUrl = fileUrls[i] + ""
                         main_controller.addPlayListItem(fileUrl.substring(7))
                     }
                     movieInfo.movie_file = fileUrls[0]
-                } else if (purpose == purposes.openSubtitleFile) {
+                } else if (state == "open_subtitle_file") {
+                    database.lastOpenedPath = folder
+
                     movieInfo.subtitle_file = fileUrls[0]
-                } else if (purpose == purposes.addPlayListItem) {
+                } else if (state == "add_playlist_item") {
+                    database.lastOpenedPath = folder
+
                     for (var i = 0; i < fileUrls.length; i++) {
                         var fileUrl = fileUrls[i] + ""
                         if (_utils.fileIsValidVideo(fileUrl)) {
                             main_controller.addPlayListItem(fileUrl.substring(7))
                         }
                     }
-                } else if (purpose == purposes.importPlaylist) {
+                } else if (state == "import_playlist") {
+                    database.lastOpenedPlaylistPath = folder
+
                     var filename = fileUrls[0].toString().replace("file://", "")
-                    database.importPlaylist(filename)
+                    main_controller.importPlaylistImpl(filename)
+                } else if (state == "export_playlist") {
+                    database.lastOpenedPlaylistPath = folder
+
+                    var filename = fileUrls[0].toString().replace("file://", "")
+                    if (filename.toString().search(".dmpl") == -1) {
+                        filename = filename + ".dmpl"
+                    }
+                    main_controller.exportPlaylistImpl(filename)
                 }
-            }
-        }
-    }
-
-    OpenFileDialog {
-        id: open_new_file_dialog
-        folder: database.lastOpenedPath || _utils.homeDir
-        selectExisting: false
-
-        onAccepted: {
-            if (fileUrl) {
-                var filename = fileUrl.toString().replace("file://", "")
-                database.exportPlaylist(filename)
             }
         }
     }
@@ -126,7 +116,7 @@ Rectangle {
 
         onAccepted: {
             var folderPath = fileUrl
-            database.lastOpenedPath = folderPath // record last opened path
+            database.lastOpenedPath = folder // record last opened path
             _utils.getAllVideoFilesInDirRecursively(folderPath)
         }
     }

@@ -107,6 +107,8 @@ MouseArea {
             playlist.addItem(urlToPlaylistItem(categroyName, itemSource))
             database.record_video_position(itemSource, itemPlayed)
         }
+
+        onClearPlaylistItems: { playlist.clear() }
     }
 
     Timer {
@@ -461,13 +463,13 @@ MouseArea {
         setMute(!player.muted)
     }
 
-    function openFile() { open_file_dialog.purpose = purposes.openVideoFile; open_file_dialog.open() }
+    function openFile() { open_file_dialog.state = "open_video_file"; open_file_dialog.open() }
     function openDir() { shouldPlayThefirst = true; open_folder_dialog.open() }
     function openUrl() { open_url_dialog.open() }
     function openDirForPlaylist() { shouldPlayThefirst = false; open_folder_dialog.open() }
     function findVideoInDirRecursively(dir) { _utils.getAllVideoFilesInDirRecursively(dir) }
-    function openFileForPlaylist() { open_file_dialog.purpose = purposes.addPlayListItem; open_file_dialog.open() }
-    function openFileForSubtitle() { open_file_dialog.purpose = purposes.openSubtitleFile; open_file_dialog.open() }
+    function openFileForPlaylist() { open_file_dialog.state = "add_playlist_item"; open_file_dialog.open() }
+    function openFileForSubtitle() { open_file_dialog.state = "open_subtitle_file"; open_file_dialog.open() }
 
     function playNextOf(file) {
         var next = null
@@ -507,6 +509,20 @@ MouseArea {
 
     function playNext() { playNextOf(database.lastPlayedFile) }
     function playPrevious() { playPreviousOf(database.lastPlayedFile) }
+
+    function importPlaylist() { open_file_dialog.state = "import_playlist"; open_file_dialog.open() }
+    function exportPlaylist() { open_file_dialog.state = "export_playlist"; open_file_dialog.open() }
+    function importPlaylistImpl(filename) {
+        if(_utils.fileIsPlaylist(filename)) {
+            database.importPlaylist(filename)
+        } else {
+            notifybar.show(dsTr("Invalid file") + ": " + filename)
+        }
+    }
+
+    function exportPlaylistImpl(filename) {
+        database.exportPlaylist(filename)
+    }
 
     function setSubtitleVerticalPosition(percentage) {
         config.subtitleVerticalPosition = Math.max(0, Math.min(1, percentage))
@@ -655,6 +671,8 @@ MouseArea {
                             movieInfo.subtitle_file = file_path
                         }
                         showControls()
+                    } else {
+                        main_controller.importPlaylistImpl(file_path)
                     }
                 }
             }
