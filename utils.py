@@ -143,6 +143,10 @@ class Utils(QObject):
     def pathIsDir(self, path):
         return os.path.isdir(path)
 
+    @pyqtSlot(str, result=bool)
+    def urlIsNativeFile(self, url):
+        return os.path.exists(url.replace("file://", ""))
+
     @pyqtSlot(str, result="QVariant")
     def getAllFilesInDir(self, dir):
         dir = dir[7:] if dir.startswith("file://") else dir

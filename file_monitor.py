@@ -24,9 +24,11 @@ import os
 import time
 from PyQt5.QtCore import QFileSystemWatcher, pyqtSignal, pyqtSlot
 
+from utils import utils
+
 def longest_path_exist_matches_path(path):
 	if os.path.exists(path) or path == "/":
-		return path 
+		return path
 	else:
 		return longest_path_exist_matches_path(os.path.dirname(path))
 
@@ -50,9 +52,12 @@ class FileMonitor(QFileSystemWatcher):
 
 	@pyqtSlot(str, result=bool)
 	def addFile(self, file):
-		file = file[7:] if file.startswith("file://") else file
-		self._monitored_files.append(file)
-		if file: self.addPath(longest_path_exist_matches_path(
-			os.path.dirname(file)))
+		if (utils.urlIsNativeFile(file)):
+			file = file[7:] if file.startswith("file://") else file
+			self._monitored_files.append(file)
+			if file: self.addPath(longest_path_exist_matches_path(
+				os.path.dirname(file)))
 
-		return os.path.exists(file)
+			return os.path.exists(file)
+		else:
+			return True

@@ -57,6 +57,7 @@ from utils import utils
 from constant import MAIN_QML
 from menu_controller import MenuController
 from file_monitor import FileMonitor
+from utils import utils
 
 class PageManager(QObject):
 
@@ -88,7 +89,11 @@ class PageManager(QObject):
         self.movie_search_page.hide()
 
 if __name__ == "__main__":
-    movie_file = os.path.realpath(sys.argv[1]) if len(sys.argv) >= 2 else ""
+    if len(sys.argv) >= 2:
+        movie_file = os.path.realpath(sys.argv[1])
+        movie_file = movie_file if utils.urlIsNativeFile(movie_file) else sys.argv[1]
+    else:
+        movie_file = ""
 
     from dbus_services import (DeepinMovieServie, check_multiple_instances,
         DeepinMovieInterface, session_bus, DBUS_PATH)

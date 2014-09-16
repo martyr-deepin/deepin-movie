@@ -12,7 +12,7 @@ Item {
         txt.text = text
         hide_notify_timer.stop()
     }
-    
+
     function show(text) {
         showPermanently(text)
         hide_notify_timer.restart()
@@ -32,7 +32,7 @@ Item {
             width: parent.width - glow.radius * 2
             font.pixelSize: 16
             color: "#4fbbff"
-            wrapMode: Text.WordWrap
+            wrapMode: Text.Wrap
             style: Text.Outline
             styleColor: Qt.rgba(0, 0, 0, 0.2)
 
@@ -49,11 +49,11 @@ Item {
         color: "black"
         source: background
     }
-    
+
     Timer {
         id: hide_notify_timer
         interval: 2000
         repeat: false
         onTriggered: { notify.visible = false }
-    }   
+    }
 }

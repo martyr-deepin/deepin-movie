@@ -134,7 +134,11 @@ Rectangle {
         }
 
         onConfirmed: {
-            player.source = input
+            if (input.search("://") == -1) {
+                notifybar.show(dsTr("Invalid URL") + ": " + input)
+            } else {
+                movieInfo.movie_file = input
+            }
         }
     }
 
@@ -412,6 +416,7 @@ Rectangle {
         property int lastPosition: 0
 
         // onSourceChanged doesn't ensures that the file is playable, this one did.
+        // 2014/9/16 add: not ensures url playable, either X0
         onPlaying: {
             notifybar.hide()
             auto_play_next_on_invalid_timer.stop()
@@ -424,7 +429,11 @@ Rectangle {
             if (config.playerFullscreenOnOpenFile) main_controller.fullscreen()
 
             if (config.playerCleanPlaylistOnOpenNewFile) playlist.clear()
-            main_controller.addPlayListItem(source.toString().substring(7))
+            if (_utils.urlIsNativeFile(source)) {
+                main_controller.addPlayListItem(source.toString().substring(7))
+            } else {
+                main_controller.addPlaylistStreamItem(source)
+            }
         }
 
         onStopped: {
@@ -455,6 +464,13 @@ Rectangle {
             var rotateClockwiseCount = Math.abs(Math.round((rotation % 360 - 360) % 360 / 90))
             for (var i = 0; i < rotateClockwiseCount; i++) {
                 main_controller.rotateClockwise()
+            }
+        }
+
+        onErrorChanged: {
+            main_controller.setWindowTitle("")
+            if (error == MediaPlayer.NetworkError) {
+                notifybar.show(dsTr("Invalid URL") + ": " + source)
             }
         }
     }
@@ -539,7 +555,7 @@ Rectangle {
         widthHeightScale: root.widthHeightScale
         previewHasVideo: player.hasVideo
         dragbarVisible: root.state == "normal"
-        timeInfoVisible: player.hasMedia && player.source != ""
+        timeInfoVisible: player.source != "" && player.hasMedia && movieInfo.movie_duration != 0
         tooltipItem: tooltip
 
         anchors.horizontalCenter: main_window.horizontalCenter
@@ -570,6 +586,7 @@ Rectangle {
         }
     }
 
+    ResizeEdge { id: resize_edge }
     ResizeVisual {
         id: resize_visual
 

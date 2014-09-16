@@ -6,8 +6,8 @@ import Deepin.Widgets 1.0
 DragableArea {
     id: control_bar
     // make sure the 15 pixels upon the controlbar hasn't the ability to play or pause the video
-    height: program_constants.controlbarHeight + 15 
-    
+    height: program_constants.controlbarHeight + 15
+
     property alias timeInfoVisible: playTime.visible
     property alias volume: volume_button.volume
     property alias percentage: progressbar.percentage
@@ -131,8 +131,8 @@ DragableArea {
 
         Item {
             id: buttonArea
-            state: width < program_constants.simplifiedModeTriggerWidth ? "minimal" 
-                                                                        : width < program_constants.transitionModeTriggerWidth ? "transition" 
+            state: width < program_constants.simplifiedModeTriggerWidth ? "minimal"
+                                                                        : width < program_constants.transitionModeTriggerWidth ? "transition"
                                                                                                                             : "normal"
             anchors.left: parent.left
             anchors.right: parent.right
@@ -316,10 +316,10 @@ DragableArea {
                     tooltip: checkFlag ? dsTr("Exit fullscreen") : dsTr("Fullscreen")
                     tooltipItem: control_bar.tooltipItem
 
-                    normal_image: checkFlag ? "image/cancel_fullscreen_normal.svg" 
+                    normal_image: checkFlag ? "image/cancel_fullscreen_normal.svg"
                                             : "image/fullscreen_normal.svg"
-                    hover_image: checkFlag ? "image/cancel_fullscreen_hover_press.svg" 
-                                            : "image/fullscreen_hover_press.svg" 
+                    hover_image: checkFlag ? "image/cancel_fullscreen_hover_press.svg"
+                                            : "image/fullscreen_hover_press.svg"
                     press_image: checkFlag ? "image/cancel_fullscreen_hover_press.svg"
                                             : "image/fullscreen_hover_press.svg"
 
@@ -344,7 +344,7 @@ DragableArea {
                 ImageButton {
                     tooltip: dsTr("Playlist")
                     tooltipItem: control_bar.tooltipItem
-                    
+
                     normal_image: "image/playlist_open_normal.svg"
                     hover_image: "image/playlist_open_hover_press.svg"
                     press_image: "image/playlist_open_hover_press.svg"

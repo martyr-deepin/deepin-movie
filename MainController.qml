@@ -22,7 +22,6 @@ MouseArea {
 
     property int movieDuration: movieInfo.movie_duration
 
-    ResizeEdge { id: resize_edge }
     MenuResponder { id: menu_responder }
     KeysResponder { id: keys_responder }
 
@@ -267,6 +266,10 @@ MouseArea {
         } else {
             playlist.addItem(urlToPlaylistItem("", url))
         }
+    }
+
+    function addPlaylistStreamItem(url) {
+        playlist.addItem([[url.toString(), url.toString()]])
     }
 
     function close() {
