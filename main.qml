@@ -127,6 +127,8 @@ Rectangle {
         confirmButtonLabel: dsTr("Confirm")
         cancelButtonLabel: dsTr("Cancel")
 
+        cursorPosGetter: windowView
+
         function open() {
             x = windowView.x + (windowView.width - width) / 2
             y = windowView.y + (windowView.height - height) / 2
