@@ -1,13 +1,14 @@
 import QtQuick 2.1
-import QtQuick.Dialogs 1.0
+import Deepin.Widgets 1.0
 
-FileDialog {
+DFileDialog {
 	title: dsTr("Please choose one file or more")
 	folder: database.lastOpenedPath || _utils.homeDir
 	nameFilters: [ videoFilter, "(*)"]
 	selectMultiple: true
 	selectExisting: true
     selectFolder: false
+    saveMode: false
 
     property string videoFilter: "(*.3g2 *.3gp *.3gp2 *.3gpp *.amv
                     *.asf *.avi *.bin *.divx *.drc
@@ -30,6 +31,8 @@ FileDialog {
 			nameFilters = [ videoFilter, "(*)"]
 			selectMultiple = true
 			selectExisting = true
+			defaultFileName = " "
+			saveMode = false
 			break
 
 			case "open_subtitle_file":
@@ -38,6 +41,8 @@ FileDialog {
 			nameFilters = [ "(*.srt, *.ass, *.ssa)", "(*)"]
 			selectMultiple = false
 			selectExisting = true
+			defaultFileName = " "
+			saveMode = false
 			break
 
 			case "add_playlist_item":
@@ -46,6 +51,8 @@ FileDialog {
 			nameFilters = [ videoFilter, "(*)" ]
 			selectMultiple = true
 			selectExisting = true
+			defaultFileName = " "
+			saveMode = false
 			break
 
 			case "import_playlist":
@@ -54,6 +61,8 @@ FileDialog {
 			nameFilters = [ "(*.dmpl)", "(*)" ]
 			selectMultiple = false
 			selectExisting = true
+ 			defaultFileName = " "
+			saveMode = false
 			break
 
 			case "export_playlist":
@@ -62,6 +71,8 @@ FileDialog {
 			nameFilters = [ "(*.dmpl)", "(*)" ]
 			selectMultiple = true
 			selectExisting = false
+			defaultFileName = "deepin-movie.dmpl"
+			saveMode = true
 		}
 	}
 }

@@ -89,7 +89,7 @@ class MovieInfo(QObject):
         self.movie_file = filepath
 
     def parseFile(self, filepath):
-        filepath.replace("file://", "")
+        filepath = filepath.replace("file://", "")
         if os.path.exists(filepath):
             self.media_info = parse_info(filepath)
         else:
