@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-21 17:16+0800\n"
-"PO-Revision-Date: 2014-08-22 05:29+0000\n"
-"Last-Translator: szd_liufei <liufei@linuxdeepin.com>\n"
+"POT-Creation-Date: 2014-09-04 17:25+0800\n"
+"PO-Revision-Date: 2014-09-11 06:01+0000\n"
+"Last-Translator: snyh <snyh@snyh.org>\n"
 "Language-Team: Amharic (http://www.transifex.com/projects/p/deepin-movie/language/am/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "About"
 msgstr "ስለ"
 
-#: ../AboutSection.qml:11 ../main.qml:387 ../window.py:67
+#: ../AboutSection.qml:11 ../main.qml:436 ../window.py:68
 msgid "Deepin Movie"
 msgstr "ሙቪ"
 
@@ -60,21 +60,24 @@ msgstr "ማጫወቻ"
 msgid "Next"
 msgstr "ይቀጥሉ"
 
-#: ../ControlBar.qml:316 ../menu_controller.py:364
+#: ../ControlBar.qml:316 ../menu_controller.py:374
 msgid "Exit fullscreen"
 msgstr "ከ ሙሉ መመልከቻው ዘዴ መውጫ"
 
 #: ../ControlBar.qml:316 ../PreferenceWindow.qml:328
-#: ../PreferenceWindow.qml:779 ../menu_controller.py:93
-#: ../menu_controller.py:363
+#: ../PreferenceWindow.qml:779 ../ShortcutsViewer.qml:44
+#: ../ShortcutsViewer.qml:125 ../menu_controller.py:93
+#: ../menu_controller.py:373
 msgid "Fullscreen"
 msgstr "በሙሉ መመልከቻ ዘዴ"
 
-#: ../ControlBar.qml:333 ../PreferenceWindow.qml:593 ../menu_controller.py:89
+#: ../ControlBar.qml:333 ../PreferenceWindow.qml:593 ../ShortcutsViewer.qml:69
+#: ../menu_controller.py:89
 msgid "Open a file"
 msgstr ""
 
-#: ../ControlBar.qml:345 ../PreferenceWindow.qml:349 ../menu_controller.py:96
+#: ../ControlBar.qml:345 ../PreferenceWindow.qml:349 ../ShortcutsViewer.qml:48
+#: ../menu_controller.py:96
 msgid "Playlist"
 msgstr "የማጫወቻ ዝርዝር"
 
@@ -90,7 +93,19 @@ msgstr "የማጫወቻ ዝርዝር"
 #: ../PreferenceWindow.qml:674 ../PreferenceWindow.qml:695
 #: ../PreferenceWindow.qml:716 ../PreferenceWindow.qml:737
 #: ../PreferenceWindow.qml:771 ../PreferenceWindow.qml:779
-#: ../PreferenceWindow.qml:787
+#: ../PreferenceWindow.qml:787 ../ShortcutsViewer.qml:33
+#: ../ShortcutsViewer.qml:37 ../ShortcutsViewer.qml:41
+#: ../ShortcutsViewer.qml:45 ../ShortcutsViewer.qml:49
+#: ../ShortcutsViewer.qml:53 ../ShortcutsViewer.qml:57
+#: ../ShortcutsViewer.qml:61 ../ShortcutsViewer.qml:70
+#: ../ShortcutsViewer.qml:74 ../ShortcutsViewer.qml:78
+#: ../ShortcutsViewer.qml:91 ../ShortcutsViewer.qml:95
+#: ../ShortcutsViewer.qml:99 ../ShortcutsViewer.qml:103
+#: ../ShortcutsViewer.qml:107 ../ShortcutsViewer.qml:111
+#: ../ShortcutsViewer.qml:120 ../ShortcutsViewer.qml:125
+#: ../ShortcutsViewer.qml:130 ../ShortcutsViewer.qml:140
+#: ../ShortcutsViewer.qml:144 ../ShortcutsViewer.qml:148
+#: ../ShortcutsViewer.qml:152
 msgid "Disabled"
 msgstr "ተሰናክሏል"
 
@@ -111,7 +126,7 @@ msgstr ""
 msgid "Do you want to replace it?"
 msgstr "መቀየር ይፈልጋሉ?"
 
-#: ../HotKeyInputRow.qml:95
+#: ../HotKeyInputRow.qml:95 ../main.qml:138
 msgid "Cancel"
 msgstr "መሰረዣ"
 
@@ -143,7 +158,7 @@ msgstr "የፋይል መንገድ"
 msgid "Copy to clipboard"
 msgstr "ወደ ቁራጭ ሰሌዳ ኮፒ ማድረጊያ"
 
-#: ../InformationWindow.qml:137
+#: ../InformationWindow.qml:137 ../main.qml:137
 msgid "Confirm"
 msgstr "ማረጋገጫ"
 
@@ -151,35 +166,35 @@ msgstr "ማረጋገጫ"
 msgid "Invalid file"
 msgstr "ዋጋ የሌለው ፋይል"
 
-#: ../MainController.qml:384
+#: ../MainController.qml:393
 msgid "Play last movie played"
 msgstr "መጨረሻ የተጫወተውን ሙቪ ማጫወቻ"
 
-#: ../MainController.qml:396 ../PreferenceWindow.qml:286
-#: ../menu_controller.py:84
+#: ../MainController.qml:405 ../PreferenceWindow.qml:286
+#: ../ShortcutsViewer.qml:36 ../menu_controller.py:84
 msgid "Forward"
 msgstr "ወደ ፊት"
 
-#: ../MainController.qml:404 ../PreferenceWindow.qml:307
-#: ../menu_controller.py:85
+#: ../MainController.qml:413 ../PreferenceWindow.qml:307
+#: ../ShortcutsViewer.qml:40 ../menu_controller.py:85
 msgid "Rewind"
 msgstr "ወደ ኋላ ማጠንጠኛ"
 
-#: ../MainController.qml:412 ../MainController.qml:418
+#: ../MainController.qml:421 ../MainController.qml:427
 #, qt-format
 msgid "(Press %1 to restore)"
 msgstr "(ይጫኑ %1 እንደ ነበር ለመመለስ)"
 
-#: ../MainController.qml:414 ../MainController.qml:420
-#: ../MainController.qml:425
+#: ../MainController.qml:423 ../MainController.qml:429
+#: ../MainController.qml:434
 msgid "Playback rate: "
 msgstr "በድጋሚ ማጫወቻ መጠን: "
 
-#: ../MainController.qml:437 ../MainController.qml:446
+#: ../MainController.qml:446 ../MainController.qml:455
 msgid "Volume: "
 msgstr "መጠን:"
 
-#: ../MainController.qml:444 ../menu_controller.py:59
+#: ../MainController.qml:453 ../menu_controller.py:59
 msgid "Muted"
 msgstr "መቀነሻ"
 
@@ -195,11 +210,11 @@ msgstr ""
 msgid "Play mode"
 msgstr ""
 
-#: ../Playlist.qml:250 ../menu_controller.py:110 ../menu_controller.py:124
+#: ../Playlist.qml:250 ../menu_controller.py:110 ../menu_controller.py:126
 msgid "Add file"
 msgstr ""
 
-#: ../Playlist.qml:258 ../menu_controller.py:115
+#: ../Playlist.qml:258 ../menu_controller.py:117
 msgid "Clear playlist"
 msgstr "ዝርዝር ማጫወቻ ማጽጃ"
 
@@ -229,63 +244,64 @@ msgid "Enable keyboard shortcuts"
 msgstr "የፊደል ገበታ አቋራጮች ማስቻያ"
 
 #: ../PreferenceWindow.qml:265 ../PreferenceWindow.qml:771
+#: ../ShortcutsViewer.qml:32 ../ShortcutsViewer.qml:120
 msgid "Pause/Play"
 msgstr "ማጫወቻ/ማስቆሚያ"
 
-#: ../PreferenceWindow.qml:370
+#: ../PreferenceWindow.qml:370 ../ShortcutsViewer.qml:52
 msgid "Accelerate playback"
 msgstr ""
 
-#: ../PreferenceWindow.qml:391
+#: ../PreferenceWindow.qml:391 ../ShortcutsViewer.qml:56
 msgid "Decelerate playback"
 msgstr ""
 
-#: ../PreferenceWindow.qml:412
+#: ../PreferenceWindow.qml:412 ../ShortcutsViewer.qml:60
 msgid "Restore playback speed"
 msgstr ""
 
-#: ../PreferenceWindow.qml:450 ../menu_controller.py:94
-#: ../menu_controller.py:366
+#: ../PreferenceWindow.qml:450 ../ShortcutsViewer.qml:90
+#: ../menu_controller.py:94 ../menu_controller.py:376
 msgid "Mini mode"
 msgstr "በትንሽ ዘዴ"
 
-#: ../PreferenceWindow.qml:513
+#: ../PreferenceWindow.qml:513 ../ShortcutsViewer.qml:102
 msgid "Volume up"
 msgstr "መጠን መጨመሪያ"
 
-#: ../PreferenceWindow.qml:534
+#: ../PreferenceWindow.qml:534 ../ShortcutsViewer.qml:106
 msgid "Volume down"
 msgstr "መጠን መቀነሻ"
 
-#: ../PreferenceWindow.qml:614
+#: ../PreferenceWindow.qml:614 ../ShortcutsViewer.qml:73
 msgid "Open previous"
 msgstr "ቀደም ያለውን መክፈቻ"
 
-#: ../PreferenceWindow.qml:635
+#: ../PreferenceWindow.qml:635 ../ShortcutsViewer.qml:77
 msgid "Open next"
 msgstr "የሚቀጥለውን መክፈቻ"
 
-#: ../PreferenceWindow.qml:673
+#: ../PreferenceWindow.qml:673 ../ShortcutsViewer.qml:139
 msgid "Forward 0.5s"
 msgstr "ወደ ፊት 0.5s"
 
-#: ../PreferenceWindow.qml:694
+#: ../PreferenceWindow.qml:694 ../ShortcutsViewer.qml:143
 msgid "Delay 0.5s"
 msgstr "ማዘግያ 0.5s"
 
-#: ../PreferenceWindow.qml:715
+#: ../PreferenceWindow.qml:715 ../ShortcutsViewer.qml:147
 msgid "Subtitle up"
 msgstr "ንዑስ አርእስት ከ ላይ"
 
-#: ../PreferenceWindow.qml:736
+#: ../PreferenceWindow.qml:736 ../ShortcutsViewer.qml:151
 msgid "Subtitle down"
 msgstr "ንዑስ አርእስት ከ ታች"
 
-#: ../PreferenceWindow.qml:768
+#: ../PreferenceWindow.qml:768 ../ShortcutsViewer.qml:119
 msgid "Left click"
 msgstr "የ ግራ መጫኛ"
 
-#: ../PreferenceWindow.qml:776
+#: ../PreferenceWindow.qml:776 ../ShortcutsViewer.qml:124
 msgid "Double click"
 msgstr "ሁለት ጊዜ መጫኛ"
 
@@ -299,23 +315,27 @@ msgstr "የ ድንበር ስፋት"
 
 #: ../PreferenceWindow.qml:55 ../PreferenceWindow.qml:71
 #: ../PreferenceWindow.qml:169 ../PreferenceWindow.qml:251
+#: ../ShortcutsViewer.qml:29
 msgid "Playback"
 msgstr "በድጋሚ ማጫወቻ"
 
 #: ../PreferenceWindow.qml:76 ../PreferenceWindow.qml:435
+#: ../ShortcutsViewer.qml:87
 msgid "Frame/Sound"
 msgstr "ክፈፍ/ዽምፅ"
 
 #: ../PreferenceWindow.qml:81 ../PreferenceWindow.qml:578
+#: ../ShortcutsViewer.qml:66
 msgid "Files"
 msgstr "ፋይሎች"
 
 #: ../PreferenceWindow.qml:91 ../PreferenceWindow.qml:759
+#: ../ShortcutsViewer.qml:116
 msgid "Other"
 msgstr "ለላ"
 
 #: ../PreferenceWindow.qml:86 ../PreferenceWindow.qml:658
-#: ../menu_controller.py:102
+#: ../ShortcutsViewer.qml:136 ../menu_controller.py:102
 msgid "Subtitles"
 msgstr "ንዑስ አርእስቶች"
 
@@ -411,23 +431,24 @@ msgstr "የስርአቱን ብቅ ባይ ማስታወቂያ ማስቻያ"
 msgid "Forward/Rewind"
 msgstr "ወደ ፊት/ማጠንጠኛ"
 
-#: ../PreferenceWindow.qml:471
+#: ../PreferenceWindow.qml:471 ../ShortcutsViewer.qml:94
 msgid "Rotate counterclockwise"
 msgstr "ማዞሪያ ከ ቀኝ ወደ ግራ"
 
-#: ../PreferenceWindow.qml:492
+#: ../PreferenceWindow.qml:492 ../ShortcutsViewer.qml:98
 msgid "Rotate clockwise"
 msgstr "ማዞሪያ ከ ግራ ወደ ቀኝ"
 
-#: ../PreferenceWindow.qml:555
+#: ../PreferenceWindow.qml:555 ../ShortcutsViewer.qml:110
 msgid "Mute"
 msgstr "መቀነሻ"
 
-#: ../PreferenceWindow.qml:784
+#: ../PreferenceWindow.qml:784 ../ShortcutsViewer.qml:129
 msgid "Scroll"
 msgstr "መሸብለያ"
 
-#: ../PreferenceWindow.qml:787 ../VolumeButton.qml:44
+#: ../PreferenceWindow.qml:787 ../ShortcutsViewer.qml:130
+#: ../VolumeButton.qml:44
 msgid "Volume"
 msgstr "መጠን"
 
@@ -485,6 +506,10 @@ msgstr ""
 
 #: ../TitleBar.qml:205
 msgid "On Top"
+msgstr ""
+
+#: ../main.qml:136
+msgid "Please input the url of play file:"
 msgstr ""
 
 #: ../movie_info.py:140
@@ -559,6 +584,10 @@ msgstr "መድገሚያ (የማጫወቻ ዝርዝር)"
 msgid "Open a folder"
 msgstr ""
 
+#: ../menu_controller.py:91
+msgid "Open URL"
+msgstr "URL መክፈቻ"
+
 #: ../menu_controller.py:95
 msgid "Always on top"
 msgstr "ሁል ጊዜ ከ ላይ"
@@ -579,11 +608,11 @@ msgstr "ድምፅ"
 msgid "Options"
 msgstr "ምርጫዎች"
 
-#: ../menu_controller.py:105 ../menu_controller.py:120
+#: ../menu_controller.py:105 ../menu_controller.py:122
 msgid "Information"
 msgstr "መረጃ"
 
-#: ../menu_controller.py:111 ../menu_controller.py:125
+#: ../menu_controller.py:111 ../menu_controller.py:127
 msgid "Add folder"
 msgstr ""
 
@@ -595,10 +624,18 @@ msgstr "ከ ዝርዝር ማጫወቻ ማስወገጃ"
 msgid "Remove invalid file"
 msgstr "ዋጋ የሌለውን ፋይል ማስወገጃ "
 
-#: ../menu_controller.py:119
+#: ../menu_controller.py:115
+msgid "Export"
+msgstr "መላኪያ"
+
+#: ../menu_controller.py:116
+msgid "Import"
+msgstr ""
+
+#: ../menu_controller.py:121
 msgid "Open file location"
 msgstr "የፋይሉን አካባቢ መክፈቻ"
 
-#: ../menu_controller.py:365
+#: ../menu_controller.py:375
 msgid "Exit mini mode"
 msgstr ""
