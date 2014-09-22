@@ -203,6 +203,10 @@ ListView {
         model.clear()
     }
 
+    function _urlEqual(url1, url2) {
+        return url1.toString().replace("file://", "") == url2.toString().replace("file://", "")
+    }
+
     // Rectangle {
     // 	id: sep
     // 	visible: false
@@ -232,7 +236,7 @@ ListView {
 			property var child: sub.item
 
 		    property bool isGroup: propUrl == ""
-			property bool isSelected: isGroup ? child.isSelected : playlist.currentPlayingSource == itemUrl
+			property bool isSelected: isGroup ? child.isSelected : playlist._urlEqual(playlist.currentPlayingSource, itemUrl)
 			property bool isHover: mouse_area.containsMouse
 			onIsSelectedChanged: column.ListView.view.isSelected = isSelected
 

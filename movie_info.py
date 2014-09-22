@@ -141,11 +141,11 @@ class MovieInfo(QObject):
         self.filepath = filepath
 
         self.parseFile(filepath)
-        self.media_width = self.media_info.get("video_width", DEFAULT_WIDTH)
-        self.media_height = self.media_info.get("video_height", DEFAULT_HEIGHT)
-        self.media_duration = self.media_info.get("general_duration", 0)
-        self.media_size = int(self.media_info.get("general_size", 0))
-        self.media_type = self.media_info.get("general_extension", _("Unknown"))
+        self.media_width = self.media_info.get("video_width") or DEFAULT_WIDTH
+        self.media_height = self.media_info.get("video_height") or DEFAULT_HEIGHT
+        self.media_duration = self.media_info.get("general_duration") or 0
+        self.media_size = int(self.media_info.get("general_size") or 0)
+        self.media_type = self.media_info.get("general_extension") or  _("Unknown")
         self.media_width = int(self.media_width) + 2 * WINDOW_GLOW_RADIUS
         self.media_height = int(self.media_height) + 2 * WINDOW_GLOW_RADIUS
         self.media_duration = int(self.media_duration)

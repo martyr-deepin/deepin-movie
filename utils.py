@@ -226,9 +226,12 @@ class Utils(QObject):
     def fileIsValidVideo(self, file_path):
         if file_path.startswith("file://"):
             file_path = file_path[7:]
-        mime_type = getFileMimeType(file_path)
-        if os.path.exists(file_path) and mime_type:
-            return mime_type in all_supported_mime_types
+        if os.path.exists(file_path):
+            mime_type = getFileMimeType(file_path)
+            if mime_type:
+                return mime_type in all_supported_mime_types
+            else:
+                return False
         else: return False
 
     @pyqtSlot(str)

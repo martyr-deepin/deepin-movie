@@ -108,6 +108,8 @@ MouseArea {
         }
 
         onClearPlaylistItems: { playlist.clear() }
+
+        onImportDone: { notifybar.show(dsTr("Imported") + ": " + filename)}
     }
 
     Timer {
@@ -248,11 +250,14 @@ MouseArea {
     }
 
     function urlToPlaylistItem(serie, url) {
-        url = url.indexOf("file://") != -1 ? url : "file://" + url
+        var urlIsNativeFile = _utils.urlIsNativeFile(url)
+
+        url = url.replace("file://", "")
         var pathDict = url.split("/")
         var result = pathDict.slice(pathDict.length - 2, pathDict.length + 1)
-        return serie ? [serie, [result[result.length - 1].toString(), url.toString()]]
-                        : [[result[result.length - 1].toString(), url.toString()]]
+        var itemName = urlIsNativeFile ? result[result.length - 1].toString() : url
+
+        return serie ? [serie, [itemName, url.toString()]] : [[itemName, url.toString()]]
     }
 
     function addPlayListItem(url) {
@@ -669,13 +674,17 @@ MouseArea {
                         addPlayListItem(file_path)
                     } else if (!dragInPlaylist) {
                         if (_utils.fileIsValidVideo(file_path)) {
-                            movieInfo.movie_file = file_path
+                            if (i == 0) {
+                                movieInfo.movie_file = file_path
+                            } else {
+                                addPlayListItem(file_path)
+                            }
                         } else if (_utils.fileIsSubtitle(file_path)) {
                             movieInfo.subtitle_file = file_path
                         }
                         showControls()
                     } else {
-                        main_controller.importPlaylistImpl(file_path)
+                        if (i == 0) main_controller.importPlaylistImpl(file_path)
                     }
                 }
             }

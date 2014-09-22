@@ -38,6 +38,7 @@ class Database(QObject):
     clearPlaylistItems = pyqtSignal()
     importItemFound = pyqtSignal(str, str, str, str,
         arguments=["categroyName", "itemName", "itemSource", "itemPlayed"])
+    importDone = pyqtSignal(str, arguments=["filename"])
 
     def __init__(self):
         QObject.__init__(self)
@@ -179,6 +180,8 @@ class Database(QObject):
                     item.source, item.played)
         for item in playlist.getAllItems():
             self.importItemFound.emit(None, item.name, item.source, item.played)
+
+        self.importDone.emit(filename)
 
 
 database = Database()
