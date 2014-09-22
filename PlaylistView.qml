@@ -293,12 +293,12 @@ ListView {
 			Connections {
 				target: column.ListView.view.root
 				onRemoveItemPrivate: {
-					if (propUrl == url) {
+					if (playlist._urlEqual(propUrl, url)) {
 						column.ListView.view.model.remove(index, 1)
 					}
 				}
-				onFileMissing: if(url == propUrl) name.color = "#4f4f50"
-				onFileBack: if(url == propUrl) name.color = Qt.binding(getTextColor)
+				onFileMissing: if (playlist._urlEqual(propUrl, url)) name.color = "#4f4f50"
+				onFileBack: if (playlist._urlEqual(propUrl, url)) name.color = Qt.binding(getTextColor)
 			}
 
 			function getTextColor() {
