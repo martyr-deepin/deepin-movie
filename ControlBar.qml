@@ -53,7 +53,7 @@ DragableArea {
     function showPreview(mouseX, percentage, mode) {
         if (config.playerShowPreview) {
             videoPreview.state = mode
-            if (control_bar.previewHasVideo && videoPreview.source != "") {
+            if (control_bar.previewHasVideo && videoPreview.source != "" && movieInfo.movie_duration != 0) {
                 videoPreview.visible = true
                 videoPreview.x = Math.min(Math.max(mouseX - videoPreview.width / 2, 0),
                                           width - videoPreview.width)

@@ -325,7 +325,8 @@ class MenuController(QObject):
         self.menu.getItemById("_subtitle_manual").isActive = hasVideo
         self.menu.getItemById("_subtitle_choose").isActive = \
             bool(movie_info.subtitle_file)
-        self.menu.getItemById("_information").isActive = hasVideo
+        self.menu.getItemById("_information").isActive = hasVideo \
+            and movie_info.movie_duration != 0
 
         self.menu.getItemById("_on_top").checked = self._window.staysOnTop
 
