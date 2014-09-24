@@ -2,77 +2,69 @@ import QtQuick 2.1
 import Deepin.Widgets 1.0
 
 DFileDialog {
-	title: dsTr("Please choose one file or more")
-	folder: database.lastOpenedPath || _utils.homeDir
-	nameFilters: [ videoFilter, "(*)"]
-	selectMultiple: true
-	selectExisting: true
+    title: dsTr("Please choose one file or more")
+    folder: database.lastOpenedPath || _utils.homeDir
+    nameFilters: [ dsTr("Video files") + videoFilter, allFilesFilter]
+    selectMultiple: true
+    selectExisting: true
     selectFolder: false
     saveMode: false
 
-    property string videoFilter: "(*.3g2 *.3gp *.3gp2 *.3gpp *.amv
-                    *.asf *.avi *.bin *.divx *.drc
-                    *.dv *.f4v *.flv *.gvi *.gxf *.iso
-                    *.m1v *.m2v *.m2t *.m2ts *.m4v *.mkv
-                    *.mov *.mp2 *.mp2v *.mp4 *.mp4v *.mpe
-                    *.mpeg *.mpeg1 *.mpeg2 *.mpeg4 *.mpg
-                    *.mpv2 *.mts *.mtv *.mxf *.mxg *.nsv
-                    *.nuv *.ogg *.ogm *.ogv *.ogx *.ps
-                    *.rec *.rm *.rmvb *.tod *.ts *.tts
-                    *.vob *.vro *.webm *.wm *.wmv *.wtv
-                    *.xesc)"
-	property string state: "open_video_file"
+    property string videoFilter: "(*.3gp *.avi *.f4v *.flv *.mkv *.mov *.mp4
+                    *.mpeg *.ogg *.ogv *.rm *.rmvb *.webm *.wmv)"
+    property string allFilesFilter: dsTr("All files") + "(*)"
+    property string state: "open_video_file"
 
-	onStateChanged: {
-		switch(state) {
-			case "open_video_file":
-			title = dsTr("Please choose one file or more")
-			folder = database.lastOpenedPath || _utils.homeDir
-			nameFilters = [ videoFilter, "(*)"]
-			selectMultiple = true
-			selectExisting = true
-			defaultFileName = " "
-			saveMode = false
-			break
+    onStateChanged: {
+        switch(state) {
+            case "open_video_file":
+            title = dsTr("Please choose one file or more")
+            folder = database.lastOpenedPath || _utils.homeDir
+            nameFilters = [ dsTr("Video files") + videoFilter, allFilesFilter]
+            selectMultiple = true
+            selectExisting = true
+            defaultFileName = " "
+            saveMode = false
+            break
 
-			case "open_subtitle_file":
-			title = dsTr("Please choose one file")
-			folder = database.lastOpenedPath || _utils.homeDir
-			nameFilters = [ "(*.srt, *.ass, *.ssa)", "(*)"]
-			selectMultiple = false
-			selectExisting = true
-			defaultFileName = " "
-			saveMode = false
-			break
+            case "open_subtitle_file":
+            title = dsTr("Please choose one file")
+            folder = database.lastOpenedPath || _utils.homeDir
+            nameFilters = [ dsTr("Subtitle files") + "(*.srt *.ass *.ssa)", allFilesFilter]
+            selectMultiple = false
+            selectExisting = true
+            defaultFileName = " "
+            saveMode = false
+            break
 
-			case "add_playlist_item":
-			title = dsTr("Please choose one file or more")
-			folder = database.lastOpenedPath || _utils.homeDir
-			nameFilters = [ videoFilter, "(*)" ]
-			selectMultiple = true
-			selectExisting = true
-			defaultFileName = " "
-			saveMode = false
-			break
+            case "add_playlist_item":
+            title = dsTr("Please choose one file or more")
+            folder = database.lastOpenedPath || _utils.homeDir
+            nameFilters = [ dsTr("Video files") + videoFilter, allFilesFilter ]
+            selectMultiple = true
+            selectExisting = true
+            defaultFileName = " "
+            saveMode = false
+            break
 
-			case "import_playlist":
-			title = dsTr("Please choose one file")
-			folder = database.lastOpenedPlaylistPath || _utils.homeDir
-			nameFilters = [ "(*.dmpl)", "(*)" ]
-			selectMultiple = false
-			selectExisting = true
- 			defaultFileName = " "
-			saveMode = false
-			break
+            case "import_playlist":
+            title = dsTr("Please choose one file")
+            folder = database.lastOpenedPlaylistPath || _utils.homeDir
+            nameFilters = [ dsTr("Playlist files") + "(*.dmpl)", allFilesFilter ]
+            selectMultiple = false
+            selectExisting = true
+            defaultFileName = " "
+            saveMode = false
+            break
 
-			case "export_playlist":
-			title = dsTr("Save as")
-			folder = database.lastOpenedPlaylistPath || _utils.homeDir
-			nameFilters = [ "(*.dmpl)", "(*)" ]
-			selectMultiple = true
-			selectExisting = false
-			defaultFileName = "deepin-movie.dmpl"
-			saveMode = true
-		}
-	}
+            case "export_playlist":
+            title = dsTr("Save as")
+            folder = database.lastOpenedPlaylistPath || _utils.homeDir
+            nameFilters = [ dsTr("Playlist files") + "(*.dmpl)", allFilesFilter ]
+            selectMultiple = true
+            selectExisting = false
+            defaultFileName = "deepin-movie.dmpl"
+            saveMode = true
+        }
+    }
 }

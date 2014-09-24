@@ -123,7 +123,7 @@ Rectangle {
 
     DInputDialog {
         id: open_url_dialog
-        message: dsTr("Please input the url of play file:")
+        message: dsTr("Please input the url of file played") + ": "
         confirmButtonLabel: dsTr("Confirm")
         cancelButtonLabel: dsTr("Cancel")
 
@@ -137,11 +137,13 @@ Rectangle {
 
         onConfirmed: {
             if (input.search("://") == -1) {
-                notifybar.show(dsTr("Invalid URL") + ": " + input)
+                notifybar.show(dsTr("The parse failed"))
             } else {
                 movieInfo.movie_file = input
             }
         }
+
+        onVisibleChanged: { if(visible) forceFocus() }
     }
 
     PreferenceWindow {
@@ -472,7 +474,7 @@ Rectangle {
         onErrorChanged: {
             main_controller.setWindowTitle("")
             if (error == MediaPlayer.NetworkError) {
-                notifybar.show(dsTr("Invalid URL") + ": " + source)
+                notifybar.show(dsTr("The parse failed"))
             }
         }
     }
