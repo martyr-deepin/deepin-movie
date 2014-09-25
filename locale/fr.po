@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-04 17:25+0800\n"
-"PO-Revision-Date: 2014-09-15 09:51+0000\n"
-"Last-Translator: lexross <its4moi@gmail.com>\n"
+"POT-Creation-Date: 2014-09-24 17:22+0800\n"
+"PO-Revision-Date: 2014-09-25 01:41+0000\n"
+"Last-Translator: cxbii <chenxiangbang@linuxdeepin.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/deepin-movie/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,7 +24,7 @@ msgstr ""
 msgid "About"
 msgstr "À propos"
 
-#: ../AboutSection.qml:11 ../main.qml:436 ../window.py:68
+#: ../AboutSection.qml:11 ../main.qml:444 ../window.py:68
 msgid "Deepin Movie"
 msgstr "Deepin Film"
 
@@ -62,14 +62,14 @@ msgstr "Lire"
 msgid "Next"
 msgstr "Suivant"
 
-#: ../ControlBar.qml:316 ../menu_controller.py:374
+#: ../ControlBar.qml:316 ../menu_controller.py:375
 msgid "Exit fullscreen"
 msgstr "Quitter le mode plein écran"
 
 #: ../ControlBar.qml:316 ../PreferenceWindow.qml:328
 #: ../PreferenceWindow.qml:779 ../ShortcutsViewer.qml:44
 #: ../ShortcutsViewer.qml:125 ../menu_controller.py:93
-#: ../menu_controller.py:373
+#: ../menu_controller.py:374
 msgid "Fullscreen"
 msgstr "Plein écran"
 
@@ -128,7 +128,7 @@ msgstr "Présence de conflits avec un \"%2\" dans la catégorie \"%1\"."
 msgid "Do you want to replace it?"
 msgstr "Voulez vous le remplacer ?"
 
-#: ../HotKeyInputRow.qml:95 ../main.qml:138
+#: ../HotKeyInputRow.qml:95 ../main.qml:128
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -160,49 +160,77 @@ msgstr "Emplacement du fichier"
 msgid "Copy to clipboard"
 msgstr "Copier dans le presse-papiers"
 
-#: ../InformationWindow.qml:137 ../main.qml:137
+#: ../InformationWindow.qml:137 ../main.qml:127
 msgid "Confirm"
 msgstr "Confirmer"
 
-#: ../MainController.qml:79
+#: ../MainController.qml:78 ../MainController.qml:527
 msgid "Invalid file"
 msgstr "Fichier invalide"
 
-#: ../MainController.qml:393
+#: ../MainController.qml:112
+msgid "Imported"
+msgstr ""
+
+#: ../MainController.qml:404
 msgid "Play last movie played"
 msgstr "Lire la dernière vidéo lue"
 
-#: ../MainController.qml:405 ../PreferenceWindow.qml:286
+#: ../MainController.qml:416 ../PreferenceWindow.qml:286
 #: ../ShortcutsViewer.qml:36 ../menu_controller.py:84
 msgid "Forward"
 msgstr "Avancer"
 
-#: ../MainController.qml:413 ../PreferenceWindow.qml:307
+#: ../MainController.qml:424 ../PreferenceWindow.qml:307
 #: ../ShortcutsViewer.qml:40 ../menu_controller.py:85
 msgid "Rewind"
 msgstr "Reculer"
 
-#: ../MainController.qml:421 ../MainController.qml:427
+#: ../MainController.qml:432 ../MainController.qml:438
 #, qt-format
 msgid "(Press %1 to restore)"
 msgstr "(Appuyez sur %1 pour restaurer)"
 
-#: ../MainController.qml:423 ../MainController.qml:429
-#: ../MainController.qml:434
+#: ../MainController.qml:434 ../MainController.qml:440
+#: ../MainController.qml:445
 msgid "Playback rate: "
 msgstr "Taux de Playback :"
 
-#: ../MainController.qml:446 ../MainController.qml:455
+#: ../MainController.qml:457 ../MainController.qml:466
 msgid "Volume: "
 msgstr "Volume :"
 
-#: ../MainController.qml:453 ../menu_controller.py:59
+#: ../MainController.qml:464 ../menu_controller.py:59
 msgid "Muted"
 msgstr "Muet"
 
-#: ../OpenFileDialog.qml:5
+#: ../OpenFileDialog.qml:5 ../OpenFileDialog.qml:21 ../OpenFileDialog.qml:41
 msgid "Please choose one file or more"
 msgstr "Veuillez choisir un fichier ou plus"
+
+#: ../OpenFileDialog.qml:7 ../OpenFileDialog.qml:23 ../OpenFileDialog.qml:43
+msgid "Video files"
+msgstr ""
+
+#: ../OpenFileDialog.qml:15
+msgid "All files"
+msgstr ""
+
+#: ../OpenFileDialog.qml:31 ../OpenFileDialog.qml:51
+msgid "Please choose one file"
+msgstr ""
+
+#: ../OpenFileDialog.qml:33
+msgid "Subtitle files"
+msgstr ""
+
+#: ../OpenFileDialog.qml:53 ../OpenFileDialog.qml:63
+msgid "Playlist files"
+msgstr ""
+
+#: ../OpenFileDialog.qml:61
+msgid "Save as"
+msgstr "Enregistrer sous"
 
 #: ../OpenFolderDialog.qml:5
 msgid "Please choose a folder"
@@ -263,7 +291,7 @@ msgid "Restore playback speed"
 msgstr "Restaurer la vitesse de lecture initiale."
 
 #: ../PreferenceWindow.qml:450 ../ShortcutsViewer.qml:90
-#: ../menu_controller.py:94 ../menu_controller.py:376
+#: ../menu_controller.py:94 ../menu_controller.py:377
 msgid "Mini mode"
 msgstr "Mode minmal"
 
@@ -510,11 +538,15 @@ msgstr "Annuler \"En Haut\""
 msgid "On Top"
 msgstr "En Haut"
 
-#: ../main.qml:136
-msgid "Please input the url of play file:"
-msgstr "Veuillez inserer le lien du fichier:"
+#: ../main.qml:126
+msgid "Please input the url of file played"
+msgstr ""
 
-#: ../movie_info.py:140
+#: ../main.qml:140 ../main.qml:477
+msgid "The parse failed"
+msgstr ""
+
+#: ../movie_info.py:148
 msgid "Unknown"
 msgstr "Inconnu"
 
@@ -638,6 +670,6 @@ msgstr "Importer"
 msgid "Open file location"
 msgstr "Ouvrir le dossier du fichier"
 
-#: ../menu_controller.py:375
+#: ../menu_controller.py:376
 msgid "Exit mini mode"
 msgstr "Sortir du mode minimal"

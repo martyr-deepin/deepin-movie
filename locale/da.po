@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-04 17:25+0800\n"
-"PO-Revision-Date: 2014-09-18 13:11+0000\n"
+"POT-Creation-Date: 2014-09-24 17:22+0800\n"
+"PO-Revision-Date: 2014-09-25 01:41+0000\n"
 "Last-Translator: Carl Andersen <carl@manjaro.dk>\n"
 "Language-Team: Danish (http://www.transifex.com/projects/p/deepin-movie/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr ""
 msgid "About"
 msgstr "Om"
 
-#: ../AboutSection.qml:11 ../main.qml:436 ../window.py:68
+#: ../AboutSection.qml:11 ../main.qml:444 ../window.py:68
 msgid "Deepin Movie"
 msgstr "Deepin Film"
 
@@ -61,14 +61,14 @@ msgstr "Afspil"
 msgid "Next"
 msgstr "Næste"
 
-#: ../ControlBar.qml:316 ../menu_controller.py:374
+#: ../ControlBar.qml:316 ../menu_controller.py:375
 msgid "Exit fullscreen"
 msgstr "Forlad Fuldskærmsvisning  "
 
 #: ../ControlBar.qml:316 ../PreferenceWindow.qml:328
 #: ../PreferenceWindow.qml:779 ../ShortcutsViewer.qml:44
 #: ../ShortcutsViewer.qml:125 ../menu_controller.py:93
-#: ../menu_controller.py:373
+#: ../menu_controller.py:374
 msgid "Fullscreen"
 msgstr "Fuldskærmsvisning  "
 
@@ -127,7 +127,7 @@ msgstr "er i konflikt med den, der bruges til \"%2\" i \"%1\" kategorien."
 msgid "Do you want to replace it?"
 msgstr "Ønsker du at erstatte den?"
 
-#: ../HotKeyInputRow.qml:95 ../main.qml:138
+#: ../HotKeyInputRow.qml:95 ../main.qml:128
 msgid "Cancel"
 msgstr "Anullér"
 
@@ -159,49 +159,77 @@ msgstr "Filsti"
 msgid "Copy to clipboard"
 msgstr "Kopier til udklipsholder"
 
-#: ../InformationWindow.qml:137 ../main.qml:137
+#: ../InformationWindow.qml:137 ../main.qml:127
 msgid "Confirm"
 msgstr "Bekræft"
 
-#: ../MainController.qml:79
+#: ../MainController.qml:78 ../MainController.qml:527
 msgid "Invalid file"
 msgstr "Forkert filtype"
 
-#: ../MainController.qml:393
+#: ../MainController.qml:112
+msgid "Imported"
+msgstr "Importeret"
+
+#: ../MainController.qml:404
 msgid "Play last movie played"
 msgstr "Afspil senest afspillede film"
 
-#: ../MainController.qml:405 ../PreferenceWindow.qml:286
+#: ../MainController.qml:416 ../PreferenceWindow.qml:286
 #: ../ShortcutsViewer.qml:36 ../menu_controller.py:84
 msgid "Forward"
 msgstr "Fremad"
 
-#: ../MainController.qml:413 ../PreferenceWindow.qml:307
+#: ../MainController.qml:424 ../PreferenceWindow.qml:307
 #: ../ShortcutsViewer.qml:40 ../menu_controller.py:85
 msgid "Rewind"
 msgstr "Tilbagespol"
 
-#: ../MainController.qml:421 ../MainController.qml:427
+#: ../MainController.qml:432 ../MainController.qml:438
 #, qt-format
 msgid "(Press %1 to restore)"
 msgstr "(Tast %1 for at gendanne)"
 
-#: ../MainController.qml:423 ../MainController.qml:429
-#: ../MainController.qml:434
+#: ../MainController.qml:434 ../MainController.qml:440
+#: ../MainController.qml:445
 msgid "Playback rate: "
 msgstr "Playback rate: "
 
-#: ../MainController.qml:446 ../MainController.qml:455
+#: ../MainController.qml:457 ../MainController.qml:466
 msgid "Volume: "
 msgstr "Lydstyrke:"
 
-#: ../MainController.qml:453 ../menu_controller.py:59
+#: ../MainController.qml:464 ../menu_controller.py:59
 msgid "Muted"
 msgstr "Dæmpet"
 
-#: ../OpenFileDialog.qml:5
+#: ../OpenFileDialog.qml:5 ../OpenFileDialog.qml:21 ../OpenFileDialog.qml:41
 msgid "Please choose one file or more"
 msgstr "Vælg venligst en fil eller flere"
+
+#: ../OpenFileDialog.qml:7 ../OpenFileDialog.qml:23 ../OpenFileDialog.qml:43
+msgid "Video files"
+msgstr "Videofiler"
+
+#: ../OpenFileDialog.qml:15
+msgid "All files"
+msgstr "Alle filer"
+
+#: ../OpenFileDialog.qml:31 ../OpenFileDialog.qml:51
+msgid "Please choose one file"
+msgstr "Vælg venligst en fil"
+
+#: ../OpenFileDialog.qml:33
+msgid "Subtitle files"
+msgstr "Undertekstfiler "
+
+#: ../OpenFileDialog.qml:53 ../OpenFileDialog.qml:63
+msgid "Playlist files"
+msgstr "Afspilningsfiler"
+
+#: ../OpenFileDialog.qml:61
+msgid "Save as"
+msgstr "Gem som"
 
 #: ../OpenFolderDialog.qml:5
 msgid "Please choose a folder"
@@ -262,7 +290,7 @@ msgid "Restore playback speed"
 msgstr "Genskab afsilningshastighed"
 
 #: ../PreferenceWindow.qml:450 ../ShortcutsViewer.qml:90
-#: ../menu_controller.py:94 ../menu_controller.py:376
+#: ../menu_controller.py:94 ../menu_controller.py:377
 msgid "Mini mode"
 msgstr "Mini tilstand"
 
@@ -509,11 +537,15 @@ msgstr "Annuller \"Foroven\""
 msgid "On Top"
 msgstr "Foroven"
 
-#: ../main.qml:136
-msgid "Please input the url of play file:"
-msgstr "Indtast venligst webadressen på afspilningsfil:"
+#: ../main.qml:126
+msgid "Please input the url of file played"
+msgstr "Indtast venligst url fil til afspilning"
 
-#: ../movie_info.py:140
+#: ../main.qml:140 ../main.qml:477
+msgid "The parse failed"
+msgstr "Analysering mislykkedes"
+
+#: ../movie_info.py:148
 msgid "Unknown"
 msgstr "Ukendt"
 
@@ -637,6 +669,6 @@ msgstr "Importer"
 msgid "Open file location"
 msgstr "Åbn filplacering"
 
-#: ../menu_controller.py:375
+#: ../menu_controller.py:376
 msgid "Exit mini mode"
 msgstr "Forlad mini-tilstand"

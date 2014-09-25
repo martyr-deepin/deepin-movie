@@ -63,7 +63,7 @@ DFileDialog {
             nameFilters = [ dsTr("Playlist files") + "(*.dmpl)", allFilesFilter ]
             selectMultiple = true
             selectExisting = false
-            defaultFileName = "deepin-movie.dmpl"
+            defaultFileName = dsTr("Playlist") + ".dmpl"
             saveMode = true
         }
     }
