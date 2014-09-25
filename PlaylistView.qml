@@ -104,7 +104,7 @@ ListView {
         if (parent == null) {
             // check for redundant insertion
             for (var i = 0; i < count; i++) {
-                if (playlist._urlEqual(model.get(i).itemUrl == path[path.length - 1][1])) return
+                if (playlist._urlEqual(model.get(i).itemUrl, path[path.length - 1][1])) return
             }
 
             model.append(_pathToListElement(path))
@@ -138,7 +138,7 @@ ListView {
     function contains(url) {
         var list = _flattenList()
         for (var i = 0; i< list.length; i++) {
-            if (playlist._urlEqual(list[i] == url)) return true
+            if (playlist._urlEqual(list[i], url)) return true
         }
         return false
     }
@@ -204,7 +204,7 @@ ListView {
     }
 
     function _urlEqual(url1, url2) {
-        return url1.toString().replace("file://", "") == url2.toString().replace("file://", "")
+        return url1 && url2 && url1.toString().replace("file://", "") == url2.toString().replace("file://", "")
     }
 
     // Rectangle {
