@@ -443,11 +443,15 @@ Rectangle {
             _utils.screenSaverUninhibit()
             database.record_video_position(lastSource, lastPosition)
 
-            if (movieInfo.movie_duration
-                && Math.abs(position - movieInfo.movie_duration) < program_constants.videoEndsThreshold) {
-                // onStopped will be triggered when we change the movie source,
-                // we do this to make sure that the follwing code executed only when
-                // the movie played out naturally.
+            var videoPLayedOut = movieInfo.movie_duration
+                    && ( Math.abs(position - movieInfo.movie_duration)
+                        < program_constants.videoEndsThreshold)
+
+            // onStopped will be triggered when we change the movie source,
+            // we do this to make sure that the follwing code executed only when
+            // the movie played out naturally or the source playing is not a native file.
+            // because now we can't retrive video infomation(incluing duration) from url.
+            if (!_utils.urlIsNativeFile(source) || videoPLayedOut) {
                 shouldAutoPlayNextOnInvalidFile = true
                 main_controller.playNext()
             }
