@@ -267,6 +267,11 @@ class Utils(QObject):
                 return False
         else: return False
 
+    @pyqtSlot(str,result=bool)
+    def playlistItemValidation(self, path):
+        pathIsUrl = not path.startswith("file://") and not path.startswith("/")
+        return self.fileIsValidVideo(path) or pathIsUrl
+
     @pyqtSlot(str)
     def showFileInFM(self, file_path):
         if not file_path: return
