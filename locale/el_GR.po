@@ -3,9 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Sinan Eldem, 2014
-# yakup <mutouk@yandex.ru>, 2014
-# iron_man <yunus_bakir92@hotmail.com>, 2014
+# JimSp472000 <jimspentzos2000@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
@@ -13,75 +11,75 @@ msgstr ""
 "POT-Creation-Date: 2014-09-26 13:15+0800\n"
 "PO-Revision-Date: 2014-09-26 13:51+0000\n"
 "Last-Translator: deepin_transifex <xiabin@linuxdeepin.com>\n"
-"Language-Team: Turkish (http://www.transifex.com/projects/p/deepin-movie/language/tr/)\n"
+"Language-Team: Greek (Greece) (http://www.transifex.com/projects/p/deepin-movie/language/el_GR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: tr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: el_GR\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../AboutSection.qml:6 ../PreferenceWindow.qml:108
 msgid "About"
-msgstr "Hakkında"
+msgstr "Σχετικά"
 
 #: ../AboutSection.qml:11 ../main.qml:442 ../window.py:68
 msgid "Deepin Movie"
-msgstr "Deepin Film"
+msgstr "Ταινίες Deepin"
 
 #: ../AboutSection.qml:26
 msgid "Version"
-msgstr "Versiyon"
+msgstr "Έκδοση"
 
 #: ../AboutSection.qml:42
 msgid ""
 "Deepin Movie is a video player designed for Linux users. It supports a "
 "variety of video formats."
-msgstr "Deepin Movie video oynatıcısı Linux kullanıcıları için tasarlanmıştır. O çeşitli video formatlarını destekler."
+msgstr "Οι Ταινίες Deepin είναι ένα πρόγραμμα αναπαραγωγής βίντεο σχεδιασμένο για χρήστες του Linux. Υποστηρίζει μια ποικιλία από μορφές βίντεο."
 
 #: ../AboutSection.qml:48
 msgid "Deepin Movie is free software licensed under GNU GPLv3"
-msgstr "Deepin Movie GNU GPLv3 lisansı altında ücretsiz bir programdır"
+msgstr "Οι Ταινίες Deepin είναι δωρεάν λογισμικό υπό την άδεια GNU GPLv3"
 
 #: ../ControlBar.qml:219
 msgid "Stop playing"
-msgstr "Oynatmayı durdur"
+msgstr "Διακοπή αναπαραγωγής"
 
 #: ../ControlBar.qml:237 ../menu_controller.py:81
 msgid "Previous"
-msgstr "Önceki"
+msgstr "Προηγούμενο"
 
 #: ../ControlBar.qml:256
 msgid "Pause"
-msgstr "Duraklat"
+msgstr "Πάυση"
 
 #: ../ControlBar.qml:256 ../menu_controller.py:99 ../menu_controller.py:109
 msgid "Play"
-msgstr "Oynat"
+msgstr "Αναπαραγωγή"
 
 #: ../ControlBar.qml:273 ../menu_controller.py:82
 msgid "Next"
-msgstr "Sonraki"
+msgstr "Επόμενο"
 
 #: ../ControlBar.qml:316 ../menu_controller.py:375
 msgid "Exit fullscreen"
-msgstr "Tam ekrandan çık"
+msgstr "Έξοδος από πλήρη οθόνη"
 
 #: ../ControlBar.qml:316 ../PreferenceWindow.qml:328
 #: ../PreferenceWindow.qml:779 ../ShortcutsViewer.qml:44
 #: ../ShortcutsViewer.qml:125 ../menu_controller.py:93
 #: ../menu_controller.py:374
 msgid "Fullscreen"
-msgstr "Tam ekran"
+msgstr "Πλήρης οθόνη"
 
 #: ../ControlBar.qml:333 ../PreferenceWindow.qml:593 ../ShortcutsViewer.qml:69
 #: ../menu_controller.py:89
 msgid "Open a file"
-msgstr "Dosya aç"
+msgstr "Άνοιγμα αρχείου"
 
 #: ../ControlBar.qml:345 ../OpenFileDialog.qml:66 ../PreferenceWindow.qml:349
 #: ../ShortcutsViewer.qml:48 ../menu_controller.py:96
 msgid "Playlist"
-msgstr "Oynatma listesi"
+msgstr "Λίστα αναπαραγωγής"
 
 #: ../HotKeyInput.qml:15 ../HotKeyInputRow.qml:23 ../PreferenceWindow.qml:266
 #: ../PreferenceWindow.qml:287 ../PreferenceWindow.qml:308
@@ -109,65 +107,65 @@ msgstr "Oynatma listesi"
 #: ../ShortcutsViewer.qml:144 ../ShortcutsViewer.qml:148
 #: ../ShortcutsViewer.qml:152
 msgid "Disabled"
-msgstr "Devre dışı"
+msgstr "Απενεργοποιήμενο"
 
 #: ../HotKeyInput.qml:16
 msgid "Please input a new shortcut"
-msgstr "Lütfen yeni kısayol girin"
+msgstr "Παρακαλώ εισάγετε νέα συντόμευση"
 
 #: ../HotKeyInputRow.qml:29
 msgid "The shortcut you set "
-msgstr "Bu kısayolu ayarla"
+msgstr "Η συντόμευση που ορίσατε"
 
 #: ../HotKeyInputRow.qml:30
 #, qt-format
 msgid "conflicts with the one used for \"%2\" in the \"%1\" category. "
-msgstr "\"%1\" kategorisinde \"%2\" için kullanılan biri ile çakışıyor."
+msgstr "έρχεται σε αντίθεση με μια που χρησιμοποιείται για \"%2\" στην κατηγορία \"%1\". "
 
 #: ../HotKeyInputRow.qml:31
 msgid "Do you want to replace it?"
-msgstr "Onu değiştirmek istiyor musunuz?"
+msgstr "Θέλετε να το αντικαταστήσετε;"
 
 #: ../HotKeyInputRow.qml:95 ../main.qml:125
 msgid "Cancel"
-msgstr "Vazgeç"
+msgstr "Ακύρωση"
 
 #: ../HotKeyInputRow.qml:106
 msgid "Replace"
-msgstr "Değiştir"
+msgstr "Αντικατάσταση"
 
 #: ../InformationWindow.qml:64
 msgid "File type"
-msgstr "Dosya tipi"
+msgstr "Τύπος αρχείου"
 
 #: ../InformationWindow.qml:72
 msgid "File size"
-msgstr "Dosya boyutu"
+msgstr "Μέγεθος αρχείου"
 
 #: ../InformationWindow.qml:80
 msgid "Resolution"
-msgstr "Çözünürlük"
+msgstr "Ανάλυση"
 
 #: ../InformationWindow.qml:88
 msgid "Movie duration"
-msgstr "Film süresi"
+msgstr "Διάρκεια ταινίας"
 
 #: ../InformationWindow.qml:100
 msgid "File path"
-msgstr "Dosya yolu"
+msgstr "Διαδρομή αρχείου"
 
 #: ../InformationWindow.qml:122
 msgid "Copy to clipboard"
-msgstr "Panoya kopyala"
+msgstr "Αντιγραφή στο πρόχειρο"
 
 #: ../InformationWindow.qml:137 ../main.qml:124
 msgid "Confirm"
-msgstr "Onayla"
+msgstr "Επιβεβαίωση"
 
 #: ../MainController.qml:78 ../MainController.qml:494
 #: ../MainController.qml:548 ../MainController.qml:708 ../main.qml:84
 msgid "Invalid file"
-msgstr "Geçersiz dosya"
+msgstr "Μη έγκυρο αρχείο"
 
 #: ../MainController.qml:100 ../MainController.qml:500
 #: ../MainController.qml:738
@@ -181,39 +179,39 @@ msgstr ""
 
 #: ../MainController.qml:406
 msgid "Play last movie played"
-msgstr "Son oynatılan videoyu oynat"
+msgstr "Αναπαραγωγής τελευταίας ταινίας"
 
 #: ../MainController.qml:418 ../PreferenceWindow.qml:286
 #: ../ShortcutsViewer.qml:36 ../menu_controller.py:84
 msgid "Forward"
-msgstr "İleri"
+msgstr "Προώθηση"
 
 #: ../MainController.qml:426 ../PreferenceWindow.qml:307
 #: ../ShortcutsViewer.qml:40 ../menu_controller.py:85
 msgid "Rewind"
-msgstr "Geri sar"
+msgstr "Πίσω"
 
 #: ../MainController.qml:434 ../MainController.qml:440
 #, qt-format
 msgid "(Press %1 to restore)"
-msgstr "(Geri yüklemek için %1 e basın)"
+msgstr "(Πατήστε %1 για επαναφορά)"
 
 #: ../MainController.qml:436 ../MainController.qml:442
 #: ../MainController.qml:447
 msgid "Playback rate: "
-msgstr "Çalma oranı:"
+msgstr "Βαθμός αναπαραγωγής:"
 
 #: ../MainController.qml:459 ../MainController.qml:468
 msgid "Volume: "
-msgstr "Ses:"
+msgstr "Ένταση:"
 
 #: ../MainController.qml:466 ../menu_controller.py:59
 msgid "Muted"
-msgstr "Sessiz"
+msgstr "Σε σίγαση"
 
 #: ../OpenFileDialog.qml:5 ../OpenFileDialog.qml:21 ../OpenFileDialog.qml:41
 msgid "Please choose one file or more"
-msgstr "Lütfen bir veya daha fazla dosya seçin"
+msgstr "Παρακαλώ επιλέξτε ένα ή περισσοτερά αρχεία"
 
 #: ../OpenFileDialog.qml:7 ../OpenFileDialog.qml:23 ../OpenFileDialog.qml:43
 msgid "Video files"
@@ -237,313 +235,313 @@ msgstr ""
 
 #: ../OpenFileDialog.qml:61
 msgid "Save as"
-msgstr "Farklı kaydet"
+msgstr "Αποθήκευση ως"
 
 #: ../OpenFolderDialog.qml:5
 msgid "Please choose a folder"
-msgstr "Lütfen klasör seçin"
+msgstr "Παρακαλώ επιλέξτε ένα φάκελο."
 
 #: ../Playlist.qml:239
 msgid "Play mode"
-msgstr "Oynatma modu"
+msgstr "Λειτουργία αναπαραγωγής"
 
 #: ../Playlist.qml:252 ../menu_controller.py:110 ../menu_controller.py:126
 msgid "Add file"
-msgstr "Dosya Ekle"
+msgstr "Προσθήκη αρχείου"
 
 #: ../Playlist.qml:260 ../menu_controller.py:117
 msgid "Clear playlist"
-msgstr "Oynatma listesini temizle"
+msgstr "Εκκαθάριση λίστας αναπαραγωγής"
 
 #: ../PreferenceWindow.qml:178
 msgid "Enter fullscreen on opening file"
-msgstr "Yeni dosya açıldığında tam ekrana giriş yap"
+msgstr "Εισαγωγή σε πλήρη οθόνη στο άνοιγμα αρχείου"
 
 #: ../PreferenceWindow.qml:190
 msgid "Clear playlist on opening new file"
-msgstr "Yeni dosya açıldığında oynatma listesini temizle"
+msgstr "Εκκαθάριση λίστας αναπαραγωγής στο άνοιγμα νέου αρχείου"
 
 #: ../PreferenceWindow.qml:195
 msgid "Resume playback after restarting player"
-msgstr "Oynatıcıyı tekrar başlattıktan sonra oynatmaya devam et"
+msgstr "Συνέχιση αναπαραγωγής μετά την επανεκκίνηση του προγράμματος αναπαραγωγής"
 
 #: ../PreferenceWindow.qml:200
 msgid "Continue to next video automatically"
-msgstr "Sonraki videoyu otomatik olarak oynat"
+msgstr "Αυτόματη συνέχεια στο επόμενο βίντεο"
 
 #: ../PreferenceWindow.qml:205
 msgid "Show preview when hovering over progress bar"
-msgstr "İlerleme çubuğunun üzerine gelindiğinde zamanı küçük önizleme olarak göster"
+msgstr "Εμφάνιση προεπισκόπησης όταν περάσει το ποντίκι πάνω από τη γραμμή προόδου"
 
 #: ../PreferenceWindow.qml:260 ../PreferenceWindow.qml:444
 #: ../PreferenceWindow.qml:587 ../PreferenceWindow.qml:667
 msgid "Enable keyboard shortcuts"
-msgstr "Kısayol tuşlarını etkinleştir"
+msgstr "Ενεργοποίηση συντομεύσεων πληκτρολογίου"
 
 #: ../PreferenceWindow.qml:265 ../PreferenceWindow.qml:771
 #: ../ShortcutsViewer.qml:32 ../ShortcutsViewer.qml:120
 msgid "Pause/Play"
-msgstr "Duraklat/Oynat"
+msgstr "Παύση/Αναπαραγωγή"
 
 #: ../PreferenceWindow.qml:370 ../ShortcutsViewer.qml:52
 msgid "Accelerate playback"
-msgstr "Oynatmayı hızlandır"
+msgstr "Επιτάχυνση αναπαραγωγής"
 
 #: ../PreferenceWindow.qml:391 ../ShortcutsViewer.qml:56
 msgid "Decelerate playback"
-msgstr "Oynatmayı yavaşlat"
+msgstr "Επιβράδυνση αναπαραγωγής"
 
 #: ../PreferenceWindow.qml:412 ../ShortcutsViewer.qml:60
 msgid "Restore playback speed"
-msgstr "Oynatma hızını geri yükle"
+msgstr "Επαναφορά ταχύτητας αναπαραγωγής"
 
 #: ../PreferenceWindow.qml:450 ../ShortcutsViewer.qml:90
 #: ../menu_controller.py:94 ../menu_controller.py:377
 msgid "Mini mode"
-msgstr "Mini mod"
+msgstr "Λειτουργία mini"
 
 #: ../PreferenceWindow.qml:513 ../ShortcutsViewer.qml:102
 msgid "Volume up"
-msgstr "Sesi yükselt"
+msgstr "Αύξηση έντασης"
 
 #: ../PreferenceWindow.qml:534 ../ShortcutsViewer.qml:106
 msgid "Volume down"
-msgstr "Sesi kıs"
+msgstr "Μείωση έντασης"
 
 #: ../PreferenceWindow.qml:614 ../ShortcutsViewer.qml:73
 msgid "Open previous"
-msgstr "Öncekini aç"
+msgstr "Άνοιγμα προηγούμενου"
 
 #: ../PreferenceWindow.qml:635 ../ShortcutsViewer.qml:77
 msgid "Open next"
-msgstr "Sonrakini aç"
+msgstr "Άνοιγμα επόμενου"
 
 #: ../PreferenceWindow.qml:673 ../ShortcutsViewer.qml:139
 msgid "Forward 0.5s"
-msgstr "0.5 s. ileri"
+msgstr "Προώθηση 0.5δ"
 
 #: ../PreferenceWindow.qml:694 ../ShortcutsViewer.qml:143
 msgid "Delay 0.5s"
-msgstr "Gecikme 0.5s"
+msgstr "Καθυστέρηση 0.5δ"
 
 #: ../PreferenceWindow.qml:715 ../ShortcutsViewer.qml:147
 msgid "Subtitle up"
-msgstr "Altyazı yukarı"
+msgstr "Υπότιτλος επάνω"
 
 #: ../PreferenceWindow.qml:736 ../ShortcutsViewer.qml:151
 msgid "Subtitle down"
-msgstr "Altyazı aşağı"
+msgstr "Υπότιτλος κάτω"
 
 #: ../PreferenceWindow.qml:768 ../ShortcutsViewer.qml:119
 msgid "Left click"
-msgstr "Sol tıklama"
+msgstr "Αριστερό κλικ"
 
 #: ../PreferenceWindow.qml:776 ../ShortcutsViewer.qml:124
 msgid "Double click"
-msgstr "Çift tıklama"
+msgstr "Διπλό κλικ"
 
 #: ../PreferenceWindow.qml:801
 msgid "Subtitles loaded automatically"
-msgstr "Altyazı otomatik olarak yüklendi"
+msgstr "Οι υπότιτλοι φορτώθηκαν αυτόματα"
 
 #: ../PreferenceWindow.qml:842
 msgid "Border width"
-msgstr "Sınır genişliği"
+msgstr "Πλάτος πλαισίου"
 
 #: ../PreferenceWindow.qml:55 ../PreferenceWindow.qml:71
 #: ../PreferenceWindow.qml:169 ../PreferenceWindow.qml:251
 #: ../ShortcutsViewer.qml:29
 msgid "Playback"
-msgstr "Oynatma"
+msgstr "Αναπαραγωγή"
 
 #: ../PreferenceWindow.qml:76 ../PreferenceWindow.qml:435
 #: ../ShortcutsViewer.qml:87
 msgid "Frame/Sound"
-msgstr "Çerçeve/Ses"
+msgstr "Κάδρο/Ήχος"
 
 #: ../PreferenceWindow.qml:81 ../PreferenceWindow.qml:578
 #: ../ShortcutsViewer.qml:66
 msgid "Files"
-msgstr "Dosyalar"
+msgstr "Αρχεία"
 
 #: ../PreferenceWindow.qml:91 ../PreferenceWindow.qml:759
 #: ../ShortcutsViewer.qml:116
 msgid "Other"
-msgstr "Diğer"
+msgstr "Άλλο"
 
 #: ../PreferenceWindow.qml:86 ../PreferenceWindow.qml:658
 #: ../ShortcutsViewer.qml:136 ../menu_controller.py:102
 msgid "Subtitles"
-msgstr "Altyazılar"
+msgstr "Υπότιτλοι"
 
 #: ../PreferenceWindow.qml:11
 msgid "Reset"
-msgstr "Sıfırla"
+msgstr "Επαναφορά"
 
 #: ../PreferenceWindow.qml:15
 msgid "Black"
-msgstr "Siyah"
+msgstr "Μαύρο"
 
 #: ../PreferenceWindow.qml:16
 msgid "bleu de France"
-msgstr "Fransız mavisi"
+msgstr "Γαλλικό μπλε"
 
 #: ../PreferenceWindow.qml:17
 msgid "Turquoise"
-msgstr "Turkuvaz"
+msgstr "Τουρκουάζ"
 
 #: ../PreferenceWindow.qml:18
 msgid "UFO green"
-msgstr "UFO yeşil"
+msgstr "Πράσινο των UFO"
 
 #: ../PreferenceWindow.qml:19
 msgid "Green yellow"
-msgstr "Yeşil sarı"
+msgstr "Κιτρινοπράσινο"
 
 #: ../PreferenceWindow.qml:20
 msgid "Gorse"
-msgstr "Karaçalı"
+msgstr "Ύληξ"
 
 #: ../PreferenceWindow.qml:21
 msgid "Energy yellow"
-msgstr "Enerjik sarı"
+msgstr "Ενεργειακό κίτρινο"
 
 #: ../PreferenceWindow.qml:22
 msgid "Sun"
-msgstr "Paz"
+msgstr "Ήλιος"
 
 #: ../PreferenceWindow.qml:23
 msgid "Radical red"
-msgstr "Radikal kırmızı"
+msgstr "Επαναστατικό κόκκινο"
 
 #: ../PreferenceWindow.qml:24
 msgid "Lavender indigo"
-msgstr "Lavanta çivit"
+msgstr "Ίντιγκο λεβάντας"
 
 #: ../PreferenceWindow.qml:25
 msgid "Royal blue"
-msgstr "Kraliyet mavisi"
+msgstr "Βασιλικό μπλε"
 
 #: ../PreferenceWindow.qml:26
 msgid "Aluminum"
-msgstr "Aliminyum"
+msgstr "Αλουμίνιο"
 
 #: ../PreferenceWindow.qml:27
 msgid "Clean white"
-msgstr "Temiz beyaz"
+msgstr "Καθαρό λευκό"
 
 #: ../PreferenceWindow.qml:51 ../PreferenceWindow.qml:165
 msgid "Basic settings"
-msgstr "Basit ayarlar"
+msgstr "Βασικές ρυθμίσεις"
 
 #: ../PreferenceWindow.qml:60 ../PreferenceWindow.qml:229
 msgid "Time span"
-msgstr "Zaman dilimi"
+msgstr "Χρονική διάρκεια"
 
 #: ../PreferenceWindow.qml:67 ../PreferenceWindow.qml:247
 msgid "Keyboard shortcuts"
-msgstr "Klavye kısayolları"
+msgstr "Συντομεύσεις πληκτρολογίου"
 
 #: ../PreferenceWindow.qml:98 ../PreferenceWindow.qml:795
 msgid "Subtitle settings"
-msgstr "Altyazı ayarları"
+msgstr "Ρυθμίσεις υποτίτλων"
 
 #: ../PreferenceWindow.qml:184
 msgid "Apply the size last time closed"
-msgstr "Son kapatıldığı zamandaki boyutu uygula"
+msgstr "Εφαρμογή μεγέθους του πρόσφατα κλεισμένου"
 
 #: ../PreferenceWindow.qml:210
 msgid "Allow multiple instances"
-msgstr "Çoklu çalışma izni"
+msgstr "Να επιτρέπονται πολλαπλά παραδείγματα"
 
 #: ../PreferenceWindow.qml:215
 msgid "Pause when minimized"
-msgstr "Küçültüldükten sonra duraklat"
+msgstr "Παύση κατά την ελαχιστοποίηση"
 
 #: ../PreferenceWindow.qml:220
 msgid "Enable system popup notification"
-msgstr "Sistem bildirimlerini etkinleştir"
+msgstr "Ενεργοποίηση αναδυόμενης ειδοποίησης συστήματος"
 
 #: ../PreferenceWindow.qml:238
 msgid "Forward/Rewind"
-msgstr "İleri/Geri"
+msgstr "Εμπρός/Πίσω"
 
 #: ../PreferenceWindow.qml:471 ../ShortcutsViewer.qml:94
 msgid "Rotate counterclockwise"
-msgstr "Saat yönünün tersine çevirin"
+msgstr "Περιστροφή αριστερόστροφα"
 
 #: ../PreferenceWindow.qml:492 ../ShortcutsViewer.qml:98
 msgid "Rotate clockwise"
-msgstr "Saat yönünde çevirin"
+msgstr "Περιστροφή δεξιόστροφα"
 
 #: ../PreferenceWindow.qml:555 ../ShortcutsViewer.qml:110
 msgid "Mute"
-msgstr "Sessiz"
+msgstr "Σίγαση"
 
 #: ../PreferenceWindow.qml:784 ../ShortcutsViewer.qml:129
 msgid "Scroll"
-msgstr "Kaydırma"
+msgstr "Κύλιση"
 
 #: ../PreferenceWindow.qml:787 ../ShortcutsViewer.qml:130
 #: ../VolumeButton.qml:44
 msgid "Volume"
-msgstr "Ses"
+msgstr "Ένταση"
 
 #: ../PreferenceWindow.qml:807
 msgid "Font"
-msgstr "Yazı tipi"
+msgstr "Γραμματοσειρά"
 
 #: ../PreferenceWindow.qml:817
 msgid "Font color"
-msgstr "Yazı tipi rengi"
+msgstr "Χρώμα γραμματοσειράς"
 
 #: ../PreferenceWindow.qml:833
 msgid "Size"
-msgstr "Boyut"
+msgstr "Μέγεθος"
 
 #: ../PreferenceWindow.qml:851
 msgid "Border color"
-msgstr "Kenarlık rengi"
+msgstr "Χρώμα πλαισίου"
 
 #: ../PreferenceWindow.qml:867
 msgid "Position"
-msgstr "Pozisyon"
+msgstr "Θέση"
 
 #: ../PreferenceWindow.qml:872
 msgid "Bottom"
-msgstr "Alt"
+msgstr "Κάτω μέρος"
 
 #: ../PreferenceWindow.qml:873
 msgid "Top"
-msgstr "En yüksek"
+msgstr "Πάνω μέρος"
 
 #: ../PreferenceWindow.qml:879
 msgid "Subtitle Delay"
-msgstr "Altyazı Gecikmesi"
+msgstr "Καθυστέρηση Υποτίτλων"
 
 #: ../TitleBar.qml:165
 msgid "Shown in a proportion of 1:1"
-msgstr "1:1 oranında göster"
+msgstr "Εμφανίζεται σε αναλογία 1:1"
 
 #: ../TitleBar.qml:177
 msgid "Shown in 1.5 times"
-msgstr "1.5 zaman içinde göster"
+msgstr "Εμφανίζεται σε 1,5 φορά"
 
 #: ../TitleBar.qml:190
 msgid "Return to mini mode"
-msgstr "Mini moda dön"
+msgstr "Επιστροφή σε λειτουργία mini"
 
 #: ../TitleBar.qml:190
 msgid "Shown in fullscreen"
-msgstr "Tam ekranda göster"
+msgstr "Εμφανίζεται σε πλήρη οθόνη"
 
 #: ../TitleBar.qml:205
 msgid "Cancel \"On Top\""
-msgstr "\"Üstte\" iptal et"
+msgstr "Ακύρωση του \"Στην Κορυφή\""
 
 #: ../TitleBar.qml:205
 msgid "On Top"
-msgstr "Üstte"
+msgstr "Στην Κορυφή"
 
 #: ../main.qml:123
 msgid "Please input the url of file played"
@@ -555,128 +553,128 @@ msgstr ""
 
 #: ../movie_info.py:148
 msgid "Unknown"
-msgstr "Bilinmeyen"
+msgstr "Άγνωστο"
 
 #: ../menu_controller.py:34
 msgid "Default"
-msgstr "Varsayılan"
+msgstr "Προεπιλογή"
 
 #: ../menu_controller.py:46
 msgid "Rotate 90 degree clockwise"
-msgstr "Saat yönünde 90 derece çevirin"
+msgstr "Περιστροφή 90 μοιρών δεξιόστροφα"
 
 #: ../menu_controller.py:47
 msgid "Rotate 90 degree counterclockwise"
-msgstr "Saat yönünün tersine 90 derece çevirin"
+msgstr "Περιστροφή 90 μοιρών αριστερόστροφα"
 
 #: ../menu_controller.py:48
 msgid "Flip horizontally"
-msgstr "Yatay olarak çevir"
+msgstr "Οριζόντια αναστροφή"
 
 #: ../menu_controller.py:49
 msgid "Flip vertically"
-msgstr "Dikey olarak çevir"
+msgstr "Κάθετη αναστροφή"
 
 #: ../menu_controller.py:57
 msgid "Volume Up"
-msgstr "Sesi Yükselt"
+msgstr "Αύξηση Έντασης"
 
 #: ../menu_controller.py:58
 msgid "Volume Down"
-msgstr "Sesi Kıs"
+msgstr "Μείωση Έντασης"
 
 #: ../menu_controller.py:63
 msgid "Hide subtitle"
-msgstr "Altyazıyı gizle"
+msgstr "Απόκρυψη υποτίτλων"
 
 #: ../menu_controller.py:67
 msgid "Open manually"
-msgstr "Klavuzu aç"
+msgstr "Χειροκίνητο άνοιγμα"
 
 #: ../menu_controller.py:68
 msgid "Subtitle selection"
-msgstr "Altyazı seçimi"
+msgstr "Επιλογή υποτίτλων"
 
 #: ../menu_controller.py:69
 msgid "Subtitle setting"
-msgstr "Altyazı ayarı"
+msgstr "Ρύθμιση υποτίτλων"
 
 #: ../menu_controller.py:73
 msgid "Order"
-msgstr "Sıra"
+msgstr "Σειρά"
 
 #: ../menu_controller.py:74
 msgid "Random"
-msgstr "Karışık"
+msgstr "Τυχαία"
 
 #: ../menu_controller.py:75
 msgid "Single"
-msgstr "Tek"
+msgstr "Ένα"
 
 #: ../menu_controller.py:76
 msgid "Repeat (Single)"
-msgstr "Tekrar (Tek)"
+msgstr "Επανάληψη (Ενός)"
 
 #: ../menu_controller.py:77
 msgid "Repeat (Playlist)"
-msgstr "Tekrar (Oynatma listesi)"
+msgstr "Επανάληψη (Λίστας αναπαραγωγής)"
 
 #: ../menu_controller.py:90
 msgid "Open a folder"
-msgstr "Klasör aç"
+msgstr "Άνοιγμα φακέλου"
 
 #: ../menu_controller.py:91
 msgid "Open URL"
-msgstr "Url Aç"
+msgstr "Άνοιγμα URL"
 
 #: ../menu_controller.py:95
 msgid "Always on top"
-msgstr "Her zaman üste"
+msgstr "Πάντα στην κορυφή"
 
 #: ../menu_controller.py:98
 msgid "Play Sequence"
-msgstr "Sıralayıcıyı Oynat"
+msgstr "Αναπαραγωγή Σκηνής"
 
 #: ../menu_controller.py:100
 msgid "Frame"
-msgstr "Çerçeve"
+msgstr "Κάδρο"
 
 #: ../menu_controller.py:101
 msgid "Sound"
-msgstr "Ses"
+msgstr "Ήχος"
 
 #: ../menu_controller.py:104
 msgid "Options"
-msgstr "Seçenekler"
+msgstr "Επιλογές"
 
 #: ../menu_controller.py:105 ../menu_controller.py:122
 msgid "Information"
-msgstr "Bilgilendirme"
+msgstr "Πληροφορίες"
 
 #: ../menu_controller.py:111 ../menu_controller.py:127
 msgid "Add folder"
-msgstr "Klasör ekle"
+msgstr "Προσθήκη φακέλου"
 
 #: ../menu_controller.py:113
 msgid "Remove from playlist"
-msgstr "Oynatma listesinden kaldır"
+msgstr "Αφαίρεση από τη λίστα αναπαραγωγής"
 
 #: ../menu_controller.py:114
 msgid "Remove invalid file"
-msgstr "Geçersiz dosyayı kaldır"
+msgstr "Αφαίρεση μη έγκυρου αρχείου"
 
 #: ../menu_controller.py:115
 msgid "Export"
-msgstr "Dışarı aktar"
+msgstr "Εξαγωγή"
 
 #: ../menu_controller.py:116
 msgid "Import"
-msgstr "İçeri aktar"
+msgstr "Εισαγωγή"
 
 #: ../menu_controller.py:121
 msgid "Open file location"
-msgstr "Dosya konumunu aç"
+msgstr "Άνοιγμα τοποθεσίας αρχείου"
 
 #: ../menu_controller.py:376
 msgid "Exit mini mode"
-msgstr "Mini moddan çık"
+msgstr "Έξοδος από τη μίνι λειτουργία"
