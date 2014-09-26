@@ -344,9 +344,6 @@ Rectangle {
         }
 
         onTriggered: {
-            if (-1 == invalidFile.toString().indexOf("file://")) {
-                invalidFile = "file://" + invalidFile
-            }
             main_controller.playNextOf(invalidFile)
         }
     }
@@ -429,7 +426,6 @@ Rectangle {
             _utils.screenSaverInhibit()
 
             lastSource = source
-            database.lastPlayedFile = source
             if (config.playerFullscreenOnOpenFile) main_controller.fullscreen()
 
             if (config.playerCleanPlaylistOnOpenNewFile) playlist.clear()
@@ -462,6 +458,8 @@ Rectangle {
         }
 
         onSourceChanged: {
+            source.toString().trim() && (database.lastPlayedFile = source)
+
             resetRotationFlip()
 
             var rotation = database.fetch_video_rotation(source)
