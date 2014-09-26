@@ -73,24 +73,20 @@ Rectangle {
                 if (state == "open_video_file") {
                     database.lastOpenedPath = folder
 
-                    for (var i = 0; i < fileUrls.length; i++) {
-                        var fileUrl = fileUrls[i] + ""
-                        main_controller.addPlayListItem(fileUrl.substring(7))
-                    }
-                    movieInfo.movie_file = fileUrls[0]
+                    main_controller.openFiles(fileUrls, true)
                 } else if (state == "open_subtitle_file") {
                     database.lastOpenedPath = folder
+                    var filename = fileUrls[0].toString().replace("file://", "")
 
-                    movieInfo.subtitle_file = fileUrls[0]
+                    if (_utils.fileIsSubtitle(filename)) {
+                        movieInfo.subtitle_file = filename
+                    } else {
+                        notifybar.show(dsTr("Invalid file") + ": " + filename)
+                    }
                 } else if (state == "add_playlist_item") {
                     database.lastOpenedPath = folder
 
-                    for (var i = 0; i < fileUrls.length; i++) {
-                        var fileUrl = fileUrls[i] + ""
-                        if (_utils.fileIsValidVideo(fileUrl)) {
-                            main_controller.addPlayListItem(fileUrl.substring(7))
-                        }
-                    }
+                    main_controller.openFiles(fileUrls, false)
                 } else if (state == "import_playlist") {
                     database.lastOpenedPlaylistPath = folder
 
@@ -117,7 +113,8 @@ Rectangle {
         onAccepted: {
             var folderPath = fileUrl
             database.lastOpenedPath = folder // record last opened path
-            _utils.getAllVideoFilesInDirRecursively(folderPath)
+            _findVideoThreadManager.getAllVideoFilesInDirRecursively(folderPath)
+            _findVideoThreadManager.startAllThreadsWithBase(0)
         }
     }
 
@@ -129,6 +126,8 @@ Rectangle {
 
         cursorPosGetter: windowView
 
+        property string lastInput: ""
+
         function open() {
             x = windowView.x + (windowView.width - width) / 2
             y = windowView.y + (windowView.height - height) / 2
@@ -136,6 +135,7 @@ Rectangle {
         }
 
         onConfirmed: {
+            lastInput = input
             if (input.search("://") == -1) {
                 notifybar.show(dsTr("The parse failed"))
             } else {
@@ -172,8 +172,10 @@ Rectangle {
 
     ShortcutsViewer {
         id: shortcuts_viewer
-        x: windowView.x + (windowView.width - width) / 2
-        y: windowView.y + (windowView.height - height) / 2
+        x: Math.min(windowView.x + (windowView.width - width) / 2,
+            Screen.width - width)
+        y: Math.min(windowView.y + (windowView.height - height) / 2,
+            Screen.height - height)
     }
 
     // translation tools
@@ -417,7 +419,7 @@ Rectangle {
         property int lastPosition: 0
 
         // onSourceChanged doesn't ensures that the file is playable, this one did.
-        // 2014/9/16 add: not ensures url playable, either X0
+        // 2014/9/16 add: not ensures url playable, either
         onPlaying: {
             notifybar.hide()
             auto_play_next_on_invalid_timer.stop()
@@ -470,10 +472,24 @@ Rectangle {
         }
 
         onErrorChanged: {
-            main_controller.setWindowTitle("")
-            if (error == MediaPlayer.NetworkError) {
-                notifybar.show(dsTr("The parse failed"))
+            if (source.toString().replace("file://", "")
+                == open_url_dialog.lastInput.toString().replace("file://", ""))
+            {
+                playlist.removeItem(source)
             }
+            switch(error) {
+                case MediaPlayer.NetworkError:
+                notifybar.show(dsTr("The parse failed")); break
+                case MediaPlayer.FormatError:
+                case MediaPlayer.ResourceError:
+                if (_utils.urlIsNativeFile(movieInfo.movie_file)) {
+                    movieInfo.fileInvalid()
+                } else {
+                    notifybar.show(dsTr("The parse failed"))
+                }
+                break
+            }
+            reset()
         }
     }
 

@@ -165,12 +165,21 @@
     <name>MainController</name>
     <message>
         <location filename="../MainController.qml" line="+78"/>
-        <location line="+449"/>
+        <location line="+416"/>
+        <location line="+54"/>
+        <location line="+160"/>
         <source>Invalid file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-415"/>
+        <location line="-608"/>
+        <location line="+400"/>
+        <location line="+238"/>
+        <source>%1 files unable to be parsed have been excluded</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-624"/>
         <source>Imported</source>
         <translation type="unfinished"></translation>
     </message>
@@ -257,6 +266,11 @@
         <source>Save as</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location line="+5"/>
+        <source>Playlist</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>OpenFolderDialog</name>
@@ -269,7 +283,7 @@
 <context>
     <name>Playlist</name>
     <message>
-        <location filename="../Playlist.qml" line="+237"/>
+        <location filename="../Playlist.qml" line="+239"/>
         <source>Play mode</source>
         <translation type="unfinished"></translation>
     </message>
@@ -908,7 +922,12 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../main.qml" line="+126"/>
+        <location filename="../main.qml" line="+84"/>
+        <source>Invalid file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+39"/>
         <source>Please input the url of file played</source>
         <translation type="unfinished"></translation>
     </message>
@@ -923,13 +942,14 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+12"/>
-        <location line="+337"/>
+        <location line="+15"/>
+        <location line="+342"/>
+        <location line="+6"/>
         <source>The parse failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-33"/>
+        <location line="-46"/>
         <source>Deepin Movie</source>
         <translation type="unfinished"></translation>
     </message>

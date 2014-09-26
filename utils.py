@@ -104,12 +104,13 @@ def getFileMimeType(filename):
 
 class FindVideoThread(QThread):
     videoFound = pyqtSignal(str, arguments=["path",])
-    findVideoDone = pyqtSignal(str, arguments=["path",])
+    findVideoDone = pyqtSignal(str, int, arguments=["path", "invalidCount"])
 
     def __init__(self, dir):
         super(FindVideoThread, self).__init__()
         self._dir = dir
         self._first_video = None
+        self._invalid_files_count = 0
 
     def _get_all_videos_in_dir_recursively(self, dir):
         for _file in utils.getAllFilesInDir(dir):
@@ -118,16 +119,55 @@ class FindVideoThread(QThread):
                 self.videoFound.emit(_file)
             elif os.path.isdir(_file):
                 self._get_all_videos_in_dir_recursively(_file)
+            else:
+                self._invalid_files_count += 1
 
     def run(self):
         self._get_all_videos_in_dir_recursively(self._dir)
-        self.findVideoDone.emit(self._first_video)
+        self.findVideoDone.emit(self._first_video, self._invalid_files_count)
         self._first_video = None
 
-class Utils(QObject):
+class FindVideoThreadManager(QObject):
     videoFound = pyqtSignal(str, arguments=["path",])
-    findVideoDone = pyqtSignal(str, arguments=["path",])
+    findVideoDone = pyqtSignal(str, int, arguments=["path", "invalidCount"])
 
+    def __init__(self):
+        super(FindVideoThreadManager, self).__init__()
+        self._thread_pool = []
+        self._first_video = None
+        self._invalid_files_count = 0
+
+    @pyqtSlot(str, result="QVariant")
+    def getAllVideoFilesInDirRecursively(self, dir):
+        thread = FindVideoThread(dir)
+        thread.videoFound.connect(self.videoFound)
+        thread.findVideoDone.connect(self.subthreadFinishedSlot)
+
+        self._thread_pool.append(thread)
+
+    @pyqtSlot()
+    def beginCleanContext(self):
+        self._first_video = None
+        self._invalid_files_count = 0
+        map(lambda x: x.exit(-1), self._thread_pool)
+
+    @pyqtSlot(int)
+    def startAllThreadsWithBase(self, base):
+        self._first_video = None
+        self._invalid_files_count = base
+
+        map(lambda x: x.start(), self._thread_pool)
+
+    def subthreadFinishedSlot(self, firstVideo, invalidCount):
+        self._first_video = firstVideo
+        self._invalid_files_count += invalidCount
+
+        for thread in self._thread_pool:
+            if thread.isFinished: self._thread_pool.remove(thread)
+        if len(self._thread_pool) == 0:
+            self.findVideoDone.emit(firstVideo, self._invalid_files_count)
+
+class Utils(QObject):
     def __init__(self):
         super(Utils, self).__init__()
 
@@ -166,13 +206,6 @@ class Utils(QObject):
     def getAllVideoFilesInDir(self, dir):
         allFiles = self.getAllFilesInDir(dir)
         return filter(lambda x: self.fileIsValidVideo(x), allFiles)
-
-    @pyqtSlot(str, result="QVariant")
-    def getAllVideoFilesInDirRecursively(self, dir):
-        self._thread = FindVideoThread(dir)
-        self._thread.videoFound.connect(self.videoFound)
-        self._thread.findVideoDone.connect(self.findVideoDone)
-        self._thread.start()
 
     @pyqtSlot(str, result=str)
     def getSeriesByName(self, name):

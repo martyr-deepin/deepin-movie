@@ -74,6 +74,8 @@ Rectangle {
 
     function addItem(item) { playlist.addItem(item) }
 
+    function removeItem(item) { playlist.removeItem(item) }
+
     function removeClickedItem() { playlist.removeItem(clickedOnItemUrl) }
 
     function removeInvalidItems(valid_check_func) { playlist.removeInvalidItems(valid_check_func) }

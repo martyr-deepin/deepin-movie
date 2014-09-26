@@ -57,7 +57,7 @@ from utils import utils
 from constant import MAIN_QML
 from menu_controller import MenuController
 from file_monitor import FileMonitor
-from utils import utils
+from utils import utils, FindVideoThreadManager
 
 class PageManager(QObject):
 
@@ -112,12 +112,15 @@ if __name__ == "__main__":
     windowView = Window(result)
     menu_controller = MenuController(windowView)
     file_monitor = FileMonitor()
+    findVideoThreadManager = FindVideoThreadManager()
     app._extra_window = weakref.ref(windowView)
 
     qml_context = windowView.rootContext()
 
     qml_context.setContextProperty("config", config)
     qml_context.setContextProperty("_utils", utils)
+    qml_context.setContextProperty("_findVideoThreadManager",
+        findVideoThreadManager)
     qml_context.setContextProperty("_file_monitor", file_monitor)
     qml_context.setContextProperty("database", database)
     qml_context.setContextProperty("windowView", windowView)
