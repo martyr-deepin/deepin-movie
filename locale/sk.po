@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-24 17:22+0800\n"
-"PO-Revision-Date: 2014-09-25 01:41+0000\n"
-"Last-Translator: cxbii <chenxiangbang@linuxdeepin.com>\n"
+"POT-Creation-Date: 2014-09-26 13:15+0800\n"
+"PO-Revision-Date: 2014-09-26 06:43+0000\n"
+"Last-Translator: deepin_transifex <xiabin@linuxdeepin.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/projects/p/deepin-movie/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "About"
 msgstr "O programe"
 
-#: ../AboutSection.qml:11 ../main.qml:444 ../window.py:68
+#: ../AboutSection.qml:11 ../main.qml:442 ../window.py:68
 msgid "Deepin Movie"
 msgstr "Deepin Filmy"
 
@@ -76,8 +76,8 @@ msgstr "Celá obrazovka"
 msgid "Open a file"
 msgstr ""
 
-#: ../ControlBar.qml:345 ../PreferenceWindow.qml:349 ../ShortcutsViewer.qml:48
-#: ../menu_controller.py:96
+#: ../ControlBar.qml:345 ../OpenFileDialog.qml:66 ../PreferenceWindow.qml:349
+#: ../ShortcutsViewer.qml:48 ../menu_controller.py:96
 msgid "Playlist"
 msgstr "Zoznam skladieb"
 
@@ -126,7 +126,7 @@ msgstr "je v konflikte so skratkou použitou pre \"%2\" v \"%1\" kategórii. "
 msgid "Do you want to replace it?"
 msgstr "Chcete nahradiť?"
 
-#: ../HotKeyInputRow.qml:95 ../main.qml:128
+#: ../HotKeyInputRow.qml:95 ../main.qml:125
 msgid "Cancel"
 msgstr "Zrušiť"
 
@@ -158,47 +158,54 @@ msgstr "Cesta"
 msgid "Copy to clipboard"
 msgstr "Kopírovať do schránky"
 
-#: ../InformationWindow.qml:137 ../main.qml:127
+#: ../InformationWindow.qml:137 ../main.qml:124
 msgid "Confirm"
 msgstr "Potvrdiť"
 
-#: ../MainController.qml:78 ../MainController.qml:527
+#: ../MainController.qml:78 ../MainController.qml:494
+#: ../MainController.qml:548 ../MainController.qml:708 ../main.qml:84
 msgid "Invalid file"
 msgstr "Neplatný súbor"
 
-#: ../MainController.qml:112
+#: ../MainController.qml:100 ../MainController.qml:500
+#: ../MainController.qml:738
+#, qt-format
+msgid "%1 files unable to be parsed have been excluded"
+msgstr ""
+
+#: ../MainController.qml:114
 msgid "Imported"
 msgstr ""
 
-#: ../MainController.qml:404
+#: ../MainController.qml:406
 msgid "Play last movie played"
 msgstr "Prehrať naposledy prehraný film"
 
-#: ../MainController.qml:416 ../PreferenceWindow.qml:286
+#: ../MainController.qml:418 ../PreferenceWindow.qml:286
 #: ../ShortcutsViewer.qml:36 ../menu_controller.py:84
 msgid "Forward"
 msgstr "Dopredu"
 
-#: ../MainController.qml:424 ../PreferenceWindow.qml:307
+#: ../MainController.qml:426 ../PreferenceWindow.qml:307
 #: ../ShortcutsViewer.qml:40 ../menu_controller.py:85
 msgid "Rewind"
 msgstr "Dozadu"
 
-#: ../MainController.qml:432 ../MainController.qml:438
+#: ../MainController.qml:434 ../MainController.qml:440
 #, qt-format
 msgid "(Press %1 to restore)"
 msgstr "(Stlačte %1 pre návrat)"
 
-#: ../MainController.qml:434 ../MainController.qml:440
-#: ../MainController.qml:445
+#: ../MainController.qml:436 ../MainController.qml:442
+#: ../MainController.qml:447
 msgid "Playback rate: "
 msgstr "Rýchlosť prehrávania"
 
-#: ../MainController.qml:457 ../MainController.qml:466
+#: ../MainController.qml:459 ../MainController.qml:468
 msgid "Volume: "
 msgstr "Hlasitosť:"
 
-#: ../MainController.qml:464 ../menu_controller.py:59
+#: ../MainController.qml:466 ../menu_controller.py:59
 msgid "Muted"
 msgstr "Stlmené"
 
@@ -234,15 +241,15 @@ msgstr "Uložiť ako"
 msgid "Please choose a folder"
 msgstr ""
 
-#: ../Playlist.qml:237
+#: ../Playlist.qml:239
 msgid "Play mode"
 msgstr "Režim prehrávania"
 
-#: ../Playlist.qml:250 ../menu_controller.py:110 ../menu_controller.py:126
+#: ../Playlist.qml:252 ../menu_controller.py:110 ../menu_controller.py:126
 msgid "Add file"
 msgstr "Pridať súbor"
 
-#: ../Playlist.qml:258 ../menu_controller.py:117
+#: ../Playlist.qml:260 ../menu_controller.py:117
 msgid "Clear playlist"
 msgstr "Vymazať zoznam skladieb"
 
@@ -536,11 +543,11 @@ msgstr "Zrušiť \"Na vrchu\""
 msgid "On Top"
 msgstr "Na vrchu"
 
-#: ../main.qml:126
+#: ../main.qml:123
 msgid "Please input the url of file played"
 msgstr ""
 
-#: ../main.qml:140 ../main.qml:477
+#: ../main.qml:140 ../main.qml:482 ../main.qml:488
 msgid "The parse failed"
 msgstr ""
 
