@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Eduardo Martello <edubitcoin@gmail.com>, 2014
 # JeffWagen <jeff.wagen@yahoo.com>, 2014
 # RAFAEL GAUNA <rafaelgt.mbin@gmail.com>, 2014
 # Rubens de Almeida Medeiros <rubens.cejovem@gmail.com>, 2014
@@ -12,8 +13,8 @@ msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-26 13:15+0800\n"
-"PO-Revision-Date: 2014-09-26 13:51+0000\n"
-"Last-Translator: deepin_transifex <xiabin@linuxdeepin.com>\n"
+"PO-Revision-Date: 2014-10-19 04:00+0000\n"
+"Last-Translator: Eduardo Martello <edubitcoin@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/deepin-movie/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -174,11 +175,11 @@ msgstr "Arquivo inválido"
 #: ../MainController.qml:738
 #, qt-format
 msgid "%1 files unable to be parsed have been excluded"
-msgstr ""
+msgstr "%1 arquivos não puderam ser analisados e foram excluídos"
 
 #: ../MainController.qml:114
 msgid "Imported"
-msgstr ""
+msgstr "importado"
 
 #: ../MainController.qml:406
 msgid "Play last movie played"
@@ -218,23 +219,23 @@ msgstr "Por favor escolha um ou mais arquivos"
 
 #: ../OpenFileDialog.qml:7 ../OpenFileDialog.qml:23 ../OpenFileDialog.qml:43
 msgid "Video files"
-msgstr ""
+msgstr "Arquivos de vídeo"
 
 #: ../OpenFileDialog.qml:15
 msgid "All files"
-msgstr ""
+msgstr "Todos os aquivos"
 
 #: ../OpenFileDialog.qml:31 ../OpenFileDialog.qml:51
 msgid "Please choose one file"
-msgstr ""
+msgstr "Por favor escolha um arquivo"
 
 #: ../OpenFileDialog.qml:33
 msgid "Subtitle files"
-msgstr ""
+msgstr "Arquivos de legendas"
 
 #: ../OpenFileDialog.qml:53 ../OpenFileDialog.qml:63
 msgid "Playlist files"
-msgstr ""
+msgstr "Arquivos de playlists"
 
 #: ../OpenFileDialog.qml:61
 msgid "Save as"
@@ -548,11 +549,11 @@ msgstr "No Topo"
 
 #: ../main.qml:123
 msgid "Please input the url of file played"
-msgstr ""
+msgstr "Por favor, insira a URL do arquivo a ser reproduzido"
 
 #: ../main.qml:140 ../main.qml:482 ../main.qml:488
 msgid "The parse failed"
-msgstr ""
+msgstr "A análise falhou"
 
 #: ../movie_info.py:148
 msgid "Unknown"
