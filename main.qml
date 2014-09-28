@@ -69,6 +69,8 @@ Rectangle {
         id: open_file_dialog
 
         onAccepted: {
+            shouldAutoPlayNextOnInvalidFile = false
+
             if (fileUrls.length > 0) {
                 if (state == "open_video_file") {
                     database.lastOpenedPath = folder
@@ -111,6 +113,8 @@ Rectangle {
         folder: database.lastOpenedPath || _utils.homeDir
 
         onAccepted: {
+            shouldAutoPlayNextOnInvalidFile = false
+
             var folderPath = fileUrl
             database.lastOpenedPath = folder // record last opened path
             _findVideoThreadManager.getAllVideoFilesInDirRecursively(folderPath)
@@ -135,12 +139,14 @@ Rectangle {
         }
 
         onConfirmed: {
-            lastInput = input
             if (input.search("://") == -1) {
                 notifybar.show(dsTr("The parse failed"))
-            } else {
+            } else if (input != lastInput){
+                shouldAutoPlayNextOnInvalidFile = false
                 movieInfo.movie_file = input
             }
+
+            lastInput = input
         }
 
         onVisibleChanged: { if(visible) forceFocus() }
@@ -336,7 +342,7 @@ Rectangle {
 
     Timer {
         id: auto_play_next_on_invalid_timer
-        interval: 1000 * 3
+        interval: 1000 * 2
 
         property url invalidFile: ""
 
@@ -415,6 +421,10 @@ Rectangle {
 
         anchors.fill: main_window
 
+        // theses two properties are mainly used in onStopped.
+        // because everytime we change the source onStopped executes, but the
+        // source out there is no longer the old source, it's the new source
+        // we set instead.
         property url lastSource: ""
         property int lastPosition: 0
 
@@ -443,17 +453,24 @@ Rectangle {
             _utils.screenSaverUninhibit()
             database.record_video_position(lastSource, lastPosition)
 
-            var videoPLayedOut = movieInfo.movie_duration
-                    && ( Math.abs(position - movieInfo.movie_duration)
-                        < program_constants.videoEndsThreshold)
-
             // onStopped will be triggered when we change the movie source,
             // we do this to make sure that the follwing code executed only when
-            // the movie played out naturally or the source playing is not a native file.
-            // because now we can't retrive video infomation(incluing duration) from url.
-            if (!_utils.urlIsNativeFile(source) || videoPLayedOut) {
-                shouldAutoPlayNextOnInvalidFile = true
-                main_controller.playNext()
+            // the movie plays out.
+            var videoPLayedOut = movieInfo.movie_duration
+                                && ( Math.abs(position - movieInfo.movie_duration)
+                                    < program_constants.videoEndsThreshold)
+
+            if (_utils.urlIsNativeFile(lastSource)) {
+                if (videoPLayedOut) {
+                    shouldAutoPlayNextOnInvalidFile = true
+                    main_controller.playNext()
+                }
+            } else {
+                if (position && duration
+                    &&Math.abs(position - duration) < program_constants.videoEndsThreshold) {
+                    shouldAutoPlayNextOnInvalidFile = true
+                    main_controller.playNext()
+                }
             }
         }
 
@@ -481,19 +498,14 @@ Rectangle {
             {
                 playlist.removeItem(source)
             }
+
             switch(error) {
                 case MediaPlayer.NetworkError:
-                notifybar.show(dsTr("The parse failed")); break
                 case MediaPlayer.FormatError:
                 case MediaPlayer.ResourceError:
-                if (_utils.urlIsNativeFile(movieInfo.movie_file)) {
-                    movieInfo.fileInvalid()
-                } else {
-                    notifybar.show(dsTr("The parse failed"))
-                }
+                movieInfo.fileInvalid()
                 break
             }
-            reset()
         }
     }
 
@@ -538,7 +550,10 @@ Rectangle {
 
         onShowed: root.hideControls()
 
-        onNewSourceSelected: movieInfo.movie_file = path
+        onNewSourceSelected: {
+            shouldAutoPlayNextOnInvalidFile = false
+            movieInfo.movie_file = path
+        }
         onModeButtonClicked: _menu_controller.show_mode_menu()
         onAddButtonClicked: _menu_controller.show_add_button_menu()
         onClearButtonClicked: playlist.clear()

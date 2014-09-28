@@ -76,10 +76,13 @@ MouseArea {
 
         onFileInvalid: {
             var invalidFile = movieInfo.movie_file
-            notifybar.showPermanently(dsTr("Invalid file") + ": " + movieInfo.movie_title)
+            if (_utils.urlIsNativeFile(invalidFile)) {
+                notifybar.show(dsTr("Invalid file") + ": " + movieInfo.movie_title)
+            } else {
+                notifybar.show(dsTr("The parse failed"))
+            }
             root.reset()
-            shouldAutoPlayNextOnInvalidFile ? auto_play_next_on_invalid_timer.startWidthFile(invalidFile)
-                                            : (shouldAutoPlayNextOnInvalidFile = false)
+            shouldAutoPlayNextOnInvalidFile && auto_play_next_on_invalid_timer.startWidthFile(invalidFile)
 
             // don't know why, but everytime the player encountered a "File invalid" situation,
             // the videoPlaying binding thing goes wrong, so I re-bind it here.
@@ -506,7 +509,7 @@ MouseArea {
 
         if (config.playerPlayOrderType == "ORDER_TYPE_RANDOM") {
             next = playlist.getRandom()
-        } else if (config.playerPlayOrderType == "ORDER_TYPE_RANDOM_IN_ORDER") {
+        } else if (config.playerPlayOrderType == "ORDER_TYPE_IN_ORDER") {
             next = playlist.getNextSource(file)
         } else if (config.playerPlayOrderType == "ORDER_TYPE_SINGLE") {
             next = null
@@ -524,7 +527,7 @@ MouseArea {
 
         if (config.playerPlayOrderType == "ORDER_TYPE_RANDOM") {
             next = playlist.getRandom()
-        } else if (config.playerPlayOrderType == "ORDER_TYPE_RANDOM_IN_ORDER") {
+        } else if (config.playerPlayOrderType == "ORDER_TYPE_IN_ORDER") {
             next = playlist.getPreviousSource(file)
         } else if (config.playerPlayOrderType == "ORDER_TYPE_SINGLE") {
             next = null
@@ -683,6 +686,8 @@ MouseArea {
         }
 
         onDropped: {
+            shouldAutoPlayNextOnInvalidFile = false
+
             var dragInPlaylist = drag.x > parent.width - program_constants.playlistWidth
 
             if (drop.urls.length == 1) {

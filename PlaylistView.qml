@@ -43,8 +43,16 @@ ListView {
         var flatList = _flattenList()
         for (var i = 0; i < flatList.length; i++) {
             if (playlist._urlEqual(flatList[i], (currentPlayingSource || source))) {
-                var destIndex = cycle ? (i + flatList.length - 1) % flatList.length : Math.max(i-1, 0)
-                return flatList[destIndex]
+                if (cycle) {
+                    var destIndex = (i + flatList.length - 1) % flatList.length
+                    return flatList[destIndex]
+                } else {
+                    if (i - 1  < 0) {
+                        return null
+                    } else {
+                        return flatList[i - 1]
+                    }
+                }
             }
         }
         return null
@@ -54,8 +62,16 @@ ListView {
         var flatList = _flattenList()
         for (var i = 0; i < flatList.length; i++) {
             if (playlist._urlEqual(flatList[i], (currentPlayingSource || source))) {
-                var destIndex = cycle ? (i + 1) % flatList.length : Math.min(i+1, flatList.length - 1)
-                return flatList[destIndex]
+                if (cycle) {
+                    var destIndex = (i + 1) % flatList.length
+                    return flatList[destIndex]
+                } else {
+                    if (i + 1 > flatList.length - 1) {
+                        return null
+                    } else {
+                        return flatList[i + 1]
+                    }
+                }
             }
         }
         return null

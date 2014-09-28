@@ -31,13 +31,13 @@ from PyQt5.QtCore import pyqtSlot, pyqtProperty, pyqtSignal, QObject
 # ADJUST_TYPE_FULLSCREEN = "ADJUST_TYPE_FULLSCREEN"
 
 ORDER_TYPE_RANDOM = "ORDER_TYPE_RANDOM"
-ORDER_TYPE_IN_ORDER = "ORDER_TYPE_RANDOM_IN_ORDER"
+ORDER_TYPE_IN_ORDER = "ORDER_TYPE_IN_ORDER"
 ORDER_TYPE_SINGLE = "ORDER_TYPE_SINGLE"
 ORDER_TYPE_SINGLE_CYCLE = "ORDER_TYPE_SINGLE_CYCLE"
 ORDER_TYPE_PLAYLIST_CYCLE = "ORDER_TYPE_PLAYLIST_CYCLE"
 
 DEFAULT_CONFIG = [
-("Player", [("volume", 1.0), 
+("Player", [("volume", 1.0),
     ("muted", False),
     ("subtitleHide", False),
     # ("adjustType", ADJUST_TYPE_WINDOW_VIDEO),
@@ -74,7 +74,7 @@ DEFAULT_CONFIG = [
     ("subtitleMoveUp", "Shift+Up"),
     ("subtitleMoveDown", "Shift+Down"),]),
 ("HotkeysFiles", [("hotkeyEnabled", True),
-    ("openFile", "Ctrl+O"), 
+    ("openFile", "Ctrl+O"),
     ("playPrevious", "PgUp"),
     ("playNext", "PgDown"),]),
 ("Subtitle", [("autoLoad", True),
@@ -85,19 +85,19 @@ DEFAULT_CONFIG = [
     ("fontBorderColor", "black"),
     ("verticalPosition", 0.05)]),
 ("Others", [("leftClick", True),
-    ("doubleClick", True), 
+    ("doubleClick", True),
     ("wheel", True)]),
 ]
 
 property_name_func = lambda section, key: "%s%s" % (
-    section[0].lower() + section[1:], 
+    section[0].lower() + section[1:],
     key[0].upper() + key[1:])
 
 class Config(QObject):
     def __init__(self):
         super(QObject, self).__init__()
         self.config_path = os.path.join(CONFIG_DIR, "config.ini")
-        
+
         if not os.path.exists(self.config_path):
             if not os.path.exists(CONFIG_DIR): os.makedirs(CONFIG_DIR)
             self.config = config.Config(self.config_path)
@@ -145,7 +145,7 @@ class Config(QObject):
             result.append({"command": item[0], "key": item[1]})
         return result
 
-    @pyqtSlot(str, str, result=str)    
+    @pyqtSlot(str, str, result=str)
     def fetch(self, section, option):
         return self.config.get(section, option)
 
@@ -155,10 +155,10 @@ class Config(QObject):
 
     @pyqtSlot(str,str,result=bool)
     def fetchBool(self, section, option):
-        return self.config.getboolean(section, option)      
-        
+        return self.config.getboolean(section, option)
+
     @pyqtSlot(str, str, str)
-    def save(self, section, option, value):  
+    def save(self, section, option, value):
         self.config.set(section, option, value)
         self.config.write()
 
@@ -178,7 +178,7 @@ class Config(QObject):
             itemNotify = "%sChanged" % itemName
 
             nfy = locals()[itemNotify] = pyqtSignal()
-            
+
             def _get(section, key):
                 def f(self):
                     result = self.fetch(section, key)
@@ -190,16 +190,16 @@ class Config(QObject):
                         except Exception:
                             return self.fetch(section, key)
                 return f
-            
+
             def _set(section ,key, itemNotify):
                 def f(self, value):
                     self.save(section, key, value)
                     getattr(self, itemNotify).emit()
                 return f
-            
+
             set = locals()['_set_'+key] = _set(section, key, itemNotify)
             get = locals()['_get_'+key] = _get(section, key)
-            
+
             locals()[itemName] = pyqtProperty("QVariant", get, set, notify=nfy)
 
 config = Config()
