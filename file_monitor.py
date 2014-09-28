@@ -22,7 +22,7 @@
 
 import os
 import time
-from PyQt5.QtCore import QFileSystemWatcher, pyqtSignal, pyqtSlot
+from PyQt5.QtCore import QFileSystemWatcher, QFile, pyqtSignal, pyqtSlot
 
 def longest_path_exist_matches_path(path):
     if os.path.exists(path) or path == "/":
@@ -44,8 +44,7 @@ class FileMonitor(QFileSystemWatcher):
     def directoryChangedCallback(self, changedDir):
         for file in self._monitored_files:
             if file.startswith(changedDir):
-                time.sleep(0.5) # file's not exists yet.
-                if os.path.exists(file):
+                if QFile(file).exists():
                     self.fileBack.emit(file)
                 else:
                     self.fileMissing.emit(file)
