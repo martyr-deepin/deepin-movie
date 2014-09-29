@@ -34,6 +34,7 @@
 #
 import os
 import sys
+import json
 import signal
 import weakref
 
@@ -53,11 +54,10 @@ from database import database
 from config import config
 from movie_info import movie_info
 from browser import Browser
-from utils import utils
+from utils import utils, FindVideoThreadManager
 from constant import MAIN_QML
 from menu_controller import MenuController
 from file_monitor import FileMonitor
-from utils import utils, FindVideoThreadManager
 
 class PageManager(QObject):
 
@@ -89,12 +89,6 @@ class PageManager(QObject):
         self.movie_search_page.hide()
 
 if __name__ == "__main__":
-    if len(sys.argv) >= 2:
-        movie_file = os.path.realpath(sys.argv[1])
-        movie_file = movie_file if utils.urlIsNativeFile(movie_file) else sys.argv[1]
-    else:
-        movie_file = ""
-
     from dbus_services import (DeepinMovieServie, check_multiple_instances,
         DeepinMovieInterface, session_bus, DBUS_PATH)
 
@@ -102,11 +96,10 @@ if __name__ == "__main__":
     if result:
         dbus_service = DeepinMovieServie(app)
         session_bus.registerObject(DBUS_PATH, dbus_service)
-    if not config.playerMultipleProgramsAllowed:
-        if not result:
-            if movie_file:
-                dbus_interface = DeepinMovieInterface()
-                dbus_interface.play(movie_file)
+    else:
+        if not config.playerMultipleProgramsAllowed:
+            dbus_interface = DeepinMovieInterface()
+            dbus_interface.play(json.dumps(sys.argv[1:]))
             os._exit(0)
 
     windowView = Window(result)
@@ -130,8 +123,7 @@ if __name__ == "__main__":
     windowView.setSource(QtCore.QUrl.fromLocalFile(MAIN_QML))
     windowView.initWindowSize()
     windowView.show()
-
-    movie_info.movie_file = movie_file
+    windowView.play(json.dumps(sys.argv[1:]))
 
     windowView.windowStateChanged.connect(windowView.rootObject().monitorWindowState)
     app.lastWindowClosed.connect(windowView.rootObject().monitorWindowClose)

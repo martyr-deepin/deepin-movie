@@ -22,6 +22,7 @@
 
 import os
 import time
+import json
 from random import randint
 
 from deepin_utils.xutils import set_window_property_by_id
@@ -101,6 +102,18 @@ class Window(QQuickView):
     @pyqtProperty(int,constant=True)
     def windowGlowRadius(self):
         return WINDOW_GLOW_RADIUS
+
+    @pyqtSlot(str)
+    def play(self, pathList):
+        paths = json.loads(pathList)
+        realPathList = []
+        for path in paths:
+            realpath = os.path.realpath(path)
+            if os.path.exists(realpath):
+                realPathList.append(realpath)
+            else:
+                realPathList.append(path)
+        self.rootObject().playPaths(json.dumps(realPathList))
 
     @pyqtSlot(int)
     def setDeepinWindowShadowHint(self, width):

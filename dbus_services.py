@@ -1,5 +1,5 @@
 from PyQt5.QtCore import QObject, Q_CLASSINFO, pyqtSlot
-from PyQt5.QtDBus import (QDBusConnection, QDBusAbstractAdaptor, 
+from PyQt5.QtDBus import (QDBusConnection, QDBusAbstractAdaptor,
     QDBusAbstractInterface)
 
 from movie_info import movie_info
@@ -17,9 +17,9 @@ class DeepinMovieServie(QObject):
         self.__app = application
         self.__dbusAdaptor = DeepinMovieServiceAdaptor(self)
 
-    def play(self, file_path):
+    def play(self, pathList):
         self.__app._extra_window().raise_()
-        movie_info.movie_file = file_path      
+        self.__app._extra_window().play(pathList)
 
 class DeepinMovieServiceAdaptor(QDBusAbstractAdaptor):
 
@@ -27,7 +27,7 @@ class DeepinMovieServiceAdaptor(QDBusAbstractAdaptor):
     Q_CLASSINFO("D-Bus Introspection",
                 '  <interface name="com.deepin.DeepinMovie">\n'
                 '    <method name="Play">\n'
-                '      <arg direction="in" type="s" name="filePath"/>\n'
+                '      <arg direction="in" type="s" name="pathList"/>\n'
                 '    </method>\n'
                 '  </interface>\n')
 
@@ -36,8 +36,8 @@ class DeepinMovieServiceAdaptor(QDBusAbstractAdaptor):
         self.parent = parent
 
     @pyqtSlot(str)
-    def Play(self, file_path):
-        return self.parent.play(file_path)
+    def Play(self, pathList):
+        return self.parent.play(pathList)
 
 class DeepinMovieInterface(QDBusAbstractInterface):
 
@@ -45,7 +45,7 @@ class DeepinMovieInterface(QDBusAbstractInterface):
         super(DeepinMovieInterface, self).__init__(DBUS_NAME,
                                                    DBUS_PATH,
                                                    DBUS_NAME,
-                                                   session_bus, 
+                                                   session_bus,
                                                    None)
 
     def play(self, file_path):

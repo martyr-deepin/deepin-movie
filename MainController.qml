@@ -508,6 +508,37 @@ MouseArea {
         if(invalidFilesCount > 0 && fileUrls.length > 1) notifybar.show(dsTr("%1 files unable to be parsed have been excluded").arg(invalidFilesCount))
     }
 
+    function playPaths(pathList, playFirst) {
+        var invalidFilesCount = 0
+        var theFirstValidVideoIndex = pathList.length
+        var hasDir = false
+
+        for (var i = 0; i < pathList.length; i++) {
+            var file_path = pathList[i].toString().replace("file://", "")
+            file_path = decodeURIComponent(file_path)
+
+            if (_utils.pathIsDir(file_path)) {
+                hasDir = true
+                main_controller.shouldPlayThefirst = playFirst
+                _findVideoThreadManager.getAllVideoFilesInDirRecursively(file_path)
+            } else if (_utils.pathIsFile(file_path)) {
+                if (_utils.fileIsValidVideo(file_path)) {
+                    addPlayListItem(file_path)
+                    if (i < theFirstValidVideoIndex && playFirst) movieInfo.movie_file = file_path
+                    theFirstValidVideoIndex = i
+                } else {
+                    invalidFilesCount += 1
+                }
+            }
+        }
+
+        if (hasDir) {
+            _findVideoThreadManager.startAllThreadsWithBase(invalidFilesCount)
+        } else if (invalidFilesCount > 0) {
+            notifybar.show(dsTr("%1 files unable to be parsed have been excluded").arg(invalidFilesCount))
+        }
+    }
+
     function playNextOf(file) {
         var next = null
 
@@ -719,34 +750,7 @@ MouseArea {
                     }
                 }
             } else {
-                var invalidFilesCount = 0
-                var theFirstValidVideoIndex = drop.urls.length
-                var hasDir = false
-
-                for (var i = 0; i < drop.urls.length; i++) {
-                    var file_path = drop.urls[i].toString().replace("file://", "")
-                    file_path = decodeURIComponent(file_path)
-
-                    if (_utils.pathIsDir(file_path)) {
-                        hasDir = true
-                        main_controller.shouldPlayThefirst = !dragInPlaylist
-                        _findVideoThreadManager.getAllVideoFilesInDirRecursively(file_path)
-                    } else if (_utils.pathIsFile(file_path)) {
-                        if (_utils.fileIsValidVideo(file_path)) {
-                            addPlayListItem(file_path)
-                            if (i < theFirstValidVideoIndex && !dragInPlaylist) movieInfo.movie_file = file_path
-                            theFirstValidVideoIndex = i
-                        } else {
-                            invalidFilesCount += 1
-                        }
-                    }
-                }
-
-                if (hasDir) {
-                    _findVideoThreadManager.startAllThreadsWithBase(invalidFilesCount)
-                } else if (invalidFilesCount > 0) {
-                    notifybar.show(dsTr("%1 files unable to be parsed have been excluded").arg(invalidFilesCount))
-                }
+                main_controller.playPaths(drop.urls, !dragInPlaylist)
             }
         }
     }

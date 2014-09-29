@@ -237,6 +237,21 @@ Rectangle {
         return file_path.indexOf("file://") != -1 ? file_path.substring(7) : file_path
     }
 
+    function playPaths(pathList) {
+        var pathList = JSON.parse(pathList)
+        var pathsExceptUrls = new Array()
+        for (var i = 0; i < pathList.length; i++) {
+            if (!_utils.urlIsNativeFile(pathList[i])) {
+                main_controller.addPlaylistStreamItem(pathList[i])
+                if (i == 0) movieInfo.movie_file = pathList[i]
+            } else {
+                pathsExceptUrls.push(pathList[i])
+            }
+        }
+        main_controller.playPaths(pathsExceptUrls,
+            pathsExceptUrls.length == pathList.length)
+    }
+
     function showControls() {
         titlebar.show()
         controlbar.show()
