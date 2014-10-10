@@ -15,8 +15,8 @@ Depends: ${shlibs:Depends},
  qt5-extra,
  python-ass,
  python-pysrt,
- enca,
- qtdeclarative5-systeminfo-plugin,
+ python-xpyb,
+ python-xpybutil,
  deepin-menu (>= 1.1+20140730105532),
  deepin-qml-widgets
 Description: deepin movie for linuxdeepin desktop environment

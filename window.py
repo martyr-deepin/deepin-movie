@@ -25,7 +25,8 @@ import time
 import json
 from random import randint
 
-from deepin_utils.xutils import set_window_property_by_id
+import xcb
+from xpybutil.ewmh import c, atom, request_wm_state_checked
 
 from PyQt5 import QtGui, QtCore, QtQuick
 from PyQt5.QtCore import Qt, QSize
@@ -63,6 +64,7 @@ class Window(QQuickView):
         self.setMinimumSize(QSize(MINIMIZE_WIDTH, MINIMIZE_HEIGHT))
         self.setResizeMode(QtQuick.QQuickView.SizeRootObjectToView)
         self.setFormat(surface_format)
+        self.setFlags(QtCore.Qt.FramelessWindowHint)
 
         self.staysOnTop = False
         self.qml_context = self.rootContext()
@@ -117,8 +119,11 @@ class Window(QQuickView):
 
     @pyqtSlot(int)
     def setDeepinWindowShadowHint(self, width):
-        set_window_property_by_id(self.winId().__int__(),
-            "DEEPIN_WINDOW_SHADOW", str(width))
+        width = str(width)
+        window = self.winId().__int__()
+        return c.core.ChangeProperty(xcb.xproto.PropMode.Replace, window,
+                                     atom('DEEPIN_WINDOW_SHADOW'),
+                                     atom('STRING'), 8, len(width), width)
 
     @pyqtSlot(result=int)
     def getState(self):
@@ -145,11 +150,9 @@ class Window(QQuickView):
     @staysOnTop.setter
     def staysOnTop(self, onTop):
         self._staysOnTop = onTop
-        flags = QtCore.Qt.FramelessWindowHint
-        if onTop: flags = flags | QtCore.Qt.WindowStaysOnTopHint
-        self.setFlags(flags)
-        self.hide()
-        self.show()
+        action = 1 if onTop else 0
+        request_wm_state_checked(self.winId().__int__(),
+            action, atom("_NET_WM_STATE_ABOVE")).check()
         self.staysOnTopChanged.emit()
 
     @pyqtSlot()
