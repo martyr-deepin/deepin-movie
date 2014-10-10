@@ -3,34 +3,18 @@ import QtGraphicalEffects 1.0
 import Deepin.Widgets 1.0
 
 DWindow {
-    width: content.width + effect.radius * 2
-    height: content.height + effect.radius * 2
+    width: effect.width
+    height: effect.height
     flags: Qt.Popup
     color: "transparent"
 
-    Item {
-        id: shadow_place_holder
-        anchors.fill: parent
-
-        Rectangle {
-            width: content.width
-            height: content.height
-            radius: content.radius
-            color: Qt.rgba(0, 0, 0, 0.6)
-
-            anchors.centerIn: parent
-        }
-    }
-
-    DropShadow {
+    DRectangularGlow {
         id: effect
-        anchors.fill: shadow_place_holder
-        horizontalOffset: 0
-        verticalOffset: 0
-        radius: 8.0
-        samples: 16
-        color: "black"
-        source: shadow_place_holder
+        glowRadius: 8.0
+        spread: 0
+        color: Qt.rgba(0, 0, 0, 0.6)
+
+        anchors.fill: content
     }
 
     Rectangle {
@@ -38,7 +22,7 @@ DWindow {
         width: 980
         height: 560
         radius: 3
-        color: "transparent"
+        color: Qt.rgba(0, 0, 0, 0.8)
         border.width: 1
         border.color: Qt.rgba(1, 1, 1, 0.8)
 
