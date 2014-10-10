@@ -439,18 +439,24 @@ MouseArea {
     function backward() { backwardByDelta(Math.floor(config.playerForwardRewindStep * 1000)) }
 
     function speedUp() {
+        if (player.source.toString().search("file://") != 0) return
+
         var restoreInfo = config.hotkeysPlayRestoreSpeed+"" ? dsTr("(Press %1 to restore)").arg(config.hotkeysPlayRestoreSpeed) : ""
         player.playbackRate = Math.min(2.0, (player.playbackRate + 0.1).toFixed(1))
         notifybar.show(dsTr("Playback rate: ") + player.playbackRate + restoreInfo)
     }
 
     function slowDown() {
+        if (player.source.toString().search("file://") != 0) return
+
         var restoreInfo = config.hotkeysPlayRestoreSpeed+"" ? dsTr("(Press %1 to restore)").arg(config.hotkeysPlayRestoreSpeed) : ""
         player.playbackRate = Math.max(0.1, (player.playbackRate - 0.1).toFixed(1))
         notifybar.show(dsTr("Playback rate: ") + player.playbackRate + restoreInfo)
     }
 
     function restoreSpeed() {
+        if (player.source.toString().search("file://") != 0) return
+
         player.playbackRate = 1
         notifybar.show(dsTr("Playback rate: ") + player.playbackRate)
     }
