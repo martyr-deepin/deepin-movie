@@ -143,7 +143,7 @@ Rectangle {
 
             if (input.search("://") == -1) {
                 notifybar.show(dsTr("The parse failed"))
-            } else if (input != lastInput){
+            } else if (input != movieInfo.movie_file){
                 shouldAutoPlayNextOnInvalidFile = false
                 movieInfo.movie_file = input
             }
@@ -510,8 +510,7 @@ Rectangle {
         }
 
         onErrorChanged: {
-            if (source.toString().replace("file://", "")
-                == open_url_dialog.lastInput.toString().replace("file://", ""))
+            if (movieInfo.movie_file.toString() == open_url_dialog.lastInput.toString())
             {
                 playlist.removeItem(source)
             }
@@ -523,6 +522,8 @@ Rectangle {
                 movieInfo.fileInvalid()
                 break
             }
+
+            open_url_dialog.lastInput = ""
         }
     }
 
