@@ -139,6 +139,8 @@ Rectangle {
         }
 
         onConfirmed: {
+            var input = input.trim()
+
             if (input.search("://") == -1) {
                 notifybar.show(dsTr("The parse failed"))
             } else if (input != lastInput){

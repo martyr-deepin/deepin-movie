@@ -2,8 +2,6 @@ from PyQt5.QtCore import QObject, Q_CLASSINFO, pyqtSlot
 from PyQt5.QtDBus import (QDBusConnection, QDBusAbstractAdaptor,
     QDBusAbstractInterface)
 
-from movie_info import movie_info
-
 DBUS_NAME = "com.deepin.DeepinMovie"
 DBUS_PATH = "/com/deepin/DeepinMovie"
 session_bus = QDBusConnection.sessionBus()
