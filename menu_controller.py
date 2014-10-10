@@ -379,8 +379,8 @@ class MenuController(QObject):
         self.menu.itemClicked.connect(self._menu_item_invoked)
         self.menu.showRectMenu(QCursor.pos().x(), QCursor.pos().y())
 
-    @pyqtSlot(str)
-    def show_playlist_menu(self, url):
+    @pyqtSlot(bool,str)
+    def show_playlist_menu(self, isGroup, url):
         self.menu = Menu(playlist_right_menu)
         self.menu.itemClicked.connect(self._menu_item_invoked)
 
@@ -396,7 +396,8 @@ class MenuController(QObject):
             config.playerPlayOrderType == ORDER_TYPE_PLAYLIST_CYCLE
 
         self.menu.getItemById("_playlist_play").isActive = url != ""
-        self.menu.getItemById("_playlist_remove_item").isActive = url != ""
+        self.menu.getItemById("_playlist_remove_item").isActive = \
+            isGroup or url != ""
         self.menu.getItemById("_playlist_open_position").isActive = url != "" \
             and utils.urlIsNativeFile(url)
         self.menu.getItemById("_playlist_information").isActive = url != "" \

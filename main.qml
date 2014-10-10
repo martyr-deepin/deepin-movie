@@ -348,9 +348,9 @@ Rectangle {
     function monitorWindowClose() {
         _utils.screenSaverUninhibit()
         config.save("Normal", "volume", player.volume)
+        playlist.syncDatabase()
         database.record_video_position(player.source, player.position)
         database.record_video_rotation(player.source, player.orientation)
-        database.playlist_local = playlist.getContent()
         database.lastWindowWidth = windowView.width
         movieInfo.movie_file && (database.lastPlayedFile = movieInfo.movie_file)
     }

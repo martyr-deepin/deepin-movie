@@ -12,12 +12,15 @@ ListView {
     // isSelected is determined by its children
     property bool isSelected: false
     property url clickedOnItemUrl
+    property string clickedOnItemName
 
     signal newSourceSelected(string path)
     signal removeItemPrivate(string url)
+    signal removeGroupPrivate(string name)
     signal rightClickedOnItem(string url)
     signal fileMissing(string url)
     signal fileBack(string url)
+    signal itemsChanged()
 
     Connections {
         target: _file_monitor
@@ -142,6 +145,7 @@ ListView {
     }
 
     function removeItem(url) { root.removeItemPrivate(url) }
+    function removeGroup(name) { root.removeGroupPrivate(name) }
     function removeInvalidItems(valid_check_func) {
         var flatList = _flattenList()
         for (var i = 0; i < flatList.length; i++) {
@@ -179,7 +183,7 @@ ListView {
                 result.push({
                     "itemName": allItems[i].propName,
                     "itemUrl": allItems[i].propUrl,
-                    "itemChild": allItems[i].child.getContent()})
+                    "itemChild": allItems[i].child ? allItems[i].child.getContent() : "[]"})
             } else {
                 result.push({
                     "itemName": allItems[i].propName,
@@ -239,7 +243,9 @@ ListView {
     //  }
     // }
 
-    model: ListModel {}
+    model: ListModel {
+        onCountChanged: playlist.root.itemsChanged()
+    }
     delegate: Component {
         Column {
             id: column
@@ -310,6 +316,11 @@ ListView {
                 target: column.ListView.view.root
                 onRemoveItemPrivate: {
                     if (playlist._urlEqual(propUrl, url)) {
+                        column.ListView.view.model.remove(index, 1)
+                    }
+                }
+                onRemoveGroupPrivate: {
+                    if (propName == name) {
                         column.ListView.view.model.remove(index, 1)
                     }
                 }
@@ -402,7 +413,8 @@ ListView {
                     onClicked: {
                         if (mouse.button == Qt.RightButton) {
                             column.ListView.view.root.clickedOnItemUrl = propUrl
-                            _menu_controller.show_playlist_menu(propUrl)
+                            column.ListView.view.root.clickedOnItemName = propName
+                            _menu_controller.show_playlist_menu(column.isGroup, propUrl)
                         } else {
                             if (column.isGroup) {
                                 sub.visible = !sub.visible

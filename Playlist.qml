@@ -12,6 +12,7 @@ Rectangle {
     property bool canExpand: true
     property url currentPlayingSource
     property url clickedOnItemUrl: playlist.clickedOnItemUrl
+    property string clickedOnItemName: playlist.clickedOnItemName
     property int maxWidth: program_constants.playlistWidth
     property alias window: playlistPanelArea.window
     property QtObject tooltipItem
@@ -76,7 +77,13 @@ Rectangle {
 
     function removeItem(item) { playlist.removeItem(item) }
 
-    function removeClickedItem() { playlist.removeItem(clickedOnItemUrl) }
+    function removeClickedItem() {
+        if (clickedOnItemUrl.toString() != "") {
+            playlist.removeItem(clickedOnItemUrl)
+        } else if (clickedOnItemName != "") {
+            playlist.removeGroup(clickedOnItemName)
+        }
+    }
 
     function removeInvalidItems(valid_check_func) { playlist.removeInvalidItems(valid_check_func) }
 
@@ -92,6 +99,7 @@ Rectangle {
     function getNextSource(source) { return playlist.getNextSource(source) }
     function getPreviousSourceCycle(source) { return playlist.getPreviousSourceCycle(source) }
     function getNextSourceCycle(source) { return playlist.getNextSourceCycle(source) }
+    function syncDatabase() { database.playlist_local = playlist.getContent() }
 
     Timer {
         id: hide_timer
@@ -161,7 +169,7 @@ Rectangle {
         onWheel: {}
         onClicked: {
             if (mouse.button == Qt.RightButton) {
-                _menu_controller.show_playlist_menu("")
+                _menu_controller.show_playlist_menu(false, "")
             } else if(shouldPerformClick){
                 playlistPanel.hide()
             }
@@ -215,6 +223,10 @@ Rectangle {
 
             onNewSourceSelected: {
                 playlistPanel.newSourceSelected(path)
+            }
+
+            onItemsChanged: {
+                playlistPanel.syncDatabase()
             }
 
             Component.onCompleted: initializeWithContent(database.playlist_local)
