@@ -491,6 +491,8 @@ Rectangle {
             }
         }
 
+        onPlaybackStateChanged: controlbar.videoPlaying = player.playbackState == MediaPlayer.PlayingState
+
         onPositionChanged: {
             position != 0 && (lastPosition = position)
             subtitleContent = movieInfo.get_subtitle_at(position + subtitleDelay)
@@ -605,7 +607,6 @@ Rectangle {
         window: windowView
         volume: config.playerVolume
         percentage: player.position / movieInfo.movie_duration
-        videoPlaying: player.playbackState == MediaPlayer.PlayingState
         muted: config.playerMuted
         widthHeightScale: root.widthHeightScale
         previewHasVideo: player.hasVideo
