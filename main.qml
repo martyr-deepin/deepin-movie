@@ -180,10 +180,8 @@ Rectangle {
 
     ShortcutsViewer {
         id: shortcuts_viewer
-        x: Math.min(windowView.x + (windowView.width - width) / 2,
-            Screen.width - width)
-        y: Math.min(windowView.y + (windowView.height - height) / 2,
-            Screen.height - height)
+        x: Math.max(0, Math.min(windowView.x + (windowView.width - width) / 2, Screen.width - width))
+        y: Math.max(0, Math.min(windowView.y + (windowView.height - height) / 2, Screen.height - height))
     }
 
     // translation tools
