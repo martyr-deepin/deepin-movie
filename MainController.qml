@@ -29,7 +29,7 @@ MouseArea {
         target: movieInfo
 
         onMovieWidthChanged: {
-            if (titlebar.state == "minimal") {
+            if (root.miniModeState()) {
                 backupWidth = movieInfo.movie_width
                 _setSizeForRootWindowWithWidth(windowView.width)
                 backupCenter = Qt.point(windowView.x + windowView.width / 2,
@@ -290,22 +290,20 @@ MouseArea {
 
     property bool fullscreenFromMaximum: false
     function fullscreen() {
-        backupWidth = windowView.width
-        backupCenter = Qt.point(windowView.x + windowView.width / 2,
-            windowView.y + windowView.height / 2)
         fullscreenFromMaximum = (windowView.getState() == Qt.WindowMaximized)
         root.state = "no_glow"
         windowView.showFullScreen()
+
+        quitMiniMode()
     }
 
     function quitFullscreen() { fullscreenFromMaximum ? maximize() : normalize() }
 
     function maximize() {
-        backupWidth = windowView.width
-        backupCenter = Qt.point(windowView.x + windowView.width / 2,
-            windowView.y + windowView.height / 2)
         root.state = "no_glow"
         windowView.showMaximized()
+
+        quitMiniMode()
     }
 
     function minimize() {
@@ -315,27 +313,39 @@ MouseArea {
 
     property int backupWidth: 0
     property point backupCenter: Qt.point(0, 0)
-    function toggleMiniMode() {
-        if (titlebar.state == "minimal") {
-            titlebar.state = "normal"
-            windowView.staysOnTop = false
+    function quitMiniMode() {
+        if (!player.hasVideo) return
+
+        windowView.staysOnTop = false
+        if (windowView.getState() != Qt.WindowMaximized
+            && windowView.getState() != Qt.WindowFullScreen)
+        {
             _setSizeForRootWindowWithWidth(backupWidth)
-        } else {
-            if (windowView.getState() != Qt.WindowMaximized
-                && windowView.getState() != Qt.WindowFullScreen)
-            {
-                backupWidth = windowView.width
-                backupCenter = Qt.point(windowView.x + windowView.width / 2,
-                    windowView.y + windowView.height / 2)
-            }
-            normalize()
-            titlebar.state = "minimal"
-            windowView.staysOnTop = true
-            _setSizeForRootWindowWithWidth(program_constants.miniModeWidth)
+            windowView.setX(backupCenter.x - windowView.width / 2)
+            windowView.setY(backupCenter.y - windowView.height / 2)
         }
+        windowView.requestActivate()
+    }
+    function miniMode() {
+        if (!player.hasVideo) return
+
+        if (windowView.getState() != Qt.WindowMaximized
+            && windowView.getState() != Qt.WindowFullScreen)
+        {
+            backupWidth = windowView.width
+            backupCenter = Qt.point(windowView.x + windowView.width / 2,
+                windowView.y + windowView.height / 2)
+        }
+        normalize()
+        windowView.staysOnTop = true
+        _setSizeForRootWindowWithWidth(program_constants.miniModeWidth)
+
         windowView.setX(backupCenter.x - windowView.width / 2)
         windowView.setY(backupCenter.y - windowView.height / 2)
         windowView.requestActivate()
+    }
+    function toggleMiniMode() {
+        root.miniModeState() ? quitMiniMode() : miniMode()
     }
 
     function setProportion(propWidth, propHeight) {

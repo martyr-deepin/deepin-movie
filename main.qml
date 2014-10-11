@@ -202,7 +202,7 @@ Rectangle {
         windowView.setHeight(windowView.defaultHeight)
     }
 
-    function miniModeState() { return titlebar.state == "minimal" }
+    function miniModeState() { return windowView.width == program_constants.miniModeWidth }
 
     function formatTime(millseconds) {
         if (millseconds <= 0) return "00:00:00";
@@ -582,6 +582,7 @@ Rectangle {
 
     TitleBar {
         id: titlebar
+        state: root.miniModeState() ? "minimal" : "normal"
         visible: false
         window: windowView
         windowStaysOnTop: windowView.staysOnTop
