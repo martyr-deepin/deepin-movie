@@ -7,6 +7,7 @@ DWindow {
     height: effect.height
     flags: Qt.Popup
     color: "transparent"
+    shadowWidth: (width - content.width) / 2
 
     DRectangularGlow {
         id: effect
@@ -24,7 +25,7 @@ DWindow {
         radius: 3
         color: Qt.rgba(0, 0, 0, 0.8)
         border.width: 1
-        border.color: Qt.rgba(1, 1, 1, 0.8)
+        border.color: Qt.rgba(1, 1, 1, 0.6)
 
         anchors.centerIn: parent
 
