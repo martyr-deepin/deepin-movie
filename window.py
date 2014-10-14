@@ -74,8 +74,12 @@ class Window(QQuickView):
         self.setDeepinWindowShadowHint(self.windowGlowRadius)
 
     def initWindowSize(self):
+        self.centerRequestCount -= 1
         self.rootObject().initWindowSize()
-        self.moveToRandomPos()
+        if self.centerRequestCount < 0:
+            self.moveToRandomPos()
+        else:
+            self.moveToCenter()
 
     @pyqtProperty(int,centerRequestCountChanged)
     def centerRequestCount(self):

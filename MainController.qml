@@ -48,7 +48,7 @@ MouseArea {
                 var destWidth = hasResized ? windowView.width : movieInfo.movie_width
                 _setSizeForRootWindowWithWidth(destWidth)
             }
-            windowView.centerRequestCount-- > 0 && windowView.moveToCenter()
+            windowView.centerRequestCount-- >= 0 && windowView.moveToCenter()
         }
 
         onMovieSourceChanged: {

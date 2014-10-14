@@ -102,7 +102,7 @@ if __name__ == "__main__":
             dbus_interface.play(json.dumps(sys.argv[1:]))
             os._exit(0)
 
-    windowView = Window(result)
+    windowView = Window(result or len(sys.argv) > 1)
     menu_controller = MenuController(windowView)
     file_monitor = FileMonitor()
     findVideoThreadManager = FindVideoThreadManager()
