@@ -47,6 +47,7 @@ if os.name == 'posix':
 from PyQt5.QtCore import pyqtSlot, QObject
 from PyQt5.QtWidgets import QApplication
 app = QApplication(sys.argv)
+app.setApplicationVersion("2.1")
 app.setQuitOnLastWindowClosed(True)
 
 from window import Window

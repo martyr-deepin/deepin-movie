@@ -894,6 +894,6 @@ DPreferenceWindow {
         //     sectionId: "screenshot"
         //     topSpaceHeight: 30
         // }
-        AboutSection {}
+        AboutSection { version: Qt.application.version }
     }
 }

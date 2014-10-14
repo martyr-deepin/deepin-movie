@@ -1,11 +1,13 @@
 import QtQuick 2.1
 import Deepin.Widgets 1.0
 
-SectionContent { 
+SectionContent {
     id: about
     title: dsTr("About")
     sectionId: "about"
     topSpaceHeight: 30
+
+    property string version: "1.0"
 
     DssH2 {
         text: dsTr("Deepin Movie")
@@ -13,17 +15,17 @@ SectionContent {
         anchors.horizontalCenter: parent.horizontalCenter
     }
 
-    DIcon { 
+    DIcon {
     	width: 64
     	height: 64
     	theme: "Deepin"
         icon: "deepin-movie"
-        
+
         anchors.horizontalCenter: parent.horizontalCenter
     }
 
     DssH3 {
-        text: dsTr("Version") + ":2.0"
+        text: dsTr("Version") + ":" + about.version
         anchors.horizontalCenter: parent.horizontalCenter
     }
 
