@@ -642,8 +642,10 @@ Rectangle {
         onOpenFileButtonClicked: { main_controller.openFile() }
         onPlaylistButtonClicked: { playlist.toggleShow() }
         onPercentageSet: {
-            delay_seek_timer.destPos = movieInfo.movie_duration * percentage
-            delay_seek_timer.restart()
+            if (movieInfo.movie_duration) {
+                delay_seek_timer.destPos = movieInfo.movie_duration * percentage
+                delay_seek_timer.restart()
+            }
         }
     }
 
