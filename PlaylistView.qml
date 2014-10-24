@@ -221,6 +221,7 @@ ListView {
 
     function clear() {
         model.clear()
+        allItems = []
     }
 
     function _urlEqual(url1, url2) {
