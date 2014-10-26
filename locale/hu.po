@@ -5,14 +5,15 @@
 # Translators:
 # kdavid97 <kdavid97@gmail.hu>, 2014
 # Laszlo Espadas <kw@kardiweb.org>, 2014
+# SlazO <blum1866@gmail.com>, 2014
 # unicum99 <stampf99@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-26 13:15+0800\n"
-"PO-Revision-Date: 2014-10-14 15:01+0000\n"
-"Last-Translator: kdavid97 <kdavid97@gmail.hu>\n"
+"PO-Revision-Date: 2014-10-24 16:01+0000\n"
+"Last-Translator: SlazO <blum1866@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/projects/p/deepin-movie/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,11 +37,11 @@ msgstr "Verzió"
 msgid ""
 "Deepin Movie is a video player designed for Linux users. It supports a "
 "variety of video formats."
-msgstr "Deepin Movie egy Linuxra szánt videólejátszó. Különböző videó formátumokat támogat."
+msgstr "A Deepin Film egy Linux felhasználók számára tervezett videolejátszó amely rengeteg különböző formátumot támogat."
 
 #: ../AboutSection.qml:48
 msgid "Deepin Movie is free software licensed under GNU GPLv3"
-msgstr "Deepin Movie egy szabad szoftver licencelve GNU GPLv3-nál"
+msgstr "A Deepin Film egy ingyenes szoftver a GNU GPLv3 keretein belül"
 
 #: ../ControlBar.qml:219
 msgid "Stop playing"
@@ -56,7 +57,7 @@ msgstr "Szünet"
 
 #: ../ControlBar.qml:256 ../menu_controller.py:99 ../menu_controller.py:109
 msgid "Play"
-msgstr "lejátszás"
+msgstr "Lejátszás"
 
 #: ../ControlBar.qml:273 ../menu_controller.py:82
 msgid "Next"
@@ -76,7 +77,7 @@ msgstr "Teljes képernyő"
 #: ../ControlBar.qml:333 ../PreferenceWindow.qml:593 ../ShortcutsViewer.qml:69
 #: ../menu_controller.py:89
 msgid "Open a file"
-msgstr "Nyisson meg egy fájlt"
+msgstr "Fájl megnyitása"
 
 #: ../ControlBar.qml:345 ../OpenFileDialog.qml:66 ../PreferenceWindow.qml:349
 #: ../ShortcutsViewer.qml:48 ../menu_controller.py:96
@@ -109,20 +110,20 @@ msgstr "Lejátszási lista"
 #: ../ShortcutsViewer.qml:144 ../ShortcutsViewer.qml:148
 #: ../ShortcutsViewer.qml:152
 msgid "Disabled"
-msgstr "letilt"
+msgstr "Letiltva"
 
 #: ../HotKeyInput.qml:16
 msgid "Please input a new shortcut"
-msgstr "Kérem adjon meg egy új parancsikont"
+msgstr "Kérem adjon meg egy új gyorsbillentyűt"
 
 #: ../HotKeyInputRow.qml:29
 msgid "The shortcut you set "
-msgstr "A beállított parancsikon"
+msgstr "A beállított gyorsbillentyű"
 
 #: ../HotKeyInputRow.qml:30
 #, qt-format
 msgid "conflicts with the one used for \"%2\" in the \"%1\" category. "
-msgstr "Konfliktusban áll a használt \"%2\" a \"%1\"  kategóriában."
+msgstr "Ütközik a \"%2\" által használttal a \"%1\" kategóriában."
 
 #: ../HotKeyInputRow.qml:31
 msgid "Do you want to replace it?"
@@ -130,11 +131,11 @@ msgstr "Le szeretné cserélni?"
 
 #: ../HotKeyInputRow.qml:95 ../main.qml:125
 msgid "Cancel"
-msgstr "Mégsem"
+msgstr "Mégse"
 
 #: ../HotKeyInputRow.qml:106
 msgid "Replace"
-msgstr "Javítás"
+msgstr "Cserél"
 
 #: ../InformationWindow.qml:64
 msgid "File type"
@@ -150,7 +151,7 @@ msgstr "Felbontás"
 
 #: ../InformationWindow.qml:88
 msgid "Movie duration"
-msgstr "Film időtartam"
+msgstr "Tartam"
 
 #: ../InformationWindow.qml:100
 msgid "File path"
@@ -213,7 +214,7 @@ msgstr "Némítva"
 
 #: ../OpenFileDialog.qml:5 ../OpenFileDialog.qml:21 ../OpenFileDialog.qml:41
 msgid "Please choose one file or more"
-msgstr "Válasszunk ki egy fájlt"
+msgstr "Kérlek válassz egy vagy több fájlt"
 
 #: ../OpenFileDialog.qml:7 ../OpenFileDialog.qml:23 ../OpenFileDialog.qml:43
 msgid "Video files"
@@ -225,7 +226,7 @@ msgstr "Minden fájl"
 
 #: ../OpenFileDialog.qml:31 ../OpenFileDialog.qml:51
 msgid "Please choose one file"
-msgstr "Kérem, válasszon egy fájlt"
+msgstr "Kérlek válassz egy fájlt"
 
 #: ../OpenFileDialog.qml:33
 msgid "Subtitle files"
@@ -237,11 +238,11 @@ msgstr "Lejátszási lista fájlok"
 
 #: ../OpenFileDialog.qml:61
 msgid "Save as"
-msgstr "mentés másként"
+msgstr "Mentés másként"
 
 #: ../OpenFolderDialog.qml:5
 msgid "Please choose a folder"
-msgstr "Válasszunk ki egy könyvtárat"
+msgstr "Kérlek válassz egy könyvtárat"
 
 #: ../Playlist.qml:239
 msgid "Play mode"
@@ -253,27 +254,27 @@ msgstr "Fájl hozzáadása"
 
 #: ../Playlist.qml:260 ../menu_controller.py:117
 msgid "Clear playlist"
-msgstr "Lejátszási lista tisztítása "
+msgstr "Lejátszási lista ürítése "
 
 #: ../PreferenceWindow.qml:178
 msgid "Enter fullscreen on opening file"
-msgstr "Fájl megnyitása teljes képernyős módba"
+msgstr "Fájl megnyitásakor teljes képernyős módba váltás"
 
 #: ../PreferenceWindow.qml:190
 msgid "Clear playlist on opening new file"
-msgstr "Lejátszási lista tisztása új fájl megnyitáskor"
+msgstr "Lista ürítése új fájl megnyitásakor"
 
 #: ../PreferenceWindow.qml:195
 msgid "Resume playback after restarting player"
-msgstr "Videólejátszó újra indításánál kezdje újra a lejátszási listát."
+msgstr "Lejátszás folytatása újraindításkor"
 
 #: ../PreferenceWindow.qml:200
 msgid "Continue to next video automatically"
-msgstr "Automatikus tovább lépés a következő videóhoz "
+msgstr "Automatikusan lépjen a következő videóra"
 
 #: ../PreferenceWindow.qml:205
 msgid "Show preview when hovering over progress bar"
-msgstr "Előnézet mutatása, mikor a kurzorral a haladásjelző csík fölé megy"
+msgstr "Előnézet mutatása a folyamatcsíkon"
 
 #: ../PreferenceWindow.qml:260 ../PreferenceWindow.qml:444
 #: ../PreferenceWindow.qml:587 ../PreferenceWindow.qml:667
@@ -287,15 +288,15 @@ msgstr "Szünet/Lejátszás"
 
 #: ../PreferenceWindow.qml:370 ../ShortcutsViewer.qml:52
 msgid "Accelerate playback"
-msgstr "Lejátszás felgyorsítása"
+msgstr "Lejátszás gyorsítása"
 
 #: ../PreferenceWindow.qml:391 ../ShortcutsViewer.qml:56
 msgid "Decelerate playback"
-msgstr "Lejátszás lelassítsa"
+msgstr "Lejátszás lassítása"
 
 #: ../PreferenceWindow.qml:412 ../ShortcutsViewer.qml:60
 msgid "Restore playback speed"
-msgstr "Lejátszási sebeség vissza állítása"
+msgstr "Lejátszási sebeség visszaállítása"
 
 #: ../PreferenceWindow.qml:450 ../ShortcutsViewer.qml:90
 #: ../menu_controller.py:94 ../menu_controller.py:377
@@ -312,11 +313,11 @@ msgstr "Hangerő csökkentése"
 
 #: ../PreferenceWindow.qml:614 ../ShortcutsViewer.qml:73
 msgid "Open previous"
-msgstr "Előző videó megnyitása "
+msgstr "Előző megnyitása"
 
 #: ../PreferenceWindow.qml:635 ../ShortcutsViewer.qml:77
 msgid "Open next"
-msgstr "Következő videó megnyitása "
+msgstr "Következő megnyitása"
 
 #: ../PreferenceWindow.qml:673 ../ShortcutsViewer.qml:139
 msgid "Forward 0.5s"
@@ -328,23 +329,23 @@ msgstr "Késleltetés 0,5 másodperccel"
 
 #: ../PreferenceWindow.qml:715 ../ShortcutsViewer.qml:147
 msgid "Subtitle up"
-msgstr "Feliratok be "
+msgstr "Felirat fel"
 
 #: ../PreferenceWindow.qml:736 ../ShortcutsViewer.qml:151
 msgid "Subtitle down"
-msgstr "Feliratok ki "
+msgstr "Felirat le"
 
 #: ../PreferenceWindow.qml:768 ../ShortcutsViewer.qml:119
 msgid "Left click"
-msgstr "Bal kattintás "
+msgstr "Bal egérgomb "
 
 #: ../PreferenceWindow.qml:776 ../ShortcutsViewer.qml:124
 msgid "Double click"
-msgstr "dupla kattintás "
+msgstr "Dupla kattintás "
 
 #: ../PreferenceWindow.qml:801
 msgid "Subtitles loaded automatically"
-msgstr "Feliratok automatikus betöltése"
+msgstr "Feliratok automatikusan betöltve"
 
 #: ../PreferenceWindow.qml:842
 msgid "Border width"
@@ -359,7 +360,7 @@ msgstr "Visszajátszás"
 #: ../PreferenceWindow.qml:76 ../PreferenceWindow.qml:435
 #: ../ShortcutsViewer.qml:87
 msgid "Frame/Sound"
-msgstr "Kép/Hang"
+msgstr "Képkocka/Hang"
 
 #: ../PreferenceWindow.qml:81 ../PreferenceWindow.qml:578
 #: ../ShortcutsViewer.qml:66
@@ -386,11 +387,11 @@ msgstr "Fekete"
 
 #: ../PreferenceWindow.qml:16
 msgid "bleu de France"
-msgstr "Kék Franciaország"
+msgstr "Franciaország kékje"
 
 #: ../PreferenceWindow.qml:17
 msgid "Turquoise"
-msgstr "Török"
+msgstr "Türkiz"
 
 #: ../PreferenceWindow.qml:18
 msgid "UFO green"
@@ -406,11 +407,11 @@ msgstr "Gorse"
 
 #: ../PreferenceWindow.qml:21
 msgid "Energy yellow"
-msgstr "Energikus sárga "
+msgstr "Energia sárga"
 
 #: ../PreferenceWindow.qml:22
 msgid "Sun"
-msgstr "v"
+msgstr "Nap"
 
 #: ../PreferenceWindow.qml:23
 msgid "Radical red"
@@ -422,7 +423,7 @@ msgstr "Levendula indigó"
 
 #: ../PreferenceWindow.qml:25
 msgid "Royal blue"
-msgstr "Királyi kék"
+msgstr "Király kék"
 
 #: ../PreferenceWindow.qml:26
 msgid "Aluminum"
@@ -450,15 +451,15 @@ msgstr "Felirat beállításai"
 
 #: ../PreferenceWindow.qml:184
 msgid "Apply the size last time closed"
-msgstr "Előbb bezárt program méret vissza állítása "
+msgstr "Legutóbbi méret megjegyzése"
 
 #: ../PreferenceWindow.qml:210
 msgid "Allow multiple instances"
-msgstr "Több példa engedélyezése"
+msgstr "Engedélyezés több példányban"
 
 #: ../PreferenceWindow.qml:215
 msgid "Pause when minimized"
-msgstr "Kicsinyítésnél szünet "
+msgstr "Minimalizáláskor szünetel"
 
 #: ../PreferenceWindow.qml:220
 msgid "Enable system popup notification"
@@ -466,15 +467,15 @@ msgstr "Rendszerértesitő engedélyezése"
 
 #: ../PreferenceWindow.qml:238
 msgid "Forward/Rewind"
-msgstr "Előre tekerés/Hátra tekerés "
+msgstr "Vissza/Előre"
 
 #: ../PreferenceWindow.qml:471 ../ShortcutsViewer.qml:94
 msgid "Rotate counterclockwise"
-msgstr "Az óra járás ellentétes forgás"
+msgstr "Forgatás az óra járásával ellentétes irányba"
 
 #: ../PreferenceWindow.qml:492 ../ShortcutsViewer.qml:98
 msgid "Rotate clockwise"
-msgstr "Órajárás forgás "
+msgstr "Forgatás az óra járásával megegyező irányba"
 
 #: ../PreferenceWindow.qml:555 ../ShortcutsViewer.qml:110
 msgid "Mute"
@@ -491,11 +492,11 @@ msgstr "Hangerő"
 
 #: ../PreferenceWindow.qml:807
 msgid "Font"
-msgstr "betű"
+msgstr "Betű"
 
 #: ../PreferenceWindow.qml:817
 msgid "Font color"
-msgstr "írási szín "
+msgstr "Betű szín"
 
 #: ../PreferenceWindow.qml:833
 msgid "Size"
@@ -547,11 +548,11 @@ msgstr "Felül"
 
 #: ../main.qml:123
 msgid "Please input the url of file played"
-msgstr ""
+msgstr "Kérem írja be a lejátszott fájl URL-jét"
 
 #: ../main.qml:140 ../main.qml:482 ../main.qml:488
 msgid "The parse failed"
-msgstr ""
+msgstr "Az elemzés sikertelen"
 
 #: ../movie_info.py:148
 msgid "Unknown"
@@ -563,11 +564,11 @@ msgstr "Alapértelmezett"
 
 #: ../menu_controller.py:46
 msgid "Rotate 90 degree clockwise"
-msgstr "90 fokkal az óra járással forduljon "
+msgstr "Forgatás 90 fokkal jobbra"
 
 #: ../menu_controller.py:47
 msgid "Rotate 90 degree counterclockwise"
-msgstr "90 fokkal az óra járással ellentestes irányban forduljon"
+msgstr "Forgatás 90 fokkal balra"
 
 #: ../menu_controller.py:48
 msgid "Flip horizontally"
@@ -587,19 +588,19 @@ msgstr "Hangerő csökkentése "
 
 #: ../menu_controller.py:63
 msgid "Hide subtitle"
-msgstr "Feliratok elrejtése "
+msgstr "Felirat elrejtése "
 
 #: ../menu_controller.py:67
 msgid "Open manually"
-msgstr "Manuális megnyitás"
+msgstr "Megnyitás manuálisan"
 
 #: ../menu_controller.py:68
 msgid "Subtitle selection"
-msgstr "Felirat kiválasztása"
+msgstr "Felirat kiválasztás"
 
 #: ../menu_controller.py:69
 msgid "Subtitle setting"
-msgstr "Feliratok beállítása"
+msgstr "Feliratok beállításai"
 
 #: ../menu_controller.py:73
 msgid "Order"
@@ -615,7 +616,7 @@ msgstr "Egyesével "
 
 #: ../menu_controller.py:76
 msgid "Repeat (Single)"
-msgstr "Ismétlés (aktuális videó)"
+msgstr "Ismétlés (egyszeri)"
 
 #: ../menu_controller.py:77
 msgid "Repeat (Playlist)"
@@ -623,7 +624,7 @@ msgstr "Ismétlés (Lejátszási lista) "
 
 #: ../menu_controller.py:90
 msgid "Open a folder"
-msgstr "Könytár megnyitása"
+msgstr "Mappa megnyitás"
 
 #: ../menu_controller.py:91
 msgid "Open URL"
@@ -635,11 +636,11 @@ msgstr "Mindig elöl"
 
 #: ../menu_controller.py:98
 msgid "Play Sequence"
-msgstr "Játssza le sorrendbe"
+msgstr "Lejtászás sorrenben"
 
 #: ../menu_controller.py:100
 msgid "Frame"
-msgstr "Kép"
+msgstr "Képkocka"
 
 #: ../menu_controller.py:101
 msgid "Sound"
@@ -655,7 +656,7 @@ msgstr "Információ"
 
 #: ../menu_controller.py:111 ../menu_controller.py:127
 msgid "Add folder"
-msgstr "Könytár hozzáadása"
+msgstr "Mappa hozzáadása"
 
 #: ../menu_controller.py:113
 msgid "Remove from playlist"
@@ -663,7 +664,7 @@ msgstr "Éltávoltás a lejátszási listából "
 
 #: ../menu_controller.py:114
 msgid "Remove invalid file"
-msgstr "Felesleges fájlok törlése"
+msgstr "Érévnyteles fájl eltváolítása"
 
 #: ../menu_controller.py:115
 msgid "Export"
@@ -675,8 +676,8 @@ msgstr "Importálás"
 
 #: ../menu_controller.py:121
 msgid "Open file location"
-msgstr "Megjelentés mappában"
+msgstr "Fájl helyének megnyitása"
 
 #: ../menu_controller.py:376
 msgid "Exit mini mode"
-msgstr "Kilépés mini módba"
+msgstr "Mini mód elhagyása"
