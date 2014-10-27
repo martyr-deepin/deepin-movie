@@ -44,10 +44,14 @@ if os.name == 'posix':
     QCoreApplication.setAttribute(QtCore.Qt.AA_X11InitThreads, True)
 
 # from PyQt5.QtGui import QFont
-from PyQt5.QtCore import pyqtSlot, QObject
+from PyQt5.QtCore import pyqtSlot, QObject, QTranslator, QLocale, QLibraryInfo
 from PyQt5.QtWidgets import QApplication
+appTranslator = QTranslator()
+translationsPath = "qt_" + QLocale.system().name()
+appTranslator.load("qt_zh_CN.qm", QLibraryInfo.location(QLibraryInfo.TranslationsPath))
 app = QApplication(sys.argv)
 app.setApplicationVersion("2.1")
+app.installTranslator(appTranslator)
 app.setQuitOnLastWindowClosed(True)
 
 from window import Window
