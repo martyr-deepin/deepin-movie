@@ -74,7 +74,6 @@ Rectangle {
             if (fileUrls.length > 0) {
                 if (state == "open_video_file") {
                     database.lastOpenedPath = folder
-
                     main_controller.playPaths(fileUrls, true)
                 } else if (state == "open_subtitle_file") {
                     database.lastOpenedPath = folder
@@ -142,7 +141,10 @@ Rectangle {
 
             if (input.search("://") == -1) {
                 notifybar.show(dsTr("The parse failed"))
-            } else if (input != movieInfo.movie_file){
+            } else if (input != movieInfo.movie_file) {
+                if (config.playerCleanPlaylistOnOpenNewFile) {
+                    main_controller.clearPlaylist()
+                }
                 shouldAutoPlayNextOnInvalidFile = false
                 movieInfo.movie_file = input
             }
@@ -461,7 +463,6 @@ Rectangle {
             lastSource = source
             if (config.playerFullscreenOnOpenFile) main_controller.fullscreen()
 
-            if (config.playerCleanPlaylistOnOpenNewFile) main_controller.clearPlaylist()
             if (_utils.urlIsNativeFile(source)) {
                 main_controller.addPlayListItem(source.toString().substring(7))
             } else {

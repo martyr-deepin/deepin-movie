@@ -95,7 +95,6 @@ MouseArea {
         onVideoFound: { addPlayListItem(path) }
         onFindVideoDone: {
             main_controller.shouldPlayThefirst && (movieInfo.movie_file = path)
-            main_controller.shouldPlayThefirst = true
 
             invalidCount > 0 && notifybar.show(dsTr("%1 files unable to be parsed have been excluded").arg(invalidCount))
         }
@@ -520,6 +519,9 @@ MouseArea {
             file_path = decodeURIComponent(file_path)
             paths.push(file_path)
         }
+        if (playFirst && config.playerCleanPlaylistOnOpenNewFile) {
+            main_controller.clearPlaylist()
+        }
         _findVideoThreadManager.getAllVideoFilesInPathList(paths)
     }
 
@@ -737,18 +739,15 @@ MouseArea {
                 var file_path = decodeURIComponent(drop.urls[0].toString().replace("file://", ""))
                 if (dragInPlaylist) {
                     if (_utils.pathIsDir(file_path)) {
-                        main_controller.shouldPlayThefirst = false
                         main_controller.playPaths([file_path], false)
                     } else if (_utils.fileIsValidVideo(file_path)) {
                         addPlayListItem(file_path)
                     }
                 } else {
                     if (_utils.pathIsDir(file_path)) {
-                        main_controller.shouldPlayThefirst = true
                         main_controller.playPaths([file_path], true)
                     } else if (_utils.fileIsValidVideo(file_path)) {
-                        addPlayListItem(file_path)
-                        movieInfo.movie_file = file_path
+                        main_controller.playPaths([file_path], true)
                     } else if (_utils.fileIsSubtitle(file_path)) {
                         movieInfo.subtitle_file = file_path
                     } else {
