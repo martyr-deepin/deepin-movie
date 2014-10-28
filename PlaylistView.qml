@@ -243,8 +243,15 @@ ListView {
     //  }
     // }
 
+    Timer {
+        id: report_list_model_changed_timer
+
+        interval: 500
+        onTriggered: playlist.root.itemsChanged()
+    }
+
     model: ListModel {
-        onCountChanged: playlist.root.itemsChanged()
+        onCountChanged: report_list_model_changed_timer.restart()
     }
     delegate: Component {
         Column {

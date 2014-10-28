@@ -75,7 +75,7 @@ Rectangle {
                 if (state == "open_video_file") {
                     database.lastOpenedPath = folder
 
-                    main_controller.openFiles(fileUrls, true)
+                    main_controller.playPaths(fileUrls, true)
                 } else if (state == "open_subtitle_file") {
                     database.lastOpenedPath = folder
                     var filename = fileUrls[0].toString().replace("file://", "")
@@ -88,7 +88,7 @@ Rectangle {
                 } else if (state == "add_playlist_item") {
                     database.lastOpenedPath = folder
 
-                    main_controller.openFiles(fileUrls, false)
+                    main_controller.playPaths(fileUrls, false)
                 } else if (state == "import_playlist") {
                     database.lastOpenedPlaylistPath = folder
 
@@ -115,10 +115,9 @@ Rectangle {
         onAccepted: {
             shouldAutoPlayNextOnInvalidFile = false
 
-            var folderPath = fileUrl
+            var folderPath = fileUrl.toString()
             database.lastOpenedPath = folder // record last opened path
-            _findVideoThreadManager.getAllVideoFilesInDirRecursively(folderPath)
-            _findVideoThreadManager.startAllThreadsWithBase(0)
+            main_controller.playPaths([folderPath], true)
         }
     }
 
@@ -244,16 +243,19 @@ Rectangle {
     function playPaths(pathList) {
         var pathList = JSON.parse(pathList)
         var pathsExceptUrls = new Array()
+        var firstIsUrl = false
         for (var i = 0; i < pathList.length; i++) {
             if (!_utils.urlIsNativeFile(pathList[i])) {
                 main_controller.addPlaylistStreamItem(pathList[i])
-                if (i == 0) movieInfo.movie_file = pathList[i]
+                if (i == 0) {
+                    movieInfo.movie_file = pathList[i]
+                    firstIsUrl = true
+                }
             } else {
                 pathsExceptUrls.push(pathList[i])
             }
         }
-        main_controller.playPaths(pathsExceptUrls,
-            pathsExceptUrls.length == pathList.length)
+        main_controller.playPaths(pathsExceptUrls, !firstIsUrl)
     }
 
     function showControls() {

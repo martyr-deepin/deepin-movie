@@ -97,7 +97,7 @@ MouseArea {
             main_controller.shouldPlayThefirst && (movieInfo.movie_file = path)
             main_controller.shouldPlayThefirst = true
 
-            invalidCount >0 && notifybar.show(dsTr("%1 files unable to be parsed have been excluded").arg(invalidCount))
+            invalidCount > 0 && notifybar.show(dsTr("%1 files unable to be parsed have been excluded").arg(invalidCount))
         }
     }
 
@@ -499,56 +499,17 @@ MouseArea {
     function openDirForPlaylist() { shouldPlayThefirst = false; open_folder_dialog.open() }
     function openFileForPlaylist() { open_file_dialog.state = "add_playlist_item"; open_file_dialog.open() }
     function openFileForSubtitle() { open_file_dialog.state = "open_subtitle_file"; open_file_dialog.open() }
-    function openFiles(fileUrls, playFirst) {
-        var invalidFilesCount = 0
-        var theFirstValidVideoIndex = fileUrls.length
 
-        for (var i = 0; i < fileUrls.length; i++) {
-            var fileUrl = fileUrls[i].toString()
-            if (_utils.fileIsValidVideo(fileUrl)) {
-                main_controller.addPlayListItem(fileUrl)
-                if (theFirstValidVideoIndex > i && playFirst) movieInfo.movie_file = fileUrl
-                theFirstValidVideoIndex = i
-            } else {
-                if (fileUrls.length == 1) {
-                    notifybar.show(dsTr("Invalid file") + ": " + fileUrl.replace("file://", ""))
-                }
-                invalidFilesCount += 1
-            }
-        }
-
-        if(invalidFilesCount > 0 && fileUrls.length > 1) notifybar.show(dsTr("%1 files unable to be parsed have been excluded").arg(invalidFilesCount))
-    }
-
+    // playPaths is not quit perfect here, whether the play operation will
+    // be performed is decided by the playFirst parameter.
     function playPaths(pathList, playFirst) {
-        var invalidFilesCount = 0
-        var theFirstValidVideoIndex = pathList.length
-        var hasDir = false
-
+        var paths = []
         for (var i = 0; i < pathList.length; i++) {
             var file_path = pathList[i].toString().replace("file://", "")
             file_path = decodeURIComponent(file_path)
-
-            if (_utils.pathIsDir(file_path)) {
-                hasDir = true
-                main_controller.shouldPlayThefirst = playFirst
-                _findVideoThreadManager.getAllVideoFilesInDirRecursively(file_path)
-            } else if (_utils.pathIsFile(file_path)) {
-                if (_utils.fileIsValidVideo(file_path)) {
-                    addPlayListItem(file_path)
-                    if (i < theFirstValidVideoIndex && playFirst) movieInfo.movie_file = file_path
-                    theFirstValidVideoIndex = i
-                } else {
-                    invalidFilesCount += 1
-                }
-            }
+            paths.push(file_path)
         }
-
-        if (hasDir) {
-            _findVideoThreadManager.startAllThreadsWithBase(invalidFilesCount)
-        } else if (invalidFilesCount > 0) {
-            notifybar.show(dsTr("%1 files unable to be parsed have been excluded").arg(invalidFilesCount))
-        }
+        _findVideoThreadManager.getAllVideoFilesInPathList(paths)
     }
 
     function playNextOf(file) {
@@ -742,16 +703,14 @@ MouseArea {
                 if (dragInPlaylist) {
                     if (_utils.pathIsDir(file_path)) {
                         main_controller.shouldPlayThefirst = false
-                        _findVideoThreadManager.getAllVideoFilesInDirRecursively(file_path)
-                        _findVideoThreadManager.startAllThreadsWithBase(0)
+                        main_controller.playPaths([file_path], false)
                     } else if (_utils.fileIsValidVideo(file_path)) {
                         addPlayListItem(file_path)
                     }
                 } else {
                     if (_utils.pathIsDir(file_path)) {
                         main_controller.shouldPlayThefirst = true
-                        _findVideoThreadManager.getAllVideoFilesInDirRecursively(file_path)
-                        _findVideoThreadManager.startAllThreadsWithBase(0)
+                        main_controller.playPaths([file_path], true)
                     } else if (_utils.fileIsValidVideo(file_path)) {
                         addPlayListItem(file_path)
                         movieInfo.movie_file = file_path
