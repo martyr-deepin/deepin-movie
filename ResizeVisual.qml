@@ -8,15 +8,15 @@ Window {
     height: Screen.height
     color: "transparent"
     visible: false
-    flags: Qt.Popup | Qt.FramelessWindowHint
-    
+    flags: Qt.X11BypassWindowManagerHint
+
     property alias frameX: frame.x
     property alias frameY: frame.y
     property alias frameWidth: frame.width
     property alias frameHeight: frame.height
     property int resizeEdge
     property real widthHeightScale
-    
+
     function show() {
         root.visible = true
     }
@@ -24,11 +24,11 @@ Window {
     function hide() {
         root.visible = false
     }
-    
+
     function intelligentlyResize(window, x, y) {
         _intelligentlyResize(window, x, y, resizeEdge)
     }
-    
+
     function _intelligentlyResize(window, x, y, flag) {
         if (flag == resize_edge.resizeTop) {
             var deltaY = -y
@@ -82,7 +82,7 @@ Window {
         } else if (flag == resize_edge.resizeTopRight) {
             var deltaX = x - window.width
             var deltaY = deltaX / widthHeightScale
-            
+
             if (windowView.width + deltaX >= windowView.minimumWidth &&
                 windowView.height + deltaY >= windowView.minimumHeight) {
                 frame.y = window.y - deltaY
@@ -92,7 +92,7 @@ Window {
         } else if (flag == resize_edge.resizeBottomLeft) {
             var deltaX = -x
             var deltaY = deltaX / widthHeightScale
-            
+
             if (windowView.width + deltaX >= windowView.minimumWidth &&
                 windowView.height + deltaY >= windowView.minimumHeight) {
                 frame.x = window.x - deltaX
@@ -102,7 +102,7 @@ Window {
         } else if (flag == resize_edge.resizeBottomRight) {
             var deltaX = x - window.width
             var deltaY = deltaX / widthHeightScale
-            
+
             if (windowView.width + deltaX >= windowView.minimumWidth &&
                 windowView.height + deltaY >= windowView.minimumHeight) {
                 frame.width = window.width + deltaX
@@ -117,7 +117,7 @@ Window {
         radius: 3
         border.color: "#AAAEC1D5"
         border.width: 2
-
+        layer.enabled: true
 
         Text {
             id: resolution
