@@ -250,7 +250,7 @@ MouseArea {
         }
     }
 
-    function urlToPlaylistItem(serie, url) {
+    function _getPlaylistItemInfo(serie, url) {
         var urlIsNativeFile = _utils.urlIsNativeFile(url)
 
         url = url.replace("file://", "")
@@ -258,19 +258,19 @@ MouseArea {
         var result = pathDict.slice(pathDict.length - 2, pathDict.length + 1)
         var itemName = urlIsNativeFile ? result[result.length - 1].toString() : url
 
-        return serie ? [serie, [itemName, url.toString()]] : [[itemName, url.toString()]]
+        return [serie, itemName, url]
     }
 
     function addPlayListItem(url) {
-        if (playlist.contains(url)) return
-
         var serie = config.playerAutoPlaySeries ? JSON.parse(_utils.getSeriesByName(url)) : null
         if (serie && serie.name != "") {
             for (var i = 0; i < serie.items.length; i++) {
-                playlist.addItem(urlToPlaylistItem(serie.name, serie.items[i]))
+                var info = _getPlaylistItemInfo(serie.name, serie.items[i])
+                playlist.addItem(info[0], info[1], info[2])
             }
         } else {
-            playlist.addItem(urlToPlaylistItem("", url))
+            var info = _getPlaylistItemInfo("", url)
+            playlist.addItem(info[0], info[1], info[2])
         }
     }
 

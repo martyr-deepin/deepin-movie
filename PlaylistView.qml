@@ -85,68 +85,62 @@ ListView {
         return null
     }
 
-    // ["Level One", "Level Two"]
-    function findItemByPath(path) {
+    function _addItemInternal() {
+        var info = itemsToAdd.splice(0, 1)[0]
+        var groupName = info[0]
+        var itemName = info[1]
+        var itemUrl = info[2]
+
+        if (contains(itemUrl)) return
+
         for (var i = 0; i < allItems.length; i++) {
-            if (allItems[i].propName == path[0]) {
-                if (path.length == 1) {
-                    return allItems[i]
-                } else if (allItems[i].child) {
-                    return allItems[i].child.findItemByPath(path.slice(1))
-                } else {
-                    return null
+            if (allItems[i].isGroup && allItems[i].child) {
+                if (allItems[i].propName == groupName) {
+                    var item = {
+                        "itemName": itemName,
+                        "itemUrl": itemUrl,
+                        "itemChild": []
+                    }
+
+                    allItems[i].propChild.append(item)
+                    allItems[i].child.forceLayout()
+                    return
                 }
             }
         }
-        return null
-    }
 
-    // ["Level One", ["Level Two", "/home/hualet/Videos/movie.mov", []]]
-    function _pathToListElement(path) {
-        var result  = null
-        for (var i = path.length - 1; i >= 0; i--) {
-            var item = {}
-            if (i == path.length - 1) {
-                item.itemName = path[i][0]
-                item.itemUrl = path[i][1]
-                item.itemChild = []
-                } else {
-                    item.itemName = path[i]
-                    item.itemUrl = ""
-                    item.itemChild = []
-                    item.itemChild.push(result)
+        var itemGroup = {
+            "itemName": groupName,
+            "itemUrl": "",
+            "itemChild": [
+                {
+                    "itemName": itemName,
+                    "itemUrl": itemUrl,
+                    "itemChild": []
                 }
-            result = item
+            ]
         }
-        return result
-    }
 
-    // ["Level One", ["Level Two",  "file:///home/hualet/Videos/movie.mov"]
-    // NOTE: we only support two level playlist by now
-    function addItem(path) {
-        var parent = findItemByPath(path.slice(0, 1))
-        if (parent == null) {
-            // check for redundant insertion
-            for (var i = 0; i < count; i++) {
-                if (playlist._urlEqual(model.get(i).itemUrl, path[path.length - 1][1])) return
-            }
+        var itemNormal = {
+                    "itemName": itemName,
+                    "itemUrl": itemUrl,
+                    "itemChild": []
+                }
 
-            model.append(_pathToListElement(path))
-        } else {
-            var item = {
-                "itemName": path[path.length - 1][0],
-                "itemUrl": path[path.length - 1][1],
-                "itemChild": path[path.length -1][2]
-            }
+        groupName ? model.append(itemGroup) : model.append(itemNormal)
 
-            // check for redundant insertion
-            for (var i = 0; i < parent.propChild.count; i++) {
-                if (playlist._urlEqual(parent.propChild.get(i).itemUrl, item.itemUrl)) return
-            }
-
-            parent.propChild.append(item)
-        }
         forceLayout()
+    }
+
+    property var itemsToAdd: []
+    function addItem(groupName, itemName, itemUrl) {
+        for (var i = 0; i < itemsToAdd.length; i++) {
+            if (itemsToAdd[i][2] == itemUrl) {
+                return
+            }
+        }
+        itemsToAdd.push([groupName, itemName, itemUrl])
+        delay_add_item_timer.start()
     }
 
     function removeItem(url) { root.removeItemPrivate(url) }
@@ -252,8 +246,22 @@ ListView {
     Timer {
         id: report_list_model_changed_timer
 
-        interval: 500
+        interval: delay_add_item_timer.interval + 500
         onTriggered: playlist.root.itemsChanged()
+    }
+
+    Timer {
+        id: delay_add_item_timer
+
+        interval: 100
+        onTriggered: {
+            if (itemsToAdd.length == 0) {
+                delay_add_item_timer.stop()
+            } else {
+                _addItemInternal()
+                delay_add_item_timer.restart()
+            }
+        }
     }
 
     model: ListModel {

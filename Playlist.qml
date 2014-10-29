@@ -73,9 +73,9 @@ Rectangle {
 
     function contains(url) { return playlist.contains(url) }
 
-    function addItem(item) { playlist.addItem(item) }
+    function addItem(groupName, itemName, itemUrl) { playlist.addItem(groupName, itemName, itemUrl) }
 
-    function removeItem(item) { playlist.removeItem(item) }
+    function removeItem(itemUrl) { playlist.removeItem(itemUrl) }
 
     function removeClickedItem() {
         if (clickedOnItemUrl.toString() != "") {
