@@ -94,6 +94,7 @@ Rectangle {
         database.playlist_local = ""
     }
 
+    function getFirst() { return playlist.getFirst() }
     function getRandom() { return playlist.getRandom() }
     function getPreviousSource(source) { return playlist.getPreviousSource(source) }
     function getNextSource(source) { return playlist.getNextSource(source) }

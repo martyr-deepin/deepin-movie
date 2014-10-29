@@ -71,7 +71,7 @@ Connections {
     onAddFolderToPlaylist: main_controller.openDirForPlaylist()
     onRemoveItemFromPlaylist: playlist.removeClickedItem()
     onRemoveInvalidItemsFromPlaylist: playlist.removeInvalidItems(_utils.playlistItemValidation)
-    onPlaylistClear: playlist.clear()
+    onPlaylistClear: main_controller.clearPlaylist()
     onPlaylistShowClickedItemInFM: playlist.showClickedItemInFM()
     onPlaylistInformation: movieInfo.getMovieInfo(playlist.clickedOnItemUrl)
     onPlaylistExport: main_controller.exportPlaylist()

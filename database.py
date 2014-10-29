@@ -34,6 +34,7 @@ class Database(QObject):
     lastOpenedPathChanged = pyqtSignal(str)
     lastOpenedPlaylistPathChanged = pyqtSignal(str)
     lastWindowWidthChanged = pyqtSignal(int)
+    playHistoryChanged = pyqtSignal()
 
     clearPlaylistItems = pyqtSignal()
     importItemFound = pyqtSignal(str, str, str, str,
@@ -113,6 +114,20 @@ class Database(QObject):
     def lastPlayedFile(self, value):
         self.setValue("last_played_file", value)
         self.lastPlayedFileChanged.emit(value)
+        if not value in self.playHistory:
+            playHistory = self.playHistory
+            playHistory.append(value)
+            self.setValue("play_history", json.dumps(playHistory))
+
+    @pyqtProperty("QVariant",notify=playHistoryChanged)
+    def playHistory(self):
+        historyStr = self.getValue("play_history") or "[]"
+        return json.loads(historyStr)
+
+    @playHistory.setter
+    def playHistory(self, value):
+        self.setValue("play_history", json.dumps(value))
+        self.playHistoryChanged.emit()
 
     @pyqtProperty(str,notify=lastOpenedPathChanged)
     def lastOpenedPath(self):

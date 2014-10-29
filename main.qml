@@ -461,7 +461,7 @@ Rectangle {
             lastSource = source
             if (config.playerFullscreenOnOpenFile) main_controller.fullscreen()
 
-            if (config.playerCleanPlaylistOnOpenNewFile) playlist.clear()
+            if (config.playerCleanPlaylistOnOpenNewFile) main_controller.clearPlaylist()
             if (_utils.urlIsNativeFile(source)) {
                 main_controller.addPlayListItem(source.toString().substring(7))
             } else {
@@ -484,13 +484,13 @@ Rectangle {
             if (_utils.urlIsNativeFile(lastSource)) {
                 if (videoPLayedOut) {
                     shouldAutoPlayNextOnInvalidFile = true
-                    main_controller.playNext()
+                    main_controller.playNextOf(database.lastPlayedFile)
                 }
             } else {
                 if (position && duration
                     &&Math.abs(position - duration) < program_constants.videoEndsThreshold) {
                     shouldAutoPlayNextOnInvalidFile = true
-                    main_controller.playNext()
+                    main_controller. playNextOf(database.lastPlayedFile)
                 }
             }
         }
@@ -580,7 +580,7 @@ Rectangle {
         }
         onModeButtonClicked: _menu_controller.show_mode_menu()
         onAddButtonClicked: _menu_controller.show_add_button_menu()
-        onClearButtonClicked: playlist.clear()
+        onClearButtonClicked: main_controller.clearPlaylist()
 
         onMoveInWindowButtons: titlebar.showForPlaylist()
         onMoveOutWindowButtons: titlebar.hideForPlaylist()
@@ -629,8 +629,8 @@ Rectangle {
             onTriggered: player.seek(destPos)
         }
 
-        onPreviousButtonClicked: main_controller.playPrevious()
-        onNextButtonClicked: main_controller.playNext()
+        onPreviousButtonClicked: { main_controller.playPrevious() }
+        onNextButtonClicked: { main_controller.playNext() }
 
         onChangeVolume: { main_controller.setVolume(volume) }
         onMutedSet: { main_controller.setMute(muted) }

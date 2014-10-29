@@ -28,6 +28,11 @@ ListView {
         onFileBack: playlist.fileBack("file://"+file)
     }
 
+    function getFirst() {
+        var flatList = _flattenList()
+        return flatList.length == 0 ? null : flatList[0]
+    }
+
     function getRandom() {
         var flatList = _flattenList()
         var rand = Math.floor(Math.random() * flatList.length)

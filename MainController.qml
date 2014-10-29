@@ -109,7 +109,7 @@ MouseArea {
             database.record_video_position(itemSource, itemPlayed)
         }
 
-        onClearPlaylistItems: { playlist.clear() }
+        onClearPlaylistItems: { main_controller.clearPlaylist() }
 
         onImportDone: { notifybar.show(dsTr("Imported") + ": " + filename)}
     }
@@ -279,6 +279,12 @@ MouseArea {
         playlist.addItem([[url.toString(), url.toString()]])
     }
 
+    function clearPlaylist() {
+        playlist.clear()
+        database.lastPlayedFile = ""
+        database.playHistory = []
+    }
+
     function close() {
         windowView.close()
     }
@@ -416,7 +422,12 @@ MouseArea {
                 notifybar.show(dsTr("Play last movie played"))
                 movieInfo.movie_file = database.lastPlayedFile
             } else {
-                controlbar.reset()
+                var playlistFirst = playlist.getFirst()
+                if (playlistFirst) {
+                    movieInfo.movie_file = playlistFirst
+                } else {
+                    openFile()
+                }
             }
         }
     }
@@ -548,8 +559,32 @@ MouseArea {
         next ? (movieInfo.movie_file = next) : root.reset()
     }
 
-    function playNext() { playNextOf(database.lastPlayedFile) }
-    function playPrevious() { playPreviousOf(database.lastPlayedFile) }
+    function playNext() {
+        var next = null
+
+        if (config.playerPlayOrderType == "ORDER_TYPE_RANDOM") {
+            next = playlist.getRandom()
+        } else {
+            next = playlist.getNextSourceCycle(database.lastPlayedFile)
+        }
+
+        next ? (movieInfo.movie_file = next) : root.reset()
+    }
+    function playPrevious() {
+        if (database.lastPlayedFile) {
+            if (player.hasMedia && player.source != 0) {
+                var prevIndex = database.playHistory.lastIndexOf(database.lastPlayedFile) - 1
+
+                if (prevIndex > 0) {
+                    movieInfo.movie_file = database.playHistory[prevIndex]
+                } else {
+                    root.reset()
+                }
+            } else {
+                movieInfo.movie_file = database.lastPlayedFile
+            }
+        }
+    }
 
     function importPlaylist() { open_file_dialog.state = "import_playlist"; open_file_dialog.open() }
     function exportPlaylist() { open_file_dialog.state = "export_playlist"; open_file_dialog.open() }
