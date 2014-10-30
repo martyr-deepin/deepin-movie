@@ -813,6 +813,11 @@ DPreferenceWindow {
                 onMenuSelect: config.subtitleFontFamily = Qt.fontFamilies()[index]
             }
 
+            // TODO:
+            // this line shouldn't be there, just a strange work around here,
+            // waiting for Wanqing to fix this problem ;)
+            ColorComboBoxRow { visible: false; input.parentWindow: window }
+
             ColorComboBoxRow {
                 title: dsTr("Font color")
                 input.parentWindow: window

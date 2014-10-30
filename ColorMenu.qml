@@ -25,6 +25,7 @@ DPopupWindow {
 
     DWindowFrame {
         id: menuFrame
+        layer.enabled: true
         anchors.fill: parent
 
         Item {
