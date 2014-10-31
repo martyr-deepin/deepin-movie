@@ -104,8 +104,8 @@ MouseArea {
         target: database
 
         onImportItemFound: {
-            playlist.addItem(urlToPlaylistItem(categroyName, itemSource))
-            database.record_video_position(itemSource, itemPlayed)
+            playlist.addItem(categoryName, itemName, itemUrl)
+            database.record_video_position(itemUrl, itemPlayed)
         }
 
         onClearPlaylistItems: { main_controller.clearPlaylist() }
@@ -275,7 +275,7 @@ MouseArea {
     }
 
     function addPlaylistStreamItem(url) {
-        playlist.addItem([[url.toString(), url.toString()]])
+        playlist.addItem("", url.toString(), url.toString())
     }
 
     function clearPlaylist() {

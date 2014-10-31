@@ -24,7 +24,7 @@ import json
 import sqlite3
 from constant import CONFIG_DIR
 from deepin_utils.file import touch_file
-from PyQt5.QtCore import pyqtSlot, pyqtSignal, pyqtProperty, QObject
+from PyQt5.QtCore import pyqtSlot, pyqtSignal, pyqtProperty, QObject, QTimer
 
 from playlist import DMPlaylist
 
@@ -38,7 +38,7 @@ class Database(QObject):
 
     clearPlaylistItems = pyqtSignal()
     importItemFound = pyqtSignal(str, str, str, str,
-        arguments=["categroyName", "itemName", "itemSource", "itemPlayed"])
+        arguments=["categoryName", "itemName", "itemUrl", "itemPlayed"])
     importDone = pyqtSignal(str, arguments=["filename"])
 
     def __init__(self):
@@ -51,6 +51,11 @@ class Database(QObject):
         self.video_db_cursor.execute(
             "CREATE TABLE IF NOT EXISTS settings(key PRIMARY KEY NOT NULL, value)"
         )
+
+        self._commit_timer = QTimer()
+        self._commit_timer.setInterval(500)
+        self._commit_timer.setSingleShot(True)
+        self._commit_timer.timeout.connect(lambda: self.video_db_connect.commit())
 
     @pyqtSlot(str, int)
     def record_video_position(self, video_path, video_position):
@@ -86,7 +91,7 @@ class Database(QObject):
         self.video_db_cursor.execute(
             "INSERT OR REPLACE INTO settings VALUES(?, ?)", (key, value)
         )
-        self.video_db_connect.commit()
+        self._commit_timer.start()
 
     @pyqtSlot(str,result=str)
     def getMovieInfo(self, video_path):
@@ -197,6 +202,5 @@ class Database(QObject):
             self.importItemFound.emit(None, item.name, item.source, item.played)
 
         self.importDone.emit(filename)
-
 
 database = Database()
