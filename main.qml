@@ -111,12 +111,14 @@ Rectangle {
 
         folder: database.lastOpenedPath || _utils.homeDir
 
+        property bool playFirst: true
+
         onAccepted: {
             shouldAutoPlayNextOnInvalidFile = false
 
             var folderPath = fileUrl.toString()
             database.lastOpenedPath = folder // record last opened path
-            main_controller.playPaths([folderPath], true)
+            main_controller.playPaths([folderPath], playFirst)
         }
     }
 

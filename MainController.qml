@@ -504,9 +504,9 @@ MouseArea {
     }
 
     function openFile() { open_file_dialog.state = "open_video_file"; open_file_dialog.open() }
-    function openDir() { shouldPlayThefirst = true; open_folder_dialog.open() }
+    function openDir() { open_folder_dialog.playFirst = true; open_folder_dialog.open() }
     function openUrl() { open_url_dialog.open() }
-    function openDirForPlaylist() { shouldPlayThefirst = false; open_folder_dialog.open() }
+    function openDirForPlaylist() { open_folder_dialog.playFirst = false; open_folder_dialog.open() }
     function openFileForPlaylist() { open_file_dialog.state = "add_playlist_item"; open_file_dialog.open() }
     function openFileForSubtitle() { open_file_dialog.state = "open_subtitle_file"; open_file_dialog.open() }
 
@@ -522,6 +522,7 @@ MouseArea {
         if (playFirst && config.playerCleanPlaylistOnOpenNewFile) {
             main_controller.clearPlaylist()
         }
+        main_controller.shouldPlayThefirst = playFirst
         _findVideoThreadManager.getAllVideoFilesInPathList(paths)
     }
 
