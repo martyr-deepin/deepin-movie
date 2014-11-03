@@ -519,11 +519,18 @@ MouseArea {
             file_path = decodeURIComponent(file_path)
             paths.push(file_path)
         }
-        if (playFirst && config.playerCleanPlaylistOnOpenNewFile) {
+
+        if (paths.length > 0 && playFirst
+            && config.playerCleanPlaylistOnOpenNewFile) {
             main_controller.clearPlaylist()
         }
-        main_controller.shouldPlayThefirst = playFirst
-        _findVideoThreadManager.getAllVideoFilesInPathList(paths)
+
+        if (paths.length == 1 && !_utils.pathIsDir(paths[0])) {
+            movieInfo.movie_file = paths[0]
+        } else {
+            main_controller.shouldPlayThefirst = playFirst
+            _findVideoThreadManager.getAllVideoFilesInPathList(paths)
+        }
     }
 
     function playNextOf(file) {
