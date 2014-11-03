@@ -25,7 +25,9 @@ import json
 import subprocess
 from ConfigParser import ConfigParser
 
-import gio
+import magic
+md = magic.open(magic.MAGIC_MIME_TYPE)
+md.load()
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtGui import QKeySequence
 from PyQt5.QtCore import QObject, QThread, pyqtSignal, pyqtSlot, pyqtProperty
@@ -91,16 +93,18 @@ def sortSeries(serieName, series):
     return [ x[1] for x in sorted(epi_name_tuples, key=lambda x: x[0])]
 
 def getFileMimeType(filename):
-    f = None
+    result = None
     try:
-        f = gio.File(filename)
+        result = md.file(filename)
     except Exception:
         try:
-            f = gio.File(filename.encode("utf-8"))
+           result = md.file(filename.encode("utf-8"))
         except Exception:
-            return None
-    info = f.query_info("standard::content-type") if f else None
-    return info.get_content_type() if info else None
+            try:
+                result = md.file(filename.encode("gbk"))
+            except Exception:
+                pass
+    return result
 
 class FindVideoThread(QThread):
     videoFound = pyqtSignal(str, arguments=["path",])
