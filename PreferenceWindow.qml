@@ -803,15 +803,17 @@ DPreferenceWindow {
                 onClicked: config.subtitleAutoLoad = checked
             }
 
-            ComboBoxRow {
-                title: dsTr("Font")
-                input.parentWindow: window
-                input.selectIndex: config.subtitleFontFamily ? Qt.fontFamilies().indexOf(config.subtitleFontFamily)
-                                                            : Qt.fontFamilies().indexOf(getSystemFontFamily())
-                input.menu.labels: Qt.fontFamilies()
+            // TODO:
+            // keep this exactly the same as the font combobox in dde-control-center
+            // ComboBoxRow {
+            //     title: dsTr("Font")
+            //     input.parentWindow: window
+            //     input.selectIndex: config.subtitleFontFamily ? Qt.fontFamilies().indexOf(config.subtitleFontFamily)
+            //                                                 : Qt.fontFamilies().indexOf(getSystemFontFamily())
+            //     input.menu.labels: Qt.fontFamilies()
 
-                onMenuSelect: config.subtitleFontFamily = Qt.fontFamilies()[index]
-            }
+            //     onMenuSelect: config.subtitleFontFamily = Qt.fontFamilies()[index]
+            // }
 
             // TODO:
             // this line shouldn't be there, just a strange work around here,
