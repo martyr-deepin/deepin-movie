@@ -58,7 +58,7 @@ MouseArea {
             // sourceChanged signal to be emitted.
             player.stop()
             player.source = ""
-            player.source = movieInfo.movie_file
+            player.source = movieInfo.movie_file.search("file://") != -1 ? movieInfo.movie_file : encodeURIComponent(movieInfo.movie_file)
             // NOTE END
 
             var last_watched_pos = database.fetch_video_position(player.source)
@@ -526,7 +526,8 @@ MouseArea {
         }
 
         if (paths.length == 1 && !_utils.pathIsDir(paths[0])) {
-            movieInfo.movie_file = paths[0]
+            main_controller.addPlayListItem(paths[0])
+            if (playFirst) { movieInfo.movie_file = paths[0] }
         } else {
             main_controller.shouldPlayThefirst = playFirst
             _findVideoThreadManager.getAllVideoFilesInPathList(paths)

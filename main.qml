@@ -431,10 +431,6 @@ Rectangle {
         muted: config.playerMuted
         volume: config.playerVolume
         visible: hasVideo && source != ""
-        // QML automatically decodes the file name, if we don't
-        // encode it before, we'll get 'gst cannot find file' like errors when
-        // the file name is url encoded.
-        source: movieInfo.movie_file == decodeURI(movieInfo.movie_file) ? movieInfo.movie_file : encodeURI(movieInfo.movie_file)
 
         subtitleShow: config.subtitleAutoLoad
         subtitleFontSize: Math.floor(config.subtitleFontSize * main_window.width / windowView.defaultWidth)
@@ -465,8 +461,8 @@ Rectangle {
             lastSource = source
             if (config.playerFullscreenOnOpenFile) main_controller.fullscreen()
 
-            if (_utils.urlIsNativeFile(source)) {
-                main_controller.addPlayListItem(source.toString().substring(7))
+            if (_utils.urlIsNativeFile(movieInfo.movie_file)) {
+                main_controller.addPlayListItem(movieInfo.movie_file)
             } else {
                 main_controller.addPlaylistStreamItem(source)
             }
@@ -569,7 +565,7 @@ Rectangle {
         visible: false
         window: windowView
         maxWidth: main_window.width * 0.6
-        currentPlayingSource: player.source
+        currentPlayingSource: movieInfo.movie_file
         tooltipItem: tooltip
         canExpand: controlbar.status != "minimal"
         anchors.right: main_window.right
