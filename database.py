@@ -62,7 +62,6 @@ class Database(QObject):
         movieInfo = json.loads(self.getMovieInfo(video_path))
         movieInfo["position"] = video_position
         self.updateMovieInfo(video_path, json.dumps(movieInfo))
-        self.video_db_connect.commit()
 
     @pyqtSlot(str, result=int)
     def fetch_video_position(self, video_path):
@@ -74,7 +73,6 @@ class Database(QObject):
         movieInfo = json.loads(self.getMovieInfo(video_path))
         movieInfo["rotation"] = video_rotation
         self.updateMovieInfo(video_path, json.dumps(movieInfo))
-        self.video_db_connect.commit()
 
     @pyqtSlot(str, result=int)
     def fetch_video_rotation(self, video_path):
@@ -166,7 +164,6 @@ class Database(QObject):
     def lastWindowWidth(self, value):
         self.setValue("last_window_width", value)
         self.lastWindowWidthChanged.emit(value)
-        self.video_db_connect.commit()
 
     @pyqtSlot(str)
     def exportPlaylist(self, filename):
