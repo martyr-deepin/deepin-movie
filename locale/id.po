@@ -3,83 +3,84 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# freddy4212 <freddy4212@gmail.com>, 2014
+# Aril Apria Susanto <awriel@gmail.com>, 2014
+# Yugo Purwanto <dedy.yugo.purwanto@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-26 13:15+0800\n"
-"PO-Revision-Date: 2014-11-03 15:03+0000\n"
-"Last-Translator: freddy4212 <freddy4212@gmail.com>\n"
-"Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/deepin-movie/language/zh_TW/)\n"
+"PO-Revision-Date: 2014-11-03 01:40+0000\n"
+"Last-Translator: Aril Apria Susanto <awriel@gmail.com>\n"
+"Language-Team: Indonesian (http://www.transifex.com/projects/p/deepin-movie/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: zh_TW\n"
+"Language: id\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../AboutSection.qml:6 ../PreferenceWindow.qml:108
 msgid "About"
-msgstr "關於"
+msgstr "Tentang"
 
 #: ../AboutSection.qml:11 ../main.qml:442 ../window.py:68
 msgid "Deepin Movie"
-msgstr "深度劇院"
+msgstr "Pemutar Video Deepin"
 
 #: ../AboutSection.qml:26
 msgid "Version"
-msgstr "版本"
+msgstr "Versi"
 
 #: ../AboutSection.qml:42
 msgid ""
 "Deepin Movie is a video player designed for Linux users. It supports a "
 "variety of video formats."
-msgstr "深度劇院是一款專為 Linux 用戶設計的影片播放器。支援各式各樣的影片格式。"
+msgstr "Pemutar Video adalah pemutar video yang diperuntukkan bagi Pengguna Linux yang mendukung berbagai format video."
 
 #: ../AboutSection.qml:48
 msgid "Deepin Movie is free software licensed under GNU GPLv3"
-msgstr "深度劇院是遵照自由軟體基金會發佈的 GNU 通用公共授權條款第三版的自由軟體。"
+msgstr "Pemutar Video Deepin adalah perangkat lunak bebas berlisensi GNU GPLv3"
 
 #: ../ControlBar.qml:219
 msgid "Stop playing"
-msgstr "停止播放"
+msgstr ""
 
 #: ../ControlBar.qml:237 ../menu_controller.py:81
 msgid "Previous"
-msgstr "上一部"
+msgstr "Sebelumnya"
 
 #: ../ControlBar.qml:256
 msgid "Pause"
-msgstr "暫停播放"
+msgstr "Jeda"
 
 #: ../ControlBar.qml:256 ../menu_controller.py:99 ../menu_controller.py:109
 msgid "Play"
-msgstr "播放"
+msgstr "Putar"
 
 #: ../ControlBar.qml:273 ../menu_controller.py:82
 msgid "Next"
-msgstr "下一部"
+msgstr "Selanjutnya"
 
 #: ../ControlBar.qml:316 ../menu_controller.py:375
 msgid "Exit fullscreen"
-msgstr "結束全螢幕"
+msgstr "Keluar layar penuh"
 
 #: ../ControlBar.qml:316 ../PreferenceWindow.qml:328
 #: ../PreferenceWindow.qml:779 ../ShortcutsViewer.qml:44
 #: ../ShortcutsViewer.qml:125 ../menu_controller.py:93
 #: ../menu_controller.py:374
 msgid "Fullscreen"
-msgstr "全螢幕"
+msgstr "Layar Penuh"
 
 #: ../ControlBar.qml:333 ../PreferenceWindow.qml:593 ../ShortcutsViewer.qml:69
 #: ../menu_controller.py:89
 msgid "Open a file"
-msgstr "開啟檔案"
+msgstr "Buka berkas"
 
 #: ../ControlBar.qml:345 ../OpenFileDialog.qml:66 ../PreferenceWindow.qml:349
 #: ../ShortcutsViewer.qml:48 ../menu_controller.py:96
 msgid "Playlist"
-msgstr "播放清單"
+msgstr "Daftar Putar"
 
 #: ../HotKeyInput.qml:15 ../HotKeyInputRow.qml:23 ../PreferenceWindow.qml:266
 #: ../PreferenceWindow.qml:287 ../PreferenceWindow.qml:308
@@ -107,65 +108,65 @@ msgstr "播放清單"
 #: ../ShortcutsViewer.qml:144 ../ShortcutsViewer.qml:148
 #: ../ShortcutsViewer.qml:152
 msgid "Disabled"
-msgstr "停用"
+msgstr "Nonaktif"
 
 #: ../HotKeyInput.qml:16
 msgid "Please input a new shortcut"
-msgstr "請輸入新的捷徑鍵"
+msgstr "Masukkan pintasan baru"
 
 #: ../HotKeyInputRow.qml:29
 msgid "The shortcut you set "
-msgstr "您設定的捷徑鍵"
+msgstr "Jalan pintas yang Anda atur"
 
 #: ../HotKeyInputRow.qml:30
 #, qt-format
 msgid "conflicts with the one used for \"%2\" in the \"%1\" category. "
-msgstr "與 \"%1\" 類別下的 \"%2\" 的捷徑鍵衝突。"
+msgstr "konflik dengan salah satu yang digunakan untuk \"%2\" dalam kategori \"%1\"."
 
 #: ../HotKeyInputRow.qml:31
 msgid "Do you want to replace it?"
-msgstr "是否進行替換？"
+msgstr "Anda ingin menggantinya?"
 
 #: ../HotKeyInputRow.qml:95 ../main.qml:125
 msgid "Cancel"
-msgstr "取消"
+msgstr "Batal"
 
 #: ../HotKeyInputRow.qml:106
 msgid "Replace"
-msgstr "替換"
+msgstr "Ganti"
 
 #: ../InformationWindow.qml:64
 msgid "File type"
-msgstr "檔案類型"
+msgstr "Tipe berkas"
 
 #: ../InformationWindow.qml:72
 msgid "File size"
-msgstr "檔案大小"
+msgstr "Ukuran berkas"
 
 #: ../InformationWindow.qml:80
 msgid "Resolution"
-msgstr "解析度"
+msgstr "Resolusi"
 
 #: ../InformationWindow.qml:88
 msgid "Movie duration"
-msgstr "影片時間長度"
+msgstr "Durasi Video"
 
 #: ../InformationWindow.qml:100
 msgid "File path"
-msgstr "檔案路徑"
+msgstr "Letak berkas"
 
 #: ../InformationWindow.qml:122
 msgid "Copy to clipboard"
-msgstr "儲存到剪貼簿"
+msgstr "Salin ke papan klip"
 
 #: ../InformationWindow.qml:137 ../main.qml:124
 msgid "Confirm"
-msgstr "確定"
+msgstr "Konfirmasi"
 
 #: ../MainController.qml:78 ../MainController.qml:494
 #: ../MainController.qml:548 ../MainController.qml:708 ../main.qml:84
 msgid "Invalid file"
-msgstr "無效的檔案"
+msgstr "Berkas tidak valid"
 
 #: ../MainController.qml:100 ../MainController.qml:500
 #: ../MainController.qml:738
@@ -179,47 +180,47 @@ msgstr ""
 
 #: ../MainController.qml:406
 msgid "Play last movie played"
-msgstr "播放上次的影片"
+msgstr "Mainkan video yang terakhir diputar"
 
 #: ../MainController.qml:418 ../PreferenceWindow.qml:286
 #: ../ShortcutsViewer.qml:36 ../menu_controller.py:84
 msgid "Forward"
-msgstr "前進"
+msgstr "Maju"
 
 #: ../MainController.qml:426 ../PreferenceWindow.qml:307
 #: ../ShortcutsViewer.qml:40 ../menu_controller.py:85
 msgid "Rewind"
-msgstr "後退"
+msgstr "Mundur"
 
 #: ../MainController.qml:434 ../MainController.qml:440
 #, qt-format
 msgid "(Press %1 to restore)"
-msgstr "(按 %1 可還原原本的速度)"
+msgstr "(Tekan %1 untuk mengembalikan)"
 
 #: ../MainController.qml:436 ../MainController.qml:442
 #: ../MainController.qml:447
 msgid "Playback rate: "
-msgstr "播放速度："
+msgstr ""
 
 #: ../MainController.qml:459 ../MainController.qml:468
 msgid "Volume: "
-msgstr "音量："
+msgstr "Volume:"
 
 #: ../MainController.qml:466 ../menu_controller.py:59
 msgid "Muted"
-msgstr "靜音"
+msgstr "Senyapkan"
 
 #: ../OpenFileDialog.qml:5 ../OpenFileDialog.qml:21 ../OpenFileDialog.qml:41
 msgid "Please choose one file or more"
-msgstr "請選擇一個或更多的檔案"
+msgstr "Pilih satu atau beberapa berkas"
 
 #: ../OpenFileDialog.qml:7 ../OpenFileDialog.qml:23 ../OpenFileDialog.qml:43
 msgid "Video files"
-msgstr ""
+msgstr "Berkas video"
 
 #: ../OpenFileDialog.qml:15
 msgid "All files"
-msgstr ""
+msgstr "Semua berkas"
 
 #: ../OpenFileDialog.qml:31 ../OpenFileDialog.qml:51
 msgid "Please choose one file"
@@ -227,321 +228,321 @@ msgstr ""
 
 #: ../OpenFileDialog.qml:33
 msgid "Subtitle files"
-msgstr ""
+msgstr "Berkas terjemahan"
 
 #: ../OpenFileDialog.qml:53 ../OpenFileDialog.qml:63
 msgid "Playlist files"
-msgstr ""
+msgstr "Berkas daftar putar"
 
 #: ../OpenFileDialog.qml:61
 msgid "Save as"
-msgstr "另存新檔"
+msgstr "Simpan sebagai"
 
 #: ../OpenFolderDialog.qml:5
 msgid "Please choose a folder"
-msgstr "請選擇資料夾"
+msgstr ""
 
 #: ../Playlist.qml:239
 msgid "Play mode"
-msgstr "播放模式"
+msgstr ""
 
 #: ../Playlist.qml:252 ../menu_controller.py:110 ../menu_controller.py:126
 msgid "Add file"
-msgstr "加入檔案"
+msgstr "Tambah berkas"
 
 #: ../Playlist.qml:260 ../menu_controller.py:117
 msgid "Clear playlist"
-msgstr "清除播放清單"
+msgstr "Bersihkan daftar putar"
 
 #: ../PreferenceWindow.qml:178
 msgid "Enter fullscreen on opening file"
-msgstr "檔案開啟後自動進入全螢幕"
+msgstr "Masuk ke layar penuh pada saat membuka berkas"
 
 #: ../PreferenceWindow.qml:190
 msgid "Clear playlist on opening new file"
-msgstr "檔案開啟後自動清除播放清單"
+msgstr "Bersihkan daftar putar pada saat membuka berkas baru"
 
 #: ../PreferenceWindow.qml:195
 msgid "Resume playback after restarting player"
-msgstr "從上次停止位置播放"
+msgstr "Lanjutkan pemutaran setelah menyalakan ulang"
 
 #: ../PreferenceWindow.qml:200
 msgid "Continue to next video automatically"
-msgstr "搜尋類似的檔案連續播放"
+msgstr "Lanjutkan ke video berikutnya secara otomatis"
 
 #: ../PreferenceWindow.qml:205
 msgid "Show preview when hovering over progress bar"
-msgstr "當滑鼠停留在進度條時顯示預覽"
+msgstr "Tampilkan pratinjau ketika melayang di atas progress bar"
 
 #: ../PreferenceWindow.qml:260 ../PreferenceWindow.qml:444
 #: ../PreferenceWindow.qml:587 ../PreferenceWindow.qml:667
 msgid "Enable keyboard shortcuts"
-msgstr "開啟捷徑鍵"
+msgstr "Izinkan jalan pintas papan ketik"
 
 #: ../PreferenceWindow.qml:265 ../PreferenceWindow.qml:771
 #: ../ShortcutsViewer.qml:32 ../ShortcutsViewer.qml:120
 msgid "Pause/Play"
-msgstr "暫停/播放"
+msgstr "Jeda/Putar"
 
 #: ../PreferenceWindow.qml:370 ../ShortcutsViewer.qml:52
 msgid "Accelerate playback"
-msgstr "加快播放速度"
+msgstr "Akselerasi pemutaran"
 
 #: ../PreferenceWindow.qml:391 ../ShortcutsViewer.qml:56
 msgid "Decelerate playback"
-msgstr "減緩播放速度"
+msgstr ""
 
 #: ../PreferenceWindow.qml:412 ../ShortcutsViewer.qml:60
 msgid "Restore playback speed"
-msgstr "還原播放速度"
+msgstr "kembalikan kecepatan pemutaran"
 
 #: ../PreferenceWindow.qml:450 ../ShortcutsViewer.qml:90
 #: ../menu_controller.py:94 ../menu_controller.py:377
 msgid "Mini mode"
-msgstr "精簡模式"
+msgstr "Mode Mini"
 
 #: ../PreferenceWindow.qml:513 ../ShortcutsViewer.qml:102
 msgid "Volume up"
-msgstr "增加音量"
+msgstr "Naikkan Volume"
 
 #: ../PreferenceWindow.qml:534 ../ShortcutsViewer.qml:106
 msgid "Volume down"
-msgstr "減少音量"
+msgstr "Turunkan Volume"
 
 #: ../PreferenceWindow.qml:614 ../ShortcutsViewer.qml:73
 msgid "Open previous"
-msgstr "打開上一部"
+msgstr "Buka sebelumnya"
 
 #: ../PreferenceWindow.qml:635 ../ShortcutsViewer.qml:77
 msgid "Open next"
-msgstr "打開下一部"
+msgstr "Buka selanjutnya"
 
 #: ../PreferenceWindow.qml:673 ../ShortcutsViewer.qml:139
 msgid "Forward 0.5s"
-msgstr "字幕提前 0.5 秒顯示"
+msgstr "Maju 0.5d"
 
 #: ../PreferenceWindow.qml:694 ../ShortcutsViewer.qml:143
 msgid "Delay 0.5s"
-msgstr "字幕延後 0.5 秒顯示"
+msgstr "Jeda 0.5d"
 
 #: ../PreferenceWindow.qml:715 ../ShortcutsViewer.qml:147
 msgid "Subtitle up"
-msgstr "字幕向上移"
+msgstr "Terjemahan naik"
 
 #: ../PreferenceWindow.qml:736 ../ShortcutsViewer.qml:151
 msgid "Subtitle down"
-msgstr "字幕向下移"
+msgstr "Terjemahan turun"
 
 #: ../PreferenceWindow.qml:768 ../ShortcutsViewer.qml:119
 msgid "Left click"
-msgstr "點擊滑鼠左鍵"
+msgstr "Klik kiri"
 
 #: ../PreferenceWindow.qml:776 ../ShortcutsViewer.qml:124
 msgid "Double click"
-msgstr "雙擊"
+msgstr "Klik ganda"
 
 #: ../PreferenceWindow.qml:801
 msgid "Subtitles loaded automatically"
-msgstr "自動載入字幕"
+msgstr "Terjemahan ditampilkan secara otomatis"
 
 #: ../PreferenceWindow.qml:842
 msgid "Border width"
-msgstr "邊框寬度"
+msgstr "Lebar garis tepi"
 
 #: ../PreferenceWindow.qml:55 ../PreferenceWindow.qml:71
 #: ../PreferenceWindow.qml:169 ../PreferenceWindow.qml:251
 #: ../ShortcutsViewer.qml:29
 msgid "Playback"
-msgstr "播放設定"
+msgstr "Pemutaran"
 
 #: ../PreferenceWindow.qml:76 ../PreferenceWindow.qml:435
 #: ../ShortcutsViewer.qml:87
 msgid "Frame/Sound"
-msgstr "畫面/聲音"
+msgstr "Bingkai/Suara"
 
 #: ../PreferenceWindow.qml:81 ../PreferenceWindow.qml:578
 #: ../ShortcutsViewer.qml:66
 msgid "Files"
-msgstr "檔案"
+msgstr "Berkas"
 
 #: ../PreferenceWindow.qml:91 ../PreferenceWindow.qml:759
 #: ../ShortcutsViewer.qml:116
 msgid "Other"
-msgstr "其它"
+msgstr "Lainnya"
 
 #: ../PreferenceWindow.qml:86 ../PreferenceWindow.qml:658
 #: ../ShortcutsViewer.qml:136 ../menu_controller.py:102
 msgid "Subtitles"
-msgstr "字幕"
+msgstr "Terjemahan"
 
 #: ../PreferenceWindow.qml:11
 msgid "Reset"
-msgstr "重設"
+msgstr "Atur ulang"
 
 #: ../PreferenceWindow.qml:15
 msgid "Black"
-msgstr "純黑色"
+msgstr "Hitam"
 
 #: ../PreferenceWindow.qml:16
 msgid "bleu de France"
-msgstr "法國藍"
+msgstr "bleu de France"
 
 #: ../PreferenceWindow.qml:17
 msgid "Turquoise"
-msgstr "寶石綠"
+msgstr "Turquoise"
 
 #: ../PreferenceWindow.qml:18
 msgid "UFO green"
-msgstr "神秘綠"
+msgstr "UFO green"
 
 #: ../PreferenceWindow.qml:19
 msgid "Green yellow"
-msgstr "黃綠色"
+msgstr "Green yellow"
 
 #: ../PreferenceWindow.qml:20
 msgid "Gorse"
-msgstr "金雀花黃"
+msgstr "Gorse"
 
 #: ../PreferenceWindow.qml:21
 msgid "Energy yellow"
-msgstr "活力黃"
+msgstr "Energy yellow"
 
 #: ../PreferenceWindow.qml:22
 msgid "Sun"
-msgstr "陽光橙"
+msgstr "Sun"
 
 #: ../PreferenceWindow.qml:23
 msgid "Radical red"
-msgstr "激進紅"
+msgstr "Radical Red"
 
 #: ../PreferenceWindow.qml:24
 msgid "Lavender indigo"
-msgstr "薰衣草靛青"
+msgstr "Lavender indigo"
 
 #: ../PreferenceWindow.qml:25
 msgid "Royal blue"
-msgstr "皇家藍"
+msgstr "Royal blue"
 
 #: ../PreferenceWindow.qml:26
 msgid "Aluminum"
-msgstr "鋁灰色"
+msgstr "Aluminium"
 
 #: ../PreferenceWindow.qml:27
 msgid "Clean white"
-msgstr "純白色"
+msgstr "Clean white"
 
 #: ../PreferenceWindow.qml:51 ../PreferenceWindow.qml:165
 msgid "Basic settings"
-msgstr "基本設定"
+msgstr "Pengaturan dasar"
 
 #: ../PreferenceWindow.qml:60 ../PreferenceWindow.qml:229
 msgid "Time span"
-msgstr "時間間隔"
+msgstr "Rentang waktu"
 
 #: ../PreferenceWindow.qml:67 ../PreferenceWindow.qml:247
 msgid "Keyboard shortcuts"
-msgstr "捷徑鍵"
+msgstr "Jalan pintas papan ketik"
 
 #: ../PreferenceWindow.qml:98 ../PreferenceWindow.qml:795
 msgid "Subtitle settings"
-msgstr "字幕設定"
+msgstr "Pengaturan terjemahan"
 
 #: ../PreferenceWindow.qml:184
 msgid "Apply the size last time closed"
-msgstr "使用上次關閉時的尺寸"
+msgstr "Gunakan ukuran terakhir kali ditutup"
 
 #: ../PreferenceWindow.qml:210
 msgid "Allow multiple instances"
-msgstr "允許同時執行許多深度影音"
+msgstr ""
 
 #: ../PreferenceWindow.qml:215
 msgid "Pause when minimized"
-msgstr "最小化時暫停播放"
+msgstr "Jeda ketika diminimalkan"
 
 #: ../PreferenceWindow.qml:220
 msgid "Enable system popup notification"
-msgstr "開啟系統氣泡提示"
+msgstr "Aktifkan popup notifikasi sistem"
 
 #: ../PreferenceWindow.qml:238
 msgid "Forward/Rewind"
-msgstr "前進/後退"
+msgstr "Maju/Mundur"
 
 #: ../PreferenceWindow.qml:471 ../ShortcutsViewer.qml:94
 msgid "Rotate counterclockwise"
-msgstr "逆時針旋轉"
+msgstr "Putar berlawanan jarum jam"
 
 #: ../PreferenceWindow.qml:492 ../ShortcutsViewer.qml:98
 msgid "Rotate clockwise"
-msgstr "順時針旋轉"
+msgstr "Putar searah jarum jam"
 
 #: ../PreferenceWindow.qml:555 ../ShortcutsViewer.qml:110
 msgid "Mute"
-msgstr "靜音"
+msgstr "Senyap"
 
 #: ../PreferenceWindow.qml:784 ../ShortcutsViewer.qml:129
 msgid "Scroll"
-msgstr "滑鼠滾輪"
+msgstr "Gulung"
 
 #: ../PreferenceWindow.qml:787 ../ShortcutsViewer.qml:130
 #: ../VolumeButton.qml:44
 msgid "Volume"
-msgstr "音量"
+msgstr "Volume"
 
 #: ../PreferenceWindow.qml:807
 msgid "Font"
-msgstr "字型"
+msgstr "Fonta"
 
 #: ../PreferenceWindow.qml:817
 msgid "Font color"
-msgstr "字型色彩"
+msgstr "Warna fonta"
 
 #: ../PreferenceWindow.qml:833
 msgid "Size"
-msgstr "大小"
+msgstr "Ukuran"
 
 #: ../PreferenceWindow.qml:851
 msgid "Border color"
-msgstr "邊框顏色"
+msgstr "Warna garis tepi"
 
 #: ../PreferenceWindow.qml:867
 msgid "Position"
-msgstr "圖片位置"
+msgstr "Posisi"
 
 #: ../PreferenceWindow.qml:872
 msgid "Bottom"
-msgstr "底部"
+msgstr "Bawah"
 
 #: ../PreferenceWindow.qml:873
 msgid "Top"
-msgstr "頂部"
+msgstr "Atas"
 
 #: ../PreferenceWindow.qml:879
 msgid "Subtitle Delay"
-msgstr "字幕延時"
+msgstr "Jeda Terjemahan"
 
 #: ../TitleBar.qml:165
 msgid "Shown in a proportion of 1:1"
-msgstr "1:1 比例顯示"
+msgstr ""
 
 #: ../TitleBar.qml:177
 msgid "Shown in 1.5 times"
-msgstr "1.5 倍顯示"
+msgstr ""
 
 #: ../TitleBar.qml:190
 msgid "Return to mini mode"
-msgstr "回到精簡模式"
+msgstr "Kembali ke mode mini"
 
 #: ../TitleBar.qml:190
 msgid "Shown in fullscreen"
-msgstr "全螢幕顯示"
+msgstr "Tampilkan dalam layar penuh"
 
 #: ../TitleBar.qml:205
 msgid "Cancel \"On Top\""
-msgstr "取消 \"永遠在畫面最上層\""
+msgstr ""
 
 #: ../TitleBar.qml:205
 msgid "On Top"
-msgstr "永遠在畫面最上層"
+msgstr ""
 
 #: ../main.qml:123
 msgid "Please input the url of file played"
@@ -553,128 +554,128 @@ msgstr ""
 
 #: ../movie_info.py:148
 msgid "Unknown"
-msgstr "不明"
+msgstr "Tidak diketahui"
 
 #: ../menu_controller.py:34
 msgid "Default"
-msgstr "預設"
+msgstr "Baku"
 
 #: ../menu_controller.py:46
 msgid "Rotate 90 degree clockwise"
-msgstr "順時針旋轉 90 度"
+msgstr "Putar 90 derajat searah jarum jam"
 
 #: ../menu_controller.py:47
 msgid "Rotate 90 degree counterclockwise"
-msgstr "逆時針旋轉 90 度"
+msgstr "Putar 90 derajat berbalik arah jarum jam"
 
 #: ../menu_controller.py:48
 msgid "Flip horizontally"
-msgstr "水平翻轉"
+msgstr "Balik secara horizontal"
 
 #: ../menu_controller.py:49
 msgid "Flip vertically"
-msgstr "垂直翻轉"
+msgstr "Balik secara vertikal"
 
 #: ../menu_controller.py:57
 msgid "Volume Up"
-msgstr "增加音量"
+msgstr "Naikkan Volume"
 
 #: ../menu_controller.py:58
 msgid "Volume Down"
-msgstr "減少音量"
+msgstr "Turunkan Volume"
 
 #: ../menu_controller.py:63
 msgid "Hide subtitle"
-msgstr "隱藏字幕"
+msgstr "Sembunyikan terjemahan"
 
 #: ../menu_controller.py:67
 msgid "Open manually"
-msgstr "手動載入"
+msgstr "Buka secara manual"
 
 #: ../menu_controller.py:68
 msgid "Subtitle selection"
-msgstr "選擇字幕"
+msgstr "Pilihan terjemahan"
 
 #: ../menu_controller.py:69
 msgid "Subtitle setting"
-msgstr "字幕設定"
+msgstr "Pengaturan terjemahan"
 
 #: ../menu_controller.py:73
 msgid "Order"
-msgstr "順序播放"
+msgstr "Urutan"
 
 #: ../menu_controller.py:74
 msgid "Random"
-msgstr "隨機播放"
+msgstr "Acak"
 
 #: ../menu_controller.py:75
 msgid "Single"
-msgstr "單部播放"
+msgstr "Tunggal"
 
 #: ../menu_controller.py:76
 msgid "Repeat (Single)"
-msgstr "單部影片重複"
+msgstr "Ulangi (satu)"
 
 #: ../menu_controller.py:77
 msgid "Repeat (Playlist)"
-msgstr "清單內容重複"
+msgstr "Ulangi (Daftar putar)"
 
 #: ../menu_controller.py:90
 msgid "Open a folder"
-msgstr "打開資料夾"
+msgstr "Buka folder"
 
 #: ../menu_controller.py:91
 msgid "Open URL"
-msgstr "開啟網址"
+msgstr "Buka URL"
 
 #: ../menu_controller.py:95
 msgid "Always on top"
-msgstr "永遠在畫面最上層"
+msgstr "Selalu di atas"
 
 #: ../menu_controller.py:98
 msgid "Play Sequence"
-msgstr "播放順序"
+msgstr "Urutan memainkan"
 
 #: ../menu_controller.py:100
 msgid "Frame"
-msgstr "畫面"
+msgstr "Bingkai"
 
 #: ../menu_controller.py:101
 msgid "Sound"
-msgstr "音效"
+msgstr "Suara"
 
 #: ../menu_controller.py:104
 msgid "Options"
-msgstr "選項"
+msgstr "Opsi"
 
 #: ../menu_controller.py:105 ../menu_controller.py:122
 msgid "Information"
-msgstr "訊息"
+msgstr "Informasi"
 
 #: ../menu_controller.py:111 ../menu_controller.py:127
 msgid "Add folder"
-msgstr "加入資料夾"
+msgstr "Tambah folder"
 
 #: ../menu_controller.py:113
 msgid "Remove from playlist"
-msgstr "從播放清單移除檔案"
+msgstr "Hapus dari daftar putar"
 
 #: ../menu_controller.py:114
 msgid "Remove invalid file"
-msgstr "移除無效檔案"
+msgstr "Hapus berkas yang rusak"
 
 #: ../menu_controller.py:115
 msgid "Export"
-msgstr "匯出主題"
+msgstr "Export"
 
 #: ../menu_controller.py:116
 msgid "Import"
-msgstr "匯入"
+msgstr "Import"
 
 #: ../menu_controller.py:121
 msgid "Open file location"
-msgstr "打開檔案所在的資料夾"
+msgstr "Buka lokasi berkas"
 
 #: ../menu_controller.py:376
 msgid "Exit mini mode"
-msgstr "結束精簡模式"
+msgstr "Keluar mode mini"
