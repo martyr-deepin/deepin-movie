@@ -57,6 +57,10 @@ class Database(QObject):
         self._commit_timer.setSingleShot(True)
         self._commit_timer.timeout.connect(lambda: self.video_db_connect.commit())
 
+    @pyqtSlot()
+    def forceCommit(self):
+        self.video_db_connect.commit()
+
     @pyqtSlot(str, int)
     def record_video_position(self, video_path, video_position):
         movieInfo = json.loads(self.getMovieInfo(video_path))

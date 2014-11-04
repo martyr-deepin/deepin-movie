@@ -526,7 +526,14 @@ MouseArea {
         }
 
         if (paths.length == 1 && !_utils.pathIsDir(paths[0])) {
-            movieInfo.movie_file = paths[0]
+            if (_utils.fileIsValidVideo(paths[0])) {
+                main_controller.addPlayListItem(paths[0])
+            } else {
+                notifybar.show(dsTr("Invalid file") + ": " + paths[0])
+            }
+            if (playFirst) {
+                movieInfo.movie_file = paths[0]
+            }
         } else {
             main_controller.shouldPlayThefirst = playFirst
             _findVideoThreadManager.getAllVideoFilesInPathList(paths)

@@ -363,6 +363,7 @@ Rectangle {
         database.record_video_rotation(player.source, player.orientation)
         database.lastWindowWidth = windowView.width
         movieInfo.movie_file && (database.lastPlayedFile = movieInfo.movie_file)
+        database.forceCommit()
     }
 
     Timer {
@@ -431,10 +432,6 @@ Rectangle {
         muted: config.playerMuted
         volume: config.playerVolume
         visible: hasVideo && source != ""
-        // QML automatically decodes the file name, if we don't
-        // encode it before, we'll get 'gst cannot find file' like errors when
-        // the file name is url encoded.
-        source: movieInfo.movie_file == decodeURI(movieInfo.movie_file) ? movieInfo.movie_file : encodeURI(movieInfo.movie_file)
 
         subtitleShow: config.subtitleAutoLoad
         subtitleFontSize: Math.floor(config.subtitleFontSize * main_window.width / windowView.defaultWidth)
