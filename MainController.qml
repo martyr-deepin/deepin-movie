@@ -435,7 +435,7 @@ MouseArea {
         var tempRate = player.playbackRate
         player.playbackRate = 1.0
         player.seek(player.position + delta)
-        var percentage = Math.floor(player.position / movieInfo.movie_duration + 1) * 100
+        var percentage = Math.floor(player.position / (movieInfo.movie_duration + 1) * 100)
         var percentageInfo = movieInfo.movie_duration != 0 ? " (%1%)".arg(percentage) : ""
         notifybar.show(dsTr("Forward") + ": " + formatTime(player.position) + percentageInfo)
         player.playbackRate = tempRate
@@ -445,7 +445,7 @@ MouseArea {
         var tempRate = player.playbackRate
         player.playbackRate = 1.0
         player.seek(player.position - delta)
-        var percentage = Math.floor(player.position / movieInfo.movie_duration + 1) * 100
+        var percentage = Math.floor(player.position / (movieInfo.movie_duration + 1) * 100)
         var percentageInfo = movieInfo.movie_duration != 0 ? " (%1%)".arg(percentage) : ""
         notifybar.show(dsTr("Rewind") + ": " + formatTime(player.position) + percentageInfo)
         player.playbackRate = tempRate
