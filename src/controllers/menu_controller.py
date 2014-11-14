@@ -25,10 +25,10 @@ from PyQt5.QtCore import QObject, pyqtSlot, pyqtSignal
 from PyQt5.QtGui import QCursor
 from deepin_menu.menu import Menu, CheckableMenuItem
 
-from config import *
-from i18n import _
-from utils import utils
-from subtitles import get_subtitle_from_movie
+from models.movie_info import get_subtitle_from_movie
+from utils.config import *
+from utils.i18n import _
+from utils.utils import utils
 
 frame_sub_menu = [
     CheckableMenuItem("proportion:radio:_p_default", _("Default"), True),

@@ -3,7 +3,7 @@ import Deepin.Widgets 1.0
 
 DFileDialog {
     title: dsTr("Please choose one file or more")
-    folder: database.lastOpenedPath || _utils.homeDir
+    folder: _settings.lastOpenedPath || _utils.homeDir
     nameFilters: [ dsTr("Video files") + videoFilter, allFilesFilter]
     selectMultiple: true
     selectExisting: true
@@ -19,7 +19,7 @@ DFileDialog {
         switch(state) {
             case "open_video_file":
             title = dsTr("Please choose one file or more")
-            folder = database.lastOpenedPath || _utils.homeDir
+            folder = _settings.lastOpenedPath || _utils.homeDir
             nameFilters = [ dsTr("Video files") + videoFilter, allFilesFilter]
             selectMultiple = true
             selectExisting = true
@@ -29,7 +29,7 @@ DFileDialog {
 
             case "open_subtitle_file":
             title = dsTr("Please choose one file")
-            folder = database.lastOpenedPath || _utils.homeDir
+            folder = _settings.lastOpenedPath || _utils.homeDir
             nameFilters = [ dsTr("Subtitle files") + "(*.srt *.ass *.ssa)", allFilesFilter]
             selectMultiple = false
             selectExisting = true
@@ -39,7 +39,7 @@ DFileDialog {
 
             case "add_playlist_item":
             title = dsTr("Please choose one file or more")
-            folder = database.lastOpenedPath || _utils.homeDir
+            folder = _settings.lastOpenedPath || _utils.homeDir
             nameFilters = [ dsTr("Video files") + videoFilter, allFilesFilter ]
             selectMultiple = true
             selectExisting = true
@@ -49,7 +49,7 @@ DFileDialog {
 
             case "import_playlist":
             title = dsTr("Please choose one file")
-            folder = database.lastOpenedPlaylistPath || _utils.homeDir
+            folder = _settings.lastOpenedPlaylistPath || _utils.homeDir
             nameFilters = [ dsTr("Playlist files") + "(*.dmpl)", allFilesFilter ]
             selectMultiple = false
             selectExisting = true
@@ -59,7 +59,7 @@ DFileDialog {
 
             case "export_playlist":
             title = dsTr("Save as")
-            folder = database.lastOpenedPlaylistPath || _utils.homeDir
+            folder = _settings.lastOpenedPlaylistPath || _utils.homeDir
             nameFilters = [ dsTr("Playlist files") + "(*.dmpl)", allFilesFilter ]
             selectMultiple = true
             selectExisting = false

@@ -22,7 +22,7 @@
 
 import os
 from deepin_utils import config
-from constant import CONFIG_DIR
+from constants import CONFIG_DIR
 from PyQt5.QtCore import pyqtSlot, pyqtProperty, pyqtSignal, QObject
 
 # ADJUST_TYPE_WINDOW_VIDEO = "ADJUST_TYPE_WINDOW_VIDEO"

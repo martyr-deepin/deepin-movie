@@ -32,10 +32,10 @@ from PyQt5.QtCore import Qt, QSize
 from PyQt5.QtQuick import QQuickView
 from PyQt5.QtCore import pyqtSlot, pyqtProperty, pyqtSignal, QDir
 from PyQt5.QtGui import QSurfaceFormat, QColor, QPixmap, QIcon, QCursor
-from notification import notify
-from constant import (DEFAULT_WIDTH, DEFAULT_HEIGHT, WINDOW_GLOW_RADIUS,
+from utils.notification import notify
+from utils.constants import (DEFAULT_WIDTH, DEFAULT_HEIGHT, WINDOW_GLOW_RADIUS,
     MINIMIZE_WIDTH, MINIMIZE_HEIGHT)
-from i18n import _
+from utils.i18n import _
 
 HOME_DIR = os.path.expanduser("~")
 def icon_from_theme(theme_name, icon_name):

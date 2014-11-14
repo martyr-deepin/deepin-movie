@@ -50,23 +50,27 @@ appTranslator = QTranslator()
 translationsPath = "qt_" + QLocale.system().name()
 appTranslator.load("qt_zh_CN.qm", QLibraryInfo.location(QLibraryInfo.TranslationsPath))
 app = QApplication(sys.argv)
-app.setApplicationVersion("2.1")
+app.setApplicationVersion("2.1.1")
+app.setOrganizationName("Deepin")
+app.setApplicationName("Deepin Movie")
 app.installTranslator(appTranslator)
 app.setQuitOnLastWindowClosed(True)
 
-from window import Window
-from database import database
-from config import config
-from utils import utils, FindVideoThreadManager
-from constant import MAIN_QML
-from menu_controller import MenuController
-from file_monitor import FileMonitor
-from subtitles import Parser
+from views.window import Window
+from views.subtitles import Parser
+from models.database import database
+from models.playlist import database as database_new
+from utils.config import config
+from utils.dmsettings import DMSettings
+# TODO: utils module structure sucks
+from utils.utils import utils, FindVideoThreadManager
+from utils.constants import MAIN_QML
+from controllers.menu_controller import MenuController
+from utils.file_monitor import FileMonitor
+from utils.dbus_services import (DeepinMovieServie, check_multiple_instances,
+    DeepinMovieInterface, session_bus, DBUS_PATH)
 
 if __name__ == "__main__":
-    from dbus_services import (DeepinMovieServie, check_multiple_instances,
-        DeepinMovieInterface, session_bus, DBUS_PATH)
-
     result = check_multiple_instances()
     if result:
         dbus_service = DeepinMovieServie(app)
@@ -82,16 +86,18 @@ if __name__ == "__main__":
     file_monitor = FileMonitor()
     findVideoThreadManager = FindVideoThreadManager()
     subtitleParser = Parser()
+    settings = DMSettings()
     app._extra_window = weakref.ref(windowView)
 
     qml_context = windowView.rootContext()
 
     qml_context.setContextProperty("config", config)
+    qml_context.setContextProperty("_settings", settings)
     qml_context.setContextProperty("_utils", utils)
     qml_context.setContextProperty("_findVideoThreadManager",
         findVideoThreadManager)
     qml_context.setContextProperty("_file_monitor", file_monitor)
-    qml_context.setContextProperty("database", database)
+    qml_context.setContextProperty("_database", database_new)
     qml_context.setContextProperty("windowView", windowView)
     qml_context.setContextProperty("_subtitle_parser", subtitleParser)
     qml_context.setContextProperty("_menu_controller", menu_controller)

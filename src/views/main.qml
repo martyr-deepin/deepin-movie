@@ -4,6 +4,7 @@ import QtGraphicalEffects 1.0
 import QtQuick.Window 2.1
 import Deepin.Locale 1.0
 import Deepin.Widgets 1.0
+import "../controllers"
 
 Rectangle {
     id: root
@@ -85,10 +86,10 @@ Rectangle {
 
                 if (fileUrls.length > 0) {
                     if (state == "open_video_file") {
-                        database.lastOpenedPath = folder
+                        _settings.lastOpenedPath = folder
                         main_controller.playPaths(fileUrls, true)
                     } else if (state == "open_subtitle_file") {
-                        database.lastOpenedPath = folder
+                        _settings.lastOpenedPath = folder
                         var filename = fileUrls[0].toString().replace("file://", "")
 
                         if (_utils.fileIsSubtitle(filename)) {
@@ -97,16 +98,16 @@ Rectangle {
                             notifybar.show(dsTr("Invalid file") + ": " + filename)
                         }
                     } else if (state == "add_playlist_item") {
-                        database.lastOpenedPath = folder
+                        _settings.lastOpenedPath = folder
 
                         main_controller.playPaths(fileUrls, false)
                     } else if (state == "import_playlist") {
-                        database.lastOpenedPlaylistPath = folder
+                        _settings.lastOpenedPlaylistPath = folder
 
                         var filename = fileUrls[0].toString().replace("file://", "")
                         main_controller.importPlaylistImpl(filename)
                     } else if (state == "export_playlist") {
-                        database.lastOpenedPlaylistPath = folder
+                        _settings.lastOpenedPlaylistPath = folder
 
                         var filename = fileUrls[0].toString().replace("file://", "")
                         if (filename.toString().search(".dmpl") == -1) {
@@ -122,7 +123,7 @@ Rectangle {
     Component {
         id: open_folder_dialog_component
         OpenFolderDialog {
-            folder: database.lastOpenedPath || _utils.homeDir
+            folder: _settings.lastOpenedPath || _utils.homeDir
 
             property bool playFirst: true
 
@@ -130,7 +131,7 @@ Rectangle {
                 shouldAutoPlayNextOnInvalidFile = false
 
                 var folderPath = fileUrl.toString()
-                database.lastOpenedPath = folder // record last opened path
+                _settings.lastOpenedPath = folder // record last opened path
                 main_controller.playPaths([folderPath], playFirst)
             }
         }
@@ -256,7 +257,7 @@ Rectangle {
     function initWindowSize() {
         if (config.playerApplyLastClosedSize) {
             hasResized = true
-            main_controller._setSizeForRootWindowWithWidth(database.lastWindowWidth)
+            main_controller._setSizeForRootWindowWithWidth(_settings.lastWindowWidth)
         } else {
             windowView.setWidth(windowView.defaultWidth)
             windowView.setHeight(windowView.defaultHeight)
@@ -414,12 +415,10 @@ Rectangle {
     function monitorWindowClose() {
         _utils.screenSaverUninhibit()
         config.save("Normal", "volume", player.volume)
-        playlist.syncDatabase()
-        database.record_video_position(player.source, player.position)
-        database.record_video_rotation(player.source, player.orientation)
-        database.lastWindowWidth = windowView.width
-        player.source && (database.lastPlayedFile = player.source)
-        database.forceCommit()
+        main_controller.recordVideoPosition(player.source, player.position)
+        main_controller.recordVideoRotation(player.source, player.orientation)
+        _settings.lastWindowWidth = windowView.width
+        player.source && (_settings.lastPlayedFile = player.source)
     }
 
     Timer {
@@ -530,14 +529,14 @@ Rectangle {
 
         onStopped: {
             _utils.screenSaverUninhibit()
-            database.record_video_position(lastVideoSource, lastVideoPosition)
+            main_controller.recordVideoPosition(lastVideoSource, lastVideoPosition)
 
             var videoPLayedOut = (lastVideoDuration - lastVideoPosition) < program_constants.videoEndsThreshold
 
             if (_utils.urlIsNativeFile(lastVideoSource)) {
                 if (videoPLayedOut) {
                     shouldAutoPlayNextOnInvalidFile = true
-                    main_controller.playNextOf(database.lastPlayedFile)
+                    main_controller.playNextOf(_settings.lastPlayedFile)
                 }
             }
         }
@@ -557,15 +556,15 @@ Rectangle {
             resetRotationFlip()
 
             if (source.toString().trim()) {
-                database.lastPlayedFile = source
-                database.appendPlayHistoryItem(source, resetPlayHistoryCursor)
+                _settings.lastPlayedFile = source
+                _database.appendPlayHistoryItem(source, resetPlayHistoryCursor)
                 _subtitle_parser.set_subtitle_from_movie(source)
-                database.record_video_position(lastVideoSource, lastVideoPosition)
+                main_controller.recordVideoPosition(lastVideoSource, lastVideoPosition)
                 resetPlayHistoryCursor = true
 
                 main_controller.seekToLastPlayed()
 
-                var rotation = database.fetch_video_rotation(source)
+                var rotation = main_controller.fetchVideoRotation(source)
                 var rotateClockwiseCount = Math.abs(Math.round((rotation % 360 - 360) % 360 / 90))
                 for (var i = 0; i < rotateClockwiseCount; i++) {
                     main_controller.rotateClockwise()
@@ -640,10 +639,13 @@ Rectangle {
         }
         onModeButtonClicked: _menu_controller.show_mode_menu()
         onAddButtonClicked: _menu_controller.show_add_button_menu()
-        onClearButtonClicked: main_controller.clearPlaylist()
 
         onMoveInWindowButtons: titlebar.showForPlaylist()
         onMoveOutWindowButtons: titlebar.hideForPlaylist()
+
+        onCleared: main_controller.clearPlaylist()
+        onItemRemoved: main_controller.removePlaylistItem(url)
+        onCategoryRemoved: main_controller.removePlaylistCategory(name)
     }
 
     TitleBar {

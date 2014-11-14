@@ -3,9 +3,11 @@
 
 # Copyright (C) 2011 ~ 2012 Deepin, Inc.
 #               2011 ~ 2012 Wang Yong
+#               2013 ~ 2014 Wang Yaohua
 #
 # Author:     Wang Yong <lazycat.manatee@gmail.com>
 # Maintainer: Wang Yong <lazycat.manatee@gmail.com>
+#             Wang Yaohua <mr.asianwang@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,12 +28,12 @@ import json
 
 from PyQt5.QtCore import QObject, QThread, pyqtProperty, pyqtSignal, pyqtSlot
 
-from subtitles import Parser, SUPPORTED_FILE_TYPES
-from constant import DEFAULT_WIDTH, DEFAULT_HEIGHT, WINDOW_GLOW_RADIUS
-from media_info import parse_info
-from logger import logger
-from i18n import _
-from utils import utils
+from views.subtitles import Parser, SUPPORTED_FILE_TYPES
+from utils.constants import DEFAULT_WIDTH, DEFAULT_HEIGHT, WINDOW_GLOW_RADIUS
+from utils.media_info import parse_info
+from utils.logger import logger
+from utils.i18n import _
+from utils.utils import utils
 
 def get_subtitle_from_movie(movie_file):
     '''

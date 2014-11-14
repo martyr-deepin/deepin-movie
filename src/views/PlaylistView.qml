@@ -20,7 +20,10 @@ ListView {
     signal rightClickedOnItem(string url)
     signal fileMissing(string url)
     signal fileBack(string url)
-    signal itemsChanged()
+
+    signal cleared()
+    signal itemRemoved(string url)
+    signal categoryRemoved(string name)
 
     Connections {
         target: _file_monitor
@@ -143,8 +146,8 @@ ListView {
         delay_add_item_timer.start()
     }
 
-    function removeItem(url) { root.removeItemPrivate(url) }
-    function removeGroup(name) { root.removeGroupPrivate(name) }
+    function removeItem(url) { root.removeItemPrivate(url); itemRemoved(url) }
+    function removeGroup(name) { root.removeGroupPrivate(name); categoryRemoved(name) }
     function removeInvalidItems(valid_check_func) {
         var flatList = _flattenList()
         for (var i = 0; i < flatList.length; i++) {
@@ -174,53 +177,18 @@ ListView {
         return result
     }
 
-    // playlist serialization
-    function getContent() {
-        var result = []
-        for (var i = 0; i < allItems.length; i++) {
-            if (allItems[i].isGroup) {
-                result.push({
-                    "itemName": allItems[i].propName,
-                    "itemUrl": allItems[i].propUrl,
-                    "itemChild": allItems[i].child ? allItems[i].child.getContent() : "[]"})
-            } else {
-                result.push({
-                    "itemName": allItems[i].propName,
-                    "itemUrl": allItems[i].propUrl,
-                    "itemChild": "[]"
-                    })
-            }
-        }
-        return JSON.stringify(result)
-    }
-
-    // playlist deserialization
-    function fromContent(content) {
-        var result = []
-
-        var list = JSON.parse(content || "[]")
-        for (var i = 0; i < list.length; i++) {
-            result.push({
-                "itemName": list[i].itemName,
-                "itemUrl": list[i].itemUrl,
-                "itemChild": fromContent(list[i].itemChild)
-                })
-        }
-
-        return result
-    }
-
     // Note: this function is solely used for _initialization_
     function initializeWithContent(content) {
-        var eles = fromContent(content)
-        for (var i = 0; i < eles.length; i++) {
-            model.append(eles[i])
+        var list = JSON.parse(content)
+        for (var i = 0; i < list.length; i++) {
+            addItem(list[i]["category"], list[i]["name"], list[i]["url"])
         }
     }
 
     function clear() {
         model.clear()
         allItems = []
+        cleared()
     }
 
     function _urlEqual(url1, url2) {
@@ -244,13 +212,6 @@ ListView {
     // }
 
     Timer {
-        id: report_list_model_changed_timer
-
-        interval: delay_add_item_timer.interval + 500
-        onTriggered: playlist.root.itemsChanged()
-    }
-
-    Timer {
         id: delay_add_item_timer
 
         interval: 100
@@ -264,9 +225,7 @@ ListView {
         }
     }
 
-    model: ListModel {
-        onCountChanged: report_list_model_changed_timer.restart()
-    }
+    model: ListModel{}
     delegate: Component {
         Column {
             id: column
@@ -492,7 +451,11 @@ ListView {
                         anchors.fill: parent
 
                         onClicked: {
-                            column.ListView.view.model.remove(index, 1)
+                            if (column.isGroup) {
+                                column.ListView.view.root.removeGroup(column.propName)
+                            } else {
+                                column.ListView.view.root.removeItem(column.propUrl)
+                            }
                         }
 
                         onPressed: delete_button.source = "image/delete_pressed.png"

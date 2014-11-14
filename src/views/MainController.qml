@@ -1,5 +1,6 @@
 import QtQuick 2.1
 import QtAV 1.4
+import "../controllers"
 
 MouseArea {
     id: mouse_area
@@ -36,14 +37,11 @@ MouseArea {
     }
 
     Connections {
-        target: database
+        target: _database
 
-        onImportItemFound: {
-            playlist.addItem(categoryName, itemName, itemUrl)
-            database.record_video_position(itemUrl, itemPlayed)
+        onPlaylistItemAdded: {
+            playlist.addItem(category, name, url)
         }
-
-        onClearPlaylistItems: { main_controller.clearPlaylist() }
 
         onImportDone: { notifybar.show(dsTr("Imported") + ": " + filename)}
     }
@@ -53,7 +51,7 @@ MouseArea {
         interval: 300
 
         onTriggered: {
-            var last_watched_pos = database.fetch_video_position(player.source)
+            var last_watched_pos = main_controller.fetchVideoPosition(player.source)
             if (config.playerAutoPlayFromLast
                 && _utils.urlIsNativeFile(player.source)
                 && Math.abs(last_watched_pos - player.duration) > program_constants.videoEndsThreshold) {
@@ -189,31 +187,57 @@ MouseArea {
         var pathDict = url.split("/")
         var result = pathDict.slice(pathDict.length - 2, pathDict.length + 1)
         var itemName = urlIsNativeFile ? result[result.length - 1].toString() : url
+        url = "file://" + url
 
-        return [serie, itemName, url]
+        return [itemName, url, serie]
     }
 
     function addPlayListItem(url) {
+        if (_database.containsPlaylistItem(url)) return
+
         var serie = config.playerAutoPlaySeries ? JSON.parse(_utils.getSeriesByName(url)) : null
         if (serie && serie.name != "") {
             for (var i = 0; i < serie.items.length; i++) {
                 var info = _getPlaylistItemInfo(serie.name, serie.items[i])
-                playlist.addItem(info[0], info[1], info[2])
+                _database.addPlaylistItem(info[0], info[1], info[2])
             }
         } else {
             var info = _getPlaylistItemInfo("", url)
-            playlist.addItem(info[0], info[1], info[2])
+            _database.addPlaylistItem(info[0], info[1], info[2])
         }
     }
 
     function addPlaylistStreamItem(url) {
-        playlist.addItem("", url.toString(), url.toString())
+        playlist.addItem(url.toString(), url.toString(), "")
     }
 
+    function removePlaylistItem(url) {
+        _database.removePlaylistItem(url)
+    }
+
+    function removePlaylistCategory(name) {
+        _database.removePlaylistCategory(name)
+    }
     function clearPlaylist() {
-        playlist.clear()
-        database.lastPlayedFile = ""
-        database.playHistory = []
+        _database.clearPlaylist()
+        _settings.lastPlayedFile = ""
+        _database.clearPlayHistory()
+    }
+
+    function recordVideoPosition(url, played) {
+        _database.setPlaylistItemPlayed(url, played)
+    }
+
+    function fetchVideoPosition(url) {
+        return _database.getPlaylistItemPlayed(url)
+    }
+
+    function recordVideoRotation(url, rotation) {
+        _database.setPlaylistItemRotation(url, rotation)
+    }
+
+    function fetchVideoRotation(url) {
+        return _database.getPlaylistItemRotation(url)
     }
 
     function showMainMenu() {
@@ -365,12 +389,12 @@ MouseArea {
     function rotateClockwise() {
         player.rotateClockwise()
         controlbar.rotatePreviewClockwise()
-        database.record_video_rotation(player.source, player.orientation)
+        main_controller.recordVideoRotation(player.source, player.orientation)
     }
     function rotateAnticlockwise() {
         player.rotateAnticlockwise()
         controlbar.rotatePreviewAntilockwise()
-        database.record_video_rotation(player.source, player.orientation)
+        main_controller.recordVideoRotation(player.source, player.orientation)
     }
 
     // player control operation related
@@ -382,9 +406,9 @@ MouseArea {
         if (player.hasMedia && player.source != "") {
             player.playbackState == MediaPlayer.PlayingState ? pause() : play()
         } else {
-            if (database.lastPlayedFile) {
+            if (_settings.lastPlayedFile) {
                 notifybar.show(dsTr("Play last movie played"))
-                player.source = database.lastPlayedFile
+                player.source = _settings.lastPlayedFile
             } else {
                 var playlistFirst = playlist.getFirst()
                 if (playlistFirst) {
@@ -546,7 +570,7 @@ MouseArea {
         } else if (config.playerPlayOrderType == "ORDER_TYPE_SINGLE") {
             next = null
         } else if (config.playerPlayOrderType == "ORDER_TYPE_SINGLE_CYCLE") {
-            next = database.lastPlayedFile
+            next = _settings.lastPlayedFile
         } else if (config.playerPlayOrderType == "ORDER_TYPE_PLAYLIST_CYCLE") {
             next = playlist.getNextSourceCycle(file)
         }
@@ -564,7 +588,7 @@ MouseArea {
         } else if (config.playerPlayOrderType == "ORDER_TYPE_SINGLE") {
             next = null
         } else if (config.playerPlayOrderType == "ORDER_TYPE_SINGLE_CYCLE") {
-            next = database.lastPlayedFile
+            next = _settings.lastPlayedFile
         } else if (config.playerPlayOrderType == "ORDER_TYPE_PLAYLIST_CYCLE") {
             next = playlist.getPreviousSourceCycle(file)
         }
@@ -578,28 +602,29 @@ MouseArea {
         if (config.playerPlayOrderType == "ORDER_TYPE_RANDOM") {
             next = playlist.getRandom()
         } else {
-            next = playlist.getNextSourceCycle(database.lastPlayedFile)
+            next = playlist.getNextSourceCycle(_settings.lastPlayedFile)
         }
 
         next ? (player.source = next) : root.reset()
     }
     function playPrevious() {
         player.resetPlayHistoryCursor = false
-        player.source = database.playHistoryGetPrevious()
+        player.source = _database.playHistoryGetPrevious()
     }
 
     function importPlaylist() { open_file_dialog.state = "import_playlist"; open_file_dialog.open() }
     function exportPlaylist() { open_file_dialog.state = "export_playlist"; open_file_dialog.open() }
     function importPlaylistImpl(filename) {
         if(_utils.fileIsPlaylist(filename)) {
-            database.importPlaylist(filename)
+            playlist.clear()
+            _database.importPlaylist(filename)
         } else {
             notifybar.show(dsTr("Invalid file") + ": " + filename)
         }
     }
 
     function exportPlaylistImpl(filename) {
-        database.exportPlaylist(filename)
+        _database.exportPlaylist(filename)
     }
 
     function setSubtitleVerticalPosition(percentage) {

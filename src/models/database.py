@@ -22,11 +22,11 @@
 import os
 import json
 import sqlite3
-from constant import CONFIG_DIR
+from utils.constants import CONFIG_DIR
 from deepin_utils.file import touch_file
 from PyQt5.QtCore import pyqtSlot, pyqtSignal, pyqtProperty, QObject, QTimer
 
-from playlist import DMPlaylist
+from models.playlist import DMPlaylist
 
 class Database(QObject):
     localPlaylistChanged = pyqtSignal(str)

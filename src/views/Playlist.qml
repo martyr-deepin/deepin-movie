@@ -21,12 +21,14 @@ Rectangle {
     signal newSourceSelected (string path)
 
     signal addButtonClicked ()
-    signal deleteButtonClicked ()
-    signal clearButtonClicked ()
     signal modeButtonClicked ()
 
     signal moveInWindowButtons
     signal moveOutWindowButtons
+
+    signal cleared()
+    signal itemRemoved(string url)
+    signal categoryRemoved(string name)
 
     states: [
         State {
@@ -89,10 +91,7 @@ Rectangle {
 
     function showClickedItemInFM() { _utils.showFileInFM(clickedOnItemUrl) }
 
-    function clear() {
-        playlist.clear()
-        database.playlist_local = ""
-    }
+    function clear() { playlist.clear() }
 
     function getFirst() { return playlist.getFirst() }
     function getRandom() { return playlist.getRandom() }
@@ -100,7 +99,6 @@ Rectangle {
     function getNextSource(source) { return playlist.getNextSource(source) }
     function getPreviousSourceCycle(source) { return playlist.getPreviousSourceCycle(source) }
     function getNextSourceCycle(source) { return playlist.getNextSourceCycle(source) }
-    function syncDatabase() { database.playlist_local = playlist.getContent() }
 
     Timer {
         id: hide_timer
@@ -222,15 +220,15 @@ Rectangle {
                 return listItem.propUrl
             }
 
+            onCleared: playlistPanel.cleared()
+            onItemRemoved: playlistPanel.itemRemoved(url)
+            onCategoryRemoved: playlistPanel.categoryRemoved(name)
+
             onNewSourceSelected: {
                 playlistPanel.newSourceSelected(path)
             }
 
-            onItemsChanged: {
-                playlistPanel.syncDatabase()
-            }
-
-            Component.onCompleted: initializeWithContent(database.playlist_local)
+            Component.onCompleted: initializeWithContent(_database.getPlaylistContent())
         }
     }
 
@@ -256,11 +254,6 @@ Rectangle {
                 anchors.verticalCenter: parent.verticalCenter
                 onClicked: { playlistPanel.modeButtonClicked() }
             }
-            // OpacityImageButton {
-            //     imageName: "image/playlist_delete_button.png"
-            //     anchors.verticalCenter: parent.verticalCenter
-            //     onClicked: { playlistPanel.deleteButtonClicked() }
-            // }
             OpacityImageButton {
                 tooltip: dsTr("Add file")
                 tooltipItem: playlistPanel.tooltipItem
@@ -275,7 +268,7 @@ Rectangle {
 
                 imageName: "image/playlist_clear_button.png"
                 anchors.verticalCenter: parent.verticalCenter
-                onClicked: { playlistPanel.clearButtonClicked() }
+                onClicked: { playlist.clear() }
             }
         }
     }

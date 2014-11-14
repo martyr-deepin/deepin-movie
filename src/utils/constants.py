@@ -1,11 +1,11 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# Copyright (C) 2011 ~ 2012 Deepin, Inc.
-#               2011 ~ 2012 Wang Yong
+# Copyright (C) 2014 Deepin, Inc.
+#               2014 Wang Yaohua
 #
-# Author:     Wang Yong <lazycat.manatee@gmail.com>
-# Maintainer: Wang Yong <lazycat.manatee@gmail.com>
+# Author:     Wang Yaohua <mr.asianwang@gmail.com>
+# Maintainer: Wang Yaohua <mr.asianwang@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,12 +22,18 @@
 
 import os
 
+parent_dir = os.path.dirname
+
 _HOME = os.path.expanduser('~')
 XDG_CONFIG_HOME = os.environ.get('XDG_CONFIG_HOME') or \
             os.path.join(_HOME, '.config')
 PROJECT_NAME = "deepin-movie"
 CONFIG_DIR = os.path.join(XDG_CONFIG_HOME, PROJECT_NAME)
-MAIN_QML = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'main.qml')
+MAIN_QML = os.path.join(parent_dir(parent_dir(os.path.abspath(__file__))),
+	'views', 'main.qml')
+DATABASE_FILE = os.path.join(CONFIG_DIR, "data.db")
+
+if not os.path.exists(CONFIG_DIR): os.makedirs(CONFIG_DIR)
 
 WINDOW_GLOW_RADIUS = 8
 DEFAULT_WIDTH = 840

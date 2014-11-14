@@ -32,7 +32,7 @@ from PyQt5.QtWidgets import QApplication
 from PyQt5.QtGui import QKeySequence
 from PyQt5.QtCore import QObject, QThread, pyqtSignal, pyqtSlot, pyqtProperty
 
-from subtitles import *
+from views.subtitles import *
 from dbus_interfaces import screenSaverInterface
 
 all_supported_video_exts = [ "*.3g2","*.3gp","*.3gp2","*.3gpp","*.amv",
