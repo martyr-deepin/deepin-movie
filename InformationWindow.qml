@@ -16,16 +16,14 @@ DDialog {
 
     signal copyToClipboard (string text)
 
-    function showContent(content) {
-        if (!content) return
-
-        var movieInfo = JSON.parse(content)
-        fileTitle = movieInfo.movie_title
-        fileType = movieInfo.movie_type
-        fileSize = formatSize(parseInt(movieInfo.movie_size))
-        movieResolution = "%1x%2".arg(movieInfo.movie_width).arg(movieInfo.movie_height)
-        movieDuration = formatTime(parseInt(movieInfo.movie_duration))
-        filePath = formatFilePath(movieInfo.movie_path)
+    function showContent() {
+        var resolution = "%1x%2".arg(player.metaData["resolution"].width).arg(player.metaData["resolution"].height)
+        fileTitle = player.metaData["title"] || dsTr("Unknown")
+        fileType = player.metaData["fileType"] || dsTr("Unknown")
+        fileSize = formatSize(parseInt(player.metaData["size"] || dsTr("Unknown")))
+        movieResolution = player.metaData["resolution"] ? resolution : dsTr("Unknown")
+        movieDuration = formatTime(player.duration)
+        filePath = formatFilePath(player.source.toString())
 
         info_window.show()
     }
@@ -134,6 +132,7 @@ DDialog {
             DTextButton {
                 id: confirm_button
                 text: dsTr("Close")
+
                 anchors.right: parent.right
                 anchors.bottom: parent.bottom
 

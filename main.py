@@ -44,7 +44,7 @@ if os.name == 'posix':
     QCoreApplication.setAttribute(QtCore.Qt.AA_X11InitThreads, True)
 
 # from PyQt5.QtGui import QFont
-from PyQt5.QtCore import pyqtSlot, QObject, QTranslator, QLocale, QLibraryInfo
+from PyQt5.QtCore import QTranslator, QLocale, QLibraryInfo
 from PyQt5.QtWidgets import QApplication
 appTranslator = QTranslator()
 translationsPath = "qt_" + QLocale.system().name()
@@ -57,41 +57,11 @@ app.setQuitOnLastWindowClosed(True)
 from window import Window
 from database import database
 from config import config
-from movie_info import movie_info
-from browser import Browser
 from utils import utils, FindVideoThreadManager
 from constant import MAIN_QML
 from menu_controller import MenuController
 from file_monitor import FileMonitor
-
-class PageManager(QObject):
-
-    def __init__(self, view):
-        super(QObject, self).__init__()
-        self.main_xid = view.winId().__int__()
-
-        self.movie_store_page = Browser("http://dy.yunfan.com")
-        self.movie_search_page = Browser("http://www.yunfan.com/qs")
-
-    @pyqtSlot(str, int, int, int, int)
-    def show_page(self, page_name, x, y, width, height):
-        self.hide_page()
-
-        x += 3
-        width -= 2
-        height -= 2
-
-        if page_name == "movie_store":
-            self.movie_store_page.show_with_parent(self.main_xid,
-             x, y, width, height)
-        elif page_name == "movie_search":
-            self.movie_search_page.show_with_parent(self.main_xid,
-             x, y, width, height)
-
-    @pyqtSlot()
-    def hide_page(self):
-        self.movie_store_page.hide()
-        self.movie_search_page.hide()
+from subtitles import Parser
 
 if __name__ == "__main__":
     from dbus_services import (DeepinMovieServie, check_multiple_instances,
@@ -108,9 +78,10 @@ if __name__ == "__main__":
             os._exit(0)
 
     windowView = Window(result or len(sys.argv) > 1)
-    menu_controller = MenuController(windowView)
+    menu_controller = MenuController()
     file_monitor = FileMonitor()
     findVideoThreadManager = FindVideoThreadManager()
+    subtitleParser = Parser()
     app._extra_window = weakref.ref(windowView)
 
     qml_context = windowView.rootContext()
@@ -122,7 +93,7 @@ if __name__ == "__main__":
     qml_context.setContextProperty("_file_monitor", file_monitor)
     qml_context.setContextProperty("database", database)
     qml_context.setContextProperty("windowView", windowView)
-    qml_context.setContextProperty("movieInfo", movie_info)
+    qml_context.setContextProperty("_subtitle_parser", subtitleParser)
     qml_context.setContextProperty("_menu_controller", menu_controller)
 
     windowView.setSource(QtCore.QUrl.fromLocalFile(MAIN_QML))

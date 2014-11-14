@@ -1,5 +1,5 @@
 import QtQuick 2.1
-import QtMultimedia 5.0
+import QtAV 1.4
 import QtGraphicalEffects 1.0
 import Deepin.Widgets 1.0
 
@@ -12,7 +12,7 @@ Row {
     property double volume: 1.0
     property alias muted: toggle_button.checkFlag
     property alias tooltipItem: toggle_button.tooltipItem
-    
+
     property bool showBarFlag: false // for internal useage
     property bool showBarSwitch: true // for external useage
 
@@ -45,24 +45,24 @@ Row {
 
         sourceSize.width: 28
         sourceSize.height: 28
-        normal_image: checkFlag ? "image/volume_muted_normal.svg" : 
-                                    item.volume > 0.75 ? "image/volume_4_normal.svg" : 
+        normal_image: checkFlag ? "image/volume_muted_normal.svg" :
+                                    item.volume > 0.75 ? "image/volume_4_normal.svg" :
                                                         item.volume > 0.5 ? "image/volume_3_normal.svg":
                                                                             item.volume > 0.25 ? "image/volume_2_normal.svg":
                                                                                                 "image/volume_1_normal.svg"
-        hover_image: checkFlag ? "image/volume_muted_hover_press.svg" : 
-                                    item.volume > 0.75 ? "image/volume_4_hover_press.svg" : 
+        hover_image: checkFlag ? "image/volume_muted_hover_press.svg" :
+                                    item.volume > 0.75 ? "image/volume_4_hover_press.svg" :
                                                         item.volume > 0.5 ? "image/volume_3_hover_press.svg":
                                                                             item.volume > 0.25 ? "image/volume_2_hover_press.svg":
                                                                                                 "image/volume_1_hover_press.svg"
-        press_image: checkFlag ? "image/volume_muted_hover_press.svg" : 
-                                    item.volume > 0.75 ? "image/volume_4_hover_press.svg" : 
+        press_image: checkFlag ? "image/volume_muted_hover_press.svg" :
+                                    item.volume > 0.75 ? "image/volume_4_hover_press.svg" :
                                                         item.volume > 0.5 ? "image/volume_3_hover_press.svg":
                                                                             item.volume > 0.25 ? "image/volume_2_hover_press.svg":
                                                                                                 "image/volume_1_hover_press.svg"
 
         property bool checkFlag: false
-        
+
         onStateChanged: {
             if(state == "hovered") {
                 item.showBarFlag = true

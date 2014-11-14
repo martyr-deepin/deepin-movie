@@ -52,6 +52,8 @@ class Database(QObject):
             "CREATE TABLE IF NOT EXISTS settings(key PRIMARY KEY NOT NULL, value)"
         )
 
+        self._play_history_cursor = len(self.playHistory) - 1
+
         self._commit_timer = QTimer()
         self._commit_timer.setInterval(500)
         self._commit_timer.setSingleShot(True)
@@ -123,10 +125,6 @@ class Database(QObject):
     def lastPlayedFile(self, value):
         self.setValue("last_played_file", value)
         self.lastPlayedFileChanged.emit(value)
-        if not value in self.playHistory:
-            playHistory = self.playHistory
-            playHistory.append(value)
-            self.setValue("play_history", json.dumps(playHistory))
 
     @pyqtProperty("QVariant",notify=playHistoryChanged)
     def playHistory(self):
@@ -137,6 +135,23 @@ class Database(QObject):
     def playHistory(self, value):
         self.setValue("play_history", json.dumps(value))
         self.playHistoryChanged.emit()
+
+    @pyqtSlot(str, bool)
+    def appendPlayHistoryItem(self, item, resetCursor):
+        playHistory = self.playHistory
+        playHistory.append(item)
+        self.setValue("play_history", json.dumps(playHistory))
+
+        if resetCursor: self._play_history_cursor = len(playHistory) - 1
+
+    @pyqtSlot(result=str)
+    def playHistoryGetPrevious(self):
+        playHistory = self.playHistory
+        if playHistory:
+            self._play_history_cursor =  max(0, self._play_history_cursor - 1)
+            return playHistory[self._play_history_cursor]
+        else:
+            return ""
 
     @pyqtProperty(str,notify=lastOpenedPathChanged)
     def lastOpenedPath(self):

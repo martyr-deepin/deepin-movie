@@ -1,13 +1,19 @@
 import QtQuick 2.1
-import QtMultimedia 5.0
- 
+import QtAV 1.4
+
 Video {
     id: video
-    autoPlay: false
+    autoPlay: true
     transform: flip
     visible: playbackState != MediaPlayer.StoppedState
 
+    subtitle.enabled: false
+    // videoCodecPriority: ["VAAPI", "FFmpeg"]
+
     property bool hasMedia: hasVideo || hasAudio
+    property size resolution: metaData["resolution"] ? Qt.size(metaData["resolution"].width, metaData["resolution"].height)
+                                                    : Qt.size(windowView.defaultWidth - windowView.windowGlowRadius * 2, windowView.defaultHeight - windowView.windowGlowRadius * 2)
+    property string title: metaData.title ? metaData.title : ""
 
     property alias subtitleContent: subtitle.text
     property alias subtitleFontSize: subtitle.fontSize
@@ -47,8 +53,17 @@ Video {
         }
     }
 
-    function rotateClockwise() { video.orientation -= 90 }
-    function rotateAnticlockwise() { video.orientation += 90 }
+    function _rotateResolution() {
+        resolution = Qt.size(resolution.height, resolution.width)
+    }
+    function rotateClockwise() {
+        video.orientation -= 90
+        _rotateResolution()
+    }
+    function rotateAnticlockwise() {
+        video.orientation += 90
+        _rotateResolution()
+    }
 
     function resetRotationFlip() {
         video.orientation = 0
@@ -58,7 +73,7 @@ Video {
         flip.angle = 180
     }
 
-    Rotation { 
+    Rotation {
         id: flip
         origin.x: width / 2
         origin.y: height / 2
@@ -68,16 +83,7 @@ Video {
         angle: 180
     }
 
-    // onPlaying: { pause_notify.visible = false }
-    // onPaused: { if(!isPreview) pause_notify.visible = true }
-
-    // PauseNotify { 
-    //     id: pause_notify
-    //      visible: false
-    //      anchors.centerIn: parent 
-    // }
-
-    Subtitle { 
+    DSubtitle {
         id: subtitle
 
         anchors.left: parent.left

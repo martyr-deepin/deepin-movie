@@ -1,5 +1,5 @@
 import QtQuick 2.1
-import QtMultimedia 5.0
+import QtAV 1.4
 import QtGraphicalEffects 1.0
 import QtQuick.Window 2.1
 import Deepin.Locale 1.0
@@ -16,7 +16,7 @@ Rectangle {
 
     property var windowLastState: ""
 
-    property real widthHeightScale: (movieInfo.movie_width - 2 * program_constants.windowGlowRadius) / (movieInfo.movie_height - 2 * program_constants.windowGlowRadius)
+    property real widthHeightScale: player.resolution.width / player.resolution.height
     property real actualScale: 1.0
 
     property bool hasResized: false
@@ -25,6 +25,15 @@ Rectangle {
     property rect primaryRect: {
         return Qt.rect(0, 0, Screen.desktopAvailableWidth, Screen.desktopAvailableHeight)
     }
+
+    // properties that used as ids
+    property alias tooltip: tooltip_loader.item
+    property alias open_file_dialog: open_file_dialog_loader.item
+    property alias open_folder_dialog: open_folder_dialog_loader.item
+    property alias open_url_dialog: open_url_dialog_loader.item
+    property alias info_window: info_window_loader.item
+    property alias preference_window: preference_window_loader.item
+    property alias shortcuts_viewer: shortcuts_viewer_loader.item
 
     states: [
         State {
@@ -58,118 +67,178 @@ Rectangle {
 
     Constants { id: program_constants }
 
-    ToolTip {
-        id: tooltip
+    Component {
+        id: tooltip_component
 
-        window: windowView
-        screenSize: primaryRect
-    }
-
-    OpenFileDialog {
-        id: open_file_dialog
-
-        onAccepted: {
-            shouldAutoPlayNextOnInvalidFile = false
-
-            if (fileUrls.length > 0) {
-                if (state == "open_video_file") {
-                    database.lastOpenedPath = folder
-                    main_controller.playPaths(fileUrls, true)
-                } else if (state == "open_subtitle_file") {
-                    database.lastOpenedPath = folder
-                    var filename = fileUrls[0].toString().replace("file://", "")
-
-                    if (_utils.fileIsSubtitle(filename)) {
-                        movieInfo.subtitle_file = filename
-                    } else {
-                        notifybar.show(dsTr("Invalid file") + ": " + filename)
-                    }
-                } else if (state == "add_playlist_item") {
-                    database.lastOpenedPath = folder
-
-                    main_controller.playPaths(fileUrls, false)
-                } else if (state == "import_playlist") {
-                    database.lastOpenedPlaylistPath = folder
-
-                    var filename = fileUrls[0].toString().replace("file://", "")
-                    main_controller.importPlaylistImpl(filename)
-                } else if (state == "export_playlist") {
-                    database.lastOpenedPlaylistPath = folder
-
-                    var filename = fileUrls[0].toString().replace("file://", "")
-                    if (filename.toString().search(".dmpl") == -1) {
-                        filename = filename + ".dmpl"
-                    }
-                    main_controller.exportPlaylistImpl(filename)
-                }
-            }
+        ToolTip {
+            window: windowView
+            screenSize: primaryRect
         }
     }
 
-    OpenFolderDialog {
-        id: open_folder_dialog
+    Component {
+        id: open_file_dialog_component
 
-        folder: database.lastOpenedPath || _utils.homeDir
-
-        property bool playFirst: true
-
-        onAccepted: {
-            shouldAutoPlayNextOnInvalidFile = false
-
-            var folderPath = fileUrl.toString()
-            database.lastOpenedPath = folder // record last opened path
-            main_controller.playPaths([folderPath], playFirst)
-        }
-    }
-
-    DInputDialog {
-        id: open_url_dialog
-        message: dsTr("Please input the url of file played") + ": "
-        confirmButtonLabel: dsTr("Confirm")
-        cancelButtonLabel: dsTr("Cancel")
-
-        cursorPosGetter: windowView
-
-        property string lastInput: ""
-
-        function open() {
-            x = windowView.x + (windowView.width - width) / 2
-            y = windowView.y + (windowView.height - height) / 2
-            show()
-        }
-
-        onConfirmed: {
-            var input = input.trim()
-
-            if (input.search("://") == -1) {
-                notifybar.show(dsTr("The parse failed"))
-            } else if (input != movieInfo.movie_file) {
-                if (config.playerCleanPlaylistOnOpenNewFile) {
-                    main_controller.clearPlaylist()
-                }
+        OpenFileDialog {
+            onAccepted: {
                 shouldAutoPlayNextOnInvalidFile = false
-                movieInfo.movie_file = input
+
+                if (fileUrls.length > 0) {
+                    if (state == "open_video_file") {
+                        database.lastOpenedPath = folder
+                        main_controller.playPaths(fileUrls, true)
+                    } else if (state == "open_subtitle_file") {
+                        database.lastOpenedPath = folder
+                        var filename = fileUrls[0].toString().replace("file://", "")
+
+                        if (_utils.fileIsSubtitle(filename)) {
+                            _subtitle_parser.file_name = filename
+                        } else {
+                            notifybar.show(dsTr("Invalid file") + ": " + filename)
+                        }
+                    } else if (state == "add_playlist_item") {
+                        database.lastOpenedPath = folder
+
+                        main_controller.playPaths(fileUrls, false)
+                    } else if (state == "import_playlist") {
+                        database.lastOpenedPlaylistPath = folder
+
+                        var filename = fileUrls[0].toString().replace("file://", "")
+                        main_controller.importPlaylistImpl(filename)
+                    } else if (state == "export_playlist") {
+                        database.lastOpenedPlaylistPath = folder
+
+                        var filename = fileUrls[0].toString().replace("file://", "")
+                        if (filename.toString().search(".dmpl") == -1) {
+                            filename = filename + ".dmpl"
+                        }
+                        main_controller.exportPlaylistImpl(filename)
+                    }
+                }
+            }
+        }
+    }
+
+    Component {
+        id: open_folder_dialog_component
+        OpenFolderDialog {
+            folder: database.lastOpenedPath || _utils.homeDir
+
+            property bool playFirst: true
+
+            onAccepted: {
+                shouldAutoPlayNextOnInvalidFile = false
+
+                var folderPath = fileUrl.toString()
+                database.lastOpenedPath = folder // record last opened path
+                main_controller.playPaths([folderPath], playFirst)
+            }
+        }
+    }
+
+    Component {
+        id: open_url_dialog_component
+
+        DInputDialog {
+            message: dsTr("Please input the url of file played") + ": "
+            confirmButtonLabel: dsTr("Confirm")
+            cancelButtonLabel: dsTr("Cancel")
+
+            cursorPosGetter: windowView
+
+            property string lastInput: ""
+
+            function open() {
+                x = windowView.x + (windowView.width - width) / 2
+                y = windowView.y + (windowView.height - height) / 2
+                show()
             }
 
-            lastInput = input
+            onConfirmed: {
+                var input = input.trim()
+
+                if (input.search("://") == -1) {
+                    notifybar.show(dsTr("The parse failed"))
+                } else if (input != player.source) {
+                    if (config.playerCleanPlaylistOnOpenNewFile) {
+                        main_controller.clearPlaylist()
+                    }
+                    shouldAutoPlayNextOnInvalidFile = false
+                    player.source = input
+                }
+
+                lastInput = input
+            }
+
+            onVisibleChanged: { if(visible) forceFocus() }
         }
-
-        onVisibleChanged: { if(visible) forceFocus() }
     }
 
-    PreferenceWindow { id: preference_window }
+    Component {
+        id: preference_window_component
 
-    InformationWindow {
-        id: info_window
-
-        onCopyToClipboard: _utils.copyToClipboard(text)
+        PreferenceWindow {}
     }
 
-    ShortcutsViewer {
-        id: shortcuts_viewer
-        x: Math.max(0, Math.min(windowView.x + (windowView.width - width) / 2, Screen.width - width))
-        y: Math.max(0, Math.min(windowView.y + (windowView.height - height) / 2, Screen.height - height))
+    Component {
+        id: info_window_component
+
+        InformationWindow {
+            onCopyToClipboard: _utils.copyToClipboard(text)
+        }
     }
+
+    Component {
+        id: shortcuts_viewer_component
+
+        ShortcutsViewer {
+            x: Math.max(0, Math.min(windowView.x + (windowView.width - width) / 2, Screen.width - width))
+            y: Math.max(0, Math.min(windowView.y + (windowView.height - height) / 2, Screen.height - height))
+        }
+    }
+
+    Loader {
+        id: tooltip_loader
+        asynchronous: true
+        sourceComponent: tooltip_component
+    }
+
+    Loader {
+        id: open_file_dialog_loader
+        asynchronous: true
+        sourceComponent: open_file_dialog_component
+    }
+
+    Loader {
+        id: open_folder_dialog_loader
+        asynchronous: true
+        sourceComponent: open_folder_dialog_component
+    }
+
+    Loader {
+        id: open_url_dialog_loader
+        asynchronous: true
+        sourceComponent: open_url_dialog_component
+    }
+
+    Loader {
+        id: preference_window_loader
+        asynchronous: true
+        sourceComponent: preference_window_component
+    }
+
+    Loader {
+        id: info_window_loader
+        asynchronous: true
+        sourceComponent:  info_window_component
+    }
+
+    Loader {
+        id: shortcuts_viewer_loader
+        asynchronous: true
+        sourceComponent: shortcuts_viewer_component
+    }
+
 
     // translation tools
     property var dssLocale: DLocale {
@@ -237,7 +306,7 @@ Rectangle {
             if (!_utils.urlIsNativeFile(pathList[i])) {
                 main_controller.addPlaylistStreamItem(pathList[i])
                 if (i == 0) {
-                    movieInfo.movie_file = pathList[i]
+                    player.source = pathList[i]
                     firstIsUrl = true
                 }
             } else {
@@ -308,7 +377,9 @@ Rectangle {
         player.resetRotationFlip()
         root.state = "normal"
         titlebar.title = ""
-        movieInfo.movie_file = ""
+        windowView.setTitle(dsTr("Deepin Movie"))
+        player.source = ""
+        _subtitle_parser.file_name = ""
         main_controller.stop()
         controlbar.reset()
         showControls()
@@ -347,7 +418,7 @@ Rectangle {
         database.record_video_position(player.source, player.position)
         database.record_video_rotation(player.source, player.orientation)
         database.lastWindowWidth = windowView.width
-        movieInfo.movie_file && (database.lastPlayedFile = movieInfo.movie_file)
+        player.source && (database.lastPlayedFile = player.source)
         database.forceCommit()
     }
 
@@ -428,23 +499,26 @@ Rectangle {
 
         anchors.fill: main_window
 
-        // theses two properties are mainly used in onStopped.
-        // because everytime we change the source onStopped executes, but the
-        // source out there is no longer the old source, it's the new source
-        // we set instead.
-        property url lastSource: ""
-        property int lastPosition: 0
+        // theses properties are mainly used in onStopped.
+        // because we can't ensure the source and position info available every
+        // time the onStopped handler executes.
+        property url lastVideoSource: ""
+        property int lastVideoPosition: 0
+        property int lastVideoDuration: 0
+
+        onResolutionChanged: main_controller.playerResolutionChanged()
 
         // onSourceChanged doesn't ensures that the file is playable, this one did.
         // 2014/9/16 add: not ensures url playable, either
         onPlaying: {
             notifybar.hide()
             auto_play_next_on_invalid_timer.stop()
-            main_controller.setWindowTitle(movieInfo.movie_title)
+            main_controller.setWindowTitle(player.title)
 
             _utils.screenSaverInhibit()
 
-            lastSource = source
+            lastVideoSource = source
+            lastVideoDuration = duration
             if (config.playerFullscreenOnOpenFile) main_controller.fullscreen()
 
             if (_utils.urlIsNativeFile(source)) {
@@ -455,66 +529,67 @@ Rectangle {
         }
 
         onStopped: {
-            windowView.setTitle(dsTr("Deepin Movie"))
             _utils.screenSaverUninhibit()
-            database.record_video_position(lastSource, lastPosition)
+            database.record_video_position(lastVideoSource, lastVideoPosition)
 
-            // onStopped will be triggered when we change the movie source,
-            // we do this to make sure that the follwing code executed only when
-            // the movie plays out.
-            var videoPLayedOut = movieInfo.movie_duration
-                                && ( Math.abs(position - movieInfo.movie_duration)
-                                    < program_constants.videoEndsThreshold)
+            var videoPLayedOut = (lastVideoDuration - lastVideoPosition) < program_constants.videoEndsThreshold
 
-            if (_utils.urlIsNativeFile(lastSource)) {
+            if (_utils.urlIsNativeFile(lastVideoSource)) {
                 if (videoPLayedOut) {
                     shouldAutoPlayNextOnInvalidFile = true
                     main_controller.playNextOf(database.lastPlayedFile)
                 }
-            } else {
-                if (position && duration
-                    &&Math.abs(position - duration) < program_constants.videoEndsThreshold) {
-                    shouldAutoPlayNextOnInvalidFile = true
-                    main_controller. playNextOf(database.lastPlayedFile)
+            }
+        }
+
+        onPlaybackStateChanged: {
+            controlbar.videoPlaying = player.playbackState == MediaPlayer.PlayingState
+        }
+
+        onPositionChanged: {
+            position != 0 && (lastVideoPosition = position)
+            subtitleContent = _subtitle_parser.get_subtitle_at(position + subtitleDelay)
+            controlbar.percentage = position / player.duration
+        }
+
+        property bool resetPlayHistoryCursor: true
+        onSourceChanged: {
+            resetRotationFlip()
+
+            if (source.toString().trim()) {
+                database.lastPlayedFile = source
+                database.appendPlayHistoryItem(source, resetPlayHistoryCursor)
+                _subtitle_parser.set_subtitle_from_movie(source)
+                database.record_video_position(lastVideoSource, lastVideoPosition)
+                resetPlayHistoryCursor = true
+
+                main_controller.seekToLastPlayed()
+
+                var rotation = database.fetch_video_rotation(source)
+                var rotateClockwiseCount = Math.abs(Math.round((rotation % 360 - 360) % 360 / 90))
+                for (var i = 0; i < rotateClockwiseCount; i++) {
+                    main_controller.rotateClockwise()
                 }
             }
         }
 
-        onPlaybackStateChanged: controlbar.videoPlaying = player.playbackState == MediaPlayer.PlayingState
-
-        onPositionChanged: {
-            position != 0 && (lastPosition = position)
-            subtitleContent = movieInfo.get_subtitle_at(position + subtitleDelay)
-            controlbar.percentage = position / movieInfo.movie_duration
-        }
-
-        onSourceChanged: {
-            source.toString().trim() && (database.lastPlayedFile = source)
-
-            resetRotationFlip()
-
-            var rotation = database.fetch_video_rotation(source)
-            var rotateClockwiseCount = Math.abs(Math.round((rotation % 360 - 360) % 360 / 90))
-            for (var i = 0; i < rotateClockwiseCount; i++) {
-                main_controller.rotateClockwise()
-            }
-        }
-
         onErrorChanged: {
-            if (movieInfo.movie_file.toString() == open_url_dialog.lastInput.toString())
-            {
-                playlist.removeItem(source)
-            }
+            print(error)
+            print(errorString)
+            // if (movieInfo.movie_file.toString() == open_url_dialog.lastInput.toString())
+            // {
+            //     playlist.removeItem(source)
+            // }
 
-            switch(error) {
-                case MediaPlayer.NetworkError:
-                case MediaPlayer.FormatError:
-                case MediaPlayer.ResourceError:
-                movieInfo.fileInvalid()
-                break
-            }
+            // switch(error) {
+            //     case MediaPlayer.NetworkError:
+            //     case MediaPlayer.FormatError:
+            //     case MediaPlayer.ResourceError:
+            //     movieInfo.fileInvalid()
+            //     break
+            // }
 
-            open_url_dialog.lastInput = ""
+            // open_url_dialog.lastInput = ""
         }
     }
 
@@ -561,7 +636,7 @@ Rectangle {
 
         onNewSourceSelected: {
             shouldAutoPlayNextOnInvalidFile = false
-            movieInfo.movie_file = path
+            player.source = path
         }
         onModeButtonClicked: _menu_controller.show_mode_menu()
         onAddButtonClicked: _menu_controller.show_add_button_menu()
@@ -580,7 +655,7 @@ Rectangle {
         anchors.horizontalCenter: main_window.horizontalCenter
         tooltipItem: tooltip
 
-        onMenuButtonClicked: _menu_controller.show_menu()
+        onMenuButtonClicked: main_controller.showMainMenu()
         onMinButtonClicked: main_controller.minimize()
         onMaxButtonClicked: windowNormalState ? main_controller.maximize() : main_controller.normalize()
         onCloseButtonClicked: main_controller.close()
@@ -593,16 +668,17 @@ Rectangle {
 
     ControlBar {
         id: controlbar
+        videoPlayer: player
         visible: false
         window: windowView
         volume: config.playerVolume
-        percentage: player.position / movieInfo.movie_duration
+        percentage: player.position / player.duration
         muted: config.playerMuted
         widthHeightScale: root.widthHeightScale
-        previewHasVideo: player.hasVideo
         dragbarVisible: root.state == "normal"
-        timeInfoVisible: player.source != "" && player.hasMedia && movieInfo.movie_duration != 0
+        timeInfoVisible: player.source != "" && player.hasMedia && player.duration != 0
         tooltipItem: tooltip
+        videoSource: player.source
 
         anchors.horizontalCenter: main_window.horizontalCenter
 
@@ -627,8 +703,8 @@ Rectangle {
         onOpenFileButtonClicked: { main_controller.openFile() }
         onPlaylistButtonClicked: { playlist.toggleShow() }
         onPercentageSet: {
-            if (movieInfo.movie_duration) {
-                delay_seek_timer.destPos = movieInfo.movie_duration * percentage
+            if (player.duration) {
+                delay_seek_timer.destPos = player.duration * percentage
                 delay_seek_timer.restart()
             }
         }

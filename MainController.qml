@@ -1,5 +1,5 @@
 import QtQuick 2.1
-import QtMultimedia 5.0
+import QtAV 1.4
 
 MouseArea {
     id: mouse_area
@@ -20,65 +20,8 @@ MouseArea {
 
     property bool shouldPerformClick: true
 
-    property int movieDuration: movieInfo.movie_duration
-
     MenuResponder { id: menu_responder }
     KeysResponder { id: keys_responder }
-
-    Connections {
-        target: movieInfo
-
-        onMovieWidthChanged: {
-            if (root.miniModeState()) {
-                backupWidth = movieInfo.movie_width
-                _setSizeForRootWindowWithWidth(windowView.width)
-                backupCenter = Qt.point(windowView.x + windowView.width / 2,
-                                        windowView.y + windowView.height / 2)
-                return
-            }
-            if (movieInfo.movie_width != windowView.defaultWidth) {
-                var destWidth = hasResized ? windowView.width : movieInfo.movie_width
-                _setSizeForRootWindowWithWidth(destWidth)
-            }
-            windowView.centerRequestCount-- >= 0 && windowView.moveToCenter()
-        }
-
-        onMovieSourceChanged: {
-            // NOTE
-            // a work around here, the player source should be bound to
-            // movieInfo.movie_file as I used to, but we should force the
-            // sourceChanged signal to be emitted.
-            player.stop()
-            player.source = ""
-            player.source = movieInfo.movie_file
-            // NOTE END
-
-            var last_watched_pos = database.fetch_video_position(player.source)
-            if (config.playerAutoPlayFromLast
-                && _utils.urlIsNativeFile(player.source)
-                && Math.abs(last_watched_pos - movieInfo.movie_duration) > program_constants.videoEndsThreshold) {
-                seek_to_last_watched_timer.schedule(last_watched_pos)
-            } else {
-                play()
-            }
-
-            playlist.hide()
-            showControls()
-        }
-
-        onFileInvalid: {
-            var invalidFile = movieInfo.movie_file
-            if (_utils.urlIsNativeFile(invalidFile)) {
-                notifybar.show(dsTr("Invalid file") + ": " + movieInfo.movie_title)
-            } else {
-                notifybar.show(dsTr("The parse failed"))
-            }
-            root.reset()
-            shouldAutoPlayNextOnInvalidFile && auto_play_next_on_invalid_timer.startWidthFile(invalidFile)
-        }
-
-        onInfoGotten: { main_controller.showInformationWindow(movie_info) }
-    }
 
     property bool shouldPlayThefirst: true
     Connections {
@@ -86,7 +29,7 @@ MouseArea {
 
         onVideoFound: { addPlayListItem(path) }
         onFindVideoDone: {
-            main_controller.shouldPlayThefirst && (movieInfo.movie_file = path)
+            main_controller.shouldPlayThefirst && (player.source = path)
 
             invalidCount > 0 && notifybar.show(dsTr("%1 files unable to be parsed have been excluded").arg(invalidCount))
         }
@@ -107,18 +50,15 @@ MouseArea {
 
     Timer {
         id: seek_to_last_watched_timer
-        interval: 500
-
-        property int last_watched_pos
-
-        function schedule(pos) {
-            start()
-            last_watched_pos = pos
-        }
+        interval: 300
 
         onTriggered: {
-            player.seek(last_watched_pos)
-            play()
+            var last_watched_pos = database.fetch_video_position(player.source)
+            if (config.playerAutoPlayFromLast
+                && _utils.urlIsNativeFile(player.source)
+                && Math.abs(last_watched_pos - player.duration) > program_constants.videoEndsThreshold) {
+                player.seek(last_watched_pos)
+            }
         }
     }
 
@@ -276,6 +216,13 @@ MouseArea {
         database.playHistory = []
     }
 
+    function showMainMenu() {
+        _menu_controller.show_menu(player.source, player.hasVideo,
+                                    _subtitle_parser.file_name, player.subtitleShow,
+                                    windowView.getState() == Qt.WindowFullScreen,
+                                    root.miniModeState(), windowView.staysOnTop)
+    }
+
     function close() {
         windowView.close()
     }
@@ -363,12 +310,12 @@ MouseArea {
 
     function setProportion(propWidth, propHeight) {
         if (propWidth == 1 && propHeight == 1) { // indicates we should reset the proportion, see menu_controller.py for more details
-            root.widthHeightScale = (movieInfo.movie_width - program_constants.windowGlowRadius * 2) / (movieInfo.movie_height - program_constants.windowGlowRadius * 2)
+            root.widthHeightScale = (player.resolution.width - program_constants.windowGlowRadius * 2) / (player.resolution.height - program_constants.windowGlowRadius * 2)
         } else {
             root.widthHeightScale = propWidth / propHeight
         }
 
-        var destWidth = (movieInfo.movie_width - program_constants.windowGlowRadius * 2) * root.actualScale + program_constants.windowGlowRadius * 2
+        var destWidth = (player.resolution.width - program_constants.windowGlowRadius * 2) * root.actualScale + program_constants.windowGlowRadius * 2
         player.fillMode = VideoOutput.Stretch
 
         _setSizeForRootWindowWithWidth(destWidth)
@@ -376,7 +323,7 @@ MouseArea {
 
     function setScale(scale) {
         root.actualScale = scale
-        var destWidth = (movieInfo.movie_width - program_constants.windowGlowRadius * 2) * root.actualScale + program_constants.windowGlowRadius * 2
+        var destWidth = (player.resolution.width - program_constants.windowGlowRadius * 2) * root.actualScale + program_constants.windowGlowRadius * 2
 
         _setSizeForRootWindowWithWidth(destWidth)
     }
@@ -400,19 +347,29 @@ MouseArea {
             playlist.show()
         }
     }
+    function playerResolutionChanged() {
+        if (root.miniModeState()) {
+            backupWidth = player.resolution.width
+            _setSizeForRootWindowWithWidth(windowView.width)
+            backupCenter = Qt.point(windowView.x + windowView.width / 2,
+                                    windowView.y + windowView.height / 2)
+            return
+        }
+
+        root.widthHeightScale = player.resolution.width / player.resolution.height
+        !root.hasResized && _setSizeForRootWindowWithWidth(player.resolution.width + program_constants.windowGlowRadius * 2)
+    }
 
     function flipHorizontal() { player.flipHorizontal(); controlbar.flipPreviewHorizontal() }
     function flipVertical() { player.flipVertical(); controlbar.flipPreviewVertical() }
     function rotateClockwise() {
         player.rotateClockwise()
         controlbar.rotatePreviewClockwise()
-        movieInfo.rotate()
         database.record_video_rotation(player.source, player.orientation)
     }
     function rotateAnticlockwise() {
         player.rotateAnticlockwise()
         controlbar.rotatePreviewAntilockwise()
-        movieInfo.rotate()
         database.record_video_rotation(player.source, player.orientation)
     }
 
@@ -427,11 +384,11 @@ MouseArea {
         } else {
             if (database.lastPlayedFile) {
                 notifybar.show(dsTr("Play last movie played"))
-                movieInfo.movie_file = database.lastPlayedFile
+                player.source = database.lastPlayedFile
             } else {
                 var playlistFirst = playlist.getFirst()
                 if (playlistFirst) {
-                    movieInfo.movie_file = playlistFirst
+                    player.source = playlistFirst
                 } else {
                     openFile()
                 }
@@ -439,12 +396,20 @@ MouseArea {
         }
     }
 
+    function seekToLastPlayed() {
+        // TODO: really should pause the video here, play it later in the timer.
+        seek_to_last_watched_timer.start()
+
+        playlist.hide()
+        root.showControls()
+    }
+
     function forwardByDelta(delta) {
         var tempRate = player.playbackRate
         player.playbackRate = 1.0
         player.seek(player.position + delta)
-        var percentage = Math.floor(player.position / (movieInfo.movie_duration + 1) * 100)
-        var percentageInfo = movieInfo.movie_duration != 0 ? " (%1%)".arg(percentage) : ""
+        var percentage = Math.floor(player.position / (player.duration + 1) * 100)
+        var percentageInfo = player.duration != 0 ? " (%1%)".arg(percentage) : ""
         notifybar.show(dsTr("Forward") + ": " + formatTime(player.position) + percentageInfo)
         player.playbackRate = tempRate
     }
@@ -453,8 +418,8 @@ MouseArea {
         var tempRate = player.playbackRate
         player.playbackRate = 1.0
         player.seek(player.position - delta)
-        var percentage = Math.floor(player.position / (movieInfo.movie_duration + 1) * 100)
-        var percentageInfo = movieInfo.movie_duration != 0 ? " (%1%)".arg(percentage) : ""
+        var percentage = Math.floor(player.position / (player.duration + 1) * 100)
+        var percentageInfo = player.duration != 0 ? " (%1%)".arg(percentage) : ""
         notifybar.show(dsTr("Rewind") + ": " + formatTime(player.position) + percentageInfo)
         player.playbackRate = tempRate
     }
@@ -485,7 +450,7 @@ MouseArea {
         notifybar.show(dsTr("Playback rate: ") + player.playbackRate)
     }
 
-    function increaseVolumeByDelta(delta) { setVolume(Math.min(player.volume + delta, 1.0)) }
+    function increaseVolumeByDelta(delta) { setVolume(Math.min(player.volume + delta, 2.0)) }
     function decreaseVolumeByDelta(delta) { setVolume(Math.max(player.volume - delta, 0.0)) }
 
     function increaseVolume() { increaseVolumeByDelta(0.05) }
@@ -509,6 +474,31 @@ MouseArea {
 
     function toggleMute() {
         setMute(!player.muted)
+    }
+
+    function setSoundChannel(channelLayout) {
+        switch(channelLayout) {
+            case "auto": {
+                player.channelLayout = MediaPlayer.ChannelLayoutAuto
+                break
+            }
+            case "mono": {
+                player.channelLayout = MediaPlayer.Mono
+                break
+            }
+            case "left": {
+                player.channelLayout = MediaPlayer.Left
+                break
+            }
+            case "right": {
+                player.channelLayout = MediaPlayer.Right
+                break
+            }
+            case "stero": {
+                player.channelLayout = MediaPlayer.Stero
+                break
+            }
+        }
     }
 
     function openFile() { open_file_dialog.state = "open_video_file"; open_file_dialog.open() }
@@ -561,7 +551,7 @@ MouseArea {
             next = playlist.getNextSourceCycle(file)
         }
 
-        next ? (movieInfo.movie_file = next) : root.reset()
+        next ? (player.source = next) : root.reset()
     }
 
     function playPreviousOf(file) {
@@ -579,7 +569,7 @@ MouseArea {
             next = playlist.getPreviousSourceCycle(file)
         }
 
-        next ? (movieInfo.movie_file = next) : root.reset()
+        next ? (player.source = next) : root.reset()
     }
 
     function playNext() {
@@ -591,22 +581,11 @@ MouseArea {
             next = playlist.getNextSourceCycle(database.lastPlayedFile)
         }
 
-        next ? (movieInfo.movie_file = next) : root.reset()
+        next ? (player.source = next) : root.reset()
     }
     function playPrevious() {
-        if (database.lastPlayedFile) {
-            if (player.hasMedia && player.source != 0) {
-                var prevIndex = database.playHistory.lastIndexOf(database.lastPlayedFile) - 1
-
-                if (prevIndex > 0) {
-                    movieInfo.movie_file = database.playHistory[prevIndex]
-                } else {
-                    root.reset()
-                }
-            } else {
-                movieInfo.movie_file = database.lastPlayedFile
-            }
-        }
+        player.resetPlayHistoryCursor = false
+        player.source = database.playHistoryGetPrevious()
     }
 
     function importPlaylist() { open_file_dialog.state = "import_playlist"; open_file_dialog.open() }
@@ -718,7 +697,7 @@ MouseArea {
         }
 
         if (mouse.button == Qt.RightButton) {
-            _menu_controller.show_menu()
+            main_controller.showMainMenu()
         } else {
             if (!double_click_check_timer.running) {
                 double_click_check_timer.restart()
@@ -770,7 +749,7 @@ MouseArea {
                     } else if (_utils.fileIsValidVideo(file_path)) {
                         main_controller.playPaths([file_path], true)
                     } else if (_utils.fileIsSubtitle(file_path)) {
-                        movieInfo.subtitle_file = file_path
+                        _subtitle_parser.file_name = file_path
                     } else {
                         notifybar.show(dsTr("Invalid file") + ": " + file_path)
                     }

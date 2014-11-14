@@ -21,14 +21,14 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
-from PyQt5.QtCore import QObject, pyqtSlot, pyqtSignal, Qt
+from PyQt5.QtCore import QObject, pyqtSlot, pyqtSignal
 from PyQt5.QtGui import QCursor
 from deepin_menu.menu import Menu, CheckableMenuItem
 
-from movie_info import movie_info, get_subtitle_from_movie
 from config import *
 from i18n import _
 from utils import utils
+from subtitles import get_subtitle_from_movie
 
 frame_sub_menu = [
     CheckableMenuItem("proportion:radio:_p_default", _("Default"), True),
@@ -57,6 +57,14 @@ sound_sub_menu = [
     ("_sound_increase", _("Volume Up"), (), (), config.hotkeysFrameSoundIncreaseVolume),
     ("_sound_decrease", _("Volume Down"), (), (), config.hotkeysFrameSoundDecreaseVolume),
     CheckableMenuItem("_sound_muted", _("Muted"), extra=config.hotkeysFrameSoundToggleMute)
+]
+
+sound_channel_sub_menu = [
+    CheckableMenuItem("sound_channel:radio:auto", _("Auto")),
+    CheckableMenuItem("sound_channel:radio:left", _("Left")),
+    CheckableMenuItem("sound_channel:radio:right", _("Right")),
+    CheckableMenuItem("sound_channel:radio:mono", _("Mono")),
+    CheckableMenuItem("sound_channel:radio:stero", _("Stero"))
 ]
 
 subtitle_sub_menu = [
@@ -168,6 +176,7 @@ class MenuController(QObject):
     volumeUp = pyqtSignal()
     volumeDown = pyqtSignal()
     volumeMuted = pyqtSignal()
+    soundChannelChanged = pyqtSignal(str, arguments=["channelLayout"])
     showSubtitleSettings = pyqtSignal()
 
     playlistPlay = pyqtSignal()
@@ -181,13 +190,14 @@ class MenuController(QObject):
     playlistShowClickedItemInFM = pyqtSignal()
     playlistInformation = pyqtSignal()
     togglePlaylist = pyqtSignal()
+    subtitleVisibleSet = pyqtSignal(bool, arguments=["visible"])
 
-    def __init__(self, window):
+    def __init__(self):
         super(MenuController, self).__init__()
-        self._window = window
 
         self._proportion = "proportion:radio:_p_default"
         self._scale = "scale:radio:_s_1"
+        self._sound_channel = "sound_channel:radio:auto"
 
     # if actions-like menu items are clicked, we should send signals to inform
     # the main controller that actions should be taken, if configs-like menu
@@ -247,7 +257,7 @@ class MenuController(QObject):
         elif _id == "_on_top":
             self.staysOnTop.emit(_checked)
         elif _id == "_toggle_playlist":
-        	self.togglePlaylist.emit()
+            self.togglePlaylist.emit()
         elif _id == "mode_group:radio:in_order":
             config.playerPlayOrderType = ORDER_TYPE_IN_ORDER
         elif _id == "mode_group:radio:random":
@@ -258,10 +268,25 @@ class MenuController(QObject):
             config.playerPlayOrderType = ORDER_TYPE_SINGLE_CYCLE
         elif _id == "mode_group:radio:playlist_cycle":
             config.playerPlayOrderType = ORDER_TYPE_PLAYLIST_CYCLE
+        elif _id == "sound_channel:radio:auto":
+            self._sound_channel = "sound_channel:radio:auto"
+            self.soundChannelChanged.emit("auto")
+        elif _id == "sound_channel:radio:mono":
+            self._sound_channel = "sound_channel:radio:mono"
+            self.soundChannelChanged.emit("mono")
+        elif _id == "sound_channel:radio:left":
+            self._sound_channel = "sound_channel:radio:left"
+            self.soundChannelChanged.emit("left")
+        elif _id == "sound_channel:radio:right":
+            self._sound_channel = "sound_channel:radio:right"
+            self.soundChannelChanged.emit("right")
+        elif _id == "sound_channel:radio:stero":
+            self._sound_channel = "sound_channel:radio:stero"
+            self.soundChannelChanged.emit("stero")
         elif _id == "_sound_muted":
             config.playerMuted = _checked
         elif _id == "_subtitle_hide":
-            self._window.subtitleVisible = not _checked
+            self.subtitleVisibleSet.emit(not _checked)
         elif _id == "_subtitle_manual":
             self.openSubtitleFile.emit()
         elif _id.startswith("_subtitles:radio"):
@@ -309,26 +334,22 @@ class MenuController(QObject):
         elif _id == "_playlist_import":
             self.playlistImport.emit()
 
-    @pyqtSlot()
-    def show_menu(self):
+    @pyqtSlot(str, bool, bool, bool, bool, bool, bool)
+    def show_menu(self, videoSource, hasVideo, hasSubtitle,
+                subtitleVisible, isFullscreen, isMiniMode, isOnTop):
         self.menu = Menu(right_click_menu)
 
-        hasVideo = movie_info.movie_file != ""
         self.menu.getItemById("_fullscreen_quit").isActive = hasVideo
         self.menu.getItemById("_mini_mode").isActive = hasVideo
         self.menu.getItemById("_play_operation_forward").isActive = hasVideo
         self.menu.getItemById("_play_operation_backward").isActive = hasVideo
-        self.menu.getItemById("_frame").isActive = \
-            hasVideo and self._window.getState() != Qt.WindowFullScreen
-        self.menu.getItemById("_subtitle_hide").isActive = \
-            hasVideo and bool(movie_info.subtitle_file)
+        self.menu.getItemById("_frame").isActive = hasVideo and not isFullscreen
+        self.menu.getItemById("_subtitle_hide").isActive = hasSubtitle
         self.menu.getItemById("_subtitle_manual").isActive = hasVideo
-        self.menu.getItemById("_subtitle_choose").isActive = \
-            bool(movie_info.subtitle_file)
-        self.menu.getItemById("_information").isActive = hasVideo \
-            and movie_info.movie_duration != 0
+        self.menu.getItemById("_subtitle_choose").isActive = hasSubtitle
+        self.menu.getItemById("_information").isActive = hasVideo
 
-        self.menu.getItemById("_on_top").checked = self._window.staysOnTop
+        self.menu.getItemById("_on_top").checked = isOnTop
 
         self.menu.getItemById("mode_group:radio:in_order").checked = \
             config.playerPlayOrderType == ORDER_TYPE_IN_ORDER
@@ -363,18 +384,30 @@ class MenuController(QObject):
         self.menu.getItemById("scale:radio:_s_2").checked = \
             self._scale == "scale:radio:_s_2"
 
+        # self.menu.getItemById("_sound_channel").isActive = hasVideo
+        # self.menu.getItemById("_sound_channel").setSubMenu(
+        #     Menu(sound_channel_sub_menu))
+        # self.menu.getItemById("sound_channel:radio:auto").checked = \
+        #     self._sound_channel == "sound_channel:radio:auto"
+        # self.menu.getItemById("sound_channel:radio:mono").checked = \
+        #     self._sound_channel == "sound_channel:radio:mono"
+        # self.menu.getItemById("sound_channel:radio:left").checked = \
+        #     self._sound_channel == "sound_channel:radio:left"
+        # self.menu.getItemById("sound_channel:radio:right").checked = \
+        #     self._sound_channel == "sound_channel:radio:right"
+        # self.menu.getItemById("sound_channel:radio:stero").checked = \
+        #     self._sound_channel == "sound_channel:radio:stero"
         self.menu.getItemById("_sound_muted").checked = config.playerMuted
 
-        self.menu.getItemById("_subtitle_hide").checked = \
-            not self._window.subtitleVisible
-        subtitles = get_subtitle_from_movie(movie_info.movie_file)
+        self.menu.getItemById("_subtitle_hide").checked = subtitleVisible
+        subtitles = get_subtitle_from_movie(videoSource)
         subtitles = _subtitle_menu_items_from_files(subtitles)
         self.menu.getItemById("_subtitle_choose").setSubMenu(Menu(subtitles))
 
         self.menu.getItemById("_fullscreen_quit").text = _("Fullscreen") if \
-            self._window.getState() != Qt.WindowFullScreen else _("Exit fullscreen")
+            isFullscreen else _("Exit fullscreen")
         self.menu.getItemById("_mini_mode").text = _("Exit mini mode") if \
-            self._window.miniModeState() else _("Mini mode")
+            isMiniMode else _("Mini mode")
 
         self.menu.itemClicked.connect(self._menu_item_invoked)
         self.menu.showRectMenu(QCursor.pos().x(), QCursor.pos().y())

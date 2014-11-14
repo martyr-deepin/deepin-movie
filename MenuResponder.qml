@@ -47,13 +47,16 @@ Connections {
 
     onOpenSubtitleFile: { main_controller.openFileForSubtitle() }
 
-    onSubtitleSelected: movieInfo.subtitle_file = subtitle
+    onSubtitleSelected: _subtitle_parser.file_name = subtitle
 
     onShowPreference: { main_controller.showPreferenceWindow() }
 
-    onShowMovieInformation: { player.source && player.hasVideo
-        && movieInfo.getMovieInfo(movieInfo.movie_file)
+    onShowMovieInformation: {
+        player.source && player.hasVideo
+        && info_window.showContent()
     }
+
+    onSubtitleVisibleSet: player.subtitleShow = visible
 
     onPlayPrevious: { main_controller.playPrevious() }
     onPlayNext: { main_controller.playNext() }
@@ -63,17 +66,18 @@ Connections {
     onVolumeUp: { main_controller.increaseVolume() }
     onVolumeDown: { main_controller.decreaseVolume() }
     onVolumeMuted: { main_controller.toggleMute() }
+    onSoundChannelChanged: { main_controller.setSoundChannel(channelLayout) }
 
     onShowSubtitleSettings: { main_controller.showPreferenceWindow(); preference_window.scrollToSubtitle() }
 
-    onPlaylistPlay: movieInfo.movie_file = playlist.clickedOnItemUrl
+    onPlaylistPlay: player.source = playlist.clickedOnItemUrl
     onAddItemToPlaylist: main_controller.openFileForPlaylist()
     onAddFolderToPlaylist: main_controller.openDirForPlaylist()
     onRemoveItemFromPlaylist: playlist.removeClickedItem()
     onRemoveInvalidItemsFromPlaylist: playlist.removeInvalidItems(_utils.playlistItemValidation)
     onPlaylistClear: main_controller.clearPlaylist()
     onPlaylistShowClickedItemInFM: playlist.showClickedItemInFM()
-    onPlaylistInformation: movieInfo.getMovieInfo(playlist.clickedOnItemUrl)
+    onPlaylistInformation: {} //movieInfo.getMovieInfo(playlist.clickedOnItemUrl)
     onPlaylistExport: main_controller.exportPlaylist()
     onPlaylistImport: main_controller.importPlaylist()
 }

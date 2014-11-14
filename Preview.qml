@@ -1,5 +1,5 @@
 import QtQuick 2.1
-import QtMultimedia 5.0
+import QtAV 1.4
 import QtGraphicalEffects 1.0
 
 RectWithCorner {
@@ -9,91 +9,95 @@ RectWithCorner {
     withBlur: false
     blurWidth: 2
 
-    onVisibleChanged: player_loader.active = visible
-
-    property url source: ""
+    property alias source: video_preview.file
     property real widthHeightScale
     property int previewPadding: 4
-
-    property alias video: player_loader.item
-
-    property var frameOperationsCache: []
 
     states: [
         State {
             name: "normal"
-            PropertyChanges { 
+            PropertyChanges {
                 target: preview
                 rectWidth: widthHeightScale >= 1 ? 178 : 89
-                rectHeight: (rectWidth - previewPadding * 2) / widthHeightScale + previewPadding * 2 + preview.cornerHeight 
+                rectHeight: (rectWidth - previewPadding * 2) / widthHeightScale + previewPadding * 2 + preview.cornerHeight
             }
-            PropertyChanges { target: player_loader; visible: true }
+            PropertyChanges { target: video_preview; visible: true }
             PropertyChanges { target: time_bg; color: "#DD000000" }
         },
         State {
             name: "minimal"
             PropertyChanges { target: preview; rectWidth: 100; rectHeight: 44 }
-            PropertyChanges { target: player_loader; visible: false }
+            PropertyChanges { target: video_preview; visible: false }
             PropertyChanges { target: time_bg; color: "transparent" }
-        }        
+        }
     ]
-    
+
     function seek(percentage) {
-        video && video.seek(Math.floor(movieInfo.movie_duration * percentage))
-        videoTime.text = formatTime(movieInfo.movie_duration * percentage)
+        video_preview.timestamp = Math.floor(player.duration * percentage)
+        videoTime.text = formatTime(player.duration * percentage)
     }
 
-    function flipHorizontal() { frameOperationsCache.push("flipHorizontal") }
-    function flipVertical() { frameOperationsCache.push("flipVertical") }
-    function rotateClockwise() { frameOperationsCache.push("rotateClockwise") }
-    function rotateAnticlockwise() { frameOperationsCache.push("rotateAnticlockwise") }
-
-    Component {
-        id: player_component
-
-        Player {
-            autoPlay: true
-            muted: true
-            source: preview.source
-            isPreview: true
-            
-            onPlaying: pause()
+    function flipHorizontal() {
+        if (flip.axis.y == 1) {
+            flip.axis.y = 0
+        } else {
+            if (flip.axis.x == 1) {
+                flip.axis.x = 0
+                video_preview.orientation -= 180
+            } else {
+                flip.axis.y = 1
+            }
         }
     }
 
-    Loader {
-        id: player_loader
-        sourceComponent: player_component
+    function flipVertical() {
+        if (flip.axis.x == 1) {
+            flip.axis.x = 0
+        } else {
+            if (flip.axis.y == 1) {
+                flip.axis.y = 0
+                video_preview.orientation -= 180
+            } else {
+                flip.axis.x = 1
+            }
+        }
+    }
+
+    function rotateClockwise() {
+        video_preview.orientation -= 90
+    }
+
+    function rotateAnticlockwise() {
+        video_preview.orientation += 90
+    }
+
+    VideoPreview {
+        id: video_preview
 
         anchors.fill: parent
         anchors.topMargin: previewPadding
         anchors.bottomMargin: previewPadding + preview.cornerHeight
         anchors.leftMargin: previewPadding
         anchors.rightMargin: previewPadding
-
-        onLoaded: {
-            var operations = preview.frameOperationsCache
-            for (var i = 0; i < operations.length; i++) {
-                if (operations[i] == "flipVertical") {
-                    item.flipVertical()
-                } else if (operations[i] == "flipHorizontal") {
-                    item.flipHorizontal()
-                } else if (operations[i] == "rotateClockwise") {
-                    item.rotateClockwise()
-                } else if (operations[i] == "rotateAnticlockwise") {
-                    item.rotateAnticlockwise()
-                }
-            }
-        }
     }
-    
+
+    Rotation {
+        id: flip
+        origin.x: width / 2
+        origin.y: height / 2
+        axis.x: 0
+        axis.y: 0
+        axis.z: 0
+        angle: 180
+    }
+
     Rectangle {
         id: time_bg
         height: 24
-        anchors.bottom: player_loader.bottom
-        anchors.left: player_loader.left
-        anchors.right: player_loader.right
-        
+        anchors.bottom: video_preview.bottom
+        anchors.left: video_preview.left
+        anchors.right: video_preview.right
+
         Text {
             id: videoTime
             color: "white"

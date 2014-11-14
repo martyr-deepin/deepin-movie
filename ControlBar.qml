@@ -1,5 +1,5 @@
 import QtQuick 2.1
-import QtMultimedia 5.0
+import QtAV 1.4
 import QtGraphicalEffects 1.0
 import Deepin.Widgets 1.0
 
@@ -11,14 +11,16 @@ DragableArea {
     property alias timeInfoVisible: playTime.visible
     property alias volume: volume_button.volume
     property alias percentage: progressbar.percentage
+    property alias videoSource: videoPreview.source
     property alias videoPlaying: play_pause_button.checkFlag
     property alias muted: volume_button.muted
     property alias widthHeightScale: videoPreview.widthHeightScale
     property alias dragbarVisible: drag_point.visible
     property alias windowFullscreenState: toggle_fullscreen_button.checkFlag
     property alias status: buttonArea.state
-    property bool previewHasVideo: false
 
+    //TODO: remove all player related props, use videoPlayer's properties directly
+    property var videoPlayer
     property QtObject tooltipItem
 
     signal mutedSet (bool muted)
@@ -53,7 +55,7 @@ DragableArea {
     function showPreview(mouseX, percentage, mode) {
         if (config.playerShowPreview) {
             videoPreview.state = mode
-            if (control_bar.previewHasVideo && videoPreview.source != "" && movieInfo.movie_duration != 0) {
+            if (videoPlayer.hasVideo && videoPlayer.duration != 0) {
                 videoPreview.visible = true
                 videoPreview.x = Math.min(Math.max(mouseX - videoPreview.width / 2, 0),
                                           width - videoPreview.width)
@@ -75,6 +77,7 @@ DragableArea {
                     videoPreview.cornerPos = videoPreview.width / 2
                     videoPreview.cornerType = "center"
                 }
+
                 videoPreview.seek(percentage)
             }
         }
@@ -115,7 +118,6 @@ DragableArea {
 
             Preview {
                 id: videoPreview
-                source: movieInfo.movie_file
                 visible: false
             }
 
@@ -203,7 +205,8 @@ DragableArea {
 
                 Text {
                     id: playTime
-                    text: formatTime(control_bar.percentage * movieInfo.movie_duration) + " / " + formatTime(movieInfo.movie_duration)
+                    text: formatTime(control_bar.percentage * controlbar.videoPlayer.duration)
+                            + " / " + formatTime(controlbar.videoPlayer.duration)
                     color: Qt.rgba(100, 100, 100, 1)
                     font.pixelSize: 12
 

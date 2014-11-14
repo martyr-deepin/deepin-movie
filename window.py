@@ -28,7 +28,6 @@ from random import randint
 import xcb
 from xpybutil.ewmh import c, atom, request_wm_state_checked
 
-from PyQt5 import QtGui, QtCore, QtQuick
 from PyQt5.QtCore import Qt, QSize
 from PyQt5.QtQuick import QQuickView
 from PyQt5.QtCore import pyqtSlot, pyqtProperty, pyqtSignal, QDir
@@ -52,7 +51,6 @@ class Window(QQuickView):
 
     staysOnTopChanged = pyqtSignal()
     centerRequestCountChanged = pyqtSignal()
-    subtitleVisibleChanged = pyqtSignal()
 
     def __init__(self, center=False):
         QQuickView.__init__(self)
@@ -62,9 +60,9 @@ class Window(QQuickView):
 
         self.setColor(QColor(0, 0, 0, 0))
         self.setMinimumSize(QSize(MINIMIZE_WIDTH, MINIMIZE_HEIGHT))
-        self.setResizeMode(QtQuick.QQuickView.SizeRootObjectToView)
+        self.setResizeMode(QQuickView.SizeRootObjectToView)
         self.setFormat(surface_format)
-        self.setFlags(QtCore.Qt.FramelessWindowHint)
+        self.setFlags(Qt.FramelessWindowHint)
 
         self.staysOnTop = False
         self.qml_context = self.rootContext()
@@ -133,18 +131,14 @@ class Window(QQuickView):
     def getState(self):
         return self.windowState()
 
-    @pyqtSlot(result=bool)
-    def miniModeState(self):
-        return self.rootObject().miniModeState()
-
     @pyqtSlot()
     def doMinimized(self):
         # NOTE: This is bug of Qt5 that showMinimized() just can work once after restore window.
         # I change window state before set it as WindowMinimized to fixed this bug!
-        self.setWindowState(QtCore.Qt.WindowNoState)
+        self.setWindowState(Qt.WindowNoState)
 
         # Do minimized.
-        self.setWindowState(QtCore.Qt.WindowMinimized)
+        self.setWindowState(Qt.WindowMinimized)
         self.setVisible(True)
 
     @pyqtProperty(bool,notify=staysOnTopChanged)
@@ -161,6 +155,7 @@ class Window(QQuickView):
 
     @pyqtSlot()
     def moveToCenter(self):
+        print "moveToCenter"
         distance = self.screen().geometry().center() - self.geometry().center()
         self.setX(self.x() + distance.x())
         self.setY(self.y() + distance.y())
@@ -176,20 +171,11 @@ class Window(QQuickView):
 
     @pyqtSlot(result="QVariant")
     def getCursorPos(self):
-        return QtGui.QCursor.pos()
+        return QCursor.pos()
 
     @pyqtSlot(bool)
     def setCursorVisible(self, visible):
         self.setCursor(QCursor(Qt.ArrowCursor if visible else Qt.BlankCursor))
-
-    @pyqtProperty(bool,notify=subtitleVisibleChanged)
-    def subtitleVisible(self):
-        return self.rootObject().subtitleVisible()
-
-    @subtitleVisible.setter
-    def subtitleVisible(self, visible):
-        self.rootObject().setSubtitleVisible(visible)
-        self.subtitleVisibleChanged.emit()
 
     @pyqtSlot("QVariant")
     def focusWindowChangedSlot(self, win):
