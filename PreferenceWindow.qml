@@ -215,11 +215,11 @@ DPreferenceWindow {
                 checked: config.playerPauseOnMinimized
                 onClicked: config.playerPauseOnMinimized = checked
             }
-            DCheckBox {
-                text: dsTr("Enable system popup notification")
-                checked: config.playerNotificationsEnabled
-                onClicked: config.playerNotificationsEnabled = checked
-            }
+            // DCheckBox {
+            //     text: dsTr("Enable system popup notification")
+            //     checked: config.playerNotificationsEnabled
+            //     onClicked: config.playerNotificationsEnabled = checked
+            // }
 
         }
 
