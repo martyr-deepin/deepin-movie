@@ -119,7 +119,7 @@ class Window(QQuickView):
                 realPathList.append(realpath)
             else:
                 realPathList.append(path)
-        self.rootObject().playPaths(json.dumps(realPathList))
+        if realPathList: self.rootObject().playPaths(json.dumps(realPathList))
 
     @pyqtSlot(int)
     def setDeepinWindowShadowHint(self, width):
