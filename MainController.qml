@@ -85,7 +85,7 @@ MouseArea {
             shouldAutoPlayNextOnInvalidFile && auto_play_next_on_invalid_timer.startWidthFile(invalidFile)
         }
 
-        onInfoGotten: info_window.showContent(movie_info)
+        onInfoGotten: { main_controller.showInformationWindow(movie_info) }
     }
 
     property bool shouldPlayThefirst: true
@@ -351,6 +351,22 @@ MouseArea {
     }
     function toggleMiniMode() {
         root.miniModeState() ? quitMiniMode() : miniMode()
+    }
+
+    function showPreferenceWindow() {
+        preference_window.flags = windowView.getState() == Qt.WindowFullScreen ? Qt.BypassWindowManagerHint : Qt.FramelessWindowHint | Qt.SubWindow
+        preference_window.close()
+        preference_window.x = windowView.x + (windowView.width - preference_window.width) / 2
+        preference_window.y = windowView.y + (windowView.height - preference_window.height) / 2
+        preference_window.show()
+    }
+
+    function showInformationWindow(info) {
+        info_window.flags = windowView.getState() == Qt.WindowFullScreen ? Qt.BypassWindowManagerHint : Qt.FramelessWindowHint | Qt.SubWindow
+        info_window.close()
+        info_window.x = windowView.x + (windowView.width - info_window.width) / 2
+        info_window.y = windowView.y + (windowView.height - info_window.height) / 2
+        info_window.showContent(info)
     }
 
     function setProportion(propWidth, propHeight) {

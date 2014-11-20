@@ -1,11 +1,10 @@
 import QtQuick 2.1
 import Deepin.Widgets 1.0
 
-DPreferenceWindow {
+DDialog {
 	id: info_window
 	width: 400
 	height: 200
-	flags: Qt.BypassWindowManagerHint
 	titleContentPadding: 0
 
 	property string fileTitle
@@ -86,7 +85,7 @@ DPreferenceWindow {
 			font.pixelSize: 12
 			color: "#b4b4b4"
 			text: dsTr("Movie duration") + ": " + info_window.movieDuration
-		}	
+		}
 
 		Item {
 			width: parent.width

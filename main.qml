@@ -157,32 +157,12 @@ Rectangle {
         onVisibleChanged: { if(visible) forceFocus() }
     }
 
-    PreferenceWindow {
-        id: preference_window
-        width: 560
-        height: 480
-
-        onVisibleChanged: {
-            if (visible) {
-                flags = windowView.getState() == Qt.WindowFullScreen ? Qt.BypassWindowManagerHint : Qt.FramelessWindowHint | Qt.SubWindow
-                x = windowView.x + (windowView.width - width) / 2
-                y = windowView.y + (windowView.height - height) / 2
-            }
-        }
-    }
+    PreferenceWindow { id: preference_window }
 
     InformationWindow {
         id: info_window
 
         onCopyToClipboard: _utils.copyToClipboard(text)
-
-        onVisibleChanged: {
-            if (visible) {
-                flags = windowView.getState() == Qt.WindowFullScreen ? Qt.BypassWindowManagerHint : Qt.FramelessWindowHint | Qt.SubWindow
-                x = windowView.x + (windowView.width - width) / 2
-                y = windowView.y + (windowView.height - height) / 2
-            }
-        }
     }
 
     ShortcutsViewer {

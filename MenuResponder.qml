@@ -49,10 +49,10 @@ Connections {
 
     onSubtitleSelected: movieInfo.subtitle_file = subtitle
 
-    onShowPreference: { preference_window.show() }
+    onShowPreference: { main_controller.showPreferenceWindow() }
 
     onShowMovieInformation: { player.source && player.hasVideo
-        && info_window.showContent(movieInfo.getMovieInfo(movieInfo.movie_file))
+        && movieInfo.getMovieInfo(movieInfo.movie_file)
     }
 
     onPlayPrevious: { main_controller.playPrevious() }
@@ -64,7 +64,7 @@ Connections {
     onVolumeDown: { main_controller.decreaseVolume() }
     onVolumeMuted: { main_controller.toggleMute() }
 
-    onShowSubtitleSettings: { preference_window.show(); preference_window.scrollToSubtitle() }
+    onShowSubtitleSettings: { main_controller.showPreferenceWindow(); preference_window.scrollToSubtitle() }
 
     onPlaylistPlay: movieInfo.movie_file = playlist.clickedOnItemUrl
     onAddItemToPlaylist: main_controller.openFileForPlaylist()
