@@ -91,19 +91,19 @@ class Window(QQuickView):
 
     @pyqtProperty(int,constant=True)
     def defaultWidth(self):
-        return DEFAULT_WIDTH
+        return DEFAULT_WIDTH + 2 * WINDOW_GLOW_RADIUS
 
     @pyqtProperty(int,constant=True)
     def defaultHeight(self):
-        return DEFAULT_HEIGHT
+        return DEFAULT_HEIGHT + 2 * WINDOW_GLOW_RADIUS
 
     @pyqtProperty(int,constant=True)
     def minimumWidth(self):
-        return MINIMIZE_WIDTH
+        return MINIMIZE_WIDTH + 2 * WINDOW_GLOW_RADIUS
 
     @pyqtProperty(int,constant=True)
     def minimumHeight(self):
-        return MINIMIZE_HEIGHT
+        return MINIMIZE_HEIGHT + 2 * WINDOW_GLOW_RADIUS
 
     @pyqtProperty(int,constant=True)
     def windowGlowRadius(self):
