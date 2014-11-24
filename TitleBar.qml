@@ -84,10 +84,10 @@ DragableArea {
     }
 
     property bool visibleForPlaylist: false
-    function showForPlaylist() { 
-        show_for_playlist_timer.restart() 
+    function showForPlaylist() {
+        show_for_playlist_timer.restart()
     }
-    function hideForPlaylist() { 
+    function hideForPlaylist() {
         show_for_playlist_timer.stop()
 
         if (visibleForPlaylist) {
@@ -134,7 +134,7 @@ DragableArea {
 
         TabButton {
             id: btn
-            text: "DMovie"
+            text: dsTr("Deepin Movie")
 
             anchors.left: appIcon.right
             anchors.leftMargin: 3
@@ -148,7 +148,7 @@ DragableArea {
             font.pixelSize: 13
             color: Qt.rgba(1, 1, 1, 0.6)
             elide: Text.ElideRight
-            
+
             anchors.verticalCenter: windowButtonArea.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
         }
@@ -216,7 +216,7 @@ DragableArea {
             }
         }
 
-        // the -1 operation is all because that there's only 28x24 pics while 
+        // the -1 operation is all because that there's only 28x24 pics while
         // they demanding the 27 spacing.
         Row {
             id: windowButtonArea
