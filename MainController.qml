@@ -36,15 +36,7 @@ MouseArea {
                                         windowView.y + windowView.height / 2)
                 return
             }
-            if (movieInfo.movie_width == windowView.defaultWidth) {// first start
-                if (config.playerApplyLastClosedSize) {
-                    hasResized = true
-                    _setSizeForRootWindowWithWidth(database.lastWindowWidth)
-                } else {
-                    windowView.setWidth(windowView.defaultWidth)
-                    windowView.setHeight(windowView.defaultHeight)
-                }
-            } else {
+            if (movieInfo.movie_width != windowView.defaultWidth) {
                 var destWidth = hasResized ? windowView.width : movieInfo.movie_width
                 _setSizeForRootWindowWithWidth(destWidth)
             }

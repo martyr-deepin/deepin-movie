@@ -185,8 +185,13 @@ Rectangle {
     }
 
     function initWindowSize() {
-        windowView.setWidth(windowView.defaultWidth)
-        windowView.setHeight(windowView.defaultHeight)
+        if (config.playerApplyLastClosedSize) {
+            hasResized = true
+            main_controller._setSizeForRootWindowWithWidth(database.lastWindowWidth)
+        } else {
+            windowView.setWidth(windowView.defaultWidth)
+            windowView.setHeight(windowView.defaultHeight)
+        }
     }
 
     function miniModeState() { return windowView.width == program_constants.miniModeWidth }
