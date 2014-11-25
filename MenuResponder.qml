@@ -65,7 +65,7 @@ Connections {
 
     onVolumeUp: { main_controller.increaseVolume() }
     onVolumeDown: { main_controller.decreaseVolume() }
-    onVolumeMuted: { main_controller.toggleMute() }
+    onVolumeMuted: { main_controller.setMute(muted) }
     onSoundChannelChanged: { main_controller.setSoundChannel(channelLayout) }
 
     onShowSubtitleSettings: { main_controller.showPreferenceWindow(); preference_window.scrollToSubtitle() }

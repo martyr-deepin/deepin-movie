@@ -46,20 +46,23 @@ Row {
         sourceSize.width: 28
         sourceSize.height: 28
         normal_image: checkFlag ? "image/volume_muted_normal.svg" :
+                                    item.volume > 1.0 ? "image/volume_5_normal.svg" :
                                     item.volume > 0.75 ? "image/volume_4_normal.svg" :
-                                                        item.volume > 0.5 ? "image/volume_3_normal.svg":
-                                                                            item.volume > 0.25 ? "image/volume_2_normal.svg":
-                                                                                                "image/volume_1_normal.svg"
+                                    item.volume > 0.5 ? "image/volume_3_normal.svg":
+                                    item.volume > 0.25 ? "image/volume_2_normal.svg":
+                                                        "image/volume_1_normal.svg"
         hover_image: checkFlag ? "image/volume_muted_hover_press.svg" :
+                                    item.volume > 1.0 ? "image/volume_5_hover_press.svg" :
                                     item.volume > 0.75 ? "image/volume_4_hover_press.svg" :
-                                                        item.volume > 0.5 ? "image/volume_3_hover_press.svg":
-                                                                            item.volume > 0.25 ? "image/volume_2_hover_press.svg":
-                                                                                                "image/volume_1_hover_press.svg"
+                                    item.volume > 0.5 ? "image/volume_3_hover_press.svg":
+                                    item.volume > 0.25 ? "image/volume_2_hover_press.svg":
+                                                        "image/volume_1_hover_press.svg"
         press_image: checkFlag ? "image/volume_muted_hover_press.svg" :
+                                    item.volume > 1.0 ? "image/volume_5_hover_press.svg" :
                                     item.volume > 0.75 ? "image/volume_4_hover_press.svg" :
-                                                        item.volume > 0.5 ? "image/volume_3_hover_press.svg":
-                                                                            item.volume > 0.25 ? "image/volume_2_hover_press.svg":
-                                                                                                "image/volume_1_hover_press.svg"
+                                    item.volume > 0.5 ? "image/volume_3_hover_press.svg":
+                                    item.volume > 0.25 ? "image/volume_2_hover_press.svg":
+                                                        "image/volume_1_hover_press.svg"
 
         property bool checkFlag: false
 
@@ -72,8 +75,7 @@ Row {
         }
 
         onClicked: {
-            checkFlag = !checkFlag
-            item.mutedSet(checkFlag)
+            item.mutedSet(!checkFlag)
         }
     }
 
@@ -108,9 +110,8 @@ Row {
                 onContainsMouseChanged: toggle_button.state = containsMouse ? "hovered" : "normal"
 
                 onClicked: {
-                    volume_pointer.x = Math.min(Math.max(mouse.x - volume_pointer.width / 2, 0), parent.width)
-                    volume = volume_pointer.x / (volume_bar.width - volume_pointer.width)
-                    item.changeVolume(volume)
+                    var volume_pointer_x = Math.min(Math.max(mouse.x - volume_pointer.width / 2, 0), parent.width)
+                    item.changeVolume(volume_pointer_x / (volume_bar.width - volume_pointer.width))
                 }
             }
 
@@ -131,7 +132,7 @@ Row {
                 id: volume_pointer
                 anchors.verticalCenter: parent.verticalCenter
                 source: "image/volume_pointer.png"
-                x: (volume_bar.width - volume_pointer.width) * item.volume
+                x: (volume_bar.width - volume_pointer.width) * Math.min(item.volume, 1.0)
 
                 onXChanged: {
                     if (pointer_mouse_area.pressed) {

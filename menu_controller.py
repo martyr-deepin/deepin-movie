@@ -175,7 +175,7 @@ class MenuController(QObject):
     playBackward = pyqtSignal()
     volumeUp = pyqtSignal()
     volumeDown = pyqtSignal()
-    volumeMuted = pyqtSignal()
+    volumeMuted = pyqtSignal(bool, arguments=["muted"])
     soundChannelChanged = pyqtSignal(str, arguments=["channelLayout"])
     showSubtitleSettings = pyqtSignal()
 
@@ -283,8 +283,6 @@ class MenuController(QObject):
         elif _id == "sound_channel:radio:stero":
             self._sound_channel = "sound_channel:radio:stero"
             self.soundChannelChanged.emit("stero")
-        elif _id == "_sound_muted":
-            config.playerMuted = _checked
         elif _id == "_subtitle_hide":
             self.subtitleVisibleSet.emit(not _checked)
         elif _id == "_subtitle_manual":
@@ -304,7 +302,7 @@ class MenuController(QObject):
         elif _id == "_sound_decrease":
             self.volumeDown.emit()
         elif _id == "_sound_muted":
-            self.volumeMuted.emit()
+            self.volumeMuted.emit(_checked)
         elif _id == "_subtitle_settings":
             self.showSubtitleSettings.emit()
         elif _id == "_preferences":
