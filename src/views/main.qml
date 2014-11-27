@@ -475,7 +475,7 @@ Rectangle {
 
         Rectangle {
             id: bg
-            color: "#050811"
+            color: "#000000"
             visible: !player.visible
             anchors.fill: parent
             Image { anchors.centerIn: parent; source: "image/background.png" }
