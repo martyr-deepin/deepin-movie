@@ -132,12 +132,15 @@ DragableArea {
             anchors.topMargin: 5
         }
 
-        TabButton {
+        Text {
             id: btn
             text: dsTr("Deepin Movie")
+            font.pixelSize: 12
+            color: Qt.rgba(1, 1, 1, 0.85)
+            style: Text.Outline
+            styleColor: "black"
 
             anchors.left: appIcon.right
-            anchors.leftMargin: 3
             anchors.verticalCenter: appIcon.verticalCenter
             anchors.verticalCenterOffset: 1
         }

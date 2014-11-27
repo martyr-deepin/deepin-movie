@@ -25,7 +25,6 @@ import unittest
 from playlist import DMPlaylist
 
 class TestDMPlaylist(unittest.TestCase):
-
 	def setUp(self):
 		self.playlist = DMPlaylist()
 		cate_game = self.playlist.appendCategory("The Game of Thorn")
