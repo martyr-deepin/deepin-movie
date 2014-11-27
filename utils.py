@@ -206,7 +206,9 @@ class Utils(QObject):
 
         allFiles = [os.path.basename(x) for x in allFiles]
         allMatches = (longest_match(x, os.path.basename(name)) for x in allFiles)
-        matchesFilter = lambda x: x and x != os.path.basename(name) and (len(x) > 5 or any(map(lambda ch: ch in x, sep_chars)))
+        matchesFilter = lambda x: x and x != os.path.basename(name) \
+                                    and not x[0] in "0123456789" \
+                                    and (len(x) > 5 or any(map(lambda ch: ch in x, sep_chars)))
         filteredMatches = filter(matchesFilter, allMatches)
         nameFilter = min(filteredMatches, key=len) if filteredMatches else ""
         # can't do this here, because the following three steps relies on the
