@@ -80,8 +80,9 @@
 <context>
     <name>HotKeyInput</name>
     <message>
-        <location filename="../HotKeyInput.qml" line="+15"/>
-        <source>Disabled</source>
+        <location filename="../HotKeyInput.qml" line="+7"/>
+        <location line="+8"/>
+        <source>None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -94,7 +95,7 @@
     <name>HotKeyInputRow</name>
     <message>
         <location filename="../HotKeyInputRow.qml" line="+23"/>
-        <source>Disabled</source>
+        <source>None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -164,7 +165,7 @@
 <context>
     <name>MainController</name>
     <message>
-        <location filename="../MainController.qml" line="+80"/>
+        <location filename="../MainController.qml" line="+72"/>
         <location line="+469"/>
         <location line="+77"/>
         <location line="+157"/>
@@ -413,35 +414,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-502"/>
-        <location line="+21"/>
-        <location line="+21"/>
-        <location line="+21"/>
-        <location line="+21"/>
-        <location line="+21"/>
-        <location line="+21"/>
-        <location line="+21"/>
-        <location line="+38"/>
-        <location line="+21"/>
-        <location line="+21"/>
-        <location line="+21"/>
-        <location line="+21"/>
-        <location line="+21"/>
-        <location line="+38"/>
-        <location line="+21"/>
-        <location line="+21"/>
-        <location line="+38"/>
-        <location line="+21"/>
-        <location line="+21"/>
-        <location line="+21"/>
-        <location line="+34"/>
         <location line="+8"/>
-        <location line="+8"/>
-        <source>Disabled</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-11"/>
         <source>Double click</source>
         <translation type="unfinished"></translation>
     </message>
@@ -638,7 +611,14 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+229"/>
+        <location line="+216"/>
+        <location line="+8"/>
+        <location line="+8"/>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-3"/>
         <source>Scroll</source>
         <translation type="unfinished"></translation>
     </message>
@@ -684,6 +664,14 @@
     </message>
 </context>
 <context>
+    <name>ShortcutsLabel</name>
+    <message>
+        <location filename="../ShortcutsLabel.qml" line="+23"/>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ShortcutsViewer</name>
     <message>
         <location filename="../ShortcutsViewer.qml" line="+43"/>
@@ -697,35 +685,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-87"/>
-        <location line="+4"/>
-        <location line="+4"/>
-        <location line="+4"/>
-        <location line="+4"/>
-        <location line="+4"/>
-        <location line="+4"/>
-        <location line="+4"/>
-        <location line="+9"/>
-        <location line="+4"/>
-        <location line="+4"/>
-        <location line="+13"/>
-        <location line="+4"/>
-        <location line="+4"/>
-        <location line="+4"/>
-        <location line="+4"/>
-        <location line="+4"/>
-        <location line="+9"/>
-        <location line="+5"/>
-        <location line="+5"/>
-        <location line="+10"/>
-        <location line="+4"/>
-        <location line="+4"/>
-        <location line="+4"/>
-        <source>Disabled</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-116"/>
+        <location line="-84"/>
         <source>Forward</source>
         <translation type="unfinished"></translation>
     </message>
@@ -826,7 +786,14 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location line="+1"/>
         <location line="+5"/>
+        <location line="+5"/>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-6"/>
         <source>Double click</source>
         <translation type="unfinished"></translation>
     </message>
@@ -874,7 +841,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+28"/>
+        <location line="+31"/>
         <source>Shown in a proportion of 1:1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -940,7 +907,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+308"/>
+        <location line="+313"/>
         <source>Deepin Movie</source>
         <translation type="unfinished"></translation>
     </message>
