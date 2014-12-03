@@ -168,7 +168,7 @@ Rectangle {
         onWheel: {}
         onClicked: {
             if (mouse.button == Qt.RightButton) {
-                _menu_controller.show_playlist_menu(false, "")
+                _menu_controller.show_playlist_menu("", playlist.isEmpty())
             } else if(shouldPerformClick){
                 playlistPanel.hide()
             }

@@ -241,10 +241,16 @@ MouseArea {
     }
 
     function showMainMenu() {
-        _menu_controller.show_menu(player.source, player.hasVideo,
-                                    _subtitle_parser.file_name, player.subtitleShow,
-                                    windowView.getState() == Qt.WindowFullScreen,
-                                    root.miniModeState(), windowView.staysOnTop)
+        var stateInfo = {
+            "videoSource": player.source.toString(),
+            "hasVideo": player.hasVideo,
+            "subtitleFile": _subtitle_parser.file_name,
+            "subtitleVisible": player.subtitleShow,
+            "isFullscreen": windowView.getState() == Qt.WindowFullScreen,
+            "isMiniMode": root.miniModeState(),
+            "isOnTop": windowView.staysOnTop,
+        }
+        _menu_controller.show_menu(JSON.stringify(stateInfo))
     }
 
     function close() {

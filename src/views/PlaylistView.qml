@@ -154,6 +154,10 @@ ListView {
         return false
     }
 
+    function isEmpty() {
+        return _flattenList().length == 0
+    }
+
     function _flattenList() {
         var result = []
         for (var i = 0; i < allItems.length; i++) {
@@ -376,7 +380,7 @@ ListView {
                         if (mouse.button == Qt.RightButton) {
                             column.ListView.view.root.clickedOnItemUrl = propUrl
                             column.ListView.view.root.clickedOnItemName = propName
-                            _menu_controller.show_playlist_menu(column.isGroup, propUrl)
+                            _menu_controller.show_playlist_menu(propUrl, column.ListView.view.root.isEmpty())
                         } else {
                             if (column.isGroup) {
                                 sub.visible = !sub.visible
