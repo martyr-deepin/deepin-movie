@@ -70,7 +70,7 @@ DEFAULT_CONFIG = [
     ("toggleMute", "M"),]),
 ("HotkeysSubtitles", [("hotkeyEnabled", True),
     ("subtitleForward", "Shift+Right"),
-    ("subtitleBackward", "Shitft+Left"),
+    ("subtitleBackward", "Shift+Left"),
     ("subtitleMoveUp", "Shift+Up"),
     ("subtitleMoveDown", "Shift+Down"),]),
 ("HotkeysFiles", [("hotkeyEnabled", True),

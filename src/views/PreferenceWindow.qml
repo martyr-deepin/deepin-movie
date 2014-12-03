@@ -24,6 +24,7 @@ DPreferenceWindow {
                     {"label": dsTr("Aluminum"), "color": "#969696"},
                     {"label": dsTr("Clean white"), "color": "#ffffff"},
                 ]
+    property int subtitleDelay: 0
 
     signal scrollToPrivate (string sectionId)
 
@@ -34,6 +35,8 @@ DPreferenceWindow {
     function scrollTo(sectionId) { scrollToPrivate(sectionId) }
 
     function scrollToSubtitle() { scrollTo("subtitle_settings") }
+
+    function setSubtitleDelay(delay) { subtitleDelay = delay }
 
     content: DPreferenceView {
         id: preference_view
@@ -881,12 +884,18 @@ DPreferenceWindow {
             }
 
             SpinnerRow {
+                id: subtitle_delay_row
                 title: dsTr("Subtitle Delay")
                 min: -30
                 max: 30
-                text: player.subtitleDelay
+                text: (subtitleDelay / 1000).toFixed(1)
 
-                onValueChanged: player.subtitleDelay = value * 1000
+                onValueChanged: { player.subtitleDelay = value * 1000 }
+
+                Connections {
+                    target: window
+                    onSubtitleDelayChanged: subtitle_delay_row.text = (subtitleDelay / 1000).toFixed(1)
+                }
             }
 
             // FileInputRow {
