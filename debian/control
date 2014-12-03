@@ -20,6 +20,7 @@ Depends: ${shlibs:Depends},
  python-magic,
  python-xpybutil,
  python-deepin-utils,
+ python-peewee,
  deepin-menu,
  deepin-qml-widgets,
 Description: deepin movie for linuxdeepin desktop environment
