@@ -28,11 +28,14 @@ MouseArea {
     Connections {
         target: _findVideoThreadManager
 
-        onVideoFound: { addPlayListItem(path) }
-        onFindVideoDone: {
+        onFirstVideoFound: {
             main_controller.shouldPlayThefirst && (player.source = path)
+        }
 
+        onFindVideoDone: {
             invalidCount > 0 && notifybar.show(dsTr("%1 files unable to be parsed have been excluded").arg(invalidCount))
+
+            _database.addPlaylistCITuples(tuples)
         }
     }
 
@@ -180,7 +183,7 @@ MouseArea {
         }
     }
 
-    function _getPlaylistItemInfo(serie, url) {
+    function _getPlaylistItemInfo(category, url) {
         var urlIsNativeFile = _utils.urlIsNativeFile(url)
 
         url = url.replace("file://", "")
@@ -189,18 +192,15 @@ MouseArea {
         var itemName = urlIsNativeFile ? result[result.length - 1].toString() : url
         url = "file://" + url
 
-        return [itemName, url, serie]
+        return [itemName, url, category]
     }
 
-    function addPlayListItem(url) {
+    function addPlayListItem(category, url) {
         if (_database.containsPlaylistItem(url)) return
 
-        var serie = config.playerAutoPlaySeries ? JSON.parse(_utils.getSeriesByName(url)) : null
-        if (serie && serie.name != "") {
-            for (var i = 0; i < serie.items.length; i++) {
-                var info = _getPlaylistItemInfo(serie.name, serie.items[i])
-                _database.addPlaylistItem(info[0], info[1], info[2])
-            }
+        if (category) {
+            var info = _getPlaylistItemInfo(category, url)
+            _database.addPlaylistItem(info[0], info[1], info[2])
         } else {
             var info = _getPlaylistItemInfo("", url)
             _database.addPlaylistItem(info[0], info[1], info[2])
@@ -547,15 +547,14 @@ MouseArea {
             main_controller.clearPlaylist()
         }
 
-        if (paths.length == 1 && !_utils.pathIsDir(paths[0])) {
-            if (_utils.fileIsValidVideo(paths[0])) {
-                main_controller.addPlayListItem(paths[0])
-                if (playFirst) player.source = paths[0]
-            } else {
-                notifybar.show(dsTr("Invalid file") + ": " + paths[0])
-            }
+        if (paths.length == 1 &&
+            !_utils.pathIsDir(paths[0]) &&
+            !_utils.fileIsValidVideo(paths[0]))
+        {
+            notifybar.show(dsTr("Invalid file") + ": " + paths[0])
         } else {
             main_controller.shouldPlayThefirst = playFirst
+            _findVideoThreadManager.findSerie = config.playerAutoPlaySeries
             _findVideoThreadManager.getAllVideoFilesInPathList(paths)
         }
     }
@@ -763,11 +762,7 @@ MouseArea {
             if (drop.urls.length == 1) {
                 var file_path = decodeURIComponent(drop.urls[0].toString().replace("file://", ""))
                 if (dragInPlaylist) {
-                    if (_utils.pathIsDir(file_path)) {
-                        main_controller.playPaths([file_path], false)
-                    } else if (_utils.fileIsValidVideo(file_path)) {
-                        addPlayListItem(file_path)
-                    }
+                    main_controller.playPaths([file_path], false)
                 } else {
                     if (_utils.pathIsDir(file_path)) {
                         main_controller.playPaths([file_path], true)

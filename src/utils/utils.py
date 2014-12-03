@@ -107,53 +107,80 @@ def getFileMimeType(filename):
     return result
 
 class FindVideoThread(QThread):
-    videoFound = pyqtSignal(str, arguments=["path",])
-    findVideoDone = pyqtSignal(str, int, int,
-        arguments=["path", "validCount", "invalidCount"])
+    firstVideoFound = pyqtSignal(str, arguments=["path"])
+    findVideoDone = pyqtSignal(str, str, int, int,
+        arguments=["path", "tuples", "validCount", "invalidCount"])
 
-    def __init__(self, pathList):
+    def __init__(self, pathList, findSerie):
         super(FindVideoThread, self).__init__()
         self._pathList = pathList
+        self._findSerie = findSerie
+
         self._first_video = None
         self._valid_files_count = 0
         self._invalid_files_count = 0
+
+        self._cate_video_tuple_list = []
 
     def _process_path_list(self, pathList):
         for path in pathList:
             if utils.pathIsDir(path):
                 self._process_path_list(utils.getAllFilesInDir(path))
-            elif utils.fileIsValidVideo(path):
-                self._first_video = self._first_video or path
-                self.videoFound.emit(path)
+            elif path not in map(lambda x: x[1], self._cate_video_tuple_list) \
+            and utils.fileIsValidVideo(path):
                 self._valid_files_count += 1
+                if not self._first_video:
+                    self._first_video = path
+                    self.firstVideoFound.emit(path)
+
+                if self._findSerie:
+                    serieInfo = utils.getSeriesByName(path)
+                    serieInfo = json.loads(serieInfo)
+
+                    cate = serieInfo["name"]
+                    items = serieInfo["items"]
+
+                    for item in items:
+                        self._cate_video_tuple_list.append((cate, item))
             else:
                 self._invalid_files_count += 1
 
     def run(self):
         self._process_path_list(self._pathList)
         self.findVideoDone.emit(self._first_video,
+            json.dumps(self._cate_video_tuple_list),
             self._valid_files_count,
             self._invalid_files_count)
 
 class FindVideoThreadManager(QObject):
-    videoFound = pyqtSignal(str, arguments=["path",])
-    findVideoDone = pyqtSignal(str, int, int,
-        arguments=["path", "validCount", "invalidCount"])
+    firstVideoFound = pyqtSignal(str, arguments=["path"])
+    findVideoDone = pyqtSignal(str, str, int, int,
+        arguments=["path", "tuples", "validCount", "invalidCount"])
+
+    findSerieChanged = pyqtSignal(str, arguments=["findSerie"])
 
     def __init__(self):
         super(FindVideoThreadManager, self).__init__()
         self._threads = []
+        self._findSerie = True
+
+    @pyqtProperty(bool, findSerieChanged)
+    def findSerie(self):
+        return self._findSerie
+
+    @findSerie.setter
+    def findSerie(self, value):
+        if value != self._findSerie:
+            self.findSerieChanged.emit(value)
+        self._findSerie = value
 
     @pyqtSlot("QVariant")
     def getAllVideoFilesInPathList(self, pathList):
-        thread = FindVideoThread(pathList)
-        thread.videoFound.connect(self.videoFound)
-        thread.findVideoDone.connect(self.subthreadFinishedSlot)
+        thread = FindVideoThread(pathList, self.findSerie)
+        thread.firstVideoFound.connect(self.firstVideoFound)
+        thread.findVideoDone.connect(self.findVideoDone)
         thread.start()
         self._threads.append(thread)
-
-    def subthreadFinishedSlot(self, firstVideo, validCount, invalidCount):
-        self.findVideoDone.emit(firstVideo, validCount, invalidCount)
 
 class Utils(QObject):
     def __init__(self):

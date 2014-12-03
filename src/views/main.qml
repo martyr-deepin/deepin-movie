@@ -521,7 +521,7 @@ Rectangle {
             if (config.playerFullscreenOnOpenFile) main_controller.fullscreen()
 
             if (_utils.urlIsNativeFile(source)) {
-                main_controller.addPlayListItem(source.toString().substring(7))
+                main_controller.playPaths([source.toString()], false)
             } else {
                 main_controller.addPlaylistStreamItem(source)
             }

@@ -26,6 +26,7 @@ from peewee import *
 from PyQt5.QtCore import QObject, pyqtSlot, pyqtSignal
 from xml.dom.minidom import (Element, getDOMImplementation, parse)
 from utils.constants import DATABASE_FILE
+from utils.utils import utils
 
 TAG_CATEGORY = "Category"
 TAG_ITEM = "Item"
@@ -248,15 +249,32 @@ class Database(QObject):
 
     @pyqtSlot(str, str, str)
     def addPlaylistItem(self, itemName, itemUrl, categoryName):
-        item = self._getOrNewPlaylistItem(itemName, itemUrl)
-        if categoryName:
-            item.category = self._getOrNewPlaylistCategory(categoryName)
-            item.save()
-        self.playlistItemAdded.emit(itemName, itemUrl, categoryName)
+        if not self.containsPlaylistItem(itemUrl):
+            item = PlaylistItemModel.create(name=itemName, url=itemUrl)
+            if categoryName:
+                item.category = self._getOrNewPlaylistCategory(categoryName)
+                item.save()
+            self.playlistItemAdded.emit(itemName, itemUrl, categoryName)
 
     @pyqtSlot(str)
     def addPlaylistCategory(self, categoryName):
         self._getOrNewPlaylistCategory(categoryName)
+
+    @pyqtSlot(str)
+    @_database_file.commit_on_success
+    def addPlaylistCITuples(self, tuples):
+        tuples = json.loads(tuples)
+        for tuple in tuples:
+            category = tuple[0]
+            url = tuple[1]
+            urlIsNativeFile = utils.urlIsNativeFile(url)
+
+            url = url.replace("file://", "")
+            result = os.path.basename(url)
+            itemName =  result if urlIsNativeFile else url
+            url = "file://" + url
+
+            self.addPlaylistItem(itemName, url, category)
 
     @pyqtSlot(str)
     def removePlaylistItem(self, itemUrl):
@@ -265,8 +283,8 @@ class Database(QObject):
                 PlaylistItemModel.url == itemUrl)
             target.delete_instance()
             # TODO: remove empty category here
-        except DoesNotExist, e:
-            print e
+        except DoesNotExist:
+            pass
 
     @pyqtSlot(str)
     @_database_file.commit_on_success
@@ -282,8 +300,8 @@ class Database(QObject):
             target = PlaylistCategoryModel.get(
                 PlaylistCategoryModel.name == categoryName)
             target.delete_instance()
-        except DoesNotExist, e:
-            print e
+        except DoesNotExist:
+            pass
 
     @pyqtSlot()
     def clearPlaylist(self):
@@ -336,8 +354,7 @@ class Database(QObject):
                 PlaylistItemModel.url == itemUrl)
             info = json.loads(item.info) if item.info else {}
             return info.get("played") or 0
-        except DoesNotExist, e:
-            print e
+        except DoesNotExist:
             return 0
 
     @pyqtSlot(str, int)
@@ -349,8 +366,8 @@ class Database(QObject):
             info["played"] = itemPlayed
             item.info = json.dumps(info)
             item.save()
-        except DoesNotExist, e:
-            print e
+        except DoesNotExist:
+            pass
 
     @pyqtSlot(str, result=int)
     def getPlaylistItemRotation(self, itemUrl):
@@ -359,8 +376,7 @@ class Database(QObject):
                 PlaylistItemModel.url == itemUrl)
             info = json.loads(item.info) if item.info else {}
             return info.get("rotation") or 0
-        except DoesNotExist, e:
-            print e
+        except DoesNotExist:
             return 0
 
     @pyqtSlot(str, int)
@@ -372,8 +388,8 @@ class Database(QObject):
             info["rotation"] = itemRotation
             item.info = json.dumps(info)
             item.save()
-        except DoesNotExist, e:
-            print e
+        except DoesNotExist:
+            pass
 
     # Play history operations
     @pyqtSlot()
