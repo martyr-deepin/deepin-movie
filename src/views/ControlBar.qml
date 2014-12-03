@@ -207,7 +207,7 @@ DragableArea {
                     id: playTime
                     text: formatTime(control_bar.percentage * controlbar.videoPlayer.duration)
                             + " / " + formatTime(controlbar.videoPlayer.duration)
-                    color: Qt.rgba(100, 100, 100, 1)
+                    color: Qt.rgba(1, 1, 1, 0.7)
                     font.pixelSize: 12
 
                     anchors.verticalCenter: parent.verticalCenter

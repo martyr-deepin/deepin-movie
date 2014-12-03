@@ -113,8 +113,8 @@ DragableArea {
             start: Qt.point(0, 0)
             end: Qt.point(0, height)
             gradient: Gradient {
-                GradientStop { position: 0.0; color: "#FF000000"}
-                GradientStop { position: 1.0; color: "#00000000"}
+                GradientStop { position: 0.0; color: Qt.rgba(0, 0, 0, 0.8)}
+                GradientStop { position: 1.0; color: Qt.rgba(0, 0, 0, 0.0)}
             }
         }
 
@@ -137,8 +137,8 @@ DragableArea {
             text: dsTr("Deepin Movie")
             font.pixelSize: 12
             color: Qt.rgba(1, 1, 1, 0.85)
-            style: Text.Outline
-            styleColor: "black"
+            // style: Text.Outline
+            // styleColor: "black"
 
             anchors.left: appIcon.right
             anchors.verticalCenter: appIcon.verticalCenter

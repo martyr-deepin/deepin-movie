@@ -615,7 +615,7 @@ Rectangle {
         width: main_window.width / 2
         anchors.top: root.top
         anchors.left: root.left
-        anchors.topMargin: 60
+        anchors.topMargin: 40
         anchors.leftMargin: 30
     }
 

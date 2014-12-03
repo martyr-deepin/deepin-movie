@@ -3,7 +3,7 @@ import QtQuick 2.1
 Item {
     property int videoEndsThreshold: 5 * 1000
 
-    property int titlebarHeight: 80
+    property int titlebarHeight: 60
     property int titlebarTriggerThreshold: 50
     property int controlbarHeight: 64
     property int controlbarTriggerThreshold: 50
