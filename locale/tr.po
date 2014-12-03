@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-25 10:30+0800\n"
-"PO-Revision-Date: 2014-11-25 05:04+0000\n"
+"POT-Creation-Date: 2014-12-03 09:08+0800\n"
+"PO-Revision-Date: 2014-12-03 01:30+0000\n"
 "Last-Translator: deepin_transifex <xiabin@linuxdeepin.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/projects/p/deepin-movie/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgstr ""
 msgid "About"
 msgstr "Hakkında"
 
-#: ../AboutSection.qml:13 ../TitleBar.qml:137 ../main.qml:453 ../window.py:71
+#: ../AboutSection.qml:13 ../TitleBar.qml:137 ../main.qml:458 ../window.py:71
 msgid "Deepin Movie"
 msgstr "Deepin Film"
 
@@ -83,33 +83,13 @@ msgstr "Dosya aç"
 msgid "Playlist"
 msgstr "Oynatma listesi"
 
-#: ../HotKeyInput.qml:15 ../HotKeyInputRow.qml:23 ../PreferenceWindow.qml:264
-#: ../PreferenceWindow.qml:285 ../PreferenceWindow.qml:306
-#: ../PreferenceWindow.qml:327 ../PreferenceWindow.qml:348
-#: ../PreferenceWindow.qml:369 ../PreferenceWindow.qml:390
-#: ../PreferenceWindow.qml:411 ../PreferenceWindow.qml:449
-#: ../PreferenceWindow.qml:470 ../PreferenceWindow.qml:491
-#: ../PreferenceWindow.qml:512 ../PreferenceWindow.qml:533
-#: ../PreferenceWindow.qml:554 ../PreferenceWindow.qml:592
-#: ../PreferenceWindow.qml:613 ../PreferenceWindow.qml:634
-#: ../PreferenceWindow.qml:672 ../PreferenceWindow.qml:693
-#: ../PreferenceWindow.qml:714 ../PreferenceWindow.qml:735
+#: ../HotKeyInput.qml:7 ../HotKeyInput.qml:15 ../HotKeyInputRow.qml:23
 #: ../PreferenceWindow.qml:769 ../PreferenceWindow.qml:777
-#: ../PreferenceWindow.qml:785 ../ShortcutsViewer.qml:47
-#: ../ShortcutsViewer.qml:51 ../ShortcutsViewer.qml:55
-#: ../ShortcutsViewer.qml:59 ../ShortcutsViewer.qml:63
-#: ../ShortcutsViewer.qml:67 ../ShortcutsViewer.qml:71
-#: ../ShortcutsViewer.qml:75 ../ShortcutsViewer.qml:84
-#: ../ShortcutsViewer.qml:88 ../ShortcutsViewer.qml:92
-#: ../ShortcutsViewer.qml:105 ../ShortcutsViewer.qml:109
-#: ../ShortcutsViewer.qml:113 ../ShortcutsViewer.qml:117
-#: ../ShortcutsViewer.qml:121 ../ShortcutsViewer.qml:125
+#: ../PreferenceWindow.qml:785 ../ShortcutsLabel.qml:23
 #: ../ShortcutsViewer.qml:134 ../ShortcutsViewer.qml:139
-#: ../ShortcutsViewer.qml:144 ../ShortcutsViewer.qml:154
-#: ../ShortcutsViewer.qml:158 ../ShortcutsViewer.qml:162
-#: ../ShortcutsViewer.qml:166
-msgid "Disabled"
-msgstr "Devre dışı"
+#: ../ShortcutsViewer.qml:144
+msgid "None"
+msgstr ""
 
 #: ../HotKeyInput.qml:16
 msgid "Please input a new shortcut"
@@ -164,53 +144,53 @@ msgstr "Panoya kopyala"
 msgid "Close"
 msgstr "Kapat"
 
-#: ../MainController.qml:80 ../MainController.qml:549
-#: ../MainController.qml:626 ../MainController.qml:783 ../main.qml:85
+#: ../MainController.qml:72 ../MainController.qml:541
+#: ../MainController.qml:618 ../MainController.qml:775 ../main.qml:85
 msgid "Invalid file"
 msgstr "Geçersiz dosya"
 
-#: ../MainController.qml:82 ../main.qml:145
+#: ../MainController.qml:74 ../main.qml:145
 msgid "The parse failed"
 msgstr "Bu çözümleme başarısız oldu"
 
-#: ../MainController.qml:99
+#: ../MainController.qml:91
 #, qt-format
 msgid "%1 files unable to be parsed have been excluded"
 msgstr ""
 
-#: ../MainController.qml:113
+#: ../MainController.qml:105
 msgid "Imported"
 msgstr "İçeri aktarılan"
 
-#: ../MainController.qml:437
+#: ../MainController.qml:429
 msgid "Play last movie played"
 msgstr "Son oynatılan videoyu oynat"
 
-#: ../MainController.qml:456 ../PreferenceWindow.qml:284
+#: ../MainController.qml:448 ../PreferenceWindow.qml:284
 #: ../ShortcutsViewer.qml:50 ../menu_controller.py:84
 msgid "Forward"
 msgstr "İleri"
 
-#: ../MainController.qml:466 ../PreferenceWindow.qml:305
+#: ../MainController.qml:458 ../PreferenceWindow.qml:305
 #: ../ShortcutsViewer.qml:54 ../menu_controller.py:85
 msgid "Rewind"
 msgstr "Geri sar"
 
-#: ../MainController.qml:476 ../MainController.qml:484
+#: ../MainController.qml:468 ../MainController.qml:476
 #, qt-format
 msgid "(Press %1 to restore)"
 msgstr "(Geri yüklemek için %1 e basın)"
 
-#: ../MainController.qml:478 ../MainController.qml:486
-#: ../MainController.qml:493
+#: ../MainController.qml:470 ../MainController.qml:478
+#: ../MainController.qml:485
 msgid "Playback rate: "
 msgstr "Çalma oranı:"
 
-#: ../MainController.qml:505 ../MainController.qml:514
+#: ../MainController.qml:497 ../MainController.qml:506
 msgid "Volume: "
 msgstr "Ses:"
 
-#: ../MainController.qml:512 ../menu_controller.py:59
+#: ../MainController.qml:504 ../menu_controller.py:59
 msgid "Muted"
 msgstr "Sessiz"
 
@@ -512,27 +492,27 @@ msgstr "En yüksek"
 msgid "Subtitle Delay"
 msgstr "Altyazı Gecikmesi"
 
-#: ../TitleBar.qml:165
+#: ../TitleBar.qml:168
 msgid "Shown in a proportion of 1:1"
 msgstr "1:1 oranında göster"
 
-#: ../TitleBar.qml:177
+#: ../TitleBar.qml:180
 msgid "Shown in 1.5 times"
 msgstr "1.5 zaman içinde göster"
 
-#: ../TitleBar.qml:190
+#: ../TitleBar.qml:193
 msgid "Return to mini mode"
 msgstr "Mini moda dön"
 
-#: ../TitleBar.qml:190
+#: ../TitleBar.qml:193
 msgid "Shown in fullscreen"
 msgstr "Tam ekranda göster"
 
-#: ../TitleBar.qml:205
+#: ../TitleBar.qml:208
 msgid "Cancel \"On Top\""
 msgstr "\"Üstte\" iptal et"
 
-#: ../TitleBar.qml:205
+#: ../TitleBar.qml:208
 msgid "On Top"
 msgstr "Üstte"
 
