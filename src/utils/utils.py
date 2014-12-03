@@ -286,6 +286,12 @@ class Utils(QObject):
         if os.path.exists(file_path):
             mime_type = getFileMimeType(file_path)
             if mime_type:
+                # m3u and m3u8 need to be taken care of specially,
+                # ecause its just plain text actually, none of libmagic or gio
+                # could actually judge whether it is or isn't valid videos.
+                if mime_type == "text/plain" \
+                and (file_path.endswith(".m3u8") or file_path.endswith(".m3u")):
+                    return True
                 return mime_type in all_supported_mime_types
             else:
                 return False
