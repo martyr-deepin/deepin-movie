@@ -406,7 +406,6 @@ class Database(QObject):
     # respond to this getter.
     @pyqtSlot(str)
     def getPlaylistItemVInfo(self, itemUrl):
-        print itemUrl
         try:
             item = PlaylistItemModel.get(
                 PlaylistItemModel.url == itemUrl)

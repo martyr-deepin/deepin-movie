@@ -4,7 +4,7 @@ import Deepin.Widgets 1.0
 DDialog {
     id: info_window
     width: 400
-    height: 200
+    height: column.childrenRect.height + 30 + 20
     titleContentPadding: 0
 
     property string fileTitle
@@ -16,20 +16,21 @@ DDialog {
 
     signal copyToClipboard (string text)
 
-    function showContent() {
-        var resolution = "%1x%2".arg(player.metaData["resolution"].width).arg(player.metaData["resolution"].height)
-        fileTitle = player.metaData["title"] || dsTr("Unknown")
-        fileType = player.metaData["fileType"] || dsTr("Unknown")
-        fileSize = formatSize(parseInt(player.metaData["size"] || dsTr("Unknown")))
-        movieResolution = player.metaData["resolution"] ? resolution : dsTr("Unknown")
-        movieDuration = formatTime(player.duration)
-        filePath = formatFilePath(player.source.toString())
+    function showInfo(vinfo) {
+        var videoInfo = JSON.parse(vinfo)
+        fileTitle = videoInfo.movie_title || dsTr("Unknown")
+        fileType = videoInfo.movie_type || dsTr("Unknown")
+        fileSize = formatSize(videoInfo.movie_size) || dsTr("Unknown")
+        movieResolution = "%1x%2".arg(videoInfo.movie_width).arg(videoInfo.movie_height)
+        movieDuration = formatTime(videoInfo.movie_duration)
+        filePath = formatFilePath(videoInfo.movie_path)
 
         info_window.show()
     }
 
     content: Column {
         id: column
+        width: info_window.width - anchors.leftMargin - anchors.rightMargin
         spacing: 10
         anchors.left: parent.left
         anchors.leftMargin: 15
@@ -37,7 +38,7 @@ DDialog {
         anchors.rightMargin: 15
 
         Column {
-            width: parent.width
+            width: column.width
             height: childrenRect.height
 
             Text {
@@ -45,66 +46,77 @@ DDialog {
                 font.pixelSize: 12
                 font.bold: true
                 color: "#b4b4b4"
-                width: parent.width
+                width: column.width
                 height: implicitHeight
                 elide: Text.ElideRight
                 text: info_window.fileTitle
             }
-            Space { width: parent.width; height: 5}
+            Space { width: column.width; height: 2 }
         }
 
-        Text {
-            id: file_type
-            height: implicitHeight
-            font.pixelSize: 12
-            color: "#b4b4b4"
-            text: dsTr("File type") + ": " + info_window.fileType
-        }
+        Grid {
+            id: grid
+            columns: 2
+            rowSpacing: 10
 
-        Text {
-            id: file_size
-            height: implicitHeight
-            font.pixelSize: 12
-            color: "#b4b4b4"
-            text: dsTr("File size") + ": " + info_window.fileSize
-        }
+            property int titleWidth: Math.max(
+                file_type_title.implicitWidth,
+                file_size_title.implicitWidth,
+                movie_resolution_title.implicitWidth,
+                movie_duration_title.implicitWidth,
+                file_path_title.implicitWidth
+                )
+            property int valueWidth: column.width - titleWidth
 
-        Text {
-            id: movie_resolution
-            height: implicitHeight
-            font.pixelSize: 12
-            color: "#b4b4b4"
-            text: dsTr("Resolution") + ": " + info_window.movieResolution
-        }
-
-        Text {
-            id: movie_duration
-            height: implicitHeight
-            font.pixelSize: 12
-            color: "#b4b4b4"
-            text: dsTr("Movie duration") + ": " + info_window.movieDuration
-        }
-
-        Item {
-            width: parent.width
-            height: file_path.height
-
-            Text {
-                id: file_path_title
-                font.pixelSize: 12
-                color: "#b4b4b4"
-                width: implicitWidth
-                text: dsTr("File path") + ": "
+            InformationLabel {
+                id: file_type_title
+                width: grid.titleWidth
+                title: dsTr("File type")
             }
-            Text {
-                id: file_path
-                font.pixelSize: 12
-                color: "#b4b4b4"
-                width: parent.width - file_path_title.width
-                wrapMode: Text.WordWrap
-                text: info_window.filePath
-
-                anchors.left: file_path_title.right
+            InformationLabel {
+                id: file_type_value
+                width: grid.valueWidth
+                value: info_window.fileType
+            }
+            InformationLabel {
+                id: file_size_title
+                width: grid.titleWidth
+                title: dsTr("File size")
+            }
+            InformationLabel {
+                id: file_size_value
+                width: grid.valueWidth
+                value: info_window.fileSize
+            }
+            InformationLabel {
+                id: movie_resolution_title
+                width: grid.titleWidth
+                title: dsTr("Resolution")
+            }
+            InformationLabel {
+                id: movie_resolution_value
+                width: grid.valueWidth
+                value: info_window.movieResolution
+            }
+            InformationLabel {
+                id: movie_duration_title
+                width: grid.titleWidth
+                title: dsTr("Movie duration")
+            }
+            InformationLabel {
+                id: movie_duration_value
+                width: grid.valueWidth
+                value: info_window.movieDuration
+            }
+            InformationLabel {
+                id: file_path_title
+                width: grid.titleWidth
+                title: dsTr("File path")
+            }
+            InformationLabel {
+                id: file_path_value
+                width: grid.valueWidth
+                value: info_window.filePath
             }
         }
 
@@ -112,7 +124,7 @@ DDialog {
             width: parent.width
             height: copy_button.height + spc.height
 
-            Space { id: spc; width: parent.width; height: 6 }
+            Space { id: spc; width: parent.width; height: 2 }
 
             DTextButton {
                 id: copy_button
@@ -122,11 +134,11 @@ DDialog {
                 anchors.bottom: parent.bottom
 
                 onClicked: info_window.copyToClipboard(file_title.text + "\n"
-                    + file_type.text + "\n"
-                    + file_size.text + "\n"
-                    + movie_resolution.text + "\n"
-                    + movie_duration.text + "\n"
-                    + file_path_title.text + file_path.text)
+                    + file_type_title.text + file_type_value.text + "\n"
+                    + file_size_title.text + file_size_value.text + "\n"
+                    + movie_resolution_title.text + movie_resolution_value.text + "\n"
+                    + movie_duration_title.text + movie_duration_value.text + "\n"
+                    + file_path_title.text + file_path_value.text)
             }
 
             DTextButton {
@@ -138,10 +150,6 @@ DDialog {
 
                 onClicked: info_window.hide()
             }
-        }
-
-        Component.onCompleted: {
-            info_window.height = Qt.binding(function() { return childrenRect.height + 50 })
         }
     }
 }

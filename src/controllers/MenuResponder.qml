@@ -53,7 +53,7 @@ Connections {
 
     onShowMovieInformation: {
         player.source && player.hasVideo
-        && info_window.showContent()
+        && main_controller.showInformationWindow(player.source)
     }
 
     onSubtitleVisibleSet: player.subtitleShow = visible
@@ -77,7 +77,7 @@ Connections {
     onRemoveInvalidItemsFromPlaylist: playlist.removeInvalidItems(_utils.playlistItemValidation)
     onPlaylistClear: playlist.clear()
     onPlaylistShowClickedItemInFM: playlist.showClickedItemInFM()
-    onPlaylistInformation: {} //movieInfo.getMovieInfo(playlist.clickedOnItemUrl)
+    onPlaylistInformation: { main_controller.showInformationWindow(playlist.clickedOnItemUrl) }
     onPlaylistExport: main_controller.exportPlaylist()
     onPlaylistImport: main_controller.importPlaylist()
 }

@@ -47,6 +47,8 @@ MouseArea {
         }
 
         onImportDone: { notifybar.show(dsTr("Imported") + ": " + filename)}
+
+        onItemVInfoGot: info_window.showInfo(vinfo)
     }
 
     Timer {
@@ -330,12 +332,12 @@ MouseArea {
         preference_window.show()
     }
 
-    function showInformationWindow(info) {
+    function showInformationWindow(url) {
         info_window.flags = windowView.getState() == Qt.WindowFullScreen ? Qt.BypassWindowManagerHint : Qt.FramelessWindowHint | Qt.SubWindow
         info_window.close()
         info_window.x = windowView.x + (windowView.width - info_window.width) / 2
         info_window.y = windowView.y + (windowView.height - info_window.height) / 2
-        info_window.showContent(info)
+        _database.getPlaylistItemVInfo(url)
     }
 
     function setProportion(propWidth, propHeight) {
