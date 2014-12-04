@@ -88,62 +88,51 @@ ListView {
         return null
     }
 
-    function _addItemInternal() {
-        var info = itemsToAdd.splice(0, 1)[0]
-        var groupName = info[0]
-        var itemName = info[1]
-        var itemUrl = info[2]
-
-        if (contains(itemUrl)) return
-
-        for (var i = 0; i < allItems.length; i++) {
-            if (allItems[i].isGroup && allItems[i].child) {
-                if (allItems[i].propName == groupName) {
-                    var item = {
-                        "itemName": itemName,
-                        "itemUrl": itemUrl,
-                        "itemChild": []
-                    }
-
-                    allItems[i].propChild.append(item)
-                    allItems[i].child.forceLayout()
-                    return
-                }
+    function _addDelayItems() {
+        for (var groupName in _catesDelayToAdd) {
+            var group = {
+                "itemName": groupName,
+                "itemUrl": "",
+                "itemChild": []
             }
-        }
 
-        var itemGroup = {
-            "itemName": groupName,
-            "itemUrl": "",
-            "itemChild": [
-                {
+            var items = _catesDelayToAdd[groupName]
+            var index = 0
+            for (var i =  0; i < items.length; i++) {
+                var itemName = items[i][0]
+                var itemUrl = items[i][1]
+                index = items[i][2]
+
+                group["itemChild"].push({
                     "itemName": itemName,
                     "itemUrl": itemUrl,
                     "itemChild": []
-                }
-            ]
+                    })
+            }
+
+            model.insert(index, group)
+            forceLayout()
         }
-
-        var itemNormal = {
-                    "itemName": itemName,
-                    "itemUrl": itemUrl,
-                    "itemChild": []
-                }
-
-        groupName ? model.append(itemGroup) : model.append(itemNormal)
-
-        forceLayout()
+        _catesDelayToAdd = {}
     }
 
-    property var itemsToAdd: []
+    property var _catesDelayToAdd
     function addItem(groupName, itemName, itemUrl) {
-        for (var i = 0; i < itemsToAdd.length; i++) {
-            if (itemsToAdd[i][2] == itemUrl) {
-                return
+        if(!_catesDelayToAdd) _catesDelayToAdd = {}
+        if (groupName) {
+            if (!_catesDelayToAdd[groupName]) {
+                _catesDelayToAdd[groupName] = []
             }
+            _catesDelayToAdd[groupName].push([itemName, itemUrl, count])
+        } else {
+            var item = {
+                "itemName": itemName,
+                "itemUrl": itemUrl,
+                "itemChild": []
+            }
+            model.append(item)
         }
-        itemsToAdd.push([groupName, itemName, itemUrl])
-        delay_add_item_timer.start()
+        delay_add_item_timer.restart()
     }
 
     function removeItem(url) { root.removeItemPrivate(url); itemRemoved(url) }
@@ -215,14 +204,7 @@ ListView {
         id: delay_add_item_timer
 
         interval: 100
-        onTriggered: {
-            if (itemsToAdd.length == 0) {
-                delay_add_item_timer.stop()
-            } else {
-                _addItemInternal()
-                delay_add_item_timer.restart()
-            }
-        }
+        onTriggered: _addDelayItems()
     }
 
     model: ListModel{}
