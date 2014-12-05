@@ -21,20 +21,20 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import json
+from collections import deque
 from PyQt5.QtCore import pyqtSignal, QThread
 
-from movie_info import MovieInfo
+from models.movie_info import MovieInfo
 
 class _MovieInfoCrawler(QThread):
-	infoGotten = pyqtSignal(str, str)
+	died = pyqtSignal(str, str, arguments=["url", "result"])
 
-	def __init__(self, movieFile):
+	def __init__(self, url):
 		super(_MovieInfoCrawler, self).__init__()
-		self.movieFile = movieFile
+		self.url = url
 
 	def run(self):
-		movieFile = self.movieFile.replace("file://", "")
-		self._movieInfo = MovieInfo(movieFile)
+		self._movieInfo = MovieInfo(self.url)
 		result = {
 		    "movie_title": self._movieInfo.movie_title,
 		    "movie_type": self._movieInfo.movie_type,
@@ -44,27 +44,44 @@ class _MovieInfoCrawler(QThread):
 		    "movie_size": self._movieInfo.movie_size,
 		    "movie_duration": self._movieInfo.movie_duration
 		}
-		self.infoGotten.emit(self.movieFile, json.dumps(result))
+		self.died.emit(self.url, json.dumps(result))
 
 class CrawlerManager(QThread):
-	infoGotten = pyqtSignal(str, str)
+	infoGot = pyqtSignal(str, str, arguments=["url", "result"])
 
 	def __init__(self):
 		super(CrawlerManager, self).__init__()
 		self._crawlers = []
+		self._urls_to_crawl = deque()
 
-	def crawlerDied(self, movieFile, movieInfo):
-		self.infoGotten.emit(movieFile, movieInfo)
+	def _tryGetIdleCrawler(self):
 		for crawler in self._crawlers:
-			if crawler.movieFile == movieFile:
-				self._crawlers.remove(crawler)
+			if crawler.isFinished():
+				return crawler
+		return None
 
-	def craw(self, file):
-		crawler = _MovieInfoCrawler(file)
-		crawler.infoGotten.connect(self.crawlerDied)
-		crawler.start()
-		self._crawlers.append(crawler)
+	def crawlerDied(self, url, result):
+		self.infoGot.emit(url, result)
+		if len(self._urls_to_crawl) != 0:
+			crawler = self._tryGetIdleCrawler()
+			if crawler:
+				crawler.url = self._urls_to_crawl.popleft()
+				crawler.start()
 
-	def crawMany(self, files):
-		for _file in files:
-			self.craw(_file)
+	def crawl(self, url, highPriority=False):
+		if len(self._crawlers) < 5 or highPriority:
+			crawler = _MovieInfoCrawler(url)
+			crawler.died.connect(self.crawlerDied)
+			crawler.start()
+			self._crawlers.append(crawler)
+		else:
+			crawler = self._tryGetIdleCrawler()
+			if crawler:
+				crawler.url = url
+				crawler.start()
+			else:
+				self._urls_to_crawl.append(url)
+
+	def crawlMany(self, urls):
+		for _url in urls:
+			self.craw(_url)

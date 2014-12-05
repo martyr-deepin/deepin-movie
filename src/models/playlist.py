@@ -27,6 +27,7 @@ from PyQt5.QtCore import QObject, pyqtSlot, pyqtSignal
 from xml.dom.minidom import (Element, getDOMImplementation, parse)
 from utils.constants import DATABASE_FILE
 from utils.utils import utils
+from utils.movieinfo_crawler import CrawlerManager
 
 TAG_CATEGORY = "Category"
 TAG_ITEM = "Item"
@@ -183,10 +184,14 @@ class Database(QObject):
     playlistItemAdded = pyqtSignal(str, str, str,
         arguments=["name", "url", "category"])
     importDone = pyqtSignal(str, arguments=["filename"])
+    itemVInfoGot = pyqtSignal(str, str, arguments=["url", "vinfo"])
 
     def __init__(self):
         super(Database, self).__init__()
+        self._crawlerManager = CrawlerManager()
         self._playHistoryCursor = len(self._getPlayHistory()) - 1
+
+        self._crawlerManager.infoGot.connect(self.crawlerGotInfo)
 
     # internal helper functions
     def _getPlayHistory(self):
@@ -211,6 +216,11 @@ class Database(QObject):
             item = PlaylistItemModel.create(name=itemName, url=itemUrl)
 
         return item
+
+    @pyqtSlot(str, str)
+    def crawlerGotInfo(self, url, result):
+        self.itemVInfoGot.emit(url, result)
+        self.setPlaylistItemVInfo(url, result)
 
     # Playlist operations
     @pyqtSlot(result=str)
@@ -386,6 +396,34 @@ class Database(QObject):
                 PlaylistItemModel.url == itemUrl)
             info = json.loads(item.info) if item.info else {}
             info["rotation"] = itemRotation
+            item.info = json.dumps(info)
+            item.save()
+        except DoesNotExist:
+            pass
+
+    # this getter is asynchronized because there's maybe some items that has no
+    # video_info stored, so you need connect to the itemVInfoGot signal to
+    # respond to this getter.
+    @pyqtSlot(str)
+    def getPlaylistItemVInfo(self, itemUrl):
+        print itemUrl
+        try:
+            item = PlaylistItemModel.get(
+                PlaylistItemModel.url == itemUrl)
+            info = json.loads(item.info) if item.info else {}
+            if info.get("video_info"):
+                self.itemVInfoGot.emit(itemUrl, info.get("video_info"))
+            else:
+                self._crawlerManager.crawl(itemUrl, True)
+        except DoesNotExist:
+            self._crawlerManager.crawl(itemUrl, True)
+
+    def setPlaylistItemVInfo(self, itemUrl, videoInfo):
+        try:
+            item = PlaylistItemModel.get(
+                PlaylistItemModel.url == itemUrl)
+            info = json.loads(item.info) if item.info else {}
+            info["video_info"] = videoInfo
             item.info = json.dumps(info)
             item.save()
         except DoesNotExist:
