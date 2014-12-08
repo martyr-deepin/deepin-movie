@@ -88,42 +88,26 @@ ListView {
         return null
     }
 
-    function _addDelayItems() {
-        for (var groupName in _catesDelayToAdd) {
+    function addItem(groupName, itemName, itemUrl) {
+        if (groupName) {
+            var item = {
+                "itemName": itemName,
+                "itemUrl": itemUrl,
+                "itemChild": []
+            }
             var group = {
                 "itemName": groupName,
                 "itemUrl": "",
-                "itemChild": []
+                "itemChild": [item]
             }
-
-            var items = _catesDelayToAdd[groupName]
-            var index = 0
-            for (var i =  0; i < items.length; i++) {
-                var itemName = items[i][0]
-                var itemUrl = items[i][1]
-                index = items[i][2]
-
-                group["itemChild"].push({
-                    "itemName": itemName,
-                    "itemUrl": itemUrl,
-                    "itemChild": []
-                    })
+            for (var i = 0; i < count; i++) {
+                var modelItem = model.get(i)
+                if (modelItem["itemName"] == groupName) {
+                    modelItem["itemChild"].append(item)
+                    return
+                }
             }
-
-            model.insert(index, group)
-            forceLayout()
-        }
-        _catesDelayToAdd = {}
-    }
-
-    property var _catesDelayToAdd
-    function addItem(groupName, itemName, itemUrl) {
-        if(!_catesDelayToAdd) _catesDelayToAdd = {}
-        if (groupName) {
-            if (!_catesDelayToAdd[groupName]) {
-                _catesDelayToAdd[groupName] = []
-            }
-            _catesDelayToAdd[groupName].push([itemName, itemUrl, count])
+            model.append(group)
         } else {
             var item = {
                 "itemName": itemName,
@@ -132,7 +116,6 @@ ListView {
             }
             model.append(item)
         }
-        delay_add_item_timer.restart()
     }
 
     function removeItem(url) { root.removeItemPrivate(url); itemRemoved(url) }
@@ -144,6 +127,12 @@ ListView {
                 removeItem(flatList[i])
             }
         }
+    }
+
+    function moveItem(from, to) {
+        model.move(from, to, 1)
+        allItems.splice(to, 0, allItems.splice(from, 1)[0])
+        root.itemMoved(from, to)
     }
 
     function contains(url) {
@@ -178,6 +167,29 @@ ListView {
         }
     }
 
+    function getContent() {
+        var result = []
+        for (var i = 0; i < count; i++) {
+            var modelItem = model.get(i)
+            if (modelItem["itemChild"].count != 0) {
+                for (var j = 0; j < modelItem["itemChild"].count; j++) {
+                    result.push({
+                        "category": modelItem["itemName"],
+                        "name": modelItem["itemChild"].get(j)["itemName"],
+                        "url": modelItem["itemChild"].get(j)["itemUrl"]
+                        })
+                }
+            } else {
+                result.push({
+                    "category": "",
+                    "name": modelItem["itemName"],
+                    "url": modelItem["itemUrl"]
+                    })
+            }
+        }
+        return JSON.stringify(result)
+    }
+
     function clear() {
         model.clear()
         allItems = []
@@ -186,6 +198,10 @@ ListView {
 
     function _urlEqual(url1, url2) {
         return url1 && url2 && url1.toString().replace("file://", "") == url2.toString().replace("file://", "")
+    }
+
+    function _sortFuncY(item1, item2) {
+        return item1.y > item2.y ? 1 : -1
     }
 
     // Rectangle {
@@ -203,13 +219,6 @@ ListView {
     //      GradientStop { position: 1.0; color: Qt.rgba(1, 1, 1, 0.0)}
     //  }
     // }
-
-    Timer {
-        id: delay_add_item_timer
-
-        interval: 100
-        onTriggered: _addDelayItems()
-    }
 
     model: ListModel{}
     delegate: Component {
@@ -241,12 +250,14 @@ ListView {
                                 // sep.x = parent.x
                                 // sep.y = listView.allItems[i].y + listView.allItems[i].height
                                 // sep.visible = true
-                                for (var j = 0; j < listView.allItems.length; j++) {
-                                    if (listView.allItems[j].y == listView.allItems[i].y - height) {
-                                        listView.allItems[j].y -= height
+
+                                if (listView.allItems[i].isGroup) {
+                                    if (listView.allItems[i].y > y) {
+                                        listView.allItems[i].y -= height
                                     }
+                                } else {
+                                    listView.allItems[i].y -= height
                                 }
-                                listView.allItems[i].y -= height
                             }
                         } else if (y < lastY) {
                             if (listView.allItems[i].y < y
@@ -256,12 +267,14 @@ ListView {
                                 // sep.x = parent.x
                                 // sep.y = listView.allItems[i].y + listView.allItems[i].height
                                 // sep.visible = true
-                                for (var j = 0; j < listView.allItems.length; j++) {
-                                    if (listView.allItems[j].y == listView.allItems[i].y + height) {
-                                        listView.allItems[j].y += height
+
+                                if (listView.allItems[i].isGroup) {
+                                    if (listView.allItems[i].y + listView.allItems[i].height < y + height) {
+                                        listView.allItems[i].y += height
                                     }
+                                } else {
+                                    listView.allItems[i].y += height
                                 }
-                                listView.allItems[i].y += height
                             }
                         }
                     }
@@ -304,11 +317,6 @@ ListView {
                 }
             }
 
-            function moveItem(from, to) {
-                column.ListView.view.model.move(from, to, 1)
-                column.ListView.view.allItems.splice(to, 0, column.ListView.view.allItems.splice(from, 1)[0])
-            }
-
             Item {
                 width: column.width
                 height: 24
@@ -337,32 +345,10 @@ ListView {
 
                             // sep.visible = false
                             var listView = column.ListView.view
-                            for (var i = 0; i < listView.allItems.length; i++) {
-                                if (index == i) {
-                                    if (i < listView.model.count - 1) {
-                                        if (listView.allItems[i + 1].y > column.y) {
-                                            // move back to its position
-                                            column.moveItem(index, 0)
-                                            column.moveItem(index, listView.model.count - 1)
-                                            column.moveItem(index, i)
-                                            return
-                                        }
-                                    } else {
-                                        column.moveItem(index, 0)
-                                        column.moveItem(index, listView.model.count - 1)
-                                        return
-                                    }
-                                } else if (listView.allItems[i].y > column.y) {
-                                    if (i > index) {
-                                        column.moveItem(index, i - 1)
-                                    } else {
-                                        column.moveItem(index, i)
-                                    }
-                                    return
-                                }
-                            }
-
-                            column.moveItem(index, listView.model.count - 1)
+                            var origInx = index
+                            listView.allItems.sort(listView._sortFuncY)
+                            var nowInx = listView.allItems.indexOf(column)
+                            listView.moveItem(origInx, nowInx)
                         }
                     }
 

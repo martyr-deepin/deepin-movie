@@ -71,7 +71,7 @@ Rectangle {
 
     function toggleShow() { expanded ? hide() : show() }
 
-    function getContent(type) { return playlist.getContent() }
+    function getContent() { return playlist.getContent() }
 
     function contains(url) { return playlist.contains(url) }
 

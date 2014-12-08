@@ -414,9 +414,9 @@ Rectangle {
 
     function monitorWindowClose() {
         _utils.screenSaverUninhibit()
-        config.save("Normal", "volume", player.volume)
         main_controller.recordVideoPosition(player.source, player.position)
         main_controller.recordVideoRotation(player.source, player.orientation)
+        _database.setPlaylistContentCache(playlist.getContent())
         _settings.lastWindowWidth = windowView.width
         player.source && (_settings.lastPlayedFile = player.source)
     }

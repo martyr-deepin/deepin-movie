@@ -30,8 +30,9 @@ XDG_CONFIG_HOME = os.environ.get('XDG_CONFIG_HOME') or \
 PROJECT_NAME = "deepin-movie"
 CONFIG_DIR = os.path.join(XDG_CONFIG_HOME, PROJECT_NAME)
 MAIN_QML = os.path.join(parent_dir(parent_dir(os.path.abspath(__file__))),
-	'views', 'main.qml')
+    'views', 'main.qml')
 DATABASE_FILE = os.path.join(CONFIG_DIR, "data.db")
+PLAYLIST_CACHE_FILE = os.path.join(CONFIG_DIR, "playlist.cache")
 
 if not os.path.exists(CONFIG_DIR): os.makedirs(CONFIG_DIR)
 

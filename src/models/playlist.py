@@ -25,7 +25,7 @@ import json
 from peewee import *
 from PyQt5.QtCore import QObject, pyqtSlot, pyqtSignal
 from xml.dom.minidom import (Element, getDOMImplementation, parse)
-from utils.constants import DATABASE_FILE
+from utils.constants import DATABASE_FILE, PLAYLIST_CACHE_FILE
 from utils.utils import utils
 from utils.movieinfo_crawler import CrawlerManager
 
@@ -230,15 +230,29 @@ class Database(QObject):
         .join(PlaylistCategoryModel, JOIN_LEFT_OUTER) \
         .aggregate_rows()
 
-        content = []
-        for result in queryResults:
-            category = result.category.name if result.category else ""
-            content.append({
-                "category": category,
-                "name": result.name,
-                "url": result.url
-                })
-        return json.dumps(content)
+        contentCache = []
+        if os.path.exists(PLAYLIST_CACHE_FILE):
+            with open(PLAYLIST_CACHE_FILE) as _file:
+                _cache = _file.read()
+                contentCache = json.loads(_cache)
+
+        if len(contentCache) == queryResults.count():
+            return json.dumps(contentCache)
+        else:
+            content = []
+            for result in queryResults:
+                category = result.category.name if result.category else ""
+                content.append({
+                    "category": category,
+                    "name": result.name,
+                    "url": result.url
+                    })
+            return json.dumps(content)
+
+    @pyqtSlot(str)
+    def setPlaylistContentCache(self, cache):
+        with open(PLAYLIST_CACHE_FILE, "w") as _file:
+            _file.write(cache.encode("utf-8"))
 
     @pyqtSlot(str, result=bool)
     def containsPlaylistItem(self, itemUrl):
@@ -455,7 +469,6 @@ _database_file.create_tables([
     PlayHistoryItemModel],
     safe=True)
 database = Database()
-database.getPlaylistContent()
 
 if __name__ == "__main__":
     helloCategory = PlaylistCategoryModel.create(name="hello")
