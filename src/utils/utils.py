@@ -202,6 +202,12 @@ class Utils(QObject):
     def urlIsNativeFile(self, url):
         return os.path.exists(url.replace("file://", ""))
 
+    @pyqtSlot(str, result=str)
+    def getTitleFromUrl(self, url):
+        url = url.replace("file://", "")
+        return os.path.basename(url) \
+            if self.urlIsNativeFile(url) else url
+
     # all files here include dirs
     @pyqtSlot(str, result="QVariant")
     def getAllFilesInDir(self, dir):

@@ -512,7 +512,7 @@ Rectangle {
         onPlaying: {
             notifybar.hide()
             auto_play_next_on_invalid_timer.stop()
-            main_controller.setWindowTitle(player.title)
+            main_controller.setWindowTitle(_utils.getTitleFromUrl(player.source))
 
             _utils.screenSaverInhibit()
 
