@@ -414,6 +414,28 @@ class Database(QObject):
         except DoesNotExist:
             pass
 
+    @pyqtSlot(str, result=str)
+    def getPlaylistItemSubtitle(self, itemUrl):
+        try:
+            item = PlaylistItemModel.get(
+                PlaylistItemModel.url == itemUrl)
+            info = json.loads(item.info) if item.info else {}
+            return info.get("subtitle") or ""
+        except DoesNotExist:
+            return ""
+
+    @pyqtSlot(str, str)
+    def setPlaylistItemSubtitle(self, itemUrl, subtitle):
+        try:
+            item = PlaylistItemModel.get(
+                PlaylistItemModel.url == itemUrl)
+            info = json.loads(item.info) if item.info else {}
+            info["subtitle"] = subtitle
+            item.info = json.dumps(info)
+            item.save()
+        except DoesNotExist:
+            pass
+
     # this getter is asynchronized because there's maybe some items that has no
     # video_info stored, so you need connect to the itemVInfoGot signal to
     # respond to this getter.

@@ -93,7 +93,7 @@ Rectangle {
                         var filename = fileUrls[0].toString().replace("file://", "")
 
                         if (_utils.fileIsSubtitle(filename)) {
-                            _subtitle_parser.file_name = filename
+                            main_controller.setSubtitle(filename)
                         } else {
                             notifybar.show(dsTr("Invalid file") + ": " + filename)
                         }
@@ -499,7 +499,6 @@ Rectangle {
         volume: config.playerVolume
         visible: hasVideo && source != ""
 
-        subtitleShow: config.subtitleAutoLoad
         subtitleFontSize: Math.floor(config.subtitleFontSize * main_window.width / windowView.defaultWidth)
         subtitleFontFamily: config.subtitleFontFamily || getSystemFontFamily()
         subtitleFontColor: config.subtitleFontColor
@@ -563,11 +562,16 @@ Rectangle {
             if (source.toString().trim()) {
                 _settings.lastPlayedFile = source
                 _database.appendPlayHistoryItem(source, resetPlayHistoryCursor)
-                _subtitle_parser.set_subtitle_from_movie(source)
                 main_controller.recordVideoPosition(lastVideoSource, lastVideoPosition)
                 resetPlayHistoryCursor = true
 
                 main_controller.seekToLastPlayed()
+
+                if (config.subtitleAutoLoad) {
+                    main_controller.setSubtitle(_database.getPlaylistItemSubtitle(player.source))
+                } else {
+                    _subtitle_parser.file_name = ""
+                }
 
                 var rotation = main_controller.fetchVideoRotation(source)
                 var rotateClockwiseCount = Math.abs(Math.round((rotation % 360 - 360) % 360 / 90))

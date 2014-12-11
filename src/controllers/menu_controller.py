@@ -145,6 +145,11 @@ def _subtitle_menu_items_from_files(files, currentSubtitle):
                 os.path.basename(f),
                 f == currentSubtitle)
         return item
+
+    if currentSubtitle and currentSubtitle not in files:
+        files = list(files)
+        files.append(currentSubtitle)
+
     return map(checkable_item_from_file, filter(lambda x: x != "", files))
 
 def _subtitle_file_from_menu_item_id(id):
@@ -352,7 +357,6 @@ class MenuController(QObject):
         self.menu.getItemById("_frame").isActive = hasVideo and not isFullscreen
         self.menu.getItemById("_subtitle_hide").isActive = subtitleFile != ""
         self.menu.getItemById("_subtitle_manual").isActive = hasVideo
-        self.menu.getItemById("_subtitle_choose").isActive = subtitleFile != ""
         self.menu.getItemById("_information").isActive = hasVideo
 
         self.menu.getItemById("_on_top").checked = isOnTop
@@ -405,9 +409,11 @@ class MenuController(QObject):
         #     self._sound_channel == "sound_channel:radio:stero"
         self.menu.getItemById("_sound_muted").checked = config.playerMuted
 
-        self.menu.getItemById("_subtitle_hide").checked = subtitleVisible
+        self.menu.getItemById("_subtitle_hide").checked = not subtitleVisible
         subtitles = get_subtitle_from_movie(videoSource)
         subtitles = _subtitle_menu_items_from_files(subtitles, subtitleFile)
+        self.menu.getItemById("_subtitle_choose").isActive = \
+            len(subtitles) != 0
         self.menu.getItemById("_subtitle_choose").setSubMenu(Menu(subtitles))
 
         self.menu.getItemById("_fullscreen_quit").text = _("Fullscreen") if \

@@ -47,7 +47,7 @@ Connections {
 
     onOpenSubtitleFile: { main_controller.openFileForSubtitle() }
 
-    onSubtitleSelected: _subtitle_parser.file_name = subtitle
+    onSubtitleSelected: { main_controller.setSubtitle(subtitle) }
 
     onShowPreference: { main_controller.showPreferenceWindow() }
 

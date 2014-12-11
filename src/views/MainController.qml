@@ -645,6 +645,15 @@ MouseArea {
     function subtitleForward() { player.subtitleDelay -= 500; preference_window.setSubtitleDelay(player.subtitleDelay) }
     function subtitleBackward() { player.subtitleDelay += 500; preference_window.setSubtitleDelay(player.subtitleDelay) }
 
+    function setSubtitle(subtitle) {
+        if (_utils.urlIsNativeFile(subtitle)) {
+            _subtitle_parser.file_name = subtitle
+        } else {
+            _subtitle_parser.set_subtitle_from_movie(player.source)
+        }
+        _database.setPlaylistItemSubtitle(player.source, _subtitle_parser.file_name)
+    }
+
     Keys.onPressed: keys_responder.respondKey(event)
     Keys.onReleased: if(!event.isAutoRepeat) shortcuts_viewer.hide()
 
@@ -785,7 +794,7 @@ MouseArea {
                     } else if (_utils.fileIsValidVideo(file_path)) {
                         main_controller.playPaths([file_path], true)
                     } else if (_utils.fileIsSubtitle(file_path)) {
-                        _subtitle_parser.file_name = file_path
+                        main_controller.setSubtitle(file_path)
                     } else {
                         notifybar.show(dsTr("Invalid file") + ": " + file_path)
                     }
