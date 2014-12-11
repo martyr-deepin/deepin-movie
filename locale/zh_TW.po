@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-03 09:08+0800\n"
-"PO-Revision-Date: 2014-12-03 01:30+0000\n"
+"PO-Revision-Date: 2014-12-03 11:47+0000\n"
 "Last-Translator: deepin_transifex <xiabin@linuxdeepin.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/deepin-movie/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -87,7 +87,7 @@ msgstr "播放清單"
 #: ../ShortcutsViewer.qml:134 ../ShortcutsViewer.qml:139
 #: ../ShortcutsViewer.qml:144
 msgid "None"
-msgstr ""
+msgstr "無"
 
 #: ../HotKeyInput.qml:16
 msgid "Please input a new shortcut"

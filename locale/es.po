@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-03 09:08+0800\n"
-"PO-Revision-Date: 2014-12-03 01:30+0000\n"
+"PO-Revision-Date: 2014-12-04 13:37+0000\n"
 "Last-Translator: deepin_transifex <xiabin@linuxdeepin.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/deepin-movie/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -91,7 +91,7 @@ msgstr "Lista de Reproducción"
 #: ../ShortcutsViewer.qml:134 ../ShortcutsViewer.qml:139
 #: ../ShortcutsViewer.qml:144
 msgid "None"
-msgstr ""
+msgstr "Ninguno"
 
 #: ../HotKeyInput.qml:16
 msgid "Please input a new shortcut"
@@ -153,16 +153,16 @@ msgstr "Archivo no válido"
 
 #: ../MainController.qml:74 ../main.qml:145
 msgid "The parse failed"
-msgstr ""
+msgstr "El análisis falló"
 
 #: ../MainController.qml:91
 #, qt-format
 msgid "%1 files unable to be parsed have been excluded"
-msgstr ""
+msgstr "%1 archivos imposibles de analizar han sido excluídos"
 
 #: ../MainController.qml:105
 msgid "Imported"
-msgstr ""
+msgstr "Importado"
 
 #: ../MainController.qml:429
 msgid "Play last movie played"
@@ -202,23 +202,23 @@ msgstr "Por favor, elija un archivo o más"
 
 #: ../OpenFileDialog.qml:7 ../OpenFileDialog.qml:23 ../OpenFileDialog.qml:43
 msgid "Video files"
-msgstr ""
+msgstr "Archivos de vídeo"
 
 #: ../OpenFileDialog.qml:15
 msgid "All files"
-msgstr ""
+msgstr "Todos los archivos"
 
 #: ../OpenFileDialog.qml:31 ../OpenFileDialog.qml:51
 msgid "Please choose one file"
-msgstr ""
+msgstr "Por favor, elija un archivo"
 
 #: ../OpenFileDialog.qml:33
 msgid "Subtitle files"
-msgstr ""
+msgstr "Archivos de subtítulo"
 
 #: ../OpenFileDialog.qml:53 ../OpenFileDialog.qml:63
 msgid "Playlist files"
-msgstr ""
+msgstr "Archivos de listas de reproducción."
 
 #: ../OpenFileDialog.qml:61
 msgid "Save as"
@@ -520,7 +520,7 @@ msgstr "Siempre Visible"
 
 #: ../main.qml:127
 msgid "Please input the url of file played"
-msgstr ""
+msgstr "Por favor, introduzca la url del archivo reproducido"
 
 #: ../main.qml:128
 msgid "Confirm"
