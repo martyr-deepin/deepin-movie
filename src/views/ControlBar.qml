@@ -371,7 +371,9 @@ DragableArea {
 
     Image {
         id: drag_point
-        source: "image/dragbar.png"
+        sourceSize.width: 8
+        sourceSize.height: 8
+        source: "image/drag_object.svg"
 
         anchors.rightMargin: 5
         anchors.bottomMargin: 5

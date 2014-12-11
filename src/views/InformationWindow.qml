@@ -51,13 +51,14 @@ DDialog {
                 elide: Text.ElideRight
                 text: info_window.fileTitle
             }
-            Space { width: column.width; height: 2 }
+
+            Space { width: column.width; height: 3 }
         }
 
         Grid {
             id: grid
             columns: 2
-            rowSpacing: 10
+            rowSpacing: 8
 
             property int titleWidth: Math.max(
                 file_type_title.implicitWidth,
@@ -117,14 +118,14 @@ DDialog {
                 id: file_path_value
                 width: grid.valueWidth
                 value: info_window.filePath
+                lineHeight: 17
+                lineHeightMode: Text.FixedHeight
             }
         }
 
         Item {
             width: parent.width
-            height: copy_button.height + spc.height
-
-            Space { id: spc; width: parent.width; height: 2 }
+            height: copy_button.height
 
             DTextButton {
                 id: copy_button
