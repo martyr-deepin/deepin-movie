@@ -10,9 +10,8 @@ Video {
     subtitle.enabled: false
     // videoCodecPriority: ["VAAPI", "FFmpeg"]
 
+    property size resolution
     property bool hasMedia: hasVideo || hasAudio
-    property size resolution: metaData["resolution"] ? Qt.size(metaData["resolution"].width, metaData["resolution"].height)
-                                                    : Qt.size(windowView.defaultWidth - windowView.windowGlowRadius * 2, windowView.defaultHeight - windowView.windowGlowRadius * 2)
     property string title: metaData.title ? metaData.title : ""
 
     property alias subtitleContent: subtitle.text
@@ -53,6 +52,16 @@ Video {
         }
     }
 
+    function _getResolution() {
+        if (source.toString() && metaData["resolution"]) {
+            return Qt.size(metaData["resolution"].width,
+                metaData["resolution"].height)
+        } else {
+            return Qt.size(windowView.width - windowView.windowGlowRadius * 2,
+                windowView.height - windowView.windowGlowRadius * 2)
+        }
+    }
+
     function _rotateResolution() {
         resolution = Qt.size(resolution.height, resolution.width)
     }
@@ -66,6 +75,8 @@ Video {
     }
 
     function resetRotationFlip() {
+        resolution = Qt.binding(_getResolution)
+
         video.orientation = 0
         flip.axis.x = 0
         flip.axis.y = 0

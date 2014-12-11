@@ -264,6 +264,14 @@ Rectangle {
         }
     }
 
+    function resetWindowSize() {
+        if (!config.playerApplyLastClosedSize) {
+            windowView.setWidth(windowView.defaultWidth)
+            windowView.setHeight(windowView.defaultHeight)
+            player.source = ""
+        }
+    }
+
     function miniModeState() { return windowView.width == program_constants.miniModeWidth }
 
     function formatTime(millseconds) {
@@ -379,7 +387,7 @@ Rectangle {
         root.state = "normal"
         titlebar.title = ""
         windowView.setTitle(dsTr("Deepin Movie"))
-        player.source = ""
+        resetWindowSize()
         _subtitle_parser.file_name = ""
         main_controller.stop()
         controlbar.reset()
