@@ -10,7 +10,7 @@ Video {
     subtitle.enabled: false
     // videoCodecPriority: ["VAAPI", "FFmpeg"]
 
-    property size resolution
+    property size resolution: _getResolution()
     property bool hasMedia: hasVideo || hasAudio
     property string title: metaData.title ? metaData.title : ""
 
