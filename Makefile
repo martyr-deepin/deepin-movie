@@ -1,7 +1,7 @@
 PREFIX = /usr
 
 all:
-	cd tools; ./generate_mo.py; cd ..
+	deepin-generate-mo locale/locale_config.ini
 
 install:
 	mkdir -p ${DESTDIR}${PREFIX}/bin
