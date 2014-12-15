@@ -101,7 +101,7 @@ MouseArea {
         }
     }
 
-    function _setSizeForRootWindowWithWidth(destWidth) {
+    function setSizeForRootWindowWithWidth(destWidth) {
         var destWidth = Math.min(destWidth, primaryRect.width)
         var widthHeightScale = root.widthHeightScale
         var destHeight = (destWidth - program_constants.windowGlowRadius * 2) / widthHeightScale + program_constants.windowGlowRadius * 2
@@ -294,7 +294,7 @@ MouseArea {
         if (windowView.getState() != Qt.WindowMaximized
             && windowView.getState() != Qt.WindowFullScreen)
         {
-            _setSizeForRootWindowWithWidth(backupWidth)
+            setSizeForRootWindowWithWidth(backupWidth)
             windowView.setX(backupCenter.x - windowView.width / 2)
             windowView.setY(backupCenter.y - windowView.height / 2)
         }
@@ -303,6 +303,7 @@ MouseArea {
     function miniMode() {
         if (!player.hasVideo) return
 
+        _menu_controller.videoScale = ""
         if (windowView.getState() != Qt.WindowMaximized
             && windowView.getState() != Qt.WindowFullScreen)
         {
@@ -312,7 +313,7 @@ MouseArea {
         }
         normalize()
         windowView.staysOnTop = true
-        _setSizeForRootWindowWithWidth(program_constants.miniModeWidth)
+        setSizeForRootWindowWithWidth(program_constants.miniModeWidth)
 
         windowView.setX(backupCenter.x - windowView.width / 2)
         windowView.setY(backupCenter.y - windowView.height / 2)
@@ -348,14 +349,14 @@ MouseArea {
         var destWidth = (player.resolution.width - program_constants.windowGlowRadius * 2) * root.actualScale + program_constants.windowGlowRadius * 2
         player.fillMode = VideoOutput.Stretch
 
-        _setSizeForRootWindowWithWidth(destWidth)
+        setSizeForRootWindowWithWidth(destWidth)
     }
 
     function setScale(scale) {
         root.actualScale = scale
         var destWidth = (player.resolution.width - program_constants.windowGlowRadius * 2) * root.actualScale + program_constants.windowGlowRadius * 2
 
-        _setSizeForRootWindowWithWidth(destWidth)
+        setSizeForRootWindowWithWidth(destWidth)
     }
 
     function toggleFullscreen() {
@@ -380,14 +381,14 @@ MouseArea {
     function playerResolutionChanged() {
         if (root.miniModeState()) {
             backupWidth = player.resolution.width
-            _setSizeForRootWindowWithWidth(windowView.width)
+            setSizeForRootWindowWithWidth(windowView.width)
             backupCenter = Qt.point(windowView.x + windowView.width / 2,
                                     windowView.y + windowView.height / 2)
             return
         }
 
         root.widthHeightScale = player.resolution.width / player.resolution.height
-        !root.hasResized && _setSizeForRootWindowWithWidth(player.resolution.width + program_constants.windowGlowRadius * 2)
+        !root.hasResized && setSizeForRootWindowWithWidth(player.resolution.width + program_constants.windowGlowRadius * 2)
     }
 
     function flipHorizontal() { player.flipHorizontal(); controlbar.flipPreviewHorizontal() }
@@ -706,6 +707,7 @@ MouseArea {
                     resize_visual.minimumHeight = windowView.height
                 }
                 resize_visual.intelligentlyResize(windowView, mouse.x, mouse.y)
+                _menu_controller.videoScale = ""
             }
             else if (windowView.getState() != Qt.WindowFullScreen){
                 var pos = windowView.getCursorPos()
@@ -728,7 +730,7 @@ MouseArea {
             // do the actual resize action
             windowView.setX(resize_visual.frameX)
             windowView.setY(resize_visual.frameY)
-            _setSizeForRootWindowWithWidth(resize_visual.frameWidth)
+            setSizeForRootWindowWithWidth(resize_visual.frameWidth)
         }
     }
 

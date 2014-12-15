@@ -214,7 +214,7 @@ Rectangle {
     function initWindowSize() {
         if (config.playerApplyLastClosedSize) {
             hasResized = true
-            main_controller._setSizeForRootWindowWithWidth(_settings.lastWindowWidth)
+            main_controller.setSizeForRootWindowWithWidth(_settings.lastWindowWidth)
         } else {
             windowView.setWidth(windowView.defaultWidth)
             windowView.setHeight(windowView.defaultHeight)
@@ -503,6 +503,7 @@ Rectangle {
                 main_controller.recordVideoPosition(lastVideoSource, lastVideoPosition)
                 resetPlayHistoryCursor = true
 
+                _menu_controller.reset()
                 main_controller.seekToLastPlayed()
 
                 if (config.subtitleAutoLoad) {

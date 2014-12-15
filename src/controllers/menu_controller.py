@@ -22,7 +22,7 @@
 
 import os
 import json
-from PyQt5.QtCore import QObject, pyqtSlot, pyqtSignal
+from PyQt5.QtCore import QObject, pyqtSlot, pyqtSignal, pyqtProperty
 from PyQt5.QtGui import QCursor
 from deepin_menu.menu import Menu, CheckableMenuItem
 
@@ -40,7 +40,7 @@ frame_sub_menu = [
     CheckableMenuItem("proportion:radio:_p_2_35_1", "2.35:1"),
     None,
     CheckableMenuItem("scale:radio:_s_0_5", "0.5"),
-    CheckableMenuItem("scale:radio:_s_1", "1", True),
+    CheckableMenuItem("scale:radio:_s_1", "1"),
     CheckableMenuItem("scale:radio:_s_1_5", "1.5"),
     CheckableMenuItem("scale:radio:_s_2", "2"),
     None,
@@ -200,9 +200,21 @@ class MenuController(QObject):
     def __init__(self):
         super(MenuController, self).__init__()
 
+        self.reset()
+
+    @pyqtSlot()
+    def reset(self):
         self._proportion = "proportion:radio:_p_default"
-        self._scale = "scale:radio:_s_1"
+        self._scale = None
         self._sound_channel = "sound_channel:radio:auto"
+
+    @pyqtProperty(str)
+    def videoScale(self):
+        return self._scale
+
+    @videoScale.setter
+    def videoScale(self, value):
+        self._scale = value
 
     # if actions-like menu items are clicked, we should send signals to inform
     # the main controller that actions should be taken, if configs-like menu
