@@ -16,6 +16,7 @@ class DeepinMovieServie(QObject):
         self.__dbusAdaptor = DeepinMovieServiceAdaptor(self)
 
     def play(self, pathList):
+        self.__app._extra_window().undoMinimized()
         self.__app._extra_window().raise_()
         self.__app._extra_window().play(pathList)
 

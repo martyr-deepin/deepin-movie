@@ -15,8 +15,6 @@ Rectangle {
     // you suddenly.
     layer.enabled: true
 
-    property var windowLastState: ""
-
     property real widthHeightScale: player.resolution.width / player.resolution.height
     property real actualScale: 1.0
 
@@ -405,21 +403,29 @@ Rectangle {
         titlebar.windowFullscreenState = (state == Qt.WindowFullScreen)
         controlbar.windowFullscreenState = (state == Qt.WindowFullScreen)
         time_indicator.visibleSwitch = (state == Qt.WindowFullScreen && player.hasMedia)
-        if (windowLastState != state) {
-            if (config.playerPauseOnMinimized) {
-                if (state == Qt.WindowMinimized) {
-                    if (player.playbackState == MediaPlayer.PlayingState) {
-                        main_controller.pause()
-                        videoStoppedByAppFlag = true
-                    }
-                } else {
-                    if (videoStoppedByAppFlag == true) {
-                        main_controller.play()
-                        videoStoppedByAppFlag = false
-                    }
-                }
+
+        if (state == Qt.WindowMinimized) {
+            root.state = "normal"
+
+            if (config.playerPauseOnMinimized
+                && player.playbackState == MediaPlayer.PlayingState)
+            {
+                main_controller.pause()
+                videoStoppedByAppFlag = true
             }
-            windowLastState = state
+        } else {
+            if (videoStoppedByAppFlag == true) {
+                main_controller.play()
+                videoStoppedByAppFlag = false
+            }
+
+            if (state == Qt.WindowFullScreen) {
+                root.state = "no_glow"
+            } else if (state == Qt.WindowMaximized) {
+                root.state = "no_glow"
+            } else if (state == Qt.WindowNoState) {
+                root.state == "normal"
+            }
         }
     }
 

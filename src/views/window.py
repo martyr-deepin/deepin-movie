@@ -26,7 +26,9 @@ import json
 from random import randint
 
 import xcb
-from xpybutil.ewmh import c, atom, request_wm_state_checked
+from xpybutil.icccm import State
+from xpybutil.ewmh import (c, atom, request_wm_state_checked,
+    request_active_window_checked, revent_checked )
 
 from PyQt5.QtCore import Qt, QSize
 from PyQt5.QtQuick import QQuickView
@@ -54,18 +56,18 @@ class Window(QQuickView):
 
     def __init__(self, center=False):
         QQuickView.__init__(self)
+        self._staysOnTop = False
         self._center_request_count = 1 if center else 0
+
         surface_format = QSurfaceFormat()
         surface_format.setAlphaBufferSize(8)
+        self.setFormat(surface_format)
+        self.qml_context = self.rootContext()
 
         self.setColor(QColor(0, 0, 0, 0))
         self.setMinimumSize(QSize(MINIMIZE_WIDTH, MINIMIZE_HEIGHT))
         self.setResizeMode(QQuickView.SizeRootObjectToView)
-        self.setFormat(surface_format)
         self.setFlags(Qt.FramelessWindowHint)
-
-        self.staysOnTop = False
-        self.qml_context = self.rootContext()
         self.setTitle(_("Deepin Movie"))
         self.setIcon(icon_from_theme("Deepin", "deepin-movie"))
 
@@ -133,13 +135,25 @@ class Window(QQuickView):
 
     @pyqtSlot()
     def doMinimized(self):
-        # NOTE: This is bug of Qt5 that showMinimized() just can work once after restore window.
-        # I change window state before set it as WindowMinimized to fixed this bug!
-        self.setWindowState(Qt.WindowNoState)
+        # # NOTE: This is bug of Qt5 that showMinimized() just can work once after restore window.
+        # # I change window state before set it as WindowMinimized to fixed this bug!
+        # self.setWindowState(Qt.WindowNoState)
 
-        # Do minimized.
-        self.setWindowState(Qt.WindowMinimized)
-        self.setVisible(True)
+        # # Do minimized.
+        # self.setWindowState(Qt.WindowMinimized)
+        # self.setVisible(True)
+
+        cookie = revent_checked(self.winId().__int__(), "WM_CHANGE_STATE",
+            State.Iconic)
+        cookie.check()
+
+    @pyqtSlot()
+    def undoMinimized(self):
+        # TODO: showNormal() should work here, but actually it doesn't.
+        # It's likely a bug of Qt, so I just used the xcb way, which
+        # should be relaced in the future with the Qt way.
+        cookie = request_active_window_checked(self.winId().__int__())
+        cookie.check()
 
     @pyqtProperty(bool,notify=staysOnTopChanged)
     def staysOnTop(self):
@@ -155,7 +169,6 @@ class Window(QQuickView):
 
     @pyqtSlot()
     def moveToCenter(self):
-        print "moveToCenter"
         distance = self.screen().geometry().center() - self.geometry().center()
         self.setX(self.x() + distance.x())
         self.setY(self.y() + distance.y())
