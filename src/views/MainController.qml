@@ -557,7 +557,8 @@ MouseArea {
 
         if (paths.length == 1 &&
             !_utils.pathIsDir(paths[0]) &&
-            !_utils.fileIsValidVideo(paths[0]))
+            !_utils.fileIsValidVideo(paths[0]) &&
+            !_utils.stringIsValidUri(paths[0]))
         {
             notifybar.show(dsTr("Invalid file") + ": " + paths[0])
         } else {

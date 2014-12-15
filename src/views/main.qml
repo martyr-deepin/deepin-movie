@@ -165,7 +165,7 @@ Rectangle {
                         main_controller.clearPlaylist()
                     }
                     shouldAutoPlayNextOnInvalidFile = false
-                    player.source = input
+                    main_controller.playPaths([input], true)
                 }
 
                 lastInput = input
@@ -307,6 +307,9 @@ Rectangle {
         return file_path.indexOf("file://") != -1 ? file_path.substring(7) : file_path
     }
 
+    // this function share the same name with one function in MainController,
+    // but this function is mainly used to expose the dbus interface, tanslating
+    // the dbus arguments into the ones that its namesake can understand.
     function playPaths(pathList) {
         var pathList = JSON.parse(pathList)
         var pathsExceptUrls = new Array()
@@ -527,12 +530,6 @@ Rectangle {
             lastVideoSource = source
             lastVideoDuration = duration
             if (config.playerFullscreenOnOpenFile) main_controller.fullscreen()
-
-            if (_utils.urlIsNativeFile(source)) {
-                main_controller.playPaths([source.toString()], false)
-            } else {
-                main_controller.addPlaylistStreamItem(source)
-            }
         }
 
         onStopped: {

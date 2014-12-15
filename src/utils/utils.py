@@ -122,26 +122,33 @@ class FindVideoThread(QThread):
 
         self._cate_video_tuple_list = []
 
+    def _markPathAsVideo(self, path, findSerie):
+        self._valid_files_count += 1
+        if not self._first_video:
+            self._first_video = path
+            self.firstVideoFound.emit(path)
+
+        if findSerie:
+            serieInfo = utils.getSeriesByName(path)
+            serieInfo = json.loads(serieInfo)
+
+            cate = serieInfo["name"]
+            items = serieInfo["items"]
+
+            for item in items:
+                self._cate_video_tuple_list.append((cate, item))
+        else:
+            self._cate_video_tuple_list.append(("", path))
+
     def _process_path_list(self, pathList):
         for path in pathList:
             if utils.pathIsDir(path):
                 self._process_path_list(utils.getAllFilesInDir(path))
-            elif path not in map(lambda x: x[1], self._cate_video_tuple_list) \
-            and utils.fileIsValidVideo(path):
-                self._valid_files_count += 1
-                if not self._first_video:
-                    self._first_video = path
-                    self.firstVideoFound.emit(path)
-
-                if self._findSerie:
-                    serieInfo = utils.getSeriesByName(path)
-                    serieInfo = json.loads(serieInfo)
-
-                    cate = serieInfo["name"]
-                    items = serieInfo["items"]
-
-                    for item in items:
-                        self._cate_video_tuple_list.append((cate, item))
+            elif path not in map(lambda x: x[1], self._cate_video_tuple_list):
+                if utils.fileIsValidVideo(path):
+                    self._markPathAsVideo(path, self._findSerie)
+                elif utils.stringIsValidUri(path):
+                    self._markPathAsVideo(path, False)
             else:
                 self._invalid_files_count += 1
 
@@ -240,8 +247,7 @@ class Utils(QObject):
         allFiles = [os.path.basename(x) for x in allFiles]
         allMatches = (longest_match(x, os.path.basename(name)) for x in allFiles)
         matchesFilter = lambda x: x and x != os.path.basename(name) \
-                                    and not x[0] in "0123456789" \
-                                    and (len(x) > 5 or any(map(lambda ch: ch in x, sep_chars)))
+                                    and len(x) > 5
         filteredMatches = filter(matchesFilter, allMatches)
         nameFilter = min(filteredMatches, key=len) if filteredMatches else ""
         # can't do this here, because the following three steps relies on the
@@ -296,6 +302,10 @@ class Utils(QObject):
             else:
                 return False
         else: return False
+
+    @pyqtSlot(str, result=bool)
+    def stringIsValidUri(self, s):
+        return "://" in s
 
     @pyqtSlot(str,result=bool)
     def playlistItemValidation(self, path):

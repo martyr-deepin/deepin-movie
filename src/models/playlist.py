@@ -293,10 +293,9 @@ class Database(QObject):
             url = tuple[1]
             urlIsNativeFile = utils.urlIsNativeFile(url)
 
-            url = url.replace("file://", "")
             result = os.path.basename(url)
             itemName =  result if urlIsNativeFile else url
-            url = "file://" + url
+            if url.startswith("/"): url = "file://" + url
 
             self.addPlaylistItem(itemName, url, category)
 
