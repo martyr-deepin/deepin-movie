@@ -49,6 +49,10 @@ all_supported_video_exts = [ "*.3g2","*.3gp","*.3gp2","*.3gpp","*.amv",
 
 all_supported_mime_types = []
 sep_chars = ("-", "_", ".", " ")
+override_key_names = {
+    "PgUp": "PageUp",
+    "PgDown": "PageDown"
+}
 
 with open("/usr/share/applications/deepin-movie.desktop") as app_info:
     cp = ConfigParser()
@@ -262,13 +266,20 @@ class Utils(QObject):
 
         return json.dumps({"name":serieName, "items":result})
 
+    @pyqtSlot(str, result=str)
+    def getOverrideKeyNames(self, keyname):
+        return override_key_names.get(keyname, keyname)
+
     @pyqtSlot(int, int, str, result=bool)
     def checkKeySequenceEqual(self, modifier, key, targetKeySequence):
-        return QKeySequence(modifier + key) == QKeySequence(targetKeySequence)
+        keySequence = QKeySequence(modifier + key).toString()
+        return self.getOverrideKeyNames(keySequence) == \
+               self.getOverrideKeyNames(targetKeySequence)
 
     @pyqtSlot(int, int, result=str)
     def keyEventToQKeySequenceString(self, modifier, key):
-        return QKeySequence(modifier + key).toString()
+        keySequence = QKeySequence(modifier + key).toString()
+        return self.getOverrideKeyNames(keySequence)
 
     @pyqtSlot(str)
     def copyToClipboard(self, text):

@@ -120,7 +120,7 @@ DPreferenceWindow {
             for (var i = 0; i < keyboard_sections.length; i++) {
                 for (var j = 0; j < keyboard_sections[i].content.length; j++) {
                     var entry = keyboard_sections[i].content[j]
-                    if (entry.title != entryName && entry.hotKey && entry.hotKey == shortcut) {
+                    if (entry.title != entryName && entry.text && entry.text == shortcut) {
                         return [entry.title, keyboard_sections[i].title]
                     }
                 }
@@ -134,7 +134,7 @@ DPreferenceWindow {
             for (var i = 0; i < keyboard_sections.length; i++) {
                 for (var j = 0; j < keyboard_sections[i].content.length; j++) {
                     var entry = keyboard_sections[i].content[j]
-                    if (entry.title != entryName && entry.hotKey && entry.hotKey == shortcut) {
+                    if (entry.title != entryName && entry.text && entry.text == shortcut) {
                         entry.disableShortcut()
                     }
                 }
