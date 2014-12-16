@@ -690,6 +690,13 @@ MouseArea {
             shouldPerformClick = false
             if (resizeEdge != resize_edge.resizeNone) {
                 resize_visual.show()
+                if (player.hasVideo) {
+                    resize_visual.minimumWidth = windowView.minimumWidth
+                    resize_visual.minimumHeight = windowView.minimumHeight
+                } else {
+                    resize_visual.minimumWidth = windowView.width
+                    resize_visual.minimumHeight = windowView.height
+                }
                 resize_visual.intelligentlyResize(windowView, mouse.x, mouse.y)
             }
             else if (windowView.getState() != Qt.WindowFullScreen){

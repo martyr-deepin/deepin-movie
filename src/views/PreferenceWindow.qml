@@ -264,7 +264,7 @@ DPreferenceWindow {
             }
             HotKeyInputRow {
                 title: dsTr("Pause/Play")
-                hotKey: config.hotkeysPlayTogglePlay+"" || dsTr("Disabled")
+                hotKey: config.hotkeysPlayTogglePlay+""
                 actualSettingEntry: "hotkeysPlayTogglePlay"
 
                 onHotkeySet: {
@@ -285,7 +285,7 @@ DPreferenceWindow {
             }
             HotKeyInputRow {
                 title: dsTr("Forward")
-                hotKey: config.hotkeysPlayForward+"" || dsTr("Disabled")
+                hotKey: config.hotkeysPlayForward+""
                 actualSettingEntry: "hotkeysPlayForward"
 
                 onHotkeySet: {
@@ -306,7 +306,7 @@ DPreferenceWindow {
             }
             HotKeyInputRow {
                 title: dsTr("Rewind")
-                hotKey: config.hotkeysPlayBackward+"" || dsTr("Disabled")
+                hotKey: config.hotkeysPlayBackward+""
                 actualSettingEntry: "hotkeysPlayBackward"
 
                 onHotkeySet: {
@@ -327,7 +327,7 @@ DPreferenceWindow {
             }
             HotKeyInputRow {
                 title: dsTr("Fullscreen")
-                hotKey: config.hotkeysPlayToggleFullscreen+"" || dsTr("Disabled")
+                hotKey: config.hotkeysPlayToggleFullscreen+""
                 actualSettingEntry: "hotkeysPlayToggleFullscreen"
 
                 onHotkeySet: {
@@ -348,7 +348,7 @@ DPreferenceWindow {
             }
             HotKeyInputRow {
                 title: dsTr("Playlist")
-                hotKey: config.hotkeysPlayTogglePlaylist+"" || dsTr("Disabled")
+                hotKey: config.hotkeysPlayTogglePlaylist+""
                 actualSettingEntry: "hotkeysPlayTogglePlaylist"
 
                 onHotkeySet: {
@@ -369,7 +369,7 @@ DPreferenceWindow {
             }
             HotKeyInputRow {
                 title: dsTr("Accelerate playback")
-                hotKey: config.hotkeysPlaySpeedUp+"" || dsTr("Disabled")
+                hotKey: config.hotkeysPlaySpeedUp+""
                 actualSettingEntry: "hotkeysPlaySpeedUp"
 
                 onHotkeySet: {
@@ -390,7 +390,7 @@ DPreferenceWindow {
             }
             HotKeyInputRow {
                 title: dsTr("Decelerate playback")
-                hotKey: config.hotkeysPlaySlowDown+"" || dsTr("Disabled")
+                hotKey: config.hotkeysPlaySlowDown+""
                 actualSettingEntry: "hotkeysPlaySlowDown"
 
                 onHotkeySet: {
@@ -411,7 +411,7 @@ DPreferenceWindow {
             }
             HotKeyInputRow {
                 title: dsTr("Restore playback speed")
-                hotKey: config.hotkeysPlayRestoreSpeed+"" || dsTr("Disabled")
+                hotKey: config.hotkeysPlayRestoreSpeed+""
                 actualSettingEntry: "hotkeysPlayRestoreSpeed"
 
                 onHotkeySet: {
@@ -449,7 +449,7 @@ DPreferenceWindow {
 
             HotKeyInputRow {
                 title: dsTr("Mini mode")
-                hotKey: config.hotkeysFrameSoundToggleMiniMode+"" || dsTr("Disabled")
+                hotKey: config.hotkeysFrameSoundToggleMiniMode+""
                 actualSettingEntry: "hotkeysFrameSoundToggleMiniMode"
 
                 onHotkeySet: {
@@ -470,7 +470,7 @@ DPreferenceWindow {
             }
             HotKeyInputRow {
                 title: dsTr("Rotate counterclockwise")
-                hotKey: config.hotkeysFrameSoundRotateAnticlockwise+"" || dsTr("Disabled")
+                hotKey: config.hotkeysFrameSoundRotateAnticlockwise+""
                 actualSettingEntry: "hotkeysFrameSoundRotateAnticlockwise"
 
                 onHotkeySet: {
@@ -491,7 +491,7 @@ DPreferenceWindow {
             }
             HotKeyInputRow {
                 title: dsTr("Rotate clockwise")
-                hotKey: config.hotkeysFrameSoundRotateClockwise+"" || dsTr("Disabled")
+                hotKey: config.hotkeysFrameSoundRotateClockwise+""
                 actualSettingEntry: "hotkeysFrameSoundRotateClockwise"
 
                 onHotkeySet: {
@@ -512,7 +512,7 @@ DPreferenceWindow {
             }
             HotKeyInputRow {
                 title: dsTr("Volume up")
-                hotKey: config.hotkeysFrameSoundIncreaseVolume+"" || dsTr("Disabled")
+                hotKey: config.hotkeysFrameSoundIncreaseVolume+""
                 actualSettingEntry: "hotkeysFrameSoundIncreaseVolume"
 
                 onHotkeySet: {
@@ -533,7 +533,7 @@ DPreferenceWindow {
             }
             HotKeyInputRow {
                 title: dsTr("Volume down")
-                hotKey: config.hotkeysFrameSoundDecreaseVolume+"" || dsTr("Disabled")
+                hotKey: config.hotkeysFrameSoundDecreaseVolume+""
                 actualSettingEntry: "hotkeysFrameSoundDecreaseVolume"
 
                 onHotkeySet: {
@@ -554,7 +554,7 @@ DPreferenceWindow {
             }
             HotKeyInputRow {
                 title: dsTr("Mute")
-                hotKey: config.hotkeysFrameSoundToggleMute+"" || dsTr("Disabled")
+                hotKey: config.hotkeysFrameSoundToggleMute+""
                 actualSettingEntry: "hotkeysFrameSoundToggleMute"
 
                 onHotkeySet: {
@@ -592,7 +592,7 @@ DPreferenceWindow {
 
             HotKeyInputRow {
                 title: dsTr("Open a file")
-                hotKey: config.hotkeysFilesOpenFile+"" || dsTr("Disabled")
+                hotKey: config.hotkeysFilesOpenFile+""
                 actualSettingEntry: "hotkeysFilesOpenFile"
 
                 onHotkeySet: {
@@ -613,7 +613,7 @@ DPreferenceWindow {
             }
             HotKeyInputRow {
                 title: dsTr("Open previous")
-                hotKey: config.hotkeysFilesPlayPrevious+"" || dsTr("Disabled")
+                hotKey: config.hotkeysFilesPlayPrevious+""
                 actualSettingEntry: "hotkeysFilesPlayPrevious"
 
                 onHotkeySet: {
@@ -634,7 +634,7 @@ DPreferenceWindow {
             }
             HotKeyInputRow {
                 title: dsTr("Open next")
-                hotKey: config.hotkeysFilesPlayNext+"" || dsTr("Disabled")
+                hotKey: config.hotkeysFilesPlayNext+""
                 actualSettingEntry: "hotkeysFilesPlayNext"
 
                 onHotkeySet: {
@@ -672,7 +672,7 @@ DPreferenceWindow {
 
             HotKeyInputRow {
                 title: dsTr("Forward 0.5s")
-                hotKey: config.hotkeysSubtitlesSubtitleForward+"" || dsTr("Disabled")
+                hotKey: config.hotkeysSubtitlesSubtitleForward+""
                 actualSettingEntry: "hotkeysSubtitlesSubtitleForward"
 
                 onHotkeySet: {
@@ -693,7 +693,7 @@ DPreferenceWindow {
             }
             HotKeyInputRow {
                 title: dsTr("Delay 0.5s")
-                hotKey: config.hotkeysSubtitlesSubtitleBackward+"" || dsTr("Disabled")
+                hotKey: config.hotkeysSubtitlesSubtitleBackward+""
                 actualSettingEntry: "hotkeysSubtitlesSubtitleBackward"
 
                 onHotkeySet: {
@@ -714,7 +714,7 @@ DPreferenceWindow {
             }
             HotKeyInputRow {
                 title: dsTr("Subtitle up")
-                hotKey: config.hotkeysSubtitlesSubtitleMoveUp+"" || dsTr("Disabled")
+                hotKey: config.hotkeysSubtitlesSubtitleMoveUp+""
                 actualSettingEntry: "hotkeysSubtitlesSubtitleMoveUp"
 
                 onHotkeySet: {
@@ -735,7 +735,7 @@ DPreferenceWindow {
             }
             HotKeyInputRow {
                 title: dsTr("Subtitle down")
-                hotKey: config.hotkeysSubtitlesSubtitleMoveDown+"" || dsTr("Disabled")
+                hotKey: config.hotkeysSubtitlesSubtitleMoveDown+""
                 actualSettingEntry: "hotkeysSubtitlesSubtitleMoveDown"
 
                 onHotkeySet: {
@@ -769,7 +769,7 @@ DPreferenceWindow {
                 title: dsTr("Left click")
                 input.parentWindow: window
                 input.selectIndex: config.othersLeftClick ? 0 : 1
-                input.menu.labels: [dsTr("Pause/Play"), dsTr("Disabled")]
+                input.menu.labels: [dsTr("Pause/Play"), dsTr("None")]
 
                 onMenuSelect: config.othersLeftClick = index == 0
             }
@@ -777,7 +777,7 @@ DPreferenceWindow {
                 title: dsTr("Double click")
                 input.parentWindow: window
                 input.selectIndex: config.othersDoubleClick ? 0 : 1
-                input.menu.labels: [dsTr("Fullscreen"), dsTr("Disabled")]
+                input.menu.labels: [dsTr("Fullscreen"), dsTr("None")]
 
                 onMenuSelect: config.othersDoubleClick = index == 0
             }
@@ -785,7 +785,7 @@ DPreferenceWindow {
                 title: dsTr("Scroll")
                 input.parentWindow: window
                 input.selectIndex: config.othersWheel ? 0 : 1
-                input.menu.labels: [dsTr("Volume"), dsTr("Disabled")]
+                input.menu.labels: [dsTr("Volume"), dsTr("None")]
 
                 onMenuSelect: config.othersWheel = index == 0
             }

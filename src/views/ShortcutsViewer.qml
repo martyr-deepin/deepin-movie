@@ -44,35 +44,35 @@ DWindow {
 
                         ShortcutsLabel {
                             title: dsTr("Pause/Play")
-                            shortcut: config.hotkeysPlayTogglePlay+"" || dsTr("Disabled")
+                            shortcut: config.hotkeysPlayTogglePlay+""
                         }
                         ShortcutsLabel {
                             title: dsTr("Forward")
-                            shortcut: config.hotkeysPlayForward+"" || dsTr("Disabled")
+                            shortcut: config.hotkeysPlayForward+""
                         }
                         ShortcutsLabel {
                             title: dsTr("Rewind")
-                            shortcut: config.hotkeysPlayBackward+"" || dsTr("Disabled")
+                            shortcut: config.hotkeysPlayBackward+""
                         }
                         ShortcutsLabel {
                             title: dsTr("Fullscreen")
-                            shortcut: config.hotkeysPlayToggleFullscreen+"" || dsTr("Disabled")
+                            shortcut: config.hotkeysPlayToggleFullscreen+""
                         }
                         ShortcutsLabel {
                             title: dsTr("Playlist")
-                            shortcut: config.hotkeysPlayTogglePlaylist+"" || dsTr("Disabled")
+                            shortcut: config.hotkeysPlayTogglePlaylist+""
                         }
                         ShortcutsLabel {
                             title: dsTr("Accelerate playback")
-                            shortcut: config.hotkeysPlaySpeedUp+"" || dsTr("Disabled")
+                            shortcut: config.hotkeysPlaySpeedUp+""
                         }
                         ShortcutsLabel {
                             title: dsTr("Decelerate playback")
-                            shortcut: config.hotkeysPlaySlowDown+"" || dsTr("Disabled")
+                            shortcut: config.hotkeysPlaySlowDown+""
                         }
                         ShortcutsLabel {
                             title: dsTr("Restore playback speed")
-                            shortcut: config.hotkeysPlayRestoreSpeed+"" || dsTr("Disabled")
+                            shortcut: config.hotkeysPlayRestoreSpeed+""
                         }
                     }
 
@@ -81,15 +81,15 @@ DWindow {
 
                         ShortcutsLabel {
                             title: dsTr("Open a file")
-                            shortcut: config.hotkeysFilesOpenFile+"" || dsTr("Disabled")
+                            shortcut: config.hotkeysFilesOpenFile+""
                         }
                         ShortcutsLabel {
                             title: dsTr("Open previous")
-                            shortcut: config.hotkeysFilesPlayPrevious+"" || dsTr("Disabled")
+                            shortcut: config.hotkeysFilesPlayPrevious+""
                         }
                         ShortcutsLabel {
                             title: dsTr("Open next")
-                            shortcut: config.hotkeysFilesPlayNext+"" || dsTr("Disabled")
+                            shortcut: config.hotkeysFilesPlayNext+""
                         }
                     }
                 }
@@ -102,27 +102,27 @@ DWindow {
 
                         ShortcutsLabel {
                             title: dsTr("Mini mode")
-                            shortcut: config.hotkeysFrameSoundToggleMiniMode+"" || dsTr("Disabled")
+                            shortcut: config.hotkeysFrameSoundToggleMiniMode+""
                         }
                         ShortcutsLabel {
                             title: dsTr("Rotate counterclockwise")
-                            shortcut: config.hotkeysFrameSoundRotateAnticlockwise+"" || dsTr("Disabled")
+                            shortcut: config.hotkeysFrameSoundRotateAnticlockwise+""
                         }
                         ShortcutsLabel {
                             title: dsTr("Rotate clockwise")
-                            shortcut: config.hotkeysFrameSoundRotateClockwise+"" || dsTr("Disabled")
+                            shortcut: config.hotkeysFrameSoundRotateClockwise+""
                         }
                         ShortcutsLabel {
                             title: dsTr("Volume up")
-                            shortcut: config.hotkeysFrameSoundIncreaseVolume+"" || dsTr("Disabled")
+                            shortcut: config.hotkeysFrameSoundIncreaseVolume+""
                         }
                         ShortcutsLabel {
                             title: dsTr("Volume down")
-                            shortcut: config.hotkeysFrameSoundDecreaseVolume+"" || dsTr("Disabled")
+                            shortcut: config.hotkeysFrameSoundDecreaseVolume+""
                         }
                         ShortcutsLabel {
                             title: dsTr("Mute")
-                            shortcut: config.hotkeysFrameSoundToggleMute+"" || dsTr("Disabled")
+                            shortcut: config.hotkeysFrameSoundToggleMute+""
                         }
                     }
 
@@ -131,17 +131,17 @@ DWindow {
 
                         ShortcutsLabel {
                             title: dsTr("Left click")
-                            shortcut: config.othersLeftClick ? dsTr("Pause/Play") : dsTr("Disabled")
+                            shortcut: config.othersLeftClick ? dsTr("Pause/Play") : dsTr("None")
                         }
 
                         ShortcutsLabel {
                             title: dsTr("Double click")
-                            shortcut: config.othersDoubleClick ? dsTr("Fullscreen") : dsTr("Disabled")
+                            shortcut: config.othersDoubleClick ? dsTr("Fullscreen") : dsTr("None")
                         }
 
                         ShortcutsLabel {
                             title: dsTr("Scroll")
-                            shortcut: config.othersWheel ? dsTr("Volume") : dsTr("Disabled")
+                            shortcut: config.othersWheel ? dsTr("Volume") : dsTr("None")
                         }
                     }
                 }
@@ -151,19 +151,19 @@ DWindow {
 
                     ShortcutsLabel {
                         title: dsTr("Forward 0.5s")
-                        shortcut: config.hotkeysSubtitlesSubtitleForward+"" || dsTr("Disabled")
+                        shortcut: config.hotkeysSubtitlesSubtitleForward+""
                     }
                     ShortcutsLabel {
                         title: dsTr("Delay 0.5s")
-                        shortcut: config.hotkeysSubtitlesSubtitleBackward+"" || dsTr("Disabled")
+                        shortcut: config.hotkeysSubtitlesSubtitleBackward+""
                     }
                     ShortcutsLabel {
                         title: dsTr("Subtitle up")
-                        shortcut: config.hotkeysSubtitlesSubtitleMoveUp+"" || dsTr("Disabled")
+                        shortcut: config.hotkeysSubtitlesSubtitleMoveUp+""
                     }
                     ShortcutsLabel {
                         title: dsTr("Subtitle down")
-                        shortcut: config.hotkeysSubtitlesSubtitleMoveDown+"" || dsTr("Disabled")
+                        shortcut: config.hotkeysSubtitlesSubtitleMoveDown+""
                     }
                 }
             }

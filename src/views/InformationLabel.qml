@@ -7,6 +7,8 @@ Item {
     property string title: ""
     property string value: ""
     property alias text: txt.text
+    property alias lineHeightMode: txt.lineHeightMode
+    property alias lineHeight: txt.lineHeight
     property int implicitWidth: txt.implicitWidth
 
     Text {
