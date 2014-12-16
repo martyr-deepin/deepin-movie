@@ -102,6 +102,6 @@ Video {
         anchors.bottom: parent.bottom
         anchors.leftMargin: 20
         anchors.rightMargin: 20
-        anchors.bottomMargin: parent.subtitleVerticalPosition * (parent.height - subtitle.height)
+        anchors.bottomMargin: parent.subtitleVerticalPosition * (parent.height - subtitle.height - 30)
     }
 }
