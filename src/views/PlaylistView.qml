@@ -5,6 +5,8 @@ ListView {
     width: 300
     height: childrenRect.height
     layer.enabled: true
+    cacheBuffer: Math.max(0, contentHeight) // retains all the items, protect them from being destroied and rebuilt.
+    boundsBehavior: Flickable.StopAtBounds
 
     property var allItems: []
     property string currentPlayingSource
