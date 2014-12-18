@@ -25,7 +25,7 @@ SectionContent {
     }
 
     DssH3 {
-        text: dsTr("Version") + ":" + about.version
+        text: dsTr("Version") + dsTr(":") + about.version
         anchors.horizontalCenter: parent.horizontalCenter
     }
 
@@ -36,18 +36,38 @@ SectionContent {
         anchors.horizontalCenter: parent.horizontalCenter
     }
 
-    Text {
-        color: "#787878"
-        font.pixelSize: 10
-        width: parent.width
-        wrapMode: Text.WordWrap
-        text: dsTr("Deepin Movie is a video player designed for Linux users. It supports a variety of video formats.")
-    }
+    Column {
+        id: info_column
+        width: 338
+        height: childrenRect.height
+        anchors.horizontalCenter: parent.horizontalCenter
 
-    Text {
-        color: "#787878"
-        font.pixelSize: 10
-        text: dsTr("Deepin Movie is free software licensed under GNU GPLv3")
+        Space {
+            width: info_column.width
+            height: 3
+        }
+
+        Text {
+            color: "#606060"
+            font.pixelSize: 10
+            width: info_column.width
+            wrapMode: Text.WordWrap
+            lineHeightMode: Text.FixedHeight
+            lineHeight: 18
+            horizontalAlignment: Text.AlignHCenter
+            text: dsTr("Deepin Movie is a well-designed and full-featured video player with simple borderless design. It supports local and streaming media play with multiple video formats.")
+        }
+
+        Text {
+            color: "#606060"
+            font.pixelSize: 10
+            width: info_column.width
+            wrapMode: Text.WordWrap
+            lineHeightMode: Text.FixedHeight
+            lineHeight: 18
+            horizontalAlignment: Text.AlignHCenter
+            text: dsTr("Deepin Movie is released under GPLv3.")
+        }
     }
 
     Item {

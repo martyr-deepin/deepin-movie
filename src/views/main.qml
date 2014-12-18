@@ -141,7 +141,7 @@ Rectangle {
         id: open_url_dialog_component
 
         DInputDialog {
-            message: dsTr("Please input the url of file played") + ": "
+            message: dsTr("Please input the url of file played") + dsTr(":")
             confirmButtonLabel: dsTr("Confirm")
             cancelButtonLabel: dsTr("Cancel")
 

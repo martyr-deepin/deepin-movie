@@ -110,7 +110,7 @@ right_click_menu = [
     ("_sound", _("Sound"), (), sound_sub_menu),
     ("_subtitle", _("Subtitles"), (), subtitle_sub_menu),
     None,
-    ("_preferences", _("Options")),
+    ("_preferences", _("Settings")),
     ("_information", _("Information")),
 ]
 

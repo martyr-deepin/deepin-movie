@@ -176,7 +176,7 @@ DPreferenceWindow {
             anchors.leftMargin: 5
 
             DCheckBox {
-                text: dsTr("Enter fullscreen on opening file")
+                text: dsTr("Fullscreen on opening file")
                 checked: config.playerFullscreenOnOpenFile
                 onClicked: config.playerFullscreenOnOpenFile = checked
             }
