@@ -146,7 +146,7 @@ class FindVideoThread(QThread):
 
     def _process_path_list(self, pathList):
         for path in pathList:
-            if utils.pathIsDir(path):
+            if utils.urlIsDir(path):
                 self._process_path_list(utils.getAllFilesInDir(path))
             elif path not in map(lambda x: x[1], self._cate_video_tuple_list):
                 if utils.fileIsValidVideo(path):
@@ -202,12 +202,8 @@ class Utils(QObject):
         return os.path.expanduser("~")
 
     @pyqtSlot(str, result=bool)
-    def pathIsFile(self, path):
-        return os.path.isfile(path)
-
-    @pyqtSlot(str, result=bool)
-    def pathIsDir(self, path):
-        return os.path.isdir(path)
+    def urlIsDir(self, url):
+        return os.path.isdir(url.replace("file://", ""))
 
     @pyqtSlot(str, result=bool)
     def urlIsNativeFile(self, url):

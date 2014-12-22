@@ -81,12 +81,17 @@ Rectangle {
             shouldAutoPlayNextOnInvalidFile = false
 
             if (fileUrls.length > 0) {
+                var filePaths = []
+                for (var i = 0; i < fileUrls.length; i++) {
+                    filePaths.push(decodeURIComponent(fileUrls[i]).replace("file://", ""))
+                }
+
                 if (state == "open_video_file") {
                     _settings.lastOpenedPath = folder
-                    main_controller.playPaths(fileUrls, true)
+                    main_controller.playPaths(filePaths, true)
                 } else if (state == "open_subtitle_file") {
                     _settings.lastOpenedPath = folder
-                    var filename = fileUrls[0].toString().replace("file://", "")
+                    var filename = filePaths[0]
 
                     if (_utils.fileIsSubtitle(filename)) {
                         main_controller.setSubtitle(filename)
@@ -96,16 +101,16 @@ Rectangle {
                 } else if (state == "add_playlist_item") {
                     _settings.lastOpenedPath = folder
 
-                    main_controller.playPaths(fileUrls, false)
+                    main_controller.playPaths(filePaths, false)
                 } else if (state == "import_playlist") {
                     _settings.lastOpenedPlaylistPath = folder
 
-                    var filename = fileUrls[0].toString().replace("file://", "")
+                    var filename = filePaths[0]
                     main_controller.importPlaylistImpl(filename)
                 } else if (state == "export_playlist") {
                     _settings.lastOpenedPlaylistPath = folder
 
-                    var filename = fileUrls[0].toString().replace("file://", "")
+                    var filename = filePaths[0]
                     if (filename.toString().search(".dmpl") == -1) {
                         filename = filename + ".dmpl"
                     }
@@ -225,7 +230,7 @@ Rectangle {
         if (!config.playerApplyLastClosedSize) {
             windowView.setWidth(windowView.defaultWidth)
             windowView.setHeight(windowView.defaultHeight)
-            player.source = ""
+            main_controller.playPath("")
         }
     }
 
@@ -242,7 +247,7 @@ Rectangle {
             if (!_utils.urlIsNativeFile(pathList[i])) {
                 main_controller.addPlaylistStreamItem(pathList[i])
                 if (i == 0) {
-                    player.source = pathList[i]
+                    main_controller.playPath(pathList[i])
                     firstIsUrl = true
                 }
             } else {
@@ -357,11 +362,11 @@ Rectangle {
 
     function monitorWindowClose() {
         _utils.screenSaverUninhibit()
-        main_controller.recordVideoPosition(player.source, player.position)
-        main_controller.recordVideoRotation(player.source, player.orientation)
+        main_controller.recordVideoPosition(player.sourceString, player.position)
+        main_controller.recordVideoRotation(player.sourceString, player.orientation)
         _database.setPlaylistContentCache(playlist.getContent())
         _settings.lastWindowWidth = windowView.width
-        player.source && (_settings.lastPlayedFile = player.source)
+        player.sourceString && (_settings.lastPlayedFile = player.sourceString)
     }
 
     Timer {
@@ -440,10 +445,11 @@ Rectangle {
 
         anchors.fill: main_window
 
+        property string sourceString: ""
         // theses properties are mainly used in onStopped.
         // because we can't ensure the source and position info available every
         // time the onStopped handler executes.
-        property url lastVideoSource: ""
+        property string lastVideoSource: ""
         property int lastVideoPosition: 0
         property int lastVideoDuration: 0
 
@@ -454,11 +460,11 @@ Rectangle {
         onPlaying: {
             notifybar.hide()
             auto_play_next_on_invalid_timer.stop()
-            main_controller.setWindowTitle(_utils.getTitleFromUrl(player.source))
+            main_controller.setWindowTitle(_utils.getTitleFromUrl(player.sourceString))
 
             _utils.screenSaverInhibit()
 
-            lastVideoSource = source
+            lastVideoSource = sourceString
             lastVideoDuration = duration
 
             if (config.playerFullscreenOnOpenFile) {
@@ -498,7 +504,7 @@ Rectangle {
             resetRotationFlip()
 
             if (source.toString().trim()) {
-                _settings.lastPlayedFile = source
+                _settings.lastPlayedFile = sourceString
                 _database.appendPlayHistoryItem(source, resetPlayHistoryCursor)
                 main_controller.recordVideoPosition(lastVideoSource, lastVideoPosition)
                 resetPlayHistoryCursor = true
@@ -573,7 +579,7 @@ Rectangle {
         visible: false
         window: windowView
         maxWidth: main_window.width * 0.6
-        currentPlayingSource: player.source
+        currentPlayingSource: player.sourceString
         tooltipItem: tooltip
         canExpand: controlbar.status != "minimal"
         anchors.right: main_window.right
@@ -583,7 +589,7 @@ Rectangle {
 
         onNewSourceSelected: {
             shouldAutoPlayNextOnInvalidFile = false
-            player.source = path
+            main_controller.playPath(path)
         }
         onModeButtonClicked: _menu_controller.show_mode_menu()
         onAddButtonClicked: _menu_controller.show_add_button_menu()
@@ -628,7 +634,7 @@ Rectangle {
         dragbarVisible: root.state == "normal"
         timeInfoVisible: player.source != "" && player.hasMedia && player.duration != 0
         tooltipItem: tooltip
-        videoSource: player.source
+        videoSource: player.sourceString
 
         anchors.horizontalCenter: main_window.horizontalCenter
 

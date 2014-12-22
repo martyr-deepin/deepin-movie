@@ -30,7 +30,7 @@ MouseArea {
         target: _findVideoThreadManager
 
         onFirstVideoFound: {
-            main_controller.shouldPlayThefirst && (player.source = path)
+            main_controller.shouldPlayThefirst && main_controller.playPath(path)
         }
 
         onFindVideoDone: {
@@ -57,9 +57,9 @@ MouseArea {
         interval: 300
 
         onTriggered: {
-            var last_watched_pos = main_controller.fetchVideoPosition(player.source)
+            var last_watched_pos = main_controller.fetchVideoPosition(player.sourceString)
             if (config.playerAutoPlayFromLast
-                && _utils.urlIsNativeFile(player.source)
+                && _utils.urlIsNativeFile(player.sourceString)
                 && Math.abs(last_watched_pos - player.duration) > program_constants.videoEndsThreshold) {
                 player.seek(last_watched_pos)
             }
@@ -245,7 +245,7 @@ MouseArea {
 
     function showMainMenu() {
         var stateInfo = {
-            "videoSource": player.source.toString(),
+            "videoSource": player.sourceString,
             "hasVideo": player.hasVideo,
             "subtitleFile": _subtitle_parser.file_name,
             "subtitleVisible": player.subtitleShow,
@@ -396,12 +396,12 @@ MouseArea {
     function rotateClockwise() {
         player.rotateClockwise()
         controlbar.rotatePreviewClockwise()
-        main_controller.recordVideoRotation(player.source, player.orientation)
+        main_controller.recordVideoRotation(player.sourceString, player.orientation)
     }
     function rotateAnticlockwise() {
         player.rotateAnticlockwise()
         controlbar.rotatePreviewAntilockwise()
-        main_controller.recordVideoRotation(player.source, player.orientation)
+        main_controller.recordVideoRotation(player.sourceString, player.orientation)
     }
 
     // player control operation related
@@ -415,11 +415,11 @@ MouseArea {
         } else {
             if (_settings.lastPlayedFile) {
                 notifybar.show(dsTr("Play last movie played"))
-                player.source = _settings.lastPlayedFile
+                main_controller.playPath(_settings.lastPlayedFile)
             } else {
                 var playlistFirst = playlist.getFirst()
                 if (playlistFirst) {
-                    player.source = playlistFirst
+                    main_controller.playPath(playlistFirst)
                 } else {
                     openFile()
                 }
@@ -459,24 +459,18 @@ MouseArea {
     function backward() { backwardByDelta(Math.floor(config.playerForwardRewindStep * 1000)) }
 
     function speedUp() {
-        if (player.source.toString().search("file://") != 0) return
-
         var restoreInfo = config.hotkeysPlayRestoreSpeed+"" ? dsTr("(Press %1 to restore)").arg(config.hotkeysPlayRestoreSpeed) : ""
         player.playbackRate = Math.min(2.0, (player.playbackRate + 0.1).toFixed(1))
         notifybar.show(dsTr("Playback rate: ") + player.playbackRate + restoreInfo)
     }
 
     function slowDown() {
-        if (player.source.toString().search("file://") != 0) return
-
         var restoreInfo = config.hotkeysPlayRestoreSpeed+"" ? dsTr("(Press %1 to restore)").arg(config.hotkeysPlayRestoreSpeed) : ""
         player.playbackRate = Math.max(0.1, (player.playbackRate - 0.1).toFixed(1))
         notifybar.show(dsTr("Playback rate: ") + player.playbackRate + restoreInfo)
     }
 
     function restoreSpeed() {
-        if (player.source.toString().search("file://") != 0) return
-
         player.playbackRate = 1
         notifybar.show(dsTr("Playback rate: ") + player.playbackRate)
     }
@@ -539,15 +533,16 @@ MouseArea {
     function openFileForPlaylist() { open_file_dialog.state = "add_playlist_item"; open_file_dialog.open() }
     function openFileForSubtitle() { open_file_dialog.state = "open_subtitle_file"; open_file_dialog.open() }
 
+    // To ensure that all the sources passed to player is a url other than a string.
+    function playPath(path) {
+        player.sourceString = path
+        player.source = encodeURIComponent(path)
+    }
+
     // playPaths is not quit perfect here, whether the play operation will
     // be performed is decided by the playFirst parameter.
     function playPaths(pathList, playFirst) {
-        var paths = []
-        for (var i = 0; i < pathList.length; i++) {
-            var file_path = pathList[i].toString().replace("file://", "")
-            file_path = decodeURIComponent(file_path)
-            paths.push(file_path)
-        }
+        var paths = pathList
 
         if (paths.length > 0 && playFirst
             && config.playerCleanPlaylistOnOpenNewFile) {
@@ -555,7 +550,7 @@ MouseArea {
         }
 
         if (paths.length == 1 &&
-            !_utils.pathIsDir(paths[0]) &&
+            !_utils.urlIsDir(paths[0]) &&
             !_utils.fileIsValidVideo(paths[0]) &&
             !_utils.stringIsValidUri(paths[0]))
         {
@@ -582,7 +577,7 @@ MouseArea {
             next = playlist.getNextSourceCycle(file)
         }
 
-        next ? (player.source = next) : root.reset()
+        next ? main_controller.playPath(next) : root.reset()
     }
 
     function playPreviousOf(file) {
@@ -600,7 +595,7 @@ MouseArea {
             next = playlist.getPreviousSourceCycle(file)
         }
 
-        next ? (player.source = next) : root.reset()
+        next ? main_controller.playPath(next) : root.reset()
     }
 
     function playNext() {
@@ -612,11 +607,11 @@ MouseArea {
             next = playlist.getNextSourceCycle(_settings.lastPlayedFile)
         }
 
-        next ? (player.source = next) : root.reset()
+        next ? main_controller.playPath(next) : root.reset()
     }
     function playPrevious() {
         player.resetPlayHistoryCursor = false
-        player.source = _database.playHistoryGetPrevious()
+        main_controller.playPath(_database.playHistoryGetPrevious())
     }
 
     function importPlaylist() { open_file_dialog.state = "import_playlist"; open_file_dialog.open() }
@@ -781,15 +776,19 @@ MouseArea {
 
         onDropped: {
             shouldAutoPlayNextOnInvalidFile = false
-
             var dragInPlaylist = drag.x > parent.width - program_constants.playlistWidth
 
-            if (drop.urls.length == 1) {
-                var file_path = decodeURIComponent(drop.urls[0].toString().replace("file://", ""))
+            var filePaths = []
+            for (var i = 0; i < drop.urls.length; i++) {
+                filePaths.push(decodeURIComponent(drop.urls[i]).replace("file://", ""))
+            }
+
+            if (filePaths.length == 1) {
+                var file_path = filePaths[0]
                 if (dragInPlaylist) {
                     main_controller.playPaths([file_path], false)
                 } else {
-                    if (_utils.pathIsDir(file_path)) {
+                    if (_utils.urlIsDir(file_path)) {
                         main_controller.playPaths([file_path], true)
                     } else if (_utils.fileIsValidVideo(file_path)) {
                         main_controller.playPaths([file_path], true)
@@ -800,7 +799,7 @@ MouseArea {
                     }
                 }
             } else {
-                main_controller.playPaths(drop.urls, !dragInPlaylist)
+                main_controller.playPaths(filePaths, !dragInPlaylist)
             }
         }
     }
