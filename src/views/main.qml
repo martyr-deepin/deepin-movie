@@ -25,6 +25,11 @@ Rectangle {
         return Qt.rect(0, 0, Screen.desktopAvailableWidth, Screen.desktopAvailableHeight)
     }
 
+    // Used to check wether the player is stopped by the app or by the user,
+    // if it is the user that stopped the player, we'll not play it automatically.
+    property bool videoStoppedByAppFlag: false
+    property bool videoFullscreenByAppFlag: false
+
     // properties that used as ids
     property alias tooltip: tooltip_loader.item
     property alias open_file_dialog: open_file_dialog_loader.item
@@ -395,9 +400,6 @@ Rectangle {
         showControls()
     }
 
-    // To check wether the player is stopped by the app or by the user
-    // if it is ther user that stopped the player, we'll not play it automatically.
-    property bool videoStoppedByAppFlag: false
     function monitorWindowState(state) {
         titlebar.windowNormalState = (state == Qt.WindowNoState)
         titlebar.windowFullscreenState = (state == Qt.WindowFullScreen)
@@ -534,7 +536,13 @@ Rectangle {
 
             lastVideoSource = source
             lastVideoDuration = duration
-            if (config.playerFullscreenOnOpenFile) main_controller.fullscreen()
+
+            if (config.playerFullscreenOnOpenFile) {
+                main_controller.fullscreen()
+                root.videoFullscreenByAppFlag = true
+            } else if (root.videoFullscreenByAppFlag) {
+                main_controller.quitFullscreen()
+            }
         }
 
         onStopped: {

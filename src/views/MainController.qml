@@ -267,6 +267,7 @@ MouseArea {
     function fullscreen() {
         fullscreenFromMaximum = (windowView.getState() == Qt.WindowMaximized)
         windowView.showFullScreen()
+        root.videoStoppedByAppFlag = false
 
         quitMiniMode()
     }
