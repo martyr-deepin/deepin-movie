@@ -58,8 +58,7 @@ app.setQuitOnLastWindowClosed(True)
 
 from views.window import Window
 from views.subtitles import Parser
-from models.database import database
-from models.playlist import database as database_new
+from models.playlist import database
 from utils.config import config
 from utils.dmsettings import DMSettings
 # TODO: utils module structure sucks
@@ -97,7 +96,7 @@ if __name__ == "__main__":
     qml_context.setContextProperty("_findVideoThreadManager",
         findVideoThreadManager)
     qml_context.setContextProperty("_file_monitor", file_monitor)
-    qml_context.setContextProperty("_database", database_new)
+    qml_context.setContextProperty("_database", database)
     qml_context.setContextProperty("windowView", windowView)
     qml_context.setContextProperty("_subtitle_parser", subtitleParser)
     qml_context.setContextProperty("_menu_controller", menu_controller)

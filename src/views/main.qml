@@ -33,11 +33,6 @@ Rectangle {
 
     // properties that used as ids
     property alias tooltip: tooltip_loader.item
-    property alias open_file_dialog: open_file_dialog_loader.item
-    property alias open_folder_dialog: open_folder_dialog_loader.item
-    property alias open_url_dialog: open_url_dialog_loader.item
-    property alias info_window: info_window_loader.item
-    property alias preference_window: preference_window_loader.item
     property alias shortcuts_viewer: shortcuts_viewer_loader.item
 
     states: [
@@ -72,124 +67,112 @@ Rectangle {
 
     Constants { id: program_constants }
 
+    PreferenceWindow { id: preference_window }
+    InformationWindow {
+        id: info_window
+        onCopyToClipboard: _utils.copyToClipboard(text)
+    }
+
+    OpenFileDialog {
+        id: open_file_dialog
+        modality: Qt.ApplicationModal
+        transientParent: windowView
+        onAccepted: {
+            shouldAutoPlayNextOnInvalidFile = false
+
+            if (fileUrls.length > 0) {
+                if (state == "open_video_file") {
+                    _settings.lastOpenedPath = folder
+                    main_controller.playPaths(fileUrls, true)
+                } else if (state == "open_subtitle_file") {
+                    _settings.lastOpenedPath = folder
+                    var filename = fileUrls[0].toString().replace("file://", "")
+
+                    if (_utils.fileIsSubtitle(filename)) {
+                        main_controller.setSubtitle(filename)
+                    } else {
+                        notifybar.show(dsTr("Invalid file") + ": " + filename)
+                    }
+                } else if (state == "add_playlist_item") {
+                    _settings.lastOpenedPath = folder
+
+                    main_controller.playPaths(fileUrls, false)
+                } else if (state == "import_playlist") {
+                    _settings.lastOpenedPlaylistPath = folder
+
+                    var filename = fileUrls[0].toString().replace("file://", "")
+                    main_controller.importPlaylistImpl(filename)
+                } else if (state == "export_playlist") {
+                    _settings.lastOpenedPlaylistPath = folder
+
+                    var filename = fileUrls[0].toString().replace("file://", "")
+                    if (filename.toString().search(".dmpl") == -1) {
+                        filename = filename + ".dmpl"
+                    }
+                    main_controller.exportPlaylistImpl(filename)
+                }
+            }
+        }
+    }
+
+    OpenFolderDialog {
+        id: open_folder_dialog
+        modality: Qt.ApplicationModal
+        transientParent: windowView
+        folder: _settings.lastOpenedPath || _utils.homeDir
+
+        property bool playFirst: true
+
+        onAccepted: {
+            shouldAutoPlayNextOnInvalidFile = false
+
+            var folderPath = fileUrl.toString()
+            _settings.lastOpenedPath = folder // record last opened path
+            main_controller.playPaths([folderPath], playFirst)
+        }
+    }
+
+    DInputDialog {
+        id: open_url_dialog
+        message: dsTr("Please input the url of file played") + dsTr(":")
+        confirmButtonLabel: dsTr("Confirm")
+        cancelButtonLabel: dsTr("Cancel")
+
+        cursorPosGetter: windowView
+
+        property string lastInput: ""
+
+        function open() {
+            x = windowView.x + (windowView.width - width) / 2
+            y = windowView.y + (windowView.height - height) / 2
+            show()
+        }
+
+        onConfirmed: {
+            var input = input.trim()
+
+            if (input.search("://") == -1) {
+                notifybar.show(dsTr("The parse failed"))
+            } else if (input != player.source) {
+                if (config.playerCleanPlaylistOnOpenNewFile) {
+                    main_controller.clearPlaylist()
+                }
+                shouldAutoPlayNextOnInvalidFile = false
+                main_controller.playPaths([input], true)
+            }
+
+            lastInput = input
+        }
+
+        onVisibleChanged: { if(visible) forceFocus() }
+    }
+
     Component {
         id: tooltip_component
 
         ToolTip {
             window: windowView
             screenSize: primaryRect
-        }
-    }
-
-    Component {
-        id: open_file_dialog_component
-
-        OpenFileDialog {
-            onAccepted: {
-                shouldAutoPlayNextOnInvalidFile = false
-
-                if (fileUrls.length > 0) {
-                    if (state == "open_video_file") {
-                        _settings.lastOpenedPath = folder
-                        main_controller.playPaths(fileUrls, true)
-                    } else if (state == "open_subtitle_file") {
-                        _settings.lastOpenedPath = folder
-                        var filename = fileUrls[0].toString().replace("file://", "")
-
-                        if (_utils.fileIsSubtitle(filename)) {
-                            main_controller.setSubtitle(filename)
-                        } else {
-                            notifybar.show(dsTr("Invalid file") + ": " + filename)
-                        }
-                    } else if (state == "add_playlist_item") {
-                        _settings.lastOpenedPath = folder
-
-                        main_controller.playPaths(fileUrls, false)
-                    } else if (state == "import_playlist") {
-                        _settings.lastOpenedPlaylistPath = folder
-
-                        var filename = fileUrls[0].toString().replace("file://", "")
-                        main_controller.importPlaylistImpl(filename)
-                    } else if (state == "export_playlist") {
-                        _settings.lastOpenedPlaylistPath = folder
-
-                        var filename = fileUrls[0].toString().replace("file://", "")
-                        if (filename.toString().search(".dmpl") == -1) {
-                            filename = filename + ".dmpl"
-                        }
-                        main_controller.exportPlaylistImpl(filename)
-                    }
-                }
-            }
-        }
-    }
-
-    Component {
-        id: open_folder_dialog_component
-        OpenFolderDialog {
-            folder: _settings.lastOpenedPath || _utils.homeDir
-
-            property bool playFirst: true
-
-            onAccepted: {
-                shouldAutoPlayNextOnInvalidFile = false
-
-                var folderPath = fileUrl.toString()
-                _settings.lastOpenedPath = folder // record last opened path
-                main_controller.playPaths([folderPath], playFirst)
-            }
-        }
-    }
-
-    Component {
-        id: open_url_dialog_component
-
-        DInputDialog {
-            message: dsTr("Please input the url of file played") + dsTr(":")
-            confirmButtonLabel: dsTr("Confirm")
-            cancelButtonLabel: dsTr("Cancel")
-
-            cursorPosGetter: windowView
-
-            property string lastInput: ""
-
-            function open() {
-                x = windowView.x + (windowView.width - width) / 2
-                y = windowView.y + (windowView.height - height) / 2
-                show()
-            }
-
-            onConfirmed: {
-                var input = input.trim()
-
-                if (input.search("://") == -1) {
-                    notifybar.show(dsTr("The parse failed"))
-                } else if (input != player.source) {
-                    if (config.playerCleanPlaylistOnOpenNewFile) {
-                        main_controller.clearPlaylist()
-                    }
-                    shouldAutoPlayNextOnInvalidFile = false
-                    main_controller.playPaths([input], true)
-                }
-
-                lastInput = input
-            }
-
-            onVisibleChanged: { if(visible) forceFocus() }
-        }
-    }
-
-    Component {
-        id: preference_window_component
-
-        PreferenceWindow {}
-    }
-
-    Component {
-        id: info_window_component
-
-        InformationWindow {
-            onCopyToClipboard: _utils.copyToClipboard(text)
         }
     }
 
@@ -206,36 +189,6 @@ Rectangle {
         id: tooltip_loader
         asynchronous: true
         sourceComponent: tooltip_component
-    }
-
-    Loader {
-        id: open_file_dialog_loader
-        asynchronous: true
-        sourceComponent: open_file_dialog_component
-    }
-
-    Loader {
-        id: open_folder_dialog_loader
-        asynchronous: true
-        sourceComponent: open_folder_dialog_component
-    }
-
-    Loader {
-        id: open_url_dialog_loader
-        asynchronous: true
-        sourceComponent: open_url_dialog_component
-    }
-
-    Loader {
-        id: preference_window_loader
-        asynchronous: true
-        sourceComponent: preference_window_component
-    }
-
-    Loader {
-        id: info_window_loader
-        asynchronous: true
-        sourceComponent:  info_window_component
     }
 
     Loader {
@@ -311,9 +264,18 @@ Rectangle {
         hide_controls_timer.stop()
     }
 
+    // handle transient windows state
     function hideTransientWindows() {
         shortcuts_viewer.hide()
         resize_visual.hide()
+    }
+
+    function anyTransientWindowVisible() {
+        return info_window.visible
+               || preference_window.visible
+               || open_file_dialog.visible
+               || open_folder_dialog.visible
+               || open_url_dialog.visible
     }
 
     function subtitleVisible() {
@@ -427,7 +389,7 @@ Rectangle {
             if (!mouseInControlsArea() && player.source && player.hasVideo) {
                 hideControls()
 
-                if (player.playbackState == MediaPlayer.PlayingState) {
+                if (player.playbackState == MediaPlayer.PlayingState && !anyTransientWindowVisible()) {
                     windowView.setCursorVisible(false)
                 }
             } else {
