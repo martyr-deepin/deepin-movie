@@ -1,6 +1,7 @@
 import QtQuick 2.1
 import QtAV 1.4
 import QtGraphicalEffects 1.0
+import "sources/ui_utils.js" as UIUtils
 
 RectWithCorner {
     id: preview
@@ -34,7 +35,7 @@ RectWithCorner {
 
     function seek(percentage) {
         video_preview.timestamp = Math.floor(player.duration * percentage)
-        videoTime.text = formatTime(player.duration * percentage)
+        videoTime.text = UIUtils.formatTime(player.duration * percentage)
     }
 
     function flipHorizontal() {

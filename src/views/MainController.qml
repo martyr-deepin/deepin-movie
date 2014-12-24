@@ -1,6 +1,7 @@
 import QtQuick 2.1
 import QtAV 1.4
 import "../controllers"
+import "sources/ui_utils.js" as UIUtils
 
 MouseArea {
     id: mouse_area
@@ -439,7 +440,7 @@ MouseArea {
         player.seek(player.position + delta)
         var percentage = Math.floor(player.position / (player.duration + 1) * 100)
         var percentageInfo = player.duration != 0 ? " (%1%)".arg(percentage) : ""
-        notifybar.show(dsTr("Forward") + ": " + formatTime(player.position) + percentageInfo)
+        notifybar.show(dsTr("Forward") + ": " + UIUtils.formatTime(player.position) + percentageInfo)
         player.playbackRate = tempRate
     }
 
@@ -449,7 +450,7 @@ MouseArea {
         player.seek(player.position - delta)
         var percentage = Math.floor(player.position / (player.duration + 1) * 100)
         var percentageInfo = player.duration != 0 ? " (%1%)".arg(percentage) : ""
-        notifybar.show(dsTr("Rewind") + ": " + formatTime(player.position) + percentageInfo)
+        notifybar.show(dsTr("Rewind") + ": " + UIUtils.formatTime(player.position) + percentageInfo)
         player.playbackRate = tempRate
     }
 

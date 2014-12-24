@@ -1,5 +1,6 @@
 import QtQuick 2.1
 import Deepin.Widgets 1.0
+import "sources/ui_utils.js" as UIUtils
 
 Rectangle {
     id: playlistPanel
@@ -174,7 +175,7 @@ Rectangle {
             }
         }
         onPositionChanged: {
-            if (inRectCheck(mouse, Qt.rect(0, 0, width, 30))) {
+            if (UIUtils.inRectCheck(mouse, Qt.rect(0, 0, width, 30))) {
                 playlistPanel.moveInWindowButtons()
             } else {
                 playlistPanel.moveOutWindowButtons()

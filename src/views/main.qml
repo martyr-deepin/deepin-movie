@@ -5,6 +5,7 @@ import QtQuick.Window 2.1
 import Deepin.Locale 1.0
 import Deepin.Widgets 1.0
 import "../controllers"
+import "sources/ui_utils.js" as UIUtils
 
 Rectangle {
     id: root
@@ -277,39 +278,6 @@ Rectangle {
 
     function miniModeState() { return windowView.width == program_constants.miniModeWidth }
 
-    function formatTime(millseconds) {
-        if (millseconds <= 0) return "00:00:00";
-        var secs = Math.ceil(millseconds / 1000)
-        var hr = Math.floor(secs / 3600);
-        var min = Math.floor((secs - (hr * 3600))/60);
-        var sec = secs - (hr * 3600) - (min * 60);
-
-        if (hr < 10) {hr = "0" + hr; }
-        if (min < 10) {min = "0" + min;}
-        if (sec < 10) {sec = "0" + sec;}
-        if (!hr) {hr = "00";}
-        return hr + ':' + min + ':' + sec;
-    }
-
-    function formatSize(capacity) {
-        var teras = capacity / (1024 * 1024 * 1024 * 1024)
-        capacity = capacity % (1024 * 1024 * 1024 * 1024)
-        var gigas = capacity / (1024 * 1024 * 1024)
-        capacity = capacity % (1024 * 1024 * 1024)
-        var megas = capacity / (1024 * 1024)
-        capacity = capacity % (1024 * 1024)
-        var kilos = capacity / 1024
-
-        return Math.floor(teras) ? teras.toFixed(1) + "TB" :
-                Math.floor(gigas) ? gigas.toFixed(1) + "GB":
-                Math.floor(megas) ? megas.toFixed(1) + "MB" :
-                kilos + "KB"
-    }
-
-    function formatFilePath(file_path) {
-        return file_path.indexOf("file://") != -1 ? file_path.substring(7) : file_path
-    }
-
     // this function share the same name with one function in MainController,
     // but this function is mainly used to expose the dbus interface, tanslating
     // the dbus arguments into the ones that its namesake can understand.
@@ -356,17 +324,11 @@ Rectangle {
         player.subtitleShow = visible;
     }
 
-    // Utils functions
-    function inRectCheck(point, rect) {
-        return rect.x <= point.x && point.x <= rect.x + rect.width &&
-        rect.y <= point.y && point.y <= rect.y + rect.height
-    }
-
     function mouseInControlsArea() {
         var mousePos = windowView.getCursorPos()
-        var mouseInTitleBar = inRectCheck(Qt.point(mousePos.x - windowView.x, mousePos.y - windowView.y),
+        var mouseInTitleBar = UIUtils.inRectCheck(Qt.point(mousePos.x - windowView.x, mousePos.y - windowView.y),
                                             Qt.rect(0, 0, main_window.width, titlebar.height))
-        var mouseInControlBar = inRectCheck(Qt.point(mousePos.x - windowView.x, mousePos.y - windowView.y),
+        var mouseInControlBar = UIUtils.inRectCheck(Qt.point(mousePos.x - windowView.x, mousePos.y - windowView.y),
                                             Qt.rect(0, main_window.height - controlbar.height,
                                                     main_window.width, controlbar.height))
 
@@ -375,14 +337,14 @@ Rectangle {
 
     function mouseInPlaylistArea() {
         var mousePos = windowView.getCursorPos()
-        return playlist.expanded && inRectCheck(Qt.point(mousePos.x - windowView.x, mousePos.y - windowView.y),
+        return playlist.expanded && UIUtils.inRectCheck(Qt.point(mousePos.x - windowView.x, mousePos.y - windowView.y),
                                             Qt.rect(main_window.width - program_constants.playlistWidth, 0,
                                                 program_constants.playlistWidth, main_window.height))
     }
 
     function mouseInPlaylistTriggerArea() {
         var mousePos = windowView.getCursorPos()
-        return !playlist.expanded && inRectCheck(Qt.point(mousePos.x - windowView.x, mousePos.y - windowView.y),
+        return !playlist.expanded && UIUtils.inRectCheck(Qt.point(mousePos.x - windowView.x, mousePos.y - windowView.y),
                                             Qt.rect(main_window.width - program_constants.playlistTriggerThreshold, titlebar.height,
                                                     program_constants.playlistTriggerThreshold + 10, main_window.height - controlbar.height))
     }

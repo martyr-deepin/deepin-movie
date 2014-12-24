@@ -1,4 +1,5 @@
 import QtQuick 2.1
+import "sources/ui_utils.js" as UIUtils
 
 ListView {
     id: playlist
@@ -11,6 +12,7 @@ ListView {
     property var allItems: []
     property string currentPlayingSource
     property var root
+    property int lineHeight: 24
     // isSelected is determined by its children
     property bool isSelected: false
     property url clickedOnItemUrl
@@ -134,7 +136,6 @@ ListView {
     function moveItem(from, to) {
         model.move(from, to, 1)
         allItems.splice(to, 0, allItems.splice(from, 1)[0])
-        root.itemMoved(from, to)
     }
 
     function contains(url) {
@@ -206,22 +207,6 @@ ListView {
         return item1.y > item2.y ? 1 : -1
     }
 
-    // Rectangle {
-    //  id: sep
-    //  visible: false
-    //  width: 1
-    //  height: parent.width
-    //  rotation: -90
-    //  transformOrigin: Item.TopLeft
-    //  gradient: Gradient {
-    //      GradientStop { position: 0.0; color: Qt.rgba(1, 1, 1, 0.0)}
-    //      GradientStop { position: 0.3; color: Qt.rgba(1, 1, 1, 1.0)}
-    //      GradientStop { position: 0.5; color: Qt.rgba(1, 1, 1, 1.0)}
-    //      GradientStop { position: 0.7; color: Qt.rgba(1, 1, 1, 1.0)}
-    //      GradientStop { position: 1.0; color: Qt.rgba(1, 1, 1, 0.0)}
-    //  }
-    // }
-
     model: ListModel{}
     delegate: Component {
         Column {
@@ -239,6 +224,11 @@ ListView {
             property bool isHover: mouse_area.containsMouse
             onIsSelectedChanged: column.ListView.view.isSelected = isSelected
 
+            property color normalColor: "#9F9F9F"
+            property color hoverColor: "#FFFFFF"
+            property color selectedColor: "#00B1FF"
+            property color missingColor: "#4f4f50"
+
             property int lastY: y
             onYChanged: {
                 if (mouse_area.drag.active) {
@@ -248,11 +238,6 @@ ListView {
                             if (listView.allItems[i].y < y + height
                                 && y + height < listView.allItems[i].y + listView.allItems[i].height)
                             {
-                                // sep.parent = parent
-                                // sep.x = parent.x
-                                // sep.y = listView.allItems[i].y + listView.allItems[i].height
-                                // sep.visible = true
-
                                 if (listView.allItems[i].isGroup) {
                                     if (listView.allItems[i].y > y) {
                                         listView.allItems[i].y -= height
@@ -265,11 +250,6 @@ ListView {
                             if (listView.allItems[i].y < y
                                 && y < listView.allItems[i].y + listView.allItems[i].height)
                             {
-                                // sep.parent = parent
-                                // sep.x = parent.x
-                                // sep.y = listView.allItems[i].y + listView.allItems[i].height
-                                // sep.visible = true
-
                                 if (listView.allItems[i].isGroup) {
                                     if (listView.allItems[i].y + listView.allItems[i].height < y + height) {
                                         listView.allItems[i].y += height
@@ -305,23 +285,21 @@ ListView {
                         column.ListView.view.model.remove(index, 1)
                     }
                 }
-                onFileMissing: if (playlist._urlEqual(propUrl, url)) name.color = "#4f4f50"
+                onFileMissing: if (playlist._urlEqual(propUrl, url)) name.color = column.missingColor
                 onFileBack: if (playlist._urlEqual(propUrl, url)) name.color = Qt.binding(getTextColor)
             }
 
             function getTextColor() {
-                if (column.isSelected) {
-                    return column.isGroup ? "#8853B6F5" : "#53B6F5"
-                } else if (column.isHover) {
-                    return "#FFFFFF"
+                if (!column.isGroup && !_file_monitor.addFile(propUrl)) {
+                    return missingColor
                 } else {
-                    return "#9F9F9F"
+                    return column.isSelected ? column.selectedColor : column.isHover ? column.hoverColor : column.normalColor
                 }
             }
 
             Item {
                 width: column.width
-                height: 24
+                height: column.ListView.view.lineHeight
 
                 Timer {
                     id: show_tooltip_timer
@@ -345,7 +323,6 @@ ListView {
                         onActiveChanged: {
                             if (drag.active) return
 
-                            // sep.visible = false
                             var listView = column.ListView.view
                             var origInx = index
                             listView.allItems.sort(listView._sortFuncY)
@@ -355,29 +332,52 @@ ListView {
                     }
 
                     onEntered: {
+                        delete_button.source = "image/delete_normal.png"
                         delete_button.visible = true
-                        delete_button.source = "image/delete_hover.png"
                         show_tooltip_timer.restart()
                     }
                     onExited: {
                         tooltip.hideTip()
                         delete_button.visible = false
-                        delete_button.source = "image/delete_normal.png"
+                    }
+                    onPositionChanged: {
+                        var delete_button_area = Qt.rect(delete_button.x, delete_button.y, delete_button.width, delete_button.height)
+
+                        if (UIUtils.inRectCheck(mouse, delete_button_area)) {
+                            delete_button.source = "image/delete_hover_press.png"
+                        } else {
+                            delete_button.source = "image/delete_normal.png"
+                        }
                     }
                     onClicked: {
-                        if (mouse.button == Qt.RightButton) {
-                            column.ListView.view.root.clickedOnItemUrl = propUrl
-                            column.ListView.view.root.clickedOnItemName = propName
-                            _menu_controller.show_playlist_menu(propUrl, column.ListView.view.root.isEmpty())
-                        } else {
+                        var delete_button_area = Qt.rect(delete_button.x, delete_button.y, delete_button.width, delete_button.height)
+
+                        if (UIUtils.inRectCheck(mouse, delete_button_area)) {
                             if (column.isGroup) {
-                                sub.visible = !sub.visible
+                                column.ListView.view.root.removeGroup(column.propName)
+                            } else {
+                                column.ListView.view.root.removeItem(column.propUrl)
+                            }
+
+                        } else {
+                            if (mouse.button == Qt.RightButton) {
+                                column.ListView.view.root.clickedOnItemUrl = propUrl
+                                column.ListView.view.root.clickedOnItemName = propName
+                                _menu_controller.show_playlist_menu(propUrl, column.ListView.view.root.isEmpty())
+                            } else {
+                                if (column.isGroup) {
+                                    sub.visible = !sub.visible
+                                }
                             }
                         }
                     }
                     onDoubleClicked: {
-                        if(!column.isGroup && !column.isSelected){
-                            column.ListView.view.root.newSourceSelected(propUrl)
+                        var delete_button_area = Qt.rect(delete_button.x, delete_button.y, delete_button.width, delete_button.height)
+
+                        if (!UIUtils.inRectCheck(mouse, delete_button_area)) {
+                            if(!column.isGroup && !column.isSelected && _file_monitor.addFile(propUrl)){
+                                column.ListView.view.root.newSourceSelected(propUrl)
+                            }
                         }
                     }
                 }
@@ -403,8 +403,8 @@ ListView {
                     width: parent.width - expand_button.width - anchors.leftMargin - anchors.rightMargin - delete_button.width
                     text: itemName
                     elide: Text.ElideRight
-                    font.pixelSize: 14
-                    color: column.isGroup ? getTextColor() : _file_monitor.addFile(propUrl) ? getTextColor() : "#4f4f50"
+                    font.pixelSize: 12
+                    color: getTextColor()
 
                     anchors.left: expand_button.right
                     anchors.leftMargin: 6
@@ -420,21 +420,6 @@ ListView {
 
                     anchors.right: parent.right
                     anchors.verticalCenter: parent.verticalCenter
-
-                    MouseArea {
-                        anchors.fill: parent
-
-                        onClicked: {
-                            if (column.isGroup) {
-                                column.ListView.view.root.removeGroup(column.propName)
-                            } else {
-                                column.ListView.view.root.removeItem(column.propUrl)
-                            }
-                        }
-
-                        onPressed: delete_button.source = "image/delete_pressed.png"
-                        onReleased: delete_button.source = "image/delete_hover.png"
-                    }
                 }
             }
 
@@ -447,10 +432,11 @@ ListView {
                 source: "PlaylistView.qml"
                 asynchronous: true
                 onLoaded: {
+                    item.lineHeight = 20
                     item.root = column.ListView.view.root
                     item.model = column.propChild
                     // item.width = Qt.binding(column.width - sub.x)
-                    item.currentPlayingSource = Qt.binding(function () {return column.ListView.view.currentPlayingSource})
+                    item.currentPlayingSource = Qt.binding(function () { return column.ListView.view.currentPlayingSource })
                 }
             }
         }

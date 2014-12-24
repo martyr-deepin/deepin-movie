@@ -2,6 +2,7 @@ import QtQuick 2.1
 import QtAV 1.4
 import QtGraphicalEffects 1.0
 import Deepin.Widgets 1.0
+import "sources/ui_utils.js" as UIUtils
 
 DragableArea {
     id: control_bar
@@ -205,8 +206,8 @@ DragableArea {
 
                 Text {
                     id: playTime
-                    text: formatTime(control_bar.percentage * controlbar.videoPlayer.duration)
-                            + " / " + formatTime(controlbar.videoPlayer.duration)
+                    text: UIUtils.formatTime(control_bar.percentage * controlbar.videoPlayer.duration)
+                            + " / " + UIUtils.formatTime(controlbar.videoPlayer.duration)
                     color: Qt.rgba(1, 1, 1, 0.7)
                     font.pixelSize: 12
 
