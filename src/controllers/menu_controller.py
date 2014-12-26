@@ -416,8 +416,8 @@ class MenuController(QObject):
             len(subtitles) != 0
         self.menu.getItemById("_subtitle_choose").setSubMenu(Menu(subtitles))
 
-        self.menu.getItemById("_fullscreen_quit").text = _("Fullscreen") if \
-            isFullscreen else _("Exit fullscreen")
+        self.menu.getItemById("_fullscreen_quit").text = _("Exit fullscreen") if \
+            isFullscreen else _("Fullscreen")
         self.menu.getItemById("_mini_mode").text = _("Exit mini mode") if \
             isMiniMode else _("Mini mode")
 
