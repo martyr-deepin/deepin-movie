@@ -96,7 +96,7 @@ Rectangle {
                     if (_utils.fileIsSubtitle(filename)) {
                         main_controller.setSubtitle(filename)
                     } else {
-                        notifybar.show(dsTr("Invalid file") + ": " + filename)
+                        main_controller.notifyInvalidFile(filename)
                     }
                 } else if (state == "add_playlist_item") {
                     _settings.lastOpenedPath = folder
@@ -527,22 +527,24 @@ Rectangle {
         }
 
         onErrorChanged: {
-            print(error)
-            print(errorString)
-            // if (movieInfo.movie_file.toString() == open_url_dialog.lastInput.toString())
-            // {
-            //     playlist.removeItem(source)
-            // }
+            print(error, errorString)
+            switch(error) {
+                case MediaPlayer.NetworkError:
+                case MediaPlayer.FormatError:
+                case MediaPlayer.ResourceError: {
+                    if (player.sourceString == open_url_dialog.lastInput.trim())
+                    {
+                        playlist.removeItem(sourceString)
+                        open_url_dialog.lastInput = ""
+                    }
 
-            // switch(error) {
-            //     case MediaPlayer.NetworkError:
-            //     case MediaPlayer.FormatError:
-            //     case MediaPlayer.ResourceError:
-            //     movieInfo.fileInvalid()
-            //     break
-            // }
-
-            // open_url_dialog.lastInput = ""
+                    main_controller.notifyInvalidFile(sourceString)
+                    if (root.shouldAutoPlayNextOnInvalidFile) {
+                        main_controller.playNextOf(sourceString)
+                    }
+                }
+                break
+            }
         }
     }
 

@@ -11,7 +11,7 @@ Rectangle {
     property string tabId: "local"
     property bool expanded: width == program_constants.playlistWidth
     property bool canExpand: true
-    property url currentPlayingSource
+    property string currentPlayingSource
     property url clickedOnItemUrl: playlist.clickedOnItemUrl
     property string clickedOnItemName: playlist.clickedOnItemName
     property int maxWidth: program_constants.playlistWidth

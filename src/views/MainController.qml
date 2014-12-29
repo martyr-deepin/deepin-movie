@@ -256,6 +256,10 @@ MouseArea {
         _menu_controller.show_menu(JSON.stringify(stateInfo))
     }
 
+    function notifyInvalidFile(file) {
+        notifybar.show(dsTr("Invalid file") + dsTr(":") + " " + file)
+    }
+
     function close() {
         windowView.close()
     }
@@ -535,8 +539,8 @@ MouseArea {
 
     // To ensure that all the sources passed to player is a url other than a string.
     function playPath(path) {
-        player.sourceString = path
-        player.source = encodeURIComponent(path)
+        player.sourceString = path.trim()
+        player.source = path[0] == "/" ? encodeURIComponent(path) : path
     }
 
     // playPaths is not quit perfect here, whether the play operation will
@@ -554,7 +558,7 @@ MouseArea {
             !_utils.fileIsValidVideo(paths[0]) &&
             !_utils.stringIsValidUri(paths[0]))
         {
-            notifybar.show(dsTr("Invalid file") + ": " + paths[0])
+            main_controller.notifyInvalidFile(paths[0])
         } else {
             main_controller.shouldPlayThefirst = playFirst
             _findVideoThreadManager.findSerie = config.playerAutoPlaySeries
@@ -621,7 +625,7 @@ MouseArea {
             playlist.clear()
             _database.importPlaylist(filename)
         } else {
-            notifybar.show(dsTr("Invalid file") + ": " + filename)
+            main_controller.notifyInvalidFile(filename)
         }
     }
 
@@ -795,7 +799,7 @@ MouseArea {
                     } else if (_utils.fileIsSubtitle(file_path)) {
                         main_controller.setSubtitle(file_path)
                     } else {
-                        notifybar.show(dsTr("Invalid file") + ": " + file_path)
+                        main_controller.notifyInvalidFile(file_path)
                     }
                 }
             } else {

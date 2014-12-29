@@ -10,6 +10,7 @@ ListView {
     boundsBehavior: Flickable.StopAtBounds
 
     property var allItems: []
+    property var itemsToBeRemoved: []
     property string currentPlayingSource
     property var root
     property int lineHeight: 24
@@ -122,8 +123,21 @@ ListView {
         }
     }
 
-    function removeItem(url) { root.removeItemPrivate(url); itemRemoved(url) }
-    function removeGroup(name) { root.removeGroupPrivate(name); categoryRemoved(name) }
+    // there's a certain moment that the remove operation's a bit earlier than
+    // the construction of the item, thus we should record the url to be removed
+    // and let the item take care of its lifecycle itself.
+    function removeItem(url) {
+        if (contains(url)) {
+            root.removeItemPrivate(url)
+        } else {
+            root.itemsToBeRemoved.push(url)
+        }
+    }
+    // removeGroup should have the same structure of removeItem,
+    // but actually removeGroup's mainly used when the user manually removes
+    // the category by UI interact(the item's there for sure), so there's no
+    // need to implement it like removeItem for now.
+    function removeGroup(name) { root.removeGroupPrivate(name) }
     function removeInvalidItems(valid_check_func) {
         var flatList = _flattenList()
         for (var i = 0; i < flatList.length; i++) {
@@ -265,7 +279,18 @@ ListView {
                 lastY = y
             }
 
-            Component.onCompleted: ListView.view.allItems.push(column)
+            Component.onCompleted: {
+                // check if it's in the items to be removed first, if the result's
+                // positive then there's no further things to be done.
+                var idx = column.ListView.view.itemsToBeRemoved.indexOf(propUrl)
+                if (idx != -1) {
+                    column.ListView.view.itemsToBeRemoved.splice(idx, 1)
+                    column.ListView.view.model.remove(index, 1)
+                    column.ListView.view.root.itemRemoved(propUrl)
+                } else {
+                    column.ListView.view.allItems.push(column)
+                }
+            }
             Component.onDestruction: {
                 var idx = column.ListView.view.allItems.indexOf(column)
                 if (idx != -1) {
@@ -278,11 +303,13 @@ ListView {
                 onRemoveItemPrivate: {
                     if (playlist._urlEqual(propUrl, url)) {
                         column.ListView.view.model.remove(index, 1)
+                        column.ListView.view.root.itemRemoved(propUrl)
                     }
                 }
                 onRemoveGroupPrivate: {
                     if (propName == name) {
                         column.ListView.view.model.remove(index, 1)
+                        column.ListView.view.root.categoryRemoved(propName)
                     }
                 }
                 onFileMissing: if (playlist._urlEqual(propUrl, url)) name.color = column.missingColor
