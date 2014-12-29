@@ -456,8 +456,7 @@ class MenuController(QObject):
         self.menu.getItemById("_playlist_remove_item").isActive = url != ""
         self.menu.getItemById("_playlist_open_position").isActive = url != "" \
             and utils.urlIsNativeFile(url)
-        self.menu.getItemById("_playlist_information").isActive = url != "" \
-            and utils.fileIsValidVideo(url)
+        self.menu.getItemById("_playlist_information").isActive = url != ""
         self.menu.getItemById("_playlist_clear").isActive = not playlistEmpty
 
         self.menu.showRectMenu(QCursor.pos().x(), QCursor.pos().y())
