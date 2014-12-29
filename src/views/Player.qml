@@ -5,6 +5,7 @@ Video {
     id: video
     autoPlay: true
     transform: flip
+    timeout: 5 * 1000
     visible: playbackState != MediaPlayer.StoppedState
 
     subtitle.enabled: false
