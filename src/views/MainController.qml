@@ -392,11 +392,17 @@ MouseArea {
         }
 
         root.widthHeightScale = player.resolution.width / player.resolution.height
-        !root.hasResized && setSizeForRootWindowWithWidth(player.resolution.width + program_constants.windowGlowRadius * 2)
+
+        if (root.hasResized) {
+            setSizeForRootWindowWithWidth(windowView.width)
+        } else {
+            setSizeForRootWindowWithWidth(player.resolution.width + program_constants.windowGlowRadius * 2)
+        }
     }
 
     function flipHorizontal() { player.flipHorizontal(); controlbar.flipPreviewHorizontal() }
     function flipVertical() { player.flipVertical(); controlbar.flipPreviewVertical() }
+
     function rotateClockwise() {
         player.rotateClockwise()
         controlbar.rotatePreviewClockwise()
