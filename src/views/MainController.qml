@@ -21,11 +21,11 @@ MouseArea {
     property int windowLastY
 
     property bool shouldPerformClick: true
+    property bool shouldPlayThefirst: true
 
     MenuResponder { id: menu_responder }
     KeysResponder { id: keys_responder }
 
-    property bool shouldPlayThefirst: true
     Connections {
         target: _findVideoThreadManager
 
@@ -271,6 +271,8 @@ MouseArea {
 
     property bool fullscreenFromMaximum: false
     function fullscreen() {
+        if (!player.hasVideo) return
+
         fullscreenFromMaximum = (windowView.getState() == Qt.WindowMaximized)
         windowView.showFullScreen()
         root.videoStoppedByAppFlag = false

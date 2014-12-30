@@ -351,7 +351,7 @@ Rectangle {
             } else if (state == Qt.WindowMaximized) {
                 root.state = "no_glow"
             } else if (state == Qt.WindowNoState) {
-                root.state == "normal"
+                root.state = "normal"
             }
         }
     }
