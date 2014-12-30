@@ -34,7 +34,7 @@ from PyQt5.QtCore import Qt, QSize
 from PyQt5.QtQuick import QQuickView
 from PyQt5.QtCore import pyqtSlot, pyqtProperty, pyqtSignal, QDir
 from PyQt5.QtGui import QSurfaceFormat, QColor, QPixmap, QIcon, QCursor
-from utils.notification import notify
+from utils.dbus_interfaces import notificationsInterface
 from utils.constants import (DEFAULT_WIDTH, DEFAULT_HEIGHT, WINDOW_GLOW_RADIUS,
     MINIMIZE_WIDTH, MINIMIZE_HEIGHT)
 from utils.i18n import _
@@ -203,4 +203,4 @@ class Window(QQuickView):
         p = QPixmap.fromImage(self.grabWindow())
         p.save(path, "jpg")
 
-        notify(u"截图成功", u"文件已保存到%s" % path)
+        notificationsInterface.notify(u"截图成功", u"文件已保存到%s" % path)
