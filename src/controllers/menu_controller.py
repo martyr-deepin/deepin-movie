@@ -419,7 +419,7 @@ class MenuController(QObject):
         #     self._sound_channel == "sound_channel:radio:right"
         # self.menu.getItemById("sound_channel:radio:stero").checked = \
         #     self._sound_channel == "sound_channel:radio:stero"
-        self.menu.getItemById("_sound_muted").checked = config.playerMuted
+        self.menu.getItemById("_sound_muted").checked = bool(config.playerMuted)
 
         self.menu.getItemById("_subtitle_hide").checked = not subtitleVisible
         subtitles = get_subtitle_from_movie(videoSource)
