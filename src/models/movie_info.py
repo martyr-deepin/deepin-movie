@@ -69,9 +69,11 @@ class MovieInfo(object):
         self.filepath = filepath
         self.parseFile(filepath)
 
-        self.media_width = self.media_info.get("video_width") or 0
-        self.media_height = self.media_info.get("video_height") or 0
-        self.media_duration = self.media_info.get("general_duration") or 0
-        self.media_size = int(self.media_info.get("general_size") or 0)
-        self.media_type = self.media_info.get("general_extension") or  _("Unknown")
-        self.media_duration = int(self.media_duration)
+        integer = lambda x: int(float(x)) if x else 0
+
+        self.media_width = integer(self.media_info.get("video_width"))
+        self.media_height = integer(self.media_info.get("video_height"))
+        self.media_duration = integer(self.media_info.get("general_duration"))
+        self.media_size = integer(self.media_info.get("general_size"))
+        self.media_type = self.media_info.get("general_extension") or _("Unknown")
+        self.media_duration = integer(self.media_duration)
