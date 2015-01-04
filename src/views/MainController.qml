@@ -102,8 +102,9 @@ MouseArea {
     }
 
     function setSizeForRootWindowWithWidth(destWidth) {
-        var destWidth = Math.min(destWidth, primaryRect.width)
         var widthHeightScale = root.widthHeightScale
+
+        var destWidth = Math.min(destWidth, primaryRect.width)
         var destHeight = (destWidth - program_constants.windowGlowRadius * 2) / widthHeightScale + program_constants.windowGlowRadius * 2
         if (destHeight > primaryRect.height) {
             windowView.setWidth((primaryRect.height - 2 * program_constants.windowGlowRadius) * widthHeightScale + 2 * program_constants.windowGlowRadius)
@@ -382,7 +383,10 @@ MouseArea {
             playlist.show()
         }
     }
-    function playerResolutionChanged() {
+    function handleResolutionChanged() {
+        if (!player.sourceString) return
+
+        root.widthHeightScale = player.resolution.width / player.resolution.height
         if (root.miniModeState()) {
             backupWidth = player.resolution.width
             setSizeForRootWindowWithWidth(windowView.width)
@@ -390,8 +394,6 @@ MouseArea {
                                     windowView.y + windowView.height / 2)
             return
         }
-
-        root.widthHeightScale = player.resolution.width / player.resolution.height
 
         if (root.hasResized) {
             setSizeForRootWindowWithWidth(windowView.width)

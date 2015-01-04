@@ -27,6 +27,11 @@ Video {
 
     property bool isPreview: false
 
+    function reset() {
+        source = ""
+        resetRotationFlip()
+    }
+
     function flipHorizontal() {
         if (flip.axis.y == 1) {
             flip.axis.y = 0

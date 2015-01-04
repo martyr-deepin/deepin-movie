@@ -11,12 +11,11 @@ Rectangle {
     id: root
     state: "normal"
     color: "transparent"
-    // QT takes care of WORKAREA for you which is thoughtful indeed, but it cause
-    // problems sometime, we should be careful in case that it changes height for
-    // you suddenly.
     layer.enabled: true
 
-    property real widthHeightScale: player.resolution.width / player.resolution.height
+    // this property will be set when the window's initializing its size,
+    // and will be changed only when the resolution of the player changes.
+    property real widthHeightScale
     property real actualScale: 1.0
 
     property bool hasResized: false
@@ -217,21 +216,18 @@ Rectangle {
     }
 
     function initWindowSize() {
+        resetWindowSize()
+        root.widthHeightScale = (windowView.width - windowView.windowGlowRadius * 2) / (windowView.height - windowView.windowGlowRadius * 2)
+
         if (config.playerApplyLastClosedSize) {
             hasResized = true
             main_controller.setSizeForRootWindowWithWidth(_settings.lastWindowWidth)
-        } else {
-            windowView.setWidth(windowView.defaultWidth)
-            windowView.setHeight(windowView.defaultHeight)
         }
     }
 
     function resetWindowSize() {
-        if (!config.playerApplyLastClosedSize) {
-            windowView.setWidth(windowView.defaultWidth)
-            windowView.setHeight(windowView.defaultHeight)
-            main_controller.playPath("")
-        }
+        windowView.setWidth(windowView.defaultWidth)
+        windowView.setHeight(windowView.defaultHeight)
     }
 
     function miniModeState() { return windowView.width == program_constants.miniModeWidth }
@@ -318,15 +314,15 @@ Rectangle {
 
     /* to perform like a newly started program  */
     function reset() {
-        player.resetRotationFlip()
         root.state = "normal"
-        titlebar.title = ""
-        windowView.setTitle(dsTr("Deepin Movie"))
-        resetWindowSize()
+        root.resetWindowSize()
         _subtitle_parser.file_name = ""
-        main_controller.stop()
+
+        player.reset()
+        titlebar.reset()
         controlbar.reset()
-        showControls()
+        main_controller.stop()
+        root.showControls()
     }
 
     function monitorWindowState(state) {
@@ -453,7 +449,7 @@ Rectangle {
         property int lastVideoPosition: 0
         property int lastVideoDuration: 0
 
-        onResolutionChanged: main_controller.playerResolutionChanged()
+        onResolutionChanged: main_controller.handleResolutionChanged()
 
         // onSourceChanged doesn't ensures that the file is playable, this one did.
         // 2014/9/16 add: not ensures url playable, either

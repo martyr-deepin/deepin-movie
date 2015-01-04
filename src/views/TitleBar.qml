@@ -65,6 +65,11 @@ DragableArea {
         }
     ]
 
+    function reset() {
+        titlebar.title = ""
+        windowView.setTitle(dsTr("Deepin Movie"))
+    }
+
     function show() {
         visible = true
     }
