@@ -556,7 +556,7 @@ MouseArea {
 
         if (paths.length > 0 && playFirst
             && config.playerCleanPlaylistOnOpenNewFile) {
-            main_controller.clearPlaylist()
+            playlist.clear()
         }
 
         if (paths.length == 1 &&
