@@ -52,6 +52,11 @@ MouseArea {
         onItemVInfoGot: info_window.showInfo(vinfo)
     }
 
+    Connections {
+        target: _file_monitor
+        onFileExistenceChanged: playlist.changeFileExistence(file, existence)
+    }
+
     Timer {
         id: seek_to_last_watched_timer
         interval: 300

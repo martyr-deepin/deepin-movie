@@ -16,7 +16,7 @@ ListView {
     property int lineHeight: 24
     // isSelected is determined by its children
     property bool isSelected: false
-    property url clickedOnItemUrl
+    property string clickedOnItemUrl
     property string clickedOnItemName
 
     signal newSourceSelected(string path)
@@ -29,12 +29,6 @@ ListView {
     signal cleared()
     signal itemRemoved(string url)
     signal categoryRemoved(string name)
-
-    Connections {
-        target: _file_monitor
-        onFileMissing: playlist.fileMissing("file://"+file)
-        onFileBack: playlist.fileBack("file://"+file)
-    }
 
     function getFirst() {
         var flatList = _flattenList()

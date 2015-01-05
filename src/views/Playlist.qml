@@ -12,7 +12,7 @@ Rectangle {
     property bool expanded: width == program_constants.playlistWidth
     property bool canExpand: true
     property string currentPlayingSource
-    property url clickedOnItemUrl: playlist.clickedOnItemUrl
+    property string clickedOnItemUrl: playlist.clickedOnItemUrl
     property string clickedOnItemName: playlist.clickedOnItemName
     property int maxWidth: program_constants.playlistWidth
     property alias window: playlistPanelArea.window
@@ -100,6 +100,8 @@ Rectangle {
     function getNextSource(source) { return playlist.getNextSource(source) }
     function getPreviousSourceCycle(source) { return playlist.getPreviousSourceCycle(source) }
     function getNextSourceCycle(source) { return playlist.getNextSourceCycle(source) }
+
+    function changeFileExistence(file, exists) { exists ? playlist.fileBack(file) : playlist.fileMissing(file) }
 
     Timer {
         id: hide_timer

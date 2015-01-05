@@ -369,7 +369,7 @@ Rectangle {
         id: auto_play_next_on_invalid_timer
         interval: 1000 * 2
 
-        property url invalidFile: ""
+        property string invalidFile: ""
 
         function startWidthFile(file) {
             invalidFile = file
