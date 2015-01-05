@@ -168,7 +168,7 @@ class FindVideoThreadManager(QObject):
     findVideoDone = pyqtSignal(str, str, int, int,
         arguments=["path", "tuples", "validCount", "invalidCount"])
 
-    findSerieChanged = pyqtSignal(str, arguments=["findSerie"])
+    findSerieChanged = pyqtSignal(bool, arguments=["findSerie"])
 
     def __init__(self):
         super(FindVideoThreadManager, self).__init__()
