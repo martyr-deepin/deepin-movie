@@ -476,12 +476,9 @@ Rectangle {
             main_controller.recordVideoPosition(lastVideoSource, lastVideoPosition)
 
             var videoPLayedOut = (lastVideoDuration - lastVideoPosition) < program_constants.videoEndsThreshold
-
-            if (_utils.urlIsNativeFile(lastVideoSource)) {
-                if (videoPLayedOut) {
-                    shouldAutoPlayNextOnInvalidFile = true
-                    main_controller.playNextOf(_settings.lastPlayedFile)
-                }
+            if (videoPLayedOut) {
+                shouldAutoPlayNextOnInvalidFile = true
+                main_controller.playNextOf(_settings.lastPlayedFile)
             }
         }
 
