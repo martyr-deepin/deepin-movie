@@ -1,6 +1,7 @@
 PREFIX = /usr
 
 all:
+	python configure.py
 	deepin-generate-mo locale/locale_config.ini
 
 install:

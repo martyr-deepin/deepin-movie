@@ -54,10 +54,11 @@ override_key_names = {
     "PgDown": "PageDown"
 }
 
-with open("/usr/share/applications/deepin-movie.desktop") as app_info:
-    cp = ConfigParser()
-    cp.readfp(app_info)
-    all_supported_mime_types = cp.get("Desktop Entry", "MimeType").split(";")
+src_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+mimetypes_file_path = os.path.join(src_root, "data/mimetypes")
+with open(mimetypes_file_path) as mimetypes_file:
+    all_supported_mime_types = map(lambda x: x.strip(),
+                                   mimetypes_file.readlines())
 
 def _longest_match(*strs):
     shortest_str = min(strs, key=len)
