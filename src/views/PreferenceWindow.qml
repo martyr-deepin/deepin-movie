@@ -872,6 +872,7 @@ DPreferenceWindow {
             }
 
             SliderRow {
+                id: subtitle_vertical_pos_row
                 title: dsTr("Position")
                 min: 0
                 max: 1
@@ -880,7 +881,11 @@ DPreferenceWindow {
                 leftRuler: dsTr("Bottom")
                 rightRuler: dsTr("Top")
 
-                onValueChanged: config.subtitleVerticalPosition = value
+                onValueChanged: {
+                    if (subtitle_vertical_pos_row.pressedFlag) {
+                        config.subtitleVerticalPosition = value
+                    }
+                }
             }
 
             SpinnerRow {

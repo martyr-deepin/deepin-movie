@@ -650,7 +650,7 @@ MouseArea {
 
     function setSubtitleVerticalPosition(percentage) {
         config.subtitleVerticalPosition = Math.max(0, Math.min(1, percentage))
-        player.subtitleVerticalPosition = config.subtitleVerticalPosition
+        player.subtitleVerticalPosition = Qt.binding(function () { return config.subtitleVerticalPosition })
     }
 
     function subtitleMoveUp() { setSubtitleVerticalPosition(config.subtitleVerticalPosition + 0.05)}
