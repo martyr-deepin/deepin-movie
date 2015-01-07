@@ -67,6 +67,7 @@ Rectangle {
 
     OpenFileDialog {
         id: open_file_dialog
+        modality: Qt.WindowModal
 
         onAccepted: {
             shouldAutoPlayNextOnInvalidFile = false
@@ -108,7 +109,7 @@ Rectangle {
 
     OpenFolderDialog {
         id: open_folder_dialog
-
+        modality: Qt.WindowModal
         folder: database.lastOpenedPath || _utils.homeDir
 
         property bool playFirst: true
