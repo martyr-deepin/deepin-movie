@@ -342,7 +342,7 @@ class Database(QObject):
 
         for result in queryResults:
             info = json.loads(result.info) if result.info else {}
-            played = info.get("played") or ""
+            played = str(info.get("played")) or ""
             if result.category:
                 cate = playlist.appendCategory(
                     result.category.name.encode("utf-8"))
