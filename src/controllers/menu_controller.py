@@ -453,7 +453,7 @@ class MenuController(QObject):
             config.playerPlayOrderType == ORDER_TYPE_PLAYLIST_CYCLE
 
         self.menu.getItemById("_playlist_play").isActive = url != ""
-        self.menu.getItemById("_playlist_remove_item").isActive = url != ""
+        self.menu.getItemById("_playlist_remove_item").isActive = not playlistEmpty
         self.menu.getItemById("_playlist_open_position").isActive = url != "" \
             and utils.urlIsNativeFile(url)
         self.menu.getItemById("_playlist_information").isActive = url != "" \
