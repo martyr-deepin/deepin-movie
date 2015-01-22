@@ -74,7 +74,6 @@ RectWithCorner {
 
     VideoPreview {
         id: video_preview
-        opengl: false
 
         anchors.fill: parent
         anchors.topMargin: previewPadding
