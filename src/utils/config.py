@@ -24,6 +24,7 @@ import os
 from deepin_utils import config
 from constants import CONFIG_DIR
 from PyQt5.QtCore import pyqtSlot, pyqtProperty, pyqtSignal, QObject
+from ConfigParser import ConfigParser
 
 # ADJUST_TYPE_WINDOW_VIDEO = "ADJUST_TYPE_WINDOW_VIDEO"
 # ADJUST_TYPE_VIDEO_WINDOW = "ADJUST_TYPE_VIDEO_WINDOW"
@@ -94,21 +95,63 @@ property_name_func = lambda section, key: "%s%s" % (
     key[0].upper() + key[1:])
 
 class Config(QObject):
+    LoadDefault = 0
+    LoadConfig = 1
+    LoadBackup = 2
+
     def __init__(self):
         super(QObject, self).__init__()
         self.config_path = os.path.join(CONFIG_DIR, "config.ini")
+        self.backup_path = os.path.join(CONFIG_DIR, "config.bak")
 
         if not os.path.exists(self.config_path):
             if not os.path.exists(CONFIG_DIR): os.makedirs(CONFIG_DIR)
-            self.config = config.Config(self.config_path)
-            self.config.config_parser.optionxform=str
+            self._initContent(initMode=Config.LoadDefault)
+        else:
+            # there are cases that the config file's corrupted,
+            # we should take care of this situation.
+            if self._checkFileIntegerity(self.config_path):
+                self._initContent(initMode=Config.LoadConfig)
+            elif self._checkFileIntegerity(self.backup_path):
+                self._initContent(initMode=Config.LoadBackup)
+            else:
+                self._initContent(initMode=Config.LoadDefault)
+
+    def _initContent(self, initMode=LoadDefault):
+        self.config = config.Config(self.config_path)
+        self.config.config_parser.optionxform=str
+        self.backup = config.Config(self.backup_path)
+        self.backup.config_parser = self.config.config_parser
+        if initMode == Config.LoadDefault:
             self.config.default_config = DEFAULT_CONFIG
             self.config.load_default()
             self.config.write()
-        else:
-            self.config = config.Config(self.config_path)
-            self.config.config_parser.optionxform=str
+        elif initMode == Config.LoadConfig:
             self.config.load()
+            self.config.write()
+            self.backup.write()
+        elif initMode == Config.LoadBackup:
+            self.backup.load()
+            self.config.write()
+            self.backup.write()
+
+    def _checkFileIntegerity(self, configFile):
+        try:
+            with open(configFile) as _file:
+                config = ConfigParser()
+                config.optionxform=str
+                config.readfp(_file)
+
+                for section, items in DEFAULT_CONFIG:
+                    for option, value in items:
+                        if not config.has_option(section, option):
+                            return False
+        except Exception:
+            # errors like file doesn't exist or parse error
+            # will be handled here.
+            return False
+
+        return True
 
     @pyqtProperty("QVariant")
     def hotKeysPlay(self):
@@ -161,6 +204,7 @@ class Config(QObject):
     def save(self, section, option, value):
         self.config.set(section, option, value)
         self.config.write()
+        self.backup.write()
 
     @pyqtSlot()
     def resetHotkeys(self):
