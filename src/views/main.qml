@@ -1,5 +1,5 @@
 import QtQuick 2.1
-import QtAV 1.4
+import QtAV 1.5
 import QtGraphicalEffects 1.0
 import QtQuick.Window 2.1
 import Deepin.Locale 1.0
@@ -11,7 +11,6 @@ Rectangle {
     id: root
     state: "normal"
     color: "transparent"
-    layer.enabled: true
 
     // this property will be set when the window's initializing its size,
     // and will be changed only when the resolution of the player changes.

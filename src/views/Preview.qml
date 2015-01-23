@@ -1,5 +1,5 @@
 import QtQuick 2.1
-import QtAV 1.4
+import QtAV 1.5
 import QtGraphicalEffects 1.0
 import "sources/ui_utils.js" as UIUtils
 

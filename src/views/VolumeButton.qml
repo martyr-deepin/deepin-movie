@@ -1,5 +1,5 @@
 import QtQuick 2.1
-import QtAV 1.4
+import QtAV 1.5
 import QtGraphicalEffects 1.0
 import Deepin.Widgets 1.0
 
