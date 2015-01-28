@@ -683,6 +683,7 @@ MouseArea {
         resizeEdge = getEdge(mouse)
         if (resizeEdge != resize_edge.resizeNone) {
             resize_visual.resizeEdge = resizeEdge
+            resize_visual.show()
         } else {
             var pos = windowView.getCursorPos()
 
@@ -713,7 +714,6 @@ MouseArea {
             // prevent play or pause event from happening if we intend to move or resize the window
             shouldPerformClick = false
             if (resizeEdge != resize_edge.resizeNone) {
-                resize_visual.show()
                 if (player.hasVideo) {
                     resize_visual.minimumWidth = windowView.minimumWidth
                     resize_visual.minimumHeight = windowView.minimumHeight
@@ -721,7 +721,7 @@ MouseArea {
                     resize_visual.minimumWidth = windowView.width
                     resize_visual.minimumHeight = windowView.height
                 }
-                resize_visual.intelligentlyResize(windowView, mouse.x, mouse.y)
+                resize_visual.intelligentlyResize(mouse.x, mouse.y)
                 _menu_controller.videoScale = ""
             }
             else if (windowView.getState() != Qt.WindowFullScreen){
