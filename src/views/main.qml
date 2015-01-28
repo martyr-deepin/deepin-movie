@@ -505,7 +505,7 @@ Rectangle {
                 main_controller.seekToLastPlayed()
 
                 if (config.subtitleAutoLoad) {
-                    main_controller.setSubtitle(_database.getPlaylistItemSubtitle(player.source))
+                    main_controller.setSubtitle(_database.getPlaylistItemSubtitle(player.sourceString))
                 } else {
                     _subtitle_parser.file_name = ""
                 }

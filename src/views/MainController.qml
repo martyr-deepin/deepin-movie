@@ -665,7 +665,7 @@ MouseArea {
         } else {
             _subtitle_parser.set_subtitle_from_movie(player.source)
         }
-        _database.setPlaylistItemSubtitle(player.source, _subtitle_parser.file_name)
+        _database.setPlaylistItemSubtitle(player.sourceString, _subtitle_parser.file_name)
     }
 
     Keys.onPressed: keys_responder.respondKey(event)
