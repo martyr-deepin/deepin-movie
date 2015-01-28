@@ -128,7 +128,7 @@ Window {
 
             Text {
                 id: resolution
-                color: parent.color
+                color: parent.border.color
                 font.pixelSize: 50
                 text: "%1x%2".arg(Math.floor(frame.width - 2 * program_constants.windowGlowRadius))
                                 .arg(Math.floor(frame.height - 2 * program_constants.windowGlowRadius))
