@@ -169,7 +169,7 @@ class Config(QObject):
             for key, value in items:
                 itemName = property_name_func(section, key)
 
-                setattr(config, itemName, value)
+                setattr(self, itemName, value)
 
     # automatically make config entries accessable as qt properties.
     for section, items in DEFAULT_CONFIG:
