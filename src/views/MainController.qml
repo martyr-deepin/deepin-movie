@@ -718,8 +718,14 @@ MouseArea {
                     resize_visual.minimumWidth = windowView.minimumWidth
                     resize_visual.minimumHeight = windowView.minimumHeight
                 } else {
-                    resize_visual.minimumWidth = windowView.width
-                    resize_visual.minimumHeight = windowView.height
+                    if (config.playerApplyLastClosedSize && _settings.lastWindowWidth < windowView.defaultWidth) {
+                        var widthHeightScale = root.widthHeightScale
+                        resize_visual.minimumWidth = _settings.lastWindowWidth
+                        resize_visual.minimumHeight = _settings.lastWindowWidth / widthHeightScale
+                    } else {
+                        resize_visual.minimumWidth = windowView.defaultWidth
+                        resize_visual.minimumHeight = windowView.defaultHeight
+                    }
                 }
                 resize_visual.intelligentlyResize(mouse.x, mouse.y)
                 _menu_controller.videoScale = ""
