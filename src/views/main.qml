@@ -446,13 +446,13 @@ Rectangle {
 
         anchors.fill: main_window
 
-        property string sourceString: ""
         // theses properties are mainly used in onStopped.
         // because we can't ensure the source and position info available every
         // time the onStopped handler executes.
         property string lastVideoSource: ""
         property int lastVideoPosition: 0
         property int lastVideoDuration: 0
+        property int lastForwardToPosition: 0
 
         onResolutionChanged: main_controller.handleResolutionChanged()
 
@@ -477,6 +477,7 @@ Rectangle {
         }
 
         onStopped: {
+            reset()
             _utils.screenSaverUninhibit()
             main_controller.recordVideoPosition(lastVideoSource, lastVideoPosition)
 
@@ -499,7 +500,7 @@ Rectangle {
 
         property bool resetPlayHistoryCursor: true
         onSourceChanged: {
-            resetRotationFlip()
+            lastForwardToPosition = 0
 
             if (source.toString().trim()) {
                 _settings.lastPlayedFile = sourceString

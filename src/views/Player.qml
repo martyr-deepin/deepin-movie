@@ -11,6 +11,7 @@ Video {
     subtitle.enabled: false
     // videoCodecPriority: ["VAAPI", "FFmpeg"]
 
+    property string sourceString: ""
     property size resolution: _getResolution()
     property bool hasMedia: hasVideo || hasAudio
     property string title: metaData.title ? metaData.title : ""
@@ -29,6 +30,7 @@ Video {
 
     function reset() {
         source = ""
+        sourceString = ""
         resetRotationFlip()
     }
 
