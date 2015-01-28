@@ -421,7 +421,13 @@ Rectangle {
             color: "#000000"
             visible: !player.visible
             anchors.fill: parent
-            Image { anchors.centerIn: parent; source: "image/background.png" }
+
+            Image {
+                source: "image/background.png"
+                scale: Math.min(1, windowView.width / windowView.defaultWidth)
+
+                anchors.centerIn: parent
+            }
         }
     }
 
