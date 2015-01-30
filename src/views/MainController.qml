@@ -312,6 +312,8 @@ MouseArea {
             windowView.setY(backupCenter.y - windowView.height / 2)
         }
         windowView.requestActivate()
+
+        root.isMiniMode = false
     }
     function miniMode() {
         if (!player.hasVideo) return
@@ -331,6 +333,8 @@ MouseArea {
         windowView.setX(backupCenter.x - windowView.width / 2)
         windowView.setY(backupCenter.y - windowView.height / 2)
         windowView.requestActivate()
+
+        root.isMiniMode = true
     }
     function toggleMiniMode() {
         root.miniModeState() ? quitMiniMode() : miniMode()
@@ -394,8 +398,16 @@ MouseArea {
     function handleResolutionChanged() {
         if (!player.sourceString) return
 
+        if (player.resolution.width > player.resolution.height) {
+            windowView.setMinimumWidth(Math.max(windowView.minimumWidth, windowView.minimumHeight))
+            windowView.setMinimumHeight(Math.min(windowView.minimumWidth, windowView.minimumHeight))
+        } else {
+            windowView.setMinimumWidth(Math.min(windowView.minimumWidth, windowView.minimumHeight))
+            windowView.setMinimumHeight(Math.max(windowView.minimumWidth, windowView.minimumHeight))
+        }
+
         root.widthHeightScale = player.resolution.width / player.resolution.height
-        if (root.miniModeState()) {
+        if (root.miniModeState() && root.isMiniMode) {
             backupWidth = player.resolution.width
             setSizeForRootWindowWithWidth(windowView.width)
             backupCenter = Qt.point(windowView.x + windowView.width / 2,
@@ -404,9 +416,16 @@ MouseArea {
         }
 
         if (root.hasResized) {
-            setSizeForRootWindowWithWidth(windowView.width)
+            if (player.playerInit) {
+                root.actualScale = (windowView.width - program_constants.windowGlowRadius * 2) / player.resolution.width
+            }
+            setSizeForRootWindowWithWidth(player.resolution.width * root.actualScale + program_constants.windowGlowRadius * 2)
         } else {
-            setSizeForRootWindowWithWidth(player.resolution.width + program_constants.windowGlowRadius * 2)
+            var destWidth = player.resolution.width + program_constants.windowGlowRadius * 2
+            if (player.playerInit) {
+                root.actualScale = (_getActualWidthWithWidth(destWidth) - program_constants.windowGlowRadius * 2) / player.resolution.width
+            }
+            setSizeForRootWindowWithWidth(destWidth)
         }
     }
 
@@ -760,6 +779,7 @@ MouseArea {
             windowView.setX(resize_visual.frameX)
             windowView.setY(resize_visual.frameY)
             setSizeForRootWindowWithWidth(resize_visual.frameWidth)
+            root.actualScale = (windowView.width - program_constants.windowGlowRadius * 2) / player.resolution.width
         }
     }
 

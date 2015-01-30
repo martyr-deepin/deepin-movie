@@ -72,6 +72,14 @@ RectWithCorner {
         video_preview.orientation += 90
     }
 
+    function resetRotationFlip() {
+        video_preview.orientation = 0
+        flip.axis.x = 0
+        flip.axis.y = 0
+        flip.axis.z = 0
+        flip.angle = 180
+    }
+
     VideoPreview {
         id: video_preview
 

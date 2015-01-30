@@ -18,6 +18,7 @@ Rectangle {
     property real actualScale: 1.0
 
     property bool hasResized: false
+    property bool isMiniMode: false
     property bool shouldAutoPlayNextOnInvalidFile: false
 
     property rect primaryRect: {
@@ -225,10 +226,13 @@ Rectangle {
     }
 
     function resetWindowSize() {
+        windowView.setMinimumWidth(windowView.minimumWidth)
+        windowView.setMinimumHeight(windowView.minimumHeight)
         windowView.setWidth(windowView.defaultWidth)
         windowView.setHeight(windowView.defaultHeight)
     }
 
+    // TODO: remove this, use isMiniMode instead
     function miniModeState() { return windowView.width == program_constants.miniModeWidth }
 
     // this function share the same name with one function in MainController,
@@ -453,12 +457,14 @@ Rectangle {
         property int lastVideoPosition: 0
         property int lastVideoDuration: 0
         property int lastForwardToPosition: 0
+        property bool playerInit: true
 
         onResolutionChanged: main_controller.handleResolutionChanged()
 
         // onSourceChanged doesn't ensures that the file is playable, this one did.
         // 2014/9/16 add: not ensures url playable, either
         onPlaying: {
+            playerInit = false
             notifybar.hide()
             auto_play_next_on_invalid_timer.stop()
             main_controller.setWindowTitle(_utils.getTitleFromUrl(player.sourceString))
@@ -501,6 +507,9 @@ Rectangle {
 
         property bool resetPlayHistoryCursor: true
         onSourceChanged: {
+            playerInit = true
+            resetRotationFlip()
+
             if (source.toString().trim()) {
                 _settings.lastPlayedFile = sourceString
                 _database.appendPlayHistoryItem(source, resetPlayHistoryCursor)

@@ -51,6 +51,7 @@ DragableArea {
     function reset() {
         percentage = 0
         play_pause_button.checkFlag = false
+        videoPreview.resetRotationFlip()
     }
 
     function showPreview(mouseX, percentage, mode) {
