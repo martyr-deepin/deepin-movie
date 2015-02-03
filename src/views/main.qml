@@ -477,7 +477,8 @@ Rectangle {
         }
 
         onStopped: {
-            reset()
+            lastForwardToPosition = 0
+            resetRotationFlip()
             _utils.screenSaverUninhibit()
             main_controller.recordVideoPosition(lastVideoSource, lastVideoPosition)
 
@@ -500,8 +501,6 @@ Rectangle {
 
         property bool resetPlayHistoryCursor: true
         onSourceChanged: {
-            lastForwardToPosition = 0
-
             if (source.toString().trim()) {
                 _settings.lastPlayedFile = sourceString
                 _database.appendPlayHistoryItem(source, resetPlayHistoryCursor)
