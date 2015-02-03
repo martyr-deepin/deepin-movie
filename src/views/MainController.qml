@@ -64,7 +64,7 @@ MouseArea {
         onTriggered: {
             var last_watched_pos = main_controller.fetchVideoPosition(player.sourceString)
             if (config.playerAutoPlayFromLast
-                && last_watched_pos
+                && last_watched_pos > program_constants.videoEndsThreshold
                 && _utils.urlIsNativeFile(player.sourceString)
                 && Math.abs(last_watched_pos - player.duration) > program_constants.videoEndsThreshold) {
                 player.seek(last_watched_pos)

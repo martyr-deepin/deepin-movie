@@ -29,8 +29,8 @@ Video {
     property bool isPreview: false
 
     function reset() {
-        source = ""
-        sourceString = ""
+        source = undefined
+        sourceString = undefined
         resetRotationFlip()
     }
 
