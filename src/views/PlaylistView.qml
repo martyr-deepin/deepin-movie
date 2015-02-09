@@ -349,6 +349,11 @@ ListView {
                             listView.allItems.sort(listView._sortFuncY)
                             var nowInx = listView.allItems.indexOf(column)
                             listView.moveItem(origInx, nowInx)
+
+                            // if nowInx == origInx moveItem will not cause the
+                            // listview to refresh, below codes can.
+                            listView.currentIndex = index
+                            listView.currentIndex = -1
                         }
                     }
 
