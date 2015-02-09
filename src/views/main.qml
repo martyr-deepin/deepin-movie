@@ -464,6 +464,15 @@ Rectangle {
         // onSourceChanged doesn't ensures that the file is playable, this one did.
         // 2014/9/16 add: not ensures url playable, either
         onPlaying: {
+            if (playerInit) {
+                if (config.playerFullscreenOnOpenFile) {
+                    main_controller.fullscreen()
+                    root.videoFullscreenByAppFlag = true
+                } else if (root.videoFullscreenByAppFlag) {
+                    main_controller.quitFullscreen()
+                }
+            }
+
             playerInit = false
             notifybar.hide()
             auto_play_next_on_invalid_timer.stop()
@@ -473,13 +482,6 @@ Rectangle {
 
             lastVideoSource = sourceString
             lastVideoDuration = duration
-
-            if (config.playerFullscreenOnOpenFile) {
-                main_controller.fullscreen()
-                root.videoFullscreenByAppFlag = true
-            } else if (root.videoFullscreenByAppFlag) {
-                main_controller.quitFullscreen()
-            }
         }
 
         onStopped: {
