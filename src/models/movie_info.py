@@ -22,8 +22,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import os
-from utils.constants import DEFAULT_WIDTH, DEFAULT_HEIGHT, WINDOW_GLOW_RADIUS
 from utils.media_info import parse_info
 from utils.i18n import _
 from utils.utils import utils
@@ -36,10 +34,7 @@ class MovieInfo(object):
 
     def parseFile(self, filepath):
         filepath = filepath.replace("file://", "")
-        if os.path.exists(filepath):
-            self.media_info = parse_info(filepath)
-        else:
-            self.media_info = {}
+        self.media_info = parse_info(filepath)
 
     @property
     def movie_duration(self):
@@ -74,11 +69,11 @@ class MovieInfo(object):
         self.filepath = filepath
         self.parseFile(filepath)
 
-        self.media_width = self.media_info.get("video_width") or DEFAULT_WIDTH
-        self.media_height = self.media_info.get("video_height") or DEFAULT_HEIGHT
-        self.media_duration = self.media_info.get("general_duration") or 0
-        self.media_size = int(self.media_info.get("general_size") or 0)
-        self.media_type = self.media_info.get("general_extension") or  _("Unknown")
-        self.media_width = int(self.media_width) + 2 * WINDOW_GLOW_RADIUS
-        self.media_height = int(self.media_height) + 2 * WINDOW_GLOW_RADIUS
-        self.media_duration = int(self.media_duration)
+        integer = lambda x: int(float(x)) if x else 0
+
+        self.media_width = integer(self.media_info.get("video_width"))
+        self.media_height = integer(self.media_info.get("video_height"))
+        self.media_duration = integer(self.media_info.get("general_duration"))
+        self.media_size = integer(self.media_info.get("general_size"))
+        self.media_type = self.media_info.get("general_extension") or _("Unknown")
+        self.media_duration = integer(self.media_duration)

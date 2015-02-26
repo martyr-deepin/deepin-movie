@@ -1,15 +1,17 @@
 import QtQuick 2.1
-import QtAV 1.4
+import QtAV 1.5
 
 Video {
     id: video
     autoPlay: true
     transform: flip
+    timeout: 5 * 1000
     visible: playbackState != MediaPlayer.StoppedState
 
     subtitle.enabled: false
     // videoCodecPriority: ["VAAPI", "FFmpeg"]
 
+    property string sourceString: ""
     property size resolution: _getResolution()
     property bool hasMedia: hasVideo || hasAudio
     property string title: metaData.title ? metaData.title : ""
@@ -25,6 +27,12 @@ Video {
     property int subtitleDelay: 0
 
     property bool isPreview: false
+
+    function reset() {
+        source = ""
+        sourceString = ""
+        resetRotationFlip()
+    }
 
     function flipHorizontal() {
         if (flip.axis.y == 1) {
@@ -102,6 +110,6 @@ Video {
         anchors.bottom: parent.bottom
         anchors.leftMargin: 20
         anchors.rightMargin: 20
-        anchors.bottomMargin: parent.subtitleVerticalPosition * (parent.height - subtitle.height)
+        anchors.bottomMargin: parent.subtitleVerticalPosition * (parent.height - subtitle.height - 30)
     }
 }

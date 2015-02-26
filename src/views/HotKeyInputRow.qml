@@ -22,7 +22,7 @@ Item {
     function setShortcut(shortcut) {
         hotKey = Qt.binding(function() { return config[actualSettingEntry]+"" || dsTr("None") })
         config[actualSettingEntry] = shortcut
-        text = Qt.binding(function() { return hotKey })
+        text = Qt.binding(function() { return _utils.getOverrideKeyNames(shortcut) || dsTr("None") })
     }
 
     function warning(shortcutsEntry, shortcutsCategory) {
@@ -50,6 +50,7 @@ Item {
         HotKeyInput {
             id: input
             width: 200
+            text: _utils.getOverrideKeyNames(hotKey) || dsTr("None")
             anchors.right: parent.right
             anchors.verticalCenter: parent.verticalCenter
 

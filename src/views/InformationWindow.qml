@@ -1,5 +1,6 @@
 import QtQuick 2.1
 import Deepin.Widgets 1.0
+import "sources/ui_utils.js" as UIUtils
 
 DDialog {
     id: info_window
@@ -20,10 +21,10 @@ DDialog {
         var videoInfo = JSON.parse(vinfo)
         fileTitle = videoInfo.movie_title || dsTr("Unknown")
         fileType = videoInfo.movie_type || dsTr("Unknown")
-        fileSize = formatSize(videoInfo.movie_size) || dsTr("Unknown")
+        fileSize = UIUtils.formatSize(videoInfo.movie_size) || dsTr("Unknown")
         movieResolution = "%1x%2".arg(videoInfo.movie_width).arg(videoInfo.movie_height)
-        movieDuration = formatTime(videoInfo.movie_duration)
-        filePath = formatFilePath(videoInfo.movie_path)
+        movieDuration = UIUtils.formatTime(videoInfo.movie_duration)
+        filePath = UIUtils.formatFilePath(videoInfo.movie_path)
 
         info_window.show()
     }

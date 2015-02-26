@@ -21,7 +21,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
-import time
 from PyQt5.QtCore import QFileSystemWatcher, QFile, pyqtSignal, pyqtSlot
 
 def longest_path_exist_matches_path(path):
@@ -33,21 +32,20 @@ def longest_path_exist_matches_path(path):
 # Note: the FileMonitor class is solely used by the Playlist module, so if
 # you have any concern about its function, please consider the use case first.
 class FileMonitor(QFileSystemWatcher):
-    fileMissing = pyqtSignal(str, arguments=["file",])
-    fileBack = pyqtSignal(str, arguments=["file",])
+    fileExistenceChanged = pyqtSignal(str, bool, arguments=["file", "existence"])
 
     def __init__(self):
         super(FileMonitor, self).__init__()
-        self._monitored_files = []
+        self._monitored_files = {}
         self.directoryChanged.connect(self.directoryChangedCallback)
 
     def directoryChangedCallback(self, changedDir):
         for file in self._monitored_files:
             if file.startswith(changedDir):
-                if QFile(file).exists():
-                    self.fileBack.emit(file)
-                else:
-                    self.fileMissing.emit(file)
+                fileExistence = QFile(file).exists()
+                if fileExistence != self._monitored_files[file]:
+                    self._monitored_files[file] = fileExistence
+                    self.fileExistenceChanged.emit(file, fileExistence)
 
     # this function is used to monitor the existence a uri item in the playlist,
     # there's 3 things I'd like to explain here:
@@ -59,12 +57,13 @@ class FileMonitor(QFileSystemWatcher):
     #    monitoring.
     @pyqtSlot(str, result=bool)
     def addFile(self, file):
-        if file.startswith("file://") or file.startswith("/"):
-            file = file.replace("file://", "")
-            self._monitored_files.append(file)
+        result = True
+        file = file.replace("file://", "")
+
+        if file.startswith("/"):
             if file: self.addPath(longest_path_exist_matches_path(
                 os.path.dirname(file)))
+            result = os.path.exists(file)
+            self._monitored_files.setdefault(file, result)
 
-            return os.path.exists(file)
-        else:
-            return True
+        return result

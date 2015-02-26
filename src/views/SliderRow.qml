@@ -10,11 +10,15 @@ Item {
 	property alias max: slider.max
 	property alias init: slider.init
 	property alias floatNumber: slider.floatNumber
+	property alias pressedFlag: slider.pressedFlag
 
 	property string leftRuler
 	property string rightRuler
 
 	signal valueChanged (real value)
+	signal valueConfirmed(real value)
+
+	function setValue(value) { slider.setValue() }
 
 	Text {
 		id: title
@@ -23,7 +27,7 @@ Item {
 		anchors.left: parent.left
 		anchors.verticalCenter: parent.verticalCenter
 	}
-	
+
 	DSliderEnhanced {
 		id: slider
 		width: 200
@@ -33,6 +37,7 @@ Item {
 		anchors.verticalCenter: parent.verticalCenter
 
 		onValueChanged: parent.valueChanged(value)
+		onValueConfirmed: parent.valueConfirmed(value)
 
 		Component.onCompleted: {
 		    parent.leftRuler && addRuler(min, parent.leftRuler)

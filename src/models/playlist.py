@@ -293,10 +293,8 @@ class Database(QObject):
             url = tuple[1]
             urlIsNativeFile = utils.urlIsNativeFile(url)
 
-            url = url.replace("file://", "")
             result = os.path.basename(url)
             itemName =  result if urlIsNativeFile else url
-            url = "file://" + url
 
             self.addPlaylistItem(itemName, url, category)
 
@@ -344,7 +342,7 @@ class Database(QObject):
 
         for result in queryResults:
             info = json.loads(result.info) if result.info else {}
-            played = info.get("played") or ""
+            played = str(info.get("played")) or ""
             if result.category:
                 cate = playlist.appendCategory(
                     result.category.name.encode("utf-8"))
@@ -410,6 +408,28 @@ class Database(QObject):
                 PlaylistItemModel.url == itemUrl)
             info = json.loads(item.info) if item.info else {}
             info["rotation"] = itemRotation
+            item.info = json.dumps(info)
+            item.save()
+        except DoesNotExist:
+            pass
+
+    @pyqtSlot(str, result=str)
+    def getPlaylistItemSubtitle(self, itemUrl):
+        try:
+            item = PlaylistItemModel.get(
+                PlaylistItemModel.url == itemUrl)
+            info = json.loads(item.info) if item.info else {}
+            return info.get("subtitle") or ""
+        except DoesNotExist:
+            return ""
+
+    @pyqtSlot(str, str)
+    def setPlaylistItemSubtitle(self, itemUrl, subtitle):
+        try:
+            item = PlaylistItemModel.get(
+                PlaylistItemModel.url == itemUrl)
+            info = json.loads(item.info) if item.info else {}
+            info["subtitle"] = subtitle
             item.info = json.dumps(info)
             item.save()
         except DoesNotExist:

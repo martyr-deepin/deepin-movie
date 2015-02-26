@@ -1,5 +1,6 @@
 import QtQuick 2.1
 import Deepin.Widgets 1.0
+import "sources/ui_utils.js" as UIUtils
 
 Rectangle {
     id: playlistPanel
@@ -10,8 +11,8 @@ Rectangle {
     property string tabId: "local"
     property bool expanded: width == program_constants.playlistWidth
     property bool canExpand: true
-    property url currentPlayingSource
-    property url clickedOnItemUrl: playlist.clickedOnItemUrl
+    property string currentPlayingSource
+    property string clickedOnItemUrl: playlist.clickedOnItemUrl
     property string clickedOnItemName: playlist.clickedOnItemName
     property int maxWidth: program_constants.playlistWidth
     property alias window: playlistPanelArea.window
@@ -100,6 +101,8 @@ Rectangle {
     function getPreviousSourceCycle(source) { return playlist.getPreviousSourceCycle(source) }
     function getNextSourceCycle(source) { return playlist.getNextSourceCycle(source) }
 
+    function changeFileExistence(file, exists) { exists ? playlist.fileBack(file) : playlist.fileMissing(file) }
+
     Timer {
         id: hide_timer
         interval: 5000
@@ -174,7 +177,7 @@ Rectangle {
             }
         }
         onPositionChanged: {
-            if (inRectCheck(mouse, Qt.rect(0, 0, width, 30))) {
+            if (UIUtils.inRectCheck(mouse, Qt.rect(0, 0, width, 30))) {
                 playlistPanel.moveInWindowButtons()
             } else {
                 playlistPanel.moveOutWindowButtons()

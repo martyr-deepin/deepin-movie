@@ -47,13 +47,13 @@ Connections {
 
     onOpenSubtitleFile: { main_controller.openFileForSubtitle() }
 
-    onSubtitleSelected: _subtitle_parser.file_name = subtitle
+    onSubtitleSelected: { main_controller.setSubtitle(subtitle) }
 
     onShowPreference: { main_controller.showPreferenceWindow() }
 
     onShowMovieInformation: {
         player.source && player.hasVideo
-        && main_controller.showInformationWindow(player.source)
+        && main_controller.showInformationWindow(player.sourceString)
     }
 
     onSubtitleVisibleSet: player.subtitleShow = visible
@@ -70,7 +70,7 @@ Connections {
 
     onShowSubtitleSettings: { main_controller.showPreferenceWindow(); preference_window.scrollToSubtitle() }
 
-    onPlaylistPlay: player.source = playlist.clickedOnItemUrl
+    onPlaylistPlay: main_controller.playPath(playlist.clickedOnItemUrl)
     onAddItemToPlaylist: main_controller.openFileForPlaylist()
     onAddFolderToPlaylist: main_controller.openDirForPlaylist()
     onRemoveItemFromPlaylist: playlist.removeClickedItem()

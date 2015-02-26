@@ -120,7 +120,7 @@ DPreferenceWindow {
             for (var i = 0; i < keyboard_sections.length; i++) {
                 for (var j = 0; j < keyboard_sections[i].content.length; j++) {
                     var entry = keyboard_sections[i].content[j]
-                    if (entry.title != entryName && entry.hotKey && entry.hotKey == shortcut) {
+                    if (entry.title != entryName && entry.text && entry.text == shortcut) {
                         return [entry.title, keyboard_sections[i].title]
                     }
                 }
@@ -134,7 +134,7 @@ DPreferenceWindow {
             for (var i = 0; i < keyboard_sections.length; i++) {
                 for (var j = 0; j < keyboard_sections[i].content.length; j++) {
                     var entry = keyboard_sections[i].content[j]
-                    if (entry.title != entryName && entry.hotKey && entry.hotKey == shortcut) {
+                    if (entry.title != entryName && entry.text && entry.text == shortcut) {
                         entry.disableShortcut()
                     }
                 }
@@ -176,7 +176,7 @@ DPreferenceWindow {
             anchors.leftMargin: 5
 
             DCheckBox {
-                text: dsTr("Enter fullscreen on opening file")
+                text: dsTr("Fullscreen on opening file")
                 checked: config.playerFullscreenOnOpenFile
                 onClicked: config.playerFullscreenOnOpenFile = checked
             }
@@ -872,6 +872,7 @@ DPreferenceWindow {
             }
 
             SliderRow {
+                id: subtitle_vertical_pos_row
                 title: dsTr("Position")
                 min: 0
                 max: 1
@@ -880,7 +881,11 @@ DPreferenceWindow {
                 leftRuler: dsTr("Bottom")
                 rightRuler: dsTr("Top")
 
-                onValueChanged: config.subtitleVerticalPosition = value
+                onValueChanged: {
+                    if (subtitle_vertical_pos_row.pressedFlag) {
+                        config.subtitleVerticalPosition = value
+                    }
+                }
             }
 
             SpinnerRow {

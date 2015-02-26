@@ -1,39 +1,37 @@
 import QtQuick 2.1
-import QtAV 1.4
+import QtAV 1.5
 import QtGraphicalEffects 1.0
 import QtQuick.Window 2.1
 import Deepin.Locale 1.0
 import Deepin.Widgets 1.0
 import "../controllers"
+import "sources/ui_utils.js" as UIUtils
 
 Rectangle {
     id: root
     state: "normal"
     color: "transparent"
-    // QT takes care of WORKAREA for you which is thoughtful indeed, but it cause
-    // problems sometime, we should be careful in case that it changes height for
-    // you suddenly.
-    layer.enabled: true
 
-    property var windowLastState: ""
-
-    property real widthHeightScale: player.resolution.width / player.resolution.height
+    // this property will be set when the window's initializing its size,
+    // and will be changed only when the resolution of the player changes.
+    property real widthHeightScale
     property real actualScale: 1.0
 
     property bool hasResized: false
+    property bool isMiniMode: false
     property bool shouldAutoPlayNextOnInvalidFile: false
 
     property rect primaryRect: {
         return Qt.rect(0, 0, Screen.desktopAvailableWidth, Screen.desktopAvailableHeight)
     }
 
+    // Used to check wether the player is stopped by the app or by the user,
+    // if it is the user that stopped the player, we'll not play it automatically.
+    property bool videoStoppedByAppFlag: false
+    property bool videoFullscreenByAppFlag: false
+
     // properties that used as ids
     property alias tooltip: tooltip_loader.item
-    property alias open_file_dialog: open_file_dialog_loader.item
-    property alias open_folder_dialog: open_folder_dialog_loader.item
-    property alias open_url_dialog: open_url_dialog_loader.item
-    property alias info_window: info_window_loader.item
-    property alias preference_window: preference_window_loader.item
     property alias shortcuts_viewer: shortcuts_viewer_loader.item
 
     states: [
@@ -68,124 +66,117 @@ Rectangle {
 
     Constants { id: program_constants }
 
+    PreferenceWindow { id: preference_window }
+    InformationWindow {
+        id: info_window
+        onCopyToClipboard: _utils.copyToClipboard(text)
+    }
+
+    OpenFileDialog {
+        id: open_file_dialog
+        modality: Qt.ApplicationModal
+        transientParent: windowView
+        onAccepted: {
+            shouldAutoPlayNextOnInvalidFile = false
+
+            if (fileUrls.length > 0) {
+                var filePaths = []
+                for (var i = 0; i < fileUrls.length; i++) {
+                    filePaths.push(decodeURIComponent(fileUrls[i]).replace("file://", ""))
+                }
+
+                if (state == "open_video_file") {
+                    _settings.lastOpenedPath = folder
+                    main_controller.playPaths(filePaths, true)
+                } else if (state == "open_subtitle_file") {
+                    _settings.lastOpenedPath = folder
+                    var filename = filePaths[0]
+
+                    if (_utils.fileIsSubtitle(filename)) {
+                        main_controller.setSubtitle(filename)
+                    } else {
+                        main_controller.notifyInvalidFile(filename)
+                    }
+                } else if (state == "add_playlist_item") {
+                    _settings.lastOpenedPath = folder
+
+                    main_controller.playPaths(filePaths, false)
+                } else if (state == "import_playlist") {
+                    _settings.lastOpenedPlaylistPath = folder
+
+                    var filename = filePaths[0]
+                    main_controller.importPlaylistImpl(filename)
+                } else if (state == "export_playlist") {
+                    _settings.lastOpenedPlaylistPath = folder
+
+                    var filename = filePaths[0]
+                    if (filename.toString().search(".dmpl") == -1) {
+                        filename = filename + ".dmpl"
+                    }
+                    main_controller.exportPlaylistImpl(filename)
+                }
+            }
+        }
+    }
+
+    OpenFolderDialog {
+        id: open_folder_dialog
+        modality: Qt.ApplicationModal
+        transientParent: windowView
+        folder: _settings.lastOpenedPath || _utils.homeDir
+
+        property bool playFirst: true
+
+        onAccepted: {
+            shouldAutoPlayNextOnInvalidFile = false
+
+            var folderPath = fileUrl.toString()
+            _settings.lastOpenedPath = folder // record last opened path
+            main_controller.playPaths([folderPath], playFirst)
+        }
+    }
+
+    DInputDialog {
+        id: open_url_dialog
+        message: dsTr("Please input the url of file played") + dsTr(":")
+        confirmButtonLabel: dsTr("Confirm")
+        cancelButtonLabel: dsTr("Cancel")
+
+        cursorPosGetter: windowView
+
+        property string lastInput: ""
+
+        function open() {
+            x = windowView.x + (windowView.width - width) / 2
+            y = windowView.y + (windowView.height - height) / 2
+            show()
+        }
+
+        onConfirmed: {
+            var input = input.trim()
+
+            if (input.search("://") == -1) {
+                notifybar.show(dsTr("The parse failed"))
+            } else if (input != player.source) {
+                if (config.playerCleanPlaylistOnOpenNewFile) {
+                    main_controller.clearPlaylist()
+                }
+                shouldAutoPlayNextOnInvalidFile = false
+                main_controller.playPaths([input], true)
+            }
+
+            lastInput = input
+        }
+
+        onVisibleChanged: { if(visible) forceFocus() }
+    }
+
     Component {
         id: tooltip_component
 
         ToolTip {
             window: windowView
             screenSize: primaryRect
-        }
-    }
-
-    Component {
-        id: open_file_dialog_component
-
-        OpenFileDialog {
-            onAccepted: {
-                shouldAutoPlayNextOnInvalidFile = false
-
-                if (fileUrls.length > 0) {
-                    if (state == "open_video_file") {
-                        _settings.lastOpenedPath = folder
-                        main_controller.playPaths(fileUrls, true)
-                    } else if (state == "open_subtitle_file") {
-                        _settings.lastOpenedPath = folder
-                        var filename = fileUrls[0].toString().replace("file://", "")
-
-                        if (_utils.fileIsSubtitle(filename)) {
-                            _subtitle_parser.file_name = filename
-                        } else {
-                            notifybar.show(dsTr("Invalid file") + ": " + filename)
-                        }
-                    } else if (state == "add_playlist_item") {
-                        _settings.lastOpenedPath = folder
-
-                        main_controller.playPaths(fileUrls, false)
-                    } else if (state == "import_playlist") {
-                        _settings.lastOpenedPlaylistPath = folder
-
-                        var filename = fileUrls[0].toString().replace("file://", "")
-                        main_controller.importPlaylistImpl(filename)
-                    } else if (state == "export_playlist") {
-                        _settings.lastOpenedPlaylistPath = folder
-
-                        var filename = fileUrls[0].toString().replace("file://", "")
-                        if (filename.toString().search(".dmpl") == -1) {
-                            filename = filename + ".dmpl"
-                        }
-                        main_controller.exportPlaylistImpl(filename)
-                    }
-                }
-            }
-        }
-    }
-
-    Component {
-        id: open_folder_dialog_component
-        OpenFolderDialog {
-            folder: _settings.lastOpenedPath || _utils.homeDir
-
-            property bool playFirst: true
-
-            onAccepted: {
-                shouldAutoPlayNextOnInvalidFile = false
-
-                var folderPath = fileUrl.toString()
-                _settings.lastOpenedPath = folder // record last opened path
-                main_controller.playPaths([folderPath], playFirst)
-            }
-        }
-    }
-
-    Component {
-        id: open_url_dialog_component
-
-        DInputDialog {
-            message: dsTr("Please input the url of file played") + ": "
-            confirmButtonLabel: dsTr("Confirm")
-            cancelButtonLabel: dsTr("Cancel")
-
-            cursorPosGetter: windowView
-
-            property string lastInput: ""
-
-            function open() {
-                x = windowView.x + (windowView.width - width) / 2
-                y = windowView.y + (windowView.height - height) / 2
-                show()
-            }
-
-            onConfirmed: {
-                var input = input.trim()
-
-                if (input.search("://") == -1) {
-                    notifybar.show(dsTr("The parse failed"))
-                } else if (input != player.source) {
-                    if (config.playerCleanPlaylistOnOpenNewFile) {
-                        main_controller.clearPlaylist()
-                    }
-                    shouldAutoPlayNextOnInvalidFile = false
-                    player.source = input
-                }
-
-                lastInput = input
-            }
-
-            onVisibleChanged: { if(visible) forceFocus() }
-        }
-    }
-
-    Component {
-        id: preference_window_component
-
-        PreferenceWindow {}
-    }
-
-    Component {
-        id: info_window_component
-
-        InformationWindow {
-            onCopyToClipboard: _utils.copyToClipboard(text)
         }
     }
 
@@ -202,36 +193,6 @@ Rectangle {
         id: tooltip_loader
         asynchronous: true
         sourceComponent: tooltip_component
-    }
-
-    Loader {
-        id: open_file_dialog_loader
-        asynchronous: true
-        sourceComponent: open_file_dialog_component
-    }
-
-    Loader {
-        id: open_folder_dialog_loader
-        asynchronous: true
-        sourceComponent: open_folder_dialog_component
-    }
-
-    Loader {
-        id: open_url_dialog_loader
-        asynchronous: true
-        sourceComponent: open_url_dialog_component
-    }
-
-    Loader {
-        id: preference_window_loader
-        asynchronous: true
-        sourceComponent: preference_window_component
-    }
-
-    Loader {
-        id: info_window_loader
-        asynchronous: true
-        sourceComponent:  info_window_component
     }
 
     Loader {
@@ -255,58 +216,28 @@ Rectangle {
     }
 
     function initWindowSize() {
+        resetWindowSize()
+        root.widthHeightScale = (windowView.width - windowView.windowGlowRadius * 2) / (windowView.height - windowView.windowGlowRadius * 2)
+
         if (config.playerApplyLastClosedSize) {
             hasResized = true
-            main_controller._setSizeForRootWindowWithWidth(_settings.lastWindowWidth)
-        } else {
-            windowView.setWidth(windowView.defaultWidth)
-            windowView.setHeight(windowView.defaultHeight)
+            main_controller.setSizeForRootWindowWithWidth(_settings.lastWindowWidth)
         }
     }
 
     function resetWindowSize() {
-        if (!config.playerApplyLastClosedSize) {
-            windowView.setWidth(windowView.defaultWidth)
-            windowView.setHeight(windowView.defaultHeight)
-            player.source = ""
-        }
+        windowView.setMinimumWidth(windowView.minimumWidth)
+        windowView.setMinimumHeight(windowView.minimumHeight)
+        windowView.setWidth(windowView.defaultWidth)
+        windowView.setHeight(windowView.defaultHeight)
     }
 
+    // TODO: remove this, use isMiniMode instead
     function miniModeState() { return windowView.width == program_constants.miniModeWidth }
 
-    function formatTime(millseconds) {
-        if (millseconds <= 0) return "00:00:00";
-        var secs = Math.ceil(millseconds / 1000)
-        var hr = Math.floor(secs / 3600);
-        var min = Math.floor((secs - (hr * 3600))/60);
-        var sec = secs - (hr * 3600) - (min * 60);
-
-        if (hr < 10) {hr = "0" + hr; }
-        if (min < 10) {min = "0" + min;}
-        if (sec < 10) {sec = "0" + sec;}
-        if (!hr) {hr = "00";}
-        return hr + ':' + min + ':' + sec;
-    }
-
-    function formatSize(capacity) {
-        var teras = capacity / (1024 * 1024 * 1024 * 1024)
-        capacity = capacity % (1024 * 1024 * 1024 * 1024)
-        var gigas = capacity / (1024 * 1024 * 1024)
-        capacity = capacity % (1024 * 1024 * 1024)
-        var megas = capacity / (1024 * 1024)
-        capacity = capacity % (1024 * 1024)
-        var kilos = capacity / 1024
-
-        return Math.floor(teras) ? teras.toFixed(1) + "TB" :
-                Math.floor(gigas) ? gigas.toFixed(1) + "GB":
-                Math.floor(megas) ? megas.toFixed(1) + "MB" :
-                kilos + "KB"
-    }
-
-    function formatFilePath(file_path) {
-        return file_path.indexOf("file://") != -1 ? file_path.substring(7) : file_path
-    }
-
+    // this function share the same name with one function in MainController,
+    // but this function is mainly used to expose the dbus interface, tanslating
+    // the dbus arguments into the ones that its namesake can understand.
     function playPaths(pathList) {
         var pathList = JSON.parse(pathList)
         var pathsExceptUrls = new Array()
@@ -315,7 +246,7 @@ Rectangle {
             if (!_utils.urlIsNativeFile(pathList[i])) {
                 main_controller.addPlaylistStreamItem(pathList[i])
                 if (i == 0) {
-                    player.source = pathList[i]
+                    main_controller.playPath(pathList[i])
                     firstIsUrl = true
                 }
             } else {
@@ -337,9 +268,18 @@ Rectangle {
         hide_controls_timer.stop()
     }
 
+    // handle transient windows state
     function hideTransientWindows() {
         shortcuts_viewer.hide()
         resize_visual.hide()
+    }
+
+    function anyTransientWindowVisible() {
+        return info_window.visible
+               || preference_window.visible
+               || open_file_dialog.visible
+               || open_folder_dialog.visible
+               || open_url_dialog.visible
     }
 
     function subtitleVisible() {
@@ -350,17 +290,11 @@ Rectangle {
         player.subtitleShow = visible;
     }
 
-    // Utils functions
-    function inRectCheck(point, rect) {
-        return rect.x <= point.x && point.x <= rect.x + rect.width &&
-        rect.y <= point.y && point.y <= rect.y + rect.height
-    }
-
     function mouseInControlsArea() {
         var mousePos = windowView.getCursorPos()
-        var mouseInTitleBar = inRectCheck(Qt.point(mousePos.x - windowView.x, mousePos.y - windowView.y),
+        var mouseInTitleBar = UIUtils.inRectCheck(Qt.point(mousePos.x - windowView.x, mousePos.y - windowView.y),
                                             Qt.rect(0, 0, main_window.width, titlebar.height))
-        var mouseInControlBar = inRectCheck(Qt.point(mousePos.x - windowView.x, mousePos.y - windowView.y),
+        var mouseInControlBar = UIUtils.inRectCheck(Qt.point(mousePos.x - windowView.x, mousePos.y - windowView.y),
                                             Qt.rect(0, main_window.height - controlbar.height,
                                                     main_window.width, controlbar.height))
 
@@ -369,71 +303,76 @@ Rectangle {
 
     function mouseInPlaylistArea() {
         var mousePos = windowView.getCursorPos()
-        return playlist.expanded && inRectCheck(Qt.point(mousePos.x - windowView.x, mousePos.y - windowView.y),
+        return playlist.expanded && UIUtils.inRectCheck(Qt.point(mousePos.x - windowView.x, mousePos.y - windowView.y),
                                             Qt.rect(main_window.width - program_constants.playlistWidth, 0,
                                                 program_constants.playlistWidth, main_window.height))
     }
 
     function mouseInPlaylistTriggerArea() {
         var mousePos = windowView.getCursorPos()
-        return !playlist.expanded && inRectCheck(Qt.point(mousePos.x - windowView.x, mousePos.y - windowView.y),
+        return !playlist.expanded && UIUtils.inRectCheck(Qt.point(mousePos.x - windowView.x, mousePos.y - windowView.y),
                                             Qt.rect(main_window.width - program_constants.playlistTriggerThreshold, titlebar.height,
                                                     program_constants.playlistTriggerThreshold + 10, main_window.height - controlbar.height))
     }
 
     /* to perform like a newly started program  */
     function reset() {
-        player.resetRotationFlip()
         root.state = "normal"
-        titlebar.title = ""
-        windowView.setTitle(dsTr("Deepin Movie"))
-        resetWindowSize()
+        root.resetWindowSize()
         _subtitle_parser.file_name = ""
-        main_controller.stop()
+
+        player.reset()
+        titlebar.reset()
         controlbar.reset()
-        showControls()
+        main_controller.stop()
+        root.showControls()
     }
 
-    // To check wether the player is stopped by the app or by the user
-    // if it is ther user that stopped the player, we'll not play it automatically.
-    property bool videoStoppedByAppFlag: false
     function monitorWindowState(state) {
         titlebar.windowNormalState = (state == Qt.WindowNoState)
         titlebar.windowFullscreenState = (state == Qt.WindowFullScreen)
         controlbar.windowFullscreenState = (state == Qt.WindowFullScreen)
         time_indicator.visibleSwitch = (state == Qt.WindowFullScreen && player.hasMedia)
-        if (windowLastState != state) {
-            if (config.playerPauseOnMinimized) {
-                if (state == Qt.WindowMinimized) {
-                    if (player.playbackState == MediaPlayer.PlayingState) {
-                        main_controller.pause()
-                        videoStoppedByAppFlag = true
-                    }
-                } else {
-                    if (videoStoppedByAppFlag == true) {
-                        main_controller.play()
-                        videoStoppedByAppFlag = false
-                    }
-                }
+
+        if (state == Qt.WindowMinimized) {
+            root.state = "normal"
+
+            if (config.playerPauseOnMinimized
+                && player.playbackState == MediaPlayer.PlayingState)
+            {
+                main_controller.pause()
+                videoStoppedByAppFlag = true
             }
-            windowLastState = state
+        } else {
+            if (videoStoppedByAppFlag == true) {
+                main_controller.play()
+                videoStoppedByAppFlag = false
+            }
+
+            if (state == Qt.WindowFullScreen) {
+                root.state = "no_glow"
+            } else if (state == Qt.WindowMaximized) {
+                root.state = "no_glow"
+            } else if (state == Qt.WindowNoState) {
+                root.state = "normal"
+            }
         }
     }
 
     function monitorWindowClose() {
         _utils.screenSaverUninhibit()
-        main_controller.recordVideoPosition(player.source, player.position)
-        main_controller.recordVideoRotation(player.source, player.orientation)
+        main_controller.recordVideoPosition(player.sourceString, player.position)
+        main_controller.recordVideoRotation(player.sourceString, player.orientation)
         _database.setPlaylistContentCache(playlist.getContent())
         _settings.lastWindowWidth = windowView.width
-        player.source && (_settings.lastPlayedFile = player.source)
+        player.sourceString && (_settings.lastPlayedFile = player.sourceString)
     }
 
     Timer {
         id: auto_play_next_on_invalid_timer
         interval: 1000 * 2
 
-        property url invalidFile: ""
+        property string invalidFile: ""
 
         function startWidthFile(file) {
             invalidFile = file
@@ -454,7 +393,7 @@ Rectangle {
             if (!mouseInControlsArea() && player.source && player.hasVideo) {
                 hideControls()
 
-                if (player.playbackState == MediaPlayer.PlayingState) {
+                if (player.playbackState == MediaPlayer.PlayingState && !anyTransientWindowVisible()) {
                     windowView.setCursorVisible(false)
                 }
             } else {
@@ -486,7 +425,13 @@ Rectangle {
             color: "#000000"
             visible: !player.visible
             anchors.fill: parent
-            Image { anchors.centerIn: parent; source: "image/background.png" }
+
+            Image {
+                source: "image/background.png"
+                scale: Math.min(1, windowView.width / windowView.defaultWidth)
+
+                anchors.centerIn: parent
+            }
         }
     }
 
@@ -496,7 +441,6 @@ Rectangle {
         volume: config.playerVolume
         visible: hasVideo && source != ""
 
-        subtitleShow: config.subtitleAutoLoad
         subtitleFontSize: Math.floor(config.subtitleFontSize * main_window.width / windowView.defaultWidth)
         subtitleFontFamily: config.subtitleFontFamily || getSystemFontFamily()
         subtitleFontColor: config.subtitleFontColor
@@ -509,43 +453,47 @@ Rectangle {
         // theses properties are mainly used in onStopped.
         // because we can't ensure the source and position info available every
         // time the onStopped handler executes.
-        property url lastVideoSource: ""
+        property string lastVideoSource: ""
         property int lastVideoPosition: 0
         property int lastVideoDuration: 0
+        property int lastForwardToPosition: 0
+        property bool playerInit: true
 
-        onResolutionChanged: main_controller.playerResolutionChanged()
+        onResolutionChanged: main_controller.handleResolutionChanged()
 
         // onSourceChanged doesn't ensures that the file is playable, this one did.
         // 2014/9/16 add: not ensures url playable, either
         onPlaying: {
+            if (playerInit) {
+                if (config.playerFullscreenOnOpenFile) {
+                    main_controller.fullscreen()
+                    root.videoFullscreenByAppFlag = true
+                } else if (root.videoFullscreenByAppFlag) {
+                    main_controller.quitFullscreen()
+                }
+            }
+
+            playerInit = false
             notifybar.hide()
             auto_play_next_on_invalid_timer.stop()
-            main_controller.setWindowTitle(_utils.getTitleFromUrl(player.source))
+            main_controller.setWindowTitle(_utils.getTitleFromUrl(player.sourceString))
 
             _utils.screenSaverInhibit()
 
-            lastVideoSource = source
+            lastVideoSource = sourceString
             lastVideoDuration = duration
-            if (config.playerFullscreenOnOpenFile) main_controller.fullscreen()
-
-            if (_utils.urlIsNativeFile(source)) {
-                main_controller.playPaths([source.toString()], false)
-            } else {
-                main_controller.addPlaylistStreamItem(source)
-            }
         }
 
         onStopped: {
+            lastForwardToPosition = 0
+            resetRotationFlip()
             _utils.screenSaverUninhibit()
             main_controller.recordVideoPosition(lastVideoSource, lastVideoPosition)
 
             var videoPLayedOut = (lastVideoDuration - lastVideoPosition) < program_constants.videoEndsThreshold
-
-            if (_utils.urlIsNativeFile(lastVideoSource)) {
-                if (videoPLayedOut) {
-                    shouldAutoPlayNextOnInvalidFile = true
-                    main_controller.playNextOf(_settings.lastPlayedFile)
-                }
+            if (videoPLayedOut) {
+                shouldAutoPlayNextOnInvalidFile = true
+                main_controller.playNextOf(_settings.lastPlayedFile)
             }
         }
 
@@ -561,16 +509,23 @@ Rectangle {
 
         property bool resetPlayHistoryCursor: true
         onSourceChanged: {
+            playerInit = true
             resetRotationFlip()
 
             if (source.toString().trim()) {
-                _settings.lastPlayedFile = source
+                _settings.lastPlayedFile = sourceString
                 _database.appendPlayHistoryItem(source, resetPlayHistoryCursor)
-                _subtitle_parser.set_subtitle_from_movie(source)
                 main_controller.recordVideoPosition(lastVideoSource, lastVideoPosition)
                 resetPlayHistoryCursor = true
 
+                _menu_controller.reset()
                 main_controller.seekToLastPlayed()
+
+                if (config.subtitleAutoLoad) {
+                    main_controller.setSubtitle(_database.getPlaylistItemSubtitle(player.sourceString))
+                } else {
+                    _subtitle_parser.file_name = ""
+                }
 
                 var rotation = main_controller.fetchVideoRotation(source)
                 var rotateClockwiseCount = Math.abs(Math.round((rotation % 360 - 360) % 360 / 90))
@@ -581,22 +536,24 @@ Rectangle {
         }
 
         onErrorChanged: {
-            print(error)
-            print(errorString)
-            // if (movieInfo.movie_file.toString() == open_url_dialog.lastInput.toString())
-            // {
-            //     playlist.removeItem(source)
-            // }
+            print(error, errorString)
+            switch(error) {
+                case MediaPlayer.NetworkError:
+                case MediaPlayer.FormatError:
+                case MediaPlayer.ResourceError: {
+                    if (player.sourceString == open_url_dialog.lastInput.trim())
+                    {
+                        playlist.removeItem(sourceString)
+                        open_url_dialog.lastInput = ""
+                    }
 
-            // switch(error) {
-            //     case MediaPlayer.NetworkError:
-            //     case MediaPlayer.FormatError:
-            //     case MediaPlayer.ResourceError:
-            //     movieInfo.fileInvalid()
-            //     break
-            // }
-
-            // open_url_dialog.lastInput = ""
+                    main_controller.notifyInvalidFile(sourceString)
+                    if (root.shouldAutoPlayNextOnInvalidFile) {
+                        main_controller.playNextOf(sourceString)
+                    }
+                }
+                break
+            }
         }
     }
 
@@ -633,7 +590,7 @@ Rectangle {
         visible: false
         window: windowView
         maxWidth: main_window.width * 0.6
-        currentPlayingSource: player.source
+        currentPlayingSource: player.sourceString
         tooltipItem: tooltip
         canExpand: controlbar.status != "minimal"
         anchors.right: main_window.right
@@ -643,7 +600,7 @@ Rectangle {
 
         onNewSourceSelected: {
             shouldAutoPlayNextOnInvalidFile = false
-            player.source = path
+            main_controller.playPath(path)
         }
         onModeButtonClicked: _menu_controller.show_mode_menu()
         onAddButtonClicked: _menu_controller.show_add_button_menu()
@@ -688,7 +645,7 @@ Rectangle {
         dragbarVisible: root.state == "normal"
         timeInfoVisible: player.source != "" && player.hasMedia && player.duration != 0
         tooltipItem: tooltip
-        videoSource: player.source
+        videoSource: player.sourceString
 
         anchors.horizontalCenter: main_window.horizontalCenter
 

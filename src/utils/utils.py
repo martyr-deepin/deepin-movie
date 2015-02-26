@@ -49,11 +49,16 @@ all_supported_video_exts = [ "*.3g2","*.3gp","*.3gp2","*.3gpp","*.amv",
 
 all_supported_mime_types = []
 sep_chars = ("-", "_", ".", " ")
+override_key_names = {
+    "PgUp": "PageUp",
+    "PgDown": "PageDown"
+}
 
-with open("/usr/share/applications/deepin-movie.desktop") as app_info:
-    cp = ConfigParser()
-    cp.readfp(app_info)
-    all_supported_mime_types = cp.get("Desktop Entry", "MimeType").split(";")
+src_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+mimetypes_file_path = os.path.join(src_root, "data/mimetypes")
+with open(mimetypes_file_path) as mimetypes_file:
+    all_supported_mime_types = map(lambda x: x.strip(),
+                                   mimetypes_file.readlines())
 
 def _longest_match(*strs):
     shortest_str = min(strs, key=len)
@@ -122,26 +127,33 @@ class FindVideoThread(QThread):
 
         self._cate_video_tuple_list = []
 
+    def _markPathAsVideo(self, path, findSerie):
+        self._valid_files_count += 1
+        if not self._first_video:
+            self._first_video = path
+            self.firstVideoFound.emit(path)
+
+        if findSerie:
+            serieInfo = utils.getSeriesByName(path)
+            serieInfo = json.loads(serieInfo)
+
+            cate = serieInfo["name"]
+            items = serieInfo["items"]
+
+            for item in items:
+                self._cate_video_tuple_list.append((cate, item))
+        else:
+            self._cate_video_tuple_list.append(("", path))
+
     def _process_path_list(self, pathList):
         for path in pathList:
-            if utils.pathIsDir(path):
+            if utils.urlIsDir(path):
                 self._process_path_list(utils.getAllFilesInDir(path))
-            elif path not in map(lambda x: x[1], self._cate_video_tuple_list) \
-            and utils.fileIsValidVideo(path):
-                self._valid_files_count += 1
-                if not self._first_video:
-                    self._first_video = path
-                    self.firstVideoFound.emit(path)
-
-                if self._findSerie:
-                    serieInfo = utils.getSeriesByName(path)
-                    serieInfo = json.loads(serieInfo)
-
-                    cate = serieInfo["name"]
-                    items = serieInfo["items"]
-
-                    for item in items:
-                        self._cate_video_tuple_list.append((cate, item))
+            elif path not in map(lambda x: x[1], self._cate_video_tuple_list):
+                if utils.fileIsValidVideo(path):
+                    self._markPathAsVideo(path, self._findSerie)
+                elif utils.stringIsValidUri(path):
+                    self._markPathAsVideo(path, False)
             else:
                 self._invalid_files_count += 1
 
@@ -157,7 +169,7 @@ class FindVideoThreadManager(QObject):
     findVideoDone = pyqtSignal(str, str, int, int,
         arguments=["path", "tuples", "validCount", "invalidCount"])
 
-    findSerieChanged = pyqtSignal(str, arguments=["findSerie"])
+    findSerieChanged = pyqtSignal(bool, arguments=["findSerie"])
 
     def __init__(self):
         super(FindVideoThreadManager, self).__init__()
@@ -191,12 +203,8 @@ class Utils(QObject):
         return os.path.expanduser("~")
 
     @pyqtSlot(str, result=bool)
-    def pathIsFile(self, path):
-        return os.path.isfile(path)
-
-    @pyqtSlot(str, result=bool)
-    def pathIsDir(self, path):
-        return os.path.isdir(path)
+    def urlIsDir(self, url):
+        return os.path.isdir(url.replace("file://", ""))
 
     @pyqtSlot(str, result=bool)
     def urlIsNativeFile(self, url):
@@ -240,8 +248,7 @@ class Utils(QObject):
         allFiles = [os.path.basename(x) for x in allFiles]
         allMatches = (longest_match(x, os.path.basename(name)) for x in allFiles)
         matchesFilter = lambda x: x and x != os.path.basename(name) \
-                                    and not x[0] in "0123456789" \
-                                    and (len(x) > 5 or any(map(lambda ch: ch in x, sep_chars)))
+                                    and len(x) > 5
         filteredMatches = filter(matchesFilter, allMatches)
         nameFilter = min(filteredMatches, key=len) if filteredMatches else ""
         # can't do this here, because the following three steps relies on the
@@ -256,13 +263,20 @@ class Utils(QObject):
 
         return json.dumps({"name":serieName, "items":result})
 
+    @pyqtSlot(str, result=str)
+    def getOverrideKeyNames(self, keyname):
+        return override_key_names.get(keyname, keyname)
+
     @pyqtSlot(int, int, str, result=bool)
     def checkKeySequenceEqual(self, modifier, key, targetKeySequence):
-        return QKeySequence(modifier + key) == QKeySequence(targetKeySequence)
+        keySequence = QKeySequence(modifier + key).toString()
+        return self.getOverrideKeyNames(keySequence) == \
+               self.getOverrideKeyNames(targetKeySequence)
 
     @pyqtSlot(int, int, result=str)
     def keyEventToQKeySequenceString(self, modifier, key):
-        return QKeySequence(modifier + key).toString()
+        keySequence = QKeySequence(modifier + key).toString()
+        return self.getOverrideKeyNames(keySequence)
 
     @pyqtSlot(str)
     def copyToClipboard(self, text):
@@ -296,6 +310,10 @@ class Utils(QObject):
             else:
                 return False
         else: return False
+
+    @pyqtSlot(str, result=bool)
+    def stringIsValidUri(self, s):
+        return "://" in s
 
     @pyqtSlot(str,result=bool)
     def playlistItemValidation(self, path):

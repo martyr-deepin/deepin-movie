@@ -22,7 +22,7 @@
 
 import os
 import json
-from PyQt5.QtCore import QObject, pyqtSlot, pyqtSignal
+from PyQt5.QtCore import QObject, pyqtSlot, pyqtSignal, pyqtProperty
 from PyQt5.QtGui import QCursor
 from deepin_menu.menu import Menu, CheckableMenuItem
 
@@ -40,7 +40,7 @@ frame_sub_menu = [
     CheckableMenuItem("proportion:radio:_p_2_35_1", "2.35:1"),
     None,
     CheckableMenuItem("scale:radio:_s_0_5", "0.5"),
-    CheckableMenuItem("scale:radio:_s_1", "1", True),
+    CheckableMenuItem("scale:radio:_s_1", "1"),
     CheckableMenuItem("scale:radio:_s_1_5", "1.5"),
     CheckableMenuItem("scale:radio:_s_2", "2"),
     None,
@@ -110,7 +110,7 @@ right_click_menu = [
     ("_sound", _("Sound"), (), sound_sub_menu),
     ("_subtitle", _("Subtitles"), (), subtitle_sub_menu),
     None,
-    ("_preferences", _("Options")),
+    ("_preferences", _("Settings")),
     ("_information", _("Information")),
 ]
 
@@ -145,6 +145,11 @@ def _subtitle_menu_items_from_files(files, currentSubtitle):
                 os.path.basename(f),
                 f == currentSubtitle)
         return item
+
+    if currentSubtitle and currentSubtitle not in files:
+        files = list(files)
+        files.append(currentSubtitle)
+
     return map(checkable_item_from_file, filter(lambda x: x != "", files))
 
 def _subtitle_file_from_menu_item_id(id):
@@ -195,9 +200,21 @@ class MenuController(QObject):
     def __init__(self):
         super(MenuController, self).__init__()
 
+        self.reset()
+
+    @pyqtSlot()
+    def reset(self):
         self._proportion = "proportion:radio:_p_default"
-        self._scale = "scale:radio:_s_1"
+        self._scale = None
         self._sound_channel = "sound_channel:radio:auto"
+
+    @pyqtProperty(str)
+    def videoScale(self):
+        return self._scale
+
+    @videoScale.setter
+    def videoScale(self, value):
+        self._scale = value
 
     # if actions-like menu items are clicked, we should send signals to inform
     # the main controller that actions should be taken, if configs-like menu
@@ -352,7 +369,6 @@ class MenuController(QObject):
         self.menu.getItemById("_frame").isActive = hasVideo and not isFullscreen
         self.menu.getItemById("_subtitle_hide").isActive = subtitleFile != ""
         self.menu.getItemById("_subtitle_manual").isActive = hasVideo
-        self.menu.getItemById("_subtitle_choose").isActive = subtitleFile != ""
         self.menu.getItemById("_information").isActive = hasVideo
 
         self.menu.getItemById("_on_top").checked = isOnTop
@@ -403,15 +419,17 @@ class MenuController(QObject):
         #     self._sound_channel == "sound_channel:radio:right"
         # self.menu.getItemById("sound_channel:radio:stero").checked = \
         #     self._sound_channel == "sound_channel:radio:stero"
-        self.menu.getItemById("_sound_muted").checked = config.playerMuted
+        self.menu.getItemById("_sound_muted").checked = bool(config.playerMuted)
 
-        self.menu.getItemById("_subtitle_hide").checked = subtitleVisible
+        self.menu.getItemById("_subtitle_hide").checked = not subtitleVisible
         subtitles = get_subtitle_from_movie(videoSource)
         subtitles = _subtitle_menu_items_from_files(subtitles, subtitleFile)
+        self.menu.getItemById("_subtitle_choose").isActive = \
+            len(subtitles) != 0
         self.menu.getItemById("_subtitle_choose").setSubMenu(Menu(subtitles))
 
-        self.menu.getItemById("_fullscreen_quit").text = _("Fullscreen") if \
-            isFullscreen else _("Exit fullscreen")
+        self.menu.getItemById("_fullscreen_quit").text = _("Exit fullscreen") if \
+            isFullscreen else _("Fullscreen")
         self.menu.getItemById("_mini_mode").text = _("Exit mini mode") if \
             isMiniMode else _("Mini mode")
 
@@ -435,11 +453,11 @@ class MenuController(QObject):
             config.playerPlayOrderType == ORDER_TYPE_PLAYLIST_CYCLE
 
         self.menu.getItemById("_playlist_play").isActive = url != ""
-        self.menu.getItemById("_playlist_remove_item").isActive = url != ""
+        self.menu.getItemById("_playlist_remove_item").isActive = not playlistEmpty
         self.menu.getItemById("_playlist_open_position").isActive = url != "" \
             and utils.urlIsNativeFile(url)
         self.menu.getItemById("_playlist_information").isActive = url != "" \
-            and utils.fileIsValidVideo(url)
+            and utils.urlIsNativeFile(url)
         self.menu.getItemById("_playlist_clear").isActive = not playlistEmpty
 
         self.menu.showRectMenu(QCursor.pos().x(), QCursor.pos().y())

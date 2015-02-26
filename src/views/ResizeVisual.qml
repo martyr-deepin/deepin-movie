@@ -21,6 +21,11 @@ Window {
     property int minimumHeight
 
     function show() {
+        frame.x = windowView.x
+        frame.y = windowView.y
+        frame.width = windowView.width
+        frame.height = windowView.height
+
         root.visible = true
     }
 
@@ -28,20 +33,20 @@ Window {
         root.visible = false
     }
 
-    function intelligentlyResize(window, x, y) {
-        _intelligentlyResize(window, x, y, resizeEdge)
+    function intelligentlyResize(x, y) {
+        _intelligentlyResize(x, y, resizeEdge)
     }
 
-    function _intelligentlyResize(window, x, y, flag) {
+    function _intelligentlyResize(x, y, flag) {
         if (flag == resize_edge.resizeTop) {
             var deltaY = -y
             var deltaX = deltaY * widthHeightScale
 
             if (windowView.width + deltaX >= root.minimumWidth &&
                 windowView.height + deltaY >= root.minimumHeight) {
-                frame.y = window.y - deltaY
-                frame.width = window.width + deltaX
-                frame.height = window.height + deltaY
+                frame.y = windowView.y - deltaY
+                frame.width = windowView.width + deltaX
+                frame.height = windowView.height + deltaY
             }
         } else if (flag == resize_edge.resizeBottom) {
             var deltaY = y - windowView.height
@@ -49,8 +54,8 @@ Window {
 
             if (windowView.width + deltaX >= root.minimumWidth &&
                 windowView.height + deltaY >= root.minimumHeight) {
-                frame.width = window.width + deltaX
-                frame.height = window.height + deltaY
+                frame.width = windowView.width + deltaX
+                frame.height = windowView.height + deltaY
             }
         } else if (flag == resize_edge.resizeLeft) {
             var deltaX = -x
@@ -58,18 +63,18 @@ Window {
 
             if (windowView.width + deltaX >= root.minimumWidth &&
                 windowView.height + deltaY >= root.minimumHeight) {
-                frame.x = window.x - deltaX
-                frame.width = window.width + deltaX
-                frame.height = window.height + deltaY
+                frame.x = windowView.x - deltaX
+                frame.width = windowView.width + deltaX
+                frame.height = windowView.height + deltaY
             }
         } else if (flag == resize_edge.resizeRight) {
-            var deltaX = x - window.width
+            var deltaX = x - windowView.width
             var deltaY = deltaX / widthHeightScale
 
             if (windowView.width + deltaX >= root.minimumWidth &&
                 windowView.height + deltaY >= root.minimumHeight) {
-                frame.width = window.width + deltaX
-                frame.height = window.height + deltaY
+                frame.width = windowView.width + deltaX
+                frame.height = windowView.height + deltaY
             }
         } else if (flag == resize_edge.resizeTopLeft) {
             var deltaX = -x
@@ -77,20 +82,20 @@ Window {
 
             if (windowView.width + deltaX >= root.minimumWidth &&
                 windowView.height + deltaY >= root.minimumHeight) {
-                frame.x = window.x - deltaX
-                frame.y = window.y - deltaY
-                frame.width = window.width + deltaX
-                frame.height = window.height + deltaY
+                frame.x = windowView.x - deltaX
+                frame.y = windowView.y - deltaY
+                frame.width = windowView.width + deltaX
+                frame.height = windowView.height + deltaY
             }
         } else if (flag == resize_edge.resizeTopRight) {
-            var deltaX = x - window.width
+            var deltaX = x - windowView.width
             var deltaY = deltaX / widthHeightScale
 
             if (windowView.width + deltaX >= root.minimumWidth &&
                 windowView.height + deltaY >= root.minimumHeight) {
-                frame.y = window.y - deltaY
-                frame.width = window.width + deltaX
-                frame.height = window.height + deltaY
+                frame.y = windowView.y - deltaY
+                frame.width = windowView.width + deltaX
+                frame.height = windowView.height + deltaY
             }
         } else if (flag == resize_edge.resizeBottomLeft) {
             var deltaX = -x
@@ -98,18 +103,18 @@ Window {
 
             if (windowView.width + deltaX >= root.minimumWidth &&
                 windowView.height + deltaY >= root.minimumHeight) {
-                frame.x = window.x - deltaX
-                frame.width = window.width + deltaX
-                frame.height = window.height + deltaY
+                frame.x = windowView.x - deltaX
+                frame.width = windowView.width + deltaX
+                frame.height = windowView.height + deltaY
             }
         } else if (flag == resize_edge.resizeBottomRight) {
-            var deltaX = x - window.width
+            var deltaX = x - windowView.width
             var deltaY = deltaX / widthHeightScale
 
             if (windowView.width + deltaX >= root.minimumWidth &&
                 windowView.height + deltaY >= root.minimumHeight) {
-                frame.width = window.width + deltaX
-                frame.height = window.height + deltaY
+                frame.width = windowView.width + deltaX
+                frame.height = windowView.height + deltaY
             }
         }
     }
@@ -128,7 +133,7 @@ Window {
 
             Text {
                 id: resolution
-                color: parent.color
+                color: parent.border.color
                 font.pixelSize: 50
                 text: "%1x%2".arg(Math.floor(frame.width - 2 * program_constants.windowGlowRadius))
                                 .arg(Math.floor(frame.height - 2 * program_constants.windowGlowRadius))

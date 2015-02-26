@@ -13,6 +13,9 @@ DTextInput {
     signal hotkeyDisabled
 
     onHotkeySet: { text = key || dsTr("None") }
+    // below line is necessary, it will prevent other operations from breaking
+    // the binding of hotKey to text
+    onHotKeyChanged: text = hotKey || dsTr("None")
     onActiveFocusChanged: text = activeFocus ? dsTr("Please input a new shortcut") : hotKey
 
     onKeyPressed: {

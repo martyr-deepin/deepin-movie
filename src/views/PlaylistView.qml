@@ -1,17 +1,22 @@
 import QtQuick 2.1
+import "sources/ui_utils.js" as UIUtils
 
 ListView {
     id: playlist
     width: 300
     height: childrenRect.height
     layer.enabled: true
+    cacheBuffer: Math.max(0, contentHeight) // retains all the items, protect them from being destroied and rebuilt.
+    boundsBehavior: Flickable.StopAtBounds
 
     property var allItems: []
+    property var itemsToBeRemoved: []
     property string currentPlayingSource
     property var root
+    property int lineHeight: 24
     // isSelected is determined by its children
     property bool isSelected: false
-    property url clickedOnItemUrl
+    property string clickedOnItemUrl
     property string clickedOnItemName
 
     signal newSourceSelected(string path)
@@ -24,12 +29,6 @@ ListView {
     signal cleared()
     signal itemRemoved(string url)
     signal categoryRemoved(string name)
-
-    Connections {
-        target: _file_monitor
-        onFileMissing: playlist.fileMissing("file://"+file)
-        onFileBack: playlist.fileBack("file://"+file)
-    }
 
     function getFirst() {
         var flatList = _flattenList()
@@ -118,8 +117,21 @@ ListView {
         }
     }
 
-    function removeItem(url) { root.removeItemPrivate(url); itemRemoved(url) }
-    function removeGroup(name) { root.removeGroupPrivate(name); categoryRemoved(name) }
+    // there's a certain moment that the remove operation's a bit earlier than
+    // the construction of the item, thus we should record the url to be removed
+    // and let the item take care of its lifecycle itself.
+    function removeItem(url) {
+        if (contains(url)) {
+            root.removeItemPrivate(url)
+        } else {
+            root.itemsToBeRemoved.push(url)
+        }
+    }
+    // removeGroup should have the same structure of removeItem,
+    // but actually removeGroup's mainly used when the user manually removes
+    // the category by UI interact(the item's there for sure), so there's no
+    // need to implement it like removeItem for now.
+    function removeGroup(name) { root.removeGroupPrivate(name) }
     function removeInvalidItems(valid_check_func) {
         var flatList = _flattenList()
         for (var i = 0; i < flatList.length; i++) {
@@ -132,7 +144,6 @@ ListView {
     function moveItem(from, to) {
         model.move(from, to, 1)
         allItems.splice(to, 0, allItems.splice(from, 1)[0])
-        root.itemMoved(from, to)
     }
 
     function contains(url) {
@@ -204,22 +215,6 @@ ListView {
         return item1.y > item2.y ? 1 : -1
     }
 
-    // Rectangle {
-    //  id: sep
-    //  visible: false
-    //  width: 1
-    //  height: parent.width
-    //  rotation: -90
-    //  transformOrigin: Item.TopLeft
-    //  gradient: Gradient {
-    //      GradientStop { position: 0.0; color: Qt.rgba(1, 1, 1, 0.0)}
-    //      GradientStop { position: 0.3; color: Qt.rgba(1, 1, 1, 1.0)}
-    //      GradientStop { position: 0.5; color: Qt.rgba(1, 1, 1, 1.0)}
-    //      GradientStop { position: 0.7; color: Qt.rgba(1, 1, 1, 1.0)}
-    //      GradientStop { position: 1.0; color: Qt.rgba(1, 1, 1, 0.0)}
-    //  }
-    // }
-
     model: ListModel{}
     delegate: Component {
         Column {
@@ -237,6 +232,11 @@ ListView {
             property bool isHover: mouse_area.containsMouse
             onIsSelectedChanged: column.ListView.view.isSelected = isSelected
 
+            property color normalColor: "#9F9F9F"
+            property color hoverColor: "#FFFFFF"
+            property color selectedColor: "#00B1FF"
+            property color missingColor: "#4f4f50"
+
             property int lastY: y
             onYChanged: {
                 if (mouse_area.drag.active) {
@@ -246,11 +246,6 @@ ListView {
                             if (listView.allItems[i].y < y + height
                                 && y + height < listView.allItems[i].y + listView.allItems[i].height)
                             {
-                                // sep.parent = parent
-                                // sep.x = parent.x
-                                // sep.y = listView.allItems[i].y + listView.allItems[i].height
-                                // sep.visible = true
-
                                 if (listView.allItems[i].isGroup) {
                                     if (listView.allItems[i].y > y) {
                                         listView.allItems[i].y -= height
@@ -263,11 +258,6 @@ ListView {
                             if (listView.allItems[i].y < y
                                 && y < listView.allItems[i].y + listView.allItems[i].height)
                             {
-                                // sep.parent = parent
-                                // sep.x = parent.x
-                                // sep.y = listView.allItems[i].y + listView.allItems[i].height
-                                // sep.visible = true
-
                                 if (listView.allItems[i].isGroup) {
                                     if (listView.allItems[i].y + listView.allItems[i].height < y + height) {
                                         listView.allItems[i].y += height
@@ -283,7 +273,18 @@ ListView {
                 lastY = y
             }
 
-            Component.onCompleted: ListView.view.allItems.push(column)
+            Component.onCompleted: {
+                // check if it's in the items to be removed first, if the result's
+                // positive then there's no further things to be done.
+                var idx = column.ListView.view.itemsToBeRemoved.indexOf(propUrl)
+                if (idx != -1) {
+                    column.ListView.view.itemsToBeRemoved.splice(idx, 1)
+                    column.ListView.view.model.remove(index, 1)
+                    column.ListView.view.root.itemRemoved(propUrl)
+                } else {
+                    column.ListView.view.allItems.push(column)
+                }
+            }
             Component.onDestruction: {
                 var idx = column.ListView.view.allItems.indexOf(column)
                 if (idx != -1) {
@@ -296,30 +297,30 @@ ListView {
                 onRemoveItemPrivate: {
                     if (playlist._urlEqual(propUrl, url)) {
                         column.ListView.view.model.remove(index, 1)
+                        column.ListView.view.root.itemRemoved(propUrl)
                     }
                 }
                 onRemoveGroupPrivate: {
                     if (propName == name) {
                         column.ListView.view.model.remove(index, 1)
+                        column.ListView.view.root.categoryRemoved(propName)
                     }
                 }
-                onFileMissing: if (playlist._urlEqual(propUrl, url)) name.color = "#4f4f50"
+                onFileMissing: if (playlist._urlEqual(propUrl, url)) name.color = column.missingColor
                 onFileBack: if (playlist._urlEqual(propUrl, url)) name.color = Qt.binding(getTextColor)
             }
 
             function getTextColor() {
-                if (column.isSelected) {
-                    return column.isGroup ? "#8853B6F5" : "#53B6F5"
-                } else if (column.isHover) {
-                    return "#FFFFFF"
+                if (!column.isGroup && !_file_monitor.addFile(propUrl)) {
+                    return missingColor
                 } else {
-                    return "#9F9F9F"
+                    return column.isSelected ? column.selectedColor : column.isHover ? column.hoverColor : column.normalColor
                 }
             }
 
             Item {
                 width: column.width
-                height: 24
+                height: column.ListView.view.lineHeight
 
                 Timer {
                     id: show_tooltip_timer
@@ -343,39 +344,66 @@ ListView {
                         onActiveChanged: {
                             if (drag.active) return
 
-                            // sep.visible = false
                             var listView = column.ListView.view
                             var origInx = index
                             listView.allItems.sort(listView._sortFuncY)
                             var nowInx = listView.allItems.indexOf(column)
                             listView.moveItem(origInx, nowInx)
+
+                            // if nowInx == origInx moveItem will not cause the
+                            // listview to refresh, below codes can.
+                            listView.currentIndex = index
+                            listView.currentIndex = -1
                         }
                     }
 
                     onEntered: {
+                        delete_button.source = "image/delete_normal.png"
                         delete_button.visible = true
-                        delete_button.source = "image/delete_hover.png"
                         show_tooltip_timer.restart()
                     }
                     onExited: {
                         tooltip.hideTip()
                         delete_button.visible = false
-                        delete_button.source = "image/delete_normal.png"
+                    }
+                    onPositionChanged: {
+                        var delete_button_area = Qt.rect(delete_button.x, delete_button.y, delete_button.width, delete_button.height)
+
+                        if (UIUtils.inRectCheck(mouse, delete_button_area)) {
+                            delete_button.source = "image/delete_hover_press.png"
+                        } else {
+                            delete_button.source = "image/delete_normal.png"
+                        }
                     }
                     onClicked: {
-                        if (mouse.button == Qt.RightButton) {
-                            column.ListView.view.root.clickedOnItemUrl = propUrl
-                            column.ListView.view.root.clickedOnItemName = propName
-                            _menu_controller.show_playlist_menu(propUrl, column.ListView.view.root.isEmpty())
-                        } else {
+                        var delete_button_area = Qt.rect(delete_button.x, delete_button.y, delete_button.width, delete_button.height)
+
+                        if (UIUtils.inRectCheck(mouse, delete_button_area)) {
                             if (column.isGroup) {
-                                sub.visible = !sub.visible
+                                column.ListView.view.root.removeGroup(column.propName)
+                            } else {
+                                column.ListView.view.root.removeItem(column.propUrl)
+                            }
+
+                        } else {
+                            if (mouse.button == Qt.RightButton) {
+                                column.ListView.view.root.clickedOnItemUrl = propUrl
+                                column.ListView.view.root.clickedOnItemName = propName
+                                _menu_controller.show_playlist_menu(propUrl, column.ListView.view.root.isEmpty())
+                            } else {
+                                if (column.isGroup) {
+                                    sub.visible = !sub.visible
+                                }
                             }
                         }
                     }
                     onDoubleClicked: {
-                        if(!column.isGroup && !column.isSelected){
-                            column.ListView.view.root.newSourceSelected(propUrl)
+                        var delete_button_area = Qt.rect(delete_button.x, delete_button.y, delete_button.width, delete_button.height)
+
+                        if (!UIUtils.inRectCheck(mouse, delete_button_area)) {
+                            if(!column.isGroup && !column.isSelected && _file_monitor.addFile(propUrl)){
+                                column.ListView.view.root.newSourceSelected(propUrl)
+                            }
                         }
                     }
                 }
@@ -401,8 +429,8 @@ ListView {
                     width: parent.width - expand_button.width - anchors.leftMargin - anchors.rightMargin - delete_button.width
                     text: itemName
                     elide: Text.ElideRight
-                    font.pixelSize: 14
-                    color: column.isGroup ? getTextColor() : _file_monitor.addFile(propUrl) ? getTextColor() : "#4f4f50"
+                    font.pixelSize: 12
+                    color: getTextColor()
 
                     anchors.left: expand_button.right
                     anchors.leftMargin: 6
@@ -418,21 +446,6 @@ ListView {
 
                     anchors.right: parent.right
                     anchors.verticalCenter: parent.verticalCenter
-
-                    MouseArea {
-                        anchors.fill: parent
-
-                        onClicked: {
-                            if (column.isGroup) {
-                                column.ListView.view.root.removeGroup(column.propName)
-                            } else {
-                                column.ListView.view.root.removeItem(column.propUrl)
-                            }
-                        }
-
-                        onPressed: delete_button.source = "image/delete_pressed.png"
-                        onReleased: delete_button.source = "image/delete_hover.png"
-                    }
                 }
             }
 
@@ -445,10 +458,11 @@ ListView {
                 source: "PlaylistView.qml"
                 asynchronous: true
                 onLoaded: {
+                    item.lineHeight = 20
                     item.root = column.ListView.view.root
                     item.model = column.propChild
                     // item.width = Qt.binding(column.width - sub.x)
-                    item.currentPlayingSource = Qt.binding(function () {return column.ListView.view.currentPlayingSource})
+                    item.currentPlayingSource = Qt.binding(function () { return column.ListView.view.currentPlayingSource })
                 }
             }
         }
