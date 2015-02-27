@@ -232,9 +232,6 @@ Rectangle {
         windowView.setHeight(windowView.defaultHeight)
     }
 
-    // TODO: remove this, use isMiniMode instead
-    function miniModeState() { return windowView.width == program_constants.miniModeWidth }
-
     // this function share the same name with one function in MainController,
     // but this function is mainly used to expose the dbus interface, tanslating
     // the dbus arguments into the ones that its namesake can understand.
@@ -615,7 +612,7 @@ Rectangle {
 
     TitleBar {
         id: titlebar
-        state: root.miniModeState() ? "minimal" : "normal"
+        state: root.isMiniMode ? "minimal" : "normal"
         visible: false
         window: windowView
         windowStaysOnTop: windowView.staysOnTop
@@ -624,7 +621,7 @@ Rectangle {
 
         onMenuButtonClicked: main_controller.showMainMenu()
         onMinButtonClicked: main_controller.minimize()
-        onMaxButtonClicked: windowNormalState ? main_controller.maximize() : main_controller.normalize()
+        onMaxButtonClicked: main_controller.toggleMaximized()
         onCloseButtonClicked: main_controller.close()
 
         onQuickNormalSize: main_controller.setScale(1)

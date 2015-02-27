@@ -257,7 +257,7 @@ MouseArea {
             "subtitleFile": _subtitle_parser.file_name,
             "subtitleVisible": player.subtitleShow,
             "isFullscreen": windowView.getState() == Qt.WindowFullScreen,
-            "isMiniMode": root.miniModeState(),
+            "isMiniMode": root.isMiniMode,
             "isOnTop": windowView.staysOnTop,
         }
         _menu_controller.show_menu(JSON.stringify(stateInfo))
@@ -271,27 +271,36 @@ MouseArea {
         windowView.close()
     }
 
-    function normalize() {
-        windowView.showNormal()
-    }
-
     property bool fullscreenFromMaximum: false
+    property bool fullscreenFromMiniMode: false
     function fullscreen() {
         if (!player.hasVideo) return
 
         fullscreenFromMaximum = (windowView.getState() == Qt.WindowMaximized)
+        fullscreenFromMiniMode = root.isMiniMode
         windowView.showFullScreen()
         root.videoStoppedByAppFlag = false
 
-        quitMiniMode()
+        fullscreenFromMiniMode && quitMiniMode()
     }
 
-    function quitFullscreen() { fullscreenFromMaximum ? maximize() : normalize() }
+    function quitFullscreen() {
+        fullscreenFromMaximum ? maximize() : windowView.showNormal()
 
+        maximizeFromMiniMode && miniMode()
+    }
+
+    property bool maximizeFromMiniMode: false
     function maximize() {
+        maximizeFromMiniMode = root.isMiniMode
         windowView.showMaximized()
 
-        quitMiniMode()
+        maximizeFromMiniMode && quitMiniMode()
+    }
+
+    function quitMaximized() {
+        windowView.showNormal()
+        maximizeFromMiniMode && miniMode()
     }
 
     function minimize() {
@@ -326,7 +335,7 @@ MouseArea {
             backupCenter = Qt.point(windowView.x + windowView.width / 2,
                 windowView.y + windowView.height / 2)
         }
-        normalize()
+        windowView.showNormal()
         windowView.staysOnTop = true
         setSizeForRootWindowWithWidth(program_constants.miniModeWidth)
 
@@ -337,7 +346,7 @@ MouseArea {
         root.isMiniMode = true
     }
     function toggleMiniMode() {
-        root.miniModeState() ? quitMiniMode() : miniMode()
+        root.isMiniMode ? quitMiniMode() : miniMode()
     }
 
     function showPreferenceWindow() {
@@ -381,7 +390,7 @@ MouseArea {
     }
 
     function toggleMaximized() {
-        windowView.getState() == Qt.WindowMaximized ? normalize() : maximize()
+        windowView.getState() == Qt.WindowMaximized ? quitMaximized() : maximize()
     }
 
     function toggleStaysOnTop() {
@@ -407,7 +416,7 @@ MouseArea {
         }
 
         root.widthHeightScale = player.resolution.width / player.resolution.height
-        if (root.miniModeState() && root.isMiniMode) {
+        if (root.isMiniMode) {
             backupWidth = player.resolution.width
             setSizeForRootWindowWithWidth(windowView.width)
             backupCenter = Qt.point(windowView.x + windowView.width / 2,
