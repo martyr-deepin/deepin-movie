@@ -23,7 +23,6 @@
 import os
 import json
 import subprocess
-from ConfigParser import ConfigParser
 
 import magic
 md = magic.open(magic.MAGIC_MIME_TYPE)
@@ -237,6 +236,10 @@ class Utils(QObject):
         allFiles = self.getAllFilesInDir(dir)
         return filter(lambda x: self.fileIsValidVideo(x), allFiles)
 
+    @pyqtSlot(str, result=bool)
+    def anyChineseInString(self, string):
+        return any(u'\u4e00' <= c <= u'\u9fff' for c in string)
+
     @pyqtSlot(str, result=str)
     def getSeriesByName(self, name):
         global sep_chars
@@ -336,6 +339,7 @@ class Utils(QObject):
         screenSaverInterface.uninhibit()
 
 utils = Utils()
+
 if __name__ == '__main__':
     lst = [
         "权力的游戏.Game.of.Thrones.S04E01.中英字幕.HDTVrip.720x400.mp4",

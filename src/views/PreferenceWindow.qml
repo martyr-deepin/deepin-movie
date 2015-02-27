@@ -807,11 +807,32 @@ DPreferenceWindow {
             ComboBoxRow {
                 title: dsTr("Font")
                 input.parentWindow: window
-                input.selectIndex: config.subtitleFontFamily ? Qt.fontFamilies().indexOf(config.subtitleFontFamily)
-                                                            : Qt.fontFamilies().indexOf(getSystemFontFamily())
-                input.menu.labels: Qt.fontFamilies()
+                input.selectIndex: config.subtitleFontFamily ? input.menu.labels.indexOf(config.subtitleFontFamily)
+                                                            : input.menu.labels.indexOf(getSystemFontFamily())
+                input.menu.labels: {
+                    var families = Qt.fontFamilies()
+                    var locale = Qt.locale()
+                    if (locale.name == "zh_CN") families = _sortFontFamiles(families)
 
-                onMenuSelect: config.subtitleFontFamily = Qt.fontFamilies()[index]
+                    return families
+                }
+
+                onMenuSelect: {
+                    config.subtitleFontFamily = input.menu.labels[index]
+                }
+
+                function _sortFontFamiles(families) {
+                    var chineseFonts = []
+                    var otherFonts = []
+                    families.forEach(function(fam) {
+                        if (_utils.anyChineseInString(fam)) {
+                            chineseFonts.push(fam)
+                        } else {
+                            otherFonts.push(fam)
+                        }
+                    })
+                    return chineseFonts.concat(otherFonts)
+                }
             }
 
             ColorComboBoxRow {

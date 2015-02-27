@@ -21,6 +21,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
+import pickle
 from deepin_utils import config
 from constants import CONFIG_DIR
 from PyQt5.QtCore import pyqtSlot, pyqtProperty, pyqtSignal, QObject
@@ -128,12 +129,10 @@ class Config(QObject):
             self.config.write()
         elif initMode == Config.LoadConfig:
             self.config.load()
-            self.config.write()
             self.backup.write()
         elif initMode == Config.LoadBackup:
             self.backup.load()
             self.config.write()
-            self.backup.write()
 
     def _checkFileIntegerity(self, configFile):
         try:
@@ -226,6 +225,13 @@ class Config(QObject):
             def _get(section, key):
                 def f(self):
                     result = self.fetch(section, key)
+                    # take care of the entries that takes unicode as their
+                    # values
+                    if section == "Subtitle" \
+                    and key == "fontFamily" \
+                    and result:
+                        return pickle.loads(result)
+
                     if result in ("True", "False"):
                         return eval(result)
                     else:
@@ -237,6 +243,12 @@ class Config(QObject):
 
             def _set(section ,key, itemNotify):
                 def f(self, value):
+                    # take care of the entries that takes unicode as their
+                    # values
+                    if section == "Subtitle" \
+                    and key == "fontFamily"\
+                    and value:
+                        value = pickle.dumps(value)
                     self.save(section, key, value)
                     getattr(self, itemNotify).emit()
                 return f
