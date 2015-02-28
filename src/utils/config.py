@@ -134,6 +134,9 @@ class Config(QObject):
             self.backup.load()
             self.config.write()
 
+        volume = self.fetchFloat("Player", "volume")
+        self.save("Player", "volume", min(1.0, volume))
+
     def _checkFileIntegerity(self, configFile):
         try:
             with open(configFile) as _file:
