@@ -643,6 +643,7 @@ Rectangle {
         timeInfoVisible: player.source != "" && player.hasMedia && player.duration != 0
         tooltipItem: tooltip
         videoSource: player.sourceString
+        previewEnabled: config.playerShowPreview && heightWithPreview < main_window.height
 
         anchors.horizontalCenter: main_window.horizontalCenter
 
