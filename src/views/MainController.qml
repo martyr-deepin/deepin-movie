@@ -85,11 +85,9 @@ MouseArea {
 
     Timer {
         id: double_click_check_timer
-        interval: 200
+        interval: 400
 
-        onTriggered: {
-            doSingleClick()
-        }
+        onTriggered: doSingleClick()
     }
 
     Timer {
@@ -166,30 +164,6 @@ MouseArea {
             cursorShape = Qt.SizeBDiagCursor
         } else {
             cursorShape = Qt.ArrowCursor
-        }
-    }
-
-    function doSingleClick() {
-        if (click_hide_playlist_timer.running) return
-
-        if (config.othersLeftClick) {
-            if (player.playbackState == MediaPlayer.PausedState) {
-                play()
-            } else if (player.playbackState == MediaPlayer.PlayingState) {
-                pause()
-            }
-        }
-    }
-
-    function doDoubleClick(mouse) {
-        if(click_hide_playlist_timer.running) playlist.hide()
-
-        if (player.playbackState != MediaPlayer.StoppedState) {
-            if (config.othersDoubleClick) {
-                toggleFullscreen()
-            }
-        } else {
-            openFile()
         }
     }
 
@@ -705,6 +679,28 @@ MouseArea {
         _database.setPlaylistItemSubtitle(player.sourceString, _subtitle_parser.file_name)
     }
 
+    function doSingleClick() {
+        if (config.othersLeftClick) {
+            if (player.playbackState == MediaPlayer.PausedState) {
+                play()
+            } else if (player.playbackState == MediaPlayer.PlayingState) {
+                pause()
+            }
+        }
+    }
+
+    function doDoubleClick(mouse) {
+        hideControls()
+
+        if (player.playbackState != MediaPlayer.StoppedState) {
+            if (config.othersDoubleClick) {
+                toggleFullscreen()
+            }
+        } else {
+            openFile()
+        }
+    }
+
     Keys.onPressed: keys_responder.respondKey(event)
     Keys.onReleased: if(!event.isAutoRepeat) shortcuts_viewer.hide()
 
@@ -794,39 +790,23 @@ MouseArea {
     }
 
     onClicked: {
-        if (!shouldPerformClick) {
-            shouldPerformClick = true
-            return
-        }
-
-        if (playlist.expanded) {
-            playlist.hide()
-            click_hide_playlist_timer.start()
-        }
-
         if (mouse.button == Qt.RightButton) {
             main_controller.showMainMenu()
-        } else {
-            if (!double_click_check_timer.running) {
-                double_click_check_timer.restart()
+        } else if (mouse.button == Qt.LeftButton) {
+            if (double_click_check_timer.running) {
+                double_click_check_timer.stop()
+                doDoubleClick()
+            } else {
+                double_click_check_timer.start()
+            }
+
+            if (!shouldPerformClick) {
+                shouldPerformClick = true
+            } else if (playlist.expanded) {
+                playlist.hide()
+                click_hide_playlist_timer.stop()
             }
         }
-    }
-
-    onDoubleClicked: {
-        if (mouse.button == Qt.RightButton) return
-
-        if (click_hide_playlist_timer.running) {
-            click_hide_playlist_timer.stop()
-            playlist.hide()
-        }
-
-        if (double_click_check_timer.running) {
-            double_click_check_timer.stop()
-        } else {
-            doSingleClick()
-        }
-        doDoubleClick()
     }
 
     DropArea {
