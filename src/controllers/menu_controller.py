@@ -138,11 +138,11 @@ playlist_add_button_menu = (
 
 FILE_START_TAG = "[[[[["
 FILE_END_TAG = "]]]]]"
-def _subtitle_menu_items_from_files(files, currentSubtitle):
+def _subtitle_menu_items_from_files(files, currentSubtitle, videoSource):
     def checkable_item_from_file(f):
         item = CheckableMenuItem(
                 "_subtitles:radio:%s%s%s" % (FILE_START_TAG, f, FILE_END_TAG),
-                os.path.basename(f),
+                _menu_item_name_from_subtitle_file(f, videoSource),
                 f == currentSubtitle)
         return item
 
@@ -151,6 +151,19 @@ def _subtitle_menu_items_from_files(files, currentSubtitle):
         files.append(currentSubtitle)
 
     return map(checkable_item_from_file, filter(lambda x: x != "", files))
+
+def _menu_item_name_from_subtitle_file(file, videoSource):
+    filename = os.path.basename(file)
+    video_without_ext = os.path.basename(videoSource).rpartition(".")[0]
+
+    if video_without_ext in filename:
+        fn_parts = filename[len(video_without_ext):].split(".")
+        return ".".join(fn_parts[-2:])
+    else:
+        fn_parts = filename.split(".")
+        if len(fn_parts) > 2:
+            return ".".join(fn_parts[-2:])
+        return filename
 
 def _subtitle_file_from_menu_item_id(id):
     return id[id.index(FILE_START_TAG) + len(FILE_START_TAG):
@@ -423,7 +436,8 @@ class MenuController(QObject):
 
         self.menu.getItemById("_subtitle_hide").checked = not subtitleVisible
         subtitles = get_subtitle_from_movie(videoSource)
-        subtitles = _subtitle_menu_items_from_files(subtitles, subtitleFile)
+        subtitles = _subtitle_menu_items_from_files(subtitles, subtitleFile, \
+            videoSource)
         self.menu.getItemById("_subtitle_choose").isActive = \
             len(subtitles) != 0
         self.menu.getItemById("_subtitle_choose").setSubMenu(Menu(subtitles))
