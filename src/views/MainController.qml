@@ -667,6 +667,7 @@ MouseArea {
 
     function subtitleMoveUp() { setSubtitleVerticalPosition(config.subtitleVerticalPosition + 0.05)}
     function subtitleMoveDown() { setSubtitleVerticalPosition(config.subtitleVerticalPosition - 0.05)}
+
     function subtitleForward() { player.subtitleDelay -= 500; preference_window.setSubtitleDelay(player.subtitleDelay) }
     function subtitleBackward() { player.subtitleDelay += 500; preference_window.setSubtitleDelay(player.subtitleDelay) }
 

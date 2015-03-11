@@ -52,7 +52,8 @@ all_supported_mime_types = []
 sep_chars = ("-", "_", ".", " ")
 override_key_names = {
     "PgUp": "PageUp",
-    "PgDown": "PageDown"
+    "PgDown": "PageDown",
+    "Meta": "Super"
 }
 
 src_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -288,7 +289,10 @@ class Utils(QObject):
 
     @pyqtSlot(str, result=str)
     def getOverrideKeyNames(self, keyname):
-        return override_key_names.get(keyname, keyname)
+        for key in override_key_names:
+            if key in keyname:
+                return keyname.replace(key, override_key_names[key])
+        return keyname
 
     @pyqtSlot(int, int, str, result=bool)
     def checkKeySequenceEqual(self, modifier, key, targetKeySequence):
