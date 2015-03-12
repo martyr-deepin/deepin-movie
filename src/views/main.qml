@@ -138,6 +138,7 @@ Rectangle {
 
     DInputDialog {
         id: open_url_dialog
+        modality: Qt.ApplicationModal
         message: dsTr("Please input the url of file played") + dsTr(":")
         confirmButtonLabel: dsTr("Confirm")
         cancelButtonLabel: dsTr("Cancel")
@@ -271,14 +272,6 @@ Rectangle {
         resize_visual.hide()
     }
 
-    function anyTransientWindowVisible() {
-        return info_window.visible
-               || preference_window.visible
-               || open_file_dialog.visible
-               || open_folder_dialog.visible
-               || open_url_dialog.visible
-    }
-
     function subtitleVisible() {
         return player.subtitleShow
     }
@@ -390,7 +383,7 @@ Rectangle {
             if (!mouseInControlsArea() && player.source && player.hasVideo) {
                 hideControls()
 
-                if (player.playbackState == MediaPlayer.PlayingState && !anyTransientWindowVisible()) {
+                if (player.playbackState == MediaPlayer.PlayingState && windowView.active) {
                     windowView.setCursorVisible(false)
                 }
             } else {

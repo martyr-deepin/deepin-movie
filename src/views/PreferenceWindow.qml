@@ -6,6 +6,7 @@ DPreferenceWindow {
     id: window
     width: 560
     height: 480
+    modality: Qt.ApplicationModal
 
     actionButtonText: dsTr("Reset")
 
