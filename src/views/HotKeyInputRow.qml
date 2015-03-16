@@ -10,6 +10,7 @@ Item {
     property alias title: title.text
     property alias text: input.text
     property alias hotKey: input.hotKey
+    property alias inputEnabled: input.enabled
 
     property var actualSettingEntry
 

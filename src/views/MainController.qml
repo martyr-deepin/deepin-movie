@@ -325,6 +325,7 @@ MouseArea {
 
         root.isMiniMode = true
     }
+
     function toggleMiniMode() {
         root.isMiniMode ? quitMiniMode() : miniMode()
     }
