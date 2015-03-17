@@ -15,6 +15,12 @@ Item {
         anchors.fill: parent
         anchors.leftMargin: 2
 
+        Image {
+            id: check_mark
+            visible: wrapper.ListView.view.currentIndex == index
+            source:  ? "image/select-dark.png"
+        }
+
         Rectangle {
             id: color_block
             width: 24

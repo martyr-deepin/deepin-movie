@@ -848,7 +848,7 @@ DPreferenceWindow {
                     }
                     return -1
                 }
-                input.menu.items: window.presetColors
+                input.itemModel: window.presetColors
 
                 onMenuSelect: config.subtitleFontColor = window.presetColors[index].color
             }
@@ -882,7 +882,7 @@ DPreferenceWindow {
                     }
                     return -1
                 }
-                input.menu.items: window.presetColors
+                input.itemModel: window.presetColors
 
                 onMenuSelect: config.subtitleFontBorderColor = window.presetColors[index].color
             }
