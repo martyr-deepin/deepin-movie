@@ -17,7 +17,7 @@ DPreferenceWindow {
                     {"label": dsTr("UFO green"), "color": "#37eb74"},
                     {"label": dsTr("Green yellow"), "color": "#a9eb3c"},
                     {"label": dsTr("Energy yellow"), "color": "#ebd950"},
-                    {"label": dsTr("Sun"), "color": "#fa8935"},
+                    {"label": dsTr("Orange"), "color": "#fa8935"},
                     {"label": dsTr("Radical red"), "color": "#f34257"},
                     {"label": dsTr("Lavender indigo"), "color": "#b560f8"},
                     {"label": dsTr("Royal blue"), "color": "#2a65e9"},
