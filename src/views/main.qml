@@ -642,9 +642,9 @@ Rectangle {
         videoPlayer: player
         visible: false
         window: windowView
-        volume: config.playerVolume
+        volume: player.volume
         percentage: player.position / player.duration
-        muted: config.playerMuted
+        muted: player.muted
         widthHeightScale: root.widthHeightScale
         dragbarVisible: root.state == "normal"
         timeInfoVisible: player.source != "" && player.hasMedia && player.duration != 0
