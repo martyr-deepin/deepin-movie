@@ -236,7 +236,7 @@ DPreferenceWindow {
             anchors.leftMargin: 5
 
             SpinnerRow {
-                title: dsTr("Forward/Rewind")
+                title: dsTr("Forward/Rewind (s)")
                 min: 1.0
                 max: 30.0
                 text: config.playerForwardRewindStep
