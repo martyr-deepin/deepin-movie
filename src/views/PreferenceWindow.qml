@@ -892,7 +892,7 @@ DPreferenceWindow {
                 min: 0
                 max: 1
                 init: config.subtitleVerticalPosition
-                floatNumber: 2
+                displayPercent: true
                 leftRuler: dsTr("Bottom")
                 rightRuler: dsTr("Top")
 

@@ -9,6 +9,7 @@ Item {
 	property alias min: slider.min
 	property alias max: slider.max
 	property alias init: slider.init
+	property alias displayPercent: slider.displayPercent
 	property alias floatNumber: slider.floatNumber
 	property alias pressedFlag: slider.pressedFlag
 
