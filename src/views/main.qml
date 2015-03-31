@@ -449,6 +449,12 @@ Rectangle {
         property int lastForwardToPosition: 0
         property bool playerInit: true
 
+        onStatusChanged: {
+            if (status == MediaPlayer.Buffering) {
+                notifybar.show(dsTr("Buffering..."))
+            }
+        }
+
         onResolutionChanged: main_controller.handleResolutionChanged()
 
         // onSourceChanged doesn't ensures that the file is playable, this one did.
@@ -545,7 +551,10 @@ Rectangle {
         onErrorChanged: {
             print(error, errorString)
             switch(error) {
-                case MediaPlayer.NetworkError:
+                case MediaPlayer.NetworkError: {
+                    notifybar.showPermanently(dsTr("Buffering..."))
+                    break
+                }
                 case MediaPlayer.FormatError:
                 case MediaPlayer.ResourceError: {
                     if (player.sourceString == open_url_dialog.lastInput.trim())
