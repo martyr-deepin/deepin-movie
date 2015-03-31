@@ -57,6 +57,16 @@ MouseArea {
         onFileExistenceChanged: playlist.changeFileExistence(file, existence)
     }
 
+    Connections {
+        target: _subtitle_parser
+        onDelayChanged: {
+            preference_window.setSubtitleDelay(_subtitle_parser.delay)
+            _database.setPlaylistItemSubtitle(player.sourceString,
+                                              _subtitle_parser.file_name,
+                                              _subtitle_parser.delay)
+        }
+    }
+
     Timer {
         id: seek_to_last_watched_timer
         interval: 300
@@ -670,16 +680,31 @@ MouseArea {
     function subtitleMoveUp() { setSubtitleVerticalPosition(config.subtitleVerticalPosition + 0.05)}
     function subtitleMoveDown() { setSubtitleVerticalPosition(config.subtitleVerticalPosition - 0.05)}
 
-    function subtitleForward() { player.subtitleDelay -= 500; preference_window.setSubtitleDelay(player.subtitleDelay) }
-    function subtitleBackward() { player.subtitleDelay += 500; preference_window.setSubtitleDelay(player.subtitleDelay) }
+    function subtitleForward() {
+        _subtitle_parser.delay = Math.max(program_constants.minSubtitleDelay * 1000,
+                                          _subtitle_parser.delay - 500)
+    }
+    function subtitleBackward() {
+        _subtitle_parser.delay = Math.min(program_constants.maxSubtitleDelay * 1000,
+                                          _subtitle_parser.delay + 500)
+    }
 
     function setSubtitle(subtitle) {
-        if (_utils.urlIsNativeFile(subtitle)) {
-            _subtitle_parser.file_name = subtitle
+        var path = ""
+        var delay = 0
+
+        try {
+            var subtitleObj = JSON.parse(subtitle)
+            path = subtitleObj["path"]
+            delay = subtitleObj["delay"]
+        } catch(e) { }
+
+        if (path && _utils.urlIsNativeFile(path)) {
+            _subtitle_parser.file_name = path
+            delay && (_subtitle_parser.delay = delay)
         } else {
             _subtitle_parser.set_subtitle_from_movie(player.source)
         }
-        _database.setPlaylistItemSubtitle(player.sourceString, _subtitle_parser.file_name)
     }
 
     function doSingleClick() {

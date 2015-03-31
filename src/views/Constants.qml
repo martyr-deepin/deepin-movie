@@ -26,4 +26,7 @@ Item {
     property color pressedColor: "#00BDFF"
 
     property color bgDarkColor: "#131414"
+
+    property int minSubtitleDelay: -30
+    property int maxSubtitleDelay: 30
 }

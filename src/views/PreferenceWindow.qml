@@ -906,11 +906,11 @@ DPreferenceWindow {
             SpinnerRow {
                 id: subtitle_delay_row
                 title: dsTr("Subtitle Delay")
-                min: -30
-                max: 30
+                min: program_constants.minSubtitleDelay
+                max: program_constants.maxSubtitleDelay
                 text: (subtitleDelay / 1000).toFixed(1)
 
-                onValueChanged: { player.subtitleDelay = value * 1000 }
+                onValueChanged: { _subtitle_parser.delay = value * 1000 }
 
                 Connections {
                     target: window

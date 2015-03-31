@@ -22,8 +22,9 @@
 
 import os
 import json
+from contextlib import contextmanager
 from peewee import *
-from PyQt5.QtCore import QObject, pyqtSlot, pyqtSignal
+from PyQt5.QtCore import QObject, QTimer, pyqtSlot, pyqtSignal
 from xml.dom.minidom import (Element, getDOMImplementation, parse)
 from utils.constants import DATABASE_FILE, PLAYLIST_CACHE_FILE
 from utils.utils import utils
@@ -191,7 +192,22 @@ class Database(QObject):
         self._crawlerManager = CrawlerManager()
         self._playHistoryCursor = len(self._getPlayHistory()) - 1
 
+        self._initDelayTimer()
         self._crawlerManager.infoGot.connect(self.crawlerGotInfo)
+
+    def _initDelayTimer(self):
+        self._delayCommitTimer = QTimer()
+        self._delayCommitTimer.setSingleShot(True)
+        self._delayCommitTimer.setInterval(500)
+        self._delayCommitTimer.timeout.connect(lambda: _database_file.commit())
+
+    @contextmanager
+    def _delayCommit(self):
+        _database_file.set_autocommit(False)
+        _database_file.begin()
+        yield
+        _database_file.set_autocommit(True)
+        self._delayCommitTimer.start()
 
     # internal helper functions
     def _getPlayHistory(self):
@@ -419,19 +435,24 @@ class Database(QObject):
             item = PlaylistItemModel.get(
                 PlaylistItemModel.url == itemUrl)
             info = json.loads(item.info) if item.info else {}
-            return info.get("subtitle") or ""
+            subtitle = info.get("subtitle") or ""
+            if subtitle.startswith("{") and subtitle.endswith("}"):
+                return subtitle
+            else:
+                return json.dumps({"path": subtitle, "delay": 0})
         except DoesNotExist:
             return ""
 
-    @pyqtSlot(str, str)
-    def setPlaylistItemSubtitle(self, itemUrl, subtitle):
+    @pyqtSlot(str, str, int)
+    def setPlaylistItemSubtitle(self, itemUrl, subtitle, delay):
         try:
-            item = PlaylistItemModel.get(
-                PlaylistItemModel.url == itemUrl)
-            info = json.loads(item.info) if item.info else {}
-            info["subtitle"] = subtitle
-            item.info = json.dumps(info)
-            item.save()
+            with self._delayCommit():
+                item = PlaylistItemModel.get(
+                    PlaylistItemModel.url == itemUrl)
+                info = json.loads(item.info) if item.info else {}
+                info["subtitle"] = json.dumps({"path": subtitle, "delay": delay})
+                item.info = json.dumps(info)
+                item.save()
         except DoesNotExist:
             pass
 

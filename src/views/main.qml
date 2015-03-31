@@ -493,7 +493,7 @@ Rectangle {
 
         onPositionChanged: {
             position != 0 && (lastVideoPosition = position)
-            subtitleContent = _subtitle_parser.get_subtitle_at(position - player.subtitleDelay)
+            subtitleContent = _subtitle_parser.get_subtitle_at(position)
             controlbar.percentage = position / player.duration
         }
 
