@@ -790,6 +790,11 @@ MouseArea {
     }
 
     onClicked: {
+        if (!shouldPerformClick) {
+            shouldPerformClick = true
+            return
+        }
+
         if (mouse.button == Qt.RightButton) {
             main_controller.showMainMenu()
         } else if (mouse.button == Qt.LeftButton) {
@@ -800,9 +805,7 @@ MouseArea {
                 double_click_check_timer.start()
             }
 
-            if (!shouldPerformClick) {
-                shouldPerformClick = true
-            } else if (playlist.expanded) {
+            if (playlist.expanded) {
                 playlist.hide()
                 click_hide_playlist_timer.stop()
             }
