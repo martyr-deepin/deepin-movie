@@ -4,7 +4,9 @@ import Deepin.Widgets 1.0
 
 DPreferenceWindow {
     id: window
-    width: 560
+    width: preference_view.width
+           + 2 * shadowWidth
+           + 2 * leftRightMargin
     height: 480
     modality: Qt.ApplicationModal
 
@@ -39,13 +41,12 @@ DPreferenceWindow {
 
     function setSubtitleDelay(delay) { subtitleDelay = delay }
 
-    content: DPreferenceView {
+    DPreferenceView {
         id: preference_view
-        anchors.fill: parent
-        anchors.leftMargin: 10
-        anchors.rightMargin: 10
-        sectionListWidth:  100
+        height: parent.height
+        sectionListMaxWidth: 270
         layer.enabled: true
+        anchors.horizontalCenter: parent.horizontalCenter
 
         sections: [
             {

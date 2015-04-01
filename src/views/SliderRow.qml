@@ -24,6 +24,8 @@ Item {
 	Text {
 		id: title
 		color: "#787878"
+		width: 136
+		wrapMode: Text.Wrap
 		font.pixelSize: 12
 		anchors.left: parent.left
 		anchors.verticalCenter: parent.verticalCenter
