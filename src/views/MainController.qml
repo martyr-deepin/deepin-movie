@@ -192,7 +192,9 @@ MouseArea {
     }
 
     function addPlaylistStreamItem(url) {
-        playlist.addItem(url.toString(), url.toString(), "")
+        // NOTE: playlist.addItem and _database.addPlaylistItem have different
+        // parameter order.
+        playlist.addItem("", url.toString(), url.toString())
     }
 
     function removePlaylistItem(url) {
