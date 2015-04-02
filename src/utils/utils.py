@@ -20,6 +20,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import re
 import os
 import json
 import subprocess
@@ -27,6 +28,7 @@ import subprocess
 import magic
 md = magic.open(magic.MAGIC_MIME_TYPE)
 md.load()
+
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtGui import QKeySequence
 from PyQt5.QtCore import QObject, QThread, pyqtSignal, pyqtSlot, pyqtProperty
@@ -245,9 +247,11 @@ class Utils(QObject):
         global sep_chars
         name = name[7:] if name.startswith("file://") else name
         dir = os.path.dirname(name)
+        dirName = os.path.basename(dir)
         allFiles = self.getAllVideoFilesInDir(dir)
         if len(allFiles) < 2: return json.dumps({"name": "", "items": allFiles})
 
+        # 1, try to get a meaningful series name
         allFiles = [os.path.basename(x) for x in allFiles]
         allMatches = (longest_match(x, os.path.basename(name)) for x in allFiles)
         matchesFilter = lambda x: x and x != os.path.basename(name) \
@@ -258,13 +262,29 @@ class Utils(QObject):
         # uglier but yet more specific version of the nameFilter.
         # serieName = optimizeSerieName(nameFilter)
 
-        result = filter(lambda x: nameFilter in x, allFiles) if nameFilter else (name,)
-        result = sortSeries(nameFilter, result) if len(result) > 1 else result
-        result = [os.path.join(dir, x) for x in result]
+        if nameFilter:
+            result = filter(lambda x: nameFilter in x, allFiles) if nameFilter else (name,)
+            result = sortSeries(nameFilter, result) if len(result) > 1 else result
+            result = [os.path.join(dir, x) for x in result]
 
-        serieName = optimizeSerieName(nameFilter)
+            serieName = optimizeSerieName(nameFilter)
 
-        return json.dumps({"name":serieName, "items":result})
+            return json.dumps({"name":serieName, "items":result})
+        else:
+            # 2, try to use the dir name as the series name
+            allMatches = []
+            pattern = r'(\d*)[\.|\s](.*?)\..*'
+            for _file in allFiles:
+                m = re.match(pattern, _file)
+                if m and m.group(1).isdigit() and m.group(2):
+                    allMatches.append((int(m.group(1)),
+                                       os.path.join(dir, _file)))
+            allMatches = [x[1] for x in sorted(allMatches, key=lambda x: x[0])]
+
+            if name in allMatches:
+                return json.dumps({"name":dirName, "items":allMatches})
+            else:
+                return json.dumps({"name":"", "items":(name,)})
 
     @pyqtSlot(str, result=str)
     def getOverrideKeyNames(self, keyname):
