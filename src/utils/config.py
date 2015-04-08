@@ -85,11 +85,25 @@ DEFAULT_CONFIG = [
     ("fontColor", "#ffffff"),
     ("fontBorderSize", 1.0),
     ("fontBorderColor", "black"),
-    ("verticalPosition", 0.05)]),
+    ("verticalPosition", 0.05),
+    ("delayStep", 0.5)]),
 ("Others", [("leftClick", True),
     ("doubleClick", True),
     ("wheel", True)]),
 ]
+
+def getDefault(section, key):
+    for _section, _items in DEFAULT_CONFIG:
+        if _section == section:
+            for _key, _value in _items:
+                print _key, _value
+                if _key == key:
+                    return _value
+            return None
+        else:
+            return None
+    return None
+
 
 property_name_func = lambda section, key: "%s%s" % (
     section[0].lower() + section[1:],
@@ -136,6 +150,12 @@ class Config(QObject):
 
         volume = self.fetchFloat("Player", "volume")
         self.save("Player", "volume", min(1.0, volume))
+
+        # add new keys here
+        subtitleDelayStep = self.fetch("Subtitle", "delayStep")
+        if not subtitleDelayStep:
+            self.save("Subtitle", "delayStep", \
+                      getDefault("Subtitle", "delayStep"))
 
     def _checkFileIntegerity(self, configFile):
         try:

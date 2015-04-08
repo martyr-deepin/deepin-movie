@@ -29,4 +29,8 @@ Item {
 
     property int minSubtitleDelay: -30
     property int maxSubtitleDelay: 30
+
+    // unit(s)
+    property real minSubtitleDelayStep: 0.1
+    property real maxSubtitleDelayStep: 1800
 }

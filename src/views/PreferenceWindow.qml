@@ -27,7 +27,6 @@ DPreferenceWindow {
                     {"label": dsTr("Aluminum"), "color": "#969696"},
                     {"label": dsTr("Clean white"), "color": "#ffffff"},
                 ]
-    property int subtitleDelay: 0
 
     signal scrollToPrivate (string sectionId)
 
@@ -38,8 +37,6 @@ DPreferenceWindow {
     function scrollTo(sectionId) { scrollToPrivate(sectionId) }
 
     function scrollToSubtitle() { scrollTo("subtitle_settings") }
-
-    function setSubtitleDelay(delay) { subtitleDelay = delay }
 
     DPreferenceView {
         id: preference_view
@@ -673,7 +670,7 @@ DPreferenceWindow {
             }
 
             HotKeyInputRow {
-                title: dsTr("Forward 0.5s")
+                title: dsTr("Forward %1s").arg(config.subtitleDelayStep)
                 hotKey: config.hotkeysSubtitlesSubtitleForward+""
                 actualSettingEntry: "hotkeysSubtitlesSubtitleForward"
 
@@ -694,7 +691,7 @@ DPreferenceWindow {
                 onHotkeyCancelled: { setShortcut(config.hotkeysSubtitlesSubtitleForward) }
             }
             HotKeyInputRow {
-                title: dsTr("Delay 0.5s")
+                title: dsTr("Delay %1s").arg(config.subtitleDelayStep)
                 hotKey: config.hotkeysSubtitlesSubtitleBackward+""
                 actualSettingEntry: "hotkeysSubtitlesSubtitleBackward"
 
@@ -906,17 +903,14 @@ DPreferenceWindow {
 
             SpinnerRow {
                 id: subtitle_delay_row
-                title: dsTr("Subtitle Delay")
-                min: program_constants.minSubtitleDelay
-                max: program_constants.maxSubtitleDelay
-                text: (subtitleDelay / 1000).toFixed(1)
+                title: dsTr("Sync adjustment (s)")
+                step: 0.5
+                min: program_constants.minSubtitleDelayStep
+                max: program_constants.maxSubtitleDelayStep
+                text: config.subtitleDelayStep.toFixed(1)
+                precision: 1
 
-                onValueChanged: { _subtitle_parser.delay = value * 1000 }
-
-                Connections {
-                    target: window
-                    onSubtitleDelayChanged: subtitle_delay_row.text = (subtitleDelay / 1000).toFixed(1)
-                }
+                onValueChanged: { config.subtitleDelayStep = value }
             }
 
             // FileInputRow {

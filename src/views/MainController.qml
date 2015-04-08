@@ -60,7 +60,6 @@ MouseArea {
     Connections {
         target: _subtitle_parser
         onDelayChanged: {
-            preference_window.setSubtitleDelay(_subtitle_parser.delay)
             _database.setPlaylistItemSubtitle(player.sourceString,
                                               _subtitle_parser.file_name,
                                               _subtitle_parser.delay)
@@ -682,11 +681,11 @@ MouseArea {
 
     function subtitleForward() {
         _subtitle_parser.delay = Math.max(program_constants.minSubtitleDelay * 1000,
-                                          _subtitle_parser.delay - 500)
+                                          _subtitle_parser.delay - config.subtitleDelayStep * 1000)
     }
     function subtitleBackward() {
         _subtitle_parser.delay = Math.min(program_constants.maxSubtitleDelay * 1000,
-                                          _subtitle_parser.delay + 500)
+                                          _subtitle_parser.delay + config.subtitleDelayStep * 1000)
     }
 
     function setSubtitle(subtitle) {

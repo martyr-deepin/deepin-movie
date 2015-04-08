@@ -11,6 +11,7 @@ Item {
 	property alias step: spinner.step
 	property alias value: spinner.value
 	property alias text: spinner.text
+	property alias precision: spinner.precision
 
 	Text {
 		id: title

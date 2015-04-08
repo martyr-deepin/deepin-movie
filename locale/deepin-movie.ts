@@ -37,7 +37,7 @@
 <context>
     <name>ControlBar</name>
     <message>
-        <location filename="../src/views/ControlBar.qml" line="+222"/>
+        <location filename="../src/views/ControlBar.qml" line="+229"/>
         <source>Stop playing</source>
         <translation type="unfinished"></translation>
     </message>
@@ -86,12 +86,12 @@
     <name>HotKeyInput</name>
     <message>
         <location filename="../src/views/HotKeyInput.qml" line="+7"/>
-        <location line="+8"/>
+        <location line="+9"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="+7"/>
         <source>Please input a new shortcut</source>
         <translation type="unfinished"></translation>
     </message>
@@ -100,11 +100,13 @@
     <name>HotKeyInputRow</name>
     <message>
         <location filename="../src/views/HotKeyInputRow.qml" line="+23"/>
+        <location line="+2"/>
+        <location line="+30"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+6"/>
+        <location line="-26"/>
         <source>The shortcut you set </source>
         <translation type="unfinished"></translation>
     </message>
@@ -119,7 +121,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+64"/>
+        <location line="+67"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -140,7 +142,7 @@
 <context>
     <name>InformationWindow</name>
     <message>
-        <location filename="../src/views/InformationWindow.qml" line="+21"/>
+        <location filename="../src/views/InformationWindow.qml" line="+23"/>
         <location line="+1"/>
         <location line="+1"/>
         <source>Unknown</source>
@@ -185,14 +187,12 @@
 <context>
     <name>MainController</name>
     <message>
-        <location filename="../src/views/MainController.qml" line="+562"/>
-        <location line="+67"/>
-        <location line="+160"/>
+        <location filename="../src/views/MainController.qml" line="+252"/>
         <source>Invalid file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-753"/>
+        <location line="-215"/>
         <source>%1 files unable to be parsed have been excluded</source>
         <translation type="unfinished"></translation>
     </message>
@@ -202,30 +202,35 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+369"/>
+        <location line="+202"/>
+        <source>:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+198"/>
         <source>Play last movie played</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+27"/>
+        <location line="+33"/>
         <source>Forward</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+10"/>
+        <location line="+12"/>
         <source>Rewind</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+10"/>
         <location line="+8"/>
+        <location line="+6"/>
         <source>(Press %1 to restore)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-6"/>
-        <location line="+8"/>
-        <location line="+7"/>
+        <location line="-4"/>
+        <location line="+6"/>
+        <location line="+5"/>
         <source>Playback rate: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -301,7 +306,7 @@
 <context>
     <name>Playlist</name>
     <message>
-        <location filename="../src/views/Playlist.qml" line="+250"/>
+        <location filename="../src/views/Playlist.qml" line="+253"/>
         <source>Play mode</source>
         <translation type="unfinished"></translation>
     </message>
@@ -319,7 +324,7 @@
 <context>
     <name>PreferenceWindow</name>
     <message>
-        <location filename="../src/views/PreferenceWindow.qml" line="+191"/>
+        <location filename="../src/views/PreferenceWindow.qml" line="+190"/>
         <source>Clear playlist on opening new file</source>
         <translation type="unfinished"></translation>
     </message>
@@ -339,7 +344,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+55"/>
+        <location line="+33"/>
+        <source>Forward/Rewind (s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+22"/>
         <location line="+184"/>
         <location line="+143"/>
         <location line="+80"/>
@@ -398,17 +408,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+38"/>
-        <source>Forward 0.5s</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+21"/>
-        <source>Delay 0.5s</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+21"/>
+        <location line="+80"/>
         <source>Subtitle up</source>
         <translation type="unfinished"></translation>
     </message>
@@ -433,18 +433,23 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+48"/>
+        <location line="+62"/>
         <source>Border width</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-521"/>
+        <location line="-535"/>
         <location line="+451"/>
         <source>Fullscreen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-724"/>
+        <location line="-756"/>
+        <source>Orange</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+32"/>
         <location line="+16"/>
         <location line="+98"/>
         <location line="+82"/>
@@ -476,7 +481,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-649"/>
+        <location line="-645"/>
         <source>Reset</source>
         <translation type="unfinished"></translation>
     </message>
@@ -511,12 +516,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1"/>
-        <source>Sun</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
+        <location line="+2"/>
         <source>Radical red</source>
         <translation type="unfinished"></translation>
     </message>
@@ -541,7 +541,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+27"/>
+        <location line="+23"/>
         <location line="+114"/>
         <source>Basic settings</source>
         <translation type="unfinished"></translation>
@@ -590,12 +590,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+23"/>
-        <source>Forward/Rewind</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+48"/>
+        <location line="+71"/>
         <source>Forward</source>
         <translation type="unfinished"></translation>
     </message>
@@ -625,7 +620,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+216"/>
+        <location line="+118"/>
+        <source>Forward %1s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+21"/>
+        <source>Delay %1s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+77"/>
         <location line="+8"/>
         <location line="+8"/>
         <source>None</source>
@@ -642,7 +647,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+37"/>
+        <location line="+20"/>
+        <source>Font</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+31"/>
         <source>Font color</source>
         <translation type="unfinished"></translation>
     </message>
@@ -657,7 +667,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+16"/>
+        <location line="+17"/>
         <source>Position</source>
         <translation type="unfinished"></translation>
     </message>
@@ -672,8 +682,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+7"/>
-        <source>Subtitle Delay</source>
+        <location line="+11"/>
+        <source>Sync adjustment (s)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -828,12 +838,12 @@
     </message>
     <message>
         <location line="+3"/>
-        <source>Forward 0.5s</source>
+        <source>Forward %1s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+4"/>
-        <source>Delay 0.5s</source>
+        <source>Delay %1s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -850,7 +860,8 @@
 <context>
     <name>TitleBar</name>
     <message>
-        <location filename="../src/views/TitleBar.qml" line="+137"/>
+        <location filename="../src/views/TitleBar.qml" line="+70"/>
+        <location line="+72"/>
         <source>Deepin Movie</source>
         <translation type="unfinished"></translation>
     </message>
@@ -896,12 +907,7 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../src/views/main.qml" line="+98"/>
-        <source>Invalid file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+46"/>
+        <location filename="../src/views/main.qml" line="+142"/>
         <source>Please input the url of file played</source>
         <translation type="unfinished"></translation>
     </message>
@@ -923,11 +929,6 @@
     <message>
         <location line="+16"/>
         <source>The parse failed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+227"/>
-        <source>Deepin Movie</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
