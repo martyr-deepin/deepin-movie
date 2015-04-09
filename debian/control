@@ -10,6 +10,7 @@ Package: deepin-movie
 Architecture: all
 Depends: ${shlibs:Depends},
  ${misc:Depends},
+ python-sip,
  python-pyqt5,
  mediainfo,
  qt5-extra,
