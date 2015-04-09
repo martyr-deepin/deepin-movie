@@ -10,8 +10,6 @@ DPreferenceWindow {
     height: 480
     modality: Qt.ApplicationModal
 
-    actionButtonText: dsTr("Reset")
-
     property string currentSectionId
     property var presetColors: [
                     {"label": dsTr("Black"), "color": "black"},
@@ -30,13 +28,18 @@ DPreferenceWindow {
 
     signal scrollToPrivate (string sectionId)
 
-    onAction: { resetHotkeys() }
-
-    function resetHotkeys() { config.resetHotkeys() }
-
     function scrollTo(sectionId) { scrollToPrivate(sectionId) }
 
     function scrollToSubtitle() { scrollTo("subtitle_settings") }
+
+    function indexOfColor(color) {
+        for (var i = 0; i < presetColors.length; i++) {
+            if (presetColors[i].color == color) {
+                return i
+            }
+        }
+        return -1
+    }
 
     DPreferenceView {
         id: preference_view
@@ -110,8 +113,28 @@ DPreferenceWindow {
             }
         ]
 
-        onCurrentSectionIdChanged: {
-            window.showActionButton = currentSectionId.indexOf("keyboard") != -1
+        onCurrentSectionIdChanged: updateActionButton()
+
+        onAction: {
+            if (preference_view.currentSectionId.indexOf("keyboard") == 0) {
+                config.resetHotkeys()
+            } else if (preference_view.currentSectionId.indexOf("subtitle") == 0) {
+                config.resetSubtitleSettings()
+            }
+        }
+
+        function updateActionButton() {
+            if (currentSectionId.indexOf("keyboard") == 0
+                && config.canResetHotkeys) {
+                showActionButton = true
+                actionButtonText = dsTr("Reset shortcuts")
+            } else if (currentSectionId.indexOf("subtitle") == 0
+                && config.canResetSubtitleSettings) {
+                showActionButton = true
+                actionButtonText = dsTr("Reset subtitle settings")
+            } else {
+                showActionButton = false
+            }
         }
 
         function checkShortcutsDuplication(entryName, shortcut) {
@@ -137,6 +160,15 @@ DPreferenceWindow {
                         entry.disableShortcut()
                     }
                 }
+            }
+        }
+
+        Item {
+            visible: false
+            Connections {
+                target: config
+                onCanResetHotkeysChanged: preference_view.updateActionButton()
+                onCanResetSubtitleSettingsChanged: preference_view.updateActionButton()
             }
         }
 
@@ -765,28 +797,52 @@ DPreferenceWindow {
             anchors.leftMargin: 5
 
             ComboBoxRow {
+                id: left_click_combobox
                 title: dsTr("Left click")
                 input.parentWindow: window
                 input.selectIndex: config.othersLeftClick ? 0 : 1
                 input.menu.labels: [dsTr("Pause/Play"), dsTr("None")]
 
                 onMenuSelect: config.othersLeftClick = index == 0
+
+                Connections {
+                    target: config
+                    onOthersLeftClickChanged: {
+                        left_click_combobox.input.select(config.othersLeftClick ? 0 : 1)
+                    }
+                }
             }
             ComboBoxRow {
+                id: double_click_combobox
                 title: dsTr("Double click")
                 input.parentWindow: window
                 input.selectIndex: config.othersDoubleClick ? 0 : 1
                 input.menu.labels: [dsTr("Fullscreen"), dsTr("None")]
 
                 onMenuSelect: config.othersDoubleClick = index == 0
+
+                Connections {
+                    target: config
+                    onOthersDoubleClickChanged: {
+                        double_click_combobox.input.select(config.othersDoubleClick ? 0 : 1)
+                    }
+                }
             }
             ComboBoxRow {
+                id: wheel_combobox
                 title: dsTr("Scroll")
                 input.parentWindow: window
                 input.selectIndex: config.othersWheel ? 0 : 1
                 input.menu.labels: [dsTr("Volume"), dsTr("None")]
 
                 onMenuSelect: config.othersWheel = index == 0
+
+                Connections {
+                    target: config
+                    onOthersWheelChanged: {
+                        wheel_combobox.input.select(config.othersWheel ? 0 : 1)
+                    }
+                }
             }
 
         }
@@ -798,23 +854,26 @@ DPreferenceWindow {
             bottomSpaceHeight: 10
 
             DCheckBox {
+                id: subtitle_auto_load_checkbox
                 text: dsTr("Subtitles loaded automatically")
                 checked: config.subtitleAutoLoad
                 onClicked: config.subtitleAutoLoad = checked
+
+                Connections {
+                    target: config
+                    onSubtitleAutoLoadChanged: {
+                        subtitle_auto_load_checkbox.checked = config.subtitleAutoLoad
+                    }
+                }
             }
 
             ComboBoxRow {
+                id: subtitle_font_family_combo_box
                 title: dsTr("Font")
                 input.parentWindow: window
                 input.selectIndex: config.subtitleFontFamily ? input.menu.labels.indexOf(config.subtitleFontFamily)
                                                             : input.menu.labels.indexOf(getSystemFontFamily())
-                input.menu.labels: {
-                    var families = Qt.fontFamilies()
-                    var locale = Qt.locale()
-                    if (locale.name == "zh_CN") families = _sortFontFamiles(families)
-
-                    return families
-                }
+                input.menu.labels: _getFontFamilies()
 
                 onMenuSelect: {
                     config.subtitleFontFamily = input.menu.labels[index]
@@ -832,56 +891,93 @@ DPreferenceWindow {
                     })
                     return chineseFonts.concat(otherFonts)
                 }
+
+                function _getFontFamilies() {
+                    var families = Qt.fontFamilies()
+                    var locale = Qt.locale()
+                    if (locale.name == "zh_CN") families = _sortFontFamiles(families)
+
+                    return families
+                }
+
+                Connections {
+                    target: config
+                    onSubtitleFontFamilyChanged: {
+                        var families = subtitle_font_family_combo_box._getFontFamilies()
+                        var index = families.indexOf(config.subtitleFontFamily)
+                        if (index != -1) subtitle_font_family_combo_box.input.select(index)
+                    }
+                }
             }
 
             ColorComboBoxRow {
+                id: subtitle_font_color_combo_box
                 title: dsTr("Font color")
                 input.parentWindow: window
-                input.selectIndex: {
-                    for (var i = 0; i < presetColors.length; i++) {
-                        if (presetColors[i].color == config.subtitleFontColor) {
-                            return i
-                        }
-                    }
-                    return -1
-                }
+                input.selectIndex: indexOfColor(config.subtitleFontColor)
                 input.itemModel: window.presetColors
 
                 onMenuSelect: config.subtitleFontColor = window.presetColors[index].color
+
+                Connections {
+                    target: config
+                    onSubtitleFontColorChanged: {
+                        var index = indexOfColor(config.subtitleFontColor)
+                        if (index != -1) subtitle_font_color_combo_box.input.select(index)
+                    }
+                }
             }
 
             SpinnerRow {
+                id: subtitle_font_size_spinner
                 title: dsTr("Size")
                 min: 10
                 max: 30
                 text: config.subtitleFontSize
 
                 onValueChanged: config.subtitleFontSize = value
+
+                Connections {
+                    target: config
+                    onSubtitleFontSizeChanged: {
+                        subtitle_font_size_spinner.text = config.subtitleFontSize
+                    }
+                }
             }
 
             SpinnerRow {
+                id: subtitle_font_border_size_spinner
                 title: dsTr("Border width")
                 min: 0
                 max: 6
                 text: config.subtitleFontBorderSize
 
                 onValueChanged: config.subtitleFontBorderSize = value + 0.0
+
+                Connections {
+                    target: config
+                    onSubtitleFontBorderSizeChanged: {
+                        subtitle_font_border_size_spinner.text = config.subtitleFontBorderSize
+                    }
+                }
             }
 
             ColorComboBoxRow {
+                id: subtitle_font_border_color_combo_box
                 title: dsTr("Border color")
                 input.parentWindow: window
-                input.selectIndex: {
-                    for (var i = 0; i < presetColors.length; i++) {
-                        if (presetColors[i].color == config.subtitleFontBorderColor) {
-                            return i
-                        }
-                    }
-                    return -1
-                }
+                input.selectIndex: indexOfColor(config.subtitleFontBorderColor)
                 input.itemModel: window.presetColors
 
                 onMenuSelect: config.subtitleFontBorderColor = window.presetColors[index].color
+
+                Connections {
+                    target: config
+                    onSubtitleFontBorderColorChanged: {
+                        var index = indexOfColor(config.subtitleFontBorderColor)
+                        if (index != -1) subtitle_font_border_color_combo_box.input.select(index)
+                    }
+                }
             }
 
             SliderRow {
@@ -902,15 +998,22 @@ DPreferenceWindow {
             }
 
             SpinnerRow {
-                id: subtitle_delay_row
+                id: subtitle_delay_spinner
                 title: dsTr("Sync adjustment (s)")
                 step: 0.5
                 min: program_constants.minSubtitleDelayStep
                 max: program_constants.maxSubtitleDelayStep
-                text: config.subtitleDelayStep.toFixed(1)
+                text: config.subtitleDelayStep
                 precision: 1
 
                 onValueChanged: { config.subtitleDelayStep = value }
+
+                Connections {
+                    target: config
+                    onSubtitleDelayStepChanged: {
+                        subtitle_delay_spinner.text = config.subtitleDelayStep
+                    }
+                }
             }
 
             // FileInputRow {

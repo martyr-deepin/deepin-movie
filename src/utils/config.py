@@ -39,64 +39,65 @@ ORDER_TYPE_SINGLE_CYCLE = "ORDER_TYPE_SINGLE_CYCLE"
 ORDER_TYPE_PLAYLIST_CYCLE = "ORDER_TYPE_PLAYLIST_CYCLE"
 
 DEFAULT_CONFIG = [
-("Player", [("volume", 1.0),
-    ("muted", False),
-    ("subtitleHide", False),
+("Player", [("volume", 1.0, float),
+    ("muted", False, bool),
+    ("subtitleHide", False, bool),
     # ("adjustType", ADJUST_TYPE_WINDOW_VIDEO),
-    ("applyLastClosedSize", False),
-    ("fullscreenOnOpenFile", False),
-    ("playOrderType", ORDER_TYPE_PLAYLIST_CYCLE),
-    ("cleanPlaylistOnOpenNewFile", False),
-    ("autoPlayFromLast", True),
-    ("autoPlaySeries", True),
-    ("showPreview", True),
-    ("forwardRewindStep", 5.0),
-    ("multipleProgramsAllowed", False),
-    ("notificationsEnabled", True),
-    ("pauseOnMinimized", True),]),
-("HotkeysPlay", [("hotkeyEnabled", True),
-    ("togglePlay", "Space"),
-    ("forward", "Right"),
-    ("backward", "Left"),
-    ("toggleFullscreen", "Return"),
-    ("togglePlaylist", "F3"),
-    ("speedUp", "Ctrl+Right"),
-    ("slowDown", "Ctrl+Left"),
-    ("restoreSpeed", "R")]),
-("HotkeysFrameSound", [("hotkeyEnabled", True),
-    ("toggleMiniMode", "F2"),
-    ("rotateClockwise", "W"),
-    ("rotateAnticlockwise", "E"),
-    ("increaseVolume", "Up"),
-    ("decreaseVolume", "Down"),
-    ("toggleMute", "M"),]),
-("HotkeysSubtitles", [("hotkeyEnabled", True),
-    ("subtitleForward", "Shift+Right"),
-    ("subtitleBackward", "Shift+Left"),
-    ("subtitleMoveUp", "Shift+Up"),
-    ("subtitleMoveDown", "Shift+Down"),]),
-("HotkeysFiles", [("hotkeyEnabled", True),
-    ("openFile", "Ctrl+O"),
-    ("playPrevious", "PgUp"),
-    ("playNext", "PgDown"),]),
-("Subtitle", [("autoLoad", True),
-    ("fontSize", 20),
-    ("fontFamily", ""),
-    ("fontColor", "#ffffff"),
-    ("fontBorderSize", 1.0),
-    ("fontBorderColor", "black"),
-    ("verticalPosition", 0.05),
-    ("delayStep", 0.5)]),
-("Others", [("leftClick", True),
-    ("doubleClick", True),
-    ("wheel", True)]),
+    ("applyLastClosedSize", False, bool),
+    ("fullscreenOnOpenFile", False, bool),
+    ("playOrderType", ORDER_TYPE_PLAYLIST_CYCLE, str),
+    ("cleanPlaylistOnOpenNewFile", False, bool),
+    ("autoPlayFromLast", True, bool),
+    ("autoPlaySeries", True, bool),
+    ("showPreview", True, bool),
+    ("forwardRewindStep", 5.0, float),
+    ("multipleProgramsAllowed", False, bool),
+    ("notificationsEnabled", True, bool),
+    ("pauseOnMinimized", True, bool),]),
+("HotkeysPlay", [("hotkeyEnabled", True, bool),
+    ("togglePlay", "Space", str),
+    ("forward", "Right", str),
+    ("backward", "Left", str),
+    ("toggleFullscreen", "Return", str),
+    ("togglePlaylist", "F3", str),
+    ("speedUp", "Ctrl+Right", str),
+    ("slowDown", "Ctrl+Left", str),
+    ("restoreSpeed", "R", str)]),
+("HotkeysFrameSound", [("hotkeyEnabled", True, bool),
+    ("toggleMiniMode", "F2", str),
+    ("rotateClockwise", "W", str),
+    ("rotateAnticlockwise", "E", str),
+    ("increaseVolume", "Up", str),
+    ("decreaseVolume", "Down", str),
+    ("toggleMute", "M", str),]),
+("HotkeysSubtitles", [("hotkeyEnabled", True, bool),
+    ("subtitleForward", "Shift+Right", str),
+    ("subtitleBackward", "Shift+Left", str),
+    ("subtitleMoveUp", "Shift+Up", str),
+    ("subtitleMoveDown", "Shift+Down", str),]),
+("HotkeysFiles", [("hotkeyEnabled", True, bool),
+    ("openFile", "Ctrl+O", str),
+    ("playPrevious", "PgUp", str),
+    ("playNext", "PgDown", str),]),
+("Subtitle", [("autoLoad", True, bool),
+    ("fontSize", 20, float),
+    ("fontFamily", "", str),
+    ("fontColor", "#ffffff", str),
+    ("fontBorderSize", 1.0, float),
+    ("fontBorderColor", "black", str),
+    ("verticalPosition", 0.05, float),
+    ("delayStep", 0.5, float)]),
+("Others", [("leftClick", True, bool),
+    ("doubleClick", True, bool),
+    ("wheel", True, bool)]),
 ]
+
+
 
 def getDefault(section, key):
     for _section, _items in DEFAULT_CONFIG:
         if _section == section:
-            for _key, _value in _items:
-                print _key, _value
+            for _key, _value, _type in _items:
                 if _key == key:
                     return _value
             return None
@@ -113,6 +114,9 @@ class Config(QObject):
     LoadDefault = 0
     LoadConfig = 1
     LoadBackup = 2
+
+    canResetHotkeysChanged = pyqtSignal()
+    canResetSubtitleSettingsChanged = pyqtSignal()
 
     def __init__(self):
         super(QObject, self).__init__()
@@ -138,7 +142,7 @@ class Config(QObject):
         self.backup = config.Config(self.backup_path)
         self.backup.config_parser = self.config.config_parser
         if initMode == Config.LoadDefault:
-            self.config.default_config = DEFAULT_CONFIG
+            self.config.default_config = self._getConfigDefaults()
             self.config.load_default()
             self.config.write()
         elif initMode == Config.LoadConfig:
@@ -157,6 +161,15 @@ class Config(QObject):
             self.save("Subtitle", "delayStep", \
                       getDefault("Subtitle", "delayStep"))
 
+    def _getConfigDefaults(self):
+        result = []
+        for section, items in DEFAULT_CONFIG:
+            _items = []
+            result.append((section, _items))
+            for option, value, type in items:
+                _items.append((option, value))
+        return result
+
     def _checkFileIntegerity(self, configFile):
         try:
             with open(configFile) as _file:
@@ -165,7 +178,7 @@ class Config(QObject):
                 config.readfp(_file)
 
                 for section, items in DEFAULT_CONFIG:
-                    for option, value in items:
+                    for option, value, type in items:
                         if not config.has_option(section, option):
                             return False
         except Exception:
@@ -174,6 +187,27 @@ class Config(QObject):
             return False
 
         return True
+
+    def _isShortcutsDefault(self):
+        for section, items in DEFAULT_CONFIG:
+            if section.startswith("Hotkeys") or section.startswith("Others"):
+                for key, value, type in items:
+                    itemName = property_name_func(section, key)
+                    currentValue = getattr(self, itemName, value)
+
+                    if type(value) != currentValue:
+                        return True
+        return False
+
+    def _isSubtitleSettingsDefault(self):
+        for section, items in DEFAULT_CONFIG:
+            if section.startswith("Subtitle"):
+                for key, value, type in items:
+                    itemName = property_name_func(section, key)
+                    currentValue = getattr(self, itemName, value)
+                    if type(value) != currentValue:
+                        return True
+        return False
 
     @pyqtProperty("QVariant")
     def hotKeysPlay(self):
@@ -210,6 +244,14 @@ class Config(QObject):
             result.append({"command": item[0], "key": item[1]})
         return result
 
+    @pyqtProperty(bool)
+    def canResetHotkeys(self):
+        return self._isShortcutsDefault()
+
+    @pyqtProperty(bool)
+    def canResetSubtitleSettings(self):
+        return self._isSubtitleSettingsDefault()
+
     @pyqtSlot(str, str, result=str)
     def fetch(self, section, option):
         return self.config.get(section, option)
@@ -231,21 +273,30 @@ class Config(QObject):
     @pyqtSlot()
     def resetHotkeys(self):
         for section, items in DEFAULT_CONFIG:
-            if not section.startswith("Hotkeys"): continue
-            for key, value in items:
-                itemName = property_name_func(section, key)
+            if section.startswith("Hotkeys") or section.startswith("Others"):
+                for key, value, type in items:
+                    itemName = property_name_func(section, key)
 
-                setattr(self, itemName, value)
+                    setattr(self, itemName, value)
+
+    @pyqtSlot()
+    def resetSubtitleSettings(self):
+        for section, items in DEFAULT_CONFIG:
+            if section.startswith("Subtitle"):
+                for key, value, type in items:
+                    itemName = property_name_func(section, key)
+
+                    setattr(self, itemName, value)
 
     # automatically make config entries accessable as qt properties.
     for section, items in DEFAULT_CONFIG:
-        for key, value in items:
+        for key, value, type in items:
             itemName = property_name_func(section, key)
             itemNotify = "%sChanged" % itemName
 
             nfy = locals()[itemNotify] = pyqtSignal()
 
-            def _get(section, key):
+            def _get(section, key, type):
                 def f(self):
                     result = self.fetch(section, key)
                     # take care of the entries that takes unicode as their
@@ -255,13 +306,15 @@ class Config(QObject):
                     and result:
                         return pickle.loads(result)
 
-                    if result in ("True", "False"):
-                        return eval(result)
+                    if type == bool:
+                        if result in ("true", "True", "1.0", "1", True, 1):
+                            return True
+                        else:
+                            return False
+                    elif type == float:
+                        return float(result)
                     else:
-                        try:
-                            return self.fetchFloat(section, key)
-                        except Exception:
-                            return self.fetch(section, key)
+                        return result
                 return f
 
             def _set(section ,key, itemNotify):
@@ -274,10 +327,17 @@ class Config(QObject):
                         value = pickle.dumps(value)
                     self.save(section, key, value)
                     getattr(self, itemNotify).emit()
+
+                    if section.startswith("Hotkeys") \
+                    or section.startswith("Others"):
+                        self.canResetHotkeysChanged.emit()
+
+                    if section.startswith("Subtitle"):
+                        self.canResetSubtitleSettingsChanged.emit()
                 return f
 
             set = locals()['_set_'+key] = _set(section, key, itemNotify)
-            get = locals()['_get_'+key] = _get(section, key)
+            get = locals()['_get_'+key] = _get(section, key, type)
 
             locals()[itemName] = pyqtProperty("QVariant", get, set, notify=nfy)
 
@@ -285,7 +345,7 @@ config = Config()
 
 if __name__ == '__main__':
     for section, items in DEFAULT_CONFIG:
-        for key, value in items:
+        for key, value, type in items:
             itemName = "%s%s" % (section[0].lower() + section[1:], key[0].upper() + key[1:])
             itemNotify = "%sChanged" % itemName
 
