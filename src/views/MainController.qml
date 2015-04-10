@@ -690,20 +690,11 @@ MouseArea {
     }
 
     function setSubtitle(subtitle) {
-        var path = ""
-        var delay = 0
-
-        try {
-            var subtitleObj = JSON.parse(subtitle)
-            path = subtitleObj["path"]
-            delay = subtitleObj["delay"]
-        } catch(e) { }
-
-        if (path && _utils.urlIsNativeFile(path)) {
-            _subtitle_parser.file_name = path
-            delay && (_subtitle_parser.delay = delay)
-        } else {
-            _subtitle_parser.set_subtitle_from_movie(player.source)
+        if (subtitle && _utils.urlIsNativeFile(subtitle)) {
+            _subtitle_parser.file_name = subtitle
+            _database.setPlaylistItemSubtitle(player.sourceString,
+                                              _subtitle_parser.file_name,
+                                              _subtitle_parser.delay)
         }
     }
 

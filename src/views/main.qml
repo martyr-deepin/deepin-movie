@@ -512,7 +512,21 @@ Rectangle {
                 main_controller.seekToLastPlayed()
 
                 if (config.subtitleAutoLoad) {
-                    main_controller.setSubtitle(_database.getPlaylistItemSubtitle(player.sourceString))
+                    var subtitleInfo = _database.getPlaylistItemSubtitle(player.sourceString)
+                    var path = ""
+                    var delay = 0
+
+                    try {
+                        var subtitleObj = JSON.parse(subtitleInfo)
+                        path = subtitleObj["path"]
+                        delay = subtitleObj["delay"]
+
+                        if (path) main_controller.setSubtitle(path)
+                        if (delay) _subtitle_parser.delay = delay
+
+                    } catch(e) {
+                        _subtitle_parser.set_subtitle_from_movie(player.sourceString)
+                    }
                 } else {
                     _subtitle_parser.file_name = ""
                 }
