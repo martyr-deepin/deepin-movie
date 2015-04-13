@@ -99,11 +99,6 @@ MouseArea {
         onTriggered: doSingleClick()
     }
 
-    Timer {
-        id: click_hide_playlist_timer
-        interval: 500
-    }
-
     function _getActualWidthWithWidth(destWidth) {
         var widthHeightScale = root.widthHeightScale
         var destHeight = (destWidth - program_constants.windowGlowRadius * 2) / widthHeightScale + program_constants.windowGlowRadius * 2
@@ -813,6 +808,11 @@ MouseArea {
             return
         }
 
+        if (playlist.expanded) {
+            playlist.hide()
+            return
+        }
+
         if (mouse.button == Qt.RightButton) {
             main_controller.showMainMenu()
         } else if (mouse.button == Qt.LeftButton) {
@@ -821,11 +821,6 @@ MouseArea {
                 doDoubleClick()
             } else {
                 double_click_check_timer.start()
-            }
-
-            if (playlist.expanded) {
-                playlist.hide()
-                click_hide_playlist_timer.stop()
             }
         }
     }
