@@ -330,7 +330,7 @@ MouseArea {
     }
 
     function showPreferenceWindow() {
-        preference_window.flags = windowView.getState() == Qt.WindowFullScreen ? Qt.BypassWindowManagerHint : Qt.FramelessWindowHint | Qt.SubWindow
+        preference_window.flags = windowView.getState() == Qt.WindowFullScreen ? Qt.BypassWindowManagerHint : Qt.FramelessWindowHint | Qt.Dialog
         preference_window.close()
         preference_window.x = windowView.x + (windowView.width - preference_window.width) / 2
         preference_window.y = windowView.y + (windowView.height - preference_window.height) / 2
@@ -338,7 +338,7 @@ MouseArea {
     }
 
     function showInformationWindow(url) {
-        info_window.flags = windowView.getState() == Qt.WindowFullScreen ? Qt.BypassWindowManagerHint : Qt.FramelessWindowHint | Qt.SubWindow
+        info_window.flags = windowView.getState() == Qt.WindowFullScreen ? Qt.BypassWindowManagerHint : Qt.FramelessWindowHint | Qt.Dialog
         info_window.close()
         info_window.x = windowView.x + (windowView.width - info_window.width) / 2
         info_window.y = windowView.y + (windowView.height - info_window.height) / 2
