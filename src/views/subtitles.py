@@ -163,6 +163,7 @@ class SrtParser(_Parser):
 
 class Parser(QObject):
     """docstring for Parser"""
+    fileNameChanged = pyqtSignal(str, arguments=["fileName"])
     delayChanged = pyqtSignal(int, arguments=["delay"])
 
     def __init__(self, file_name=None, delay=0):
@@ -186,6 +187,7 @@ class Parser(QObject):
     @file_name.setter
     def file_name(self, value):
         self._file_name = value
+        self.fileNameChanged.emit(self._file_name)
 
         if self._file_name and os.path.exists(self._file_name):
             _file_type = get_file_type(self._file_name)
@@ -202,8 +204,8 @@ class Parser(QObject):
 
     @pyqtSlot(str)
     def set_subtitle_from_movie(self, movie_file):
-        self.delay = 0
         self.file_name = get_subtitle_from_movie(movie_file)[0]
+        self.delay = 0
 
     @pyqtSlot(int, result=str)
     def get_subtitle_at(self, timestamp):

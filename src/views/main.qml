@@ -521,9 +521,12 @@ Rectangle {
                         path = subtitleObj["path"]
                         delay = subtitleObj["delay"]
 
-                        if (path) main_controller.setSubtitle(path)
-                        if (delay) _subtitle_parser.delay = delay
-
+                        if (path) {
+                            main_controller.setSubtitle(path)
+                            if (delay) _subtitle_parser.delay = delay
+                        } else {
+                            _subtitle_parser.set_subtitle_from_movie(player.sourceString)
+                        }
                     } catch(e) {
                         _subtitle_parser.set_subtitle_from_movie(player.sourceString)
                     }

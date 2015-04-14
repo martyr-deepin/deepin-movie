@@ -59,6 +59,11 @@ MouseArea {
 
     Connections {
         target: _subtitle_parser
+        onFileNameChanged: {
+            _database.setPlaylistItemSubtitle(player.sourceString,
+                                              _subtitle_parser.file_name,
+                                              _subtitle_parser.delay)
+        }
         onDelayChanged: {
             _database.setPlaylistItemSubtitle(player.sourceString,
                                               _subtitle_parser.file_name,
@@ -687,9 +692,6 @@ MouseArea {
     function setSubtitle(subtitle) {
         if (subtitle && _utils.urlIsNativeFile(subtitle)) {
             _subtitle_parser.file_name = subtitle
-            _database.setPlaylistItemSubtitle(player.sourceString,
-                                              _subtitle_parser.file_name,
-                                              _subtitle_parser.delay)
         }
     }
 
