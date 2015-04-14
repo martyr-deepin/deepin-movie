@@ -27,8 +27,9 @@ Item {
 
     property color bgDarkColor: "#131414"
 
-    property int minSubtitleDelay: -30
-    property int maxSubtitleDelay: 30
+    // unit(s)
+    property int minSubtitleDelay: -30000
+    property int maxSubtitleDelay: 30000
 
     // unit(s)
     property real minSubtitleDelayStep: 0.1

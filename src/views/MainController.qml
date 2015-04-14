@@ -658,12 +658,30 @@ MouseArea {
     function subtitleMoveDown() { setSubtitleVerticalPosition(config.subtitleVerticalPosition - 0.05)}
 
     function subtitleForward() {
-        _subtitle_parser.delay = Math.max(program_constants.minSubtitleDelay * 1000,
-                                          _subtitle_parser.delay - config.subtitleDelayStep * 1000)
+        if (_subtitle_parser.file_name) {
+            _subtitle_parser.delay = Math.max(program_constants.minSubtitleDelay * 1000,
+                                              _subtitle_parser.delay - config.subtitleDelayStep * 1000)
+
+            var delay = Math.abs((_subtitle_parser.delay / 1000).toFixed(1))
+            if (_subtitle_parser.delay < 0) {
+                notifybar.show(dsTr("Subtitle advanced %1 seconds").arg(delay))
+            } else if (_subtitle_parser.delay > 0) {
+                notifybar.show(dsTr("Subtitle delayed %1 seconds").arg(delay))
+            }
+        }
     }
     function subtitleBackward() {
-        _subtitle_parser.delay = Math.min(program_constants.maxSubtitleDelay * 1000,
-                                          _subtitle_parser.delay + config.subtitleDelayStep * 1000)
+        if (_subtitle_parser.file_name) {
+            _subtitle_parser.delay = Math.min(program_constants.maxSubtitleDelay * 1000,
+                                              _subtitle_parser.delay + config.subtitleDelayStep * 1000)
+
+            var delay = Math.abs((_subtitle_parser.delay / 1000).toFixed(1))
+            if (_subtitle_parser.delay < 0) {
+                notifybar.show(dsTr("Subtitle advanced %1 seconds").arg(delay))
+            } else if (_subtitle_parser.delay > 0) {
+                notifybar.show(dsTr("Subtitle delayed %1 seconds").arg(delay))
+            }
+        }
     }
 
     function setSubtitle(subtitle) {
