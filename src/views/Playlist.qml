@@ -208,7 +208,8 @@ Rectangle {
             currentIndex: -1 // this is important, getClickedItemInfo will sometimes works wrongly.
             visible: playlistPanel.expanded
             currentPlayingSource: playlistPanel.currentPlayingSource
-            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.left: parent.left
+            anchors.leftMargin: 8
 
             // x, y are all values related to playlist
             function getClickedItemUrl(x, y) {
