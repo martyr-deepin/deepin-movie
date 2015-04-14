@@ -96,9 +96,7 @@ Rectangle {
 
     function getFirst() { return playlist.getFirst() }
     function getRandom() { return playlist.getRandom() }
-    function getPreviousSource(source) { return playlist.getPreviousSource(source) }
     function getNextSource(source) { return playlist.getNextSource(source) }
-    function getPreviousSourceCycle(source) { return playlist.getPreviousSourceCycle(source) }
     function getNextSourceCycle(source) { return playlist.getNextSourceCycle(source) }
 
     function changeFileExistence(file, exists) { exists ? playlist.fileBack(file) : playlist.fileMissing(file) }

@@ -618,24 +618,6 @@ MouseArea {
         next ? main_controller.playPath(next) : root.reset()
     }
 
-    function playPreviousOf(file) {
-        var next = null
-
-        if (config.playerPlayOrderType == "ORDER_TYPE_RANDOM") {
-            next = playlist.getRandom()
-        } else if (config.playerPlayOrderType == "ORDER_TYPE_IN_ORDER") {
-            next = playlist.getPreviousSource(file)
-        } else if (config.playerPlayOrderType == "ORDER_TYPE_SINGLE") {
-            next = null
-        } else if (config.playerPlayOrderType == "ORDER_TYPE_SINGLE_CYCLE") {
-            next = _settings.lastPlayedFile
-        } else if (config.playerPlayOrderType == "ORDER_TYPE_PLAYLIST_CYCLE") {
-            next = playlist.getPreviousSourceCycle(file)
-        }
-
-        next ? main_controller.playPath(next) : root.reset()
-    }
-
     function playNext() {
         var next = null
 
