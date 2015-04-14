@@ -3,14 +3,14 @@ import QtQuick 2.1
 Item {
     id: progressbar
     width: 300
-    height: 7
+    height: 6
     state: "minimal"
 
     property real percentage: 0.0
     property bool showPointerSwitch: true
 
     onStateChanged: state == "normal" && became_minimal_timer.restart()
-    
+
     signal mouseOver (int mouseX, real percentage)
     signal mouseDrag (int mouseX, real percentage)
     signal mouseExit ()
@@ -41,7 +41,7 @@ Item {
             }
             PropertyChanges {
                 target: background
-                height: 7
+                height: 6
                 gradient: background_gradient
             }
             PropertyChanges {
@@ -90,7 +90,7 @@ Item {
         interval: 500
         onTriggered: mouse_area.containsMouse ? became_minimal_timer.restart() : (progressbar.state = "minimal")
     }
-    
+
     MouseArea {
         id: mouse_area
         hoverEnabled: true
@@ -119,6 +119,7 @@ Item {
         id: background
         color: Qt.rgba(1, 1, 1, 0.2)
         width: parent.width
+        anchors.verticalCenter: parent.verticalCenter
 
         Rectangle {
             id: background_partner
@@ -134,7 +135,7 @@ Item {
             anchors.left: parent.left
             anchors.top: parent.top
             height: parent.height
-            width: progressbar.state == "normal" ? pointer.x + pointer.width / 2 
+            width: progressbar.state == "normal" ? pointer.x + pointer.width / 2
                                                 : progressbar.width * progressbar.percentage
             color: "#3a9efe"
 
