@@ -1057,7 +1057,7 @@ DPreferenceWindow {
                 id: subtitle_font_size_spinner
                 title: dsTr("Size")
                 min: 10
-                max: 30
+                max: 50
                 text: config.subtitleFontSize
 
                 onValueChanged: config.subtitleFontSize = value
