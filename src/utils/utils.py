@@ -333,6 +333,12 @@ class Utils(QObject):
                 if mime_type == "text/plain" \
                 and (file_path.endswith(".m3u8") or file_path.endswith(".m3u")):
                     return True
+                # application/octet-stream is a generic mimetype, we can't
+                # make sure that the file is video unless its extension is in
+                # the extensions we support.
+                elif mime_type == "application/octet-stream" \
+                and file_path.split(".")[-1] in all_supported_video_exts:
+                    return True
                 return mime_type in all_supported_mime_types
             else:
                 return False
