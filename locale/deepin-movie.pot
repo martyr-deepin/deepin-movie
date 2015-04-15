@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-15 15:41+0800\n"
+"POT-Creation-Date: 2015-04-15 17:09+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -327,6 +327,16 @@ msgstr ""
 msgid "Open next"
 msgstr ""
 
+#: ../src/views/PreferenceWindow.qml:810 ../src/views/ShortcutsViewer.qml:153
+#, qt-format
+msgid "Forward %1 (s)"
+msgstr ""
+
+#: ../src/views/PreferenceWindow.qml:836 ../src/views/ShortcutsViewer.qml:157
+#, qt-format
+msgid "Delay %1 (s)"
+msgstr ""
+
 #: ../src/views/PreferenceWindow.qml:862 ../src/views/ShortcutsViewer.qml:161
 msgid "Subtitle up"
 msgstr ""
@@ -476,16 +486,6 @@ msgstr ""
 
 #: ../src/views/PreferenceWindow.qml:672 ../src/views/ShortcutsViewer.qml:124
 msgid "Mute"
-msgstr ""
-
-#: ../src/views/PreferenceWindow.qml:810 ../src/views/ShortcutsViewer.qml:153
-#, qt-format
-msgid "Forward %1s"
-msgstr ""
-
-#: ../src/views/PreferenceWindow.qml:836 ../src/views/ShortcutsViewer.qml:157
-#, qt-format
-msgid "Delay %1s"
 msgstr ""
 
 #: ../src/views/PreferenceWindow.qml:958 ../src/views/ShortcutsViewer.qml:143

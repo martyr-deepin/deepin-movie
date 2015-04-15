@@ -150,11 +150,11 @@ DWindow {
                     title: dsTr("Subtitles")
 
                     ShortcutsLabel {
-                        title: dsTr("Forward %1s").arg(config.subtitleDelayStep)
+                        title: dsTr("Forward %1 (s)").arg(config.subtitleDelayStep)
                         shortcut: config.hotkeysSubtitlesSubtitleForward+""
                     }
                     ShortcutsLabel {
-                        title: dsTr("Delay %1s").arg(config.subtitleDelayStep)
+                        title: dsTr("Delay %1 (s)").arg(config.subtitleDelayStep)
                         shortcut: config.hotkeysSubtitlesSubtitleBackward+""
                     }
                     ShortcutsLabel {

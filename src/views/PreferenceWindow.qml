@@ -807,7 +807,7 @@ DPreferenceWindow {
             }
 
             HotKeyInputRow {
-                title: dsTr("Forward %1s").arg(config.subtitleDelayStep)
+                title: dsTr("Forward %1 (s)").arg(config.subtitleDelayStep)
                 hotKey: config.hotkeysSubtitlesSubtitleForward+""
                 actualSettingEntry: "hotkeysSubtitlesSubtitleForward"
 
@@ -833,7 +833,7 @@ DPreferenceWindow {
                 }
             }
             HotKeyInputRow {
-                title: dsTr("Delay %1s").arg(config.subtitleDelayStep)
+                title: dsTr("Delay %1 (s)").arg(config.subtitleDelayStep)
                 hotKey: config.hotkeysSubtitlesSubtitleBackward+""
                 actualSettingEntry: "hotkeysSubtitlesSubtitleBackward"
 

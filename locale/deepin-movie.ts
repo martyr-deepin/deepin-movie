@@ -420,7 +420,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+95"/>
+        <location line="+43"/>
+        <source>Forward %1 (s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+26"/>
+        <source>Delay %1 (s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+26"/>
         <source>Subtitle up</source>
         <translation type="unfinished"></translation>
     </message>
@@ -637,17 +647,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+138"/>
-        <source>Forward %1s</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+26"/>
-        <source>Delay %1s</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+93"/>
+        <location line="+257"/>
         <location line="+16"/>
         <location line="+16"/>
         <source>None</source>
@@ -855,12 +855,12 @@
     </message>
     <message>
         <location line="+3"/>
-        <source>Forward %1s</source>
+        <source>Forward %1 (s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+4"/>
-        <source>Delay %1s</source>
+        <source>Delay %1 (s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
