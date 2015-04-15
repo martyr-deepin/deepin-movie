@@ -3,8 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Aril Apria Susanto <awriel@gmail.com>, 2014
-# Yugo Purwanto <dedy.yugo.purwanto@gmail.com>, 2014
+# Kiril Kirilov <cybercop_montana@abv.bg>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
@@ -12,25 +11,25 @@ msgstr ""
 "POT-Creation-Date: 2015-04-15 17:09+0800\n"
 "PO-Revision-Date: 2015-04-15 09:11+0000\n"
 "Last-Translator: deepin_transifex <xiabin@linuxdeepin.com>\n"
-"Language-Team: Indonesian (http://www.transifex.com/projects/p/deepin-movie/language/id/)\n"
+"Language-Team: Bulgarian (http://www.transifex.com/projects/p/deepin-movie/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: id\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: bg\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/views/AboutSection.qml:6 ../src/views/PreferenceWindow.qml:111
 msgid "About"
-msgstr "Tentang"
+msgstr "Относно:"
 
 #: ../src/views/AboutSection.qml:13 ../src/views/TitleBar.qml:70
 #: ../src/views/TitleBar.qml:142 ../src/views/window.py:71
 msgid "Deepin Movie"
-msgstr "Pemutar Video Deepin"
+msgstr "Deepin Филм"
 
 #: ../src/views/AboutSection.qml:28
 msgid "Version"
-msgstr "Versi"
+msgstr "Версия"
 
 #: ../src/views/AboutSection.qml:28 ../src/views/InformationLabel.qml:20
 #: ../src/views/MainController.qml:252 ../src/views/main.qml:142
@@ -42,36 +41,36 @@ msgid ""
 "Deepin Movie is a well-designed and full-featured video player with simple "
 "borderless design. It supports local and streaming media play with multiple "
 "video formats."
-msgstr "Deepin Movie adalah pemutar video yang luar biasa, kaya akan fitur, dengan desain tanpa bingkai yang sederhana. Deepin Movie mendukung pemutaran media lokal dan streaming dengan bermacam-macam format video."
+msgstr "Deepin Видео е красив и високо-функционален видео плеър с изключително опростен дизайн. Той поддържа изпълнението на локални и интернет мултимедийни потоци, както и множество видео формати."
 
 #: ../src/views/AboutSection.qml:69
 msgid "Deepin Movie is released under GPLv3."
-msgstr "Deepin Movie dirilis di bawah GPLv3."
+msgstr "Deepin Видео е реализиран под GPLv3 лиценз."
 
 #: ../src/views/ControlBar.qml:229
 msgid "Stop playing"
-msgstr "Berhenti memutar"
+msgstr "Спри изпълнението"
 
 #: ../src/views/ControlBar.qml:247 ../src/controllers/menu_controller.py:90
 msgid "Previous"
-msgstr "Sebelumnya"
+msgstr "Предишно"
 
 #: ../src/views/ControlBar.qml:266
 msgid "Pause"
-msgstr "Jeda"
+msgstr "Задържане"
 
 #: ../src/views/ControlBar.qml:266 ../src/controllers/menu_controller.py:108
 #: ../src/controllers/menu_controller.py:118
 msgid "Play"
-msgstr "Putar"
+msgstr "Изпълнение"
 
 #: ../src/views/ControlBar.qml:283 ../src/controllers/menu_controller.py:91
 msgid "Next"
-msgstr "Selanjutnya"
+msgstr "Следващ"
 
 #: ../src/views/ControlBar.qml:326 ../src/controllers/menu_controller.py:445
 msgid "Exit fullscreen"
-msgstr "Keluar layar penuh"
+msgstr "Изход от цял екран"
 
 #: ../src/views/ControlBar.qml:326 ../src/views/PreferenceWindow.qml:395
 #: ../src/views/PreferenceWindow.qml:945 ../src/views/ShortcutsViewer.qml:58
@@ -79,19 +78,19 @@ msgstr "Keluar layar penuh"
 #: ../src/controllers/menu_controller.py:102
 #: ../src/controllers/menu_controller.py:446
 msgid "Fullscreen"
-msgstr "Layar Penuh"
+msgstr "Цял екран"
 
 #: ../src/views/ControlBar.qml:343 ../src/views/PreferenceWindow.qml:715
 #: ../src/views/ShortcutsViewer.qml:83
 #: ../src/controllers/menu_controller.py:98
 msgid "Open a file"
-msgstr "Buka berkas"
+msgstr "Отваряне на файл"
 
 #: ../src/views/ControlBar.qml:355 ../src/views/OpenFileDialog.qml:66
 #: ../src/views/PreferenceWindow.qml:421 ../src/views/ShortcutsViewer.qml:62
 #: ../src/controllers/menu_controller.py:105
 msgid "Playlist"
-msgstr "Daftar Putar"
+msgstr "Списък"
 
 #: ../src/views/HotKeyInput.qml:7 ../src/views/HotKeyInput.qml:16
 #: ../src/views/HotKeyInputRow.qml:24 ../src/views/HotKeyInputRow.qml:26
@@ -100,113 +99,113 @@ msgstr "Daftar Putar"
 #: ../src/views/ShortcutsLabel.qml:23 ../src/views/ShortcutsViewer.qml:134
 #: ../src/views/ShortcutsViewer.qml:139 ../src/views/ShortcutsViewer.qml:144
 msgid "None"
-msgstr "None"
+msgstr "Нищо"
 
 #: ../src/views/HotKeyInput.qml:23
 msgid "Please input a new shortcut"
-msgstr "Masukkan pintasan baru"
+msgstr "Моля, въведете нова клавишна комбинация"
 
 #: ../src/views/HotKeyInputRow.qml:30
 msgid "The shortcut you set "
-msgstr "Jalan pintas yang Anda atur"
+msgstr "Задали сте клавишната комбинация"
 
 #: ../src/views/HotKeyInputRow.qml:31
 #, qt-format
 msgid "conflicts with the one used for \"%2\" in the \"%1\" category. "
-msgstr "konflik dengan salah satu yang digunakan untuk \"%2\" dalam kategori \"%1\"."
+msgstr "конфликт с едно от използваните за \"%2\" в категория \"%1\"."
 
 #: ../src/views/HotKeyInputRow.qml:32
 msgid "Do you want to replace it?"
-msgstr "Anda ingin menggantinya?"
+msgstr "Искате ли да го замените?"
 
 #: ../src/views/HotKeyInputRow.qml:99 ../src/views/main.qml:144
 msgid "Cancel"
-msgstr "Batal"
+msgstr "Отмяна"
 
 #: ../src/views/HotKeyInputRow.qml:110
 msgid "Replace"
-msgstr "Ganti"
+msgstr "Замяна"
 
 #: ../src/views/InformationWindow.qml:23 ../src/views/InformationWindow.qml:24
 #: ../src/views/InformationWindow.qml:25 ../src/models/movie_info.py:78
 msgid "Unknown"
-msgstr "Tidak diketahui"
+msgstr "Неизвестно"
 
 #: ../src/views/InformationWindow.qml:77
 msgid "File type"
-msgstr "Tipe berkas"
+msgstr "Тип на файл"
 
 #: ../src/views/InformationWindow.qml:87
 msgid "File size"
-msgstr "Ukuran berkas"
+msgstr "Размер на файл"
 
 #: ../src/views/InformationWindow.qml:97
 msgid "Resolution"
-msgstr "Resolusi"
+msgstr "Резолюция"
 
 #: ../src/views/InformationWindow.qml:107
 msgid "Movie duration"
-msgstr "Durasi Video"
+msgstr "Продължителност на видеото"
 
 #: ../src/views/InformationWindow.qml:117
 msgid "File path"
-msgstr "Letak berkas"
+msgstr "Път до файла"
 
 #: ../src/views/InformationWindow.qml:134
 msgid "Copy to clipboard"
-msgstr "Salin ke papan klip"
+msgstr "Копиране в системния буфер"
 
 #: ../src/views/InformationWindow.qml:149
 msgid "Close"
-msgstr "Tutup"
+msgstr "Затваряне"
 
 #: ../src/views/MainController.qml:252
 msgid "Invalid file"
-msgstr "Berkas tidak valid"
+msgstr "Невалиден файл"
 
 #: ../src/views/MainController.qml:37
 #, qt-format
 msgid "%1 files unable to be parsed have been excluded"
-msgstr "%1 file yang tidak dapat di-parse telah dikecualikan"
+msgstr "%1 файла ще бъдат изключени защото не могат да бъдат проверени"
 
 #: ../src/views/MainController.qml:50
 msgid "Imported"
-msgstr "Diimpor"
+msgstr "Внесен"
 
 #: ../src/views/MainController.qml:451
 msgid "Play last movie played"
-msgstr "Mainkan video yang terakhir diputar"
+msgstr "Изпълни последно гледаното видео"
 
 #: ../src/views/MainController.qml:484 ../src/views/PreferenceWindow.qml:343
 #: ../src/views/ShortcutsViewer.qml:50
 #: ../src/controllers/menu_controller.py:93
 msgid "Forward"
-msgstr "Maju"
+msgstr "Напред"
 
 #: ../src/views/MainController.qml:496 ../src/views/PreferenceWindow.qml:369
 #: ../src/views/ShortcutsViewer.qml:54
 #: ../src/controllers/menu_controller.py:94
 msgid "Rewind"
-msgstr "Mundur"
+msgstr "Връщане"
 
 #: ../src/views/MainController.qml:504 ../src/views/MainController.qml:510
 #, qt-format
 msgid "(Press %1 to restore)"
-msgstr "(Tekan %1 untuk mengembalikan)"
+msgstr "(Натиснете %1 за възстановяване)"
 
 #: ../src/views/MainController.qml:506 ../src/views/MainController.qml:512
 #: ../src/views/MainController.qml:517
 msgid "Playback rate: "
-msgstr "Rate pemutaran:"
+msgstr "Рейтинг на изпълнение:"
 
 #: ../src/views/MainController.qml:529 ../src/views/MainController.qml:538
 msgid "Volume: "
-msgstr "Volume:"
+msgstr "Сила на звука:"
 
 #: ../src/views/MainController.qml:536
 #: ../src/controllers/menu_controller.py:60
 msgid "Muted"
-msgstr "Senyapkan"
+msgstr "Заглушаване"
 
 #: ../src/views/MainController.qml:672 ../src/views/MainController.qml:685
 #, qt-format
@@ -221,65 +220,65 @@ msgstr ""
 #: ../src/views/OpenFileDialog.qml:5 ../src/views/OpenFileDialog.qml:21
 #: ../src/views/OpenFileDialog.qml:41
 msgid "Please choose one file or more"
-msgstr "Pilih satu atau beberapa berkas"
+msgstr "Моля, изберете един или повече файлове"
 
 #: ../src/views/OpenFileDialog.qml:7 ../src/views/OpenFileDialog.qml:23
 #: ../src/views/OpenFileDialog.qml:43
 msgid "Video files"
-msgstr "Berkas video"
+msgstr "Видео файлове"
 
 #: ../src/views/OpenFileDialog.qml:15
 msgid "All files"
-msgstr "Semua berkas"
+msgstr "Всички файлове"
 
 #: ../src/views/OpenFileDialog.qml:31 ../src/views/OpenFileDialog.qml:51
 msgid "Please choose one file"
-msgstr "Silakan pilih satu file"
+msgstr "Моля, изберете един файл"
 
 #: ../src/views/OpenFileDialog.qml:33
 msgid "Subtitle files"
-msgstr "Berkas terjemahan"
+msgstr "Файл със субтитри"
 
 #: ../src/views/OpenFileDialog.qml:53 ../src/views/OpenFileDialog.qml:63
 msgid "Playlist files"
-msgstr "Berkas daftar putar"
+msgstr "Списък с файлове"
 
 #: ../src/views/OpenFileDialog.qml:61
 msgid "Save as"
-msgstr "Simpan sebagai"
+msgstr "Запази като"
 
 #: ../src/views/OpenFolderDialog.qml:5
 msgid "Please choose a folder"
-msgstr "Silakan pilih folder"
+msgstr "Моля, изберете папка"
 
 #: ../src/views/Playlist.qml:252
 msgid "Play mode"
-msgstr "Modus pemutaran"
+msgstr "Режим на изпълнение"
 
 #: ../src/views/Playlist.qml:260 ../src/controllers/menu_controller.py:119
 #: ../src/controllers/menu_controller.py:135
 msgid "Add file"
-msgstr "Tambah berkas"
+msgstr "Добавяне на файл"
 
 #: ../src/views/Playlist.qml:268 ../src/controllers/menu_controller.py:126
 msgid "Clear playlist"
-msgstr "Bersihkan daftar putar"
+msgstr "Изчистване на списъка"
 
 #: ../src/views/PreferenceWindow.qml:242
 msgid "Clear playlist on opening new file"
-msgstr "Bersihkan daftar putar pada saat membuka berkas baru"
+msgstr "Изчистване на списъка при отваряне на нов файл"
 
 #: ../src/views/PreferenceWindow.qml:247
 msgid "Resume playback after restarting player"
-msgstr "Lanjutkan pemutaran setelah menyalakan ulang"
+msgstr "Възобнови изпълнението след рестартирането на плеъра"
 
 #: ../src/views/PreferenceWindow.qml:252
 msgid "Continue to next video automatically"
-msgstr "Lanjutkan ke video berikutnya secara otomatis"
+msgstr "Продължи автоматично към следващото видео"
 
 #: ../src/views/PreferenceWindow.qml:257
 msgid "Show preview when hovering over progress bar"
-msgstr "Tampilkan pratinjau ketika melayang di atas progress bar"
+msgstr "Предварителен изглед при посочване на лентата с напредъка"
 
 #: ../src/views/PreferenceWindow.qml:290
 msgid "Forward/Rewind (s)"
@@ -288,46 +287,46 @@ msgstr ""
 #: ../src/views/PreferenceWindow.qml:312 ../src/views/PreferenceWindow.qml:536
 #: ../src/views/PreferenceWindow.qml:709 ../src/views/PreferenceWindow.qml:804
 msgid "Enable keyboard shortcuts"
-msgstr "Izinkan jalan pintas papan ketik"
+msgstr "Разреши клавишни комбинации"
 
 #: ../src/views/PreferenceWindow.qml:317 ../src/views/PreferenceWindow.qml:929
 #: ../src/views/ShortcutsViewer.qml:46 ../src/views/ShortcutsViewer.qml:134
 msgid "Pause/Play"
-msgstr "Jeda/Putar"
+msgstr "Пауза/Изпълнение"
 
 #: ../src/views/PreferenceWindow.qml:447 ../src/views/ShortcutsViewer.qml:66
 msgid "Accelerate playback"
-msgstr "Akselerasi pemutaran"
+msgstr "Ускоряване на възпроизвеждането"
 
 #: ../src/views/PreferenceWindow.qml:473 ../src/views/ShortcutsViewer.qml:70
 msgid "Decelerate playback"
-msgstr "Perlambat pemutaran"
+msgstr "Забавяне на възпроизвеждането"
 
 #: ../src/views/PreferenceWindow.qml:499 ../src/views/ShortcutsViewer.qml:74
 msgid "Restore playback speed"
-msgstr "kembalikan kecepatan pemutaran"
+msgstr "Възстановяване на скоростта на възпроизвеждане"
 
 #: ../src/views/PreferenceWindow.qml:542 ../src/views/ShortcutsViewer.qml:104
 #: ../src/controllers/menu_controller.py:103
 #: ../src/controllers/menu_controller.py:448
 msgid "Mini mode"
-msgstr "Mode Mini"
+msgstr "Минималистичен режим"
 
 #: ../src/views/PreferenceWindow.qml:620 ../src/views/ShortcutsViewer.qml:116
 msgid "Volume up"
-msgstr "Naikkan Volume"
+msgstr "Увеличаване"
 
 #: ../src/views/PreferenceWindow.qml:646 ../src/views/ShortcutsViewer.qml:120
 msgid "Volume down"
-msgstr "Turunkan Volume"
+msgstr "Намаляване"
 
 #: ../src/views/PreferenceWindow.qml:741 ../src/views/ShortcutsViewer.qml:87
 msgid "Open previous"
-msgstr "Buka sebelumnya"
+msgstr "Отвори предишното"
 
 #: ../src/views/PreferenceWindow.qml:767 ../src/views/ShortcutsViewer.qml:91
 msgid "Open next"
-msgstr "Buka selanjutnya"
+msgstr "Отвори следващото"
 
 #: ../src/views/PreferenceWindow.qml:810 ../src/views/ShortcutsViewer.qml:153
 #, qt-format
@@ -341,27 +340,27 @@ msgstr ""
 
 #: ../src/views/PreferenceWindow.qml:862 ../src/views/ShortcutsViewer.qml:161
 msgid "Subtitle up"
-msgstr "Terjemahan naik"
+msgstr "Субтитри нагоре"
 
 #: ../src/views/PreferenceWindow.qml:888 ../src/views/ShortcutsViewer.qml:165
 msgid "Subtitle down"
-msgstr "Terjemahan turun"
+msgstr "Субтитри надолу"
 
 #: ../src/views/PreferenceWindow.qml:926 ../src/views/ShortcutsViewer.qml:133
 msgid "Left click"
-msgstr "Klik kiri"
+msgstr "Кликване с ляв бутон"
 
 #: ../src/views/PreferenceWindow.qml:942 ../src/views/ShortcutsViewer.qml:138
 msgid "Double click"
-msgstr "Klik ganda"
+msgstr "Двойно кликване"
 
 #: ../src/views/PreferenceWindow.qml:983
 msgid "Subtitles loaded automatically"
-msgstr "Terjemahan ditampilkan secara otomatis"
+msgstr "Субтитрите се зареждат автоматично"
 
 #: ../src/views/PreferenceWindow.qml:1075
 msgid "Border width"
-msgstr "Lebar garis tepi"
+msgstr "Ширина на рамката"
 
 #: ../src/views/PreferenceWindow.qml:21
 msgid "Orange"
@@ -371,32 +370,32 @@ msgstr ""
 #: ../src/views/PreferenceWindow.qml:221 ../src/views/PreferenceWindow.qml:303
 #: ../src/views/ShortcutsViewer.qml:43
 msgid "Playback"
-msgstr "Pemutaran"
+msgstr "Изпълнение"
 
 #: ../src/views/PreferenceWindow.qml:79 ../src/views/PreferenceWindow.qml:527
 #: ../src/views/ShortcutsViewer.qml:101
 msgid "Frame/Sound"
-msgstr "Bingkai/Suara"
+msgstr "Кадър/Звук"
 
 #: ../src/views/PreferenceWindow.qml:84 ../src/views/PreferenceWindow.qml:700
 #: ../src/views/ShortcutsViewer.qml:80
 msgid "Files"
-msgstr "Berkas"
+msgstr "Файлове"
 
 #: ../src/views/PreferenceWindow.qml:94 ../src/views/PreferenceWindow.qml:916
 #: ../src/views/ShortcutsViewer.qml:130
 msgid "Other"
-msgstr "Lainnya"
+msgstr "Други"
 
 #: ../src/views/PreferenceWindow.qml:89 ../src/views/PreferenceWindow.qml:795
 #: ../src/views/ShortcutsViewer.qml:150
 #: ../src/controllers/menu_controller.py:111
 msgid "Subtitles"
-msgstr "Terjemahan"
+msgstr "Субтитри"
 
 #: ../src/views/PreferenceWindow.qml:15
 msgid "Black"
-msgstr "Hitam"
+msgstr "Черно"
 
 #: ../src/views/PreferenceWindow.qml:16
 msgid "bleu de France"
@@ -412,19 +411,19 @@ msgstr "UFO green"
 
 #: ../src/views/PreferenceWindow.qml:19
 msgid "Green yellow"
-msgstr "Green yellow"
+msgstr "Жълто зелено"
 
 #: ../src/views/PreferenceWindow.qml:20
 msgid "Energy yellow"
-msgstr "Energy yellow"
+msgstr "Енергизиращо жълто"
 
 #: ../src/views/PreferenceWindow.qml:22
 msgid "Radical red"
-msgstr "Radical Red"
+msgstr "Ярко червено"
 
 #: ../src/views/PreferenceWindow.qml:23
 msgid "Lavender indigo"
-msgstr "Lavender indigo"
+msgstr "Лавандула индиго"
 
 #: ../src/views/PreferenceWindow.qml:24
 msgid "Royal blue"
@@ -432,27 +431,27 @@ msgstr "Royal blue"
 
 #: ../src/views/PreferenceWindow.qml:25
 msgid "Aluminum"
-msgstr "Aluminium"
+msgstr "Алуминий"
 
 #: ../src/views/PreferenceWindow.qml:26
 msgid "Clean white"
-msgstr "Clean white"
+msgstr "Чисто бяло"
 
 #: ../src/views/PreferenceWindow.qml:54 ../src/views/PreferenceWindow.qml:217
 msgid "Basic settings"
-msgstr "Pengaturan dasar"
+msgstr "Основни настройки"
 
 #: ../src/views/PreferenceWindow.qml:63 ../src/views/PreferenceWindow.qml:281
 msgid "Time span"
-msgstr "Rentang waktu"
+msgstr "Времетраене"
 
 #: ../src/views/PreferenceWindow.qml:70 ../src/views/PreferenceWindow.qml:299
 msgid "Keyboard shortcuts"
-msgstr "Jalan pintas papan ketik"
+msgstr "Клавишни комбинации"
 
 #: ../src/views/PreferenceWindow.qml:101 ../src/views/PreferenceWindow.qml:976
 msgid "Subtitle settings"
-msgstr "Pengaturan terjemahan"
+msgstr "Настройка на субтитри"
 
 #: ../src/views/PreferenceWindow.qml:130
 msgid "Reset shortcuts"
@@ -464,68 +463,68 @@ msgstr ""
 
 #: ../src/views/PreferenceWindow.qml:230
 msgid "Fullscreen on opening file"
-msgstr "Layar penuh saat membuka berkas"
+msgstr "Цял екран при отваряне на файл"
 
 #: ../src/views/PreferenceWindow.qml:236
 msgid "Apply the size last time closed"
-msgstr "Gunakan ukuran terakhir kali ditutup"
+msgstr "Прилагане на размера при последното затваряне"
 
 #: ../src/views/PreferenceWindow.qml:262
 msgid "Allow multiple instances"
-msgstr "Izinkan beberapa proses sekaligus"
+msgstr "Позволи няколко копия"
 
 #: ../src/views/PreferenceWindow.qml:267
 msgid "Pause when minimized"
-msgstr "Jeda ketika diminimalkan"
+msgstr "Пауза при минимизиране"
 
 #: ../src/views/PreferenceWindow.qml:568 ../src/views/ShortcutsViewer.qml:108
 msgid "Rotate counterclockwise"
-msgstr "Putar berlawanan jarum jam"
+msgstr "Завъртане обратно на часовниковата стрелка"
 
 #: ../src/views/PreferenceWindow.qml:594 ../src/views/ShortcutsViewer.qml:112
 msgid "Rotate clockwise"
-msgstr "Putar searah jarum jam"
+msgstr "Завъртане по часовниковата стрелка"
 
 #: ../src/views/PreferenceWindow.qml:672 ../src/views/ShortcutsViewer.qml:124
 msgid "Mute"
-msgstr "Senyap"
+msgstr "Заглушаване"
 
 #: ../src/views/PreferenceWindow.qml:958 ../src/views/ShortcutsViewer.qml:143
 msgid "Scroll"
-msgstr "Gulung"
+msgstr "Превъртане"
 
 #: ../src/views/PreferenceWindow.qml:961 ../src/views/ShortcutsViewer.qml:144
 #: ../src/views/VolumeButton.qml:44
 msgid "Volume"
-msgstr "Volume"
+msgstr "Сила на звука"
 
 #: ../src/views/PreferenceWindow.qml:997
 msgid "Font"
-msgstr "Fonta"
+msgstr "Шрифт"
 
 #: ../src/views/PreferenceWindow.qml:1040
 msgid "Font color"
-msgstr "Warna fonta"
+msgstr "Цвят на шрифта"
 
 #: ../src/views/PreferenceWindow.qml:1058
 msgid "Size"
-msgstr "Ukuran"
+msgstr "Размер"
 
 #: ../src/views/PreferenceWindow.qml:1092
 msgid "Border color"
-msgstr "Warna garis tepi"
+msgstr "Цвят на рамката"
 
 #: ../src/views/PreferenceWindow.qml:1110
 msgid "Position"
-msgstr "Posisi"
+msgstr "Позиция"
 
 #: ../src/views/PreferenceWindow.qml:1115
 msgid "Bottom"
-msgstr "Bawah"
+msgstr "Отдолу"
 
 #: ../src/views/PreferenceWindow.qml:1116
 msgid "Top"
-msgstr "Atas"
+msgstr "Отгоре"
 
 #: ../src/views/PreferenceWindow.qml:1127
 msgid "Sync adjustment (s)"
@@ -533,39 +532,39 @@ msgstr ""
 
 #: ../src/views/TitleBar.qml:173
 msgid "Shown in a proportion of 1:1"
-msgstr "Tampilkan dengan perbandingan 1:1"
+msgstr "Покажи в съотношение 1:1"
 
 #: ../src/views/TitleBar.qml:185
 msgid "Shown in 1.5 times"
-msgstr "Tampilkan dalam 1,5 kali"
+msgstr "Покажи в съотношение 1.5"
 
 #: ../src/views/TitleBar.qml:198
 msgid "Return to mini mode"
-msgstr "Kembali ke mode mini"
+msgstr "Връщане в минимален режим"
 
 #: ../src/views/TitleBar.qml:198
 msgid "Shown in fullscreen"
-msgstr "Tampilkan dalam layar penuh"
+msgstr "Покажи на цял екран"
 
 #: ../src/views/TitleBar.qml:213
 msgid "Cancel \"On Top\""
-msgstr "Batalkan \"Di Atas\""
+msgstr "Затваряне \"Отгоре\""
 
 #: ../src/views/TitleBar.qml:213
 msgid "On Top"
-msgstr "Di Atas"
+msgstr "Отгоре"
 
 #: ../src/views/main.qml:142
 msgid "Please input the url of file played"
-msgstr "Silakan masukkan url dari file yang diputar"
+msgstr "Моля, въведете адреса на изпълнявания файл"
 
 #: ../src/views/main.qml:143
 msgid "Confirm"
-msgstr "Konfirmasi"
+msgstr "Потвърждение"
 
 #: ../src/views/main.qml:160
 msgid "The parse failed"
-msgstr "Parsing gagal"
+msgstr "Разборът е неуспешен"
 
 #: ../src/views/main.qml:458 ../src/views/main.qml:559
 msgid "Buffering..."
@@ -573,146 +572,146 @@ msgstr ""
 
 #: ../src/controllers/menu_controller.py:35
 msgid "Default"
-msgstr "Baku"
+msgstr "По подразбиране"
 
 #: ../src/controllers/menu_controller.py:47
 msgid "Rotate 90 degree clockwise"
-msgstr "Putar 90 derajat searah jarum jam"
+msgstr "Завърти на 90 градуса по часовниковата стрелка"
 
 #: ../src/controllers/menu_controller.py:48
 msgid "Rotate 90 degree counterclockwise"
-msgstr "Putar 90 derajat berbalik arah jarum jam"
+msgstr "Завърти на 90 градуса обратно на часовниковата стрелка"
 
 #: ../src/controllers/menu_controller.py:49
 msgid "Flip horizontally"
-msgstr "Balik secara horizontal"
+msgstr "Хоризонтален флип"
 
 #: ../src/controllers/menu_controller.py:50
 msgid "Flip vertically"
-msgstr "Balik secara vertikal"
+msgstr "Вертикален флип"
 
 #: ../src/controllers/menu_controller.py:58
 msgid "Volume Up"
-msgstr "Naikkan Volume"
+msgstr "Увеличаване на звука"
 
 #: ../src/controllers/menu_controller.py:59
 msgid "Volume Down"
-msgstr "Turunkan Volume"
+msgstr "Намаляване на звука"
 
 #: ../src/controllers/menu_controller.py:64
 msgid "Auto"
-msgstr "Otomatis"
+msgstr "Автоматично"
 
 #: ../src/controllers/menu_controller.py:65
 msgid "Left"
-msgstr "Kiri"
+msgstr "Ляво"
 
 #: ../src/controllers/menu_controller.py:66
 msgid "Right"
-msgstr "Rata kanan kiri"
+msgstr "Дясно"
 
 #: ../src/controllers/menu_controller.py:67
 msgid "Mono"
-msgstr "Mono"
+msgstr "Моно"
 
 #: ../src/controllers/menu_controller.py:68
 msgid "Stero"
-msgstr "Stereo"
+msgstr "Стерео"
 
 #: ../src/controllers/menu_controller.py:72
 msgid "Hide subtitle"
-msgstr "Sembunyikan terjemahan"
+msgstr "Скриване на субтитри"
 
 #: ../src/controllers/menu_controller.py:76
 msgid "Open manually"
-msgstr "Buka secara manual"
+msgstr "Отвори ръчно"
 
 #: ../src/controllers/menu_controller.py:77
 msgid "Subtitle selection"
-msgstr "Pilihan terjemahan"
+msgstr "Избор на субтитри"
 
 #: ../src/controllers/menu_controller.py:78
 msgid "Subtitle setting"
-msgstr "Pengaturan terjemahan"
+msgstr "Настройка на субтитри"
 
 #: ../src/controllers/menu_controller.py:82
 msgid "Order"
-msgstr "Urutan"
+msgstr "Подреждба"
 
 #: ../src/controllers/menu_controller.py:83
 msgid "Random"
-msgstr "Acak"
+msgstr "Произволно"
 
 #: ../src/controllers/menu_controller.py:84
 msgid "Single"
-msgstr "Tunggal"
+msgstr "Песен"
 
 #: ../src/controllers/menu_controller.py:85
 msgid "Repeat (Single)"
-msgstr "Ulangi (satu)"
+msgstr "Повторение (Песен)"
 
 #: ../src/controllers/menu_controller.py:86
 msgid "Repeat (Playlist)"
-msgstr "Ulangi (Daftar putar)"
+msgstr "Повторение (Списък)"
 
 #: ../src/controllers/menu_controller.py:99
 msgid "Open a folder"
-msgstr "Buka folder"
+msgstr "Отваряне на папка"
 
 #: ../src/controllers/menu_controller.py:100
 msgid "Open URL"
-msgstr "Buka URL"
+msgstr "Отвори URL"
 
 #: ../src/controllers/menu_controller.py:104
 msgid "Always on top"
-msgstr "Selalu di atas"
+msgstr "Винаги отгоре"
 
 #: ../src/controllers/menu_controller.py:107
 msgid "Play Sequence"
-msgstr "Urutan memainkan"
+msgstr "Изпълни по реда на подреждане"
 
 #: ../src/controllers/menu_controller.py:109
 msgid "Frame"
-msgstr "Bingkai"
+msgstr "Кадър"
 
 #: ../src/controllers/menu_controller.py:110
 msgid "Sound"
-msgstr "Suara"
+msgstr "Звук"
 
 #: ../src/controllers/menu_controller.py:113
 msgid "Settings"
-msgstr "Pengaturan"
+msgstr "Настройки"
 
 #: ../src/controllers/menu_controller.py:114
 #: ../src/controllers/menu_controller.py:131
 msgid "Information"
-msgstr "Informasi"
+msgstr "Информация"
 
 #: ../src/controllers/menu_controller.py:120
 #: ../src/controllers/menu_controller.py:136
 msgid "Add folder"
-msgstr "Tambah folder"
+msgstr "Добавяне на папка"
 
 #: ../src/controllers/menu_controller.py:122
 msgid "Remove from playlist"
-msgstr "Hapus dari daftar putar"
+msgstr "Премахване от списъка"
 
 #: ../src/controllers/menu_controller.py:123
 msgid "Remove invalid file"
-msgstr "Hapus berkas yang rusak"
+msgstr "Премахване на невалиден файл"
 
 #: ../src/controllers/menu_controller.py:124
 msgid "Export"
-msgstr "Export"
+msgstr "Изнасяне"
 
 #: ../src/controllers/menu_controller.py:125
 msgid "Import"
-msgstr "Import"
+msgstr "Внасяне"
 
 #: ../src/controllers/menu_controller.py:130
 msgid "Open file location"
-msgstr "Buka lokasi berkas"
+msgstr "Отвори местоположението на файла"
 
 #: ../src/controllers/menu_controller.py:447
 msgid "Exit mini mode"
-msgstr "Keluar mode mini"
+msgstr "Изход от минимален режим"
