@@ -510,7 +510,7 @@ Rectangle {
 
             if (source.toString().trim()) {
                 _settings.lastPlayedFile = sourceString
-                _database.appendPlayHistoryItem(source, resetPlayHistoryCursor)
+                _database.appendPlayHistoryItem(sourceString, resetPlayHistoryCursor)
                 main_controller.recordVideoPosition(lastVideoSource, lastVideoPosition)
                 resetPlayHistoryCursor = true
 
