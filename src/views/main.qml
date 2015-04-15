@@ -307,6 +307,7 @@ Rectangle {
 
     /* to perform like a newly started program  */
     function reset() {
+        bg.visible = true
         root.state = "normal"
         root.resetWindowSize()
         _subtitle_parser.file_name = ""
@@ -413,8 +414,12 @@ Rectangle {
         Rectangle {
             id: bg
             color: "#000000"
-            visible: !player.visible
             anchors.fill: parent
+
+            Connections {
+                target: player
+                onPlaying: bg.visible = false
+            }
 
             Image {
                 source: "image/background.png"
@@ -429,7 +434,6 @@ Rectangle {
         id: player
         muted: config.playerMuted
         volume: config.playerVolume
-        visible: hasVideo && source != ""
 
         subtitleFontSize: Math.floor(config.subtitleFontSize * main_window.width / windowView.defaultWidth)
         subtitleFontFamily: config.subtitleFontFamily || getSystemFontFamily()
