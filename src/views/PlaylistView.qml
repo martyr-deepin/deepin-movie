@@ -123,11 +123,6 @@ ListView {
         }
     }
 
-    function moveItem(from, to) {
-        model.move(from, to, 1)
-        allItems.splice(to, 0, allItems.splice(from, 1)[0])
-    }
-
     function contains(url) {
         var list = _flattenList()
         for (var i = 0; i< list.length; i++) {
@@ -330,7 +325,7 @@ ListView {
                             var origInx = index
                             listView.allItems.sort(listView._sortFuncY)
                             var nowInx = listView.allItems.indexOf(column)
-                            listView.moveItem(origInx, nowInx)
+                            listView.model.move(origInx, nowInx, 1)
 
                             // if nowInx == origInx moveItem will not cause the
                             // listview to refresh, below codes can.
