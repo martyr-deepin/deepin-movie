@@ -24,5 +24,6 @@ Depends: ${shlibs:Depends},
  python-peewee,
  deepin-menu,
  deepin-qml-widgets,
+ libfontconfig1
 Description: deepin movie for linuxdeepin desktop environment
  Deepin movie with linuxdeepin desktop environment.

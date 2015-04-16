@@ -33,6 +33,7 @@ from PyQt5.QtWidgets import QApplication
 from PyQt5.QtGui import QKeySequence
 from PyQt5.QtCore import QObject, QThread, pyqtSignal, pyqtSlot, pyqtProperty
 
+import font_utils
 from views.subtitles import *
 from dbus_interfaces import screenSaverInterface
 
@@ -359,6 +360,10 @@ class Utils(QObject):
         file_path = file_path[7:] if file_path.startswith("file://") \
                                     else file_path
         subprocess.Popen(["xdg-open", "%s" % os.path.dirname(file_path)])
+
+    @pyqtSlot(result="QVariant")
+    def getSystemFonts(self):
+        return font_utils.getSystemFonts()
 
     @pyqtSlot()
     def screenSaverInhibit(self):

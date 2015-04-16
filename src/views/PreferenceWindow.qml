@@ -996,8 +996,8 @@ DPreferenceWindow {
                 id: subtitle_font_family_combo_box
                 title: dsTr("Font")
                 input.parentWindow: window
-                input.selectIndex: config.subtitleFontFamily ? input.menu.labels.indexOf(config.subtitleFontFamily)
-                                                            : input.menu.labels.indexOf(program_constants.systemFontFamily)
+                input.selectIndex: subtitle_font_family_combo_box._getFontFamilyIndex(
+                    config.subtitleFontFamily || getSystemFontFamily())
                 input.menu.labels: _getFontFamilies()
 
                 onMenuSelect: {
@@ -1018,18 +1018,35 @@ DPreferenceWindow {
                 }
 
                 function _getFontFamilies() {
-                    var families = Qt.fontFamilies()
-                    var locale = Qt.locale()
-                    if (locale.name == "zh_CN") families = _sortFontFamiles(families)
+                    var result = []
+                    var families = _utils.getSystemFonts()
+                    // var locale = Qt.locale()
+                    // if (locale.name == "zh_CN") families = _sortFontFamiles(families)
+                    families.forEach(function(family){
+                        result.push(family[1])
+                    })
 
-                    return families
+                    return result
+                }
+
+                function _getFontFamilyIndex(family) {
+                    var families = _utils.getSystemFonts()
+                    for (var i = 0; i < families.length; i++) {
+                        if (families[i][0] == family
+                            || families[i][1] == family)
+                        {
+                            return i
+                        }
+                    }
+                    return -1
                 }
 
                 Connections {
                     target: config
                     onSubtitleFontFamilyChanged: {
                         var families = subtitle_font_family_combo_box._getFontFamilies()
-                        var index = families.indexOf(config.subtitleFontFamily || program_constants.systemFontFamily)
+                        var index = subtitle_font_family_combo_box._getFontFamilyIndex(
+                            config.subtitleFontFamily || getSystemFontFamily())
                         if (index != -1) subtitle_font_family_combo_box.input.select(index)
                     }
                 }
