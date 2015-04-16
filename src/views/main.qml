@@ -211,11 +211,6 @@ Rectangle {
         return dssLocale.dsTr(s)
     }
 
-    function getSystemFontFamily() {
-        var text = Qt.createQmlObject('import QtQuick 2.1; Text {}', root, "");
-        return text.font.family
-    }
-
     function initWindowSize() {
         resetWindowSize()
         root.widthHeightScale = (windowView.width - windowView.windowGlowRadius * 2) / (windowView.height - windowView.windowGlowRadius * 2)
@@ -436,7 +431,7 @@ Rectangle {
         volume: config.playerVolume
 
         subtitleFontSize: Math.floor(config.subtitleFontSize * main_window.width / windowView.defaultWidth)
-        subtitleFontFamily: config.subtitleFontFamily || getSystemFontFamily()
+        subtitleFontFamily: config.subtitleFontFamily || program_constants.systemFontFamily
         subtitleFontColor: config.subtitleFontColor
         subtitleFontBorderSize: config.subtitleFontBorderSize
         subtitleFontBorderColor: config.subtitleFontBorderColor

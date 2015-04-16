@@ -997,7 +997,7 @@ DPreferenceWindow {
                 title: dsTr("Font")
                 input.parentWindow: window
                 input.selectIndex: config.subtitleFontFamily ? input.menu.labels.indexOf(config.subtitleFontFamily)
-                                                            : input.menu.labels.indexOf(getSystemFontFamily())
+                                                            : input.menu.labels.indexOf(program_constants.systemFontFamily)
                 input.menu.labels: _getFontFamilies()
 
                 onMenuSelect: {
@@ -1029,7 +1029,7 @@ DPreferenceWindow {
                     target: config
                     onSubtitleFontFamilyChanged: {
                         var families = subtitle_font_family_combo_box._getFontFamilies()
-                        var index = families.indexOf(config.subtitleFontFamily)
+                        var index = families.indexOf(config.subtitleFontFamily || program_constants.systemFontFamily)
                         if (index != -1) subtitle_font_family_combo_box.input.select(index)
                     }
                 }

@@ -34,4 +34,6 @@ Item {
     // unit(s)
     property real minSubtitleDelayStep: 0.1
     property real maxSubtitleDelayStep: 1800
+
+    property string systemFontFamily: "思源黑体"
 }
