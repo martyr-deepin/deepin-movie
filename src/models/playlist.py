@@ -185,7 +185,8 @@ class Database(QObject):
     playlistItemAdded = pyqtSignal(str, str, str,
         arguments=["name", "url", "category"])
     importDone = pyqtSignal(str, arguments=["filename"])
-    itemVInfoGot = pyqtSignal(str, str, arguments=["url", "vinfo"])
+    itemVInfoGot = pyqtSignal(str, str, str,
+        arguments=["context", "url", "vinfo"])
 
     def __init__(self):
         super(Database, self).__init__()
@@ -193,7 +194,10 @@ class Database(QObject):
         self._playHistoryCursor = len(self._getPlayHistory()) - 1
 
         self._initDelayTimer()
+
+        self._crawlerActions = {}
         self._crawlerManager.infoGot.connect(self.crawlerGotInfo)
+        self._crawlAllPlaylistItems()
 
     def _initDelayTimer(self):
         self._delayCommitTimer = QTimer()
@@ -233,10 +237,30 @@ class Database(QObject):
 
         return item
 
+    def _getPlaylistItemVInfo(self, itemUrl):
+        try:
+            item = PlaylistItemModel.get(
+                PlaylistItemModel.url == itemUrl)
+            info = json.loads(item.info) if item.info else {}
+            if info.get("video_info"):
+                return info.get("video_info")
+            else:
+                return None
+        except DoesNotExist:
+            return None
+
+    def _crawlAllPlaylistItems(self):
+        for item in PlaylistItemModel.select():
+            vInfo = self._getPlaylistItemVInfo(item.url)
+            if not vInfo:
+                self._crawlerActions[item.url] = "normal"
+                self._crawlerManager.crawl(item.url, False)
+
     @pyqtSlot(str, str)
     def crawlerGotInfo(self, url, result):
-        self.itemVInfoGot.emit(url, result)
         self.setPlaylistItemVInfo(url, result)
+        context = self._crawlerActions.pop(url)
+        self.itemVInfoGot.emit(context, url, result)
 
     # Playlist operations
     @pyqtSlot(result=str)
@@ -295,6 +319,9 @@ class Database(QObject):
                 item.category = self._getOrNewPlaylistCategory(categoryName)
                 item.save()
             self.playlistItemAdded.emit(itemName, itemUrl, categoryName)
+
+            self._crawlerActions[itemUrl] = "normal"
+            self._crawlerManager.crawl(itemUrl)
 
     @pyqtSlot(str)
     def addPlaylistCategory(self, categoryName):
@@ -456,30 +483,32 @@ class Database(QObject):
         except DoesNotExist:
             pass
 
-    # this getter is asynchronized because there's maybe some items that has no
+    # This getter is asynchronized because there's maybe some items that has no
     # video_info stored, so you need connect to the itemVInfoGot signal to
-    # respond to this getter.
-    @pyqtSlot(str)
-    def getPlaylistItemVInfo(self, itemUrl):
-        try:
-            item = PlaylistItemModel.get(
-                PlaylistItemModel.url == itemUrl)
-            info = json.loads(item.info) if item.info else {}
-            if info.get("video_info"):
-                self.itemVInfoGot.emit(itemUrl, info.get("video_info"))
-            else:
-                self._crawlerManager.crawl(itemUrl, True)
-        except DoesNotExist:
+    # respond to this method.
+    # Because this method is asychronized, I add the context parameter to
+    # distinguish every calls to this method, the context will be emitted
+    # in itemVInfoGot signal along with itemUrl and the crawling result,
+    # Use it properly.
+    @pyqtSlot(str, str, result=str)
+    def getPlaylistItemVInfo(self, context, itemUrl):
+        vInfo = self._getPlaylistItemVInfo(itemUrl)
+        if not vInfo:
+            self._crawlerActions[itemUrl] = context
             self._crawlerManager.crawl(itemUrl, True)
+            return ""
+        else:
+            return vInfo
 
     def setPlaylistItemVInfo(self, itemUrl, videoInfo):
         try:
-            item = PlaylistItemModel.get(
-                PlaylistItemModel.url == itemUrl)
-            info = json.loads(item.info) if item.info else {}
-            info["video_info"] = videoInfo
-            item.info = json.dumps(info)
-            item.save()
+            with self._delayCommit():
+                item = PlaylistItemModel.get(
+                    PlaylistItemModel.url == itemUrl)
+                info = json.loads(item.info) if item.info else {}
+                info["video_info"] = videoInfo
+                item.info = json.dumps(info)
+                item.save()
         except DoesNotExist:
             pass
 

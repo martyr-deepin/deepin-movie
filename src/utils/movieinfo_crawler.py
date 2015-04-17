@@ -34,6 +34,8 @@ class _MovieInfoCrawler(QThread):
 		self.url = url
 
 	def run(self):
+		self.setPriority(QThread.LowestPriority)
+
 		self._movieInfo = MovieInfo(self.url)
 		result = {
 		    "movie_title": self._movieInfo.movie_title,
@@ -69,7 +71,7 @@ class CrawlerManager(QThread):
 				crawler.start()
 
 	def crawl(self, url, highPriority=False):
-		if len(self._crawlers) < 5 or highPriority:
+		if len(self._crawlers) < 3 or highPriority:
 			crawler = _MovieInfoCrawler(url)
 			crawler.died.connect(self.crawlerDied)
 			crawler.start()

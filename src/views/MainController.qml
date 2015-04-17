@@ -53,7 +53,11 @@ MouseArea {
 
         onImportDone: { notifybar.show(dsTr("Imported") + ": " + filename)}
 
-        onItemVInfoGot: info_window.showInfo(vinfo)
+        onItemVInfoGot: {
+            if (context == "dialog") {
+                info_window.showInfo(vinfo)
+            }
+        }
     }
 
     Connections {
@@ -376,7 +380,8 @@ MouseArea {
         info_window.close()
         info_window.x = windowView.x + (windowView.width - info_window.width) / 2
         info_window.y = windowView.y + (windowView.height - info_window.height) / 2
-        _database.getPlaylistItemVInfo(url)
+        var vInfo = _database.getPlaylistItemVInfo("dialog", url)
+        if (vInfo) info_window.showInfo(vInfo)
     }
 
     function setProportion(propWidth, propHeight) {

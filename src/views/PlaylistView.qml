@@ -304,7 +304,15 @@ ListView {
                     interval: 1000
                     onTriggered: {
                         if (mouse_area.containsMouse) {
-                            tooltip.showTip(itemName)
+                            var tip = itemName
+
+                            var vInfo = _database.getPlaylistItemVInfo("playlist", itemUrl, false)
+                            if (vInfo) {
+                                var vInfoObject = JSON.parse(vInfo)
+                                var duration = UIUtils.formatTime(vInfoObject["movie_duration"])
+                                tip = tip + "  <font color='#B2FFFFFF'>" + duration + "</font>"
+                            }
+                            tooltip.showTip(tip)
                         }
                     }
                 }
