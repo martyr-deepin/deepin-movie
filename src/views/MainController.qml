@@ -340,6 +340,7 @@ MouseArea {
         preference_window.close()
         preference_window.x = windowView.x + (windowView.width - preference_window.width) / 2
         preference_window.y = windowView.y + (windowView.height - preference_window.height) / 2
+        preference_window.scrollToTop()
         preference_window.show()
     }
 

@@ -26,10 +26,11 @@ DPreferenceWindow {
                     {"label": dsTr("Clean white"), "color": "#ffffff"},
                 ]
 
-    signal scrollToPrivate (string sectionId)
+    function scrollTo(sectionId) {
+        scroll_to_timer.schedule(sectionId)
+    }
 
-    function scrollTo(sectionId) { scrollToPrivate(sectionId) }
-
+    function scrollToTop() { scrollTo("basic_settings") }
     function scrollToSubtitle() { scrollTo("subtitle_settings") }
 
     function indexOfColor(color) {
@@ -39,6 +40,23 @@ DPreferenceWindow {
             }
         }
         return -1
+    }
+
+    Item {
+        visible: false
+        Timer {
+            id: scroll_to_timer
+            interval: 1000
+
+            property string sectionId
+
+            onTriggered: preference_view.currentSectionId = sectionId
+
+            function schedule(sectionId) {
+                scroll_to_timer.sectionId = sectionId
+                scroll_to_timer.start()
+            }
+        }
     }
 
     DPreferenceView {
@@ -189,28 +207,6 @@ DPreferenceWindow {
                     var entry = keyboard_sections[i].content[j]
                     if(entry.inputEnabled != undefined) entry.inputEnabled = false
                 }
-            }
-        }
-
-        Item {
-            visible: false
-            Timer {
-                id: scroll_to_timer
-                interval: 1000
-
-                property string sectionId
-
-                onTriggered: preference_view.scrollTo(sectionId)
-
-                function schedule(sectionId) {
-                    scroll_to_timer.sectionId = sectionId
-                    scroll_to_timer.start()
-                }
-            }
-
-            Connections {
-                target: window
-                onScrollToPrivate: scroll_to_timer.schedule(sectionId)
             }
         }
 
