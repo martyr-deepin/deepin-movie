@@ -120,12 +120,20 @@ MouseArea {
         var destWidth = Math.min(destWidth, primaryRect.width)
         var destHeight = (destWidth - program_constants.windowGlowRadius * 2) / widthHeightScale + program_constants.windowGlowRadius * 2
         if (destHeight > primaryRect.height) {
-            windowView.setWidth((primaryRect.height - 2 * program_constants.windowGlowRadius) * widthHeightScale + 2 * program_constants.windowGlowRadius)
-            windowView.setHeight(primaryRect.height)
-        } else {
-            windowView.setWidth(destWidth)
-            windowView.setHeight(destHeight)
+            destWidth = (primaryRect.height - 2 * program_constants.windowGlowRadius) * widthHeightScale + 2 * program_constants.windowGlowRadius
+            destHeight = primaryRect.height
         }
+
+        var deltaX = windowView.x + destWidth - primaryRect.width
+        var deltaY = windowView.y + destHeight - primaryRect.height
+        if (deltaX > 0 && Math.abs(destWidth - windowView.width) > 5) {
+            windowView.setX(windowView.x - deltaX)
+        }
+        if (deltaY > 0 && Math.abs(destHeight - windowView.height) > 5) {
+            windowView.setY(windowView.y - deltaY)
+        }
+        windowView.setWidth(destWidth)
+        windowView.setHeight(destHeight)
     }
 
     function setWindowTitle(title) {
