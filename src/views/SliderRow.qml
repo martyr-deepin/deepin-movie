@@ -35,6 +35,7 @@ Item {
 		id: slider
 		width: 200
 		isBalance: true
+		percentFont.pixelSize: 10
 		completeColorVisible: false
 		anchors.right: parent.right
 		anchors.verticalCenter: parent.verticalCenter
