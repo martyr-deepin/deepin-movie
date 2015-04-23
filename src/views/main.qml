@@ -455,7 +455,9 @@ Rectangle {
 
         onStatusChanged: {
             if (status == MediaPlayer.Buffering) {
-                notifybar.show(dsTr("Buffering..."))
+                notifybar.showPermanently(dsTr("Buffering..."))
+            } else if (notifybar.text == dsTr("Buffering...")) {
+                notifybar.hide()
             }
         }
 
@@ -555,10 +557,6 @@ Rectangle {
         onErrorChanged: {
             print(error, errorString)
             switch(error) {
-                case MediaPlayer.NetworkError: {
-                    notifybar.showPermanently(dsTr("Buffering..."))
-                    break
-                }
                 case MediaPlayer.FormatError:
                 case MediaPlayer.ResourceError: {
                     if (player.sourceString == open_url_dialog.lastInput.trim())
