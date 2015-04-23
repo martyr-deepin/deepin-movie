@@ -9,6 +9,10 @@ Item {
         if (KeysUtils.isKeyEventEqualToString(event.modifiers, event.key, "Ctrl+Shift+?")) {
             shortcuts_viewer.show(); return
         }
+        // TODO: below line is temporary.
+        if (KeysUtils.isKeyEventEqualToString(event.modifiers, event.key, "Alt+S")) {
+            poster_engine.start(); return
+        }
         if (event.key == Qt.Key_Escape) { main_controller.quitFullscreen(); return }
         if (config.hotkeysPlayHotkeyEnabled) {
             for(var i = 0; i < config.hotKeysPlay.length; i++) {

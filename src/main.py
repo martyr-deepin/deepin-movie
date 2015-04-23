@@ -46,6 +46,7 @@ if os.name == 'posix':
     QCoreApplication.setAttribute(QtCore.Qt.AA_X11InitThreads, True)
 
 # from PyQt5.QtGui import QFont
+from PyQt5.QtQml import qmlRegisterType
 from PyQt5.QtCore import QTranslator, QLocale, QLibraryInfo
 from PyQt5.QtWidgets import QApplication
 appTranslator = QTranslator()
@@ -62,6 +63,7 @@ from views.window import Window
 from views.subtitles import Parser
 from models.playlist import database
 from utils.config import config
+from utils.poster_generator import PosterGenerator
 from utils.dmsettings import DMSettings
 # TODO: utils module structure sucks
 from utils.utils import utils, FindVideoThreadManager
@@ -90,6 +92,7 @@ if __name__ == "__main__":
     settings = DMSettings()
     app._extra_window = weakref.ref(windowView)
 
+    qmlRegisterType(PosterGenerator, "Com.Deepin.DeepinMovie", 1, 0, "PosterGenerator")
     qml_context = windowView.rootContext()
 
     qml_context.setContextProperty("config", config)

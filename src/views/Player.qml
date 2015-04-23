@@ -14,6 +14,7 @@ Video {
 
     property string sourceString: ""
     property size resolution: _getResolution()
+    property int storageSize: metaData["size"] || 0
     property bool hasMedia: hasVideo || hasAudio
     property string title: metaData.title ? metaData.title : ""
 

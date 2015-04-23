@@ -1,5 +1,6 @@
 import QtQuick 2.1
 import QtAV 1.5
+import "./toolbox"
 import "../controllers"
 import "sources/ui_utils.js" as UIUtils
 
@@ -25,6 +26,9 @@ MouseArea {
 
     MenuResponder { id: menu_responder }
     KeysResponder { id: keys_responder }
+
+    PosterEngine { id: poster_engine }
+    PicturePreview { id: picture_preview }
 
     Connections {
         target: _findVideoThreadManager

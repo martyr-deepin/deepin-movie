@@ -18,7 +18,6 @@ SectionContent {
     DIcon {
     	width: 64
     	height: 64
-    	theme: "Deepin"
         icon: "deepin-movie"
 
         anchors.horizontalCenter: parent.horizontalCenter

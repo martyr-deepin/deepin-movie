@@ -12,23 +12,30 @@ DWindow {
     property alias picture: img.source
 
     DWindowFrame {
+        width: root.width
+        height: root.height
         frame.color: Qt.rgba(0, 0, 0, 0.5)
-        anchors.fill: parent
 
         Item {
+            width: parent.width
+            height: parent.height
             clip: true
-            anchors.fill: parent
 
             AnimatedImage {
                 id: img
-                width: implicitWidth * customScale
-                height: implicitHeight * customScale
 
                 property real customScale: 1
 
-                onSourceChanged: {
-                    x = Qt.binding(function() { return (parent.width - implicitWidth) / 2 })
-                    y = Qt.binding(function() { return (parent.height - implicitHeight) / 2})
+                onCustomScaleChanged: {
+                    width = width * customScale
+                    height = height * customScale
+                }
+
+                onImplicitWidthChanged: {
+                    height = parent.height
+                    width = height * implicitWidth / implicitHeight
+                    x = (parent.width - width) / 2
+                    y = (parent.height - height) / 2
                 }
             }
 
@@ -36,6 +43,7 @@ DWindow {
                 anchors.fill: parent
                 drag.target: (img.width > parent.width || img.height > parent.height) ? img : undefined
                 drag.axis: (img.width > parent.width ? Drag.XAxis : 0) | (img.height > parent.height ? Drag.YAxis : 0)
+                drag.threshold: 1
                 drag.minimumX: parent.width - img.width
                 drag.maximumX: 0
                 drag.minimumY: parent.height - img.height

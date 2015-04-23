@@ -21,7 +21,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
-import time
 import json
 from random import randint
 
@@ -32,22 +31,13 @@ from xpybutil.ewmh import (c, atom, request_wm_state_checked,
 
 from PyQt5.QtCore import Qt, QSize
 from PyQt5.QtQuick import QQuickView
-from PyQt5.QtCore import pyqtSlot, pyqtProperty, pyqtSignal, QDir
-from PyQt5.QtGui import QSurfaceFormat, QColor, QPixmap, QIcon, QCursor
-from utils.dbus_interfaces import notificationsInterface
+from PyQt5.QtCore import pyqtSlot, pyqtProperty, pyqtSignal
+from PyQt5.QtGui import QSurfaceFormat, QColor, QPixmap, QCursor
 from utils.constants import (DEFAULT_WIDTH, DEFAULT_HEIGHT, WINDOW_GLOW_RADIUS,
     MINIMIZE_WIDTH, MINIMIZE_HEIGHT)
 from utils.i18n import _
+from utils.pic_utils import icon_from_theme
 
-HOME_DIR = os.path.expanduser("~")
-def icon_from_theme(theme_name, icon_name):
-    QIcon.setThemeSearchPaths([os.path.join(HOME_DIR, ".icons"),
-        os.path.join(HOME_DIR, ".local/share/icons"),
-        "/usr/local/share/icons",
-        "/usr/share/icons",
-        ":/icons"])
-    QIcon.setThemeName(theme_name)
-    return QIcon.fromTheme(icon_name)
 
 class Window(QQuickView):
 
@@ -198,9 +188,8 @@ class Window(QQuickView):
     def screenShot(self):
         self.rootObject().hideControls()
 
-        name = "%s-%s" % (self.title(), time.strftime("%y-%m-%d-%H-%M-%S", time.localtime()))
-        path = QDir.homePath() +"/%s.jpg" % name
+        import tempfile
+        path = "%s.png" % tempfile.mktemp()
+        print path
         p = QPixmap.fromImage(self.grabWindow())
-        p.save(path, "jpg")
-
-        notificationsInterface.notify(u"截图成功", u"文件已保存到%s" % path)
+        p.save(path)
