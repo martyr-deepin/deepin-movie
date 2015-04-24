@@ -4,7 +4,7 @@
 # 
 # Translators:
 # kdavid97 <kdavid97@gmail.hu>, 2014
-# Laszlo Espadas <kw@kardiweb.org>, 2014
+# Laszlo Espadas <kardiweb@protonmail.ch>, 2014
 # SlazO <blum1866@gmail.com>, 2014
 # unicum99 <stampf99@gmail.com>, 2014
 msgid ""

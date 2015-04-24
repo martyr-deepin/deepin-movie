@@ -4,15 +4,15 @@
 # 
 # Translators:
 # fri, 2014
-# fri, 2014
+# fri, 2014-2015
 # fri, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-15 17:09+0800\n"
-"PO-Revision-Date: 2015-04-15 09:11+0000\n"
-"Last-Translator: deepin_transifex <xiabin@linuxdeepin.com>\n"
+"PO-Revision-Date: 2015-04-19 10:13+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/projects/p/deepin-movie/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -212,12 +212,12 @@ msgstr "Ztlumeno"
 #: ../src/views/MainController.qml:672 ../src/views/MainController.qml:685
 #, qt-format
 msgid "Subtitle advanced %1 seconds"
-msgstr ""
+msgstr "Titulky posunuty dopředu o %1 sekund"
 
 #: ../src/views/MainController.qml:674 ../src/views/MainController.qml:687
 #, qt-format
 msgid "Subtitle delayed %1 seconds"
-msgstr ""
+msgstr "Titulky zpožděny o %1 sekund"
 
 #: ../src/views/OpenFileDialog.qml:5 ../src/views/OpenFileDialog.qml:21
 #: ../src/views/OpenFileDialog.qml:41
@@ -284,7 +284,7 @@ msgstr "Při přejetí nad pruhem ukazujícím postup ukázat náhled"
 
 #: ../src/views/PreferenceWindow.qml:290
 msgid "Forward/Rewind (s)"
-msgstr ""
+msgstr "Přetočit vpřed/Přetočit zpět (s)"
 
 #: ../src/views/PreferenceWindow.qml:312 ../src/views/PreferenceWindow.qml:536
 #: ../src/views/PreferenceWindow.qml:709 ../src/views/PreferenceWindow.qml:804
@@ -333,12 +333,12 @@ msgstr "Otevřít další"
 #: ../src/views/PreferenceWindow.qml:810 ../src/views/ShortcutsViewer.qml:153
 #, qt-format
 msgid "Forward %1 (s)"
-msgstr ""
+msgstr "Vpřed %1 (s)"
 
 #: ../src/views/PreferenceWindow.qml:836 ../src/views/ShortcutsViewer.qml:157
 #, qt-format
 msgid "Delay %1 (s)"
-msgstr ""
+msgstr "Zpoždění %1 (s)"
 
 #: ../src/views/PreferenceWindow.qml:862 ../src/views/ShortcutsViewer.qml:161
 msgid "Subtitle up"
@@ -366,7 +366,7 @@ msgstr "Šířka okraje"
 
 #: ../src/views/PreferenceWindow.qml:21
 msgid "Orange"
-msgstr ""
+msgstr "Oranžový"
 
 #: ../src/views/PreferenceWindow.qml:58 ../src/views/PreferenceWindow.qml:74
 #: ../src/views/PreferenceWindow.qml:221 ../src/views/PreferenceWindow.qml:303
@@ -457,11 +457,11 @@ msgstr "Nastavení titulků"
 
 #: ../src/views/PreferenceWindow.qml:130
 msgid "Reset shortcuts"
-msgstr ""
+msgstr "Nastavit klávesové zkratky znovu"
 
 #: ../src/views/PreferenceWindow.qml:134
 msgid "Reset subtitle settings"
-msgstr ""
+msgstr "Nastavit nastavení titulků znovu"
 
 #: ../src/views/PreferenceWindow.qml:230
 msgid "Fullscreen on opening file"
@@ -530,7 +530,7 @@ msgstr "Nahoře"
 
 #: ../src/views/PreferenceWindow.qml:1127
 msgid "Sync adjustment (s)"
-msgstr ""
+msgstr "Upravení seřízení (s)"
 
 #: ../src/views/TitleBar.qml:173
 msgid "Shown in a proportion of 1:1"
@@ -570,7 +570,7 @@ msgstr "Zpracování se nezdařilo"
 
 #: ../src/views/main.qml:458 ../src/views/main.qml:559
 msgid "Buffering..."
-msgstr ""
+msgstr "Ukládá se do vyrovnávací paměti..."
 
 #: ../src/controllers/menu_controller.py:35
 msgid "Default"

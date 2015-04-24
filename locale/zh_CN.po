@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-15 17:09+0800\n"
-"PO-Revision-Date: 2015-04-15 09:17+0000\n"
+"PO-Revision-Date: 2015-04-23 10:57+0000\n"
 "Last-Translator: cxbii <chenxiangbang@linuxdeepin.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/projects/p/deepin-movie/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -284,7 +284,7 @@ msgstr "鼠标悬停进度条时显示预览"
 
 #: ../src/views/PreferenceWindow.qml:290
 msgid "Forward/Rewind (s)"
-msgstr "跨进/快退（秒）"
+msgstr "快进/快退（秒）"
 
 #: ../src/views/PreferenceWindow.qml:312 ../src/views/PreferenceWindow.qml:536
 #: ../src/views/PreferenceWindow.qml:709 ../src/views/PreferenceWindow.qml:804
