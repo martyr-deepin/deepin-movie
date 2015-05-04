@@ -37,7 +37,7 @@
 <context>
     <name>ControlBar</name>
     <message>
-        <location filename="../src/views/ControlBar.qml" line="+222"/>
+        <location filename="../src/views/ControlBar.qml" line="+229"/>
         <source>Stop playing</source>
         <translation type="unfinished"></translation>
     </message>
@@ -86,12 +86,12 @@
     <name>HotKeyInput</name>
     <message>
         <location filename="../src/views/HotKeyInput.qml" line="+7"/>
-        <location line="+8"/>
+        <location line="+9"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="+7"/>
         <source>Please input a new shortcut</source>
         <translation type="unfinished"></translation>
     </message>
@@ -99,12 +99,14 @@
 <context>
     <name>HotKeyInputRow</name>
     <message>
-        <location filename="../src/views/HotKeyInputRow.qml" line="+23"/>
+        <location filename="../src/views/HotKeyInputRow.qml" line="+24"/>
+        <location line="+2"/>
+        <location line="+30"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+6"/>
+        <location line="-26"/>
         <source>The shortcut you set </source>
         <translation type="unfinished"></translation>
     </message>
@@ -119,7 +121,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+64"/>
+        <location line="+67"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -140,7 +142,7 @@
 <context>
     <name>InformationWindow</name>
     <message>
-        <location filename="../src/views/InformationWindow.qml" line="+21"/>
+        <location filename="../src/views/InformationWindow.qml" line="+23"/>
         <location line="+1"/>
         <location line="+1"/>
         <source>Unknown</source>
@@ -185,14 +187,12 @@
 <context>
     <name>MainController</name>
     <message>
-        <location filename="../src/views/MainController.qml" line="+562"/>
-        <location line="+67"/>
-        <location line="+160"/>
+        <location filename="../src/views/MainController.qml" line="+252"/>
         <source>Invalid file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-753"/>
+        <location line="-215"/>
         <source>%1 files unable to be parsed have been excluded</source>
         <translation type="unfinished"></translation>
     </message>
@@ -202,30 +202,35 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+369"/>
+        <location line="+202"/>
+        <source>:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+199"/>
         <source>Play last movie played</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+27"/>
+        <location line="+33"/>
         <source>Forward</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+10"/>
+        <location line="+12"/>
         <source>Rewind</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+10"/>
         <location line="+8"/>
+        <location line="+6"/>
         <source>(Press %1 to restore)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-6"/>
-        <location line="+8"/>
-        <location line="+7"/>
+        <location line="-4"/>
+        <location line="+6"/>
+        <location line="+5"/>
         <source>Playback rate: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -238,6 +243,18 @@
     <message>
         <location line="-2"/>
         <source>Muted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+136"/>
+        <location line="+13"/>
+        <source>Subtitle advanced %1 seconds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-11"/>
+        <location line="+13"/>
+        <source>Subtitle delayed %1 seconds</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -301,7 +318,7 @@
 <context>
     <name>Playlist</name>
     <message>
-        <location filename="../src/views/Playlist.qml" line="+250"/>
+        <location filename="../src/views/Playlist.qml" line="+252"/>
         <source>Play mode</source>
         <translation type="unfinished"></translation>
     </message>
@@ -319,7 +336,7 @@
 <context>
     <name>PreferenceWindow</name>
     <message>
-        <location filename="../src/views/PreferenceWindow.qml" line="+191"/>
+        <location filename="../src/views/PreferenceWindow.qml" line="+242"/>
         <source>Clear playlist on opening new file</source>
         <translation type="unfinished"></translation>
     </message>
@@ -339,149 +356,154 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+55"/>
-        <location line="+184"/>
-        <location line="+143"/>
-        <location line="+80"/>
+        <location line="+33"/>
+        <source>Forward/Rewind (s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+22"/>
+        <location line="+224"/>
+        <location line="+173"/>
+        <location line="+95"/>
         <source>Enable keyboard shortcuts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-402"/>
-        <location line="+506"/>
+        <location line="-487"/>
+        <location line="+612"/>
         <source>Pause/Play</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-401"/>
+        <location line="-482"/>
         <source>Accelerate playback</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+21"/>
+        <location line="+26"/>
         <source>Decelerate playback</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+21"/>
+        <location line="+26"/>
         <source>Restore playback speed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+38"/>
+        <location line="+43"/>
         <source>Mini mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+63"/>
+        <location line="+78"/>
         <source>Volume up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+21"/>
+        <location line="+26"/>
         <source>Volume down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+59"/>
+        <location line="+69"/>
         <source>Open a file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+21"/>
+        <location line="+26"/>
         <source>Open previous</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+21"/>
+        <location line="+26"/>
         <source>Open next</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+38"/>
-        <source>Forward 0.5s</source>
+        <location line="+43"/>
+        <source>Forward %1 (s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+21"/>
-        <source>Delay 0.5s</source>
+        <location line="+26"/>
+        <source>Delay %1 (s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+21"/>
+        <location line="+26"/>
         <source>Subtitle up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+21"/>
+        <location line="+26"/>
         <source>Subtitle down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+32"/>
+        <location line="+38"/>
         <source>Left click</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+8"/>
+        <location line="+16"/>
         <source>Double click</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+25"/>
+        <location line="+41"/>
         <source>Subtitles loaded automatically</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+48"/>
+        <location line="+92"/>
         <source>Border width</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-521"/>
-        <location line="+451"/>
+        <location line="-680"/>
+        <location line="+550"/>
         <source>Fullscreen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-724"/>
+        <location line="-924"/>
+        <source>Orange</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+37"/>
         <location line="+16"/>
-        <location line="+98"/>
+        <location line="+147"/>
         <location line="+82"/>
         <source>Playback</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-175"/>
-        <location line="+359"/>
+        <location line="-224"/>
+        <location line="+448"/>
         <source>Frame/Sound</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-354"/>
-        <location line="+497"/>
+        <location line="-443"/>
+        <location line="+616"/>
         <source>Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-487"/>
-        <location line="+668"/>
+        <location line="-606"/>
+        <location line="+822"/>
         <source>Other</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-673"/>
-        <location line="+572"/>
+        <location line="-827"/>
+        <location line="+706"/>
         <source>Subtitles</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-649"/>
-        <source>Reset</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+4"/>
+        <location line="-780"/>
         <source>Black</source>
         <translation type="unfinished"></translation>
     </message>
@@ -511,12 +533,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1"/>
-        <source>Sun</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
+        <location line="+2"/>
         <source>Radical red</source>
         <translation type="unfinished"></translation>
     </message>
@@ -541,36 +558,46 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+27"/>
-        <location line="+114"/>
+        <location line="+28"/>
+        <location line="+163"/>
         <source>Basic settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-105"/>
-        <location line="+169"/>
+        <location line="-154"/>
+        <location line="+218"/>
         <source>Time span</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-162"/>
-        <location line="+180"/>
+        <location line="-211"/>
+        <location line="+229"/>
         <source>Keyboard shortcuts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-149"/>
-        <location line="+697"/>
+        <location line="-198"/>
+        <location line="+875"/>
         <source>Subtitle settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-687"/>
+        <location line="-865"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+70"/>
+        <location line="+19"/>
+        <source>Reset shortcuts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Reset subtitle settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+96"/>
         <source>Fullscreen on opening file</source>
         <translation type="unfinished"></translation>
     </message>
@@ -590,44 +617,39 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+23"/>
-        <source>Forward/Rewind</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+48"/>
+        <location line="+76"/>
         <source>Forward</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+21"/>
+        <location line="+26"/>
         <source>Rewind</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+42"/>
+        <location line="+52"/>
         <source>Playlist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+122"/>
+        <location line="+147"/>
         <source>Rotate counterclockwise</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+21"/>
+        <location line="+26"/>
         <source>Rotate clockwise</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+63"/>
+        <location line="+78"/>
         <source>Mute</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+216"/>
-        <location line="+8"/>
-        <location line="+8"/>
+        <location line="+257"/>
+        <location line="+16"/>
+        <location line="+16"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
@@ -642,22 +664,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+37"/>
+        <location line="+36"/>
+        <source>Font</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+43"/>
         <source>Font color</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+16"/>
+        <location line="+18"/>
         <source>Size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+18"/>
+        <location line="+34"/>
         <source>Border color</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+16"/>
+        <location line="+18"/>
         <source>Position</source>
         <translation type="unfinished"></translation>
     </message>
@@ -672,8 +699,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+7"/>
-        <source>Subtitle Delay</source>
+        <location line="+11"/>
+        <source>Sync adjustment (s)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -828,12 +855,12 @@
     </message>
     <message>
         <location line="+3"/>
-        <source>Forward 0.5s</source>
+        <source>Forward %1 (s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+4"/>
-        <source>Delay 0.5s</source>
+        <source>Delay %1 (s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -850,7 +877,8 @@
 <context>
     <name>TitleBar</name>
     <message>
-        <location filename="../src/views/TitleBar.qml" line="+137"/>
+        <location filename="../src/views/TitleBar.qml" line="+70"/>
+        <location line="+72"/>
         <source>Deepin Movie</source>
         <translation type="unfinished"></translation>
     </message>
@@ -896,12 +924,7 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../src/views/main.qml" line="+98"/>
-        <source>Invalid file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+46"/>
+        <location filename="../src/views/main.qml" line="+142"/>
         <source>Please input the url of file played</source>
         <translation type="unfinished"></translation>
     </message>
@@ -926,8 +949,9 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+227"/>
-        <source>Deepin Movie</source>
+        <location line="+298"/>
+        <location line="+101"/>
+        <source>Buffering...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

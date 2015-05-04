@@ -12,14 +12,18 @@ DTextInput {
     signal hotkeySet (string key)
     signal hotkeyDisabled
 
-    onHotkeySet: { text = key || dsTr("None") }
+    function hotkeyToText(hotKey) {
+        return hotKey ? _utils.getOverrideKeyNames(hotKey) : dsTr("None")
+    }
+
+    onHotkeySet: text = hotkeyToText(key)
     // below line is necessary, it will prevent other operations from breaking
     // the binding of hotKey to text
-    onHotKeyChanged: text = hotKey || dsTr("None")
-    onActiveFocusChanged: text = activeFocus ? dsTr("Please input a new shortcut") : hotKey
+    onHotKeyChanged: text = hotkeyToText(hotKey)
+    onActiveFocusChanged: text = activeFocus ? dsTr("Please input a new shortcut") : hotkeyToText(hotKey)
 
     onKeyPressed: {
-        var modifiers = [Qt.Key_Control, Qt.Key_Shift, Qt.Key_Alt, Qt.Key_Meta, Qt.Key_AltGr]
+        var modifiers = [Qt.Key_Control, Qt.Key_Shift, Qt.Key_Alt, Qt.Key_Meta, Qt.Key_AltGr, Qt.Key_Super_L, Qt.Key_Super_R]
         if (modifiers.indexOf(event.key) == -1) {
             input.focus = false
             if (event.key != Qt.Key_Backspace) {

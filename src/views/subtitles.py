@@ -31,7 +31,7 @@ from datetime import timedelta
 from chardet.universaldetector import UniversalDetector
 from deepin_utils.process import get_command_output_first_line
 
-from PyQt5.QtCore import QObject, pyqtProperty, pyqtSlot
+from PyQt5.QtCore import QObject, pyqtProperty, pyqtSlot, pyqtSignal
 
 SUPPORTED_FILE_TYPES = ("ass", "srt")
 
@@ -163,9 +163,22 @@ class SrtParser(_Parser):
 
 class Parser(QObject):
     """docstring for Parser"""
-    def __init__(self, file_name=None):
+    fileNameChanged = pyqtSignal(str, arguments=["fileName"])
+    delayChanged = pyqtSignal(int, arguments=["delay"])
+
+    def __init__(self, file_name=None, delay=0):
         super(Parser, self).__init__()
+        self.delay = delay
         self.file_name = file_name
+
+    @pyqtProperty(int, notify=delayChanged)
+    def delay(self):
+        return self._delay
+
+    @delay.setter
+    def delay(self, value):
+        self._delay = value
+        self.delayChanged.emit(value)
 
     @pyqtProperty(str)
     def file_name(self):
@@ -174,6 +187,7 @@ class Parser(QObject):
     @file_name.setter
     def file_name(self, value):
         self._file_name = value
+        self.fileNameChanged.emit(self._file_name)
 
         if self._file_name and os.path.exists(self._file_name):
             _file_type = get_file_type(self._file_name)
@@ -191,10 +205,11 @@ class Parser(QObject):
     @pyqtSlot(str)
     def set_subtitle_from_movie(self, movie_file):
         self.file_name = get_subtitle_from_movie(movie_file)[0]
+        self.delay = 0
 
     @pyqtSlot(int, result=str)
     def get_subtitle_at(self, timestamp):
-        return self._parser.get_subtitle_at(timestamp)
+        return self._parser.get_subtitle_at(timestamp - self.delay)
 
 if __name__ == '__main__':
     parser = Parser("")

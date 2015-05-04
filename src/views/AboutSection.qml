@@ -30,8 +30,8 @@ SectionContent {
     }
 
     DLinkText {
-        text: "www.linuxdeepin.com"
-        refLink: "http://www.linuxdeepin.com"
+        text: "www.deepin.org"
+        refLink: "http://www.deepin.org"
         font.pixelSize: 10
         anchors.horizontalCenter: parent.horizontalCenter
     }

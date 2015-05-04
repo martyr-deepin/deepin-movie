@@ -9,6 +9,7 @@ Item {
 	property alias min: slider.min
 	property alias max: slider.max
 	property alias init: slider.init
+	property alias displayPercent: slider.displayPercent
 	property alias floatNumber: slider.floatNumber
 	property alias pressedFlag: slider.pressedFlag
 
@@ -23,6 +24,8 @@ Item {
 	Text {
 		id: title
 		color: "#787878"
+		width: 136
+		wrapMode: Text.Wrap
 		font.pixelSize: 12
 		anchors.left: parent.left
 		anchors.verticalCenter: parent.verticalCenter
@@ -32,6 +35,7 @@ Item {
 		id: slider
 		width: 200
 		isBalance: true
+		percentFont.pixelSize: 10
 		completeColorVisible: false
 		anchors.right: parent.right
 		anchors.verticalCenter: parent.verticalCenter

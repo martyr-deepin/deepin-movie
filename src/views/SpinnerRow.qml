@@ -11,15 +11,18 @@ Item {
 	property alias step: spinner.step
 	property alias value: spinner.value
 	property alias text: spinner.text
+	property alias precision: spinner.precision
 
 	Text {
 		id: title
 		color: "#787878"
+		width: 136
+		wrapMode: Text.Wrap
 		font.pixelSize: 12
 		anchors.left: parent.left
 		anchors.verticalCenter: parent.verticalCenter
 	}
-	
+
 	DSpinner {
 		id: spinner
 		width: 200

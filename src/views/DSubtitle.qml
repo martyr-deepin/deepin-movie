@@ -29,5 +29,6 @@ Item {
         spread: 1
         samples: 16
         source: txt
+        visible: radius != 0
     }
 }

@@ -7,6 +7,8 @@ Item {
     height: background.height
     visible: false
 
+    property alias text: txt.text
+
     function showPermanently(text) {
         visible = true
         txt.text = text

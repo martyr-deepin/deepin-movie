@@ -4,10 +4,11 @@ import Deepin.Widgets 1.0
 
 DPreferenceWindow {
     id: window
-    width: 560
+    width: preference_view.width
+           + 2 * shadowWidth
+           + 2 * leftRightMargin
     height: 480
-
-    actionButtonText: dsTr("Reset")
+    modality: Qt.ApplicationModal
 
     property string currentSectionId
     property var presetColors: [
@@ -17,34 +18,53 @@ DPreferenceWindow {
                     {"label": dsTr("UFO green"), "color": "#37eb74"},
                     {"label": dsTr("Green yellow"), "color": "#a9eb3c"},
                     {"label": dsTr("Energy yellow"), "color": "#ebd950"},
-                    {"label": dsTr("Sun"), "color": "#fa8935"},
+                    {"label": dsTr("Orange"), "color": "#fa8935"},
                     {"label": dsTr("Radical red"), "color": "#f34257"},
                     {"label": dsTr("Lavender indigo"), "color": "#b560f8"},
                     {"label": dsTr("Royal blue"), "color": "#2a65e9"},
                     {"label": dsTr("Aluminum"), "color": "#969696"},
                     {"label": dsTr("Clean white"), "color": "#ffffff"},
                 ]
-    property int subtitleDelay: 0
 
-    signal scrollToPrivate (string sectionId)
+    function scrollTo(sectionId) {
+        scroll_to_timer.schedule(sectionId)
+    }
 
-    onAction: { resetHotkeys() }
-
-    function resetHotkeys() { config.resetHotkeys() }
-
-    function scrollTo(sectionId) { scrollToPrivate(sectionId) }
-
+    function scrollToTop() { scrollTo("basic_settings") }
     function scrollToSubtitle() { scrollTo("subtitle_settings") }
 
-    function setSubtitleDelay(delay) { subtitleDelay = delay }
+    function indexOfColor(color) {
+        for (var i = 0; i < presetColors.length; i++) {
+            if (presetColors[i].color == color) {
+                return i
+            }
+        }
+        return -1
+    }
 
-    content: DPreferenceView {
+    Item {
+        visible: false
+        Timer {
+            id: scroll_to_timer
+            interval: 1000
+
+            property string sectionId
+
+            onTriggered: preference_view.currentSectionId = sectionId
+
+            function schedule(sectionId) {
+                scroll_to_timer.sectionId = sectionId
+                scroll_to_timer.start()
+            }
+        }
+    }
+
+    DPreferenceView {
         id: preference_view
-        anchors.fill: parent
-        anchors.leftMargin: 10
-        anchors.rightMargin: 10
-        sectionListWidth:  100
+        height: parent.height
+        sectionListMaxWidth: 270
         layer.enabled: true
+        anchors.horizontalCenter: parent.horizontalCenter
 
         sections: [
             {
@@ -111,8 +131,28 @@ DPreferenceWindow {
             }
         ]
 
-        onCurrentSectionIdChanged: {
-            window.showActionButton = currentSectionId.indexOf("keyboard") != -1
+        onCurrentSectionIdChanged: updateActionButton()
+
+        onAction: {
+            if (preference_view.currentSectionId.indexOf("keyboard") == 0) {
+                config.resetHotkeys()
+            } else if (preference_view.currentSectionId.indexOf("subtitle") == 0) {
+                config.resetSubtitleSettings()
+            }
+        }
+
+        function updateActionButton() {
+            if (currentSectionId.indexOf("keyboard") == 0
+                && config.canResetHotkeys) {
+                showActionButton = true
+                actionButtonText = dsTr("Reset shortcuts")
+            } else if (currentSectionId.indexOf("subtitle") == 0
+                && config.canResetSubtitleSettings) {
+                showActionButton = true
+                actionButtonText = dsTr("Reset subtitle settings")
+            } else {
+                showActionButton = false
+            }
         }
 
         function checkShortcutsDuplication(entryName, shortcut) {
@@ -143,23 +183,30 @@ DPreferenceWindow {
 
         Item {
             visible: false
-            Timer {
-                id: scroll_to_timer
-                interval: 1000
+            Connections {
+                target: config
+                onCanResetHotkeysChanged: preference_view.updateActionButton()
+                onCanResetSubtitleSettingsChanged: preference_view.updateActionButton()
+            }
+        }
 
-                property string sectionId
-
-                onTriggered: preference_view.scrollTo(sectionId)
-
-                function schedule(sectionId) {
-                    scroll_to_timer.sectionId = sectionId
-                    scroll_to_timer.start()
+        function enableShortcutInputs() {
+            var keyboard_sections = [keyboard_playback, keyboard_frame_sound, keyboard_files, keyboard_subtitle]
+            for (var i = 0; i < keyboard_sections.length; i++) {
+                for (var j = 0; j < keyboard_sections[i].content.length; j++) {
+                    var entry = keyboard_sections[i].content[j]
+                    if(entry.inputEnabled != undefined) entry.inputEnabled = true
                 }
             }
+        }
 
-            Connections {
-                target: window
-                onScrollToPrivate: scroll_to_timer.schedule(sectionId)
+        function disableShortcutInputs() {
+            var keyboard_sections = [keyboard_playback, keyboard_frame_sound, keyboard_files, keyboard_subtitle]
+            for (var i = 0; i < keyboard_sections.length; i++) {
+                for (var j = 0; j < keyboard_sections[i].content.length; j++) {
+                    var entry = keyboard_sections[i].content[j]
+                    if(entry.inputEnabled != undefined) entry.inputEnabled = false
+                }
             }
         }
 
@@ -236,7 +283,7 @@ DPreferenceWindow {
             anchors.leftMargin: 5
 
             SpinnerRow {
-                title: dsTr("Forward/Rewind")
+                title: dsTr("Forward/Rewind (s)")
                 min: 1.0
                 max: 30.0
                 text: config.playerForwardRewindStep
@@ -271,6 +318,7 @@ DPreferenceWindow {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
+                        preference_view.disableShortcutInputs()
                     } else {
                         setShortcut(text)
                     }
@@ -279,9 +327,13 @@ DPreferenceWindow {
                 onHotkeyReplaced: {
                     preference_view.disableShortcut(title, text)
                     setShortcut(text)
+                    preference_view.enableShortcutInputs()
                 }
 
-                onHotkeyCancelled: { setShortcut(config.hotkeysPlayTogglePlay) }
+                onHotkeyCancelled: {
+                    setShortcut(config.hotkeysPlayTogglePlay)
+                    preference_view.enableShortcutInputs()
+                }
             }
             HotKeyInputRow {
                 title: dsTr("Forward")
@@ -292,6 +344,7 @@ DPreferenceWindow {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
+                        preference_view.disableShortcutInputs()
                     } else {
                         setShortcut(text)
                     }
@@ -300,9 +353,13 @@ DPreferenceWindow {
                 onHotkeyReplaced: {
                     preference_view.disableShortcut(title, text)
                     setShortcut(text)
+                    preference_view.enableShortcutInputs()
                 }
 
-                onHotkeyCancelled: { setShortcut(config.hotkeysPlayForward) }
+                onHotkeyCancelled: {
+                    setShortcut(config.hotkeysPlayForward)
+                    preference_view.enableShortcutInputs()
+                }
             }
             HotKeyInputRow {
                 title: dsTr("Rewind")
@@ -313,6 +370,7 @@ DPreferenceWindow {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
+                        preference_view.disableShortcutInputs()
                     } else {
                         setShortcut(text)
                     }
@@ -321,9 +379,13 @@ DPreferenceWindow {
                 onHotkeyReplaced: {
                     preference_view.disableShortcut(title, text)
                     setShortcut(text)
+                    preference_view.enableShortcutInputs()
                 }
 
-                onHotkeyCancelled: { setShortcut(config.hotkeysPlayBackward) }
+                onHotkeyCancelled: {
+                    setShortcut(config.hotkeysPlayBackward)
+                    preference_view.enableShortcutInputs()
+                }
             }
             HotKeyInputRow {
                 title: dsTr("Fullscreen")
@@ -334,6 +396,7 @@ DPreferenceWindow {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
+                        preference_view.disableShortcutInputs()
                     } else {
                         setShortcut(text)
                     }
@@ -342,9 +405,13 @@ DPreferenceWindow {
                 onHotkeyReplaced: {
                     preference_view.disableShortcut(title, text)
                     setShortcut(text)
+                    preference_view.enableShortcutInputs()
                 }
 
-                onHotkeyCancelled: { setShortcut(config.hotkeysPlayToggleFullscreen) }
+                onHotkeyCancelled: {
+                    setShortcut(config.hotkeysPlayToggleFullscreen)
+                    preference_view.enableShortcutInputs()
+                }
             }
             HotKeyInputRow {
                 title: dsTr("Playlist")
@@ -355,6 +422,7 @@ DPreferenceWindow {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
+                        preference_view.disableShortcutInputs()
                     } else {
                         setShortcut(text)
                     }
@@ -363,9 +431,13 @@ DPreferenceWindow {
                 onHotkeyReplaced: {
                     preference_view.disableShortcut(title, text)
                     setShortcut(text)
+                    preference_view.enableShortcutInputs()
                 }
 
-                onHotkeyCancelled: { setShortcut(config.hotkeysPlayTogglePlaylist) }
+                onHotkeyCancelled: {
+                    setShortcut(config.hotkeysPlayTogglePlaylist)
+                    preference_view.enableShortcutInputs()
+                }
             }
             HotKeyInputRow {
                 title: dsTr("Accelerate playback")
@@ -376,6 +448,7 @@ DPreferenceWindow {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
+                        preference_view.disableShortcutInputs()
                     } else {
                         setShortcut(text)
                     }
@@ -384,9 +457,13 @@ DPreferenceWindow {
                 onHotkeyReplaced: {
                     preference_view.disableShortcut(title, text)
                     setShortcut(text)
+                    preference_view.enableShortcutInputs()
                 }
 
-                onHotkeyCancelled: { setShortcut(config.hotkeysPlaySpeedUp) }
+                onHotkeyCancelled: {
+                    setShortcut(config.hotkeysPlaySpeedUp)
+                    preference_view.enableShortcutInputs()
+                }
             }
             HotKeyInputRow {
                 title: dsTr("Decelerate playback")
@@ -397,6 +474,7 @@ DPreferenceWindow {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
+                        preference_view.disableShortcutInputs()
                     } else {
                         setShortcut(text)
                     }
@@ -405,9 +483,13 @@ DPreferenceWindow {
                 onHotkeyReplaced: {
                     preference_view.disableShortcut(title, text)
                     setShortcut(text)
+                    preference_view.enableShortcutInputs()
                 }
 
-                onHotkeyCancelled: { setShortcut(config.hotkeysPlaySlowDown) }
+                onHotkeyCancelled: {
+                    setShortcut(config.hotkeysPlaySlowDown)
+                    preference_view.enableShortcutInputs()
+                }
             }
             HotKeyInputRow {
                 title: dsTr("Restore playback speed")
@@ -418,6 +500,7 @@ DPreferenceWindow {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
+                        preference_view.disableShortcutInputs()
                     } else {
                         setShortcut(text)
                     }
@@ -426,9 +509,13 @@ DPreferenceWindow {
                 onHotkeyReplaced: {
                     preference_view.disableShortcut(title, text)
                     setShortcut(text)
+                    preference_view.enableShortcutInputs()
                 }
 
-                onHotkeyCancelled: { setShortcut(config.hotkeysPlayRestoreSpeed) }
+                onHotkeyCancelled: {
+                    setShortcut(config.hotkeysPlayRestoreSpeed)
+                    preference_view.enableShortcutInputs()
+                }
             }
         }
         SectionContent {
@@ -456,6 +543,7 @@ DPreferenceWindow {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
+                        preference_view.disableShortcutInputs()
                     } else {
                         setShortcut(text)
                     }
@@ -464,9 +552,13 @@ DPreferenceWindow {
                 onHotkeyReplaced: {
                     preference_view.disableShortcut(title, text)
                     setShortcut(text)
+                    preference_view.enableShortcutInputs()
                 }
 
-                onHotkeyCancelled: { setShortcut(config.hotkeysFrameSoundToggleMiniMode) }
+                onHotkeyCancelled: {
+                    setShortcut(config.hotkeysFrameSoundToggleMiniMode)
+                    preference_view.enableShortcutInputs()
+                }
             }
             HotKeyInputRow {
                 title: dsTr("Rotate counterclockwise")
@@ -477,6 +569,7 @@ DPreferenceWindow {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
+                        preference_view.disableShortcutInputs()
                     } else {
                         setShortcut(text)
                     }
@@ -485,9 +578,13 @@ DPreferenceWindow {
                 onHotkeyReplaced: {
                     preference_view.disableShortcut(title, text)
                     setShortcut(text)
+                    preference_view.enableShortcutInputs()
                 }
 
-                onHotkeyCancelled: { setShortcut(config.hotkeysFrameSoundRotateAnticlockwise) }
+                onHotkeyCancelled: {
+                    setShortcut(config.hotkeysFrameSoundRotateAnticlockwise)
+                    preference_view.enableShortcutInputs()
+                }
             }
             HotKeyInputRow {
                 title: dsTr("Rotate clockwise")
@@ -498,6 +595,7 @@ DPreferenceWindow {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
+                        preference_view.disableShortcutInputs()
                     } else {
                         setShortcut(text)
                     }
@@ -506,9 +604,13 @@ DPreferenceWindow {
                 onHotkeyReplaced: {
                     preference_view.disableShortcut(title, text)
                     setShortcut(text)
+                    preference_view.enableShortcutInputs()
                 }
 
-                onHotkeyCancelled: { setShortcut(config.hotkeysFrameSoundRotateClockwise) }
+                onHotkeyCancelled: {
+                    setShortcut(config.hotkeysFrameSoundRotateClockwise)
+                    preference_view.enableShortcutInputs()
+                }
             }
             HotKeyInputRow {
                 title: dsTr("Volume up")
@@ -519,6 +621,7 @@ DPreferenceWindow {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
+                        preference_view.disableShortcutInputs()
                     } else {
                         setShortcut(text)
                     }
@@ -527,9 +630,13 @@ DPreferenceWindow {
                 onHotkeyReplaced: {
                     preference_view.disableShortcut(title, text)
                     setShortcut(text)
+                    preference_view.enableShortcutInputs()
                 }
 
-                onHotkeyCancelled: { setShortcut(config.hotkeysFrameSoundIncreaseVolume) }
+                onHotkeyCancelled: {
+                    setShortcut(config.hotkeysFrameSoundIncreaseVolume)
+                    preference_view.enableShortcutInputs()
+                }
             }
             HotKeyInputRow {
                 title: dsTr("Volume down")
@@ -540,6 +647,7 @@ DPreferenceWindow {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
+                        preference_view.disableShortcutInputs()
                     } else {
                         setShortcut(text)
                     }
@@ -548,9 +656,13 @@ DPreferenceWindow {
                 onHotkeyReplaced: {
                     preference_view.disableShortcut(title, text)
                     setShortcut(text)
+                    preference_view.enableShortcutInputs()
                 }
 
-                onHotkeyCancelled: { setShortcut(config.hotkeysFrameSoundDecreaseVolume) }
+                onHotkeyCancelled: {
+                    setShortcut(config.hotkeysFrameSoundDecreaseVolume)
+                    preference_view.enableShortcutInputs()
+                }
             }
             HotKeyInputRow {
                 title: dsTr("Mute")
@@ -561,6 +673,7 @@ DPreferenceWindow {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
+                        preference_view.disableShortcutInputs()
                     } else {
                         setShortcut(text)
                     }
@@ -569,9 +682,13 @@ DPreferenceWindow {
                 onHotkeyReplaced: {
                     preference_view.disableShortcut(title, text)
                     setShortcut(text)
+                    preference_view.enableShortcutInputs()
                 }
 
-                onHotkeyCancelled: { setShortcut(config.hotkeysFrameSoundToggleMute) }
+                onHotkeyCancelled: {
+                    setShortcut(config.hotkeysFrameSoundToggleMute)
+                    preference_view.enableShortcutInputs()
+                }
             }
         }
         SectionContent {
@@ -599,6 +716,7 @@ DPreferenceWindow {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
+                        preference_view.disableShortcutInputs()
                     } else {
                         setShortcut(text)
                     }
@@ -607,9 +725,13 @@ DPreferenceWindow {
                 onHotkeyReplaced: {
                     preference_view.disableShortcut(title, text)
                     setShortcut(text)
+                    preference_view.enableShortcutInputs()
                 }
 
-                onHotkeyCancelled: { setShortcut(config.hotkeysFilesOpenFile) }
+                onHotkeyCancelled: {
+                    setShortcut(config.hotkeysFilesOpenFile)
+                    preference_view.enableShortcutInputs()
+                }
             }
             HotKeyInputRow {
                 title: dsTr("Open previous")
@@ -620,6 +742,7 @@ DPreferenceWindow {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
+                        preference_view.disableShortcutInputs()
                     } else {
                         setShortcut(text)
                     }
@@ -628,9 +751,13 @@ DPreferenceWindow {
                 onHotkeyReplaced: {
                     preference_view.disableShortcut(title, text)
                     setShortcut(text)
+                    preference_view.enableShortcutInputs()
                 }
 
-                onHotkeyCancelled: { setShortcut(config.hotkeysFilesPlayPrevious) }
+                onHotkeyCancelled: {
+                    setShortcut(config.hotkeysFilesPlayPrevious)
+                    preference_view.enableShortcutInputs()
+                }
             }
             HotKeyInputRow {
                 title: dsTr("Open next")
@@ -641,6 +768,7 @@ DPreferenceWindow {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
+                        preference_view.disableShortcutInputs()
                     } else {
                         setShortcut(text)
                     }
@@ -649,9 +777,13 @@ DPreferenceWindow {
                 onHotkeyReplaced: {
                     preference_view.disableShortcut(title, text)
                     setShortcut(text)
+                    preference_view.enableShortcutInputs()
                 }
 
-                onHotkeyCancelled: { setShortcut(config.hotkeysFilesPlayNext) }
+                onHotkeyCancelled: {
+                    setShortcut(config.hotkeysFilesPlayNext)
+                    preference_view.enableShortcutInputs()
+                }
             }
         }
         SectionContent {
@@ -671,7 +803,7 @@ DPreferenceWindow {
             }
 
             HotKeyInputRow {
-                title: dsTr("Forward 0.5s")
+                title: dsTr("Forward %1 (s)").arg(config.subtitleDelayStep)
                 hotKey: config.hotkeysSubtitlesSubtitleForward+""
                 actualSettingEntry: "hotkeysSubtitlesSubtitleForward"
 
@@ -679,6 +811,7 @@ DPreferenceWindow {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
+                        preference_view.disableShortcutInputs()
                     } else {
                         setShortcut(text)
                     }
@@ -687,12 +820,16 @@ DPreferenceWindow {
                 onHotkeyReplaced: {
                     preference_view.disableShortcut(title, text)
                     setShortcut(text)
+                    preference_view.enableShortcutInputs()
                 }
 
-                onHotkeyCancelled: { setShortcut(config.hotkeysSubtitlesSubtitleForward) }
+                onHotkeyCancelled: {
+                    setShortcut(config.hotkeysSubtitlesSubtitleForward)
+                    preference_view.enableShortcutInputs()
+                }
             }
             HotKeyInputRow {
-                title: dsTr("Delay 0.5s")
+                title: dsTr("Delay %1 (s)").arg(config.subtitleDelayStep)
                 hotKey: config.hotkeysSubtitlesSubtitleBackward+""
                 actualSettingEntry: "hotkeysSubtitlesSubtitleBackward"
 
@@ -700,6 +837,7 @@ DPreferenceWindow {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
+                        preference_view.disableShortcutInputs()
                     } else {
                         setShortcut(text)
                     }
@@ -708,9 +846,13 @@ DPreferenceWindow {
                 onHotkeyReplaced: {
                     preference_view.disableShortcut(title, text)
                     setShortcut(text)
+                    preference_view.enableShortcutInputs()
                 }
 
-                onHotkeyCancelled: { setShortcut(config.hotkeysSubtitlesSubtitleBackward) }
+                onHotkeyCancelled: {
+                    setShortcut(config.hotkeysSubtitlesSubtitleBackward)
+                    preference_view.enableShortcutInputs()
+                }
             }
             HotKeyInputRow {
                 title: dsTr("Subtitle up")
@@ -721,6 +863,7 @@ DPreferenceWindow {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
+                        preference_view.disableShortcutInputs()
                     } else {
                         setShortcut(text)
                     }
@@ -729,9 +872,13 @@ DPreferenceWindow {
                 onHotkeyReplaced: {
                     preference_view.disableShortcut(title, text)
                     setShortcut(text)
+                    preference_view.enableShortcutInputs()
                 }
 
-                onHotkeyCancelled: { setShortcut(config.hotkeysSubtitlesSubtitleMoveUp) }
+                onHotkeyCancelled: {
+                    setShortcut(config.hotkeysSubtitlesSubtitleMoveUp)
+                    preference_view.enableShortcutInputs()
+                }
             }
             HotKeyInputRow {
                 title: dsTr("Subtitle down")
@@ -742,6 +889,7 @@ DPreferenceWindow {
                     var checkResult = preference_view.checkShortcutsDuplication(title, text)
                     if (checkResult != null) {
                         warning(checkResult[0], checkResult[1])
+                        preference_view.disableShortcutInputs()
                     } else {
                         setShortcut(text)
                     }
@@ -750,9 +898,13 @@ DPreferenceWindow {
                 onHotkeyReplaced: {
                     preference_view.disableShortcut(title, text)
                     setShortcut(text)
+                    preference_view.enableShortcutInputs()
                 }
 
-                onHotkeyCancelled: { setShortcut(config.hotkeysSubtitlesSubtitleMoveDown) }
+                onHotkeyCancelled: {
+                    setShortcut(config.hotkeysSubtitlesSubtitleMoveDown)
+                    preference_view.enableShortcutInputs()
+                }
             }
         }
         SectionContent {
@@ -766,28 +918,52 @@ DPreferenceWindow {
             anchors.leftMargin: 5
 
             ComboBoxRow {
+                id: left_click_combobox
                 title: dsTr("Left click")
                 input.parentWindow: window
                 input.selectIndex: config.othersLeftClick ? 0 : 1
                 input.menu.labels: [dsTr("Pause/Play"), dsTr("None")]
 
                 onMenuSelect: config.othersLeftClick = index == 0
+
+                Connections {
+                    target: config
+                    onOthersLeftClickChanged: {
+                        left_click_combobox.input.select(config.othersLeftClick ? 0 : 1)
+                    }
+                }
             }
             ComboBoxRow {
+                id: double_click_combobox
                 title: dsTr("Double click")
                 input.parentWindow: window
                 input.selectIndex: config.othersDoubleClick ? 0 : 1
                 input.menu.labels: [dsTr("Fullscreen"), dsTr("None")]
 
                 onMenuSelect: config.othersDoubleClick = index == 0
+
+                Connections {
+                    target: config
+                    onOthersDoubleClickChanged: {
+                        double_click_combobox.input.select(config.othersDoubleClick ? 0 : 1)
+                    }
+                }
             }
             ComboBoxRow {
+                id: wheel_combobox
                 title: dsTr("Scroll")
                 input.parentWindow: window
                 input.selectIndex: config.othersWheel ? 0 : 1
                 input.menu.labels: [dsTr("Volume"), dsTr("None")]
 
                 onMenuSelect: config.othersWheel = index == 0
+
+                Connections {
+                    target: config
+                    onOthersWheelChanged: {
+                        wheel_combobox.input.select(config.othersWheel ? 0 : 1)
+                    }
+                }
             }
 
         }
@@ -799,76 +975,147 @@ DPreferenceWindow {
             bottomSpaceHeight: 10
 
             DCheckBox {
+                id: subtitle_auto_load_checkbox
                 text: dsTr("Subtitles loaded automatically")
                 checked: config.subtitleAutoLoad
                 onClicked: config.subtitleAutoLoad = checked
+
+                Connections {
+                    target: config
+                    onSubtitleAutoLoadChanged: {
+                        subtitle_auto_load_checkbox.checked = config.subtitleAutoLoad
+                    }
+                }
             }
 
-            // TODO:
-            // keep this exactly the same as the font combobox in dde-control-center
-            // ComboBoxRow {
-            //     title: dsTr("Font")
-            //     input.parentWindow: window
-            //     input.selectIndex: config.subtitleFontFamily ? Qt.fontFamilies().indexOf(config.subtitleFontFamily)
-            //                                                 : Qt.fontFamilies().indexOf(getSystemFontFamily())
-            //     input.menu.labels: Qt.fontFamilies()
-
-            //     onMenuSelect: config.subtitleFontFamily = Qt.fontFamilies()[index]
-            // }
-
-            // TODO:
-            // this line shouldn't be there, just a strange work around here,
-            // waiting for Wanqing to fix this problem ;)
-            ColorComboBoxRow { visible: false; input.parentWindow: window }
-
-            ColorComboBoxRow {
-                title: dsTr("Font color")
+            ComboBoxRow {
+                id: subtitle_font_family_combo_box
+                title: dsTr("Font")
                 input.parentWindow: window
-                input.selectIndex: {
-                    for (var i = 0; i < presetColors.length; i++) {
-                        if (presetColors[i].color == config.subtitleFontColor) {
+                input.selectIndex: subtitle_font_family_combo_box._getFontFamilyIndex(
+                    config.subtitleFontFamily || getSystemFontFamily())
+                input.menu.labels: _getFontFamilies()
+
+                onMenuSelect: {
+                    config.subtitleFontFamily = input.menu.labels[index]
+                }
+
+                function _sortFontFamiles(families) {
+                    var chineseFonts = []
+                    var otherFonts = []
+                    families.forEach(function(fam) {
+                        if (_utils.anyChineseInString(fam)) {
+                            chineseFonts.push(fam)
+                        } else {
+                            otherFonts.push(fam)
+                        }
+                    })
+                    return chineseFonts.concat(otherFonts)
+                }
+
+                function _getFontFamilies() {
+                    var result = []
+                    var families = _utils.getSystemFonts()
+                    // var locale = Qt.locale()
+                    // if (locale.name == "zh_CN") families = _sortFontFamiles(families)
+                    families.forEach(function(family){
+                        result.push(family[1])
+                    })
+
+                    return result
+                }
+
+                function _getFontFamilyIndex(family) {
+                    var families = _utils.getSystemFonts()
+                    for (var i = 0; i < families.length; i++) {
+                        if (families[i][0] == family
+                            || families[i][1] == family)
+                        {
                             return i
                         }
                     }
                     return -1
                 }
-                input.menu.items: window.presetColors
+
+                Connections {
+                    target: config
+                    onSubtitleFontFamilyChanged: {
+                        var families = subtitle_font_family_combo_box._getFontFamilies()
+                        var index = subtitle_font_family_combo_box._getFontFamilyIndex(
+                            config.subtitleFontFamily || getSystemFontFamily())
+                        if (index != -1) subtitle_font_family_combo_box.input.select(index)
+                    }
+                }
+            }
+
+            ColorComboBoxRow {
+                id: subtitle_font_color_combo_box
+                title: dsTr("Font color")
+                input.parentWindow: window
+                input.selectIndex: indexOfColor(config.subtitleFontColor)
+                input.itemModel: window.presetColors
 
                 onMenuSelect: config.subtitleFontColor = window.presetColors[index].color
+
+                Connections {
+                    target: config
+                    onSubtitleFontColorChanged: {
+                        var index = indexOfColor(config.subtitleFontColor)
+                        if (index != -1) subtitle_font_color_combo_box.input.select(index)
+                    }
+                }
             }
 
             SpinnerRow {
+                id: subtitle_font_size_spinner
                 title: dsTr("Size")
                 min: 10
-                max: 30
+                max: 50
                 text: config.subtitleFontSize
 
                 onValueChanged: config.subtitleFontSize = value
+
+                Connections {
+                    target: config
+                    onSubtitleFontSizeChanged: {
+                        subtitle_font_size_spinner.text = config.subtitleFontSize
+                    }
+                }
             }
 
             SpinnerRow {
+                id: subtitle_font_border_size_spinner
                 title: dsTr("Border width")
                 min: 0
                 max: 6
                 text: config.subtitleFontBorderSize
 
                 onValueChanged: config.subtitleFontBorderSize = value + 0.0
+
+                Connections {
+                    target: config
+                    onSubtitleFontBorderSizeChanged: {
+                        subtitle_font_border_size_spinner.text = config.subtitleFontBorderSize
+                    }
+                }
             }
 
             ColorComboBoxRow {
+                id: subtitle_font_border_color_combo_box
                 title: dsTr("Border color")
                 input.parentWindow: window
-                input.selectIndex: {
-                    for (var i = 0; i < presetColors.length; i++) {
-                        if (presetColors[i].color == config.subtitleFontBorderColor) {
-                            return i
-                        }
-                    }
-                    return -1
-                }
-                input.menu.items: window.presetColors
+                input.selectIndex: indexOfColor(config.subtitleFontBorderColor)
+                input.itemModel: window.presetColors
 
                 onMenuSelect: config.subtitleFontBorderColor = window.presetColors[index].color
+
+                Connections {
+                    target: config
+                    onSubtitleFontBorderColorChanged: {
+                        var index = indexOfColor(config.subtitleFontBorderColor)
+                        if (index != -1) subtitle_font_border_color_combo_box.input.select(index)
+                    }
+                }
             }
 
             SliderRow {
@@ -877,7 +1124,7 @@ DPreferenceWindow {
                 min: 0
                 max: 1
                 init: config.subtitleVerticalPosition
-                floatNumber: 2
+                displayPercent: true
                 leftRuler: dsTr("Bottom")
                 rightRuler: dsTr("Top")
 
@@ -889,17 +1136,21 @@ DPreferenceWindow {
             }
 
             SpinnerRow {
-                id: subtitle_delay_row
-                title: dsTr("Subtitle Delay")
-                min: -30
-                max: 30
-                text: (subtitleDelay / 1000).toFixed(1)
+                id: subtitle_delay_spinner
+                title: dsTr("Sync adjustment (s)")
+                step: 0.5
+                min: program_constants.minSubtitleDelayStep
+                max: program_constants.maxSubtitleDelayStep
+                text: config.subtitleDelayStep
+                precision: 1
 
-                onValueChanged: { player.subtitleDelay = value * 1000 }
+                onValueChanged: { config.subtitleDelayStep = value }
 
                 Connections {
-                    target: window
-                    onSubtitleDelayChanged: subtitle_delay_row.text = (subtitleDelay / 1000).toFixed(1)
+                    target: config
+                    onSubtitleDelayStepChanged: {
+                        subtitle_delay_spinner.text = config.subtitleDelayStep
+                    }
                 }
             }
 

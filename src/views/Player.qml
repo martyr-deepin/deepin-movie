@@ -6,6 +6,7 @@ Video {
     autoPlay: true
     transform: flip
     timeout: 5 * 1000
+    abortOnTimeout: false
     visible: playbackState != MediaPlayer.StoppedState
 
     subtitle.enabled: false
@@ -24,7 +25,6 @@ Video {
     property alias subtitleFontBorderColor: subtitle.fontBorderColor
     property alias subtitleShow: subtitle.visible
     property real subtitleVerticalPosition: 0.2
-    property int subtitleDelay: 0
 
     property bool isPreview: false
 

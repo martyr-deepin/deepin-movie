@@ -4,15 +4,15 @@
 # 
 # Translators:
 # fri, 2014
-# fri, 2014
+# fri, 2014-2015
 # fri, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-23 15:09+0800\n"
-"PO-Revision-Date: 2014-12-24 02:51+0000\n"
-"Last-Translator: deepin_transifex <xiabin@linuxdeepin.com>\n"
+"POT-Creation-Date: 2015-04-15 17:09+0800\n"
+"PO-Revision-Date: 2015-04-19 10:13+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/projects/p/deepin-movie/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,12 +20,12 @@ msgstr ""
 "Language: cs\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: ../src/views/AboutSection.qml:6 ../src/views/PreferenceWindow.qml:109
+#: ../src/views/AboutSection.qml:6 ../src/views/PreferenceWindow.qml:111
 msgid "About"
 msgstr "O programu"
 
-#: ../src/views/AboutSection.qml:13 ../src/views/TitleBar.qml:137
-#: ../src/views/main.qml:389 ../src/views/window.py:69
+#: ../src/views/AboutSection.qml:13 ../src/views/TitleBar.qml:70
+#: ../src/views/TitleBar.qml:142 ../src/views/window.py:71
 msgid "Deepin Movie"
 msgstr "Filmy"
 
@@ -34,180 +34,190 @@ msgid "Version"
 msgstr "Verze"
 
 #: ../src/views/AboutSection.qml:28 ../src/views/InformationLabel.qml:20
-#: ../src/views/main.qml:144
+#: ../src/views/MainController.qml:252 ../src/views/main.qml:142
 msgid ":"
-msgstr ""
+msgstr ":"
 
 #: ../src/views/AboutSection.qml:58
 msgid ""
 "Deepin Movie is a well-designed and full-featured video player with simple "
 "borderless design. It supports local and streaming media play with multiple "
 "video formats."
-msgstr ""
+msgstr "Deepin Movie je dobře navržený a funkcemi vybavený přehrávač obrazových záznamů s jednoduchým bezokrajovým vzhledem. Podporuje přehrávání místních a přenášených záznamů nahraných v mnoha obrazových formátech."
 
 #: ../src/views/AboutSection.qml:69
 msgid "Deepin Movie is released under GPLv3."
-msgstr ""
+msgstr "Deepin Movie je vydán pod GNU GPLv3"
 
-#: ../src/views/ControlBar.qml:222
+#: ../src/views/ControlBar.qml:229
 msgid "Stop playing"
 msgstr "Zastavit přehrávání"
 
-#: ../src/views/ControlBar.qml:240 ../src/controllers/menu_controller.py:90
+#: ../src/views/ControlBar.qml:247 ../src/controllers/menu_controller.py:90
 msgid "Previous"
 msgstr "Předchozí"
 
-#: ../src/views/ControlBar.qml:259
+#: ../src/views/ControlBar.qml:266
 msgid "Pause"
 msgstr "Pozastavit"
 
-#: ../src/views/ControlBar.qml:259 ../src/controllers/menu_controller.py:108
+#: ../src/views/ControlBar.qml:266 ../src/controllers/menu_controller.py:108
 #: ../src/controllers/menu_controller.py:118
 msgid "Play"
 msgstr "Přehrát"
 
-#: ../src/views/ControlBar.qml:276 ../src/controllers/menu_controller.py:91
+#: ../src/views/ControlBar.qml:283 ../src/controllers/menu_controller.py:91
 msgid "Next"
 msgstr "Další"
 
-#: ../src/views/ControlBar.qml:319 ../src/controllers/menu_controller.py:414
+#: ../src/views/ControlBar.qml:326 ../src/controllers/menu_controller.py:445
 msgid "Exit fullscreen"
 msgstr "Opustit celou obrazovku"
 
-#: ../src/views/ControlBar.qml:319 ../src/views/PreferenceWindow.qml:329
-#: ../src/views/PreferenceWindow.qml:780 ../src/views/ShortcutsViewer.qml:58
+#: ../src/views/ControlBar.qml:326 ../src/views/PreferenceWindow.qml:395
+#: ../src/views/PreferenceWindow.qml:945 ../src/views/ShortcutsViewer.qml:58
 #: ../src/views/ShortcutsViewer.qml:139
 #: ../src/controllers/menu_controller.py:102
-#: ../src/controllers/menu_controller.py:413
+#: ../src/controllers/menu_controller.py:446
 msgid "Fullscreen"
 msgstr "Celá obrazovka"
 
-#: ../src/views/ControlBar.qml:336 ../src/views/PreferenceWindow.qml:594
+#: ../src/views/ControlBar.qml:343 ../src/views/PreferenceWindow.qml:715
 #: ../src/views/ShortcutsViewer.qml:83
 #: ../src/controllers/menu_controller.py:98
 msgid "Open a file"
 msgstr "Otevřít soubor"
 
-#: ../src/views/ControlBar.qml:348 ../src/views/OpenFileDialog.qml:66
-#: ../src/views/PreferenceWindow.qml:350 ../src/views/ShortcutsViewer.qml:62
+#: ../src/views/ControlBar.qml:355 ../src/views/OpenFileDialog.qml:66
+#: ../src/views/PreferenceWindow.qml:421 ../src/views/ShortcutsViewer.qml:62
 #: ../src/controllers/menu_controller.py:105
 msgid "Playlist"
 msgstr "Seznam skladeb"
 
-#: ../src/views/HotKeyInput.qml:7 ../src/views/HotKeyInput.qml:15
-#: ../src/views/HotKeyInputRow.qml:23 ../src/views/PreferenceWindow.qml:772
-#: ../src/views/PreferenceWindow.qml:780 ../src/views/PreferenceWindow.qml:788
+#: ../src/views/HotKeyInput.qml:7 ../src/views/HotKeyInput.qml:16
+#: ../src/views/HotKeyInputRow.qml:24 ../src/views/HotKeyInputRow.qml:26
+#: ../src/views/HotKeyInputRow.qml:56 ../src/views/PreferenceWindow.qml:929
+#: ../src/views/PreferenceWindow.qml:945 ../src/views/PreferenceWindow.qml:961
 #: ../src/views/ShortcutsLabel.qml:23 ../src/views/ShortcutsViewer.qml:134
 #: ../src/views/ShortcutsViewer.qml:139 ../src/views/ShortcutsViewer.qml:144
 msgid "None"
 msgstr "Žádné"
 
-#: ../src/views/HotKeyInput.qml:16
+#: ../src/views/HotKeyInput.qml:23
 msgid "Please input a new shortcut"
 msgstr "Zadejte, prosím, novou zkratku"
 
-#: ../src/views/HotKeyInputRow.qml:29
+#: ../src/views/HotKeyInputRow.qml:30
 msgid "The shortcut you set "
 msgstr "Zkratka, kterou jste nastavil "
 
-#: ../src/views/HotKeyInputRow.qml:30
+#: ../src/views/HotKeyInputRow.qml:31
 #, qt-format
 msgid "conflicts with the one used for \"%2\" in the \"%1\" category. "
 msgstr "je ve střetu s tou, která se používá pro \"%2\" ve skupině \"%1\"."
 
-#: ../src/views/HotKeyInputRow.qml:31
+#: ../src/views/HotKeyInputRow.qml:32
 msgid "Do you want to replace it?"
 msgstr "Chcete ji nahradit?"
 
-#: ../src/views/HotKeyInputRow.qml:95 ../src/views/main.qml:146
+#: ../src/views/HotKeyInputRow.qml:99 ../src/views/main.qml:144
 msgid "Cancel"
 msgstr "Zrušit"
 
-#: ../src/views/HotKeyInputRow.qml:106
+#: ../src/views/HotKeyInputRow.qml:110
 msgid "Replace"
 msgstr "Nahradit"
 
-#: ../src/views/InformationWindow.qml:21 ../src/views/InformationWindow.qml:22
-#: ../src/views/InformationWindow.qml:23 ../src/models/movie_info.py:81
+#: ../src/views/InformationWindow.qml:23 ../src/views/InformationWindow.qml:24
+#: ../src/views/InformationWindow.qml:25 ../src/models/movie_info.py:78
 msgid "Unknown"
 msgstr "Neznámý"
 
-#: ../src/views/InformationWindow.qml:75
+#: ../src/views/InformationWindow.qml:77
 msgid "File type"
 msgstr "Typ souboru"
 
-#: ../src/views/InformationWindow.qml:85
+#: ../src/views/InformationWindow.qml:87
 msgid "File size"
 msgstr "Velikost"
 
-#: ../src/views/InformationWindow.qml:95
+#: ../src/views/InformationWindow.qml:97
 msgid "Resolution"
 msgstr "Rozlišení"
 
-#: ../src/views/InformationWindow.qml:105
+#: ../src/views/InformationWindow.qml:107
 msgid "Movie duration"
 msgstr "Doba trvání filmu"
 
-#: ../src/views/InformationWindow.qml:115
+#: ../src/views/InformationWindow.qml:117
 msgid "File path"
 msgstr "Cesta"
 
-#: ../src/views/InformationWindow.qml:132
+#: ../src/views/InformationWindow.qml:134
 msgid "Copy to clipboard"
 msgstr "Kopírovat do schránky"
 
-#: ../src/views/InformationWindow.qml:147
+#: ../src/views/InformationWindow.qml:149
 msgid "Close"
 msgstr "Zavřít"
 
-#: ../src/views/MainController.qml:562 ../src/views/MainController.qml:629
-#: ../src/views/MainController.qml:789 ../src/views/main.qml:98
+#: ../src/views/MainController.qml:252
 msgid "Invalid file"
 msgstr "Neplatný soubor"
 
-#: ../src/views/MainController.qml:36
+#: ../src/views/MainController.qml:37
 #, qt-format
 msgid "%1 files unable to be parsed have been excluded"
 msgstr "%1 souborů, jež nebylo možné zpracovat, bylo vyloučeno"
 
-#: ../src/views/MainController.qml:49
+#: ../src/views/MainController.qml:50
 msgid "Imported"
 msgstr "Zavedeno"
 
-#: ../src/views/MainController.qml:418
+#: ../src/views/MainController.qml:451
 msgid "Play last movie played"
 msgstr "Přehrát naposledy přehrávaný film"
 
-#: ../src/views/MainController.qml:445 ../src/views/PreferenceWindow.qml:287
+#: ../src/views/MainController.qml:484 ../src/views/PreferenceWindow.qml:343
 #: ../src/views/ShortcutsViewer.qml:50
 #: ../src/controllers/menu_controller.py:93
 msgid "Forward"
 msgstr "Přetočit vpřed"
 
-#: ../src/views/MainController.qml:455 ../src/views/PreferenceWindow.qml:308
+#: ../src/views/MainController.qml:496 ../src/views/PreferenceWindow.qml:369
 #: ../src/views/ShortcutsViewer.qml:54
 #: ../src/controllers/menu_controller.py:94
 msgid "Rewind"
 msgstr "Přetočit zpět"
 
-#: ../src/views/MainController.qml:465 ../src/views/MainController.qml:473
+#: ../src/views/MainController.qml:504 ../src/views/MainController.qml:510
 #, qt-format
 msgid "(Press %1 to restore)"
 msgstr "(Stiskněte %1 pro obnovení)"
 
-#: ../src/views/MainController.qml:467 ../src/views/MainController.qml:475
-#: ../src/views/MainController.qml:482
+#: ../src/views/MainController.qml:506 ../src/views/MainController.qml:512
+#: ../src/views/MainController.qml:517
 msgid "Playback rate: "
 msgstr "Rychlost přehrávání: "
 
-#: ../src/views/MainController.qml:494 ../src/views/MainController.qml:503
+#: ../src/views/MainController.qml:529 ../src/views/MainController.qml:538
 msgid "Volume: "
 msgstr "Hlasitost: "
 
-#: ../src/views/MainController.qml:501
+#: ../src/views/MainController.qml:536
 #: ../src/controllers/menu_controller.py:60
 msgid "Muted"
 msgstr "Ztlumeno"
+
+#: ../src/views/MainController.qml:672 ../src/views/MainController.qml:685
+#, qt-format
+msgid "Subtitle advanced %1 seconds"
+msgstr "Titulky posunuty dopředu o %1 sekund"
+
+#: ../src/views/MainController.qml:674 ../src/views/MainController.qml:687
+#, qt-format
+msgid "Subtitle delayed %1 seconds"
+msgstr "Titulky zpožděny o %1 sekund"
 
 #: ../src/views/OpenFileDialog.qml:5 ../src/views/OpenFileDialog.qml:21
 #: ../src/views/OpenFileDialog.qml:41
@@ -243,310 +253,324 @@ msgstr "Uložit jako"
 msgid "Please choose a folder"
 msgstr "Vyberte, prosím, složku"
 
-#: ../src/views/Playlist.qml:250
+#: ../src/views/Playlist.qml:252
 msgid "Play mode"
 msgstr "Režim přehrávání"
 
-#: ../src/views/Playlist.qml:258 ../src/controllers/menu_controller.py:119
+#: ../src/views/Playlist.qml:260 ../src/controllers/menu_controller.py:119
 #: ../src/controllers/menu_controller.py:135
 msgid "Add file"
 msgstr "Přidat soubor"
 
-#: ../src/views/Playlist.qml:266 ../src/controllers/menu_controller.py:126
+#: ../src/views/Playlist.qml:268 ../src/controllers/menu_controller.py:126
 msgid "Clear playlist"
 msgstr "Vyprázdnit seznam skladeb"
 
-#: ../src/views/PreferenceWindow.qml:191
+#: ../src/views/PreferenceWindow.qml:242
 msgid "Clear playlist on opening new file"
 msgstr "Při otevření nového souboru smazat seznam skladeb"
 
-#: ../src/views/PreferenceWindow.qml:196
+#: ../src/views/PreferenceWindow.qml:247
 msgid "Resume playback after restarting player"
 msgstr "Po opětovném spuštění přehrávače obnovit přehrávání"
 
-#: ../src/views/PreferenceWindow.qml:201
+#: ../src/views/PreferenceWindow.qml:252
 msgid "Continue to next video automatically"
 msgstr "Pokračovat dalším obrazovým záznamem automaticky"
 
-#: ../src/views/PreferenceWindow.qml:206
+#: ../src/views/PreferenceWindow.qml:257
 msgid "Show preview when hovering over progress bar"
 msgstr "Při přejetí nad pruhem ukazujícím postup ukázat náhled"
 
-#: ../src/views/PreferenceWindow.qml:261 ../src/views/PreferenceWindow.qml:445
-#: ../src/views/PreferenceWindow.qml:588 ../src/views/PreferenceWindow.qml:668
+#: ../src/views/PreferenceWindow.qml:290
+msgid "Forward/Rewind (s)"
+msgstr "Přetočit vpřed/Přetočit zpět (s)"
+
+#: ../src/views/PreferenceWindow.qml:312 ../src/views/PreferenceWindow.qml:536
+#: ../src/views/PreferenceWindow.qml:709 ../src/views/PreferenceWindow.qml:804
 msgid "Enable keyboard shortcuts"
 msgstr "Povolit klávesové zkratky"
 
-#: ../src/views/PreferenceWindow.qml:266 ../src/views/PreferenceWindow.qml:772
+#: ../src/views/PreferenceWindow.qml:317 ../src/views/PreferenceWindow.qml:929
 #: ../src/views/ShortcutsViewer.qml:46 ../src/views/ShortcutsViewer.qml:134
 msgid "Pause/Play"
 msgstr "Přehrát/Pozastavit"
 
-#: ../src/views/PreferenceWindow.qml:371 ../src/views/ShortcutsViewer.qml:66
+#: ../src/views/PreferenceWindow.qml:447 ../src/views/ShortcutsViewer.qml:66
 msgid "Accelerate playback"
 msgstr "Zrychlit přehrávání"
 
-#: ../src/views/PreferenceWindow.qml:392 ../src/views/ShortcutsViewer.qml:70
+#: ../src/views/PreferenceWindow.qml:473 ../src/views/ShortcutsViewer.qml:70
 msgid "Decelerate playback"
 msgstr "Zpomalit přehrávání"
 
-#: ../src/views/PreferenceWindow.qml:413 ../src/views/ShortcutsViewer.qml:74
+#: ../src/views/PreferenceWindow.qml:499 ../src/views/ShortcutsViewer.qml:74
 msgid "Restore playback speed"
 msgstr "Obnovit rychlost přehrávání"
 
-#: ../src/views/PreferenceWindow.qml:451 ../src/views/ShortcutsViewer.qml:104
+#: ../src/views/PreferenceWindow.qml:542 ../src/views/ShortcutsViewer.qml:104
 #: ../src/controllers/menu_controller.py:103
-#: ../src/controllers/menu_controller.py:416
+#: ../src/controllers/menu_controller.py:448
 msgid "Mini mode"
 msgstr "Malý režim"
 
-#: ../src/views/PreferenceWindow.qml:514 ../src/views/ShortcutsViewer.qml:116
+#: ../src/views/PreferenceWindow.qml:620 ../src/views/ShortcutsViewer.qml:116
 msgid "Volume up"
 msgstr "Hlasitěji"
 
-#: ../src/views/PreferenceWindow.qml:535 ../src/views/ShortcutsViewer.qml:120
+#: ../src/views/PreferenceWindow.qml:646 ../src/views/ShortcutsViewer.qml:120
 msgid "Volume down"
 msgstr "Tišeji"
 
-#: ../src/views/PreferenceWindow.qml:615 ../src/views/ShortcutsViewer.qml:87
+#: ../src/views/PreferenceWindow.qml:741 ../src/views/ShortcutsViewer.qml:87
 msgid "Open previous"
 msgstr "Otevřít předchozí"
 
-#: ../src/views/PreferenceWindow.qml:636 ../src/views/ShortcutsViewer.qml:91
+#: ../src/views/PreferenceWindow.qml:767 ../src/views/ShortcutsViewer.qml:91
 msgid "Open next"
 msgstr "Otevřít další"
 
-#: ../src/views/PreferenceWindow.qml:674 ../src/views/ShortcutsViewer.qml:153
-msgid "Forward 0.5s"
-msgstr "Dopředu o 0,5 s"
+#: ../src/views/PreferenceWindow.qml:810 ../src/views/ShortcutsViewer.qml:153
+#, qt-format
+msgid "Forward %1 (s)"
+msgstr "Vpřed %1 (s)"
 
-#: ../src/views/PreferenceWindow.qml:695 ../src/views/ShortcutsViewer.qml:157
-msgid "Delay 0.5s"
-msgstr "Zpoždění 0,5 s"
+#: ../src/views/PreferenceWindow.qml:836 ../src/views/ShortcutsViewer.qml:157
+#, qt-format
+msgid "Delay %1 (s)"
+msgstr "Zpoždění %1 (s)"
 
-#: ../src/views/PreferenceWindow.qml:716 ../src/views/ShortcutsViewer.qml:161
+#: ../src/views/PreferenceWindow.qml:862 ../src/views/ShortcutsViewer.qml:161
 msgid "Subtitle up"
 msgstr "Titulky nahoru"
 
-#: ../src/views/PreferenceWindow.qml:737 ../src/views/ShortcutsViewer.qml:165
+#: ../src/views/PreferenceWindow.qml:888 ../src/views/ShortcutsViewer.qml:165
 msgid "Subtitle down"
 msgstr "Titulky dolů"
 
-#: ../src/views/PreferenceWindow.qml:769 ../src/views/ShortcutsViewer.qml:133
+#: ../src/views/PreferenceWindow.qml:926 ../src/views/ShortcutsViewer.qml:133
 msgid "Left click"
 msgstr "Klepnutí levým tlačítkem myši"
 
-#: ../src/views/PreferenceWindow.qml:777 ../src/views/ShortcutsViewer.qml:138
+#: ../src/views/PreferenceWindow.qml:942 ../src/views/ShortcutsViewer.qml:138
 msgid "Double click"
 msgstr "Dvojité klepnutí"
 
-#: ../src/views/PreferenceWindow.qml:802
+#: ../src/views/PreferenceWindow.qml:983
 msgid "Subtitles loaded automatically"
 msgstr "Titulky nahrány automaticky"
 
-#: ../src/views/PreferenceWindow.qml:850
+#: ../src/views/PreferenceWindow.qml:1075
 msgid "Border width"
 msgstr "Šířka okraje"
 
-#: ../src/views/PreferenceWindow.qml:56 ../src/views/PreferenceWindow.qml:72
-#: ../src/views/PreferenceWindow.qml:170 ../src/views/PreferenceWindow.qml:252
+#: ../src/views/PreferenceWindow.qml:21
+msgid "Orange"
+msgstr "Oranžový"
+
+#: ../src/views/PreferenceWindow.qml:58 ../src/views/PreferenceWindow.qml:74
+#: ../src/views/PreferenceWindow.qml:221 ../src/views/PreferenceWindow.qml:303
 #: ../src/views/ShortcutsViewer.qml:43
 msgid "Playback"
 msgstr "Přehrávání"
 
-#: ../src/views/PreferenceWindow.qml:77 ../src/views/PreferenceWindow.qml:436
+#: ../src/views/PreferenceWindow.qml:79 ../src/views/PreferenceWindow.qml:527
 #: ../src/views/ShortcutsViewer.qml:101
 msgid "Frame/Sound"
 msgstr "Snímek/Zvuk"
 
-#: ../src/views/PreferenceWindow.qml:82 ../src/views/PreferenceWindow.qml:579
+#: ../src/views/PreferenceWindow.qml:84 ../src/views/PreferenceWindow.qml:700
 #: ../src/views/ShortcutsViewer.qml:80
 msgid "Files"
 msgstr "Soubory"
 
-#: ../src/views/PreferenceWindow.qml:92 ../src/views/PreferenceWindow.qml:760
+#: ../src/views/PreferenceWindow.qml:94 ../src/views/PreferenceWindow.qml:916
 #: ../src/views/ShortcutsViewer.qml:130
 msgid "Other"
 msgstr "Jiné"
 
-#: ../src/views/PreferenceWindow.qml:87 ../src/views/PreferenceWindow.qml:659
+#: ../src/views/PreferenceWindow.qml:89 ../src/views/PreferenceWindow.qml:795
 #: ../src/views/ShortcutsViewer.qml:150
 #: ../src/controllers/menu_controller.py:111
 msgid "Subtitles"
 msgstr "Titulky"
 
-#: ../src/views/PreferenceWindow.qml:10
-msgid "Reset"
-msgstr "Resetovat"
-
-#: ../src/views/PreferenceWindow.qml:14
+#: ../src/views/PreferenceWindow.qml:15
 msgid "Black"
 msgstr "Černá"
 
-#: ../src/views/PreferenceWindow.qml:15
+#: ../src/views/PreferenceWindow.qml:16
 msgid "bleu de France"
 msgstr "Francouzská modř"
 
-#: ../src/views/PreferenceWindow.qml:16
+#: ../src/views/PreferenceWindow.qml:17
 msgid "Turquoise"
 msgstr "Tyrkysově modrá"
 
-#: ../src/views/PreferenceWindow.qml:17
+#: ../src/views/PreferenceWindow.qml:18
 msgid "UFO green"
 msgstr "Zelená létajících talířů"
 
-#: ../src/views/PreferenceWindow.qml:18
+#: ../src/views/PreferenceWindow.qml:19
 msgid "Green yellow"
 msgstr "Žlutozelená"
 
-#: ../src/views/PreferenceWindow.qml:19
+#: ../src/views/PreferenceWindow.qml:20
 msgid "Energy yellow"
 msgstr "Žlutá je dobrá"
 
-#: ../src/views/PreferenceWindow.qml:20
-msgid "Sun"
-msgstr "Slunce"
-
-#: ../src/views/PreferenceWindow.qml:21
+#: ../src/views/PreferenceWindow.qml:22
 msgid "Radical red"
 msgstr "Rozhodně červená"
 
-#: ../src/views/PreferenceWindow.qml:22
+#: ../src/views/PreferenceWindow.qml:23
 msgid "Lavender indigo"
 msgstr "Světle fialovomodrá"
 
-#: ../src/views/PreferenceWindow.qml:23
+#: ../src/views/PreferenceWindow.qml:24
 msgid "Royal blue"
 msgstr "Královská modř"
 
-#: ../src/views/PreferenceWindow.qml:24
+#: ../src/views/PreferenceWindow.qml:25
 msgid "Aluminum"
 msgstr "Hliníková"
 
-#: ../src/views/PreferenceWindow.qml:25
+#: ../src/views/PreferenceWindow.qml:26
 msgid "Clean white"
 msgstr "Čistá bílá"
 
-#: ../src/views/PreferenceWindow.qml:52 ../src/views/PreferenceWindow.qml:166
+#: ../src/views/PreferenceWindow.qml:54 ../src/views/PreferenceWindow.qml:217
 msgid "Basic settings"
 msgstr "Základní nastavení"
 
-#: ../src/views/PreferenceWindow.qml:61 ../src/views/PreferenceWindow.qml:230
+#: ../src/views/PreferenceWindow.qml:63 ../src/views/PreferenceWindow.qml:281
 msgid "Time span"
 msgstr "Časový úsek"
 
-#: ../src/views/PreferenceWindow.qml:68 ../src/views/PreferenceWindow.qml:248
+#: ../src/views/PreferenceWindow.qml:70 ../src/views/PreferenceWindow.qml:299
 msgid "Keyboard shortcuts"
 msgstr "Klávesové zkratky"
 
-#: ../src/views/PreferenceWindow.qml:99 ../src/views/PreferenceWindow.qml:796
+#: ../src/views/PreferenceWindow.qml:101 ../src/views/PreferenceWindow.qml:976
 msgid "Subtitle settings"
 msgstr "Nastavení titulků"
 
-#: ../src/views/PreferenceWindow.qml:179
-msgid "Fullscreen on opening file"
-msgstr ""
+#: ../src/views/PreferenceWindow.qml:130
+msgid "Reset shortcuts"
+msgstr "Nastavit klávesové zkratky znovu"
 
-#: ../src/views/PreferenceWindow.qml:185
+#: ../src/views/PreferenceWindow.qml:134
+msgid "Reset subtitle settings"
+msgstr "Nastavit nastavení titulků znovu"
+
+#: ../src/views/PreferenceWindow.qml:230
+msgid "Fullscreen on opening file"
+msgstr "Při otevření souboru režim celé obrazovky"
+
+#: ../src/views/PreferenceWindow.qml:236
 msgid "Apply the size last time closed"
 msgstr "Zachovat velikost okna, jak byla při posledním zavření programu"
 
-#: ../src/views/PreferenceWindow.qml:211
+#: ../src/views/PreferenceWindow.qml:262
 msgid "Allow multiple instances"
 msgstr "Povolit více instancí"
 
-#: ../src/views/PreferenceWindow.qml:216
+#: ../src/views/PreferenceWindow.qml:267
 msgid "Pause when minimized"
 msgstr "Pozastavit při zmenšení"
 
-#: ../src/views/PreferenceWindow.qml:239
-msgid "Forward/Rewind"
-msgstr "Přetočit vpřed/Přetočit zpět"
-
-#: ../src/views/PreferenceWindow.qml:472 ../src/views/ShortcutsViewer.qml:108
+#: ../src/views/PreferenceWindow.qml:568 ../src/views/ShortcutsViewer.qml:108
 msgid "Rotate counterclockwise"
 msgstr "Otočit proti směru hodinových ručiček"
 
-#: ../src/views/PreferenceWindow.qml:493 ../src/views/ShortcutsViewer.qml:112
+#: ../src/views/PreferenceWindow.qml:594 ../src/views/ShortcutsViewer.qml:112
 msgid "Rotate clockwise"
 msgstr "Otočit po směru hodinových ručiček"
 
-#: ../src/views/PreferenceWindow.qml:556 ../src/views/ShortcutsViewer.qml:124
+#: ../src/views/PreferenceWindow.qml:672 ../src/views/ShortcutsViewer.qml:124
 msgid "Mute"
 msgstr "Ztlumit"
 
-#: ../src/views/PreferenceWindow.qml:785 ../src/views/ShortcutsViewer.qml:143
+#: ../src/views/PreferenceWindow.qml:958 ../src/views/ShortcutsViewer.qml:143
 msgid "Scroll"
 msgstr "Otáčet kolečkem myši"
 
-#: ../src/views/PreferenceWindow.qml:788 ../src/views/ShortcutsViewer.qml:144
+#: ../src/views/PreferenceWindow.qml:961 ../src/views/ShortcutsViewer.qml:144
 #: ../src/views/VolumeButton.qml:44
 msgid "Volume"
 msgstr "Hlasitost"
 
-#: ../src/views/PreferenceWindow.qml:825
+#: ../src/views/PreferenceWindow.qml:997
+msgid "Font"
+msgstr "Písmo"
+
+#: ../src/views/PreferenceWindow.qml:1040
 msgid "Font color"
 msgstr "Barva písma"
 
-#: ../src/views/PreferenceWindow.qml:841
+#: ../src/views/PreferenceWindow.qml:1058
 msgid "Size"
 msgstr "Velikost"
 
-#: ../src/views/PreferenceWindow.qml:859
+#: ../src/views/PreferenceWindow.qml:1092
 msgid "Border color"
 msgstr "Barva ohraničení"
 
-#: ../src/views/PreferenceWindow.qml:875
+#: ../src/views/PreferenceWindow.qml:1110
 msgid "Position"
 msgstr "Poloha"
 
-#: ../src/views/PreferenceWindow.qml:880
+#: ../src/views/PreferenceWindow.qml:1115
 msgid "Bottom"
 msgstr "Dole"
 
-#: ../src/views/PreferenceWindow.qml:881
+#: ../src/views/PreferenceWindow.qml:1116
 msgid "Top"
 msgstr "Nahoře"
 
-#: ../src/views/PreferenceWindow.qml:888
-msgid "Subtitle Delay"
-msgstr "Zpoždění titulků"
+#: ../src/views/PreferenceWindow.qml:1127
+msgid "Sync adjustment (s)"
+msgstr "Upravení seřízení (s)"
 
-#: ../src/views/TitleBar.qml:168
+#: ../src/views/TitleBar.qml:173
 msgid "Shown in a proportion of 1:1"
 msgstr "Předvedeno v poměru 1:1"
 
-#: ../src/views/TitleBar.qml:180
+#: ../src/views/TitleBar.qml:185
 msgid "Shown in 1.5 times"
 msgstr "Předvedeno v poměru 1,5"
 
-#: ../src/views/TitleBar.qml:193
+#: ../src/views/TitleBar.qml:198
 msgid "Return to mini mode"
 msgstr "Vrátit do malého režimu"
 
-#: ../src/views/TitleBar.qml:193
+#: ../src/views/TitleBar.qml:198
 msgid "Shown in fullscreen"
 msgstr "Ukázáno na celou obrazovku"
 
-#: ../src/views/TitleBar.qml:208
+#: ../src/views/TitleBar.qml:213
 msgid "Cancel \"On Top\""
 msgstr "Zrušit zobrazení Nahoře"
 
-#: ../src/views/TitleBar.qml:208
+#: ../src/views/TitleBar.qml:213
 msgid "On Top"
 msgstr "Nahoře"
 
-#: ../src/views/main.qml:144
+#: ../src/views/main.qml:142
 msgid "Please input the url of file played"
 msgstr "Zadejte, prosím, adresu souboru k přehrání"
 
-#: ../src/views/main.qml:145
+#: ../src/views/main.qml:143
 msgid "Confirm"
 msgstr "Potvrdit"
 
-#: ../src/views/main.qml:162
+#: ../src/views/main.qml:160
 msgid "The parse failed"
 msgstr "Zpracování se nezdařilo"
+
+#: ../src/views/main.qml:458 ../src/views/main.qml:559
+msgid "Buffering..."
+msgstr "Ukládá se do vyrovnávací paměti..."
 
 #: ../src/controllers/menu_controller.py:35
 msgid "Default"
@@ -590,11 +614,11 @@ msgstr "Vpravo"
 
 #: ../src/controllers/menu_controller.py:67
 msgid "Mono"
-msgstr ""
+msgstr "Mono"
 
 #: ../src/controllers/menu_controller.py:68
 msgid "Stero"
-msgstr ""
+msgstr "Stero"
 
 #: ../src/controllers/menu_controller.py:72
 msgid "Hide subtitle"
@@ -690,6 +714,6 @@ msgstr "Zavést"
 msgid "Open file location"
 msgstr "Otevřít umístění souboru"
 
-#: ../src/controllers/menu_controller.py:415
+#: ../src/controllers/menu_controller.py:447
 msgid "Exit mini mode"
 msgstr "Opustit malý režim"

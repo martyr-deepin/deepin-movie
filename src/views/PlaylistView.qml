@@ -41,32 +41,9 @@ ListView {
         return flatList.length > 0 ? flatList[rand] : null
     }
 
-    function getPreviousSourceCycle(source) { return _getPreviousSource(source, true) }
-
     function getNextSourceCycle(source) { return _getNextSource(source, true) }
 
-    function getPreviousSource(source) { return _getPreviousSource(source, false) }
-
     function getNextSource(source) { return _getNextSource(source, false) }
-
-    function _getPreviousSource(source, cycle) {
-        var flatList = _flattenList()
-        for (var i = 0; i < flatList.length; i++) {
-            if (playlist._urlEqual(flatList[i], (currentPlayingSource || source))) {
-                if (cycle) {
-                    var destIndex = (i + flatList.length - 1) % flatList.length
-                    return flatList[destIndex]
-                } else {
-                    if (i - 1  < 0) {
-                        return null
-                    } else {
-                        return flatList[i - 1]
-                    }
-                }
-            }
-        }
-        return null
-    }
 
     function _getNextSource(source, cycle) {
         var flatList = _flattenList()
@@ -84,7 +61,12 @@ ListView {
                 }
             }
         }
-        return null
+
+        if (cycle && flatList) {
+            return flatList[0]
+        } else {
+            return null
+        }
     }
 
     function addItem(groupName, itemName, itemUrl) {
@@ -139,11 +121,6 @@ ListView {
                 removeItem(flatList[i])
             }
         }
-    }
-
-    function moveItem(from, to) {
-        model.move(from, to, 1)
-        allItems.splice(to, 0, allItems.splice(from, 1)[0])
     }
 
     function contains(url) {
@@ -348,7 +325,7 @@ ListView {
                             var origInx = index
                             listView.allItems.sort(listView._sortFuncY)
                             var nowInx = listView.allItems.indexOf(column)
-                            listView.moveItem(origInx, nowInx)
+                            listView.model.move(origInx, nowInx, 1)
 
                             // if nowInx == origInx moveItem will not cause the
                             // listview to refresh, below codes can.
