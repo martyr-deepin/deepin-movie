@@ -112,6 +112,7 @@ right_click_menu = [
     None,
     ("_preferences", _("Settings")),
     ("_information", _("Information")),
+    ("_help", _("Help")),
 ]
 
 playlist_right_menu = [
@@ -209,6 +210,7 @@ class MenuController(QObject):
     playlistInformation = pyqtSignal()
     togglePlaylist = pyqtSignal()
     subtitleVisibleSet = pyqtSignal(bool, arguments=["visible"])
+    showManual = pyqtSignal()
 
     def __init__(self):
         super(MenuController, self).__init__()
@@ -339,6 +341,8 @@ class MenuController(QObject):
             self.showPreference.emit()
         elif _id == "_information":
             self.showMovieInformation.emit()
+        elif _id == "_help":
+            self.showManual.emit()
 
         # playlist menu
         elif _id == "_playlist_play":

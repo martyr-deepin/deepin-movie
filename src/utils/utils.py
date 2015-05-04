@@ -366,6 +366,13 @@ class Utils(QObject):
         return font_utils.getSystemFonts()
 
     @pyqtSlot()
+    def showManual(self):
+        try:
+            subprocess.call(["dman", "deepin-movie"])
+        except:
+            pass
+
+    @pyqtSlot()
     def screenSaverInhibit(self):
         screenSaverInterface.inhibit()
 

@@ -80,4 +80,6 @@ Connections {
     onPlaylistInformation: { main_controller.showInformationWindow(playlist.clickedOnItemUrl) }
     onPlaylistExport: main_controller.exportPlaylist()
     onPlaylistImport: main_controller.importPlaylist()
+
+    onShowManual: main_controller.showManual()
 }

@@ -343,6 +343,8 @@ MouseArea {
         root.isMiniMode ? quitMiniMode() : miniMode()
     }
 
+    function showManual() { _utils.showManual() }
+
     function showPreferenceWindow() {
         preference_window.flags = windowView.getState() == Qt.WindowFullScreen ? Qt.BypassWindowManagerHint : Qt.FramelessWindowHint | Qt.Dialog
         preference_window.close()
