@@ -138,6 +138,7 @@ Rectangle {
 
     DInputDialog {
         id: open_url_dialog
+        modality: Qt.ApplicationModal
         message: dsTr("Please input the url of file played") + dsTr(":")
         confirmButtonLabel: dsTr("Confirm")
         cancelButtonLabel: dsTr("Cancel")
@@ -232,9 +233,6 @@ Rectangle {
         windowView.setHeight(windowView.defaultHeight)
     }
 
-    // TODO: remove this, use isMiniMode instead
-    function miniModeState() { return windowView.width == program_constants.miniModeWidth }
-
     // this function share the same name with one function in MainController,
     // but this function is mainly used to expose the dbus interface, tanslating
     // the dbus arguments into the ones that its namesake can understand.
@@ -274,14 +272,6 @@ Rectangle {
         resize_visual.hide()
     }
 
-    function anyTransientWindowVisible() {
-        return info_window.visible
-               || preference_window.visible
-               || open_file_dialog.visible
-               || open_folder_dialog.visible
-               || open_url_dialog.visible
-    }
-
     function subtitleVisible() {
         return player.subtitleShow
     }
@@ -317,6 +307,7 @@ Rectangle {
 
     /* to perform like a newly started program  */
     function reset() {
+        bg.visible = true
         root.state = "normal"
         root.resetWindowSize()
         _subtitle_parser.file_name = ""
@@ -393,7 +384,7 @@ Rectangle {
             if (!mouseInControlsArea() && player.source && player.hasVideo) {
                 hideControls()
 
-                if (player.playbackState == MediaPlayer.PlayingState && !anyTransientWindowVisible()) {
+                if (player.playbackState == MediaPlayer.PlayingState && windowView.active) {
                     windowView.setCursorVisible(false)
                 }
             } else {
@@ -423,8 +414,12 @@ Rectangle {
         Rectangle {
             id: bg
             color: "#000000"
-            visible: !player.visible
             anchors.fill: parent
+
+            Connections {
+                target: player
+                onPlaying: bg.visible = false
+            }
 
             Image {
                 source: "image/background.png"
@@ -439,7 +434,6 @@ Rectangle {
         id: player
         muted: config.playerMuted
         volume: config.playerVolume
-        visible: hasVideo && source != ""
 
         subtitleFontSize: Math.floor(config.subtitleFontSize * main_window.width / windowView.defaultWidth)
         subtitleFontFamily: config.subtitleFontFamily || getSystemFontFamily()
@@ -458,6 +452,14 @@ Rectangle {
         property int lastVideoDuration: 0
         property int lastForwardToPosition: 0
         property bool playerInit: true
+
+        onStatusChanged: {
+            if (status == MediaPlayer.Buffering) {
+                notifybar.showPermanently(dsTr("Buffering..."))
+            } else if (notifybar.text == dsTr("Buffering...")) {
+                notifybar.hide()
+            }
+        }
 
         onResolutionChanged: main_controller.handleResolutionChanged()
 
@@ -503,7 +505,7 @@ Rectangle {
 
         onPositionChanged: {
             position != 0 && (lastVideoPosition = position)
-            subtitleContent = _subtitle_parser.get_subtitle_at(position - player.subtitleDelay)
+            subtitleContent = _subtitle_parser.get_subtitle_at(position)
             controlbar.percentage = position / player.duration
         }
 
@@ -514,7 +516,7 @@ Rectangle {
 
             if (source.toString().trim()) {
                 _settings.lastPlayedFile = sourceString
-                _database.appendPlayHistoryItem(source, resetPlayHistoryCursor)
+                _database.appendPlayHistoryItem(sourceString, resetPlayHistoryCursor)
                 main_controller.recordVideoPosition(lastVideoSource, lastVideoPosition)
                 resetPlayHistoryCursor = true
 
@@ -522,7 +524,24 @@ Rectangle {
                 main_controller.seekToLastPlayed()
 
                 if (config.subtitleAutoLoad) {
-                    main_controller.setSubtitle(_database.getPlaylistItemSubtitle(player.sourceString))
+                    var subtitleInfo = _database.getPlaylistItemSubtitle(player.sourceString)
+                    var path = ""
+                    var delay = 0
+
+                    try {
+                        var subtitleObj = JSON.parse(subtitleInfo)
+                        path = subtitleObj["path"]
+                        delay = subtitleObj["delay"]
+
+                        if (path) {
+                            main_controller.setSubtitle(path)
+                            if (delay) _subtitle_parser.delay = delay
+                        } else {
+                            _subtitle_parser.set_subtitle_from_movie(player.sourceString)
+                        }
+                    } catch(e) {
+                        _subtitle_parser.set_subtitle_from_movie(player.sourceString)
+                    }
                 } else {
                     _subtitle_parser.file_name = ""
                 }
@@ -538,7 +557,6 @@ Rectangle {
         onErrorChanged: {
             print(error, errorString)
             switch(error) {
-                case MediaPlayer.NetworkError:
                 case MediaPlayer.FormatError:
                 case MediaPlayer.ResourceError: {
                     if (player.sourceString == open_url_dialog.lastInput.trim())
@@ -615,7 +633,7 @@ Rectangle {
 
     TitleBar {
         id: titlebar
-        state: root.miniModeState() ? "minimal" : "normal"
+        state: root.isMiniMode ? "minimal" : "normal"
         visible: false
         window: windowView
         windowStaysOnTop: windowView.staysOnTop
@@ -624,7 +642,7 @@ Rectangle {
 
         onMenuButtonClicked: main_controller.showMainMenu()
         onMinButtonClicked: main_controller.minimize()
-        onMaxButtonClicked: windowNormalState ? main_controller.maximize() : main_controller.normalize()
+        onMaxButtonClicked: main_controller.toggleMaximized()
         onCloseButtonClicked: main_controller.close()
 
         onQuickNormalSize: main_controller.setScale(1)
@@ -638,14 +656,15 @@ Rectangle {
         videoPlayer: player
         visible: false
         window: windowView
-        volume: config.playerVolume
+        volume: player.volume
         percentage: player.position / player.duration
-        muted: config.playerMuted
+        muted: player.muted
         widthHeightScale: root.widthHeightScale
         dragbarVisible: root.state == "normal"
         timeInfoVisible: player.source != "" && player.hasMedia && player.duration != 0
         tooltipItem: tooltip
         videoSource: player.sourceString
+        previewEnabled: config.playerShowPreview && heightWithPreview < main_window.height
 
         anchors.horizontalCenter: main_window.horizontalCenter
 

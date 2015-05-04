@@ -41,6 +41,13 @@ Item {
 				if (_utils.checkKeySequenceEqual(event.modifiers, event.key,
 					config.hotkeysSubtitles[i].key))
 				{
+					if ((config.hotkeysSubtitles[i].command == "subtitleForward"
+						 || config.hotkeysSubtitles[i].command == "subtitleBackward")
+						&& event.isAutoRepeat)
+					{
+						return
+					}
+
 					eval("main_controller." + config.hotkeysSubtitles[i].command + "()")
 					return
 				}

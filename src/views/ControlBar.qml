@@ -20,6 +20,10 @@ DragableArea {
     property alias windowFullscreenState: toggle_fullscreen_button.checkFlag
     property alias status: buttonArea.state
 
+    property int previewBottomMargin: 10
+    property int heightWithPreview: height - (main_column.y - previewBottomMargin) + videoPreview.height
+    property bool previewEnabled: true
+
     //TODO: remove all player related props, use videoPlayer's properties directly
     property var videoPlayer
     property QtObject tooltipItem
@@ -55,13 +59,13 @@ DragableArea {
     }
 
     function showPreview(mouseX, percentage, mode) {
-        if (config.playerShowPreview) {
+        if (previewEnabled) {
             videoPreview.state = mode
             if (videoPlayer.hasVideo && videoPlayer.duration != 0) {
                 videoPreview.visible = true
                 videoPreview.x = Math.min(Math.max(mouseX - videoPreview.width / 2, 0),
                                           width - videoPreview.width)
-                videoPreview.y = progressbar.y - videoPreview.height - 10
+                videoPreview.y = -videoPreview.height - previewBottomMargin
 
                 if (mouseX <= videoPreview.cornerWidth / 2) {
                     videoPreview.cornerPos = mouseX + videoPreview.cornerWidth / 2
@@ -108,6 +112,7 @@ DragableArea {
     }
 
     Column {
+        id: main_column
         width: parent.width
         height: program_constants.controlbarHeight
         anchors.bottom: parent.bottom

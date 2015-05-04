@@ -57,6 +57,20 @@ MouseArea {
         onFileExistenceChanged: playlist.changeFileExistence(file, existence)
     }
 
+    Connections {
+        target: _subtitle_parser
+        onFileNameChanged: {
+            _database.setPlaylistItemSubtitle(player.sourceString,
+                                              _subtitle_parser.file_name,
+                                              _subtitle_parser.delay)
+        }
+        onDelayChanged: {
+            _database.setPlaylistItemSubtitle(player.sourceString,
+                                              _subtitle_parser.file_name,
+                                              _subtitle_parser.delay)
+        }
+    }
+
     Timer {
         id: seek_to_last_watched_timer
         interval: 300
@@ -85,16 +99,9 @@ MouseArea {
 
     Timer {
         id: double_click_check_timer
-        interval: 200
+        interval: 400
 
-        onTriggered: {
-            doSingleClick()
-        }
-    }
-
-    Timer {
-        id: click_hide_playlist_timer
-        interval: 500
+        onTriggered: doSingleClick()
     }
 
     function _getActualWidthWithWidth(destWidth) {
@@ -113,12 +120,20 @@ MouseArea {
         var destWidth = Math.min(destWidth, primaryRect.width)
         var destHeight = (destWidth - program_constants.windowGlowRadius * 2) / widthHeightScale + program_constants.windowGlowRadius * 2
         if (destHeight > primaryRect.height) {
-            windowView.setWidth((primaryRect.height - 2 * program_constants.windowGlowRadius) * widthHeightScale + 2 * program_constants.windowGlowRadius)
-            windowView.setHeight(primaryRect.height)
-        } else {
-            windowView.setWidth(destWidth)
-            windowView.setHeight(destHeight)
+            destWidth = (primaryRect.height - 2 * program_constants.windowGlowRadius) * widthHeightScale + 2 * program_constants.windowGlowRadius
+            destHeight = primaryRect.height
         }
+
+        var deltaX = windowView.x + destWidth - primaryRect.width
+        var deltaY = windowView.y + destHeight - primaryRect.height
+        if (deltaX > 0 && Math.abs(destWidth - windowView.width) > 5) {
+            windowView.setX(windowView.x - deltaX)
+        }
+        if (deltaY > 0 && Math.abs(destHeight - windowView.height) > 5) {
+            windowView.setY(windowView.y - deltaY)
+        }
+        windowView.setWidth(destWidth)
+        windowView.setHeight(destHeight)
     }
 
     function setWindowTitle(title) {
@@ -169,30 +184,6 @@ MouseArea {
         }
     }
 
-    function doSingleClick() {
-        if (click_hide_playlist_timer.running) return
-
-        if (config.othersLeftClick) {
-            if (player.playbackState == MediaPlayer.PausedState) {
-                play()
-            } else if (player.playbackState == MediaPlayer.PlayingState) {
-                pause()
-            }
-        }
-    }
-
-    function doDoubleClick(mouse) {
-        if(click_hide_playlist_timer.running) playlist.hide()
-
-        if (player.playbackState != MediaPlayer.StoppedState) {
-            if (config.othersDoubleClick) {
-                toggleFullscreen()
-            }
-        } else {
-            openFile()
-        }
-    }
-
     function _getPlaylistItemInfo(category, url) {
         var urlIsNativeFile = _utils.urlIsNativeFile(url)
 
@@ -218,7 +209,9 @@ MouseArea {
     }
 
     function addPlaylistStreamItem(url) {
-        playlist.addItem(url.toString(), url.toString(), "")
+        // NOTE: playlist.addItem and _database.addPlaylistItem have different
+        // parameter order.
+        playlist.addItem("", url.toString(), url.toString())
     }
 
     function removePlaylistItem(url) {
@@ -257,7 +250,7 @@ MouseArea {
             "subtitleFile": _subtitle_parser.file_name,
             "subtitleVisible": player.subtitleShow,
             "isFullscreen": windowView.getState() == Qt.WindowFullScreen,
-            "isMiniMode": root.miniModeState(),
+            "isMiniMode": root.isMiniMode,
             "isOnTop": windowView.staysOnTop,
         }
         _menu_controller.show_menu(JSON.stringify(stateInfo))
@@ -271,27 +264,36 @@ MouseArea {
         windowView.close()
     }
 
-    function normalize() {
-        windowView.showNormal()
-    }
-
     property bool fullscreenFromMaximum: false
+    property bool fullscreenFromMiniMode: false
     function fullscreen() {
         if (!player.hasVideo) return
 
         fullscreenFromMaximum = (windowView.getState() == Qt.WindowMaximized)
+        fullscreenFromMiniMode = root.isMiniMode
         windowView.showFullScreen()
         root.videoStoppedByAppFlag = false
 
-        quitMiniMode()
+        fullscreenFromMiniMode && quitMiniMode()
     }
 
-    function quitFullscreen() { fullscreenFromMaximum ? maximize() : normalize() }
+    function quitFullscreen() {
+        fullscreenFromMaximum ? maximize() : windowView.showNormal()
 
+        maximizeFromMiniMode && miniMode()
+    }
+
+    property bool maximizeFromMiniMode: false
     function maximize() {
+        maximizeFromMiniMode = root.isMiniMode
         windowView.showMaximized()
 
-        quitMiniMode()
+        maximizeFromMiniMode && quitMiniMode()
+    }
+
+    function quitMaximized() {
+        windowView.showNormal()
+        maximizeFromMiniMode && miniMode()
     }
 
     function minimize() {
@@ -326,7 +328,7 @@ MouseArea {
             backupCenter = Qt.point(windowView.x + windowView.width / 2,
                 windowView.y + windowView.height / 2)
         }
-        normalize()
+        windowView.showNormal()
         windowView.staysOnTop = true
         setSizeForRootWindowWithWidth(program_constants.miniModeWidth)
 
@@ -336,20 +338,22 @@ MouseArea {
 
         root.isMiniMode = true
     }
+
     function toggleMiniMode() {
-        root.miniModeState() ? quitMiniMode() : miniMode()
+        root.isMiniMode ? quitMiniMode() : miniMode()
     }
 
     function showPreferenceWindow() {
-        preference_window.flags = windowView.getState() == Qt.WindowFullScreen ? Qt.BypassWindowManagerHint : Qt.FramelessWindowHint | Qt.SubWindow
+        preference_window.flags = windowView.getState() == Qt.WindowFullScreen ? Qt.BypassWindowManagerHint : Qt.FramelessWindowHint | Qt.Dialog
         preference_window.close()
         preference_window.x = windowView.x + (windowView.width - preference_window.width) / 2
         preference_window.y = windowView.y + (windowView.height - preference_window.height) / 2
+        preference_window.scrollToTop()
         preference_window.show()
     }
 
     function showInformationWindow(url) {
-        info_window.flags = windowView.getState() == Qt.WindowFullScreen ? Qt.BypassWindowManagerHint : Qt.FramelessWindowHint | Qt.SubWindow
+        info_window.flags = windowView.getState() == Qt.WindowFullScreen ? Qt.BypassWindowManagerHint : Qt.FramelessWindowHint | Qt.Dialog
         info_window.close()
         info_window.x = windowView.x + (windowView.width - info_window.width) / 2
         info_window.y = windowView.y + (windowView.height - info_window.height) / 2
@@ -381,7 +385,7 @@ MouseArea {
     }
 
     function toggleMaximized() {
-        windowView.getState() == Qt.WindowMaximized ? normalize() : maximize()
+        windowView.getState() == Qt.WindowMaximized ? quitMaximized() : maximize()
     }
 
     function toggleStaysOnTop() {
@@ -407,7 +411,7 @@ MouseArea {
         }
 
         root.widthHeightScale = player.resolution.width / player.resolution.height
-        if (root.miniModeState() && root.isMiniMode) {
+        if (root.isMiniMode) {
             backupWidth = player.resolution.width
             setSizeForRootWindowWithWidth(windowView.width)
             backupCenter = Qt.point(windowView.x + windowView.width / 2,
@@ -628,24 +632,6 @@ MouseArea {
         next ? main_controller.playPath(next) : root.reset()
     }
 
-    function playPreviousOf(file) {
-        var next = null
-
-        if (config.playerPlayOrderType == "ORDER_TYPE_RANDOM") {
-            next = playlist.getRandom()
-        } else if (config.playerPlayOrderType == "ORDER_TYPE_IN_ORDER") {
-            next = playlist.getPreviousSource(file)
-        } else if (config.playerPlayOrderType == "ORDER_TYPE_SINGLE") {
-            next = null
-        } else if (config.playerPlayOrderType == "ORDER_TYPE_SINGLE_CYCLE") {
-            next = _settings.lastPlayedFile
-        } else if (config.playerPlayOrderType == "ORDER_TYPE_PLAYLIST_CYCLE") {
-            next = playlist.getPreviousSourceCycle(file)
-        }
-
-        next ? main_controller.playPath(next) : root.reset()
-    }
-
     function playNext() {
         var next = null
 
@@ -684,16 +670,60 @@ MouseArea {
 
     function subtitleMoveUp() { setSubtitleVerticalPosition(config.subtitleVerticalPosition + 0.05)}
     function subtitleMoveDown() { setSubtitleVerticalPosition(config.subtitleVerticalPosition - 0.05)}
-    function subtitleForward() { player.subtitleDelay -= 500; preference_window.setSubtitleDelay(player.subtitleDelay) }
-    function subtitleBackward() { player.subtitleDelay += 500; preference_window.setSubtitleDelay(player.subtitleDelay) }
+
+    function subtitleForward() {
+        if (_subtitle_parser.file_name) {
+            _subtitle_parser.delay = Math.max(program_constants.minSubtitleDelay * 1000,
+                                              _subtitle_parser.delay - config.subtitleDelayStep * 1000)
+
+            var delay = Math.abs((_subtitle_parser.delay / 1000).toFixed(1))
+            if (_subtitle_parser.delay < 0) {
+                notifybar.show(dsTr("Subtitle advanced %1 seconds").arg(delay))
+            } else if (_subtitle_parser.delay > 0) {
+                notifybar.show(dsTr("Subtitle delayed %1 seconds").arg(delay))
+            }
+        }
+    }
+    function subtitleBackward() {
+        if (_subtitle_parser.file_name) {
+            _subtitle_parser.delay = Math.min(program_constants.maxSubtitleDelay * 1000,
+                                              _subtitle_parser.delay + config.subtitleDelayStep * 1000)
+
+            var delay = Math.abs((_subtitle_parser.delay / 1000).toFixed(1))
+            if (_subtitle_parser.delay < 0) {
+                notifybar.show(dsTr("Subtitle advanced %1 seconds").arg(delay))
+            } else if (_subtitle_parser.delay > 0) {
+                notifybar.show(dsTr("Subtitle delayed %1 seconds").arg(delay))
+            }
+        }
+    }
 
     function setSubtitle(subtitle) {
-        if (_utils.urlIsNativeFile(subtitle)) {
+        if (subtitle && _utils.urlIsNativeFile(subtitle)) {
             _subtitle_parser.file_name = subtitle
-        } else {
-            _subtitle_parser.set_subtitle_from_movie(player.source)
         }
-        _database.setPlaylistItemSubtitle(player.sourceString, _subtitle_parser.file_name)
+    }
+
+    function doSingleClick() {
+        if (config.othersLeftClick) {
+            if (player.playbackState == MediaPlayer.PausedState) {
+                play()
+            } else if (player.playbackState == MediaPlayer.PlayingState) {
+                pause()
+            }
+        }
+    }
+
+    function doDoubleClick(mouse) {
+        hideControls()
+
+        if (player.playbackState != MediaPlayer.StoppedState) {
+            if (config.othersDoubleClick) {
+                toggleFullscreen()
+            }
+        } else {
+            openFile()
+        }
     }
 
     Keys.onPressed: keys_responder.respondKey(event)
@@ -792,32 +822,19 @@ MouseArea {
 
         if (playlist.expanded) {
             playlist.hide()
-            click_hide_playlist_timer.start()
+            return
         }
 
         if (mouse.button == Qt.RightButton) {
             main_controller.showMainMenu()
-        } else {
-            if (!double_click_check_timer.running) {
-                double_click_check_timer.restart()
+        } else if (mouse.button == Qt.LeftButton) {
+            if (double_click_check_timer.running) {
+                double_click_check_timer.stop()
+                doDoubleClick()
+            } else {
+                double_click_check_timer.start()
             }
         }
-    }
-
-    onDoubleClicked: {
-        if (mouse.button == Qt.RightButton) return
-
-        if (click_hide_playlist_timer.running) {
-            click_hide_playlist_timer.stop()
-            playlist.hide()
-        }
-
-        if (double_click_check_timer.running) {
-            double_click_check_timer.stop()
-        } else {
-            doSingleClick()
-        }
-        doDoubleClick()
     }
 
     DropArea {

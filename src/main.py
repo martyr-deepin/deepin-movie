@@ -37,6 +37,8 @@ import sys
 import json
 import signal
 import weakref
+# this will hopefully fix all the issues about QML interfaces
+os.environ["bo_reuse"] = "0"
 
 from PyQt5 import QtCore
 from PyQt5.QtCore import QCoreApplication
@@ -50,7 +52,7 @@ appTranslator = QTranslator()
 translationsPath = "qt_" + QLocale.system().name()
 appTranslator.load("qt_zh_CN.qm", QLibraryInfo.location(QLibraryInfo.TranslationsPath))
 app = QApplication(sys.argv)
-app.setApplicationVersion("2.2")
+app.setApplicationVersion("2.2.1")
 app.setOrganizationName("Deepin")
 app.setApplicationName("Deepin Movie")
 app.installTranslator(appTranslator)

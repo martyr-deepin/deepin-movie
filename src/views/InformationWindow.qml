@@ -6,6 +6,7 @@ DDialog {
     id: info_window
     width: 400
     height: column.childrenRect.height + 30 + 20
+    modality: Qt.ApplicationModal
     titleContentPadding: 0
 
     property string fileTitle
