@@ -3,6 +3,8 @@ import Deepin.Widgets 1.0
 
 DImageButton {
 	id:  button
+    opacity: enabled ? 1.0 : 0.2
+
     property string tooltip: ""
     property QtObject tooltipItem: null
 

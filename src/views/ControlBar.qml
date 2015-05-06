@@ -19,10 +19,12 @@ DragableArea {
     property alias dragbarVisible: drag_point.visible
     property alias windowFullscreenState: toggle_fullscreen_button.checkFlag
     property alias status: buttonArea.state
+    property alias dlnaDevicesAvailable: dlna_button.visible
 
     property int previewBottomMargin: 10
     property int heightWithPreview: height - (main_column.y - previewBottomMargin) + videoPreview.height
     property bool previewEnabled: true
+    property bool dlnaSharing: false
 
     //TODO: remove all player related props, use videoPlayer's properties directly
     property var videoPlayer
@@ -39,6 +41,7 @@ DragableArea {
     signal previousButtonClicked ()
     signal nextButtonClicked ()
     signal toggleFullscreenClicked ()
+    signal dlnaButtonClicked ()
 
     Behavior on opacity {
         NumberAnimation { duration: 300 }
@@ -119,6 +122,7 @@ DragableArea {
 
         ProgressBar {
             id: progressbar
+            enabled: !control_bar.dlnaSharing
             width: control_bar.width
 
             onWidthChanged: { progressbar.update() }
@@ -212,6 +216,7 @@ DragableArea {
 
                 Text {
                     id: playTime
+                    opacity: control_bar.dlnaSharing ? 0 : 1
                     text: UIUtils.formatTime(control_bar.percentage * controlbar.videoPlayer.duration)
                             + " / " + UIUtils.formatTime(controlbar.videoPlayer.duration)
                     color: Qt.rgba(1, 1, 1, 0.7)
@@ -226,6 +231,7 @@ DragableArea {
                 spacing: 0
 
                 ImageButton {
+                    enabled: !control_bar.dlnaSharing
                     tooltip: dsTr("Stop playing")
                     tooltipItem: control_bar.tooltipItem
 
@@ -244,6 +250,7 @@ DragableArea {
                 }
 
                 ImageButton {
+                    enabled: !control_bar.dlnaSharing
                     tooltip: dsTr("Previous")
                     tooltipItem: control_bar.tooltipItem
 
@@ -263,6 +270,7 @@ DragableArea {
 
                 ImageButton {
                     id: play_pause_button
+                    enabled: !control_bar.dlnaSharing
                     tooltip: checkFlag ? dsTr("Pause") : dsTr("Play")
                     tooltipItem: control_bar.tooltipItem
 
@@ -281,6 +289,7 @@ DragableArea {
 
                 ImageButton {
                     tooltip: dsTr("Next")
+                    enabled: !control_bar.dlnaSharing
                     tooltipItem: control_bar.tooltipItem
 
                     normal_image: "image/next_normal.svg"
@@ -299,6 +308,7 @@ DragableArea {
 
                 VolumeButton {
                     id: volume_button
+                    enabled: !control_bar.dlnaSharing
                     tooltipItem: control_bar.tooltipItem
                     muted: control_bar.muted
                     showBarSwitch: control_bar.width > program_constants.hideVolumeBarTriggerWidth
@@ -322,7 +332,22 @@ DragableArea {
                 spacing: 25
 
                 ImageButton {
+                    id: dlna_button
+                    enabled: !control_bar.dlnaSharing
+                    tooltip: "DLNA"
+                    tooltipItem: control_bar.tooltipItem
+
+                    normal_image: "image/toolbox_dlna_normal.svg"
+                    hover_image: "image/toolbox_dlna_hover_press.svg"
+                    press_image: "image/toolbox_dlna_hover_press.svg"
+
+                    anchors.verticalCenter: parent.verticalCenter
+                    onClicked: control_bar.dlnaButtonClicked()
+                }
+
+                ImageButton {
                     id: toggle_fullscreen_button
+                    enabled: !control_bar.dlnaSharing
                     tooltip: checkFlag ? dsTr("Exit fullscreen") : dsTr("Fullscreen")
                     tooltipItem: control_bar.tooltipItem
 

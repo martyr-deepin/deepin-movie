@@ -4,6 +4,8 @@ import QtGraphicalEffects 1.0
 import QtQuick.Window 2.1
 import Deepin.Locale 1.0
 import Deepin.Widgets 1.0
+
+import "./dlna"
 import "../controllers"
 import "sources/ui_utils.js" as UIUtils
 
@@ -607,6 +609,8 @@ Rectangle {
         Component.onCompleted: player._setHardwareAcceleration()
     }
 
+    DLNAEngine { id: dlna_engine; anchors.fill: parent }
+
     TimeIndicator {
         id: time_indicator
         visible: visibleSwitch && !titlebar.visible
@@ -620,10 +624,7 @@ Rectangle {
         anchors.rightMargin: 10
     }
 
-    MainController {
-        id: main_controller
-        window: root
-    }
+    MainController { id: main_controller; window: root }
 
     Notifybar {
         id: notifybar
@@ -697,6 +698,7 @@ Rectangle {
         tooltipItem: tooltip
         videoSource: player.sourceString
         previewEnabled: config.playerShowPreview && heightWithPreview < main_window.height
+        dlnaDevicesAvailable: dlna_engine.hasDevices && player.hasVideo
 
         anchors.horizontalCenter: main_window.horizontalCenter
 
@@ -725,6 +727,9 @@ Rectangle {
                 delay_seek_timer.destPos = player.duration * percentage
                 delay_seek_timer.restart()
             }
+        }
+        onDlnaButtonClicked: {
+            dlna_engine.showDevices()
         }
     }
 

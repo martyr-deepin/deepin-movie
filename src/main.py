@@ -72,7 +72,7 @@ from controllers.menu_controller import MenuController
 from utils.file_monitor import FileMonitor
 from utils.dbus_services import (DeepinMovieServie, check_multiple_instances,
     DeepinMovieInterface, session_bus, DBUS_PATH)
-from dlna.dlna_controller import DLNAController
+from dlna import Renderer, DLNAController
 
 if __name__ == "__main__":
     result = check_multiple_instances()
@@ -94,8 +94,11 @@ if __name__ == "__main__":
     dlnaController = DLNAController(config.playerAcceptWirelessPush)
     app._extra_window = weakref.ref(windowView)
 
-    qmlRegisterType(PosterGenerator, "Com.Deepin.DeepinMovie", 1, 0, "PosterGenerator")
     qml_context = windowView.rootContext()
+    qmlRegisterType(Renderer, "Com.Deepin.DeepinMovie",
+        1, 0, "Renderer")
+    qmlRegisterType(PosterGenerator, "Com.Deepin.DeepinMovie",
+        1, 0, "PosterGenerator")
 
     qml_context.setContextProperty("config", config)
     qml_context.setContextProperty("_settings", settings)
@@ -114,9 +117,12 @@ if __name__ == "__main__":
     windowView.show()
     windowView.play(json.dumps(sys.argv[1:]))
 
-    windowView.windowStateChanged.connect(windowView.rootObject().monitorWindowState)
-    app.lastWindowClosed.connect(windowView.rootObject().monitorWindowClose)
-    app.focusWindowChanged.connect(windowView.focusWindowChangedSlot)
+    windowView.windowStateChanged.connect(
+        windowView.rootObject().monitorWindowState)
+    app.lastWindowClosed.connect(
+        windowView.rootObject().monitorWindowClose)
+    app.focusWindowChanged.connect(
+        windowView.focusWindowChangedSlot)
 
     signal.signal(signal.SIGINT, signal.SIG_DFL)
     sys.exit(app.exec_())

@@ -610,7 +610,12 @@ MouseArea {
     function playPath(path) {
         player.sourceString = path.trim()
         player.source = path[0] == "/" ? encodeURIComponent(path) : path
-        player.play()
+
+        if (dlna_engine.sharing) {
+            dlna_engine.play()
+        } else {
+            player.play()
+        }
     }
 
     // playPaths is not quit perfect here, whether the play operation will

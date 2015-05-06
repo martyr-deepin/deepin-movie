@@ -82,7 +82,7 @@ class NotificationsInterface(QDBusAbstractInterface):
             actions, {}, -1)
 
         reply = QDBusReply(msg)
-        return reply.value if reply.isValid() else None
+        return reply.value() if reply.isValid() else None
 
 notificationsInterface = NotificationsInterface()
 screenSaverInterface = ScreenSaverInterface()
