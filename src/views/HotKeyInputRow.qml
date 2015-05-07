@@ -9,7 +9,7 @@ Item {
 
     property alias title: title.text
     property alias text: input.text
-    property alias hotKey: input.hotKey
+    property alias hotKey: input.shortcut
     property alias inputEnabled: input.enabled
 
     property var actualSettingEntry
@@ -23,7 +23,7 @@ Item {
     function setShortcut(shortcut) {
         hotKey = Qt.binding(function() { return config[actualSettingEntry]+"" || dsTr("None") })
         config[actualSettingEntry] = shortcut
-        text = Qt.binding(function() { return _utils.getOverrideKeyNames(shortcut) || dsTr("None") })
+        text = Qt.binding(function() { return KeysUtils.getOverriddenShortcut(shortcut) || dsTr("None") })
     }
 
     function warning(shortcutsEntry, shortcutsCategory) {
@@ -50,15 +50,17 @@ Item {
             anchors.verticalCenter: parent.verticalCenter
         }
 
-        HotKeyInput {
+        DShortcutInput {
             id: input
             width: 200
-            text: _utils.getOverrideKeyNames(hotKey) || dsTr("None")
+            noneString: dsTr("None")
+            promoteString: dsTr("Please input a new shortcut")
+            text: KeysUtils.getOverriddenShortcut(shortcut) || dsTr("None")
             anchors.right: parent.right
             anchors.verticalCenter: parent.verticalCenter
 
-            onHotkeySet: hotkey_input_row.hotkeySet()
-            onHotkeyDisabled: hotkey_input_row.disableShortcut()
+            onShortcutSet: hotkey_input_row.hotkeySet()
+            onShortcutDisabled: hotkey_input_row.disableShortcut()
         }
     }
 

@@ -30,7 +30,6 @@ md = magic.open(magic.MAGIC_MIME_TYPE)
 md.load()
 
 from PyQt5.QtWidgets import QApplication
-from PyQt5.QtGui import QKeySequence
 from PyQt5.QtCore import QObject, QThread, pyqtSignal, pyqtSlot, pyqtProperty
 
 import font_utils
@@ -51,11 +50,6 @@ all_supported_video_exts = [ "*.3g2","*.3gp","*.3gp2","*.3gpp","*.amv",
 
 all_supported_mime_types = []
 sep_chars = ("-", "_", ".", " ")
-override_key_names = {
-    "PgUp": "PageUp",
-    "PgDown": "PageDown",
-    "Meta": "Super"
-}
 
 src_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 mimetypes_file_path = os.path.join(src_root, "data/mimetypes")
@@ -287,24 +281,6 @@ class Utils(QObject):
                 return json.dumps({"name":dirName, "items":allMatches})
             else:
                 return json.dumps({"name":"", "items":(name,)})
-
-    @pyqtSlot(str, result=str)
-    def getOverrideKeyNames(self, keyname):
-        for key in override_key_names:
-            if key in keyname:
-                return keyname.replace(key, override_key_names[key])
-        return keyname
-
-    @pyqtSlot(int, int, str, result=bool)
-    def checkKeySequenceEqual(self, modifier, key, targetKeySequence):
-        keySequence = QKeySequence(modifier + key).toString()
-        return self.getOverrideKeyNames(keySequence) == \
-               self.getOverrideKeyNames(targetKeySequence)
-
-    @pyqtSlot(int, int, result=str)
-    def keyEventToQKeySequenceString(self, modifier, key):
-        keySequence = QKeySequence(modifier + key).toString()
-        return self.getOverrideKeyNames(keySequence)
 
     @pyqtSlot(str)
     def copyToClipboard(self, text):
