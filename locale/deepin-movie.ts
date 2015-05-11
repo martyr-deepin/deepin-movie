@@ -187,12 +187,12 @@
 <context>
     <name>MainController</name>
     <message>
-        <location filename="../src/views/MainController.qml" line="+252"/>
+        <location filename="../src/views/MainController.qml" line="+260"/>
         <source>Invalid file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-215"/>
+        <location line="-223"/>
         <source>%1 files unable to be parsed have been excluded</source>
         <translation type="unfinished"></translation>
     </message>
@@ -202,12 +202,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+202"/>
+        <location line="+210"/>
         <source>:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+199"/>
+        <location line="+202"/>
         <source>Play last movie played</source>
         <translation type="unfinished"></translation>
     </message>
@@ -336,7 +336,7 @@
 <context>
     <name>PreferenceWindow</name>
     <message>
-        <location filename="../src/views/PreferenceWindow.qml" line="+242"/>
+        <location filename="../src/views/PreferenceWindow.qml" line="+238"/>
         <source>Clear playlist on opening new file</source>
         <translation type="unfinished"></translation>
     </message>
@@ -455,55 +455,55 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+92"/>
+        <location line="+109"/>
         <source>Border width</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-680"/>
+        <location line="-697"/>
         <location line="+550"/>
         <source>Fullscreen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-924"/>
+        <location line="-920"/>
         <source>Orange</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+37"/>
+        <location line="+55"/>
         <location line="+16"/>
-        <location line="+147"/>
+        <location line="+125"/>
         <location line="+82"/>
         <source>Playback</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-224"/>
-        <location line="+448"/>
+        <location line="-202"/>
+        <location line="+426"/>
         <source>Frame/Sound</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-443"/>
-        <location line="+616"/>
+        <location line="-421"/>
+        <location line="+594"/>
         <source>Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-606"/>
-        <location line="+822"/>
+        <location line="-584"/>
+        <location line="+800"/>
         <source>Other</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-827"/>
-        <location line="+706"/>
+        <location line="-805"/>
+        <location line="+684"/>
         <source>Subtitles</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-780"/>
+        <location line="-776"/>
         <source>Black</source>
         <translation type="unfinished"></translation>
     </message>
@@ -558,31 +558,31 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+28"/>
-        <location line="+163"/>
+        <location line="+46"/>
+        <location line="+141"/>
         <source>Basic settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-154"/>
-        <location line="+218"/>
+        <location line="-132"/>
+        <location line="+196"/>
         <source>Time span</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-211"/>
-        <location line="+229"/>
+        <location line="-189"/>
+        <location line="+207"/>
         <source>Keyboard shortcuts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-198"/>
-        <location line="+875"/>
+        <location line="-176"/>
+        <location line="+853"/>
         <source>Subtitle settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-865"/>
+        <location line="-843"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
@@ -597,7 +597,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+96"/>
+        <location line="+74"/>
         <source>Fullscreen on opening file</source>
         <translation type="unfinished"></translation>
     </message>
@@ -669,7 +669,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+43"/>
+        <location line="+60"/>
         <source>Font color</source>
         <translation type="unfinished"></translation>
     </message>
@@ -950,7 +950,7 @@
     </message>
     <message>
         <location line="+298"/>
-        <location line="+101"/>
+        <location line="+1"/>
         <source>Buffering...</source>
         <translation type="unfinished"></translation>
     </message>
