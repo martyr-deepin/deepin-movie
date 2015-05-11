@@ -72,6 +72,7 @@ from controllers.menu_controller import MenuController
 from utils.file_monitor import FileMonitor
 from utils.dbus_services import (DeepinMovieServie, check_multiple_instances,
     DeepinMovieInterface, session_bus, DBUS_PATH)
+from dlna.dlna_controller import DLNAController
 
 if __name__ == "__main__":
     result = check_multiple_instances()
@@ -90,6 +91,7 @@ if __name__ == "__main__":
     findVideoThreadManager = FindVideoThreadManager()
     subtitleParser = Parser()
     settings = DMSettings()
+    dlnaController = DLNAController(config.playerAcceptWirelessPush)
     app._extra_window = weakref.ref(windowView)
 
     qmlRegisterType(PosterGenerator, "Com.Deepin.DeepinMovie", 1, 0, "PosterGenerator")
@@ -105,6 +107,7 @@ if __name__ == "__main__":
     qml_context.setContextProperty("windowView", windowView)
     qml_context.setContextProperty("_subtitle_parser", subtitleParser)
     qml_context.setContextProperty("_menu_controller", menu_controller)
+    qml_context.setContextProperty("_dlna_controller", dlnaController)
 
     windowView.setSource(QtCore.QUrl.fromLocalFile(MAIN_QML))
     windowView.initWindowSize()

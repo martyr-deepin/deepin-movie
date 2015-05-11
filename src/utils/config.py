@@ -54,6 +54,7 @@ DEFAULT_CONFIG = [
     ("multipleProgramsAllowed", False, bool),
     ("notificationsEnabled", True, bool),
     ("pauseOnMinimized", True, bool),
+    ("acceptWirelessPush", False, bool),
     ("hardwareAcceleration", True, bool),]),
 ("HotkeysPlay", [("hotkeyEnabled", True, bool),
     ("togglePlay", "Space", str),
@@ -158,6 +159,7 @@ class Config(QObject):
         # add new keys here
         self._addNewEntry("Subtitle", "delayStep")
         self._addNewEntry("Player", "hardwareAcceleration")
+        self._addNewEntry("Player", "acceptWirelessPush")
 
     def _addNewEntry(self, section, key):
         value = self.fetch(section, key)

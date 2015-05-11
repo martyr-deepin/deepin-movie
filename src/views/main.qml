@@ -359,6 +359,21 @@ Rectangle {
         player.sourceString && (_settings.lastPlayedFile = player.sourceString)
     }
 
+    // dbus exported functions
+    function setUri(uri) { main_controller.playPath(uri) }
+    function setNextUri(uri) { }
+    function play() { main_controller.play() }
+    function pause() { main_controller.pause() }
+    function stop() { main_controller.stop() }
+    function seek(value) { player.seek(value) }
+    function getDuration() { return player.duration }
+    function getPosition() { return player.position }
+    function setPosition(value) { player.seek(value) }
+    function getVolume() { return player.volume }
+    function setVolume(value) { main_controller.setVolume(value) }
+    function getMute() { return player.muted }
+    function setMute(value) { main_controller.setMute(value) }
+
     Timer {
         id: auto_play_next_on_invalid_timer
         interval: 1000 * 2

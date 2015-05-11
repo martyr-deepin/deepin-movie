@@ -187,6 +187,7 @@ DPreferenceWindow {
                 target: config
                 onCanResetHotkeysChanged: preference_view.updateActionButton()
                 onCanResetSubtitleSettingsChanged: preference_view.updateActionButton()
+                onPlayerAcceptWirelessPushChanged: _dlna_controller.setAsRenderer(config.playerAcceptWirelessPush)
             }
         }
 
@@ -268,6 +269,11 @@ DPreferenceWindow {
                 text: dsTr("Enable hardware acceleration")
                 checked: config.playerHardwareAcceleration
                 onClicked: config.playerHardwareAcceleration = checked
+            }
+            DCheckBox {
+                text: dsTr("Accept wireless push")
+                checked: config.playerAcceptWirelessPush
+                onClicked: config.playerAcceptWirelessPush = checked
             }
             // DCheckBox {
             //     text: dsTr("Enable system popup notification")
