@@ -556,14 +556,6 @@ MouseArea {
 
     function setSoundChannel(channelLayout) {
         switch(channelLayout) {
-            case "auto": {
-                player.channelLayout = MediaPlayer.ChannelLayoutAuto
-                break
-            }
-            case "mono": {
-                player.channelLayout = MediaPlayer.Mono
-                break
-            }
             case "left": {
                 player.channelLayout = MediaPlayer.Left
                 break
