@@ -10,7 +10,7 @@ Video {
     visible: playbackState != MediaPlayer.StoppedState
 
     subtitle.enabled: false
-    // videoCodecPriority: ["VAAPI", "FFmpeg"]
+    videoCodecPriority: ["VDPAU", "VAAPI", "FFmpeg"]
 
     property string sourceString: ""
     property size resolution: _getResolution()
@@ -28,10 +28,37 @@ Video {
 
     property bool isPreview: false
 
+    property int __reopenPosition: 0
+
+    onSourceChanged: __reopenPosition = 0
+
+    Timer {
+        id: reopen_seek_timer
+        interval: 500
+        onTriggered: seek(__reopenPosition)
+    }
+
     function reset() {
         source = ""
         sourceString = ""
         resetRotationFlip()
+    }
+
+    function _reopen() {
+        __reopenPosition = position
+        player.stop()
+        player.play()
+        reopen_seek_timer.start()
+    }
+
+    function enabledHardwareAcceleration() {
+        player.videoCodecPriority = ["VAAPI", "VDPAU", "FFmpeg"]
+        player._reopen()
+    }
+
+    function disableHardwareAcceleration() {
+        player.videoCodecPriority = ["FFmpeg"]
+        player._reopen()
     }
 
     function flipHorizontal() {

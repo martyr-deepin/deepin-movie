@@ -53,7 +53,8 @@ DEFAULT_CONFIG = [
     ("forwardRewindStep", 5.0, float),
     ("multipleProgramsAllowed", False, bool),
     ("notificationsEnabled", True, bool),
-    ("pauseOnMinimized", True, bool),]),
+    ("pauseOnMinimized", True, bool),
+    ("hardwareAcceleration", True, bool),]),
 ("HotkeysPlay", [("hotkeyEnabled", True, bool),
     ("togglePlay", "Space", str),
     ("forward", "Right", str),
@@ -91,7 +92,6 @@ DEFAULT_CONFIG = [
     ("doubleClick", True, bool),
     ("wheel", True, bool)]),
 ]
-
 
 
 def getDefault(section, key):
@@ -156,10 +156,13 @@ class Config(QObject):
         self.save("Player", "volume", min(1.0, volume))
 
         # add new keys here
-        subtitleDelayStep = self.fetch("Subtitle", "delayStep")
-        if not subtitleDelayStep:
-            self.save("Subtitle", "delayStep", \
-                      getDefault("Subtitle", "delayStep"))
+        self._addNewEntry("Subtitle", "delayStep")
+        self._addNewEntry("Player", "hardwareAcceleration")
+
+    def _addNewEntry(self, section, key):
+        value = self.fetch(section, key)
+        if not value:
+            self.save(section, key, getDefault(section, key))
 
     def _getConfigDefaults(self):
         result = []

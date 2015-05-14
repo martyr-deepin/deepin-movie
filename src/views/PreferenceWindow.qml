@@ -264,6 +264,11 @@ DPreferenceWindow {
                 checked: config.playerPauseOnMinimized
                 onClicked: config.playerPauseOnMinimized = checked
             }
+            DCheckBox {
+                text: dsTr("Enable hardware acceleration")
+                checked: config.playerHardwareAcceleration
+                onClicked: config.playerHardwareAcceleration = checked
+            }
             // DCheckBox {
             //     text: dsTr("Enable system popup notification")
             //     checked: config.playerNotificationsEnabled

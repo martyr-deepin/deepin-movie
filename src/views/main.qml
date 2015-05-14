@@ -573,6 +573,23 @@ Rectangle {
                 break
             }
         }
+
+        function _setHardwareAcceleration() {
+            if (config.playerHardwareAcceleration) {
+                player.enabledHardwareAcceleration()
+            } else {
+                player.disableHardwareAcceleration()
+            }
+        }
+
+        Connections {
+            target: config
+            onPlayerHardwareAccelerationChanged: {
+                player._setHardwareAcceleration()
+            }
+        }
+
+        Component.onCompleted: player._setHardwareAcceleration()
     }
 
     TimeIndicator {
