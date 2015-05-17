@@ -23,113 +23,113 @@
 import locale
 from ctypes import *
 
-libfc = cdll.LoadLibrary("libfontconfig.so")
+libfc = cdll.LoadLibrary("libfontconfig.so.1")
 
 # initialize
 libfc.FcInit()
 pattern = libfc.FcPatternCreate()
 objectSet = libfc.FcObjectSetBuild("family", "familylang",
-	                               "lang", "spacing", None)
+                                   "lang", "spacing", None)
 
 class FcPattern(Structure):
-	_fields_ = [
-		("num", c_int),
-		("size", c_int),
-		("elts_offset", POINTER(c_int)),
-		("ref", c_int)
-	]
+    _fields_ = [
+        ("num", c_int),
+        ("size", c_int),
+        ("elts_offset", POINTER(c_int)),
+        ("ref", c_int)
+    ]
 
 class FcFontSet(Structure):
-	_fields_ = [
-		("nfont", c_int),
-		("sfont", c_int),
-		("fonts", POINTER(POINTER(FcPattern)))
-	]
+    _fields_ = [
+        ("nfont", c_int),
+        ("sfont", c_int),
+        ("fonts", POINTER(POINTER(FcPattern)))
+    ]
 
 class FcStrSet(Structure):
-	_fields_ = [
-		("ref", c_int),
-		("num", c_int),
-		("size", c_int),
-		("strs", POINTER(c_char_p))
-	]
+    _fields_ = [
+        ("ref", c_int),
+        ("num", c_int),
+        ("size", c_int),
+        ("strs", POINTER(c_char_p))
+    ]
 
 class FcLangSet(Structure):
-	_fields_ = [
-		("extra", POINTER(FcStrSet)),
-		("map_size", c_uint),
-		("map", c_uint * 8),
-	]
+    _fields_ = [
+        ("extra", POINTER(FcStrSet)),
+        ("map_size", c_uint),
+        ("map", c_uint * 8),
+    ]
 
 def _familyNameInfo(family, familyLang, locale):
-	familyInfo = family.split(",")
-	familyLangInfo = familyLang.split(",")
+    familyInfo = family.split(",")
+    familyLangInfo = familyLang.split(",")
 
-	familyNameEn = familyInfo[0]
-	familyNameLocale = familyNameEn
+    familyNameEn = familyInfo[0]
+    familyNameLocale = familyNameEn
 
-	if "en" in familyLangInfo:
-		familyNameEn = familyInfo[familyLangInfo.index("en")]
+    if "en" in familyLangInfo:
+        familyNameEn = familyInfo[familyLangInfo.index("en")]
 
-	for _familyLang in familyLangInfo:
-		if _familyLang.startswith(locale):
-			familyNameLocale = familyInfo[familyLangInfo.index(_familyLang)]
+    for _familyLang in familyLangInfo:
+        if _familyLang.startswith(locale):
+            familyNameLocale = familyInfo[familyLangInfo.index(_familyLang)]
 
-	return (familyNameEn, familyNameLocale)
+    return (familyNameEn, familyNameLocale)
 
 def fontsByLocale(locale):
-	result = []
-	locale = locale.lower().replace("_", "-")
+    result = []
+    locale = locale.lower().replace("_", "-")
 
-	# get all fonts
-	libfc.FcFontList.restype = POINTER(FcFontSet)
-	libfc.FcLangSetGetLangs.restype = POINTER(FcStrSet)
-	libfc.FcStrListNext.restype = c_char_p
-	libfc.FcPatternFormat.restype = c_char_p
+    # get all fonts
+    libfc.FcFontList.restype = POINTER(FcFontSet)
+    libfc.FcLangSetGetLangs.restype = POINTER(FcStrSet)
+    libfc.FcStrListNext.restype = c_char_p
+    libfc.FcPatternFormat.restype = c_char_p
 
-	fontSet = libfc.FcFontList(None, pattern, objectSet)
-	fontCount = fontSet.contents.nfont
+    fontSet = libfc.FcFontList(None, pattern, objectSet)
+    fontCount = fontSet.contents.nfont
 
-	# iterate on the fonts
-	for i in range(fontCount):
-		_pattern = fontSet.contents.fonts[i]
+    # iterate on the fonts
+    for i in range(fontCount):
+        _pattern = fontSet.contents.fonts[i]
 
-		# _family = c_char_p()
-		# _familyLang = c_char_p()
-		# langSet = POINTER(FcLangSet)()
+        # _family = c_char_p()
+        # _familyLang = c_char_p()
+        # langSet = POINTER(FcLangSet)()
 
-		# libfc.FcPatternGetString(_pattern, "family", 0, byref(_family))
-		# libfc.FcPatternGetString(_pattern, "familylang", 0, byref(_familyLang))
-		# libfc.FcPatternGetLangSet(_pattern, "lang", 0, byref(langSet))
+        # libfc.FcPatternGetString(_pattern, "family", 0, byref(_family))
+        # libfc.FcPatternGetString(_pattern, "familylang", 0, byref(_familyLang))
+        # libfc.FcPatternGetLangSet(_pattern, "lang", 0, byref(langSet))
 
-		# langStrSet = libfc.FcLangSetGetLangs(langSet)
-		# langStrList = libfc.FcStrListCreate(langStrSet)
-		# libfc.FcStrListFirst(langStrList)
-		# _lang = libfc.FcStrListNext(langStrList)
-		# while (_lang):
-		# 	if _lang.startswith(lang):
-		# 		print _family.value, _familyLang.value
-		# 		result.append(_family.value)
-		# 		break
-		# 	_lang = libfc.FcStrListNext(langStrList)
-		# libfc.FcStrListDone(langStrList)
+        # langStrSet = libfc.FcLangSetGetLangs(langSet)
+        # langStrList = libfc.FcStrListCreate(langStrSet)
+        # libfc.FcStrListFirst(langStrList)
+        # _lang = libfc.FcStrListNext(langStrList)
+        # while (_lang):
+        #   if _lang.startswith(lang):
+        #       print _family.value, _familyLang.value
+        #       result.append(_family.value)
+        #       break
+        #   _lang = libfc.FcStrListNext(langStrList)
+        # libfc.FcStrListDone(langStrList)
 
-		family = libfc.FcPatternFormat(_pattern, c_char_p("%{family}"))
-		familyLang = libfc.FcPatternFormat(_pattern, c_char_p("%{familylang}"))
-		lang = libfc.FcPatternFormat(_pattern, c_char_p("%{lang}"))
-		spacing = libfc.FcPatternFormat(_pattern, c_char_p("%{spacing}"))
+        family = libfc.FcPatternFormat(_pattern, c_char_p("%{family}"))
+        familyLang = libfc.FcPatternFormat(_pattern, c_char_p("%{familylang}"))
+        lang = libfc.FcPatternFormat(_pattern, c_char_p("%{lang}"))
+        spacing = libfc.FcPatternFormat(_pattern, c_char_p("%{spacing}"))
 
-		isMono = spacing == "100" or "mono" in family.lower()
-		isCurrentLangSupport = filter(lambda x: x.startswith(locale), lang.split("|"))
-		if isMono or isCurrentLangSupport:
-			try:
-				en, localized = _familyNameInfo(family, familyLang, locale)
-				if not filter(lambda (x, y): x == en, result):
-					result.append([en, localized])
-			except:
-				pass
+        isMono = spacing == "100" or "mono" in family.lower()
+        isCurrentLangSupport = filter(lambda x: x.startswith(locale), lang.split("|"))
+        if isMono or isCurrentLangSupport:
+            try:
+                en, localized = _familyNameInfo(family, familyLang, locale)
+                if not filter(lambda (x, y): x == en, result):
+                    result.append([en, localized])
+            except:
+                pass
 
-	return result
+    return result
 
 def getSystemFonts():
-	return fontsByLocale(locale.getdefaultlocale()[0])
+    return fontsByLocale(locale.getdefaultlocale()[0])
