@@ -11,6 +11,8 @@ DWindow {
 
     property alias picture: img.source
 
+    // Component.onCompleted: picture = "/home/hualet/Desktop/IMG_20150405_093308.jpg"
+
     DWindowFrame {
         width: root.width
         height: root.height
@@ -26,16 +28,26 @@ DWindow {
 
                 property real customScale: 1
 
+                function moveHCenter() {
+                    x = (parent.width - width) / 2
+                }
+
+                function moveVCenter() {
+                    y = (parent.height - height) / 2
+                }
+
                 onCustomScaleChanged: {
-                    width = width * customScale
-                    height = height * customScale
+                    width = implicitWidth * customScale
+                    height = implicitHeight * customScale
                 }
 
                 onImplicitWidthChanged: {
-                    height = parent.height
+                    height = Math.min(parent.height, implicitWidth)
                     width = height * implicitWidth / implicitHeight
-                    x = (parent.width - width) / 2
-                    y = (parent.height - height) / 2
+                    customScale = width / implicitWidth
+
+                    img.moveHCenter()
+                    img.moveVCenter()
                 }
             }
 
@@ -50,23 +62,45 @@ DWindow {
                 drag.maximumY: 0
 
                 onWheel: {
-                    var step = 0.1
+                    var step = 0.01
                     var customScale_old = img.customScale
                     var xDelta = (wheel.x - img.x) / img.width * step * img.implicitWidth
                     var yDelta = (wheel.y - img.y) / img.height * step * img.implicitHeight
 
                     if (wheel.angleDelta.y > 0) {
-                        img.customScale = Math.min(1.5, img.customScale + step)
+                        img.customScale = Math.min(1.5 * img.parent.width / img.implicitWidth,
+                                                   img.customScale + step)
                     } else {
-                        img.customScale = Math.max(1.0, img.customScale - step)
+                        img.customScale = Math.max(0.5 * img.parent.width / img.implicitWidth,
+                                                   img.customScale - step)
                     }
 
-                    if (img.customScale > customScale_old) {
-                        img.x = img.x - xDelta
-                        img.y = img.y - yDelta
-                    } else if (img.customScale < customScale_old) {
-                        img.x = img.x + xDelta
-                        img.y = img.y + yDelta
+                    if (img.width > img.parent.width) {
+                        // The positioning rule is quit simple, try to simulate
+                        // the effect that the image is zoomed in or zoomed out
+                        // using the mouse as its origin.
+                        if (img.customScale > customScale_old) {
+                            img.x = img.x - xDelta
+                            img.y = img.y - yDelta
+                        } else if (img.customScale < customScale_old) {
+                            img.x = img.x + xDelta
+                            img.y = img.y + yDelta
+                        }
+                        // Don't let the corners of the image get into the
+                        // container area.
+                        if (img.x > 0) img.x = 0
+                        if (img.x + img.width < img.parent.width) img.x = img.parent.width - img.width
+                        if (img.y > 0) img.y = 0
+                        if (img.y + img.height < img.parent.height) img.y = img.parent.height - img.height
+                    } else {
+                        // The img should be centered if it's scaled to a
+                        // smaller size than the contianer.
+                        if (img.width < img.parent.width) {
+                            img.moveHCenter()
+                        }
+                        if (img.height < img.parent.height) {
+                            img.moveVCenter()
+                        }
                     }
                 }
             }
