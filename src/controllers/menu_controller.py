@@ -52,7 +52,7 @@ frame_sub_menu = [
 
 sound_sub_menu = [
     ("_sound_channel", _("Sound Channels")),
-    # ("_sound_channel", _("Sound Tracks")),
+    ("_sound_track", _("Sound Tracks")),
     # ("_sound_output_mode", _("Output Mode")),
     None,
     ("_sound_increase", _("Volume Up"), (), (), config.hotkeysFrameSoundIncreaseVolume),
@@ -168,6 +168,22 @@ def _subtitle_file_from_menu_item_id(id):
     return id[id.index(FILE_START_TAG) + len(FILE_START_TAG):
                                         id.index(FILE_END_TAG)]
 
+ID_FILE_SEP = "||||||"
+def _sound_track_menu_items_from_data(data):
+    items = []
+
+    for _item in data:
+        items.append(CheckableMenuItem(
+            "_sound_tracks:radio:%s%s%s" % (_item["id"], ID_FILE_SEP, _item["file"]),
+            "%s-%s" % (_item["title"], _item["language"]),
+            _item["isCurrent"]))
+
+    return items
+
+def _sound_track_from_menu_item_id(id):
+    id_file = id.split(":")[-1]
+    return id_file.split(ID_FILE_SEP)
+
 class MenuController(QObject):
 
     clockwiseRotate = pyqtSignal()
@@ -194,6 +210,7 @@ class MenuController(QObject):
     volumeDown = pyqtSignal()
     volumeMuted = pyqtSignal(bool, arguments=["muted"])
     soundChannelChanged = pyqtSignal(str, arguments=["channelLayout"])
+    soundTrackChanged = pyqtSignal(str, str, arguments=["id", "file"])
     showSubtitleSettings = pyqtSignal()
 
     playlistPlay = pyqtSignal()
@@ -307,6 +324,8 @@ class MenuController(QObject):
         elif _id == "sound_channel:radio:stero":
             self._sound_channel = "sound_channel:radio:stero"
             self.soundChannelChanged.emit("stero")
+        elif _id.startswith("_sound_tracks:radio"):
+            self.soundTrackChanged.emit(*_sound_track_from_menu_item_id(_id))
         elif _id == "_subtitle_hide":
             self.subtitleVisibleSet.emit(not _checked)
         elif _id == "_subtitle_manual":
@@ -368,6 +387,7 @@ class MenuController(QObject):
         isFullscreen = info["isFullscreen"]
         isMiniMode = info["isMiniMode"]
         isOnTop = info["isOnTop"]
+        soundTracks = info["soundTracks"]
 
         self.menu = Menu(right_click_menu)
 
@@ -424,6 +444,11 @@ class MenuController(QObject):
             self._sound_channel == "sound_channel:radio:right"
         self.menu.getItemById("sound_channel:radio:stero").checked = \
             self._sound_channel == "sound_channel:radio:stero"
+
+        self.menu.getItemById("_sound_track").isActive = hasVideo
+        self.menu.getItemById("_sound_track").setSubMenu(
+            Menu(_sound_track_menu_items_from_data(soundTracks)))
+
         self.menu.getItemById("_sound_muted").checked = bool(config.playerMuted)
 
         self.menu.getItemById("_subtitle_hide").checked = not subtitleVisible

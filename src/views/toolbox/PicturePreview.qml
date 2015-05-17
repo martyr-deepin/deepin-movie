@@ -11,8 +11,6 @@ DWindow {
 
     property alias picture: img.source
 
-    // Component.onCompleted: picture = "/home/hualet/Desktop/IMG_20150405_093308.jpg"
-
     DWindowFrame {
         width: root.width
         height: root.height

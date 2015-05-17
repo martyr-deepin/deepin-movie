@@ -248,6 +248,18 @@ MouseArea {
     }
 
     function showMainMenu() {
+        var soundTracks = []
+        for (var i = 0; i < player.internalAudioTracks.length; i++) {
+            var soundTrack = player.internalAudioTracks[i]
+            soundTracks.push({
+                "id": soundTrack.id,
+                "title": soundTrack.title,
+                "language": soundTrack.language,
+                "file": soundTrack.file,
+                "isCurrent": player.audioTrack == soundTrack.id
+            })
+        }
+
         var stateInfo = {
             "videoSource": player.sourceString,
             "hasVideo": player.hasVideo,
@@ -256,6 +268,7 @@ MouseArea {
             "isFullscreen": windowView.getState() == Qt.WindowFullScreen,
             "isMiniMode": root.isMiniMode,
             "isOnTop": windowView.staysOnTop,
+            "soundTracks": soundTracks
         }
         _menu_controller.show_menu(JSON.stringify(stateInfo))
     }
@@ -572,6 +585,12 @@ MouseArea {
                 player.channelLayout = MediaPlayer.Stero
                 break
             }
+        }
+    }
+
+    function setSoundTrack(id, file) {
+        if (file == player.sourceString) {
+            player.audioTrack = id
         }
     }
 
