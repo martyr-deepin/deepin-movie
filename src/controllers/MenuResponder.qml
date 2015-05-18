@@ -67,7 +67,8 @@ Connections {
     onVolumeDown: { main_controller.decreaseVolume() }
     onVolumeMuted: { main_controller.setMute(muted) }
     onSoundChannelChanged: { main_controller.setSoundChannel(channelLayout) }
-    onSoundTrackChanged: { main_controller.setSoundTrack(id, file) }
+    onAudioTrackChanged: { main_controller.setAudioTrack(id, file) }
+    onLoadAudioTrack: { main_controller.openFileForAudioTrack() }
 
     onShowSubtitleSettings: { main_controller.showPreferenceWindow(); preference_window.scrollToSubtitle() }
 

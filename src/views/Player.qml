@@ -31,7 +31,11 @@ Video {
 
     property int __reopenPosition: 0
 
-    onSourceChanged: __reopenPosition = 0
+    onSourceChanged: {
+        __reopenPosition = 0
+
+        externalAudio = ""
+    }
 
     Timer {
         id: reopen_seek_timer

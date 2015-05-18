@@ -12,6 +12,9 @@ DFileDialog {
 
     property string videoFilter: "(*.3gp *.avi *.f4v *.flv *.mkv *.mov *.mp4
                     *.mpeg *.ogg *.ogv *.rm *.rmvb *.webm *.wmv)"
+    property string subtitleFilter: "(*.srt *.ass *.ssa)"
+    property string playlistFilter: "(*.dmpl)"
+    property string soundTrackFilter: "(*.ac3 *.dts)"
     property string allFilesFilter: dsTr("All files") + "(*)"
     property string state: "open_video_file"
 
@@ -30,7 +33,17 @@ DFileDialog {
             case "open_subtitle_file":
             title = dsTr("Please choose one file")
             folder = _settings.lastOpenedPath || _utils.homeDir
-            nameFilters = [ dsTr("Subtitle files") + "(*.srt *.ass *.ssa)", allFilesFilter]
+            nameFilters = [ dsTr("Subtitle files") + subtitleFilter, allFilesFilter]
+            selectMultiple = false
+            selectExisting = true
+            defaultFileName = " "
+            saveMode = false
+            break
+
+            case "open_audio_track_file":
+            title = dsTr("Please choose one file")
+            folder = _settings.lastOpenedPath || _utils.homeDir
+            nameFilters = [ dsTr("Audio track files") + soundTrackFilter, allFilesFilter]
             selectMultiple = false
             selectExisting = true
             defaultFileName = " "
@@ -50,7 +63,7 @@ DFileDialog {
             case "import_playlist":
             title = dsTr("Please choose one file")
             folder = _settings.lastOpenedPlaylistPath || _utils.homeDir
-            nameFilters = [ dsTr("Playlist files") + "(*.dmpl)", allFilesFilter ]
+            nameFilters = [ dsTr("Playlist files") + playlistFilter, allFilesFilter ]
             selectMultiple = false
             selectExisting = true
             defaultFileName = " "
@@ -60,7 +73,7 @@ DFileDialog {
             case "export_playlist":
             title = dsTr("Save as")
             folder = _settings.lastOpenedPlaylistPath || _utils.homeDir
-            nameFilters = [ dsTr("Playlist files") + "(*.dmpl)", allFilesFilter ]
+            nameFilters = [ dsTr("Playlist files") + playlistFilter, allFilesFilter ]
             selectMultiple = true
             selectExisting = false
             defaultFileName = dsTr("Playlist") + ".dmpl"

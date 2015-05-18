@@ -116,6 +116,16 @@ Rectangle {
                         filename = filename + ".dmpl"
                     }
                     main_controller.exportPlaylistImpl(filename)
+                } else if (state = "open_audio_track_file") {
+                    _settings.lastOpenedPath = folder
+
+                    var filename = filePaths[0]
+
+                    if (_utils.fileIsAudioTrack(filename)) {
+                        main_controller.setAudioTrackFile(filename)
+                    } else {
+                        main_controller.notifyInvalidFile(filename)
+                    }
                 }
             }
         }

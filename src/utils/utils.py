@@ -25,6 +25,7 @@ import os
 import json
 import subprocess
 
+import gio
 import magic
 md = magic.open(magic.MAGIC_MIME_TYPE)
 md.load()
@@ -107,6 +108,18 @@ def getFileMimeType(filename):
             except Exception:
                 pass
     return result
+
+def getFileMimeTypeGIO(filename):
+    f = None
+    try:
+        f = gio.File(filename)
+    except Exception:
+        try:
+            f = gio.File(filename.encode("utf-8"))
+        except Exception:
+            return None
+    info = f.query_info("standard::content-type") if f else None
+    return info.get_content_type() if info else None
 
 class FindVideoThread(QThread):
     firstVideoFound = pyqtSignal(str, arguments=["path"])
@@ -287,6 +300,11 @@ class Utils(QObject):
         clipboard = QApplication.clipboard()
         clipboard.clear(mode=clipboard.Clipboard)
         clipboard.setText(text, mode=clipboard.Clipboard)
+
+    @pyqtSlot(str, result=bool)
+    def fileIsAudioTrack(self, file_path):
+        mimetype = getFileMimeTypeGIO(file_path)
+        return mimetype in ("audio/ac3", "audio/vnd.dts")
 
     @pyqtSlot(str,result=bool)
     def fileIsPlaylist(self, file_path):

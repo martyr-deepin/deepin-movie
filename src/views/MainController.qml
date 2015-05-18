@@ -252,15 +252,26 @@ MouseArea {
     }
 
     function showMainMenu() {
-        var soundTracks = []
+        var audioTracks = []
+        var usingExternalTracks = player.externalAudioTracks.length != 0
         for (var i = 0; i < player.internalAudioTracks.length; i++) {
-            var soundTrack = player.internalAudioTracks[i]
-            soundTracks.push({
-                "id": soundTrack.id,
-                "title": soundTrack.title,
-                "language": soundTrack.language,
-                "file": soundTrack.file,
-                "isCurrent": player.audioTrack == soundTrack.id
+            var audioTrack = player.internalAudioTracks[i]
+            audioTracks.push({
+                "id": audioTrack.id,
+                "title": audioTrack.title,
+                "language": audioTrack.language,
+                "file": audioTrack.file,
+                "isCurrent": !usingExternalTracks && player.audioTrack == audioTrack.id
+            })
+        }
+        for (var i = 0; i < player.externalAudioTracks.length; i++) {
+            var audioTrack = player.externalAudioTracks[i]
+            audioTracks.push({
+                "id": audioTrack.id,
+                "title": audioTrack.title,
+                "language": audioTrack.language,
+                "file": audioTrack.file,
+                "isCurrent": usingExternalTracks && player.audioTrack == audioTrack.id
             })
         }
 
@@ -272,7 +283,7 @@ MouseArea {
             "isFullscreen": windowView.getState() == Qt.WindowFullScreen,
             "isMiniMode": root.isMiniMode,
             "isOnTop": windowView.staysOnTop,
-            "soundTracks": soundTracks
+            "audioTracks": audioTracks
         }
         _menu_controller.show_menu(JSON.stringify(stateInfo))
     }
@@ -593,9 +604,18 @@ MouseArea {
         }
     }
 
-    function setSoundTrack(id, file) {
+    function setAudioTrack(id, file) {
         if (file == player.sourceString) {
-            player.audioTrack = id
+            player.externalAudio = ""
+            player.audioTrack = parseInt(id)
+        } else {
+            player.audioTrack = parseInt(id)
+        }
+    }
+
+    function setAudioTrackFile(filename) {
+        if (player.hasVideo) {
+            player.externalAudio = filename
         }
     }
 
@@ -605,6 +625,7 @@ MouseArea {
     function openDirForPlaylist() { open_folder_dialog.playFirst = false; open_folder_dialog.open() }
     function openFileForPlaylist() { open_file_dialog.state = "add_playlist_item"; open_file_dialog.open() }
     function openFileForSubtitle() { open_file_dialog.state = "open_subtitle_file"; open_file_dialog.open() }
+    function openFileForAudioTrack() { open_file_dialog.state = "open_audio_track_file"; open_file_dialog.open() }
 
     // To ensure that all the sources passed to player is a url other than a string.
     function playPath(path) {

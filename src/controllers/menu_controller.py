@@ -52,7 +52,7 @@ frame_sub_menu = [
 
 sound_sub_menu = [
     ("_sound_channel", _("Sound Channels")),
-    ("_sound_track", _("Sound Tracks")),
+    ("_audio_track", _("Audio Tracks")),
     # ("_sound_output_mode", _("Output Mode")),
     None,
     ("_sound_increase", _("Volume Up"), (), (), config.hotkeysFrameSoundIncreaseVolume),
@@ -169,18 +169,33 @@ def _subtitle_file_from_menu_item_id(id):
                                         id.index(FILE_END_TAG)]
 
 ID_FILE_SEP = "||||||"
-def _sound_track_menu_items_from_data(data):
+def _audio_track_menu_items_from_data(data):
     items = []
+    index = 1
 
     for _item in data:
+        _id = _item.get("id", "")
+        _file = _item.get("file", "")
+        _title = _item.get("title", "")
+        _language = _item.get("language", "")
+
+        if _title and _language:
+            _itemName = "%s-%s" % (_title, _language)
+        else:
+            _itemName = _("Audio track") + " " + str(index)
+            index += 1
+
         items.append(CheckableMenuItem(
-            "_sound_tracks:radio:%s%s%s" % (_item["id"], ID_FILE_SEP, _item["file"]),
-            "%s-%s" % (_item["title"], _item["language"]),
+            "_audio_tracks:radio:%s%s%s" % (_id, ID_FILE_SEP, _file),
+            _itemName,
             _item["isCurrent"]))
+
+    if items: items.append(None)
+    items.append(("_load_audio_track", _("Load audio track")))
 
     return items
 
-def _sound_track_from_menu_item_id(id):
+def _audio_track_from_menu_item_id(id):
     id_file = id.split(":")[-1]
     return id_file.split(ID_FILE_SEP)
 
@@ -210,7 +225,8 @@ class MenuController(QObject):
     volumeDown = pyqtSignal()
     volumeMuted = pyqtSignal(bool, arguments=["muted"])
     soundChannelChanged = pyqtSignal(str, arguments=["channelLayout"])
-    soundTrackChanged = pyqtSignal(str, str, arguments=["id", "file"])
+    audioTrackChanged = pyqtSignal(str, str, arguments=["id", "file"])
+    loadAudioTrack = pyqtSignal()
     showSubtitleSettings = pyqtSignal()
 
     playlistPlay = pyqtSignal()
@@ -324,8 +340,10 @@ class MenuController(QObject):
         elif _id == "sound_channel:radio:stero":
             self._sound_channel = "sound_channel:radio:stero"
             self.soundChannelChanged.emit("stero")
-        elif _id.startswith("_sound_tracks:radio"):
-            self.soundTrackChanged.emit(*_sound_track_from_menu_item_id(_id))
+        elif _id.startswith("_audio_tracks:radio"):
+            self.audioTrackChanged.emit(*_audio_track_from_menu_item_id(_id))
+        elif _id == "_load_audio_track":
+            self.loadAudioTrack.emit()
         elif _id == "_subtitle_hide":
             self.subtitleVisibleSet.emit(not _checked)
         elif _id == "_subtitle_manual":
@@ -387,7 +405,7 @@ class MenuController(QObject):
         isFullscreen = info["isFullscreen"]
         isMiniMode = info["isMiniMode"]
         isOnTop = info["isOnTop"]
-        soundTracks = info["soundTracks"]
+        audioTracks = info["audioTracks"]
 
         self.menu = Menu(right_click_menu)
 
@@ -445,9 +463,9 @@ class MenuController(QObject):
         self.menu.getItemById("sound_channel:radio:stero").checked = \
             self._sound_channel == "sound_channel:radio:stero"
 
-        self.menu.getItemById("_sound_track").isActive = hasVideo
-        self.menu.getItemById("_sound_track").setSubMenu(
-            Menu(_sound_track_menu_items_from_data(soundTracks)))
+        self.menu.getItemById("_audio_track").isActive = hasVideo
+        self.menu.getItemById("_audio_track").setSubMenu(
+            Menu(_audio_track_menu_items_from_data(audioTracks)))
 
         self.menu.getItemById("_sound_muted").checked = bool(config.playerMuted)
 
