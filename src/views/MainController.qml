@@ -264,14 +264,14 @@ MouseArea {
                 "isCurrent": !usingExternalTracks && player.audioTrack == audioTrack.id
             })
         }
-        for (var i = 0; i < player.externalAudioTracks.length; i++) {
-            var audioTrack = player.externalAudioTracks[i]
+        for (var i = 0; i < player.externalAudioTracksRecord.length; i++) {
+            var audioTrack = player.externalAudioTracksRecord[i]
             audioTracks.push({
                 "id": audioTrack.id,
                 "title": audioTrack.title,
                 "language": audioTrack.language,
                 "file": audioTrack.file,
-                "isCurrent": usingExternalTracks && player.audioTrack == audioTrack.id
+                "isCurrent": player.externalAudio == Qt.resolvedUrl(audioTrack.file) && player.audioTrack == audioTrack.id
             })
         }
 

@@ -28,6 +28,7 @@ Video {
     property real subtitleVerticalPosition: 0.2
 
     property bool isPreview: false
+    property var externalAudioTracksRecord: []
 
     property int __reopenPosition: 0
 
@@ -35,6 +36,27 @@ Video {
         __reopenPosition = 0
 
         externalAudio = ""
+        externalAudioTracksRecords = []
+    }
+
+    onExternalAudioTracksChanged: {
+        for (var i = 0; i < externalAudioTracks.length; i++) {
+            var target = externalAudioTracks[i]
+            var equalFlag = false
+
+            for (var j = 0; j < externalAudioTracksRecord.length; j++) {
+                var compareTo = externalAudioTracksRecord[j]
+                if (target.id == compareTo.id
+                    && target.file == compareTo.file) {
+                    equalFlag = true
+                    break
+                }
+            }
+
+            if (!equalFlag) {
+                externalAudioTracksRecord.push(target)
+            }
+        }
     }
 
     Timer {
