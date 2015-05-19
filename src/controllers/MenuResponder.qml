@@ -66,7 +66,7 @@ Connections {
     onVolumeUp: { main_controller.increaseVolume() }
     onVolumeDown: { main_controller.decreaseVolume() }
     onVolumeMuted: { main_controller.setMute(muted) }
-    onSoundChannelChanged: { main_controller.setSoundChannel(channelLayout) }
+    onAudioChannelChanged: { main_controller.setAudioChannel(channelLayout) }
     onAudioTrackChanged: { main_controller.setAudioTrack(id, file) }
     onLoadAudioTrack: { main_controller.openFileForAudioTrack() }
 

@@ -587,7 +587,7 @@ MouseArea {
         setMute(!player.muted)
     }
 
-    function setSoundChannel(channelLayout) {
+    function setAudioChannel(channelLayout) {
         switch(channelLayout) {
             case "left": {
                 player.channelLayout = MediaPlayer.Left

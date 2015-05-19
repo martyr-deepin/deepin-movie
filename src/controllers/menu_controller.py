@@ -51,7 +51,7 @@ frame_sub_menu = [
 ]
 
 sound_sub_menu = [
-    ("_sound_channel", _("Sound Channels")),
+    ("_audio_channel", _("Audio Channels")),
     ("_audio_track", _("Audio Tracks")),
     # ("_sound_output_mode", _("Output Mode")),
     None,
@@ -60,10 +60,10 @@ sound_sub_menu = [
     CheckableMenuItem("_sound_muted", _("Muted"), extra=config.hotkeysFrameSoundToggleMute)
 ]
 
-sound_channel_sub_menu = [
-    CheckableMenuItem("sound_channel:radio:stero", _("Stero")),
-    CheckableMenuItem("sound_channel:radio:left", _("Left")),
-    CheckableMenuItem("sound_channel:radio:right", _("Right"))
+audio_channel_sub_menu = [
+    CheckableMenuItem("audio_channel:radio:stero", _("Stero")),
+    CheckableMenuItem("audio_channel:radio:left", _("Left")),
+    CheckableMenuItem("audio_channel:radio:right", _("Right"))
 ]
 
 subtitle_sub_menu = [
@@ -224,7 +224,7 @@ class MenuController(QObject):
     volumeUp = pyqtSignal()
     volumeDown = pyqtSignal()
     volumeMuted = pyqtSignal(bool, arguments=["muted"])
-    soundChannelChanged = pyqtSignal(str, arguments=["channelLayout"])
+    audioChannelChanged = pyqtSignal(str, arguments=["channelLayout"])
     audioTrackChanged = pyqtSignal(str, str, arguments=["id", "file"])
     loadAudioTrack = pyqtSignal()
     showSubtitleSettings = pyqtSignal()
@@ -252,7 +252,7 @@ class MenuController(QObject):
     def reset(self):
         self._proportion = "proportion:radio:_p_default"
         self._scale = None
-        self._sound_channel = "sound_channel:radio:stero"
+        self._audio_channel = "audio_channel:radio:stero"
 
     @pyqtProperty(str)
     def videoScale(self):
@@ -331,15 +331,15 @@ class MenuController(QObject):
             config.playerPlayOrderType = ORDER_TYPE_SINGLE_CYCLE
         elif _id == "mode_group:radio:playlist_cycle":
             config.playerPlayOrderType = ORDER_TYPE_PLAYLIST_CYCLE
-        elif _id == "sound_channel:radio:left":
-            self._sound_channel = "sound_channel:radio:left"
-            self.soundChannelChanged.emit("left")
-        elif _id == "sound_channel:radio:right":
-            self._sound_channel = "sound_channel:radio:right"
-            self.soundChannelChanged.emit("right")
-        elif _id == "sound_channel:radio:stero":
-            self._sound_channel = "sound_channel:radio:stero"
-            self.soundChannelChanged.emit("stero")
+        elif _id == "audio_channel:radio:left":
+            self._audio_channel = "audio_channel:radio:left"
+            self.audioChannelChanged.emit("left")
+        elif _id == "audio_channel:radio:right":
+            self._audio_channel = "audio_channel:radio:right"
+            self.audioChannelChanged.emit("right")
+        elif _id == "audio_channel:radio:stero":
+            self._audio_channel = "audio_channel:radio:stero"
+            self.audioChannelChanged.emit("stero")
         elif _id.startswith("_audio_tracks:radio"):
             self.audioTrackChanged.emit(*_audio_track_from_menu_item_id(_id))
         elif _id == "_load_audio_track":
@@ -453,15 +453,15 @@ class MenuController(QObject):
         self.menu.getItemById("scale:radio:_s_2").checked = \
             self._scale == "scale:radio:_s_2"
 
-        self.menu.getItemById("_sound_channel").isActive = hasVideo
-        self.menu.getItemById("_sound_channel").setSubMenu(
-            Menu(sound_channel_sub_menu))
-        self.menu.getItemById("sound_channel:radio:left").checked = \
-            self._sound_channel == "sound_channel:radio:left"
-        self.menu.getItemById("sound_channel:radio:right").checked = \
-            self._sound_channel == "sound_channel:radio:right"
-        self.menu.getItemById("sound_channel:radio:stero").checked = \
-            self._sound_channel == "sound_channel:radio:stero"
+        self.menu.getItemById("_audio_channel").isActive = hasVideo
+        self.menu.getItemById("_audio_channel").setSubMenu(
+            Menu(audio_channel_sub_menu))
+        self.menu.getItemById("audio_channel:radio:left").checked = \
+            self._audio_channel == "audio_channel:radio:left"
+        self.menu.getItemById("audio_channel:radio:right").checked = \
+            self._audio_channel == "audio_channel:radio:right"
+        self.menu.getItemById("audio_channel:radio:stero").checked = \
+            self._audio_channel == "audio_channel:radio:stero"
 
         self.menu.getItemById("_audio_track").isActive = hasVideo
         self.menu.getItemById("_audio_track").setSubMenu(
