@@ -139,6 +139,7 @@ class DLNAController(QObject):
 
             self._daemon_pid = subprocess.Popen(["deepin-dlna-renderer",
                 "-f", _("Deepin Movie"),
+                "-u", uuid,
                 "--service-name", self._dbus_name])
 
     @pyqtSlot(bool)
