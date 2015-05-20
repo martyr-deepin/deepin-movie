@@ -36,7 +36,7 @@ Video {
         __reopenPosition = 0
 
         externalAudio = ""
-        externalAudioTracksRecords = []
+        externalAudioTracksRecord = []
     }
 
     onExternalAudioTracksChanged: {

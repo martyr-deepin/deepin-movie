@@ -79,8 +79,8 @@ Item {
 		target: _dlna_controller
 
 		onFoundRenderer: {
-			root.hasDevices = true
 			renderer_list_dialog.addRenderer(renderer)
+			root.hasDevices = _dlna_controller.getRenderers().length != 0
 		}
 		onLostRenderer: {
 			renderer_list_dialog.rmRenderer(path)

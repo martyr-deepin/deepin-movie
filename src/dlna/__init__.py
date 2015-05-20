@@ -37,17 +37,22 @@ from dbus_interfaces import RendererMediaPlayerPlayerInterface
 class Renderer(QObject):
     nameChanged = pyqtSignal()
     iconChanged = pyqtSignal()
+    uuidChanged = pyqtSignal()
 
     def __init__(self, parent):
         super(Renderer, self).__init__(parent)
 
     @pyqtProperty(str, notify=nameChanged)
     def name(self):
-        return self._device.friendlyName
+        return self._device.FriendlyName
 
     @pyqtProperty(str, notify=iconChanged)
     def icon(self):
-        return self._device.iconURL
+        return self._device.IconURL
+
+    @pyqtProperty(str, notify=uuidChanged)
+    def uuid(self):
+        return self._device.UDN
 
     @pyqtProperty(str)
     def path(self):
@@ -109,6 +114,7 @@ class RendererManager(QObject):
         return self._iface.getVersion()
 
 class DLNAController(QObject):
+    rendererName = _("Deepin Movie")
     foundRenderer = pyqtSignal("QVariant", arguments=["renderer"])
     lostRenderer = pyqtSignal(str, arguments=["path"])
 
@@ -117,6 +123,7 @@ class DLNAController(QObject):
         self._dbus_name = None
         self._dbus_service = None
         self._daemon_pid = None
+        self._daemon_uuid = None
 
         self._renderer_manager = RendererManager()
         self._renderer_manager.foundRenderer.connect(self.foundRenderer)
@@ -128,8 +135,9 @@ class DLNAController(QObject):
         if self._asRenderer:
             if not self._dbus_service:
                 if not self._dbus_name:
-                    uuid = str(uuid4()).replace("-", "_")
-                    self._dbus_name = "com.deepin.private.DeepinMovie_%s" % uuid
+                    self._daemon_uuid = str(uuid4()).replace("-", "_")
+                    self._dbus_name = "com.deepin.private.DeepinMovie_%s" \
+                                      % self._daemon_uuid
                 app = QApplication.instance()
                 self._dbus_service = DeepinMoviePrivateServie(app)
 
@@ -138,8 +146,8 @@ class DLNAController(QObject):
                 bus.registerObject(DBUS_PATH, self._dbus_service)
 
             self._daemon_pid = subprocess.Popen(["deepin-dlna-renderer",
-                "-f", _("Deepin Movie"),
-                "-u", uuid,
+                "-f", self.rendererName,
+                "-u", self._daemon_uuid,
                 "--service-name", self._dbus_name])
 
     @pyqtSlot(bool)
@@ -151,10 +159,15 @@ class DLNAController(QObject):
         else:
             if self._daemon_pid:
                 self._daemon_pid.kill()
+                self._daemon_pid = None
+                self._daemon_uuid = None
 
     @pyqtSlot(result="QVariant")
     def getRenderers(self):
-        return self._renderer_manager.getRenderers()
+        renderers = self._renderer_manager.getRenderers()
+        filter_rule = lambda x: self._daemon_uuid not in x.uuid \
+                                and x.name.encode("utf-8") != self.rendererName
+        return filter(filter_rule, renderers)
 
     @pyqtSlot(result=str)
     def getVersion(self):
