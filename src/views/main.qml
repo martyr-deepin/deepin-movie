@@ -376,7 +376,7 @@ Rectangle {
     function setNextUri(uri) { }
     function play() { main_controller.play() }
     function pause() { main_controller.pause() }
-    function stop() { main_controller.stop() }
+    function stop() { reset() }
     function seek(value) { player.seek(value) }
     function getDuration() { return player.duration }
     function getPosition() { return player.position }
