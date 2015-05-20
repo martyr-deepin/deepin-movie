@@ -34,6 +34,16 @@ from dbus_interfaces import RendererRendererDeviceInterface
 from dbus_interfaces import RendererPushHostInterface
 from dbus_interfaces import RendererMediaPlayerPlayerInterface
 
+import socket,fcntl,struct
+
+def get_ip_address(ifname):
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    return socket.inet_ntoa(fcntl.ioctl(
+                s.fileno(),
+                0x8915, # SIOCGIFADDR
+                struct.pack('256s', ifname[:15])
+                )[20:24])
+
 class Renderer(QObject):
     nameChanged = pyqtSignal()
     iconChanged = pyqtSignal()
@@ -145,7 +155,13 @@ class DLNAController(QObject):
                 bus.registerService(self._dbus_name)
                 bus.registerObject(DBUS_PATH, self._dbus_service)
 
+            try:
+                ip_address = get_ip_address("wlan0")
+            except:
+                ip_address = "127.0.0.1"
+
             self._daemon_pid = subprocess.Popen(["deepin-dlna-renderer",
+                "-I", ip_address,
                 "-f", self.rendererName,
                 "-u", self._daemon_uuid,
                 "--service-name", self._dbus_name])
