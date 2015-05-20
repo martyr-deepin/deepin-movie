@@ -20,7 +20,7 @@ DDialog {
             }
         }
 
-    	list_view.model.append({ "renderer": renderer })
+        list_view.model.append({ "renderer": renderer })
     }
 
     function rmRenderer(path) {
@@ -32,7 +32,7 @@ DDialog {
     }
 
     Column {
-    	id: col
+        id: col
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.leftMargin: 2
@@ -49,59 +49,59 @@ DDialog {
         }
 
         Item {
-        	width: parent.width
-        	height: 10
+            width: parent.width
+            height: 10
         }
 
         ListView {
-        	id: list_view
-        	width: parent.width
-        	height: Math.min(childrenRect.height, itemHeight * 5 + spacing * 4)
-        	spacing: 4
-        	clip: true
+            id: list_view
+            width: parent.width
+            height: Math.min(childrenRect.height, itemHeight * 5 + spacing * 4)
+            spacing: 4
+            clip: true
 
-        	property int itemHeight: 40
+            property int itemHeight: 40
 
-        	delegate: Rectangle {
-        		// TODO: rename this color name to proper one
-        		color: DPalette.radioItemSelectedColor
-        		width: ListView.view.width
-        		height: ListView.view.itemHeight
+            delegate: Rectangle {
+                // TODO: rename this color name to proper one
+                color: DConstants.radioItemSelectedColor
+                width: ListView.view.width
+                height: ListView.view.itemHeight
 
-        		Image {
-        			id: icon
-        			width: 32
-        			height: 32
-        			source: renderer.icon
+                Image {
+                    id: icon
+                    width: 32
+                    height: 32
+                    source: renderer.icon
 
-        			anchors.left: parent.left
-        			anchors.leftMargin: 36
-        			anchors.verticalCenter: parent.verticalCenter
-        		}
+                    anchors.left: parent.left
+                    anchors.leftMargin: 36
+                    anchors.verticalCenter: parent.verticalCenter
+                }
 
-        		Text {
-        			color: mouse_area.pressed ? DPalette.textActiveColor
-        			                          : mouse_area.containsMouse ? DPalette.textHoverColor
-        			                                                     : DPalette.textNormalColor
-        			text: renderer.name
+                Text {
+                    color: mouse_area.pressed ? DConstants.textActiveColor
+                                              : mouse_area.containsMouse ? DConstants.textHoverColor
+                                                                         : DConstants.textNormalColor
+                    text: renderer.name
 
-        			anchors.left: icon.right
-        			anchors.leftMargin: 20
-        			anchors.verticalCenter: parent.verticalCenter
-        		}
+                    anchors.left: icon.right
+                    anchors.leftMargin: 20
+                    anchors.verticalCenter: parent.verticalCenter
+                }
 
-        		MouseArea {
-        			id: mouse_area
-        			hoverEnabled: true
-        			anchors.fill: parent
+                MouseArea {
+                    id: mouse_area
+                    hoverEnabled: true
+                    anchors.fill: parent
 
-        			onClicked: {
+                    onClicked: {
                         dialog.confirmed(renderer)
                         dialog.close()
                     }
-        		}
-        	}
-        	model: ListModel {}
+                }
+            }
+            model: ListModel {}
         }
     }
 }
