@@ -181,8 +181,7 @@ class DLNAController(QObject):
     @pyqtSlot(result="QVariant")
     def getRenderers(self):
         renderers = self._renderer_manager.getRenderers()
-        filter_rule = lambda x: self._daemon_uuid not in x.uuid \
-                                and x.name.encode("utf-8") != self.rendererName
+        filter_rule = lambda x: self._daemon_uuid not in x.uuid
         return filter(filter_rule, renderers)
 
     @pyqtSlot(result=str)
