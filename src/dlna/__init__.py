@@ -96,8 +96,6 @@ class RendererManager(QObject):
 
     def __init__(self):
         super(RendererManager, self).__init__()
-        self._renderers = []
-
         self._iface = RendererManagerInterface()
         self._iface.FoundRenderer.connect(self._rendererFound)
         self._iface.LostRenderer.connect(
@@ -112,12 +110,14 @@ class RendererManager(QObject):
     def getRenderers(self):
         paths = self._iface.getRenderers()
 
+        result = []
+
         for _path in paths:
             renderer = Renderer(self)
             renderer.path = _path
-            self._renderers.append(renderer)
+            result.append(renderer)
 
-        return self._renderers
+        return result
 
     @pyqtSlot(result=str)
     def getVersion(self):
