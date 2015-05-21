@@ -362,7 +362,7 @@ class Utils(QObject):
     @pyqtSlot()
     def showManual(self):
         try:
-            subprocess.call(["dman", "deepin-movie"])
+            subprocess.Popen(["dman", "deepin-movie"])
         except:
             pass
 

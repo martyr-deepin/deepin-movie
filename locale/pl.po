@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-15 17:09+0800\n"
-"PO-Revision-Date: 2015-04-16 15:23+0000\n"
+"POT-Creation-Date: 2015-05-11 11:21+0800\n"
+"PO-Revision-Date: 2015-05-11 10:01+0000\n"
 "Last-Translator: Piotr Strębski <strebski@o2.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/deepin-movie/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Language: pl\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: ../src/views/AboutSection.qml:6 ../src/views/PreferenceWindow.qml:111
+#: ../src/views/AboutSection.qml:6 ../src/views/PreferenceWindow.qml:129
 msgid "About"
 msgstr "O programie"
 
@@ -32,7 +32,7 @@ msgid "Version"
 msgstr "Wersja"
 
 #: ../src/views/AboutSection.qml:28 ../src/views/InformationLabel.qml:20
-#: ../src/views/MainController.qml:252 ../src/views/main.qml:142
+#: ../src/views/MainController.qml:260 ../src/views/main.qml:142
 msgid ":"
 msgstr ":"
 
@@ -60,7 +60,7 @@ msgid "Pause"
 msgstr "Wstrzymaj"
 
 #: ../src/views/ControlBar.qml:266 ../src/controllers/menu_controller.py:108
-#: ../src/controllers/menu_controller.py:118
+#: ../src/controllers/menu_controller.py:119
 msgid "Play"
 msgstr "Odtwórz"
 
@@ -68,34 +68,34 @@ msgstr "Odtwórz"
 msgid "Next"
 msgstr "Następny"
 
-#: ../src/views/ControlBar.qml:326 ../src/controllers/menu_controller.py:445
+#: ../src/views/ControlBar.qml:326 ../src/controllers/menu_controller.py:449
 msgid "Exit fullscreen"
 msgstr "Opuść tryb pełnoekranowy"
 
-#: ../src/views/ControlBar.qml:326 ../src/views/PreferenceWindow.qml:395
-#: ../src/views/PreferenceWindow.qml:945 ../src/views/ShortcutsViewer.qml:58
+#: ../src/views/ControlBar.qml:326 ../src/views/PreferenceWindow.qml:391
+#: ../src/views/PreferenceWindow.qml:941 ../src/views/ShortcutsViewer.qml:58
 #: ../src/views/ShortcutsViewer.qml:139
 #: ../src/controllers/menu_controller.py:102
-#: ../src/controllers/menu_controller.py:446
+#: ../src/controllers/menu_controller.py:450
 msgid "Fullscreen"
 msgstr "Pełny ekran"
 
-#: ../src/views/ControlBar.qml:343 ../src/views/PreferenceWindow.qml:715
+#: ../src/views/ControlBar.qml:343 ../src/views/PreferenceWindow.qml:711
 #: ../src/views/ShortcutsViewer.qml:83
 #: ../src/controllers/menu_controller.py:98
 msgid "Open a file"
 msgstr "Otwórz plik"
 
 #: ../src/views/ControlBar.qml:355 ../src/views/OpenFileDialog.qml:66
-#: ../src/views/PreferenceWindow.qml:421 ../src/views/ShortcutsViewer.qml:62
+#: ../src/views/PreferenceWindow.qml:417 ../src/views/ShortcutsViewer.qml:62
 #: ../src/controllers/menu_controller.py:105
 msgid "Playlist"
 msgstr "Lista odtwarzania"
 
 #: ../src/views/HotKeyInput.qml:7 ../src/views/HotKeyInput.qml:16
 #: ../src/views/HotKeyInputRow.qml:24 ../src/views/HotKeyInputRow.qml:26
-#: ../src/views/HotKeyInputRow.qml:56 ../src/views/PreferenceWindow.qml:929
-#: ../src/views/PreferenceWindow.qml:945 ../src/views/PreferenceWindow.qml:961
+#: ../src/views/HotKeyInputRow.qml:56 ../src/views/PreferenceWindow.qml:925
+#: ../src/views/PreferenceWindow.qml:941 ../src/views/PreferenceWindow.qml:957
 #: ../src/views/ShortcutsLabel.qml:23 ../src/views/ShortcutsViewer.qml:134
 #: ../src/views/ShortcutsViewer.qml:139 ../src/views/ShortcutsViewer.qml:144
 msgid "None"
@@ -159,7 +159,7 @@ msgstr "Kopiuj do schowka"
 msgid "Close"
 msgstr "Zamknij"
 
-#: ../src/views/MainController.qml:252
+#: ../src/views/MainController.qml:260
 msgid "Invalid file"
 msgstr "Nieprawidłowy plik"
 
@@ -172,47 +172,47 @@ msgstr "%1 plików, których nie dało się przetworzyć, zostało pominiętych"
 msgid "Imported"
 msgstr "Zaimportowano"
 
-#: ../src/views/MainController.qml:451
+#: ../src/views/MainController.qml:462
 msgid "Play last movie played"
 msgstr "Odtwórz ostatnio odtwarzany film"
 
-#: ../src/views/MainController.qml:484 ../src/views/PreferenceWindow.qml:343
+#: ../src/views/MainController.qml:495 ../src/views/PreferenceWindow.qml:339
 #: ../src/views/ShortcutsViewer.qml:50
 #: ../src/controllers/menu_controller.py:93
 msgid "Forward"
 msgstr "Przewiń do przodu"
 
-#: ../src/views/MainController.qml:496 ../src/views/PreferenceWindow.qml:369
+#: ../src/views/MainController.qml:507 ../src/views/PreferenceWindow.qml:365
 #: ../src/views/ShortcutsViewer.qml:54
 #: ../src/controllers/menu_controller.py:94
 msgid "Rewind"
 msgstr "Przewiń do tyłu"
 
-#: ../src/views/MainController.qml:504 ../src/views/MainController.qml:510
+#: ../src/views/MainController.qml:515 ../src/views/MainController.qml:521
 #, qt-format
 msgid "(Press %1 to restore)"
 msgstr "(Wciśnij %1, aby przywrócić)"
 
-#: ../src/views/MainController.qml:506 ../src/views/MainController.qml:512
-#: ../src/views/MainController.qml:517
+#: ../src/views/MainController.qml:517 ../src/views/MainController.qml:523
+#: ../src/views/MainController.qml:528
 msgid "Playback rate: "
 msgstr "Tempo odtwarzania:"
 
-#: ../src/views/MainController.qml:529 ../src/views/MainController.qml:538
+#: ../src/views/MainController.qml:540 ../src/views/MainController.qml:549
 msgid "Volume: "
 msgstr "Głośność:"
 
-#: ../src/views/MainController.qml:536
+#: ../src/views/MainController.qml:547
 #: ../src/controllers/menu_controller.py:60
 msgid "Muted"
 msgstr "Wyciszony"
 
-#: ../src/views/MainController.qml:672 ../src/views/MainController.qml:685
+#: ../src/views/MainController.qml:683 ../src/views/MainController.qml:696
 #, qt-format
 msgid "Subtitle advanced %1 seconds"
 msgstr "Napisy przyspieszone o %1 sekund"
 
-#: ../src/views/MainController.qml:674 ../src/views/MainController.qml:687
+#: ../src/views/MainController.qml:685 ../src/views/MainController.qml:698
 #, qt-format
 msgid "Subtitle delayed %1 seconds"
 msgstr "Napisy opóźnione o %1 sekund"
@@ -255,110 +255,110 @@ msgstr "Proszę wybrać katalog"
 msgid "Play mode"
 msgstr "Tryb odtwarzania"
 
-#: ../src/views/Playlist.qml:260 ../src/controllers/menu_controller.py:119
-#: ../src/controllers/menu_controller.py:135
+#: ../src/views/Playlist.qml:260 ../src/controllers/menu_controller.py:120
+#: ../src/controllers/menu_controller.py:136
 msgid "Add file"
 msgstr "Dodaj plik"
 
-#: ../src/views/Playlist.qml:268 ../src/controllers/menu_controller.py:126
+#: ../src/views/Playlist.qml:268 ../src/controllers/menu_controller.py:127
 msgid "Clear playlist"
 msgstr "Wyczyść listę odtwarzania"
 
-#: ../src/views/PreferenceWindow.qml:242
+#: ../src/views/PreferenceWindow.qml:238
 msgid "Clear playlist on opening new file"
 msgstr "Wyczyść listę odtwarzania przy otwarciu nowego pliku"
 
-#: ../src/views/PreferenceWindow.qml:247
+#: ../src/views/PreferenceWindow.qml:243
 msgid "Resume playback after restarting player"
 msgstr "Ponów odtwarzanie po ponownym uruchomieniu odtwarzacza"
 
-#: ../src/views/PreferenceWindow.qml:252
+#: ../src/views/PreferenceWindow.qml:248
 msgid "Continue to next video automatically"
 msgstr "Automatycznie kontynuuj następny film"
 
-#: ../src/views/PreferenceWindow.qml:257
+#: ../src/views/PreferenceWindow.qml:253
 msgid "Show preview when hovering over progress bar"
 msgstr "Pokaż podgląd przy wskaźniku umieszczonym na pasku postępu"
 
-#: ../src/views/PreferenceWindow.qml:290
+#: ../src/views/PreferenceWindow.qml:286
 msgid "Forward/Rewind (s)"
 msgstr "Przewiń naprzód/do tyłu (s)"
 
-#: ../src/views/PreferenceWindow.qml:312 ../src/views/PreferenceWindow.qml:536
-#: ../src/views/PreferenceWindow.qml:709 ../src/views/PreferenceWindow.qml:804
+#: ../src/views/PreferenceWindow.qml:308 ../src/views/PreferenceWindow.qml:532
+#: ../src/views/PreferenceWindow.qml:705 ../src/views/PreferenceWindow.qml:800
 msgid "Enable keyboard shortcuts"
 msgstr "Włączenie skrótów klawiszowych"
 
-#: ../src/views/PreferenceWindow.qml:317 ../src/views/PreferenceWindow.qml:929
+#: ../src/views/PreferenceWindow.qml:313 ../src/views/PreferenceWindow.qml:925
 #: ../src/views/ShortcutsViewer.qml:46 ../src/views/ShortcutsViewer.qml:134
 msgid "Pause/Play"
 msgstr "Wstrzymaj/Odtwórz"
 
-#: ../src/views/PreferenceWindow.qml:447 ../src/views/ShortcutsViewer.qml:66
+#: ../src/views/PreferenceWindow.qml:443 ../src/views/ShortcutsViewer.qml:66
 msgid "Accelerate playback"
 msgstr "Przyśpiesz odtwarzanie"
 
-#: ../src/views/PreferenceWindow.qml:473 ../src/views/ShortcutsViewer.qml:70
+#: ../src/views/PreferenceWindow.qml:469 ../src/views/ShortcutsViewer.qml:70
 msgid "Decelerate playback"
 msgstr "Spowolnij odtwarzanie"
 
-#: ../src/views/PreferenceWindow.qml:499 ../src/views/ShortcutsViewer.qml:74
+#: ../src/views/PreferenceWindow.qml:495 ../src/views/ShortcutsViewer.qml:74
 msgid "Restore playback speed"
 msgstr "Przywróć prędkość odtwarzania"
 
-#: ../src/views/PreferenceWindow.qml:542 ../src/views/ShortcutsViewer.qml:104
+#: ../src/views/PreferenceWindow.qml:538 ../src/views/ShortcutsViewer.qml:104
 #: ../src/controllers/menu_controller.py:103
-#: ../src/controllers/menu_controller.py:448
+#: ../src/controllers/menu_controller.py:452
 msgid "Mini mode"
 msgstr "Tryb mini"
 
-#: ../src/views/PreferenceWindow.qml:620 ../src/views/ShortcutsViewer.qml:116
+#: ../src/views/PreferenceWindow.qml:616 ../src/views/ShortcutsViewer.qml:116
 msgid "Volume up"
 msgstr "Pogłośnij"
 
-#: ../src/views/PreferenceWindow.qml:646 ../src/views/ShortcutsViewer.qml:120
+#: ../src/views/PreferenceWindow.qml:642 ../src/views/ShortcutsViewer.qml:120
 msgid "Volume down"
 msgstr "Przycisz"
 
-#: ../src/views/PreferenceWindow.qml:741 ../src/views/ShortcutsViewer.qml:87
+#: ../src/views/PreferenceWindow.qml:737 ../src/views/ShortcutsViewer.qml:87
 msgid "Open previous"
 msgstr "Otwórz poprzedni"
 
-#: ../src/views/PreferenceWindow.qml:767 ../src/views/ShortcutsViewer.qml:91
+#: ../src/views/PreferenceWindow.qml:763 ../src/views/ShortcutsViewer.qml:91
 msgid "Open next"
 msgstr "Otwórz następny"
 
-#: ../src/views/PreferenceWindow.qml:810 ../src/views/ShortcutsViewer.qml:153
+#: ../src/views/PreferenceWindow.qml:806 ../src/views/ShortcutsViewer.qml:153
 #, qt-format
 msgid "Forward %1 (s)"
 msgstr "Do przodu %1 (s)"
 
-#: ../src/views/PreferenceWindow.qml:836 ../src/views/ShortcutsViewer.qml:157
+#: ../src/views/PreferenceWindow.qml:832 ../src/views/ShortcutsViewer.qml:157
 #, qt-format
 msgid "Delay %1 (s)"
 msgstr "Opóźnienie %1 (s)"
 
-#: ../src/views/PreferenceWindow.qml:862 ../src/views/ShortcutsViewer.qml:161
+#: ../src/views/PreferenceWindow.qml:858 ../src/views/ShortcutsViewer.qml:161
 msgid "Subtitle up"
 msgstr "Podwyższ napisy"
 
-#: ../src/views/PreferenceWindow.qml:888 ../src/views/ShortcutsViewer.qml:165
+#: ../src/views/PreferenceWindow.qml:884 ../src/views/ShortcutsViewer.qml:165
 msgid "Subtitle down"
 msgstr "Obniż napisy"
 
-#: ../src/views/PreferenceWindow.qml:926 ../src/views/ShortcutsViewer.qml:133
+#: ../src/views/PreferenceWindow.qml:922 ../src/views/ShortcutsViewer.qml:133
 msgid "Left click"
 msgstr "Kliknięcie lewym przyciskiem"
 
-#: ../src/views/PreferenceWindow.qml:942 ../src/views/ShortcutsViewer.qml:138
+#: ../src/views/PreferenceWindow.qml:938 ../src/views/ShortcutsViewer.qml:138
 msgid "Double click"
 msgstr "Podwójne kliknięcie"
 
-#: ../src/views/PreferenceWindow.qml:983
+#: ../src/views/PreferenceWindow.qml:979
 msgid "Subtitles loaded automatically"
 msgstr "Napisy wczytane automatycznie"
 
-#: ../src/views/PreferenceWindow.qml:1075
+#: ../src/views/PreferenceWindow.qml:1088
 msgid "Border width"
 msgstr "Szerokość obramowania"
 
@@ -366,28 +366,28 @@ msgstr "Szerokość obramowania"
 msgid "Orange"
 msgstr "Pomarańczowy"
 
-#: ../src/views/PreferenceWindow.qml:58 ../src/views/PreferenceWindow.qml:74
-#: ../src/views/PreferenceWindow.qml:221 ../src/views/PreferenceWindow.qml:303
+#: ../src/views/PreferenceWindow.qml:76 ../src/views/PreferenceWindow.qml:92
+#: ../src/views/PreferenceWindow.qml:217 ../src/views/PreferenceWindow.qml:299
 #: ../src/views/ShortcutsViewer.qml:43
 msgid "Playback"
 msgstr "Odtwarzanie"
 
-#: ../src/views/PreferenceWindow.qml:79 ../src/views/PreferenceWindow.qml:527
+#: ../src/views/PreferenceWindow.qml:97 ../src/views/PreferenceWindow.qml:523
 #: ../src/views/ShortcutsViewer.qml:101
 msgid "Frame/Sound"
 msgstr "Ramka/Dźwięk"
 
-#: ../src/views/PreferenceWindow.qml:84 ../src/views/PreferenceWindow.qml:700
+#: ../src/views/PreferenceWindow.qml:102 ../src/views/PreferenceWindow.qml:696
 #: ../src/views/ShortcutsViewer.qml:80
 msgid "Files"
 msgstr "Pliki"
 
-#: ../src/views/PreferenceWindow.qml:94 ../src/views/PreferenceWindow.qml:916
+#: ../src/views/PreferenceWindow.qml:112 ../src/views/PreferenceWindow.qml:912
 #: ../src/views/ShortcutsViewer.qml:130
 msgid "Other"
 msgstr "Inne"
 
-#: ../src/views/PreferenceWindow.qml:89 ../src/views/PreferenceWindow.qml:795
+#: ../src/views/PreferenceWindow.qml:107 ../src/views/PreferenceWindow.qml:791
 #: ../src/views/ShortcutsViewer.qml:150
 #: ../src/controllers/menu_controller.py:111
 msgid "Subtitles"
@@ -437,96 +437,96 @@ msgstr "Aluminiowy"
 msgid "Clean white"
 msgstr "Czysta biel"
 
-#: ../src/views/PreferenceWindow.qml:54 ../src/views/PreferenceWindow.qml:217
+#: ../src/views/PreferenceWindow.qml:72 ../src/views/PreferenceWindow.qml:213
 msgid "Basic settings"
 msgstr "Podstawowe ustawienia"
 
-#: ../src/views/PreferenceWindow.qml:63 ../src/views/PreferenceWindow.qml:281
+#: ../src/views/PreferenceWindow.qml:81 ../src/views/PreferenceWindow.qml:277
 msgid "Time span"
 msgstr "Zakres czasu"
 
-#: ../src/views/PreferenceWindow.qml:70 ../src/views/PreferenceWindow.qml:299
+#: ../src/views/PreferenceWindow.qml:88 ../src/views/PreferenceWindow.qml:295
 msgid "Keyboard shortcuts"
 msgstr "Skróty klawiszowe"
 
-#: ../src/views/PreferenceWindow.qml:101 ../src/views/PreferenceWindow.qml:976
+#: ../src/views/PreferenceWindow.qml:119 ../src/views/PreferenceWindow.qml:972
 msgid "Subtitle settings"
 msgstr "Ustawienia napisów"
 
-#: ../src/views/PreferenceWindow.qml:130
+#: ../src/views/PreferenceWindow.qml:148
 msgid "Reset shortcuts"
 msgstr "Resetuj skróty"
 
-#: ../src/views/PreferenceWindow.qml:134
+#: ../src/views/PreferenceWindow.qml:152
 msgid "Reset subtitle settings"
 msgstr "Resetuj ustawienia napisów"
 
-#: ../src/views/PreferenceWindow.qml:230
+#: ../src/views/PreferenceWindow.qml:226
 msgid "Fullscreen on opening file"
 msgstr "Widok pełnego ekranu przy otwarciu pliku"
 
-#: ../src/views/PreferenceWindow.qml:236
+#: ../src/views/PreferenceWindow.qml:232
 msgid "Apply the size last time closed"
 msgstr "Zastosuj ostatnio używany rozmiar"
 
-#: ../src/views/PreferenceWindow.qml:262
+#: ../src/views/PreferenceWindow.qml:258
 msgid "Allow multiple instances"
 msgstr "Pozwól na wiele wystąpień"
 
-#: ../src/views/PreferenceWindow.qml:267
+#: ../src/views/PreferenceWindow.qml:263
 msgid "Pause when minimized"
 msgstr "Wstrzymaj przy minimalizacji"
 
-#: ../src/views/PreferenceWindow.qml:568 ../src/views/ShortcutsViewer.qml:108
+#: ../src/views/PreferenceWindow.qml:564 ../src/views/ShortcutsViewer.qml:108
 msgid "Rotate counterclockwise"
 msgstr "Obróć przeciwnie do ruchu wskazówek zegara"
 
-#: ../src/views/PreferenceWindow.qml:594 ../src/views/ShortcutsViewer.qml:112
+#: ../src/views/PreferenceWindow.qml:590 ../src/views/ShortcutsViewer.qml:112
 msgid "Rotate clockwise"
 msgstr "Obróć zgodnie z ruchem wskazówek zegara"
 
-#: ../src/views/PreferenceWindow.qml:672 ../src/views/ShortcutsViewer.qml:124
+#: ../src/views/PreferenceWindow.qml:668 ../src/views/ShortcutsViewer.qml:124
 msgid "Mute"
 msgstr "Wycisz"
 
-#: ../src/views/PreferenceWindow.qml:958 ../src/views/ShortcutsViewer.qml:143
+#: ../src/views/PreferenceWindow.qml:954 ../src/views/ShortcutsViewer.qml:143
 msgid "Scroll"
 msgstr "Przewijanie"
 
-#: ../src/views/PreferenceWindow.qml:961 ../src/views/ShortcutsViewer.qml:144
+#: ../src/views/PreferenceWindow.qml:957 ../src/views/ShortcutsViewer.qml:144
 #: ../src/views/VolumeButton.qml:44
 msgid "Volume"
 msgstr "Głośność"
 
-#: ../src/views/PreferenceWindow.qml:997
+#: ../src/views/PreferenceWindow.qml:993
 msgid "Font"
 msgstr "Czcionka"
 
-#: ../src/views/PreferenceWindow.qml:1040
+#: ../src/views/PreferenceWindow.qml:1053
 msgid "Font color"
 msgstr "Kolor czcionki"
 
-#: ../src/views/PreferenceWindow.qml:1058
+#: ../src/views/PreferenceWindow.qml:1071
 msgid "Size"
 msgstr "Rozmiar"
 
-#: ../src/views/PreferenceWindow.qml:1092
+#: ../src/views/PreferenceWindow.qml:1105
 msgid "Border color"
 msgstr "Kolor krawędzi"
 
-#: ../src/views/PreferenceWindow.qml:1110
+#: ../src/views/PreferenceWindow.qml:1123
 msgid "Position"
 msgstr "Umiejscowienie"
 
-#: ../src/views/PreferenceWindow.qml:1115
+#: ../src/views/PreferenceWindow.qml:1128
 msgid "Bottom"
 msgstr "Dół"
 
-#: ../src/views/PreferenceWindow.qml:1116
+#: ../src/views/PreferenceWindow.qml:1129
 msgid "Top"
 msgstr "Góra"
 
-#: ../src/views/PreferenceWindow.qml:1127
+#: ../src/views/PreferenceWindow.qml:1140
 msgid "Sync adjustment (s)"
 msgstr "Dopasowanie synchronizacji (s)"
 
@@ -566,7 +566,7 @@ msgstr "Potwierdź"
 msgid "The parse failed"
 msgstr "Przetwarzanie nie powiodło się"
 
-#: ../src/views/main.qml:458 ../src/views/main.qml:559
+#: ../src/views/main.qml:458 ../src/views/main.qml:459
 msgid "Buffering..."
 msgstr "Buforowanie..."
 
@@ -683,35 +683,39 @@ msgid "Settings"
 msgstr "Ustawienia"
 
 #: ../src/controllers/menu_controller.py:114
-#: ../src/controllers/menu_controller.py:131
+#: ../src/controllers/menu_controller.py:132
 msgid "Information"
 msgstr "Informacja"
 
-#: ../src/controllers/menu_controller.py:120
-#: ../src/controllers/menu_controller.py:136
+#: ../src/controllers/menu_controller.py:115
+msgid "Help"
+msgstr "Pomoc"
+
+#: ../src/controllers/menu_controller.py:121
+#: ../src/controllers/menu_controller.py:137
 msgid "Add folder"
 msgstr "Dodaj katalog"
 
-#: ../src/controllers/menu_controller.py:122
+#: ../src/controllers/menu_controller.py:123
 msgid "Remove from playlist"
 msgstr "Usuń z listy odtwarzania"
 
-#: ../src/controllers/menu_controller.py:123
+#: ../src/controllers/menu_controller.py:124
 msgid "Remove invalid file"
 msgstr "Usuń niepoprawny plik"
 
-#: ../src/controllers/menu_controller.py:124
+#: ../src/controllers/menu_controller.py:125
 msgid "Export"
 msgstr "Eksportuj"
 
-#: ../src/controllers/menu_controller.py:125
+#: ../src/controllers/menu_controller.py:126
 msgid "Import"
 msgstr "Importuj"
 
-#: ../src/controllers/menu_controller.py:130
+#: ../src/controllers/menu_controller.py:131
 msgid "Open file location"
 msgstr "Otwórz położenie pliku"
 
-#: ../src/controllers/menu_controller.py:447
+#: ../src/controllers/menu_controller.py:451
 msgid "Exit mini mode"
 msgstr "Wyjdź z trybu mini"
