@@ -619,8 +619,6 @@ Rectangle {
         Component.onCompleted: player._setHardwareAcceleration()
     }
 
-    DLNAEngine { id: dlna_engine; anchors.fill: parent }
-
     TimeIndicator {
         id: time_indicator
         visible: visibleSwitch && !titlebar.visible
@@ -635,6 +633,8 @@ Rectangle {
     }
 
     MainController { id: main_controller; window: root }
+
+    DLNAEngine { id: dlna_engine; anchors.fill: parent }
 
     Notifybar {
         id: notifybar
