@@ -65,6 +65,7 @@ Item {
 		player.visible = true
 		player.play()
 		__currentRenderer.removePath(player.sourceString)
+		__currentRenderer.stop()
 	}
 
 	function play() {
