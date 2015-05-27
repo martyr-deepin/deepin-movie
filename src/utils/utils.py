@@ -369,8 +369,23 @@ class Utils(QObject):
         if name_without_ext == "": return ""
 
         videos = self.getAllVideoFilesInDir(dir_name)
-        relative_videos = filter(
-            lambda x: f_name_without_ext(x) in name_without_ext, videos)
+        video_relative = lambda x: f_name_without_ext(x) in name_without_ext
+        relative_videos = filter(video_relative, videos)
+
+        return relative_videos[0] if relative_videos else ""
+
+    @pyqtSlot(str, result=str)
+    def getVideoFromAudioTrack(self, filename):
+        filename = filename.replace("file://", "")
+        f_name_without_ext = lambda x: x.rpartition(".")[0]
+
+        dir_name = os.path.dirname(filename)
+        name_without_ext = f_name_without_ext(filename)
+        if name_without_ext == "": return ""
+
+        videos = self.getAllVideoFilesInDir(dir_name)
+        video_relative = lambda x: f_name_without_ext(x) in name_without_ext
+        relative_videos = filter(video_relative, videos)
 
         return relative_videos[0] if relative_videos else ""
 

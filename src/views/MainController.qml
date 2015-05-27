@@ -614,7 +614,11 @@ MouseArea {
     }
 
     function setAudioTrackFile(filename) {
-        if (player.hasVideo) {
+        if (filename && _utils.fileIsAudioTrack(filename)) {
+            if (player.playbackState == MediaPlayer.StoppedState) {
+                main_controller.playPath(_utils.getVideoFromAudioTrack(filename))
+            }
+
             player.externalAudio = filename
         }
     }
