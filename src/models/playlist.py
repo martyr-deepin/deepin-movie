@@ -470,6 +470,36 @@ class Database(QObject):
         except DoesNotExist:
             return ""
 
+    @pyqtSlot(str, str, str)
+    def setPlaylistItemAudioTrack(self, itemUrl, audioTrackId, audioTrackFile):
+        try:
+            with self._delayCommit():
+                item = PlaylistItemModel.get(
+                    PlaylistItemModel.url == itemUrl)
+                info = json.loads(item.info) if item.info else {}
+                info["audioTrack"] = json.dumps({
+                    "id": audioTrackId,
+                    "file": audioTrackFile
+                })
+                item.info = json.dumps(info)
+                item.save()
+        except DoesNotExist:
+            pass
+
+    @pyqtSlot(str, result=str)
+    def getPlaylistItemAudioTrack(self, itemUrl):
+        try:
+            item = PlaylistItemModel.get(
+                PlaylistItemModel.url == itemUrl)
+            info = json.loads(item.info) if item.info else {}
+            audioTrack = info.get("audioTrack") or ""
+            if audioTrack:
+                return audioTrack
+            else:
+                return json.dumps({"id": 0, "file": ""})
+        except DoesNotExist:
+            return ""
+
     @pyqtSlot(str, str, int)
     def setPlaylistItemSubtitle(self, itemUrl, subtitle, delay):
         try:

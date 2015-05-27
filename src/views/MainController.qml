@@ -609,8 +609,14 @@ MouseArea {
             player.externalAudio = ""
             player.audioTrack = parseInt(id)
         } else {
+            if (player.externalAudio != file) {
+                // this step consumes too much time, we must be careful.
+                player.externalAudio = file
+            }
             player.audioTrack = parseInt(id)
         }
+
+        _database.setPlaylistItemAudioTrack(player.sourceString, id, file)
     }
 
     function setAudioTrackFile(filename) {
@@ -620,6 +626,7 @@ MouseArea {
             }
 
             player.externalAudio = filename
+            _database.setPlaylistItemAudioTrack(player.sourceString, 0, filename)
         }
     }
 

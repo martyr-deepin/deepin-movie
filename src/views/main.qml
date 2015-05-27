@@ -575,6 +575,21 @@ Rectangle {
                 }
                 loadSubtitle = true
 
+                // restore the audio track last time we saved
+                var audioTrackInfo = _database.getPlaylistItemAudioTrack(player.sourceString)
+                var id = 0
+                var file = ""
+
+                try {
+                    var audioTrack = JSON.parse(audioTrackInfo)
+                    id = audioTrack["id"]
+                    file = audioTrack["file"]
+
+                    main_controller.setAudioTrack(id, file)
+                } catch(e) {
+                    // do nothing here
+                }
+
                 var rotation = main_controller.fetchVideoRotation(source)
                 var rotateClockwiseCount = Math.abs(Math.round((rotation % 360 - 360) % 360 / 90))
                 for (var i = 0; i < rotateClockwiseCount; i++) {
