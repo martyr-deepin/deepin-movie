@@ -42,6 +42,7 @@ DragableArea {
     signal nextButtonClicked ()
     signal toggleFullscreenClicked ()
     signal dlnaButtonClicked ()
+    signal toolboxButtonClicked ()
 
     Behavior on opacity {
         NumberAnimation { duration: 300 }
@@ -362,6 +363,18 @@ DragableArea {
 
                     anchors.verticalCenter: parent.verticalCenter
                     onClicked: control_bar.toggleFullscreenClicked()
+                }
+
+                ImageButton {
+                    tooltip: dsTr("Toolkit")
+                    tooltipItem: control_bar.tooltipItem
+
+                    normal_image: "image/toolbox_normal.svg"
+                    hover_image: "image/toolbox_hover_press.svg"
+                    press_image: "image/toolbox_hover_press.svg"
+
+                    anchors.verticalCenter: parent.verticalCenter
+                    onClicked: control_bar.toolboxButtonClicked()
                 }
 
                 ImageButton {

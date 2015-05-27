@@ -409,7 +409,10 @@ Rectangle {
         interval: 1500
 
         onTriggered: {
-            if (!mouseInControlsArea() && player.source && player.hasVideo) {
+            if (!mouseInControlsArea()
+                && player.source
+                && player.hasVideo
+                && !toolbox.visible) {
                 hideControls()
 
                 if (player.playbackState == MediaPlayer.PlayingState && windowView.active) {
@@ -762,6 +765,19 @@ Rectangle {
         onDlnaButtonClicked: {
             dlna_engine.showDevices()
         }
+        onToolboxButtonClicked: toolbox.visible = !toolbox.visible
+    }
+
+    Toolbox {
+        id: toolbox
+        visible: false
+        anchors.right: parent.right
+        anchors.bottom: controlbar.top
+        anchors.rightMargin: 36
+        anchors.bottomMargin: -43
+
+        onScreenshotButtonClicked: screenshot_engine.start()
+        onBurstModeButtonClicked: poster_engine.start()
     }
 
     ResizeEdge { id: resize_edge }
