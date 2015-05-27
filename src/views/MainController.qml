@@ -928,6 +928,8 @@ MouseArea {
                         main_controller.playPaths([file_path], true)
                     } else if (_utils.fileIsSubtitle(file_path)) {
                         main_controller.setSubtitle(file_path)
+                    } else if (_utils.fileIsAudioTrack(file_path)) {
+                        main_controller.setAudioTrackFile(file_path)
                     } else {
                         main_controller.notifyInvalidFile(file_path)
                     }
