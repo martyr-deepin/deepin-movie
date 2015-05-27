@@ -359,6 +359,21 @@ class Utils(QObject):
     def getSystemFonts(self):
         return font_utils.getSystemFonts()
 
+    @pyqtSlot(str, result=str)
+    def getVideoFromSubtitle(self, subtitle):
+        subtitle = subtitle.replace("file://", "")
+        f_name_without_ext = lambda x: x.rpartition(".")[0]
+
+        dir_name = os.path.dirname(subtitle)
+        name_without_ext = f_name_without_ext(subtitle)
+        if name_without_ext == "": return ""
+
+        videos = self.getAllVideoFilesInDir(dir_name)
+        relative_videos = filter(
+            lambda x: f_name_without_ext(x) in name_without_ext, videos)
+
+        return relative_videos[0] if relative_videos else ""
+
     @pyqtSlot()
     def showManual(self):
         try:

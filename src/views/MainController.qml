@@ -634,8 +634,6 @@ MouseArea {
 
         if (dlna_engine.sharing) {
             dlna_engine.play()
-        } else {
-            player.play()
         }
     }
 
@@ -748,6 +746,11 @@ MouseArea {
 
     function setSubtitle(subtitle) {
         if (subtitle && _utils.urlIsNativeFile(subtitle)) {
+            if (player.playbackState == MediaPlayer.StoppedState) {
+                player.loadSubtitle = false
+                main_controller.playPath(_utils.getVideoFromSubtitle(subtitle))
+            }
+
             _subtitle_parser.file_name = subtitle
         }
     }

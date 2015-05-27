@@ -479,6 +479,7 @@ Rectangle {
         property int lastVideoDuration: 0
         property int lastForwardToPosition: 0
         property bool playerInit: true
+        property bool loadSubtitle: true
 
         onStatusChanged: {
             if (status == MediaPlayer.Buffering) {
@@ -550,7 +551,7 @@ Rectangle {
                 _menu_controller.reset()
                 main_controller.seekToLastPlayed()
 
-                if (config.subtitleAutoLoad) {
+                if (loadSubtitle && config.subtitleAutoLoad) {
                     var subtitleInfo = _database.getPlaylistItemSubtitle(player.sourceString)
                     var path = ""
                     var delay = 0
@@ -572,6 +573,7 @@ Rectangle {
                 } else {
                     _subtitle_parser.file_name = ""
                 }
+                loadSubtitle = true
 
                 var rotation = main_controller.fetchVideoRotation(source)
                 var rotateClockwiseCount = Math.abs(Math.round((rotation % 360 - 360) % 360 / 90))
