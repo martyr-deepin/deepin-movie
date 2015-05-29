@@ -61,5 +61,15 @@ Item {
                 }
             }
         }
+        if (config.hotkeysScreenshotHotkeyEnabled) {
+            for(var i = 0; i < config.hotkeysScreenshot.length; i++) {
+                if (KeysUtils.isKeyEventEqualToString(event.modifiers, event.key,
+                    config.hotkeysScreenshot[i].key))
+                {
+                    eval("main_controller." + config.hotkeysScreenshot[i].command + "()")
+                    return
+                }
+            }
+        }
     }
 }

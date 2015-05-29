@@ -27,7 +27,8 @@ Video {
     property alias subtitleShow: subtitle.visible
     property real subtitleVerticalPosition: 0.2
 
-    property bool isPreview: false
+    property bool verticallyFlipped: flip.axis.x == 1
+    property bool horizontallyFlipped: flip.axis.y == 1
     property var externalAudioTracksRecord: []
 
     property int __reopenPosition: 0

@@ -17,6 +17,14 @@ function formatTime(millseconds) {
     return hr + ':' + min + ':' + sec;
 }
 
+// with milliseconds
+function formatTime2(millseconds) {
+    if (millseconds <= 0) return "00:00:00"
+
+    var spareMillis = millseconds % 1000
+    return formatTime(millseconds) + "." + spareMillis
+}
+
 function formatSize(capacity) {
     var teras = capacity / (1024 * 1024 * 1024 * 1024)
     capacity = capacity % (1024 * 1024 * 1024 * 1024)
@@ -33,5 +41,6 @@ function formatSize(capacity) {
 }
 
 function formatFilePath(file_path) {
-    return file_path.indexOf("file://") != -1 ? file_path.substring(7) : file_path
+    var path = file_path.replace("file://", "")
+    return path
 }

@@ -92,6 +92,10 @@ play_sub_menu = [
     ("_play_operation_backward", _("Rewind"), (), (), config.hotkeysPlayBackward),
 ]
 
+screenshot_sub_menu = [
+    ("_screenshot_basic_screenshot", _("Movie screenshot"))
+]
+
 right_click_menu = [
     ("_open_file", _("Open a file"), (), (), config.hotkeysFilesOpenFile),
     ("_open_dir", _("Open a folder")),
@@ -107,6 +111,8 @@ right_click_menu = [
     ("_frame", _("Frame"), (), frame_sub_menu),
     ("_sound", _("Sound"), (), sound_sub_menu),
     ("_subtitle", _("Subtitles"), (), subtitle_sub_menu),
+    None,
+    ("_screenshot", _("Screenshot"), (), screenshot_sub_menu),
     None,
     ("_preferences", _("Settings")),
     ("_information", _("Information")),
@@ -228,6 +234,8 @@ class MenuController(QObject):
     audioTrackChanged = pyqtSignal(str, str, arguments=["id", "file"])
     loadAudioTrack = pyqtSignal()
     showSubtitleSettings = pyqtSignal()
+
+    basicScreenshot = pyqtSignal()
 
     playlistPlay = pyqtSignal()
     addItemToPlaylist = pyqtSignal()
@@ -364,6 +372,8 @@ class MenuController(QObject):
             self.volumeDown.emit()
         elif _id == "_sound_muted":
             self.volumeMuted.emit(_checked)
+        elif _id == "_screenshot_basic_screenshot":
+            self.basicScreenshot.emit()
         elif _id == "_subtitle_settings":
             self.showSubtitleSettings.emit()
         elif _id == "_preferences":
@@ -476,6 +486,8 @@ class MenuController(QObject):
         self.menu.getItemById("_subtitle_choose").isActive = \
             len(subtitles) != 0
         self.menu.getItemById("_subtitle_choose").setSubMenu(Menu(subtitles))
+
+        self.menu.getItemById("_screenshot").isActive = hasVideo
 
         self.menu.getItemById("_fullscreen_quit").text = _("Exit fullscreen") if \
             isFullscreen else _("Fullscreen")

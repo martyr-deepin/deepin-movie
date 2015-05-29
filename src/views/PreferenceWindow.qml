@@ -80,6 +80,11 @@ DPreferenceWindow {
                         "sectionId": "basic_time_span",
                         "sectionName": dsTr("Time span"),
                         "subSections": []
+                    },
+                    {
+                        "sectionId": "basic_screenshot",
+                        "sectionName": dsTr("Screenshot"),
+                        "subSections": []
                     }
                 ]
             },
@@ -108,6 +113,11 @@ DPreferenceWindow {
                         "subSections": []
                     },
                     {
+                        "sectionId": "keyboard_screenshot",
+                        "sectionName": "Screenshot",
+                        "subSections": []
+                    },
+                    {
                         "sectionId": "keyboard_other",
                         "sectionName": dsTr("Other"),
                         "subSections": []
@@ -119,11 +129,6 @@ DPreferenceWindow {
                 "sectionName": dsTr("Subtitle settings"),
                 "subSections": []
             },
-            // {
-            //     "sectionId": "screenshot",
-            //     "sectionName": "Screenshot",
-            //     "subSections": []
-            // },
             {
                 "sectionId": "about",
                 "sectionName": dsTr("About"),
@@ -156,7 +161,9 @@ DPreferenceWindow {
         }
 
         function checkShortcutsDuplication(entryName, shortcut) {
-            var keyboard_sections = [keyboard_playback, keyboard_frame_sound, keyboard_files, keyboard_subtitle]
+            var keyboard_sections = [keyboard_playback, keyboard_frame_sound,
+                                     keyboard_files, keyboard_subtitle,
+                                     keyboard_screenshot]
             for (var i = 0; i < keyboard_sections.length; i++) {
                 for (var j = 0; j < keyboard_sections[i].content.length; j++) {
                     var entry = keyboard_sections[i].content[j]
@@ -170,7 +177,9 @@ DPreferenceWindow {
         }
 
         function disableShortcut(entryName, shortcut) {
-            var keyboard_sections = [keyboard_playback, keyboard_frame_sound, keyboard_files, keyboard_subtitle]
+            var keyboard_sections = [keyboard_playback, keyboard_frame_sound,
+                                     keyboard_files, keyboard_subtitle,
+                                     keyboard_screenshot]
             for (var i = 0; i < keyboard_sections.length; i++) {
                 for (var j = 0; j < keyboard_sections[i].content.length; j++) {
                     var entry = keyboard_sections[i].content[j]
@@ -300,6 +309,28 @@ DPreferenceWindow {
                 text: config.playerForwardRewindStep
 
                 onValueChanged: config.playerForwardRewindStep = value + 0.0
+            }
+        }
+
+        SectionContent {
+            id: basic_screenshot
+            title: dsTr("Screenshot")
+            sectionId: "basic_screenshot"
+            showSep: false
+            topSpaceHeight: 10
+            bottomSpaceHeight: 10
+            anchors.left: parent.left
+            anchors.leftMargin: 5
+
+            FileInputRow {
+                title: dsTr("Save path")
+                text: config.playerScreenshotSavePath
+                transientWindow: window
+
+                onFileSet: {
+                    _settings.lastOpenedPath = path
+                    config.playerScreenshotSavePath = path
+                }
             }
         }
 
@@ -914,6 +945,43 @@ DPreferenceWindow {
 
                 onHotkeyCancelled: {
                     setShortcut(config.hotkeysSubtitlesSubtitleMoveDown)
+                    preference_view.enableShortcutInputs()
+                }
+            }
+        }
+        SectionContent {
+            id: keyboard_screenshot
+            title: dsTr("Screenshot")
+            sectionId: "keyboard_screenshot"
+            showSep: false
+            topSpaceHeight: 10
+            bottomSpaceHeight: 10
+            anchors.left: parent.left
+            anchors.leftMargin: 5
+
+            HotKeyInputRow {
+                title: dsTr("Subtitle down")
+                hotKey: config.hotkeysScreenshotScreenshot+""
+                actualSettingEntry: "hotkeysScreenshotScreenshot"
+
+                onHotkeySet: {
+                    var checkResult = preference_view.checkShortcutsDuplication(title, text)
+                    if (checkResult != null) {
+                        warning(checkResult[0], checkResult[1])
+                        preference_view.disableShortcutInputs()
+                    } else {
+                        setShortcut(text)
+                    }
+                }
+
+                onHotkeyReplaced: {
+                    preference_view.disableShortcut(title, text)
+                    setShortcut(text)
+                    preference_view.enableShortcutInputs()
+                }
+
+                onHotkeyCancelled: {
+                    setShortcut(config.hotkeysScreenshotScreenshot)
                     preference_view.enableShortcutInputs()
                 }
             }

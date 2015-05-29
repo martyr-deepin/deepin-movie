@@ -27,9 +27,7 @@ Connections {
     onToggleMiniMode: {
         main_controller.toggleMiniMode()
     }
-    onScreenShot: {
-        windowView.screenShot()
-    }
+    onBasicScreenshot: screenshot_engine.start()
     onProportionChanged: main_controller.setProportion(propWidth, propHeight)
     onScaleChanged: main_controller.setScale(scale)
     onStaysOnTop: {

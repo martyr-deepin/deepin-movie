@@ -34,8 +34,9 @@ from PyQt5.QtWidgets import QApplication
 from PyQt5.QtCore import QObject, QThread, pyqtSignal, pyqtSlot, pyqtProperty
 
 import font_utils
+import pic_utils
 from views.subtitles import *
-from dbus_interfaces import screenSaverInterface
+from dbus_interfaces import screenSaverInterface, notificationsInterface
 
 all_supported_video_exts = [ "*.3g2","*.3gp","*.3gp2","*.3gpp","*.amv",
                             "*.asf","*.avi","*.bin","*.divx","*.drc",
@@ -403,6 +404,19 @@ class Utils(QObject):
     @pyqtSlot()
     def screenSaverUninhibit(self):
         screenSaverInterface.uninhibit()
+
+    @pyqtSlot(str, str)
+    def notify(self, summary, body):
+        notificationsInterface.notify(summary, body)
+
+
+    @pyqtSlot(str, int, str)
+    def rotatePicture(self, src, rotation, dest):
+        pic_utils.rotatePicture(src, rotation, dest)
+
+    @pyqtSlot(str, bool, bool, str)
+    def flipPicture(self, src, flipHorizontal, flipVertical, dest):
+        pic_utils.flipPicture(src, flipHorizontal, flipVertical, dest)
 
 utils = Utils()
 

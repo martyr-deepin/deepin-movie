@@ -6,6 +6,7 @@ import Deepin.Locale 1.0
 import Deepin.Widgets 1.0
 
 import "./dlna"
+import "./toolbox"
 import "../controllers"
 import "sources/ui_utils.js" as UIUtils
 
@@ -651,6 +652,9 @@ Rectangle {
 
     MainController { id: main_controller; window: root }
 
+    PosterEngine { id: poster_engine }
+    ScreenshotEngine { id: screenshot_engine; saveDir: config.playerScreenshotSavePath }
+    PicturePreview { id: picture_preview }
     DLNAEngine { id: dlna_engine; anchors.fill: parent }
 
     Notifybar {

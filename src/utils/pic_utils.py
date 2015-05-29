@@ -21,6 +21,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
+from PIL import Image
 from PyQt5.QtGui import QIcon
 
 HOME_DIR = os.path.expanduser("~")
@@ -32,3 +33,15 @@ def icon_from_theme(theme_name, icon_name):
         ":/icons"])
     QIcon.setThemeName(theme_name)
     return QIcon.fromTheme(icon_name)
+
+def rotatePicture(src, rotation, dest):
+	img = Image.open(src)
+	img.rotate(rotation).save(dest)
+
+def flipPicture(src, flipHorizontal, flipVertical, dest):
+	img = Image.open(src)
+
+	if flipHorizontal: img = img.transpose(Image.FLIP_LEFT_RIGHT)
+	if flipVertical: img = img.transpose(Image.FLIP_TOP_BOTTOM)
+
+	img.save(dest)

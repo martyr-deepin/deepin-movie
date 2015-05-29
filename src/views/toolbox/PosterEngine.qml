@@ -74,8 +74,10 @@ Item {
     Connections {
         target: player.videoCapture
         onSaved: {
-            __stickers.push([UIUtils.formatTime(__lastPiece), path])
-            root._next()
+            if (__running) {
+                __stickers.push([UIUtils.formatTime(__lastPiece), path])
+                root._next()
+            }
         }
     }
 }
