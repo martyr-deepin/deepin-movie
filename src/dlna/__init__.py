@@ -20,7 +20,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import requests
 import subprocess
+from random import randint
 from uuid import uuid4
 
 from PyQt5.QtCore import QObject, pyqtProperty, pyqtSlot, pyqtSignal
@@ -31,18 +33,40 @@ from utils.i18n import _
 from dbus_services import DeepinMoviePrivateServie, DBUS_PATH
 from dbus_interfaces import RendererManagerInterface
 from dbus_interfaces import RendererRendererDeviceInterface
-from dbus_interfaces import RendererPushHostInterface
+# from dbus_interfaces import RendererPushHostInterface
 from dbus_interfaces import RendererMediaPlayerPlayerInterface
 
 import socket,fcntl,struct
 
 def get_ip_address(ifname):
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    return socket.inet_ntoa(fcntl.ioctl(
-                s.fileno(),
-                0x8915, # SIOCGIFADDR
-                struct.pack('256s', ifname[:15])
-                )[20:24])
+    try:
+        return socket.inet_ntoa(fcntl.ioctl(
+                                s.fileno(),
+                                0x8915, # SIOCGIFADDR
+                                struct.pack('256s', ifname[:15])
+                                )[20:24])
+    except:
+        return "127.0.0.1"
+
+class HostService(object):
+    def __init__(self):
+        self._ip_address = get_ip_address("wlan0")
+        self._port = randint(3000, 9000)
+        self._service = subprocess.Popen(["host_service.py",
+                            "-i", str(self._ip_address),
+                            "-p", str(self._port)],
+                            stdout=subprocess.PIPE,
+                            stderr=subprocess.PIPE)
+
+    def hostFile(self, file):
+        requests.get("http://%s:%s/host%s" %
+                    (self._ip_address, self._port, file))
+
+    def accessFile(self):
+        return "http://%s:%s/access" % (self._ip_address, self._port)
+
+host_service = HostService()
 
 class Renderer(QObject):
     nameChanged = pyqtSignal()
@@ -74,17 +98,20 @@ class Renderer(QObject):
 
         self._device = RendererRendererDeviceInterface(self._path)
         self._player = RendererMediaPlayerPlayerInterface(self._path)
-        self._push_host = RendererPushHostInterface(self._path)
+        # self._push_host = RendererPushHostInterface(self._path)
 
     @pyqtSlot(str)
     def playPath(self, path):
-        uri = self._push_host.hostFile(path)
+        # uri = self._push_host.hostFile(path)
+        host_service.hostFile(path)
+        uri = host_service.accessFile()
         self._player.openUri(uri)
         self._player.play()
 
     @pyqtSlot(str)
     def removePath(self, path):
-        self._push_host.removeFile(path)
+        # self._push_host.removeFile(path)
+        pass
 
     @pyqtSlot()
     def stop(self):
@@ -155,11 +182,7 @@ class DLNAController(QObject):
                 bus.registerService(self._dbus_name)
                 bus.registerObject(DBUS_PATH, self._dbus_service)
 
-            try:
-                ip_address = get_ip_address("wlan0")
-            except:
-                ip_address = "127.0.0.1"
-
+            ip_address = get_ip_address("wlan0")
             self._daemon_pid = subprocess.Popen(["deepin-dlna-renderer",
                 "-I", ip_address,
                 "-f", self.rendererName,
