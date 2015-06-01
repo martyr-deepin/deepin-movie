@@ -28,6 +28,7 @@ Depends: ${shlibs:Depends},
  deepin-menu,
  deepin-qml-widgets,
  libfontconfig1,
- dleyna-renderer
+ dleyna-renderer,
+ deepin-dlna-renderer
 Description: deepin movie for linuxdeepin desktop environment
  Deepin movie with linuxdeepin desktop environment.
