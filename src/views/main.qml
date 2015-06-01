@@ -487,7 +487,9 @@ Rectangle {
 
         onStatusChanged: {
             if (status == MediaPlayer.Buffering) {
-                notifybar.showPermanently(dsTr("Buffering..."))
+                if (!notifybar.visible) {
+                    notifybar.showPermanently(dsTr("Buffering..."))
+                }
             } else if (notifybar.text == dsTr("Buffering...")) {
                 notifybar.hide()
             }
