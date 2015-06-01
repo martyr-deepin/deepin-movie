@@ -1,5 +1,6 @@
 import QtQuick 2.1
 import QtAV 1.5
+import QtGraphicalEffects 1.0
 
 Video {
     id: video
@@ -9,7 +10,13 @@ Video {
     abortOnTimeout: false
     visible: playbackState != MediaPlayer.StoppedState
 
-    subtitle.enabled: false
+    subtitle.autoLoad: false
+    subtitleText.z: glow.z + 1
+    subtitleText.style: Text.Normal
+    subtitleText.font.bold: false
+    subtitleText.anchors.leftMargin: 20
+    subtitleText.anchors.rightMargin: 20
+    subtitleText.anchors.bottomMargin: subtitleVerticalPosition * height + 30
     videoCodecPriority: ["VDPAU", "VAAPI", "FFmpeg"]
 
     property string sourceString: ""
@@ -18,14 +25,18 @@ Video {
     property bool hasMedia: hasVideo || hasAudio
     property string title: metaData.title ? metaData.title : ""
 
-    property alias subtitleContent: subtitle.text
-    property alias subtitleFontSize: subtitle.fontSize
-    property alias subtitleFontColor: subtitle.fontColor
-    property alias subtitleFontFamily: subtitle.fontFamily
-    property alias subtitleFontBorderSize: subtitle.fontBorderSize
-    property alias subtitleFontBorderColor: subtitle.fontBorderColor
-    property alias subtitleShow: subtitle.visible
+    property int subtitleFontSize
+    property color subtitleFontColor
+    property string subtitleFontFamily
+    property alias subtitleFontBorderSize: glow.radius
+    property alias subtitleFontBorderColor: glow.color
+    property bool subtitleShow: true
     property real subtitleVerticalPosition: 0.2
+
+    subtitle.enabled: subtitleShow
+    subtitleText.font.pixelSize: subtitleFontSize
+    subtitleText.color: subtitleFontColor
+    subtitleText.font.family: subtitleFontFamily
 
     property bool verticallyFlipped: flip.axis.x == 1
     property bool horizontallyFlipped: flip.axis.y == 1
@@ -69,6 +80,7 @@ Video {
     function reset() {
         source = ""
         sourceString = ""
+        subtitle.file = ""
         resetRotationFlip()
     }
 
@@ -157,14 +169,12 @@ Video {
         angle: 180
     }
 
-    DSubtitle {
-        id: subtitle
-
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-        anchors.leftMargin: 20
-        anchors.rightMargin: 20
-        anchors.bottomMargin: parent.subtitleVerticalPosition * (parent.height - subtitle.height - 30)
+    Glow {
+        id: glow
+        anchors.fill: subtitleText
+        spread: 1
+        samples: 16
+        source: subtitleText
+        visible: radius != 0 && video.subtitleShow
     }
 }

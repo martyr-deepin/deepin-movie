@@ -26,7 +26,6 @@ from PyQt5.QtCore import QObject, pyqtSlot, pyqtSignal, pyqtProperty
 from PyQt5.QtGui import QCursor
 from deepin_menu.menu import Menu, CheckableMenuItem
 
-from views.subtitles import get_subtitle_from_movie
 from utils.config import *
 from utils.i18n import _
 from utils.utils import utils
@@ -480,7 +479,7 @@ class MenuController(QObject):
         self.menu.getItemById("_sound_muted").checked = bool(config.playerMuted)
 
         self.menu.getItemById("_subtitle_hide").checked = not subtitleVisible
-        subtitles = get_subtitle_from_movie(videoSource)
+        subtitles = utils.getSubtitlesFromVideo(videoSource)
         subtitles = _subtitle_menu_items_from_files(subtitles, subtitleFile, \
             videoSource)
         self.menu.getItemById("_subtitle_choose").isActive = \

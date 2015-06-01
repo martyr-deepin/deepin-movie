@@ -62,16 +62,16 @@ MouseArea {
     }
 
     Connections {
-        target: _subtitle_parser
-        onFileNameChanged: {
+        target: player.subtitle
+        onFileChanged: {
             _database.setPlaylistItemSubtitle(player.sourceString,
-                                              _subtitle_parser.file_name,
-                                              _subtitle_parser.delay)
+                                              player.subtitle.file,
+                                              player.subtitle.delay)
         }
         onDelayChanged: {
             _database.setPlaylistItemSubtitle(player.sourceString,
-                                              _subtitle_parser.file_name,
-                                              _subtitle_parser.delay)
+                                              player.subtitle.file,
+                                              player.subtitle.delay)
         }
     }
 
@@ -274,7 +274,7 @@ MouseArea {
         var stateInfo = {
             "videoSource": player.sourceString,
             "hasVideo": player.hasVideo,
-            "subtitleFile": _subtitle_parser.file_name,
+            "subtitleFile": player.subtitle.file,
             "subtitleVisible": player.subtitleShow,
             "isFullscreen": windowView.getState() == Qt.WindowFullScreen,
             "isMiniMode": root.isMiniMode,
@@ -725,27 +725,27 @@ MouseArea {
     function subtitleMoveDown() { setSubtitleVerticalPosition(config.subtitleVerticalPosition - 0.05)}
 
     function subtitleForward() {
-        if (_subtitle_parser.file_name) {
-            _subtitle_parser.delay = Math.max(program_constants.minSubtitleDelay * 1000,
-                                              _subtitle_parser.delay - config.subtitleDelayStep * 1000)
+        if (player.subtitle.file) {
+            player.subtitle.delay = Math.max(program_constants.minSubtitleDelay * 1000,
+                                             player.subtitle.delay - config.subtitleDelayStep * 1000)
 
-            var delay = Math.abs((_subtitle_parser.delay / 1000).toFixed(1))
-            if (_subtitle_parser.delay < 0) {
+            var delay = Math.abs((player.subtitle.delay / 1000).toFixed(1))
+            if (player.subtitle.delay < 0) {
                 notifybar.show(dsTr("Subtitle advanced %1 seconds").arg(delay))
-            } else if (_subtitle_parser.delay > 0) {
+            } else if (player.subtitle.delay > 0) {
                 notifybar.show(dsTr("Subtitle delayed %1 seconds").arg(delay))
             }
         }
     }
     function subtitleBackward() {
-        if (_subtitle_parser.file_name) {
-            _subtitle_parser.delay = Math.min(program_constants.maxSubtitleDelay * 1000,
-                                              _subtitle_parser.delay + config.subtitleDelayStep * 1000)
+        if (player.subtitle.file) {
+            player.subtitle.delay = Math.min(program_constants.maxSubtitleDelay * 1000,
+                                              player.subtitle.delay + config.subtitleDelayStep * 1000)
 
-            var delay = Math.abs((_subtitle_parser.delay / 1000).toFixed(1))
-            if (_subtitle_parser.delay < 0) {
+            var delay = Math.abs((player.subtitle.delay / 1000).toFixed(1))
+            if (player.subtitle.delay < 0) {
                 notifybar.show(dsTr("Subtitle advanced %1 seconds").arg(delay))
-            } else if (_subtitle_parser.delay > 0) {
+            } else if (player.subtitle.delay > 0) {
                 notifybar.show(dsTr("Subtitle delayed %1 seconds").arg(delay))
             }
         }
@@ -758,7 +758,7 @@ MouseArea {
                 main_controller.playPath(_utils.getVideoFromSubtitle(subtitle))
             }
 
-            _subtitle_parser.file_name = subtitle
+            player.subtitle.file = subtitle
         }
     }
 

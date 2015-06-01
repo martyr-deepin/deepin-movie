@@ -60,7 +60,6 @@ app.installTranslator(appTranslator)
 app.setQuitOnLastWindowClosed(True)
 
 from views.window import Window
-from views.subtitles import Parser
 from models.playlist import database
 from utils.config import config
 from utils.poster_generator import PosterGenerator
@@ -89,7 +88,6 @@ if __name__ == "__main__":
     menu_controller = MenuController()
     file_monitor = FileMonitor()
     findVideoThreadManager = FindVideoThreadManager()
-    subtitleParser = Parser()
     settings = DMSettings()
     dlnaController = DLNAController(config.playerAcceptWirelessPush)
     app._extra_window = weakref.ref(windowView)
@@ -108,7 +106,6 @@ if __name__ == "__main__":
     qml_context.setContextProperty("_file_monitor", file_monitor)
     qml_context.setContextProperty("_database", database)
     qml_context.setContextProperty("windowView", windowView)
-    qml_context.setContextProperty("_subtitle_parser", subtitleParser)
     qml_context.setContextProperty("_menu_controller", menu_controller)
     qml_context.setContextProperty("_dlna_controller", dlnaController)
 

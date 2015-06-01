@@ -323,7 +323,6 @@ Rectangle {
         bg.visible = true
         root.state = "normal"
         root.resetWindowSize()
-        _subtitle_parser.file_name = ""
 
         player.reset()
         titlebar.reset()
@@ -538,8 +537,7 @@ Rectangle {
         }
 
         onPositionChanged: {
-            position != 0 && (lastVideoPosition = position)
-            subtitleContent = _subtitle_parser.get_subtitle_at(position)
+            (position != 0) && (lastVideoPosition = position)
             controlbar.percentage = position / player.duration
         }
 
@@ -568,16 +566,16 @@ Rectangle {
                         delay = subtitleObj["delay"]
 
                         if (path) {
-                            main_controller.setSubtitle(path)
-                            if (delay) _subtitle_parser.delay = delay
+                            player.subtitle.file = path
+                            if (delay) player.subtitle.delay = delay
                         } else {
-                            _subtitle_parser.set_subtitle_from_movie(player.sourceString)
+                            player.subtitle.file = _utils.getSubtitlesFromVideo(player.sourceString)[0]
                         }
                     } catch(e) {
-                        _subtitle_parser.set_subtitle_from_movie(player.sourceString)
+                        player.subtitle.file = _utils.getSubtitlesFromVideo(player.sourceString)[0]
                     }
                 } else {
-                    _subtitle_parser.file_name = ""
+                    player.subtitle.file = ""
                 }
                 loadSubtitle = true
 

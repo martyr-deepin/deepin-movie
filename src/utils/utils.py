@@ -35,7 +35,8 @@ from PyQt5.QtCore import QObject, QThread, pyqtSignal, pyqtSlot, pyqtProperty
 
 import font_utils
 import pic_utils
-from views.subtitles import *
+from sub_utils import FILE_TYPE_ASS, FILE_TYPE_SRT
+from sub_utils import get_file_type, get_subtitle_from_movie
 from dbus_interfaces import screenSaverInterface, notificationsInterface
 
 all_supported_video_exts = [ "*.3g2","*.3gp","*.3gp2","*.3gpp","*.amv",
@@ -359,6 +360,10 @@ class Utils(QObject):
     @pyqtSlot(result="QVariant")
     def getSystemFonts(self):
         return font_utils.getSystemFonts()
+
+    @pyqtSlot(str, result="QVariant")
+    def getSubtitlesFromVideo(self, video):
+        return get_subtitle_from_movie(video)
 
     @pyqtSlot(str, result=str)
     def getVideoFromSubtitle(self, subtitle):
