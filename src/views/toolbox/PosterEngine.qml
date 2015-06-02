@@ -36,6 +36,7 @@ Item {
 
     function start() {
         hideControls()
+        notifybar.showPermanently(dsTr("Plot burst shooting, please wait..."))
 
         __running = true
         // player.pause()
@@ -49,6 +50,10 @@ Item {
             __lastPiece = piece
             player.seek(piece)
         } else {
+            if (notifybar.text == dsTr("Plot burst shooting, please wait...")) {
+                notifybar.hide()
+            }
+
             poster_generator.title = _utils.getTitleFromUrl(player.sourceString)
             poster_generator.duration = UIUtils.formatTime(player.duration)
             poster_generator.resolution = "%1x%2".arg(player.resolution.width).arg(player.resolution.height)
