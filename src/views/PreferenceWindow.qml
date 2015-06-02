@@ -960,7 +960,7 @@ DPreferenceWindow {
             anchors.leftMargin: 5
 
             HotKeyInputRow {
-                title: dsTr("Subtitle down")
+                title: dsTr("Screenshot")
                 hotKey: config.hotkeysScreenshotScreenshot+""
                 actualSettingEntry: "hotkeysScreenshotScreenshot"
 
@@ -982,6 +982,33 @@ DPreferenceWindow {
 
                 onHotkeyCancelled: {
                     setShortcut(config.hotkeysScreenshotScreenshot)
+                    preference_view.enableShortcutInputs()
+                }
+            }
+
+            HotKeyInputRow {
+                title: dsTr("Plot burst shooting")
+                hotKey: config.hotkeysScreenshotBurstShooting+""
+                actualSettingEntry: "hotkeysScreenshotBurstShooting"
+
+                onHotkeySet: {
+                    var checkResult = preference_view.checkShortcutsDuplication(title, text)
+                    if (checkResult != null) {
+                        warning(checkResult[0], checkResult[1])
+                        preference_view.disableShortcutInputs()
+                    } else {
+                        setShortcut(text)
+                    }
+                }
+
+                onHotkeyReplaced: {
+                    preference_view.disableShortcut(title, text)
+                    setShortcut(text)
+                    preference_view.enableShortcutInputs()
+                }
+
+                onHotkeyCancelled: {
+                    setShortcut(config.hotkeysScreenshotBurstShooting)
                     preference_view.enableShortcutInputs()
                 }
             }

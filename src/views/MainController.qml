@@ -763,6 +763,7 @@ MouseArea {
     }
 
     function screenshot() { screenshot_engine.start() }
+    function burstShooting() { poster_engine.start() }
 
     function doSingleClick() {
         if (config.othersLeftClick) {

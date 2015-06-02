@@ -83,7 +83,8 @@ DEFAULT_CONFIG = [
     ("playPrevious", "PgUp", str),
     ("playNext", "PgDown", str),]),
 ("HotkeysScreenshot", [("hotkeyEnabled", True, bool),
-    ("screenshot", "Alt+A", str),]),
+    ("screenshot", "Alt+A", str),
+    ("burstShooting", "Alt+S", str),]),
 ("Subtitle", [("autoLoad", True, bool),
     ("fontSize", 20, float),
     ("fontFamily", "", str),
@@ -163,8 +164,9 @@ class Config(QObject):
         self._addNewEntry("Subtitle", "delayStep")
         self._addNewEntry("Player", "hardwareAcceleration")
         self._addNewEntry("Player", "acceptWirelessPush")
-        self._addNewEntry("HotkeysScreenshot", "screenshot")
         self._addNewEntry("Player", "screenshotSavePath")
+        self._addNewEntry("HotkeysScreenshot", "screenshot")
+        self._addNewEntry("HotkeysScreenshot", "burstShooting")
 
     def _addNewEntry(self, section, key):
         value = self.fetch(section, key)
