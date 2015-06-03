@@ -29,6 +29,7 @@ from PyQt5.QtCore import QObject, pyqtProperty, pyqtSlot, pyqtSignal
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtDBus import QDBusConnection
 
+from utils.utils import utils
 from utils.i18n import _
 from dbus_services import DeepinMoviePrivateServie, DBUS_PATH
 from dbus_interfaces import RendererManagerInterface
@@ -103,8 +104,11 @@ class Renderer(QObject):
     @pyqtSlot(str)
     def playPath(self, path):
         # uri = self._push_host.hostFile(path)
-        host_service.hostFile(path)
-        uri = host_service.accessFile()
+        if utils.fileIsValidVideo(path):
+            host_service.hostFile(path)
+            uri = host_service.accessFile()
+        else:
+            uri = path
         self._player.openUri(uri)
         self._player.play()
 
