@@ -1,5 +1,5 @@
 import QtQuick 2.1
-import QtAV 1.5
+import QtAV 1.6
 import "../controllers"
 import "sources/ui_utils.js" as UIUtils
 

@@ -1,5 +1,5 @@
 import QtQuick 2.1
-import QtAV 1.5
+import QtAV 1.6
 import QtGraphicalEffects 1.0
 import QtQuick.Window 2.1
 import Deepin.Locale 1.0
@@ -10,10 +10,9 @@ import "./toolbox"
 import "../controllers"
 import "sources/ui_utils.js" as UIUtils
 
-Rectangle {
+Item {
     id: root
     state: "normal"
-    color: "transparent"
 
     // this property will be set when the window's initializing its size,
     // and will be changed only when the resolution of the player changes.
@@ -25,7 +24,10 @@ Rectangle {
     property bool shouldAutoPlayNextOnInvalidFile: false
 
     property rect primaryRect: {
-        return Qt.rect(0, 0, Screen.desktopAvailableWidth, Screen.desktopAvailableHeight)
+        return Qt.rect(
+            0, 0,
+            Screen.desktopAvailableWidth,
+            Screen.desktopAvailableHeight)
     }
 
     // Used to check wether the player is stopped by the app or by the user,
