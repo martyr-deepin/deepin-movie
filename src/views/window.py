@@ -32,7 +32,7 @@ from xpybutil.ewmh import (c, atom, request_wm_state_checked,
 from PyQt5.QtCore import Qt, QSize
 from PyQt5.QtQuick import QQuickView
 from PyQt5.QtCore import pyqtSlot, pyqtProperty, pyqtSignal
-from PyQt5.QtGui import QSurfaceFormat, QColor, QPixmap, QCursor
+from PyQt5.QtGui import QSurfaceFormat, QColor, QCursor
 from utils.constants import (DEFAULT_WIDTH, DEFAULT_HEIGHT, WINDOW_GLOW_RADIUS,
     MINIMIZE_WIDTH, MINIMIZE_HEIGHT)
 from utils.i18n import _
@@ -43,6 +43,9 @@ class Window(QQuickView):
 
     staysOnTopChanged = pyqtSignal()
     centerRequestCountChanged = pyqtSignal()
+
+    windowPressed = pyqtSignal()
+    windowReleased = pyqtSignal()
 
     def __init__(self, center=False):
         QQuickView.__init__(self)
@@ -184,12 +187,10 @@ class Window(QQuickView):
     def focusWindowChangedSlot(self, win):
         if not win: self.rootObject().hideTransientWindows()
 
-    @pyqtSlot()
-    def screenShot(self):
-        self.rootObject().hideControls()
+    def mousePressEvent(self, mouseEvent):
+        self.windowPressed.emit()
+        super(Window, self).mousePressEvent(mouseEvent)
 
-        import tempfile
-        path = "%s.png" % tempfile.mktemp()
-        print path
-        p = QPixmap.fromImage(self.grabWindow())
-        p.save(path)
+    def mouseReleaseEvent(self, mouseEvent):
+        self.windowReleased.emit()
+        super(Window, self).mouseReleaseEvent(mouseEvent)

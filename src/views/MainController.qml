@@ -75,6 +75,11 @@ MouseArea {
         }
     }
 
+    Connections {
+        target: windowView
+        onWindowPressed: toolbox.visible = false
+    }
+
     Timer {
         id: seek_to_last_watched_timer
         interval: 300
