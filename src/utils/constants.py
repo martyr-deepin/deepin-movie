@@ -33,11 +33,11 @@ XDG_CONFIG_HOME = os.environ.get('XDG_CONFIG_HOME') or \
             os.path.join(_HOME, '.config')
 PROJECT_NAME = "deepin-movie"
 CONFIG_DIR = os.path.join(XDG_CONFIG_HOME, PROJECT_NAME)
+PROJECT_DIR = parent_dir(parent_dir(parent_dir(os.path.abspath(__file__))))
 DEFAULT_SCREENSHOT_DIR = os.path.join(
 	QStandardPaths.writableLocation(QStandardPaths.PicturesLocation),
 	_("Deepin Movie"))
-MAIN_QML = os.path.join(parent_dir(parent_dir(os.path.abspath(__file__))),
-    'views', 'main.qml')
+MAIN_QML = os.path.join(PROJECT_DIR, "src", 'views', 'main.qml')
 DATABASE_FILE = os.path.join(CONFIG_DIR, "data.db")
 PLAYLIST_CACHE_FILE = os.path.join(CONFIG_DIR, "playlist.cache")
 
