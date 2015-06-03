@@ -484,9 +484,9 @@ MouseArea {
     }
 
     // player control operation related
-    function play() { player.play() }
-    function pause() { player.pause() }
-    function stop() { player.stop() }
+    function play() { if (!poster_engine.running && !dlna_engine.sharing) player.play() }
+    function pause() { if (!poster_engine.running && !dlna_engine.sharing) player.pause() }
+    function stop() { if (!poster_engine.running && !dlna_engine.sharing) player.stop() }
 
     function togglePlay() {
         if (player.hasMedia && player.source != "") {
