@@ -1080,6 +1080,11 @@ DPreferenceWindow {
             topSpaceHeight: 10
             bottomSpaceHeight: 10
 
+            LabelRow {
+                visible: player.subtitle.canRender
+                title: dsTr("(The setting is invalid for effect subtitles)")
+            }
+
             DCheckBox {
                 id: subtitle_auto_load_checkbox
                 text: dsTr("Subtitles loaded automatically")
