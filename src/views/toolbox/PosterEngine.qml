@@ -13,6 +13,7 @@ Item {
     property int __lastPiece: 0
     property int __lastPieceIndex: -1
     property var __stickers: []
+    property int __startPosition: 0
 
     property string stickersDir: "/tmp/deepin-movie-poster"
 
@@ -40,6 +41,7 @@ Item {
         notifybar.showPermanently(dsTr("Plot burst shooting, please wait..."))
 
         __running = true
+        __startPosition = player.position
         // player.pause()
         _next()
     }
@@ -67,10 +69,14 @@ Item {
             poster_generator.resolution = "%1x%2".arg(player.resolution.width).arg(player.resolution.height)
             poster_generator.size = UIUtils.formatSize(player.storageSize)
 
-            var image = poster_generator.generate(__stickers, savePath)
-            picture_preview.showPicture(image,
+            poster_generator.generate(__stickers, savePath)
+            picture_preview.showPicture(savePath,
                 poster_generator.imageWidth,
                 poster_generator.imageHeight)
+
+
+            root.reset()
+            player.seek(__startPosition)
         }
     }
 
