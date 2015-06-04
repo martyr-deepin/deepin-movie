@@ -11,7 +11,21 @@ DWindow {
 
     property alias picture: img.source
 
+    property int topMargin: 40
+    property int bottomMargin: 26
+
+    function showPicture(picture, width, height) {
+        root.width = width + (frame.frameRadius + frame.shadowRadius) * 2 + 2
+        root.height = Math.min(height + (frame.frameRadius + frame.shadowRadius) * 2 + 2,
+            primaryRect.height - topMargin - bottomMargin)
+        root.x = (primaryRect.width - root.width) / 2
+        root.y = topMargin + (primaryRect.height - topMargin - bottomMargin - root.height)  / 2
+        root.picture = picture
+        root.show()
+    }
+
     DWindowFrame {
+        id: frame
         width: root.width
         height: root.height
         frame.color: Qt.rgba(0, 0, 0, 0.5)
@@ -40,7 +54,7 @@ DWindow {
                 }
 
                 onImplicitWidthChanged: {
-                    height = Math.min(parent.height, implicitWidth)
+                    height = Math.min(parent.height, implicitHeight)
                     width = height * implicitWidth / implicitHeight
                     customScale = width / implicitWidth
 
@@ -60,7 +74,7 @@ DWindow {
                 drag.maximumY: 0
 
                 onWheel: {
-                    var step = 0.01
+                    var step = 0.05
                     var customScale_old = img.customScale
                     var xDelta = (wheel.x - img.x) / img.width * step * img.implicitWidth
                     var yDelta = (wheel.y - img.y) / img.height * step * img.implicitHeight

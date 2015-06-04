@@ -32,6 +32,8 @@ class PosterGenerator(QObject):
     def __init__(self, parent):
         super(PosterGenerator, self).__init__(parent)
         self._info = {}
+        self._imageWidth = 0
+        self._imageHeight = 0
 
         self._stickersHSpacing = 11
         self._stickersVSpacing = 28
@@ -97,6 +99,14 @@ class PosterGenerator(QObject):
     def size(self, value):
         self._info["size"] = value
 
+    @pyqtProperty(int)
+    def imageWidth(self):
+        return self._imageWidth
+
+    @pyqtProperty(int)
+    def imageHeight(self):
+        return self._imageHeight
+
     def _calculateResolution(self):
         _resolution = self.resolution.split("x")
 
@@ -127,13 +137,13 @@ class PosterGenerator(QObject):
 
     def _calculateSize(self):
         _stickerSize = self._calculateStickerSize()
-        _width = 600
-        _height = self._infoAreaHeight \
-                  + _stickerSize.height() * 5 \
-                  + self._stickersVSpacing * 4 \
-                  + self._stickersBottomMargin
+        self._imageWidth = 600
+        self._imageHeight = self._infoAreaHeight \
+                            + _stickerSize.height() * 5 \
+                            + self._stickersVSpacing * 4 \
+                            + self._stickersBottomMargin
 
-        return QSize(_width, _height)
+        return QSize(self._imageWidth, self._imageHeight)
 
     def _drawText(self, painter, text, rect, fontColor, fontSize):
         _font = painter.font()

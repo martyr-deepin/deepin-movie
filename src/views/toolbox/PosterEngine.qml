@@ -60,8 +60,9 @@ Item {
             poster_generator.size = UIUtils.formatSize(player.storageSize)
 
             var image = poster_generator.generate(__stickers)
-            picture_preview.picture = image
-            picture_preview.show()
+            picture_preview.showPicture(image,
+                poster_generator.imageWidth,
+                poster_generator.imageHeight)
         }
     }
 

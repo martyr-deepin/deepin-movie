@@ -283,8 +283,8 @@ Item {
 
     // handle transient windows state
     function hideTransientWindows() {
-        shortcuts_viewer.hide()
-        resize_visual.hide()
+        shortcuts_viewer && shortcuts_viewer.hide()
+        resize_visual && resize_visual.hide()
     }
 
     function subtitleVisible() {
