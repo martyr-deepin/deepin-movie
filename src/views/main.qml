@@ -569,18 +569,16 @@ Item {
                         var subtitleObj = JSON.parse(subtitleInfo)
                         path = subtitleObj["path"]
                         delay = subtitleObj["delay"]
+                    } catch(e) {}
 
-                        if (path) {
-                            player.subtitle.file = path
-                            if (delay) player.subtitle.delay = delay
-                        } else {
-                            player.subtitle.file = _utils.getSubtitlesFromVideo(player.sourceString)[0]
-                        }
-                    } catch(e) {
-                        player.subtitle.file = _utils.getSubtitlesFromVideo(player.sourceString)[0]
+
+                    if (path) {
+                        player.subtitle.file = path
+                        if (delay) player.subtitle.delay = delay
+                    } else {
+                        path = _utils.getSubtitlesFromVideo(player.sourceString)[0]
+                        if (path) player.subtitle.file = path
                     }
-                } else {
-                    player.subtitle.file = ""
                 }
                 loadSubtitle = true
 
