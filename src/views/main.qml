@@ -233,7 +233,9 @@ Item {
 
     function initWindowSize() {
         resetWindowSize()
-        root.widthHeightScale = (windowView.width - windowView.windowGlowRadius * 2) / (windowView.height - windowView.windowGlowRadius * 2)
+        var _width = windowView.width - windowView.windowGlowRadius * 2
+        var _height = windowView.height - windowView.windowGlowRadius * 2
+        root.widthHeightScale = _width / _height
 
         if (config.playerApplyLastClosedSize) {
             hasResized = true
@@ -510,10 +512,11 @@ Item {
                 }
             }
 
+            var title = _utils.getVideoTitleFromUri(player.sourceString)
             playerInit = false
             notifybar.hide()
             auto_play_next_on_invalid_timer.stop()
-            main_controller.setWindowTitle(_utils.getTitleFromUrl(player.sourceString))
+            main_controller.setWindowTitle(title)
 
             _utils.screenSaverInhibit()
 
@@ -657,7 +660,7 @@ Item {
 
     MainController { id: main_controller; window: root }
 
-    PosterEngine { id: poster_engine }
+    PosterEngine { id: poster_engine; saveDir: config.playerScreenshotSavePath }
     ScreenshotEngine { id: screenshot_engine; saveDir: config.playerScreenshotSavePath }
     PicturePreview { id: picture_preview }
     DLNAEngine { id: dlna_engine; anchors.fill: parent }

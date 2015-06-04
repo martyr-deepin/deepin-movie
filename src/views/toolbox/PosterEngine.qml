@@ -6,6 +6,7 @@ import "../sources/ui_utils.js" as UIUtils
 Item {
     id: root
 
+    property string saveDir: _utils.homeDir
     property int pieceCount: 15
 
     property bool __running: false
@@ -54,12 +55,19 @@ Item {
                 notifybar.hide()
             }
 
-            poster_generator.title = _utils.getTitleFromUrl(player.sourceString)
+            var saveName = _utils.getVideoTitleFromUri(player.sourceString)
+                           + " " + dsTr("Plot Burst Shooting")
+                           + " " + Qt.formatDateTime(new Date(), "yyyyMMddhhmmss")
+                           + ".png"
+
+            var savePath = saveDir + "/" + saveName
+
+            poster_generator.title = _utils.getFileNameFromUri(player.sourceString)
             poster_generator.duration = UIUtils.formatTime(player.duration)
             poster_generator.resolution = "%1x%2".arg(player.resolution.width).arg(player.resolution.height)
             poster_generator.size = UIUtils.formatSize(player.storageSize)
 
-            var image = poster_generator.generate(__stickers)
+            var image = poster_generator.generate(__stickers, savePath)
             picture_preview.showPicture(image,
                 poster_generator.imageWidth,
                 poster_generator.imageHeight)

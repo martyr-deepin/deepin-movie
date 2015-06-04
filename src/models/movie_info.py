@@ -54,7 +54,7 @@ class MovieInfo(object):
 
     @property
     def movie_title(self):
-        return utils.getTitleFromUrl(self.filepath)
+        return utils.getFileNameFromUri(self.filepath)
 
     @property
     def movie_type(self):

@@ -185,8 +185,8 @@ class PosterGenerator(QObject):
             - _rect.height()
         painter.drawText(QPoint(x, y), _timestamp)
 
-    @pyqtSlot("QVariant", result=str)
-    def generate(self, stickers):
+    @pyqtSlot("QVariant", str)
+    def generate(self, stickers, destPath):
         size = self._calculateSize()
 
         pixmap = QPixmap(size)
@@ -256,7 +256,4 @@ class PosterGenerator(QObject):
 
         painter.end()
 
-        fileName = "%s.png" % mktemp()
-        pixmap.save(fileName)
-
-        return fileName
+        pixmap.save(destPath)

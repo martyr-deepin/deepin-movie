@@ -223,10 +223,15 @@ class Utils(QObject):
         return os.path.exists(url.replace("file://", ""))
 
     @pyqtSlot(str, result=str)
-    def getTitleFromUrl(self, url):
-        url = url.replace("file://", "")
-        return os.path.basename(url) \
-            if self.urlIsNativeFile(url) else url
+    def getFileNameFromUri(self, uri):
+        uri = uri.replace("file://", "")
+        return os.path.basename(uri) \
+            if self.urlIsNativeFile(uri) else uri
+
+    @pyqtSlot(str, result=str)
+    def getVideoTitleFromUri(self, uri):
+        filename = self.getFileNameFromUri(uri)
+        return os.path.splitext(filename)[0]
 
     # all files here include dirs
     @pyqtSlot(str, result="QVariant")
