@@ -20,9 +20,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from tempfile import mktemp
-from PyQt5.QtCore import Qt, QObject, QSize, QPoint, QRect
 from PyQt5.QtCore import pyqtSlot, pyqtProperty
+from PyQt5.QtCore import Qt, QObject, QSize, QPoint, QRect
+from PyQt5.QtGui import QPen, QBrush, QPainterPath
 from PyQt5.QtGui import QPixmap, QPainter, QColor, QLinearGradient
 
 from i18n import _
@@ -40,8 +40,9 @@ class PosterGenerator(QObject):
         self._stickersLeftMargin = 22
         self._stickersBottomMargin = 40
         self._infoAreaHeight = 114
-        self._timestampRightMargin = 6
-        self._timestampBottomMargin = 6
+        self._timestampRightMargin = 3
+        # FIXME: don't know what's wrong with the FontMetrics.
+        self._timestampBottomMargin = -6
 
         self._iconPos = QPoint(16, 28)
         self._iconSize = QSize(64, 64)
@@ -169,9 +170,10 @@ class PosterGenerator(QObject):
 
         # draw timestamp
         _font = painter.font()
+        _font.setBold(True)
         _font.setPixelSize(12)
-        painter.setPen(QColor(255, 255, 255, 102))
-        painter.setFont(_font)
+        # painter.setPen(QColor(255, 255, 255, 102))
+        # painter.setFont(_font)
 
         fm = painter.fontMetrics()
         _rect = fm.boundingRect(rect, Qt.AlignTop | Qt.AlignLeft, _timestamp)
@@ -183,22 +185,27 @@ class PosterGenerator(QObject):
             + rect.height() \
             - self._timestampBottomMargin \
             - _rect.height()
-        painter.drawText(QPoint(x, y), _timestamp)
+
+        path = QPainterPath()
+        path.addText(x, y, _font, _timestamp)
+        painter.strokePath(path, QPen(QColor(0, 0, 0, 127)))
+        painter.fillPath(path, QBrush(QColor(255, 255, 255, 127)))
 
     @pyqtSlot("QVariant", str)
     def generate(self, stickers, destPath):
         size = self._calculateSize()
 
         pixmap = QPixmap(size)
-        pixmap.fill(Qt.black)
+        pixmap.fill(QColor("#121114"))
 
         painter = QPainter(pixmap)
+        painter.setRenderHint(QPainter.Antialiasing)
 
         # draw background
-        gradientRect = QRect(0, 0, size.width(), 646)
+        gradientRect = QRect(0, 0, size.width(), size.height() * 0.6)
         gradient = QLinearGradient(gradientRect.topLeft(),
                                    gradientRect.bottomLeft())
-        gradient.setColorAt(0.0, QColor(23, 66, 134, 43.35))
+        gradient.setColorAt(0.0, QColor(23, 65, 132, 43.35))
         gradient.setColorAt(1.0, QColor(0, 0, 0, 0))
 
         painter.fillRect(gradientRect, gradient)
