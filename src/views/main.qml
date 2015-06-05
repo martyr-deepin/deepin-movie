@@ -776,8 +776,8 @@ Item {
         visible: false
         anchors.right: parent.right
         anchors.bottom: controlbar.top
-        anchors.rightMargin: 36
-        anchors.bottomMargin: -43
+        anchors.rightMargin: 20
+        anchors.bottomMargin: -40
 
         onScreenshotButtonClicked: screenshot_engine.start()
         onBurstModeButtonClicked: poster_engine.start()
