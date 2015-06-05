@@ -23,6 +23,8 @@
 from PyQt5.QtCore import QVariant
 from PyQt5.QtDBus import QDBusAbstractInterface, QDBusConnection, QDBusReply
 
+from i18n import _
+
 SCREEN_SAVER_SERVICE = "org.freedesktop.ScreenSaver"
 SCREEN_SAVER_PATH = "/org/freedesktop/ScreenSaver"
 SCREEN_SAVER_INTERFACE = "org.freedesktop.ScreenSaver"
@@ -84,5 +86,19 @@ class NotificationsInterface(QDBusAbstractInterface):
         reply = QDBusReply(msg)
         return reply.value() if reply.isValid() else None
 
+class SocialSharingInterface(QDBusAbstractInterface):
+    def __init__(self):
+        super(SocialSharingInterface, self).__init__(
+            "com.deepin.SocialSharing",
+            "/com/deepin/SocialSharing",
+            "com.deepin.SocialSharing",
+            QDBusConnection.sessionBus(),
+            None)
+
+    def share(self, text, pic):
+        self.call("Share", _("Deepin Movie"),
+         "deepin-movie", text, pic)
+
 notificationsInterface = NotificationsInterface()
 screenSaverInterface = ScreenSaverInterface()
+socialSharingInterface = SocialSharingInterface()

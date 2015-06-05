@@ -37,6 +37,7 @@ import font_utils
 import pic_utils
 from sub_utils import FILE_TYPE_ASS, FILE_TYPE_SRT
 from sub_utils import get_file_type, get_subtitle_from_movie
+from dbus_interfaces import socialSharingInterface
 from dbus_interfaces import screenSaverInterface, notificationsInterface
 
 all_supported_video_exts = [ "*.3g2","*.3gp","*.3gp2","*.3gpp","*.amv",
@@ -419,6 +420,9 @@ class Utils(QObject):
     def notify(self, summary, body):
         notificationsInterface.notify(summary, body)
 
+    @pyqtSlot(str, str)
+    def socialShare(self, text, picture):
+        socialSharingInterface.share(text, picture)
 
     @pyqtSlot(str, int, str)
     def rotatePicture(self, src, rotation, dest):

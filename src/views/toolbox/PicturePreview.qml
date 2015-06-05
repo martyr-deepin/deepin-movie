@@ -9,10 +9,12 @@ DWindow {
     color: "transparent"
     flags: Qt.FramelessWindowHint
 
-    property alias picture: img.source
+    property string picture
 
     property int topMargin: 40
     property int bottomMargin: 26
+
+    signal shareButtonClicked(string picture)
 
     function showPicture(picture, width, height) {
         root.width = width + (frame.frameRadius + frame.shadowRadius) * 2 + 2
@@ -37,6 +39,7 @@ DWindow {
 
             AnimatedImage {
                 id: img
+                source: root.picture
 
                 property real customScale: 1
 
@@ -114,6 +117,18 @@ DWindow {
                             img.moveVCenter()
                         }
                     }
+                }
+            }
+
+            ShareButton {
+                anchors.right: parent.right
+                anchors.bottom: parent.bottom
+                anchors.rightMargin: 28
+                anchors.bottomMargin: 28
+
+                onClicked: {
+                    root.close()
+                    root.shareButtonClicked(root.picture)
                 }
             }
         }

@@ -660,8 +660,15 @@ Item {
 
     PosterEngine { id: poster_engine; saveDir: config.playerScreenshotSavePath }
     ScreenshotEngine { id: screenshot_engine; saveDir: config.playerScreenshotSavePath }
-    PicturePreview { id: picture_preview }
     DLNAEngine { id: dlna_engine; anchors.fill: parent }
+
+    PicturePreview {
+        id: picture_preview
+
+        onShareButtonClicked: {
+            _utils.socialShare("", picture)
+        }
+    }
 
     Notifybar {
         id: notifybar
