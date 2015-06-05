@@ -32,7 +32,7 @@ from PyQt5.QtDBus import QDBusConnection
 
 from utils.i18n import _
 from utils.utils import utils
-from utils.constants import PROJECT_DIR
+from utils.constants import PROGRAM_DIR
 from dbus_services import DeepinMoviePrivateServie, DBUS_PATH
 from dbus_interfaces import RendererManagerInterface
 from dbus_interfaces import RendererRendererDeviceInterface
@@ -56,8 +56,7 @@ class HostService(object):
     def __init__(self):
         self._ip_address = get_ip_address("wlan0")
         self._port = randint(3000, 9000)
-        self._service = subprocess.Popen(["python",
-                            os.path.join(PROJECT_DIR, "bin", "host_service.py"),
+        self._service = subprocess.Popen(["host_service.py",
                             "-i", str(self._ip_address),
                             "-p", str(self._port)],
                             stdout=subprocess.PIPE,
