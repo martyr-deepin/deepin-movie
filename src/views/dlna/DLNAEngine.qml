@@ -14,7 +14,7 @@ Item {
         width: 380
         height: childrenRect.height
         visible: root.sharing
-        spacing: 10
+        spacing: 20
 
         anchors.centerIn: parent
 
@@ -23,17 +23,24 @@ Item {
             width: parent.width
             color: "white"
 
-            wrapMode: Text.WordWrap
+            wrapMode: Text.Wrap
 
         }
 
-        DTransparentButton {
+        DTextButton {
             id: stop_sharing_button
+            // FIXME: DTextButton doesn't support user specified size
+            height: 32
             text: dsTr("Switch back")
             anchors.horizontalCenter: parent.horizontalCenter
 
             onClicked: stopSharing()
         }
+    }
+
+    function _trimMovieName(movieName) {
+        return movieName.length > 80 ? "%1...".arg(movieName.slice(0, 80))
+                                     : movieName
     }
 
     function showDevices() {
@@ -50,7 +57,7 @@ Item {
 
         root.sharing = true
         sharing_label.text = dsTr("The movie \"%1\" is being played on \"%2\".")
-                            .arg(player.sourceString)
+                            .arg(_trimMovieName(player.sourceString))
                             .arg(__currentRenderer.name)
 
         player.pause()
