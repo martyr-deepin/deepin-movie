@@ -29,7 +29,7 @@ from xpybutil.icccm import State
 from xpybutil.ewmh import (c, atom, request_wm_state_checked,
     request_active_window_checked, revent_checked )
 
-from PyQt5.QtCore import Qt, QSize
+from PyQt5.QtCore import Qt, QSize, QPoint
 from PyQt5.QtQuick import QQuickView
 from PyQt5.QtCore import pyqtSlot, pyqtProperty, pyqtSignal
 from PyQt5.QtGui import QSurfaceFormat, QColor, QCursor
@@ -44,8 +44,8 @@ class Window(QQuickView):
     staysOnTopChanged = pyqtSignal()
     centerRequestCountChanged = pyqtSignal()
 
-    windowPressed = pyqtSignal()
-    windowReleased = pyqtSignal()
+    windowPressed = pyqtSignal(int, int, arguments=["x", "y"])
+    windowReleased = pyqtSignal(int, int, arguments=["x", "y"])
 
     def __init__(self, center=False):
         QQuickView.__init__(self)
@@ -188,9 +188,9 @@ class Window(QQuickView):
         if not win: self.rootObject().hideTransientWindows()
 
     def mousePressEvent(self, mouseEvent):
-        self.windowPressed.emit()
+        self.windowPressed.emit(mouseEvent.x(), mouseEvent.y())
         super(Window, self).mousePressEvent(mouseEvent)
 
     def mouseReleaseEvent(self, mouseEvent):
-        self.windowReleased.emit()
+        self.windowReleased.emit(mouseEvent.x(), mouseEvent.y())
         super(Window, self).mouseReleaseEvent(mouseEvent)

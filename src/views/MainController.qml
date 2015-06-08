@@ -77,7 +77,14 @@ MouseArea {
 
     Connections {
         target: windowView
-        onWindowPressed: toolbox.visible = false
+        onWindowPressed: {
+            var point_controlbar = player.mapToItem(controlbar, x, y)
+            if (!controlbar.toolboxContains(point_controlbar.x,
+                                            point_controlbar.y))
+            {
+                controlbar.hideToolbox()
+            }
+        }
     }
 
     Timer {

@@ -2,6 +2,8 @@ import QtQuick 2.1
 import QtAV 1.6
 import QtGraphicalEffects 1.0
 import Deepin.Widgets 1.0
+
+import "./toolbox"
 import "sources/ui_utils.js" as UIUtils
 
 DragableArea {
@@ -20,6 +22,7 @@ DragableArea {
     property alias windowFullscreenState: toggle_fullscreen_button.checkFlag
     property alias status: buttonArea.state
     property alias dlnaDevicesAvailable: dlna_button.visible
+    property alias toolboxVisible: toolbox.visible
 
     property int previewBottomMargin: 10
     property int heightWithPreview: height - (main_column.y - previewBottomMargin) + videoPreview.height
@@ -42,24 +45,41 @@ DragableArea {
     signal nextButtonClicked ()
     signal toggleFullscreenClicked ()
     signal dlnaButtonClicked ()
-    signal toolboxButtonClicked ()
+    signal screenshotClicked ()
+    signal burstShootingClicked ()
 
     Behavior on opacity {
         NumberAnimation { duration: 300 }
     }
 
-    function show() {
-        visible = true
-    }
+    function show() { visible = true }
 
-    function hide() {
-        visible = false
-    }
+    function hide() { visible = false }
 
     function reset() {
         percentage = 0
         play_pause_button.checkFlag = false
         videoPreview.resetRotationFlip()
+    }
+
+    function hideToolbox() { toolbox.visible = false }
+
+    function toolboxContains(x, y) {
+        var point = Qt.point(x, y)
+        var toolkit_button_rect = toolkit_button.parent.mapToItem(
+            control_bar,
+            toolkit_button.x,
+            toolkit_button.y,
+            toolkit_button.width,
+            toolkit_button.height)
+        var toolbox_rect = toolbox.parent.mapToItem(
+            control_bar,
+            toolbox.x,
+            toolbox.y,
+            toolbox.width,
+            toolbox.height)
+        return UIUtils.inRectCheck(point, toolkit_button_rect)
+               || UIUtils.inRectCheck(point, toolbox_rect)
     }
 
     function showPreview(mouseX, percentage, mode) {
@@ -131,6 +151,16 @@ DragableArea {
             Preview {
                 id: videoPreview
                 visible: false
+            }
+
+            Toolbox {
+                id: toolbox
+                x: progressbar.width - width / 2 - 122
+                y: -height + 26
+                visible: false
+
+                onScreenshotButtonClicked: control_bar.screenshotClicked()
+                onBurstModeButtonClicked: control_bar.burstShootingClicked()
             }
 
             onMouseOver: { control_bar.showPreview(mouseX, percentage,  "normal") }
@@ -366,6 +396,7 @@ DragableArea {
                 }
 
                 ImageButton {
+                    id: toolkit_button
                     tooltip: dsTr("Toolkit")
                     tooltipItem: control_bar.tooltipItem
 
@@ -374,7 +405,8 @@ DragableArea {
                     press_image: "image/toolbox_hover_press.svg"
 
                     anchors.verticalCenter: parent.verticalCenter
-                    onClicked: control_bar.toolboxButtonClicked()
+
+                    onClicked: toolbox.visible = !toolbox.visible
                 }
 
                 ImageButton {

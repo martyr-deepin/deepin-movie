@@ -415,10 +415,12 @@ Item {
             if (!mouseInControlsArea()
                 && player.source
                 && player.hasVideo
-                && !toolbox.visible) {
+                && !controlbar.toolboxVisible) {
                 hideControls()
 
-                if (player.playbackState == MediaPlayer.PlayingState && windowView.active) {
+                if (player.playbackState == MediaPlayer.PlayingState
+                    && windowView.active)
+                {
                     windowView.setCursorVisible(false)
                 }
             } else {
@@ -776,22 +778,9 @@ Item {
                 delay_seek_timer.restart()
             }
         }
-        onDlnaButtonClicked: {
-            dlna_engine.showDevices()
-        }
-        onToolboxButtonClicked: toolbox.visible = !toolbox.visible
-    }
-
-    Toolbox {
-        id: toolbox
-        visible: false
-        anchors.right: parent.right
-        anchors.bottom: controlbar.top
-        anchors.rightMargin: 20
-        anchors.bottomMargin: -40
-
-        onScreenshotButtonClicked: screenshot_engine.start()
-        onBurstModeButtonClicked: poster_engine.start()
+        onDlnaButtonClicked: dlna_engine.showDevices()
+        onScreenshotClicked: { if (player.hasVideo) screenshot_engine.start() }
+        onBurstShootingClicked: { if (player.hasVideo) poster_engine.start() }
     }
 
     ResizeEdge { id: resize_edge }
