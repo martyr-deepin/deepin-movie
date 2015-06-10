@@ -605,6 +605,10 @@ Item {
             }
         }
 
+        onLoadTrackError: {
+            main_controller.notifyInvalidFile(trackFile)
+        }
+
         onErrorChanged: {
             print(error, errorString)
             switch(error) {

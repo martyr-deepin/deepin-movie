@@ -17,7 +17,7 @@ Video {
     subtitleText.anchors.leftMargin: 20
     subtitleText.anchors.rightMargin: 20
     subtitleText.anchors.bottomMargin: subtitleVerticalPosition * height + 30
-    videoCodecPriority: ["VDPAU", "VAAPI", "FFmpeg"]
+    videoCodecPriority: ["VAAPI", "FFmpeg"]
 
     property string sourceString: ""
     property size resolution: _getResolution()
@@ -44,6 +44,8 @@ Video {
 
     property int __reopenPosition: 0
 
+    signal loadTrackError(string trackFile)
+
     onSourceChanged: {
         __reopenPosition = 0
 
@@ -52,6 +54,11 @@ Video {
     }
 
     onExternalAudioTracksChanged: {
+        if (externalAudio && externalAudioTracks.length == 0) {
+            video.loadTrackError(externalAudio)
+            return
+        }
+
         for (var i = 0; i < externalAudioTracks.length; i++) {
             var target = externalAudioTracks[i]
             var equalFlag = false
@@ -92,7 +99,7 @@ Video {
     }
 
     function enabledHardwareAcceleration() {
-        player.videoCodecPriority = ["VAAPI", "VDPAU", "FFmpeg"]
+        player.videoCodecPriority = ["VAAPI", "FFmpeg"]
         player._reopen()
     }
 
