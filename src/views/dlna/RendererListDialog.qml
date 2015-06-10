@@ -72,11 +72,21 @@ DDialog {
                     id: icon
                     width: 32
                     height: 32
+                    visible: status == Image.Ready
                     source: renderer.icon
 
                     anchors.left: parent.left
                     anchors.leftMargin: 36
                     anchors.verticalCenter: parent.verticalCenter
+                }
+
+                Image {
+                    visible: !icon.visible
+                    anchors.fill: icon
+
+                    source: mouse_area.pressed ? "../image/renderer_default_press.svg"
+                                               : mouse_area.containsMouse ? "../image/renderer_default_hover.svg"
+                                                                          : "../image/renderer_default_normal.svg"
                 }
 
                 Text {
