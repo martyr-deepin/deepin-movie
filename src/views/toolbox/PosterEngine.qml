@@ -42,7 +42,7 @@ Item {
 
         __running = true
         __startPosition = player.position
-        // player.pause()
+        player.pause()
         _next()
     }
 
