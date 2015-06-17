@@ -23,7 +23,10 @@
 import locale
 from ctypes import *
 
-libfc = cdll.LoadLibrary("libfontconfig.so.1")
+try:
+    libfc = cdll.LoadLibrary("libfontconfig.so")
+except:
+    libfc = cdll.LoadLibrary("libfontconfig.so.1")
 
 # initialize
 libfc.FcInit()
