@@ -33,8 +33,6 @@ Item {
         warning_dialog.visible = true
     }
 
-    DConstants { id: dconstants }
-
     Item {
         id: top_row
         width: parent.width

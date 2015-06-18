@@ -20,7 +20,7 @@ DComboBox {
             DssH2 {
                 id: label
                 text: root.value["label"]
-                color: dconstants.fgColor
+                color: DConstants.fgColor
 
                 anchors.left: color_block.right
                 anchors.leftMargin: 6
@@ -60,7 +60,7 @@ DComboBox {
             DssH2 {
                 id: label
                 text: parent.value["label"]
-                color: itemOnHover ? dconstants.activeColor : dconstants.fgColor
+                color: itemOnHover ? DConstants.activeColor : DConstants.fgColor
 
                 anchors.left: color_block.right
                 anchors.leftMargin: 6
