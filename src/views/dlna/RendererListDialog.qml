@@ -64,7 +64,7 @@ DDialog {
 
             delegate: Rectangle {
                 // TODO: rename this color name to proper one
-                color: DConstants.radioItemSelectedColor
+                color: DPalette.radioItemSelectedColor
                 width: ListView.view.width
                 height: ListView.view.itemHeight
 
@@ -90,9 +90,9 @@ DDialog {
                 }
 
                 Text {
-                    color: mouse_area.pressed ? DConstants.textActiveColor
-                                              : mouse_area.containsMouse ? DConstants.textHoverColor
-                                                                         : DConstants.textNormalColor
+                    color: mouse_area.pressed ? DPalette.textActiveColor
+                                              : mouse_area.containsMouse ? DPalette.textHoverColor
+                                                                         : DPalette.textNormalColor
                     text: renderer.name
 
                     anchors.left: icon.right
