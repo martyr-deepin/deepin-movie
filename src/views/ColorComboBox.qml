@@ -4,6 +4,8 @@ import Deepin.Widgets 1.0
 
 DComboBox {
     id: root
+
+    DConstants { id: dconstants }
     delegate: Component {
         Item {
             height: 26
