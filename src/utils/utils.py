@@ -131,7 +131,17 @@ class FindVideoThread(QThread):
 
     def __init__(self, pathList, findSerie):
         super(FindVideoThread, self).__init__()
-        self._pathList = pathList
+        # Urgent workaround: API changes in Qt5.4
+        try:
+            # pathList is QJSValue type
+            self._pathList = pathList.toVariant()
+        except:
+            try:
+                # pathList is list type
+                self._pathList = pathList
+            except:
+                self._pathList = []
+
         self._findSerie = findSerie
 
         self._first_video = None
