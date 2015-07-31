@@ -30,7 +30,7 @@ DPreferenceWindow {
         scroll_to_timer.schedule(sectionId)
     }
 
-    function scrollToTop() { scrollTo("basic_settings") }
+    function scrollToTop() { scrollTo("basic_settings"); }
     function scrollToSubtitle() { scrollTo("subtitle_settings") }
 
     function indexOfColor(color) {
@@ -40,6 +40,11 @@ DPreferenceWindow {
             }
         }
         return -1
+    }
+
+    onVisibleChanged: {
+        if (visible == false)
+            scrollToTop();
     }
 
     Item {
