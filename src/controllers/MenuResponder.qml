@@ -28,6 +28,7 @@ Connections {
         main_controller.toggleMiniMode()
     }
     onBasicScreenshot: screenshot_engine.start()
+    onBurstScreenshot: poster_engine.start()
     onProportionChanged: main_controller.setProportion(propWidth, propHeight)
     onScaleChanged: main_controller.setScale(scale)
     onStaysOnTop: {

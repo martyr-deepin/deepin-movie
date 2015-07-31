@@ -92,7 +92,8 @@ play_sub_menu = [
 ]
 
 screenshot_sub_menu = [
-    ("_screenshot_basic_screenshot", _("Movie screenshot"))
+    ("_screenshot_basic_screenshot", _("Movie screenshot")),
+    ("_screenshot_burst_screenshot", _("Burst screenshot"))
 ]
 
 right_click_menu = [
@@ -235,6 +236,7 @@ class MenuController(QObject):
     showSubtitleSettings = pyqtSignal()
 
     basicScreenshot = pyqtSignal()
+    burstScreenshot = pyqtSignal()
 
     playlistPlay = pyqtSignal()
     addItemToPlaylist = pyqtSignal()
@@ -373,6 +375,8 @@ class MenuController(QObject):
             self.volumeMuted.emit(_checked)
         elif _id == "_screenshot_basic_screenshot":
             self.basicScreenshot.emit()
+        elif _id == "_screenshot_burst_screenshot":
+            self.burstScreenshot.emit()
         elif _id == "_subtitle_settings":
             self.showSubtitleSettings.emit()
         elif _id == "_preferences":
