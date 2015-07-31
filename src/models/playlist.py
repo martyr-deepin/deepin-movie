@@ -350,6 +350,10 @@ class Database(QObject):
             # TODO: remove empty category here
         except DoesNotExist:
             pass
+    
+    @pyqtSlot(result=int)
+    def getPlaylistItemCount(self):
+        return PlaylistItemModel.select().count()
 
     @pyqtSlot(str)
     @_database_file.commit_on_success

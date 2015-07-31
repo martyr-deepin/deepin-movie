@@ -232,6 +232,11 @@ MouseArea {
 
     function removePlaylistItem(url) {
         _database.removePlaylistItem(url)
+        if ( _database.getPlaylistItemCount() == 0 ) {
+             _database.clearPlaylist()
+             _settings.lastPlayedFile = ""
+             _database.clearPlayHistory()
+             }
     }
 
     function removePlaylistCategory(name) {
