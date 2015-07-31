@@ -486,7 +486,7 @@ Item {
         property string lastVideoSource: ""
         property int lastVideoPosition: 0
         property int lastVideoDuration: 0
-        property int lastForwardToPosition: 0
+        property int logicalPosition: 0
         property bool playerInit: true
         property bool loadSubtitle: true
 
@@ -527,7 +527,7 @@ Item {
         }
 
         onStopped: {
-            lastForwardToPosition = 0
+            logicalPosition = 0
             resetRotationFlip()
             _utils.screenSaverUninhibit()
             main_controller.recordVideoPosition(lastVideoSource, lastVideoPosition)
@@ -545,6 +545,7 @@ Item {
 
         onPositionChanged: {
             (position != 0) && (lastVideoPosition = position)
+            logicalPosition = position
             controlbar.percentage = position / player.duration
         }
 

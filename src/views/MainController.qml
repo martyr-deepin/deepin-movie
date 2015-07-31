@@ -522,18 +522,18 @@ MouseArea {
     }
 
     // Player.position is not that reliable if there are multiple seek+
-    // operations performed, thus we need lastForwardToPosition to record the
+    // operations performed, thus we need logicalPosition to record the
     // position last time we sought to. seek- operations don't need this.
     function forwardByDelta(delta) {
         if (!player.hasVideo) return
 
         var tempRate = player.playbackRate
         player.playbackRate = 1.0
-        player.lastForwardToPosition = Math.min(Math.max(player.lastForwardToPosition, player.position) + delta, player.duration)
-        player.seek(player.lastForwardToPosition)
-        var percentage = Math.min(Math.floor(player.lastForwardToPosition / player.duration * 100), 100)
+        player.logicalPosition = Math.min(player.logicalPosition + delta, player.duration)
+        player.seek(player.logicalPosition)
+        var percentage = Math.min(Math.floor(player.logicalPosition / player.duration * 100), 100)
         var percentageInfo = player.duration != 0 ? " (%1%)".arg(percentage) : ""
-        notifybar.show(dsTr("Forward") + ": " + UIUtils.formatTime(player.lastForwardToPosition) + percentageInfo)
+        notifybar.show(dsTr("Forward") + ": " + UIUtils.formatTime(player.logicalPosition) + percentageInfo)
         player.playbackRate = tempRate
     }
 
