@@ -40,6 +40,9 @@ import weakref
 # this will hopefully fix all the issues about QML interfaces
 os.environ["bo_reuse"] = "0"
 
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
 from PyQt5 import QtCore
 from PyQt5.QtCore import QCoreApplication
 if os.name == 'posix':
