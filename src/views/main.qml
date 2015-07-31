@@ -92,7 +92,13 @@ Item {
 
                 if (state == "open_video_file") {
                     _settings.lastOpenedPath = folder
-                    main_controller.playPaths(filePaths, true)
+                    // Open Vedio File has the same name of subtitle
+                    if (1 == filePaths.length && _utils.fileIsSubtitle(filePaths[0]) ) {
+                        var videoFile = _utils.getVideoFromSubtitle(filePaths[0])
+                        main_controller.playPaths([videoFile], true)
+                    } else {
+                        main_controller.playPaths(filePaths, true)
+                    }
                 } else if (state == "open_subtitle_file") {
                     _settings.lastOpenedPath = folder
                     var filename = filePaths[0]
