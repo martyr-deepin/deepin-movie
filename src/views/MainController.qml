@@ -311,21 +311,22 @@ MouseArea {
 
     property bool fullscreenFromMaximum: false
     property bool fullscreenFromMiniMode: false
+    property bool miniModeFlag: false
     function fullscreen() {
         if (!player.hasVideo) return
-
+        if (root.isMiniMode == true)
+           miniModeFlag = true
+        root.isMiniMode = false
         fullscreenFromMaximum = (windowView.getState() == Qt.WindowMaximized)
-        fullscreenFromMiniMode = root.isMiniMode
         windowView.showFullScreen()
         root.videoStoppedByAppFlag = false
-
-        fullscreenFromMiniMode && quitMiniMode()
     }
 
     function quitFullscreen() {
         fullscreenFromMaximum ? maximize() : windowView.showNormal()
-
-        maximizeFromMiniMode && miniMode()
+        fullscreenFromMiniMode = root.isMiniMode
+        miniModeFlag && quitMiniMode()
+        miniModeFlag = false
     }
 
     property bool maximizeFromMiniMode: false
