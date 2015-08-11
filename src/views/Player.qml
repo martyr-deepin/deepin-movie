@@ -100,12 +100,10 @@ Video {
 
     function enabledHardwareAcceleration() {
         player.videoCodecPriority = ["VAAPI", "FFmpeg"]
-        player._reopen()
     }
 
     function disableHardwareAcceleration() {
         player.videoCodecPriority = ["FFmpeg"]
-        player._reopen()
     }
 
     function flipHorizontal() {
