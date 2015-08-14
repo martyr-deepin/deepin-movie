@@ -25,7 +25,6 @@ DragableArea {
     property alias toolboxVisible: toolbox.visible
 
     property int previewBottomMargin: 10
-    property int heightWithPreview: height - (main_column.y - previewBottomMargin) + videoPreview.height
     property bool previewEnabled: true
     property bool dlnaSharing: false
 
@@ -86,10 +85,21 @@ DragableArea {
         mode = previewEnabled ? mode : "minimal"
         videoPreview.state = mode
 
+        if (videoPreview.state != "minimal") {
+            videoPreview.x = Math.min(Math.max(mouseX - videoPreview.width / 2, 0),
+                              width - videoPreview.width)
+            videoPreview.y = -videoPreview.height - previewBottomMargin
+
+            var point = videoPreview.mapToItem(root, 0, 0)
+            if (point.y < program_constants.windowGlowRadius) {
+                videoPreview.state = "minimal"
+            }
+        }
+
         if (videoPlayer.hasVideo && videoPlayer.duration != 0) {
             videoPreview.visible = true
             videoPreview.x = Math.min(Math.max(mouseX - videoPreview.width / 2, 0),
-                                      width - videoPreview.width)
+                              width - videoPreview.width)
             videoPreview.y = -videoPreview.height - previewBottomMargin
 
             if (mouseX <= videoPreview.cornerWidth / 2) {
