@@ -535,6 +535,11 @@ Item {
         }
 
         onStopped: {
+        	// Note: QtAV will get stuck if we play the same source immediately
+        	// in onStopped. This is just a workaound here, QtAV needs to  fix
+        	// this in future.
+            source = ""
+
             logicalPosition = 0
             resetRotationFlip()
             _utils.screenSaverUninhibit()
