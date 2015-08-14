@@ -76,7 +76,7 @@ MouseArea {
             }
 
             ToolboxButton {
-                text: "Burst"
+                text: dsTr("Burst")
                 normalImage: "../image/toolbox_serial_screenshots_normal.svg"
                 hoverImage: "../image/toolbox_serial_screenshots_hover_press.svg"
                 pressedImage: "../image/toolbox_serial_screenshots_hover_press.svg"

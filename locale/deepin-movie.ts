@@ -1020,6 +1020,11 @@
         <source>Screenshot</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location line="-20"/>
+        <source>Burst</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>VolumeButton</name>
