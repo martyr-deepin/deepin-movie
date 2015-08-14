@@ -51,7 +51,7 @@ DWindow {
                             shortcut: config.hotkeysPlayForward+""
                         }
                         ShortcutsLabel {
-                            title: dsTr("Rewind")
+                            title: dsTr("Backward")
                             shortcut: config.hotkeysPlayBackward+""
                         }
                         ShortcutsLabel {
@@ -150,7 +150,7 @@ DWindow {
                     title: dsTr("Subtitles")
 
                     ShortcutsLabel {
-                        title: dsTr("Forward %1 (s)").arg(config.subtitleDelayStep)
+                        title: dsTr("Advance %1 (s)").arg(config.subtitleDelayStep)
                         shortcut: config.hotkeysSubtitlesSubtitleForward+""
                     }
                     ShortcutsLabel {

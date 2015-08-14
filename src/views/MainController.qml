@@ -551,7 +551,7 @@ MouseArea {
         player.seek(Math.max(player.position - delta), 1)
         var percentage = Math.min(Math.floor(player.position / (player.duration + 1) * 100), 100)
         var percentageInfo = player.duration != 0 ? " (%1%)".arg(percentage) : ""
-        notifybar.show(dsTr("Rewind") + ": " + UIUtils.formatTime(player.position) + percentageInfo)
+        notifybar.show(dsTr("Backward") + ": " + UIUtils.formatTime(player.position) + percentageInfo)
         player.playbackRate = tempRate
     }
 
@@ -572,7 +572,7 @@ MouseArea {
 
     function restoreSpeed() {
         player.playbackRate = 1
-        notifybar.show(dsTr("Playback rate: ") + player.playbackRate)
+        notifybar.show(dsTr("Playback speed: ") + player.playbackRate)
     }
 
     function increaseVolumeByDelta(delta) { setVolume(Math.min(player.volume + delta, 2.0)) }
@@ -614,7 +614,7 @@ MouseArea {
                 player.channelLayout = MediaPlayer.Right
                 break
             }
-            case "stero": {
+            case "stereo": {
                 player.channelLayout = MediaPlayer.Stero
                 break
             }

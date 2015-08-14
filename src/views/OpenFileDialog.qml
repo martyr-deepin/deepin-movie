@@ -2,7 +2,7 @@ import QtQuick 2.1
 import Deepin.Widgets 1.0
 
 DFileDialog {
-    title: dsTr("Please choose one file or more")
+    title: dsTr("Please select one file or more")
     folder: _settings.lastOpenedPath || _utils.homeDir
     nameFilters: [ dsTr("Video files") + videoFilter, allFilesFilter]
     selectMultiple: true
@@ -21,7 +21,7 @@ DFileDialog {
     onStateChanged: {
         switch(state) {
             case "open_video_file":
-            title = dsTr("Please choose one file or more")
+            title = dsTr("Please select one file or more")
             folder = _settings.lastOpenedPath || _utils.homeDir
             nameFilters = [ dsTr("Video files") + videoFilter, allFilesFilter]
             selectMultiple = true
@@ -31,7 +31,7 @@ DFileDialog {
             break
 
             case "open_subtitle_file":
-            title = dsTr("Please choose one file")
+            title = dsTr("Please select one file")
             folder = _settings.lastOpenedPath || _utils.homeDir
             nameFilters = [ dsTr("Subtitle files") + subtitleFilter, allFilesFilter]
             selectMultiple = false
@@ -41,7 +41,7 @@ DFileDialog {
             break
 
             case "open_audio_track_file":
-            title = dsTr("Please choose one file")
+            title = dsTr("Please select one file")
             folder = _settings.lastOpenedPath || _utils.homeDir
             nameFilters = [ dsTr("Audio track files") + soundTrackFilter, allFilesFilter]
             selectMultiple = false
@@ -51,7 +51,7 @@ DFileDialog {
             break
 
             case "add_playlist_item":
-            title = dsTr("Please choose one file or more")
+            title = dsTr("Please select one file or more")
             folder = _settings.lastOpenedPath || _utils.homeDir
             nameFilters = [ dsTr("Video files") + videoFilter, allFilesFilter ]
             selectMultiple = true
@@ -61,7 +61,7 @@ DFileDialog {
             break
 
             case "import_playlist":
-            title = dsTr("Please choose one file")
+            title = dsTr("Please select one file")
             folder = _settings.lastOpenedPlaylistPath || _utils.homeDir
             nameFilters = [ dsTr("Playlist files") + playlistFilter, allFilesFilter ]
             selectMultiple = false

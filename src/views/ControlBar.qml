@@ -263,7 +263,7 @@ DragableArea {
 
                 ImageButton {
                     enabled: !control_bar.dlnaSharing
-                    tooltip: dsTr("Stop playing")
+                    tooltip: dsTr("Stop")
                     tooltipItem: control_bar.tooltipItem
 
                     normal_image: "image/stop_normal.svg"

@@ -67,7 +67,7 @@ MouseArea {
             anchors.rightMargin: 6
 
             ToolboxButton {
-                text: "Screenshot"
+                text: dsTr("Screenshot")
                 normalImage: "../image/toolbox_screenshot_normal.svg"
                 hoverImage: "../image/toolbox_screenshot_hover_press.svg"
                 pressedImage: "../image/toolbox_screenshot_hover_press.svg"
@@ -96,7 +96,7 @@ MouseArea {
 
             ToolboxButton {
                 state: "list"
-                text: "Screenshot"
+                text: dsTr("Screenshot")
                 normalImage: "../image/toolbox_screenshot_normal.svg"
                 hoverImage: "../image/toolbox_screenshot_hover_press.svg"
                 pressedImage: "../image/toolbox_screenshot_hover_press.svg"

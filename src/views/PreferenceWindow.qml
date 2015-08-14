@@ -119,7 +119,7 @@ DPreferenceWindow {
                     },
                     {
                         "sectionId": "keyboard_screenshot",
-                        "sectionName": "Screenshot",
+                        "sectionName": dsTr("Screenshot"),
                         "subSections": []
                     },
                     {
@@ -265,7 +265,7 @@ DPreferenceWindow {
                 onClicked: config.playerAutoPlaySeries = checked
             }
             DCheckBox {
-                text: dsTr("Show preview when hovering over progress bar")
+                text: dsTr("Display preview when hovering over progress bar")
                 checked: config.playerShowPreview
                 onClicked: config.playerShowPreview = checked
             }
@@ -308,7 +308,7 @@ DPreferenceWindow {
             anchors.leftMargin: 5
 
             SpinnerRow {
-                title: dsTr("Forward/Rewind (s)")
+                title: dsTr("Forward/Backward (s)")
                 min: 1.0
                 max: 30.0
                 text: config.playerForwardRewindStep
@@ -409,7 +409,7 @@ DPreferenceWindow {
                 }
             }
             HotKeyInputRow {
-                title: dsTr("Rewind")
+                title: dsTr("Backward")
                 hotKey: config.hotkeysPlayBackward+""
                 actualSettingEntry: "hotkeysPlayBackward"
 
@@ -850,7 +850,7 @@ DPreferenceWindow {
             }
 
             HotKeyInputRow {
-                title: dsTr("Forward %1 (s)").arg(config.subtitleDelayStep)
+                title: dsTr("Advance %1 (s)").arg(config.subtitleDelayStep)
                 hotKey: config.hotkeysSubtitlesSubtitleForward+""
                 actualSettingEntry: "hotkeysSubtitlesSubtitleForward"
 
