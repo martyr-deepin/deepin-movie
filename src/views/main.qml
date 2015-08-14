@@ -506,6 +506,8 @@ Item {
             }
         }
 
+        onVolumeChanged:main_controller.setVolume(volume)
+
         onResolutionChanged: main_controller.handleResolutionChanged()
 
         // onSourceChanged doesn't ensures that the file is playable, this one did.
