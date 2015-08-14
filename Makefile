@@ -19,3 +19,6 @@ install:
 	cp deepin-movie.desktop ${DESTDIR}${PREFIX}/share/applications
 	cp -r locale/mo/* ${DESTDIR}${PREFIX}/share/locale/
 	ln -sf ${PREFIX}/share/deepin-movie/main.py ${DESTDIR}${PREFIX}/bin/deepin-movie
+
+pot:
+	deepin-update-pot locale/locale_config.ini

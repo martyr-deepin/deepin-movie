@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-14 16:25+0800\n"
+"POT-Creation-Date: 2015-08-14 16:54+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -114,12 +114,12 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: ../src/controllers/menu_controller.py:90 ../src/views/MainController.qml:542
+#: ../src/controllers/menu_controller.py:90 ../src/views/MainController.qml:538
 #: ../src/views/PreferenceWindow.qml:386 ../src/views/ShortcutsViewer.qml:50
 msgid "Forward"
 msgstr ""
 
-#: ../src/controllers/menu_controller.py:91 ../src/views/MainController.qml:554
+#: ../src/controllers/menu_controller.py:91 ../src/views/MainController.qml:550
 #: ../src/views/PreferenceWindow.qml:412 ../src/views/ShortcutsViewer.qml:54
 msgid "Backward"
 msgstr ""
@@ -276,7 +276,7 @@ msgstr ""
 
 #: ../src/utils/poster_generator.py:234 ../src/utils/poster_generator.py:244
 #: ../src/utils/poster_generator.py:254 ../src/views/AboutSection.qml:27
-#: ../src/views/InformationLabel.qml:20 ../src/views/MainController.qml:305
+#: ../src/views/InformationLabel.qml:20 ../src/views/MainController.qml:301
 #: ../src/views/dlna/RendererListDialog.qml:43 ../src/views/main.qml:163
 msgid ":"
 msgstr ""
@@ -392,41 +392,38 @@ msgstr ""
 msgid "Imported"
 msgstr ""
 
-#: ../src/views/MainController.qml:305
+#: ../src/views/MainController.qml:301
 msgid "Invalid file"
 msgstr ""
 
-#: ../src/views/MainController.qml:509
+#: ../src/views/MainController.qml:505
 msgid "Play last movie played"
 msgstr ""
 
-#: ../src/views/MainController.qml:562 ../src/views/MainController.qml:568
+#: ../src/views/MainController.qml:558 ../src/views/MainController.qml:564
 #, qt-format
 msgid "(Press %1 to restore)"
 msgstr ""
 
-#: ../src/views/MainController.qml:564 ../src/views/MainController.qml:570
-msgid "Playback rate: "
-msgstr ""
-
-#: ../src/views/MainController.qml:575
+#: ../src/views/MainController.qml:560 ../src/views/MainController.qml:566
+#: ../src/views/MainController.qml:571
 msgid "Playback speed: "
 msgstr ""
 
-#: ../src/views/MainController.qml:587 ../src/views/MainController.qml:596
+#: ../src/views/MainController.qml:583 ../src/views/MainController.qml:592
 msgid "Volume: "
 msgstr ""
 
-#: ../src/views/MainController.qml:594
+#: ../src/views/MainController.qml:590
 msgid "Muted"
 msgstr ""
 
-#: ../src/views/MainController.qml:755 ../src/views/MainController.qml:768
+#: ../src/views/MainController.qml:751 ../src/views/MainController.qml:764
 #, qt-format
 msgid "Subtitle advanced %1 seconds"
 msgstr ""
 
-#: ../src/views/MainController.qml:757 ../src/views/MainController.qml:770
+#: ../src/views/MainController.qml:753 ../src/views/MainController.qml:766
 #, qt-format
 msgid "Subtitle delayed %1 seconds"
 msgstr ""

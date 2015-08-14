@@ -197,12 +197,12 @@
 <context>
     <name>MainController</name>
     <message>
-        <location filename="../src/views/MainController.qml" line="+305"/>
+        <location filename="../src/views/MainController.qml" line="+301"/>
         <source>Invalid file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-268"/>
+        <location line="-264"/>
         <source>%1 files unable to be parsed have been excluded</source>
         <translation type="unfinished"></translation>
     </message>
@@ -212,7 +212,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+255"/>
+        <location line="+251"/>
         <source>:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -245,10 +245,6 @@
     <message>
         <location line="-4"/>
         <location line="+6"/>
-        <source>Playback rate: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location line="+5"/>
         <source>Playback speed: </source>
         <translation type="unfinished"></translation>
