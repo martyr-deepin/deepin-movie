@@ -713,9 +713,10 @@ MouseArea {
 
         next ? main_controller.playPath(next) : root.reset()
     }
+    // FIXME: is playPreviousOf need?
     function playPrevious() {
-        player.resetPlayHistoryCursor = false
-        main_controller.playPath(_database.playHistoryGetPrevious())
+        var previous = playlist.getPreviousSourceCycle(_settings.lastPlayedFile)
+        previous ? main_controller.playPath(previous) : root.reset()
     }
 
     function importPlaylist() { open_file_dialog.state = "import_playlist"; open_file_dialog.open() }

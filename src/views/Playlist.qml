@@ -98,6 +98,8 @@ Rectangle {
     function getRandom() { return playlist.getRandom() }
     function getNextSource(source) { return playlist.getNextSource(source) }
     function getNextSourceCycle(source) { return playlist.getNextSourceCycle(source) }
+    function getPreviousSource(source) { return playlist.getPreviousSource(source) }
+    function getPreviousSourceCycle(source) { return playlist.getPreviousSourceCycle(source) }
 
     function changeFileExistence(file, exists) { exists ? playlist.fileBack(file) : playlist.fileMissing(file) }
 
