@@ -63,11 +63,7 @@ MouseArea {
 
     Connections {
         target: player.subtitle
-        onFileChanged: {
-            _database.setPlaylistItemSubtitle(player.sourceString,
-                                              player.subtitle.file,
-                                              player.subtitle.delay)
-        }
+
         onDelayChanged: {
             _database.setPlaylistItemSubtitle(player.sourceString,
                                               player.subtitle.file,
@@ -780,6 +776,13 @@ MouseArea {
             }
 
             player.subtitle.file = subtitle
+
+            // don't put below line in player.subtitle.onFileChanged,
+            // because player.subtitle.file has a delay update! you won't
+            // get the right subtitle file name in player.subtitle.onFileChanged.
+            _database.setPlaylistItemSubtitle(player.sourceString,
+                                              player.subtitle.file,
+                                              player.subtitle.delay)
         }
     }
 
