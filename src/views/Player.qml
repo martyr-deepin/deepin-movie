@@ -16,7 +16,7 @@ Video {
     subtitleText.font.bold: false
     subtitleText.anchors.leftMargin: 20
     subtitleText.anchors.rightMargin: 20
-    subtitleText.anchors.bottomMargin: subtitleVerticalPosition * height + 30
+    subtitleText.anchors.bottomMargin: subtitleVerticalPosition>0.5 ? subtitleVerticalPosition*height-subtitleFontSize*1.5:subtitleVerticalPosition*height+30
     videoCodecPriority: ["VAAPI", "FFmpeg"]
 
     property string sourceString: ""
