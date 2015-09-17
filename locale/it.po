@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-14 16:54+0800\n"
-"PO-Revision-Date: 2015-08-14 08:59+0000\n"
-"Last-Translator: deepin_transifex <xiabin@linuxdeepin.com>\n"
+"PO-Revision-Date: 2015-08-25 10:32+0000\n"
+"Last-Translator: Massimo Antonio Carofano <real.massimo@hotmail.it>\n"
 "Language-Team: Italian (http://www.transifex.com/linuxdeepin/deepin-movie/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,11 +41,11 @@ msgstr "Rifletti verticalmente"
 
 #: ../src/controllers/menu_controller.py:53
 msgid "Audio Channels"
-msgstr ""
+msgstr "Canali audio"
 
 #: ../src/controllers/menu_controller.py:54
 msgid "Audio Tracks"
-msgstr ""
+msgstr "Tracce audio"
 
 #: ../src/controllers/menu_controller.py:57
 msgid "Volume Up"
@@ -62,7 +62,7 @@ msgstr "Muto"
 
 #: ../src/controllers/menu_controller.py:63
 msgid "Stereo"
-msgstr ""
+msgstr "Stereo"
 
 #: ../src/controllers/menu_controller.py:64
 msgid "Left"
@@ -78,7 +78,7 @@ msgstr "Nascondi sottotitol"
 
 #: ../src/controllers/menu_controller.py:73
 msgid "Load manually"
-msgstr ""
+msgstr "Carica manualmente"
 
 #: ../src/controllers/menu_controller.py:74
 msgid "Subtitle selection"
@@ -126,15 +126,15 @@ msgstr "Avanti"
 #: ../src/views/MainController.qml:550 ../src/views/PreferenceWindow.qml:412
 #: ../src/views/ShortcutsViewer.qml:54
 msgid "Backward"
-msgstr ""
+msgstr "Indietro"
 
 #: ../src/controllers/menu_controller.py:95
 msgid "Movie screenshot"
-msgstr ""
+msgstr "Screenshot film"
 
 #: ../src/controllers/menu_controller.py:96
 msgid "Burst screenshot"
-msgstr ""
+msgstr "Burst screenshot"
 
 #: ../src/controllers/menu_controller.py:100 ../src/views/ControlBar.qml:413
 #: ../src/views/PreferenceWindow.qml:758 ../src/views/ShortcutsViewer.qml:83
@@ -253,11 +253,11 @@ msgstr "Apri locazione file"
 
 #: ../src/controllers/menu_controller.py:191
 msgid "Audio track"
-msgstr ""
+msgstr "Traccia audio"
 
 #: ../src/controllers/menu_controller.py:200
 msgid "Load audio track"
-msgstr ""
+msgstr "Carica traccia audio"
 
 #: ../src/controllers/menu_controller.py:495 ../src/views/ControlBar.qml:382
 msgid "Exit fullscreen"
@@ -327,7 +327,7 @@ msgstr "Pausa"
 
 #: ../src/views/ControlBar.qml:400
 msgid "Toolkit"
-msgstr ""
+msgstr "Toolkit"
 
 #: ../src/views/HotKeyInputRow.qml:24 ../src/views/HotKeyInputRow.qml:26
 #: ../src/views/HotKeyInputRow.qml:54 ../src/views/HotKeyInputRow.qml:56
@@ -413,7 +413,7 @@ msgstr "(Premi %1 per ripristinare)"
 #: ../src/views/MainController.qml:560 ../src/views/MainController.qml:566
 #: ../src/views/MainController.qml:571
 msgid "Playback speed: "
-msgstr ""
+msgstr "Velocità playback:"
 
 #: ../src/views/MainController.qml:583 ../src/views/MainController.qml:592
 msgid "Volume: "
@@ -436,7 +436,7 @@ msgstr "Posticipa sottotitoli di %1 secondo/i"
 #: ../src/views/OpenFileDialog.qml:5 ../src/views/OpenFileDialog.qml:24
 #: ../src/views/OpenFileDialog.qml:54
 msgid "Please select one file or more"
-msgstr ""
+msgstr "Seleziona uno o più file"
 
 #: ../src/views/OpenFileDialog.qml:7 ../src/views/OpenFileDialog.qml:26
 #: ../src/views/OpenFileDialog.qml:56
@@ -450,7 +450,7 @@ msgstr "Tutti i files"
 #: ../src/views/OpenFileDialog.qml:34 ../src/views/OpenFileDialog.qml:44
 #: ../src/views/OpenFileDialog.qml:64
 msgid "Please select one file"
-msgstr ""
+msgstr "Seleziona un file"
 
 #: ../src/views/OpenFileDialog.qml:36
 msgid "Subtitle files"
@@ -458,7 +458,7 @@ msgstr "File sottotitoli"
 
 #: ../src/views/OpenFileDialog.qml:46
 msgid "Audio track files"
-msgstr ""
+msgstr "Files tracce audio"
 
 #: ../src/views/OpenFileDialog.qml:66 ../src/views/OpenFileDialog.qml:76
 msgid "Playlist files"
@@ -470,7 +470,7 @@ msgstr "Salva come"
 
 #: ../src/views/OpenFolderDialog.qml:5
 msgid "Please select a folder"
-msgstr ""
+msgstr "Seleziona una cartella"
 
 #: ../src/views/Playlist.qml:252
 msgid "Play mode"
@@ -592,7 +592,7 @@ msgstr "Continua automaticamente al video successivo"
 
 #: ../src/views/PreferenceWindow.qml:268
 msgid "Display preview when hovering over progress bar"
-msgstr ""
+msgstr "Visualizza una preview quando scorri sulla barra di avanzamento"
 
 #: ../src/views/PreferenceWindow.qml:273
 msgid "Allow multiple instances"
@@ -604,19 +604,19 @@ msgstr "Metti in pausa se minimizzato"
 
 #: ../src/views/PreferenceWindow.qml:283
 msgid "Enable hardware acceleration"
-msgstr ""
+msgstr "Abilita accelerazione hardware"
 
 #: ../src/views/PreferenceWindow.qml:288
 msgid "Accept wireless push"
-msgstr ""
+msgstr "Accetta wireless push"
 
 #: ../src/views/PreferenceWindow.qml:311
 msgid "Forward/Backward (s)"
-msgstr ""
+msgstr "Avanti/Indietro (s)"
 
 #: ../src/views/PreferenceWindow.qml:331
 msgid "Save path"
-msgstr ""
+msgstr "Salva percorso"
 
 #: ../src/views/PreferenceWindow.qml:355 ../src/views/PreferenceWindow.qml:579
 #: ../src/views/PreferenceWindow.qml:752 ../src/views/PreferenceWindow.qml:847
@@ -668,7 +668,7 @@ msgstr "Apri il prossimo"
 #: ../src/views/PreferenceWindow.qml:853 ../src/views/ShortcutsViewer.qml:153
 #, qt-format
 msgid "Advance %1 (s)"
-msgstr ""
+msgstr "Avanti di %1 (s)"
 
 #: ../src/views/PreferenceWindow.qml:879 ../src/views/ShortcutsViewer.qml:157
 #, qt-format
@@ -685,7 +685,7 @@ msgstr "Sottotitoli sotto"
 
 #: ../src/views/PreferenceWindow.qml:995
 msgid "Plot burst shooting"
-msgstr ""
+msgstr "Plot burst shooting"
 
 #: ../src/views/PreferenceWindow.qml:1033 ../src/views/ShortcutsViewer.qml:133
 msgid "Left click"
@@ -706,7 +706,7 @@ msgstr "Volume"
 
 #: ../src/views/PreferenceWindow.qml:1090
 msgid "(The setting is invalid for effect subtitles)"
-msgstr ""
+msgstr "(Impostazione non valida per i sottotitoli)"
 
 #: ../src/views/PreferenceWindow.qml:1095
 msgid "Subtitles loaded automatically"
@@ -746,11 +746,11 @@ msgstr "Sincronizza modifiche (s)"
 
 #: ../src/views/TitleBar.qml:173
 msgid "Displayed in a proportion of 1:1"
-msgstr ""
+msgstr "Visualizza in formato 1:1"
 
 #: ../src/views/TitleBar.qml:185
 msgid "Displayed in 1.5 times"
-msgstr ""
+msgstr "Visualizza accelerato di 1.5 volte"
 
 #: ../src/views/TitleBar.qml:198
 msgid "Return to mini mode"
@@ -770,16 +770,16 @@ msgstr "On Top"
 
 #: ../src/views/dlna/DLNAEngine.qml:34
 msgid "Switch back"
-msgstr ""
+msgstr "Torna indietro"
 
 #: ../src/views/dlna/DLNAEngine.qml:59
 #, qt-format
 msgid "The movie \"%1\" is being played on \"%2\"."
-msgstr ""
+msgstr "La traccia \"%1\" è visualizzata in \"%2\"."
 
 #: ../src/views/dlna/RendererListDialog.qml:43
 msgid "Please select the playing device"
-msgstr ""
+msgstr "Seleziona un dispositivo di riproduzione"
 
 #: ../src/views/main.qml:163
 msgid "Please input the url of file played"
@@ -800,21 +800,21 @@ msgstr "Buffering..."
 #: ../src/views/toolbox/PosterEngine.qml:41
 #: ../src/views/toolbox/PosterEngine.qml:56
 msgid "Plot burst shooting, please wait..."
-msgstr ""
+msgstr "Plot burst shooting, attendi..."
 
 #: ../src/views/toolbox/PosterEngine.qml:61
 msgid "Plot Burst Shooting"
-msgstr ""
+msgstr "Plot Burst Shooting"
 
 #: ../src/views/toolbox/ScreenshotEngine.qml:26
 msgid "Movie Screenshot"
-msgstr ""
+msgstr "Screenshot film"
 
 #: ../src/views/toolbox/ScreenshotEngine.qml:34
 #, qt-format
 msgid "Your screenshot has been saved to %1"
-msgstr ""
+msgstr "Lo screenshot è stato salvato in %1"
 
 #: ../src/views/toolbox/Toolbox.qml:79
 msgid "Burst"
-msgstr ""
+msgstr "Burst"

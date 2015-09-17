@@ -3,154 +3,150 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Eduard Gotwig <eduardgotwig@gmail.com>, 2014
-# Ettore Atalan <atalanttore@googlemail.com>, 2014-2015
-# jonnius <jonatan_zeidler@gmx.de>, 2014
-# Steven Eisenreich, 2014
-# webcrush <chris.plescher@yahoo.de>, 2014
+# AnandVivek, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-14 16:54+0800\n"
-"PO-Revision-Date: 2015-08-14 13:06+0000\n"
-"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
-"Language-Team: German (http://www.transifex.com/linuxdeepin/deepin-movie/language/de/)\n"
+"PO-Revision-Date: 2015-08-24 08:02+0000\n"
+"Last-Translator: AnandVivek\n"
+"Language-Team: Hindi (http://www.transifex.com/linuxdeepin/deepin-movie/language/hi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: de\n"
+"Language: hi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/controllers/menu_controller.py:34
 msgid "Default"
-msgstr "Standard"
+msgstr "मूल"
 
 #: ../src/controllers/menu_controller.py:46
 msgid "Rotate 90 degree clockwise"
-msgstr "90 Grad in Uhrzeigerrichtung drehen"
+msgstr "90 अंश दक्षिणावर्त घुमाएँ"
 
 #: ../src/controllers/menu_controller.py:47
 msgid "Rotate 90 degree counterclockwise"
-msgstr "90 Grad entgegengesetzt der Uhrzeigerrichtung drehen"
+msgstr "90 अंश वामावर्त घुमाएँ"
 
 #: ../src/controllers/menu_controller.py:48
 msgid "Flip horizontally"
-msgstr "Horizontal kippen"
+msgstr "क्षैतिज उल्टा"
 
 #: ../src/controllers/menu_controller.py:49
 msgid "Flip vertically"
-msgstr "Vertikal kippen"
+msgstr "ऊर्ध्वाधर उल्टा"
 
 #: ../src/controllers/menu_controller.py:53
 msgid "Audio Channels"
-msgstr "Audiokanäle"
+msgstr "ध्वनि चैनल"
 
 #: ../src/controllers/menu_controller.py:54
 msgid "Audio Tracks"
-msgstr "Audiospuren"
+msgstr "ध्वनि पथ"
 
 #: ../src/controllers/menu_controller.py:57
 msgid "Volume Up"
-msgstr "Lautstärke erhöhen"
+msgstr "आवाज बढ़ाएँ"
 
 #: ../src/controllers/menu_controller.py:58
 msgid "Volume Down"
-msgstr "Lautstärke verringern"
+msgstr "आवाज घटाएँ"
 
 #: ../src/controllers/menu_controller.py:59
 #: ../src/views/PreferenceWindow.qml:715 ../src/views/ShortcutsViewer.qml:124
 msgid "Mute"
-msgstr "Stumm"
+msgstr "मूक"
 
 #: ../src/controllers/menu_controller.py:63
 msgid "Stereo"
-msgstr "Stereo"
+msgstr "स्टीरियो"
 
 #: ../src/controllers/menu_controller.py:64
 msgid "Left"
-msgstr "Links"
+msgstr "बाएँ"
 
 #: ../src/controllers/menu_controller.py:65
 msgid "Right"
-msgstr "Rechts"
+msgstr "दाएँ"
 
 #: ../src/controllers/menu_controller.py:69
 msgid "Hide subtitle"
-msgstr "Untertitel ausblenden"
+msgstr "उपशीर्षक छिपाएँ"
 
 #: ../src/controllers/menu_controller.py:73
 msgid "Load manually"
-msgstr "Manuell laden"
+msgstr "स्वयं भारित करें"
 
 #: ../src/controllers/menu_controller.py:74
 msgid "Subtitle selection"
-msgstr "Untertitelauswahl"
+msgstr "उपशीर्षक चयन"
 
 #: ../src/controllers/menu_controller.py:75
 msgid "Subtitle setting"
-msgstr "Untertiteleinstellung"
+msgstr "उपशीर्षक व्यवस्थित"
 
 #: ../src/controllers/menu_controller.py:79
 msgid "Order"
-msgstr "Reihenfolge"
+msgstr "क्रम"
 
 #: ../src/controllers/menu_controller.py:80
 msgid "Random"
-msgstr "Zufällig"
+msgstr "यादृच्छिक"
 
 #: ../src/controllers/menu_controller.py:81
 msgid "Single"
-msgstr "Einzeln"
+msgstr "एकल"
 
 #: ../src/controllers/menu_controller.py:82
 msgid "Repeat (Single)"
-msgstr "Wiederholen (Einzeln)"
+msgstr "दोहराएँ (एकल)"
 
 #: ../src/controllers/menu_controller.py:83
 msgid "Repeat (Playlist)"
-msgstr "Wiederholen (Wiedergabeliste)"
+msgstr "दोहराएँ (चलाने की सूची)"
 
 #: ../src/controllers/menu_controller.py:87 ../src/views/ControlBar.qml:285
 msgid "Previous"
-msgstr "Vorherige"
+msgstr "पिछला"
 
 #: ../src/controllers/menu_controller.py:88 ../src/views/ControlBar.qml:322
 msgid "Next"
-msgstr "Nächste"
+msgstr "आगे"
 
 #: ../src/controllers/menu_controller.py:90
 #: ../src/views/MainController.qml:538 ../src/views/PreferenceWindow.qml:386
 #: ../src/views/ShortcutsViewer.qml:50
 msgid "Forward"
-msgstr "Vorspulen"
+msgstr "आगे"
 
 #: ../src/controllers/menu_controller.py:91
 #: ../src/views/MainController.qml:550 ../src/views/PreferenceWindow.qml:412
 #: ../src/views/ShortcutsViewer.qml:54
 msgid "Backward"
-msgstr "Zurückspulen"
+msgstr "पीछे"
 
 #: ../src/controllers/menu_controller.py:95
 msgid "Movie screenshot"
-msgstr ""
+msgstr "फिल्म स्क्रीनशॉट"
 
 #: ../src/controllers/menu_controller.py:96
 msgid "Burst screenshot"
-msgstr ""
+msgstr "बर्स्ट स्क्रीनशॉट"
 
 #: ../src/controllers/menu_controller.py:100 ../src/views/ControlBar.qml:413
 #: ../src/views/PreferenceWindow.qml:758 ../src/views/ShortcutsViewer.qml:83
 msgid "Open a file"
-msgstr "Datei öffnen"
+msgstr "फ़ाइल खोलें"
 
 #: ../src/controllers/menu_controller.py:101
 msgid "Open a folder"
-msgstr "Ordner öffnen"
+msgstr "फोंल्डर खोलें"
 
 #: ../src/controllers/menu_controller.py:102
 msgid "Open URL"
-msgstr "URL öffnen"
+msgstr "पता खोलें"
 
 #: ../src/controllers/menu_controller.py:104
 #: ../src/controllers/menu_controller.py:496 ../src/views/ControlBar.qml:382
@@ -158,46 +154,46 @@ msgstr "URL öffnen"
 #: ../src/views/PreferenceWindow.qml:1052 ../src/views/ShortcutsViewer.qml:58
 #: ../src/views/ShortcutsViewer.qml:139
 msgid "Fullscreen"
-msgstr "Vollbild"
+msgstr "पूर्ण स्क्रीन"
 
 #: ../src/controllers/menu_controller.py:105
 #: ../src/controllers/menu_controller.py:498
 #: ../src/views/PreferenceWindow.qml:585 ../src/views/ShortcutsViewer.qml:104
 msgid "Mini mode"
-msgstr "Mini-Modus"
+msgstr "छोटा विधा"
 
 #: ../src/controllers/menu_controller.py:106
 msgid "Always on top"
-msgstr "Immer im Vordergrund"
+msgstr "हमेशा शीर्ष पर"
 
 #: ../src/controllers/menu_controller.py:107 ../src/views/ControlBar.qml:425
 #: ../src/views/OpenFileDialog.qml:79 ../src/views/PreferenceWindow.qml:464
 #: ../src/views/ShortcutsViewer.qml:62
 msgid "Playlist"
-msgstr "Wiedergabeliste"
+msgstr "चलाने की सूची"
 
 #: ../src/controllers/menu_controller.py:109
 msgid "Play Sequence"
-msgstr "Sequenz wiedergeben"
+msgstr "अनुक्रम्रक खेल"
 
 #: ../src/controllers/menu_controller.py:110
 #: ../src/controllers/menu_controller.py:123 ../src/views/ControlBar.qml:305
 msgid "Play"
-msgstr "Wiedergabe"
+msgstr "चलायें"
 
 #: ../src/controllers/menu_controller.py:111
 msgid "Frame"
-msgstr "Bild"
+msgstr "ढांचा"
 
 #: ../src/controllers/menu_controller.py:112
 msgid "Sound"
-msgstr "Ton"
+msgstr "ध्वनि"
 
 #: ../src/controllers/menu_controller.py:113
 #: ../src/views/PreferenceWindow.qml:117 ../src/views/PreferenceWindow.qml:838
 #: ../src/views/ShortcutsViewer.qml:150
 msgid "Subtitles"
-msgstr "Untertitel"
+msgstr "उपशीर्षक"
 
 #: ../src/controllers/menu_controller.py:115
 #: ../src/views/PreferenceWindow.qml:91 ../src/views/PreferenceWindow.qml:122
@@ -205,82 +201,82 @@ msgstr "Untertitel"
 #: ../src/views/PreferenceWindow.qml:968 ../src/views/toolbox/Toolbox.qml:70
 #: ../src/views/toolbox/Toolbox.qml:99
 msgid "Screenshot"
-msgstr "Bildschirmfoto"
+msgstr "स्क्रीनशॉट"
 
 #: ../src/controllers/menu_controller.py:117
 msgid "Settings"
-msgstr "Einstellungen"
+msgstr "व्यवस्था"
 
 #: ../src/controllers/menu_controller.py:118
 #: ../src/controllers/menu_controller.py:136
 msgid "Information"
-msgstr "Information"
+msgstr "जानकारी"
 
 #: ../src/controllers/menu_controller.py:119
 msgid "Help"
-msgstr "Hilfe"
+msgstr "सहायता"
 
 #: ../src/controllers/menu_controller.py:124
 #: ../src/controllers/menu_controller.py:140 ../src/views/Playlist.qml:260
 msgid "Add file"
-msgstr "Datei hinzufügen"
+msgstr "फ़ाइल जोड़ें"
 
 #: ../src/controllers/menu_controller.py:125
 #: ../src/controllers/menu_controller.py:141
 msgid "Add folder"
-msgstr "Ordner hinzufügen"
+msgstr "फोंल्डर जोड़ें"
 
 #: ../src/controllers/menu_controller.py:127
 msgid "Remove from playlist"
-msgstr "Aus Wiedergabeliste entfernen"
+msgstr "चलाने की सूची से हटाएँ"
 
 #: ../src/controllers/menu_controller.py:128
 msgid "Remove invalid file"
-msgstr "Ungültige Datei entfernen"
+msgstr "अमान्य फ़ाइल को हटाएँ"
 
 #: ../src/controllers/menu_controller.py:129
 msgid "Export"
-msgstr "Exportieren"
+msgstr "निर्यात करें"
 
 #: ../src/controllers/menu_controller.py:130
 msgid "Import"
-msgstr "Importieren"
+msgstr "आयात करें"
 
 #: ../src/controllers/menu_controller.py:131 ../src/views/Playlist.qml:268
 msgid "Clear playlist"
-msgstr "Wiedergabeliste leeren"
+msgstr "चलाने की सूची साफ करें"
 
 #: ../src/controllers/menu_controller.py:135
 msgid "Open file location"
-msgstr "Dateiort öffnen"
+msgstr "फ़ाइल के स्थान को खोलें"
 
 #: ../src/controllers/menu_controller.py:191
 msgid "Audio track"
-msgstr "Audiospur"
+msgstr "ध्वनि पथ"
 
 #: ../src/controllers/menu_controller.py:200
 msgid "Load audio track"
-msgstr "Audiospur laden"
+msgstr "ध्वनि पथ भरें"
 
 #: ../src/controllers/menu_controller.py:495 ../src/views/ControlBar.qml:382
 msgid "Exit fullscreen"
-msgstr "Vollbild verlassen"
+msgstr "पूर्ण स्क्रीन से बाहर आयें"
 
 #: ../src/controllers/menu_controller.py:497
 msgid "Exit mini mode"
-msgstr "Mini-Modus beenden"
+msgstr "छोटा विधा से निकालें"
 
 #: ../src/dlna/__init__.py:160 ../src/utils/constants.py:39
 #: ../src/utils/dbus_interfaces.py:99 ../src/views/AboutSection.qml:13
 #: ../src/views/TitleBar.qml:70 ../src/views/TitleBar.qml:142
 #: ../src/views/toolbox/ScreenshotEngine.qml:34 ../src/views/window.py:64
 msgid "Deepin Movie"
-msgstr "Deepin Film"
+msgstr "डीपइन चलचित्र"
 
 #: ../src/models/movie_info.py:78 ../src/views/InformationWindow.qml:23
 #: ../src/views/InformationWindow.qml:24 ../src/views/InformationWindow.qml:25
 msgid "Unknown"
-msgstr "Unbekannt"
+msgstr "अज्ञात"
 
 #: ../src/utils/poster_generator.py:234 ../src/utils/poster_generator.py:244
 #: ../src/utils/poster_generator.py:254 ../src/views/AboutSection.qml:27
@@ -291,46 +287,46 @@ msgstr ":"
 
 #: ../src/utils/poster_generator.py:234
 msgid "Duration"
-msgstr "Dauer"
+msgstr "अवधि"
 
 #: ../src/utils/poster_generator.py:244 ../src/views/InformationWindow.qml:97
 msgid "Resolution"
-msgstr "Auflösung"
+msgstr "आकार"
 
 #: ../src/utils/poster_generator.py:254 ../src/views/PreferenceWindow.qml:1187
 msgid "Size"
-msgstr "Größe"
+msgstr "आकार"
 
 #: ../src/views/AboutSection.qml:6 ../src/views/PreferenceWindow.qml:139
 msgid "About"
-msgstr "Über"
+msgstr "बारे में"
 
 #: ../src/views/AboutSection.qml:27
 msgid "Version"
-msgstr "Version"
+msgstr "संस्करण"
 
 #: ../src/views/AboutSection.qml:57
 msgid ""
 "Deepin Movie is a well-designed and full-featured video player with simple "
 "borderless design. It supports local and streaming media play with multiple "
 "video formats."
-msgstr "Deepin Film ist ein gut gestalteter und voll ausgestatteter Videoabspieler mit einem einfachen, randlosen Design. Er unterstützt lokale und gestreamte Medien mit mehreren Videoformaten."
+msgstr "डीपइन मूवी अच्छी तरह से बनाया हुआ पूरी तरह से एक वीडियो प्लेयर है। जो स्थानीय और इंटरनेट मीडिया फ़ाइल के कई प्रारूप में कार्य करता है।"
 
 #: ../src/views/AboutSection.qml:68
 msgid "Deepin Movie is released under GPLv3."
-msgstr "Deepin Film wird unter der GPLv3 veröffentlicht."
+msgstr "डीपइन मूवी जीपीएलवी3 के अधिकार से निकला है।"
 
 #: ../src/views/ControlBar.qml:266
 msgid "Stop"
-msgstr "Stop"
+msgstr "रोकें"
 
 #: ../src/views/ControlBar.qml:305
 msgid "Pause"
-msgstr "Pausieren"
+msgstr "विराम"
 
 #: ../src/views/ControlBar.qml:400
 msgid "Toolkit"
-msgstr ""
+msgstr "ओजार बक्सा"
 
 #: ../src/views/HotKeyInputRow.qml:24 ../src/views/HotKeyInputRow.qml:26
 #: ../src/views/HotKeyInputRow.qml:54 ../src/views/HotKeyInputRow.qml:56
@@ -340,484 +336,484 @@ msgstr ""
 #: ../src/views/ShortcutsViewer.qml:134 ../src/views/ShortcutsViewer.qml:139
 #: ../src/views/ShortcutsViewer.qml:144
 msgid "None"
-msgstr "Keine"
+msgstr "कुछ नहीं"
 
 #: ../src/views/HotKeyInputRow.qml:30
 msgid "The shortcut you set "
-msgstr "Das festgelegte Kürzel"
+msgstr "शीघ्र कुंजी जो आपने चुनी है।"
 
 #: ../src/views/HotKeyInputRow.qml:31
 #, qt-format
 msgid "conflicts with the one used for \"%2\" in the \"%1\" category. "
-msgstr "steht in Konflikt mit dem für \"%2\" in der Kategorie \"%1\" benutzten."
+msgstr "\"%1\" श्रेणी में \"%2\" में एक का उपयोग होता है।"
 
 #: ../src/views/HotKeyInputRow.qml:32
 msgid "Do you want to replace it?"
-msgstr "Möchten Sie es ersetzen?"
+msgstr "क्या आप इससे बदलना चाहते हो?"
 
 #: ../src/views/HotKeyInputRow.qml:55
 msgid "Please input a new shortcut"
-msgstr "Bitte geben Sie ein neues Kürzel ein"
+msgstr "कृपया एक नई शीघ्र कुंजी डालें"
 
 #: ../src/views/HotKeyInputRow.qml:99 ../src/views/main.qml:165
 msgid "Cancel"
-msgstr "Abbrechen"
+msgstr "रद्द करो"
 
 #: ../src/views/HotKeyInputRow.qml:110
 msgid "Replace"
-msgstr "Ersetzen"
+msgstr "बदलें "
 
 #: ../src/views/InformationWindow.qml:77
 msgid "File type"
-msgstr "Dateityp"
+msgstr "फ़ाइल प्रकार"
 
 #: ../src/views/InformationWindow.qml:87
 msgid "File size"
-msgstr "Dateigröße"
+msgstr "फ़ाइल आकार"
 
 #: ../src/views/InformationWindow.qml:107
 msgid "Movie duration"
-msgstr "Filmdauer"
+msgstr "फिल्म अवधि"
 
 #: ../src/views/InformationWindow.qml:117
 msgid "File path"
-msgstr "Dateipfad"
+msgstr "फ़ाइल मार्ग"
 
 #: ../src/views/InformationWindow.qml:134
 msgid "Copy to clipboard"
-msgstr "In die Zwischenablage kopieren"
+msgstr "पटल पर प्रति"
 
 #: ../src/views/InformationWindow.qml:149
 msgid "Close"
-msgstr "Schließen"
+msgstr "बंद"
 
 #: ../src/views/MainController.qml:37
 #, qt-format
 msgid "%1 files unable to be parsed have been excluded"
-msgstr "%1 Dateien wurden ausgeschlossen, da sie nicht ausgelesen werden konnten"
+msgstr "%1 फ़ाइल नहीं खुल पा रहा है।"
 
 #: ../src/views/MainController.qml:50
 msgid "Imported"
-msgstr "Importiert"
+msgstr "आयातित"
 
 #: ../src/views/MainController.qml:301
 msgid "Invalid file"
-msgstr "Ungültige Datei"
+msgstr "अमान्य फ़ाइल"
 
 #: ../src/views/MainController.qml:505
 msgid "Play last movie played"
-msgstr "Letzten abgespielten Film wiedergeben"
+msgstr "सूची से आखिरी चलाये फिल्म को चलायें"
 
 #: ../src/views/MainController.qml:558 ../src/views/MainController.qml:564
 #, qt-format
 msgid "(Press %1 to restore)"
-msgstr "(%1 drücken zum Wiederherstellen)"
+msgstr "(पुनः स्थापित हेतु %1 दबाएँ)"
 
 #: ../src/views/MainController.qml:560 ../src/views/MainController.qml:566
 #: ../src/views/MainController.qml:571
 msgid "Playback speed: "
-msgstr "Wiedergabegeschwindigkeit: "
+msgstr "पार्श्व गति:"
 
 #: ../src/views/MainController.qml:583 ../src/views/MainController.qml:592
 msgid "Volume: "
-msgstr "Lautstärke:"
+msgstr "आवाज:"
 
 #: ../src/views/MainController.qml:590
 msgid "Muted"
-msgstr "Stumm"
+msgstr "मूक"
 
 #: ../src/views/MainController.qml:751 ../src/views/MainController.qml:764
 #, qt-format
 msgid "Subtitle advanced %1 seconds"
-msgstr "Untertitel %1 Sekunden voran"
+msgstr "उपशीर्षक उन्नत %1 सेकंड"
 
 #: ../src/views/MainController.qml:753 ../src/views/MainController.qml:766
 #, qt-format
 msgid "Subtitle delayed %1 seconds"
-msgstr "Untertitel %1 Sekunden verzögert"
+msgstr "उपशीर्षक %1 सेकंड देर"
 
 #: ../src/views/OpenFileDialog.qml:5 ../src/views/OpenFileDialog.qml:24
 #: ../src/views/OpenFileDialog.qml:54
 msgid "Please select one file or more"
-msgstr "Bitte wählen Sie eine oder mehrere Dateien aus"
+msgstr "कृपया एक या अधिक फ़ाइल चुने"
 
 #: ../src/views/OpenFileDialog.qml:7 ../src/views/OpenFileDialog.qml:26
 #: ../src/views/OpenFileDialog.qml:56
 msgid "Video files"
-msgstr "Videodateien"
+msgstr "वीडियो फ़ाइल"
 
 #: ../src/views/OpenFileDialog.qml:18
 msgid "All files"
-msgstr "Alle Dateien"
+msgstr "सभी फ़ाइल"
 
 #: ../src/views/OpenFileDialog.qml:34 ../src/views/OpenFileDialog.qml:44
 #: ../src/views/OpenFileDialog.qml:64
 msgid "Please select one file"
-msgstr "Bitte wählen Sie eine Datei aus"
+msgstr "कृपया एक फ़ाइल को चुने"
 
 #: ../src/views/OpenFileDialog.qml:36
 msgid "Subtitle files"
-msgstr "Untertiteldateien"
+msgstr "उपशीर्षक फ़ाइल"
 
 #: ../src/views/OpenFileDialog.qml:46
 msgid "Audio track files"
-msgstr "Audiospurdateien"
+msgstr "ध्वनि पथ फ़ाइल"
 
 #: ../src/views/OpenFileDialog.qml:66 ../src/views/OpenFileDialog.qml:76
 msgid "Playlist files"
-msgstr "Wiedergabelistendateien"
+msgstr "चलाने की सूची के फ़ाइल"
 
 #: ../src/views/OpenFileDialog.qml:74
 msgid "Save as"
-msgstr "Speichern als"
+msgstr "के रूप में सहेजें"
 
 #: ../src/views/OpenFolderDialog.qml:5
 msgid "Please select a folder"
-msgstr "Bitte wählen Sie einen Ordner aus"
+msgstr "कृपया फोंल्डर चुनें"
 
 #: ../src/views/Playlist.qml:252
 msgid "Play mode"
-msgstr "Wiedergabemodus"
+msgstr "चलाने की विधा"
 
 #: ../src/views/PreferenceWindow.qml:15
 msgid "Black"
-msgstr "Schwarz"
+msgstr "काला"
 
 #: ../src/views/PreferenceWindow.qml:16
 msgid "bleu de France"
-msgstr "Blau von Frankreich"
+msgstr "ब्लेऊ दे फ़्रांस"
 
 #: ../src/views/PreferenceWindow.qml:17
 msgid "Turquoise"
-msgstr "Türkis"
+msgstr "फ़िरोज़ा"
 
 #: ../src/views/PreferenceWindow.qml:18
 msgid "UFO green"
-msgstr "UFO-Grün"
+msgstr "यूएफ़ओ हरा"
 
 #: ../src/views/PreferenceWindow.qml:19
 msgid "Green yellow"
-msgstr "Grüngelb"
+msgstr "हरा पीला"
 
 #: ../src/views/PreferenceWindow.qml:20
 msgid "Energy yellow"
-msgstr "Energiegelb"
+msgstr "ऊर्जायुक्त पीला"
 
 #: ../src/views/PreferenceWindow.qml:21
 msgid "Orange"
-msgstr "Orange"
+msgstr "संतरा"
 
 #: ../src/views/PreferenceWindow.qml:22
 msgid "Radical red"
-msgstr "Radikalrot"
+msgstr "रेडिकल लाल"
 
 #: ../src/views/PreferenceWindow.qml:23
 msgid "Lavender indigo"
-msgstr "Lavender Indigo"
+msgstr "लैवेंडर नील"
 
 #: ../src/views/PreferenceWindow.qml:24
 msgid "Royal blue"
-msgstr "Königsblau"
+msgstr "रॉयल नीला"
 
 #: ../src/views/PreferenceWindow.qml:25
 msgid "Aluminum"
-msgstr "Aluminum"
+msgstr "एल्यूमिनियम"
 
 #: ../src/views/PreferenceWindow.qml:26
 msgid "Clean white"
-msgstr "Sauberes Weiß"
+msgstr "साफ सफ़ेद"
 
 #: ../src/views/PreferenceWindow.qml:77 ../src/views/PreferenceWindow.qml:228
 msgid "Basic settings"
-msgstr "Grundeinstellungen"
+msgstr "सामान्य व्यवस्था"
 
 #: ../src/views/PreferenceWindow.qml:81 ../src/views/PreferenceWindow.qml:102
 #: ../src/views/PreferenceWindow.qml:232 ../src/views/PreferenceWindow.qml:346
 #: ../src/views/ShortcutsViewer.qml:43
 msgid "Playback"
-msgstr "Wiedergabe"
+msgstr "पुनर्चलन"
 
 #: ../src/views/PreferenceWindow.qml:86 ../src/views/PreferenceWindow.qml:302
 msgid "Time span"
-msgstr "Zeitspanne"
+msgstr "समय अवधि"
 
 #: ../src/views/PreferenceWindow.qml:98 ../src/views/PreferenceWindow.qml:342
 msgid "Keyboard shortcuts"
-msgstr "Tastaturkürzel"
+msgstr "कुंजीपटल अल्प मार्ग"
 
 #: ../src/views/PreferenceWindow.qml:107 ../src/views/PreferenceWindow.qml:570
 #: ../src/views/ShortcutsViewer.qml:101
 msgid "Frame/Sound"
-msgstr "Bild/Ton"
+msgstr "ढांचा / ध्वनि"
 
 #: ../src/views/PreferenceWindow.qml:112 ../src/views/PreferenceWindow.qml:743
 #: ../src/views/ShortcutsViewer.qml:80
 msgid "Files"
-msgstr "Dateien"
+msgstr "फ़ाइल"
 
 #: ../src/views/PreferenceWindow.qml:127
 #: ../src/views/PreferenceWindow.qml:1023 ../src/views/ShortcutsViewer.qml:130
 msgid "Other"
-msgstr "Andere"
+msgstr "अन्य"
 
 #: ../src/views/PreferenceWindow.qml:134
 #: ../src/views/PreferenceWindow.qml:1083
 msgid "Subtitle settings"
-msgstr "Untertiteleinstellungen"
+msgstr "उपशीर्षक व्यवस्थित"
 
 #: ../src/views/PreferenceWindow.qml:158
 msgid "Reset shortcuts"
-msgstr "Kürzel zurücksetzen"
+msgstr "अल्प मार्ग पहले जैसा करें"
 
 #: ../src/views/PreferenceWindow.qml:162
 msgid "Reset subtitle settings"
-msgstr "Untertiteleinstellungen zurücksetzen"
+msgstr "उपशीर्षक पहले जैसा व्यवस्थित करें"
 
 #: ../src/views/PreferenceWindow.qml:241
 msgid "Fullscreen on opening file"
-msgstr "Vollbild beim Öffnen der Datei"
+msgstr "फ़ाइल को पूर्ण स्क्रीन में खोलें"
 
 #: ../src/views/PreferenceWindow.qml:247
 msgid "Apply the size last time closed"
-msgstr "Die Programmgröße seit dem letzten Schließen beibehalten"
+msgstr "पिछली बार बंद आकार लागू करें"
 
 #: ../src/views/PreferenceWindow.qml:253
 msgid "Clear playlist on opening new file"
-msgstr "Wiedergabeliste beim Öffnen einer neuen Datei leeren"
+msgstr "नया फ़ाइल खोलते समय चलाने की सूची हटाएँ"
 
 #: ../src/views/PreferenceWindow.qml:258
 msgid "Resume playback after restarting player"
-msgstr "Wiedergabe nach Neustart der Anwendung fortsetzen"
+msgstr "पुनः शुरू करने पर फिर से शुरू करें"
 
 #: ../src/views/PreferenceWindow.qml:263
 msgid "Continue to next video automatically"
-msgstr "Automatisch zum nächsten Video übergehen"
+msgstr "स्वतः अगले वीडियो पर जाएँ"
 
 #: ../src/views/PreferenceWindow.qml:268
 msgid "Display preview when hovering over progress bar"
-msgstr "Vorschau bei Überfahrt über den Fortschrittsbalken anzeigen"
+msgstr "प्रगति पट्टी पर मँडराने पर पूर्वावलोकन दिखाएँ"
 
 #: ../src/views/PreferenceWindow.qml:273
 msgid "Allow multiple instances"
-msgstr "Mehrere Instanzen erlauben"
+msgstr "कई उदाहरणों की अनुमति दें"
 
 #: ../src/views/PreferenceWindow.qml:278
 msgid "Pause when minimized"
-msgstr "Beim Minimieren pausieren"
+msgstr "नीचे करने पर रोकें"
 
 #: ../src/views/PreferenceWindow.qml:283
 msgid "Enable hardware acceleration"
-msgstr "Hardwarebeschleunigung aktivieren"
+msgstr "हार्डवेयर त्वरण सक्षम करें"
 
 #: ../src/views/PreferenceWindow.qml:288
 msgid "Accept wireless push"
-msgstr ""
+msgstr "वायरलेस धक्का स्वीकार करें"
 
 #: ../src/views/PreferenceWindow.qml:311
 msgid "Forward/Backward (s)"
-msgstr "Vorspulen/Zurückspulen (s)"
+msgstr "आगे/पीछे (हो)"
 
 #: ../src/views/PreferenceWindow.qml:331
 msgid "Save path"
-msgstr "Speicherpfad"
+msgstr "पथ सहेजें"
 
 #: ../src/views/PreferenceWindow.qml:355 ../src/views/PreferenceWindow.qml:579
 #: ../src/views/PreferenceWindow.qml:752 ../src/views/PreferenceWindow.qml:847
 msgid "Enable keyboard shortcuts"
-msgstr "Tastaturkürzel aktivieren"
+msgstr "कुंजीपटल अल्प मार्ग सक्षम करें"
 
 #: ../src/views/PreferenceWindow.qml:360
 #: ../src/views/PreferenceWindow.qml:1036 ../src/views/ShortcutsViewer.qml:46
 #: ../src/views/ShortcutsViewer.qml:134
 msgid "Pause/Play"
-msgstr "Pause/Wiedergabe"
+msgstr "विराम/शुरू"
 
 #: ../src/views/PreferenceWindow.qml:490 ../src/views/ShortcutsViewer.qml:66
 msgid "Accelerate playback"
-msgstr "Wiedergabe beschleunigen"
+msgstr "पार्श्व त्वरित करें"
 
 #: ../src/views/PreferenceWindow.qml:516 ../src/views/ShortcutsViewer.qml:70
 msgid "Decelerate playback"
-msgstr "Wiedergabe verlangsamen"
+msgstr "पार्श्व आत्वरित करें"
 
 #: ../src/views/PreferenceWindow.qml:542 ../src/views/ShortcutsViewer.qml:74
 msgid "Restore playback speed"
-msgstr "Wiedergabegeschwindigkeit wiederherstellen"
+msgstr "पार्श्व गति पहले जैसा करें"
 
 #: ../src/views/PreferenceWindow.qml:611 ../src/views/ShortcutsViewer.qml:108
 msgid "Rotate counterclockwise"
-msgstr "Entgegengesetzt der Uhrzeigerrichtung drehen"
+msgstr "वामावर्त स्थिति में घुमाएं"
 
 #: ../src/views/PreferenceWindow.qml:637 ../src/views/ShortcutsViewer.qml:112
 msgid "Rotate clockwise"
-msgstr "In Uhrzeigerrichtung drehen"
+msgstr "दक्षिणावर्त घुमाएँ"
 
 #: ../src/views/PreferenceWindow.qml:663 ../src/views/ShortcutsViewer.qml:116
 msgid "Volume up"
-msgstr "Lautstärke erhöhen"
+msgstr "आवाज बढ़ाएँ"
 
 #: ../src/views/PreferenceWindow.qml:689 ../src/views/ShortcutsViewer.qml:120
 msgid "Volume down"
-msgstr "Lautstärke verringern"
+msgstr "आवाज घटाएँ"
 
 #: ../src/views/PreferenceWindow.qml:784 ../src/views/ShortcutsViewer.qml:87
 msgid "Open previous"
-msgstr "Vorheriges öffnen"
+msgstr "पिछला खोलें"
 
 #: ../src/views/PreferenceWindow.qml:810 ../src/views/ShortcutsViewer.qml:91
 msgid "Open next"
-msgstr "Nächstes öffnen"
+msgstr "अगला खोलें"
 
 #: ../src/views/PreferenceWindow.qml:853 ../src/views/ShortcutsViewer.qml:153
 #, qt-format
 msgid "Advance %1 (s)"
-msgstr ""
+msgstr "(उन्नत %1)"
 
 #: ../src/views/PreferenceWindow.qml:879 ../src/views/ShortcutsViewer.qml:157
 #, qt-format
 msgid "Delay %1 (s)"
-msgstr "%1 verzögern (s)"
+msgstr "(देरी %1)"
 
 #: ../src/views/PreferenceWindow.qml:905 ../src/views/ShortcutsViewer.qml:161
 msgid "Subtitle up"
-msgstr "Untertitel oben"
+msgstr "उपशीर्षक ऊपर"
 
 #: ../src/views/PreferenceWindow.qml:931 ../src/views/ShortcutsViewer.qml:165
 msgid "Subtitle down"
-msgstr "Untertitel unten"
+msgstr "उपशीर्षक नीचे"
 
 #: ../src/views/PreferenceWindow.qml:995
 msgid "Plot burst shooting"
-msgstr ""
+msgstr "कहानी हटाएँ"
 
 #: ../src/views/PreferenceWindow.qml:1033 ../src/views/ShortcutsViewer.qml:133
 msgid "Left click"
-msgstr "Linksklick"
+msgstr "बाएँ क्लिक"
 
 #: ../src/views/PreferenceWindow.qml:1049 ../src/views/ShortcutsViewer.qml:138
 msgid "Double click"
-msgstr "Doppelklick"
+msgstr "दो बार दबाएँ"
 
 #: ../src/views/PreferenceWindow.qml:1065 ../src/views/ShortcutsViewer.qml:143
 msgid "Scroll"
-msgstr "Scrollen"
+msgstr "ऊपर नीचे"
 
 #: ../src/views/PreferenceWindow.qml:1068 ../src/views/ShortcutsViewer.qml:144
 #: ../src/views/VolumeButton.qml:44
 msgid "Volume"
-msgstr "Lautstärke"
+msgstr "ध्वनि"
 
 #: ../src/views/PreferenceWindow.qml:1090
 msgid "(The setting is invalid for effect subtitles)"
-msgstr ""
+msgstr "(उपशीर्षक हेतु यह अमान्य है)"
 
 #: ../src/views/PreferenceWindow.qml:1095
 msgid "Subtitles loaded automatically"
-msgstr "Untertitel wurden automatisch geladen"
+msgstr "स्वतः उपशीर्षक"
 
 #: ../src/views/PreferenceWindow.qml:1109
 msgid "Font"
-msgstr "Schriftart"
+msgstr "फॉन्ट"
 
 #: ../src/views/PreferenceWindow.qml:1169
 msgid "Font color"
-msgstr "Schriftartfarbe"
+msgstr "फॉन्ट रंग"
 
 #: ../src/views/PreferenceWindow.qml:1204
 msgid "Border width"
-msgstr "Randbreite"
+msgstr "सीमा का आकार"
 
 #: ../src/views/PreferenceWindow.qml:1221
 msgid "Border color"
-msgstr "Rahmenfarbe"
+msgstr "सीमा का रंग"
 
 #: ../src/views/PreferenceWindow.qml:1239
 msgid "Position"
-msgstr "Position"
+msgstr "पायदान"
 
 #: ../src/views/PreferenceWindow.qml:1244
 msgid "Bottom"
-msgstr "Unten"
+msgstr "नीचे"
 
 #: ../src/views/PreferenceWindow.qml:1245
 msgid "Top"
-msgstr "Top"
+msgstr "ऊपर"
 
 #: ../src/views/PreferenceWindow.qml:1256
 msgid "Sync adjustment (s)"
-msgstr "Synchronisierungsanpassung (s)"
+msgstr "(समायोजन को तुल्यकालित करें)"
 
 #: ../src/views/TitleBar.qml:173
 msgid "Displayed in a proportion of 1:1"
-msgstr "In einem Verhältnis von 1:1 angezeigt"
+msgstr "1:1 में दिखाएँ"
 
 #: ../src/views/TitleBar.qml:185
 msgid "Displayed in 1.5 times"
-msgstr "Im 1,5-fachen angezeigt"
+msgstr "1.5 गुणा देर"
 
 #: ../src/views/TitleBar.qml:198
 msgid "Return to mini mode"
-msgstr "Zum Mini-Modus zurückkehren"
+msgstr "वापस छोटे रूप में"
 
 #: ../src/views/TitleBar.qml:198
 msgid "Shown in fullscreen"
-msgstr "In Vollbild dargestellt"
+msgstr "पूर्ण स्क्रीन में दिखाएँ"
 
 #: ../src/views/TitleBar.qml:213
 msgid "Cancel \"On Top\""
-msgstr "\"Obendrauf\" abbrechen"
+msgstr "रद्द \"ऊपर\""
 
 #: ../src/views/TitleBar.qml:213
 msgid "On Top"
-msgstr "Obendrauf"
+msgstr "ऊपर"
 
 #: ../src/views/dlna/DLNAEngine.qml:34
 msgid "Switch back"
-msgstr ""
+msgstr "वापस जाएं"
 
 #: ../src/views/dlna/DLNAEngine.qml:59
 #, qt-format
 msgid "The movie \"%1\" is being played on \"%2\"."
-msgstr "Der Film \"%1\" wird auf \"%2\" wiedergegeben."
+msgstr "\"%1\" फिल्म  \"%2\" में चल रही है।"
 
 #: ../src/views/dlna/RendererListDialog.qml:43
 msgid "Please select the playing device"
-msgstr "Bitte wählen Sie das Wiedergabegerät aus"
+msgstr "कृपया चलाने का उपकरण चुने।"
 
 #: ../src/views/main.qml:163
 msgid "Please input the url of file played"
-msgstr "Bitte geben Sie die URL der wiedergegebenen Datei ein"
+msgstr "फ़ाइल को चलाने हेतु पता डालें"
 
 #: ../src/views/main.qml:164
 msgid "Confirm"
-msgstr "Bestätigen"
+msgstr "पुष्टि"
 
 #: ../src/views/main.qml:181
 msgid "The parse failed"
-msgstr "Das Auslesen ist fehlgeschlagen"
+msgstr "चलना विफल"
 
 #: ../src/views/main.qml:502 ../src/views/main.qml:504
 msgid "Buffering..."
-msgstr "Pufferung..."
+msgstr "भरण हो रहा..."
 
 #: ../src/views/toolbox/PosterEngine.qml:41
 #: ../src/views/toolbox/PosterEngine.qml:56
 msgid "Plot burst shooting, please wait..."
-msgstr ""
+msgstr "कहानी हट रही है, कृपया प्रतीक्षा करे..."
 
 #: ../src/views/toolbox/PosterEngine.qml:61
 msgid "Plot Burst Shooting"
-msgstr ""
+msgstr "कहानी हट रही है।"
 
 #: ../src/views/toolbox/ScreenshotEngine.qml:26
 msgid "Movie Screenshot"
-msgstr ""
+msgstr "मूवी स्क्रीनशॉट"
 
 #: ../src/views/toolbox/ScreenshotEngine.qml:34
 #, qt-format
 msgid "Your screenshot has been saved to %1"
-msgstr "Ihr Bildschirmfoto wurde in %1 gespeichert"
+msgstr "आपका स्क्रीनशॉट  %1 पर सहेजा गया है।"
 
 #: ../src/views/toolbox/Toolbox.qml:79
 msgid "Burst"
-msgstr ""
+msgstr "बर्स्ट"

@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-14 16:54+0800\n"
-"PO-Revision-Date: 2015-08-14 08:59+0000\n"
-"Last-Translator: deepin_transifex <xiabin@linuxdeepin.com>\n"
+"PO-Revision-Date: 2015-08-25 05:55+0000\n"
+"Last-Translator: Анатолий Валерианович <ffox909@mail.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/linuxdeepin/deepin-movie/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -43,11 +43,11 @@ msgstr "Отразить по вертикали"
 
 #: ../src/controllers/menu_controller.py:53
 msgid "Audio Channels"
-msgstr ""
+msgstr "Аудио каналы"
 
 #: ../src/controllers/menu_controller.py:54
 msgid "Audio Tracks"
-msgstr ""
+msgstr "Аудио дорожки"
 
 #: ../src/controllers/menu_controller.py:57
 msgid "Volume Up"
@@ -64,7 +64,7 @@ msgstr "Заглушить"
 
 #: ../src/controllers/menu_controller.py:63
 msgid "Stereo"
-msgstr ""
+msgstr "Стерео"
 
 #: ../src/controllers/menu_controller.py:64
 msgid "Left"
@@ -80,7 +80,7 @@ msgstr "Скрыть субтитры"
 
 #: ../src/controllers/menu_controller.py:73
 msgid "Load manually"
-msgstr ""
+msgstr "Загрузить вручную"
 
 #: ../src/controllers/menu_controller.py:74
 msgid "Subtitle selection"
@@ -128,15 +128,15 @@ msgstr "Перемотка вперед"
 #: ../src/views/MainController.qml:550 ../src/views/PreferenceWindow.qml:412
 #: ../src/views/ShortcutsViewer.qml:54
 msgid "Backward"
-msgstr ""
+msgstr "Назад"
 
 #: ../src/controllers/menu_controller.py:95
 msgid "Movie screenshot"
-msgstr ""
+msgstr "Скриншот фильма"
 
 #: ../src/controllers/menu_controller.py:96
 msgid "Burst screenshot"
-msgstr ""
+msgstr "Серия скриншотов"
 
 #: ../src/controllers/menu_controller.py:100 ../src/views/ControlBar.qml:413
 #: ../src/views/PreferenceWindow.qml:758 ../src/views/ShortcutsViewer.qml:83
@@ -204,7 +204,7 @@ msgstr "Субтитры"
 #: ../src/views/PreferenceWindow.qml:968 ../src/views/toolbox/Toolbox.qml:70
 #: ../src/views/toolbox/Toolbox.qml:99
 msgid "Screenshot"
-msgstr "Сделать снимок экрана"
+msgstr "Снимок экрана"
 
 #: ../src/controllers/menu_controller.py:117
 msgid "Settings"
@@ -255,11 +255,11 @@ msgstr "Открыть расположение файла"
 
 #: ../src/controllers/menu_controller.py:191
 msgid "Audio track"
-msgstr ""
+msgstr "Аудио дорожка"
 
 #: ../src/controllers/menu_controller.py:200
 msgid "Load audio track"
-msgstr ""
+msgstr "Загрузить аудио дорожку"
 
 #: ../src/controllers/menu_controller.py:495 ../src/views/ControlBar.qml:382
 msgid "Exit fullscreen"
@@ -290,7 +290,7 @@ msgstr ":"
 
 #: ../src/utils/poster_generator.py:234
 msgid "Duration"
-msgstr "Длительность"
+msgstr "Продолжительность"
 
 #: ../src/utils/poster_generator.py:244 ../src/views/InformationWindow.qml:97
 msgid "Resolution"
@@ -329,7 +329,7 @@ msgstr "Пауза"
 
 #: ../src/views/ControlBar.qml:400
 msgid "Toolkit"
-msgstr ""
+msgstr "Инструментарий"
 
 #: ../src/views/HotKeyInputRow.qml:24 ../src/views/HotKeyInputRow.qml:26
 #: ../src/views/HotKeyInputRow.qml:54 ../src/views/HotKeyInputRow.qml:56
@@ -415,7 +415,7 @@ msgstr "(Нажать %1 для восставновления)"
 #: ../src/views/MainController.qml:560 ../src/views/MainController.qml:566
 #: ../src/views/MainController.qml:571
 msgid "Playback speed: "
-msgstr ""
+msgstr "Скорость воспроизведения:"
 
 #: ../src/views/MainController.qml:583 ../src/views/MainController.qml:592
 msgid "Volume: "
@@ -438,7 +438,7 @@ msgstr "Задержка субтитров %1 секунд"
 #: ../src/views/OpenFileDialog.qml:5 ../src/views/OpenFileDialog.qml:24
 #: ../src/views/OpenFileDialog.qml:54
 msgid "Please select one file or more"
-msgstr ""
+msgstr "Выберите один или более файлов"
 
 #: ../src/views/OpenFileDialog.qml:7 ../src/views/OpenFileDialog.qml:26
 #: ../src/views/OpenFileDialog.qml:56
@@ -452,7 +452,7 @@ msgstr "Все файлы"
 #: ../src/views/OpenFileDialog.qml:34 ../src/views/OpenFileDialog.qml:44
 #: ../src/views/OpenFileDialog.qml:64
 msgid "Please select one file"
-msgstr ""
+msgstr "Выберете один файл"
 
 #: ../src/views/OpenFileDialog.qml:36
 msgid "Subtitle files"
@@ -460,7 +460,7 @@ msgstr "Файлы субтитров"
 
 #: ../src/views/OpenFileDialog.qml:46
 msgid "Audio track files"
-msgstr ""
+msgstr "Файлы аудио дорожки"
 
 #: ../src/views/OpenFileDialog.qml:66 ../src/views/OpenFileDialog.qml:76
 msgid "Playlist files"
@@ -472,7 +472,7 @@ msgstr "Сохранить как"
 
 #: ../src/views/OpenFolderDialog.qml:5
 msgid "Please select a folder"
-msgstr ""
+msgstr "Выберите папку"
 
 #: ../src/views/Playlist.qml:252
 msgid "Play mode"
@@ -594,7 +594,7 @@ msgstr "Перейти к следующему видео автоматичес
 
 #: ../src/views/PreferenceWindow.qml:268
 msgid "Display preview when hovering over progress bar"
-msgstr ""
+msgstr "Показывать прогресс-бар при наведении"
 
 #: ../src/views/PreferenceWindow.qml:273
 msgid "Allow multiple instances"
@@ -606,19 +606,19 @@ msgstr "Пауза при сворачивании"
 
 #: ../src/views/PreferenceWindow.qml:283
 msgid "Enable hardware acceleration"
-msgstr ""
+msgstr "Включить аппаратное ускорение"
 
 #: ../src/views/PreferenceWindow.qml:288
 msgid "Accept wireless push"
-msgstr ""
+msgstr "Позволить беспроводное нажатие"
 
 #: ../src/views/PreferenceWindow.qml:311
 msgid "Forward/Backward (s)"
-msgstr ""
+msgstr "Вперёд/Назад (s)"
 
 #: ../src/views/PreferenceWindow.qml:331
 msgid "Save path"
-msgstr ""
+msgstr "Сохранить путь"
 
 #: ../src/views/PreferenceWindow.qml:355 ../src/views/PreferenceWindow.qml:579
 #: ../src/views/PreferenceWindow.qml:752 ../src/views/PreferenceWindow.qml:847
@@ -670,7 +670,7 @@ msgstr "Открыть следующий"
 #: ../src/views/PreferenceWindow.qml:853 ../src/views/ShortcutsViewer.qml:153
 #, qt-format
 msgid "Advance %1 (s)"
-msgstr ""
+msgstr "Дополнительно %1 (s)"
 
 #: ../src/views/PreferenceWindow.qml:879 ../src/views/ShortcutsViewer.qml:157
 #, qt-format
@@ -687,7 +687,7 @@ msgstr "Субтитры ниже"
 
 #: ../src/views/PreferenceWindow.qml:995
 msgid "Plot burst shooting"
-msgstr ""
+msgstr "Область серии снимков"
 
 #: ../src/views/PreferenceWindow.qml:1033 ../src/views/ShortcutsViewer.qml:133
 msgid "Left click"
@@ -708,7 +708,7 @@ msgstr "Громкость"
 
 #: ../src/views/PreferenceWindow.qml:1090
 msgid "(The setting is invalid for effect subtitles)"
-msgstr ""
+msgstr "(Настройка недопустима для эффекта субтитров)"
 
 #: ../src/views/PreferenceWindow.qml:1095
 msgid "Subtitles loaded automatically"
@@ -748,11 +748,11 @@ msgstr "Регулировка синхр. (s)"
 
 #: ../src/views/TitleBar.qml:173
 msgid "Displayed in a proportion of 1:1"
-msgstr ""
+msgstr "Отображать в пропорции 1:1"
 
 #: ../src/views/TitleBar.qml:185
 msgid "Displayed in 1.5 times"
-msgstr ""
+msgstr "Отобразить в 1.5 раза"
 
 #: ../src/views/TitleBar.qml:198
 msgid "Return to mini mode"
@@ -772,16 +772,16 @@ msgstr "Поверх окон"
 
 #: ../src/views/dlna/DLNAEngine.qml:34
 msgid "Switch back"
-msgstr ""
+msgstr "Вернуться"
 
 #: ../src/views/dlna/DLNAEngine.qml:59
 #, qt-format
 msgid "The movie \"%1\" is being played on \"%2\"."
-msgstr ""
+msgstr "Фильм \"%1\" проигрывается на \"%2\"."
 
 #: ../src/views/dlna/RendererListDialog.qml:43
 msgid "Please select the playing device"
-msgstr ""
+msgstr "Выберете устройство воспроизведения"
 
 #: ../src/views/main.qml:163
 msgid "Please input the url of file played"
@@ -802,21 +802,21 @@ msgstr "Буферизация..."
 #: ../src/views/toolbox/PosterEngine.qml:41
 #: ../src/views/toolbox/PosterEngine.qml:56
 msgid "Plot burst shooting, please wait..."
-msgstr ""
+msgstr "Область серии снимков, подождите..."
 
 #: ../src/views/toolbox/PosterEngine.qml:61
 msgid "Plot Burst Shooting"
-msgstr ""
+msgstr "Область серии снимков"
 
 #: ../src/views/toolbox/ScreenshotEngine.qml:26
 msgid "Movie Screenshot"
-msgstr ""
+msgstr "Скриншот фильма"
 
 #: ../src/views/toolbox/ScreenshotEngine.qml:34
 #, qt-format
 msgid "Your screenshot has been saved to %1"
-msgstr ""
+msgstr "Ваш скриншот сохранён в %1"
 
 #: ../src/views/toolbox/Toolbox.qml:79
 msgid "Burst"
-msgstr ""
+msgstr "Серия"
