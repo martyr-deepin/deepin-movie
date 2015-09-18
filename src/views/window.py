@@ -25,7 +25,10 @@ import time
 import json
 from random import randint
 
-import xcb
+try:
+    from xcb.xproto import PropMode
+except ImportError:
+    from xcffib.xproto import PropMode
 from xpybutil.icccm import State
 from xpybutil.ewmh import (c, atom, request_wm_state_checked,
     request_active_window_checked, revent_checked )
@@ -125,7 +128,7 @@ class Window(QQuickView):
     def setDeepinWindowShadowHint(self, width):
         width = str(width)
         window = self.winId().__int__()
-        return c.core.ChangeProperty(xcb.xproto.PropMode.Replace, window,
+        return c.core.ChangeProperty(PropMode.Replace, window,
                                      atom('DEEPIN_WINDOW_SHADOW'),
                                      atom('STRING'), 8, len(width), width)
 
