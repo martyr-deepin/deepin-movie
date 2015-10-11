@@ -30,7 +30,8 @@ md = magic.open(magic.MAGIC_MIME_TYPE)
 md.load()
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtGui import QKeySequence
-from PyQt5.QtCore import QObject, QThread, pyqtSignal, pyqtSlot, pyqtProperty
+from PyQt5.QtCore import QObject, QThread, pyqtSignal, pyqtSlot, pyqtProperty,\
+                         PYQT_VERSION
 
 from views.subtitles import *
 from dbus_interfaces import screenSaverInterface
@@ -146,6 +147,8 @@ class FindVideoThread(QThread):
             self._cate_video_tuple_list.append(("", path))
 
     def _process_path_list(self, pathList):
+        if PYQT_VERSION >= 0x50400:
+            pathList = pathList.toVariant()
         for path in pathList:
             if utils.urlIsDir(path):
                 self._process_path_list(utils.getAllFilesInDir(path))
