@@ -30,7 +30,9 @@ except:
 
 # initialize
 libfc.FcInit()
+libfc.FcPatternCreate.restype = c_void_p
 pattern = libfc.FcPatternCreate()
+libfc.FcObjectSetBuild.restype = c_void_p
 objectSet = libfc.FcObjectSetBuild("family", "familylang",
                                    "lang", "spacing", None)
 
@@ -86,6 +88,7 @@ def fontsByLocale(locale):
 
     # get all fonts
     libfc.FcFontList.restype = POINTER(FcFontSet)
+    libfc.FcFontList.argtypes = [c_void_p] * 3
     libfc.FcLangSetGetLangs.restype = POINTER(FcStrSet)
     libfc.FcStrListNext.restype = c_char_p
     libfc.FcPatternFormat.restype = c_char_p
