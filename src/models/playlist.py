@@ -35,6 +35,11 @@ TAG_ITEM = "Item"
 _database_file = SqliteDatabase(DATABASE_FILE)
 _database_file.connect()
 
+# FIXME: a work-around here, if we manually called Database.begin and
+# didn't end it with Database.commit, Database.transation and Database.atomic
+# will throw an OperationError exception.
+_database_in_transaction = False
+
 class DMPlaylistCategory(Element):
     def __init__(self, ownerDocument, name=""):
         Element.__init__(self, TAG_CATEGORY)
@@ -199,15 +204,38 @@ class Database(QObject):
         self._delayCommitTimer = QTimer()
         self._delayCommitTimer.setSingleShot(True)
         self._delayCommitTimer.setInterval(500)
-        self._delayCommitTimer.timeout.connect(lambda: _database_file.commit())
+        self._delayCommitTimer.timeout.connect(self._delayCommitOver)
 
     @contextmanager
     def _delayCommit(self):
+        global _database_in_transaction
+
         _database_file.set_autocommit(False)
-        _database_file.begin()
+        if not _database_in_transaction:
+            _database_file.begin()
+            _database_in_transaction = True
         yield
         _database_file.set_autocommit(True)
         self._delayCommitTimer.start()
+
+    def _delayCommitOver(self):
+        global _database_in_transaction
+
+        _database_file.commit()
+        _database_in_transaction = False
+
+    @contextmanager
+    def _commitOnSuccess(self):
+        global _database_in_transaction
+
+        _database_file.set_autocommit(False)
+        if not _database_in_transaction:
+            _database_file.begin()
+            _database_in_transaction = True
+        yield
+        _database_file.commit()
+        _database_in_transaction = False
+        _database_file.set_autocommit(True)
 
     # internal helper functions
     def _getPlayHistory(self):
@@ -301,18 +329,18 @@ class Database(QObject):
         self._getOrNewPlaylistCategory(categoryName)
 
     @pyqtSlot(str)
-    @_database_file.commit_on_success
     def addPlaylistCITuples(self, tuples):
-        tuples = json.loads(tuples)
-        for tuple in tuples:
-            category = tuple[0]
-            url = tuple[1]
-            urlIsNativeFile = utils.urlIsNativeFile(url)
+        with self._commitOnSuccess():
+            tuples = json.loads(tuples)
+            for tuple in tuples:
+                category = tuple[0]
+                url = tuple[1]
+                urlIsNativeFile = utils.urlIsNativeFile(url)
 
-            result = os.path.basename(url)
-            itemName =  result if urlIsNativeFile else url
+                result = os.path.basename(url)
+                itemName =  result if urlIsNativeFile else url
 
-            self.addPlaylistItem(itemName, url, category)
+                self.addPlaylistItem(itemName, url, category)
 
     @pyqtSlot(str)
     def removePlaylistItem(self, itemUrl):
@@ -325,21 +353,21 @@ class Database(QObject):
             pass
 
     @pyqtSlot(str)
-    @_database_file.commit_on_success
     def removePlaylistCategory(self, categoryName):
-        try:
-            itemsInCategory = PlaylistItemModel \
-            .select(PlaylistItemModel, PlaylistCategoryModel) \
-            .join(PlaylistCategoryModel, JOIN_LEFT_OUTER) \
-            .where(PlaylistCategoryModel.name == categoryName)
-            for item in itemsInCategory:
-                item.delete_instance()
+        with self._commitOnSuccess():
+            try:
+                itemsInCategory = PlaylistItemModel \
+                .select(PlaylistItemModel, PlaylistCategoryModel) \
+                .join(PlaylistCategoryModel, JOIN_LEFT_OUTER) \
+                .where(PlaylistCategoryModel.name == categoryName)
+                for item in itemsInCategory:
+                    item.delete_instance()
 
-            target = PlaylistCategoryModel.get(
-                PlaylistCategoryModel.name == categoryName)
-            target.delete_instance()
-        except DoesNotExist:
-            pass
+                target = PlaylistCategoryModel.get(
+                    PlaylistCategoryModel.name == categoryName)
+                target.delete_instance()
+            except DoesNotExist:
+                pass
 
     @pyqtSlot()
     def clearPlaylist(self):
@@ -371,17 +399,17 @@ class Database(QObject):
         playlist.writeTo(filename)
 
     @pyqtSlot(str)
-    @_database_file.commit_on_success
     def importPlaylist(self, filename):
-        playlist = DMPlaylist.readFrom(filename)
-        for category in playlist.getAllCategories():
-            for item in category.getAllItems():
-                self.addPlaylistCategory(category.name)
-                self.addPlaylistItem(item.name, item.source, category.name)
+        with self._commitOnSuccess:
+            playlist = DMPlaylist.readFrom(filename)
+            for category in playlist.getAllCategories():
+                for item in category.getAllItems():
+                    self.addPlaylistCategory(category.name)
+                    self.addPlaylistItem(item.name, item.source, category.name)
+                    self.setPlaylistItemPlayed(item.source, item.played)
+            for item in playlist.getAllItems():
+                self.addPlaylistItem(item.name, item.source, "")
                 self.setPlaylistItemPlayed(item.source, item.played)
-        for item in playlist.getAllItems():
-            self.addPlaylistItem(item.name, item.source, "")
-            self.setPlaylistItemPlayed(item.source, item.played)
 
         self.importDone.emit(filename)
 
