@@ -20,7 +20,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from PyQt5.QtCore import pyqtSlot, pyqtProperty
+from PyQt5.QtCore import pyqtSlot, pyqtProperty, PYQT_VERSION
 from PyQt5.QtCore import Qt, QObject, QSize, QPoint, QRect
 from PyQt5.QtGui import QPen, QBrush, QPainterPath
 from PyQt5.QtGui import QPixmap, QPainter, QColor, QLinearGradient
@@ -193,6 +193,9 @@ class PosterGenerator(QObject):
 
     @pyqtSlot("QVariant", str)
     def generate(self, stickers, destPath):
+        if PYQT_VERSION >= 0x50400:
+            stickers = stickers.toVariant()
+
         size = self._calculateSize()
 
         pixmap = QPixmap(size)
