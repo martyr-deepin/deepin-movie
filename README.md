@@ -1,6 +1,6 @@
 # Deepin Movie
 
-**Description**:  The default media player for Deepin, very beautiful yet very easy to use. QML is used to build its graphical interface combined QtAV(https://github.com/wang-bin/QtAV) as its multimedia backend. All video formats are supported out of the box.
+**Description**:  The default media player for Deepin, very beautiful yet very easy to use. QML is used to build its graphical interface combined [QtAV](https://github.com/wang-bin/QtAV) as its multimedia backend. All video formats are supported out of the box.
 
 ## Dependencies
 
