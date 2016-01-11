@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-14 16:54+0800\n"
-"PO-Revision-Date: 2015-08-14 08:59+0000\n"
+"PO-Revision-Date: 2015-12-21 11:14+0000\n"
 "Last-Translator: deepin_transifex <xiabin@linuxdeepin.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/linuxdeepin/deepin-movie/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -40,11 +40,11 @@ msgstr "Inversare verticală"
 
 #: ../src/controllers/menu_controller.py:53
 msgid "Audio Channels"
-msgstr ""
+msgstr "Canale audio"
 
 #: ../src/controllers/menu_controller.py:54
 msgid "Audio Tracks"
-msgstr ""
+msgstr "Piste audio"
 
 #: ../src/controllers/menu_controller.py:57
 msgid "Volume Up"
@@ -61,7 +61,7 @@ msgstr "Mut"
 
 #: ../src/controllers/menu_controller.py:63
 msgid "Stereo"
-msgstr ""
+msgstr "Stereo"
 
 #: ../src/controllers/menu_controller.py:64
 msgid "Left"
@@ -77,7 +77,7 @@ msgstr "Ascunde subtitluri"
 
 #: ../src/controllers/menu_controller.py:73
 msgid "Load manually"
-msgstr ""
+msgstr "Încarcă manual"
 
 #: ../src/controllers/menu_controller.py:74
 msgid "Subtitle selection"
@@ -125,15 +125,15 @@ msgstr "Înainte"
 #: ../src/views/MainController.qml:550 ../src/views/PreferenceWindow.qml:412
 #: ../src/views/ShortcutsViewer.qml:54
 msgid "Backward"
-msgstr ""
+msgstr "Înapoi"
 
 #: ../src/controllers/menu_controller.py:95
 msgid "Movie screenshot"
-msgstr ""
+msgstr "Captură de ecran a filmului"
 
 #: ../src/controllers/menu_controller.py:96
 msgid "Burst screenshot"
-msgstr ""
+msgstr "Captură ecran rafală"
 
 #: ../src/controllers/menu_controller.py:100 ../src/views/ControlBar.qml:413
 #: ../src/views/PreferenceWindow.qml:758 ../src/views/ShortcutsViewer.qml:83
@@ -252,11 +252,11 @@ msgstr "Deschide localizarea fișierului"
 
 #: ../src/controllers/menu_controller.py:191
 msgid "Audio track"
-msgstr ""
+msgstr "Piesă audio"
 
 #: ../src/controllers/menu_controller.py:200
 msgid "Load audio track"
-msgstr ""
+msgstr "Încarcă piesă audio"
 
 #: ../src/controllers/menu_controller.py:495 ../src/views/ControlBar.qml:382
 msgid "Exit fullscreen"
@@ -326,7 +326,7 @@ msgstr "Pauză"
 
 #: ../src/views/ControlBar.qml:400
 msgid "Toolkit"
-msgstr ""
+msgstr "Kit de instrumente"
 
 #: ../src/views/HotKeyInputRow.qml:24 ../src/views/HotKeyInputRow.qml:26
 #: ../src/views/HotKeyInputRow.qml:54 ../src/views/HotKeyInputRow.qml:56
@@ -412,7 +412,7 @@ msgstr "(Apăsați %1 pentru restabilire)"
 #: ../src/views/MainController.qml:560 ../src/views/MainController.qml:566
 #: ../src/views/MainController.qml:571
 msgid "Playback speed: "
-msgstr ""
+msgstr "Viteza de redare:"
 
 #: ../src/views/MainController.qml:583 ../src/views/MainController.qml:592
 msgid "Volume: "
@@ -435,7 +435,7 @@ msgstr "Stopare subtitrare %1 secunde"
 #: ../src/views/OpenFileDialog.qml:5 ../src/views/OpenFileDialog.qml:24
 #: ../src/views/OpenFileDialog.qml:54
 msgid "Please select one file or more"
-msgstr ""
+msgstr "Vă rugăm selectați un fișier sau mai multe"
 
 #: ../src/views/OpenFileDialog.qml:7 ../src/views/OpenFileDialog.qml:26
 #: ../src/views/OpenFileDialog.qml:56
@@ -449,7 +449,7 @@ msgstr "Toate fișierele"
 #: ../src/views/OpenFileDialog.qml:34 ../src/views/OpenFileDialog.qml:44
 #: ../src/views/OpenFileDialog.qml:64
 msgid "Please select one file"
-msgstr ""
+msgstr "Selectaţi un fişier"
 
 #: ../src/views/OpenFileDialog.qml:36
 msgid "Subtitle files"
@@ -457,7 +457,7 @@ msgstr "Fișiere subtitrările"
 
 #: ../src/views/OpenFileDialog.qml:46
 msgid "Audio track files"
-msgstr ""
+msgstr "Fişiere piste audio"
 
 #: ../src/views/OpenFileDialog.qml:66 ../src/views/OpenFileDialog.qml:76
 msgid "Playlist files"
@@ -469,7 +469,7 @@ msgstr "Salvare ca"
 
 #: ../src/views/OpenFolderDialog.qml:5
 msgid "Please select a folder"
-msgstr ""
+msgstr "Vă rugăm selectați un folder"
 
 #: ../src/views/Playlist.qml:252
 msgid "Play mode"
@@ -591,7 +591,7 @@ msgstr "Continuă cu următorul fișier video în mod automat"
 
 #: ../src/views/PreferenceWindow.qml:268
 msgid "Display preview when hovering over progress bar"
-msgstr ""
+msgstr "Afișează previzualizarea la planarea peste bara de progres"
 
 #: ../src/views/PreferenceWindow.qml:273
 msgid "Allow multiple instances"
@@ -603,19 +603,19 @@ msgstr "Pauză la minimizare"
 
 #: ../src/views/PreferenceWindow.qml:283
 msgid "Enable hardware acceleration"
-msgstr ""
+msgstr "Activează accelerarea hardware"
 
 #: ../src/views/PreferenceWindow.qml:288
 msgid "Accept wireless push"
-msgstr ""
+msgstr "Acceptaţi trimitere de tip push wireless"
 
 #: ../src/views/PreferenceWindow.qml:311
 msgid "Forward/Backward (s)"
-msgstr ""
+msgstr "Redirecţionare/Înapoi"
 
 #: ../src/views/PreferenceWindow.qml:331
 msgid "Save path"
-msgstr ""
+msgstr "Salvează calea"
 
 #: ../src/views/PreferenceWindow.qml:355 ../src/views/PreferenceWindow.qml:579
 #: ../src/views/PreferenceWindow.qml:752 ../src/views/PreferenceWindow.qml:847
@@ -667,7 +667,7 @@ msgstr "Deschide următor"
 #: ../src/views/PreferenceWindow.qml:853 ../src/views/ShortcutsViewer.qml:153
 #, qt-format
 msgid "Advance %1 (s)"
-msgstr ""
+msgstr "Înaintare %1 (s)"
 
 #: ../src/views/PreferenceWindow.qml:879 ../src/views/ShortcutsViewer.qml:157
 #, qt-format
@@ -684,7 +684,7 @@ msgstr "Subtitluri jos"
 
 #: ../src/views/PreferenceWindow.qml:995
 msgid "Plot burst shooting"
-msgstr ""
+msgstr "Calculaţi traiectorie rafală"
 
 #: ../src/views/PreferenceWindow.qml:1033 ../src/views/ShortcutsViewer.qml:133
 msgid "Left click"
@@ -705,7 +705,7 @@ msgstr "Volum"
 
 #: ../src/views/PreferenceWindow.qml:1090
 msgid "(The setting is invalid for effect subtitles)"
-msgstr ""
+msgstr "(Setarea nu este validă pentru subtitrare efecte)"
 
 #: ../src/views/PreferenceWindow.qml:1095
 msgid "Subtitles loaded automatically"
@@ -745,11 +745,11 @@ msgstr "Ajustare (tările) sincronizată"
 
 #: ../src/views/TitleBar.qml:173
 msgid "Displayed in a proportion of 1:1"
-msgstr ""
+msgstr "Afișat în proporție de 1:1"
 
 #: ../src/views/TitleBar.qml:185
 msgid "Displayed in 1.5 times"
-msgstr ""
+msgstr "Afișat de 1.5 ori"
 
 #: ../src/views/TitleBar.qml:198
 msgid "Return to mini mode"
@@ -769,16 +769,16 @@ msgstr "Sus"
 
 #: ../src/views/dlna/DLNAEngine.qml:34
 msgid "Switch back"
-msgstr ""
+msgstr "Comută înapoi"
 
 #: ../src/views/dlna/DLNAEngine.qml:59
 #, qt-format
 msgid "The movie \"%1\" is being played on \"%2\"."
-msgstr ""
+msgstr "Filmul \"%1\" este difuzat pe \"%2\"."
 
 #: ../src/views/dlna/RendererListDialog.qml:43
 msgid "Please select the playing device"
-msgstr ""
+msgstr "Selectaţi dispozitivul de redare"
 
 #: ../src/views/main.qml:163
 msgid "Please input the url of file played"
@@ -799,21 +799,21 @@ msgstr "Buferizare..."
 #: ../src/views/toolbox/PosterEngine.qml:41
 #: ../src/views/toolbox/PosterEngine.qml:56
 msgid "Plot burst shooting, please wait..."
-msgstr ""
+msgstr "Fotografiere multiplă subiect, vă rugăm așteptați..."
 
 #: ../src/views/toolbox/PosterEngine.qml:61
 msgid "Plot Burst Shooting"
-msgstr ""
+msgstr "Fotografiere multiplă subiect"
 
 #: ../src/views/toolbox/ScreenshotEngine.qml:26
 msgid "Movie Screenshot"
-msgstr ""
+msgstr "Captură de ecran film"
 
 #: ../src/views/toolbox/ScreenshotEngine.qml:34
 #, qt-format
 msgid "Your screenshot has been saved to %1"
-msgstr ""
+msgstr "Captura dumneavoastră de ecran a fost salvată în %1"
 
 #: ../src/views/toolbox/Toolbox.qml:79
 msgid "Burst"
-msgstr ""
+msgstr "Rafală"

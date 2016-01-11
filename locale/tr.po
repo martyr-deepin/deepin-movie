@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-14 16:54+0800\n"
-"PO-Revision-Date: 2015-08-14 08:59+0000\n"
+"PO-Revision-Date: 2015-12-21 12:01+0000\n"
 "Last-Translator: deepin_transifex <xiabin@linuxdeepin.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/linuxdeepin/deepin-movie/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -42,11 +42,11 @@ msgstr "Dikey olarak çevir"
 
 #: ../src/controllers/menu_controller.py:53
 msgid "Audio Channels"
-msgstr ""
+msgstr "Audio Kanallar"
 
 #: ../src/controllers/menu_controller.py:54
 msgid "Audio Tracks"
-msgstr ""
+msgstr "Ses Dosyaları "
 
 #: ../src/controllers/menu_controller.py:57
 msgid "Volume Up"
@@ -63,7 +63,7 @@ msgstr "Sessiz"
 
 #: ../src/controllers/menu_controller.py:63
 msgid "Stereo"
-msgstr ""
+msgstr "Stereo"
 
 #: ../src/controllers/menu_controller.py:64
 msgid "Left"
@@ -79,7 +79,7 @@ msgstr "Altyazıyı gizle"
 
 #: ../src/controllers/menu_controller.py:73
 msgid "Load manually"
-msgstr ""
+msgstr "Manuel olarak yükle"
 
 #: ../src/controllers/menu_controller.py:74
 msgid "Subtitle selection"
@@ -127,15 +127,15 @@ msgstr "İleri"
 #: ../src/views/MainController.qml:550 ../src/views/PreferenceWindow.qml:412
 #: ../src/views/ShortcutsViewer.qml:54
 msgid "Backward"
-msgstr ""
+msgstr "Geri"
 
 #: ../src/controllers/menu_controller.py:95
 msgid "Movie screenshot"
-msgstr ""
+msgstr "Film ekran görüntüsü"
 
 #: ../src/controllers/menu_controller.py:96
 msgid "Burst screenshot"
-msgstr ""
+msgstr "Burst ekran görüntüsü"
 
 #: ../src/controllers/menu_controller.py:100 ../src/views/ControlBar.qml:413
 #: ../src/views/PreferenceWindow.qml:758 ../src/views/ShortcutsViewer.qml:83
@@ -254,11 +254,11 @@ msgstr "Dosya konumunu aç"
 
 #: ../src/controllers/menu_controller.py:191
 msgid "Audio track"
-msgstr ""
+msgstr "Müzik parçası"
 
 #: ../src/controllers/menu_controller.py:200
 msgid "Load audio track"
-msgstr ""
+msgstr "Müzik parçasını yükle"
 
 #: ../src/controllers/menu_controller.py:495 ../src/views/ControlBar.qml:382
 msgid "Exit fullscreen"
@@ -328,7 +328,7 @@ msgstr "Duraklat"
 
 #: ../src/views/ControlBar.qml:400
 msgid "Toolkit"
-msgstr ""
+msgstr "Alet takımı"
 
 #: ../src/views/HotKeyInputRow.qml:24 ../src/views/HotKeyInputRow.qml:26
 #: ../src/views/HotKeyInputRow.qml:54 ../src/views/HotKeyInputRow.qml:56
@@ -414,7 +414,7 @@ msgstr "(Geri yüklemek için %1 e basın)"
 #: ../src/views/MainController.qml:560 ../src/views/MainController.qml:566
 #: ../src/views/MainController.qml:571
 msgid "Playback speed: "
-msgstr ""
+msgstr "Playback hızı:"
 
 #: ../src/views/MainController.qml:583 ../src/views/MainController.qml:592
 msgid "Volume: "
@@ -437,7 +437,7 @@ msgstr "Altyazı %1 saniye gecikiyor"
 #: ../src/views/OpenFileDialog.qml:5 ../src/views/OpenFileDialog.qml:24
 #: ../src/views/OpenFileDialog.qml:54
 msgid "Please select one file or more"
-msgstr ""
+msgstr "Lütfen bir ya da daha fazla dosya seçin"
 
 #: ../src/views/OpenFileDialog.qml:7 ../src/views/OpenFileDialog.qml:26
 #: ../src/views/OpenFileDialog.qml:56
@@ -451,7 +451,7 @@ msgstr "Tüm dosyalar"
 #: ../src/views/OpenFileDialog.qml:34 ../src/views/OpenFileDialog.qml:44
 #: ../src/views/OpenFileDialog.qml:64
 msgid "Please select one file"
-msgstr ""
+msgstr "Lütfen bir dosya seçin"
 
 #: ../src/views/OpenFileDialog.qml:36
 msgid "Subtitle files"
@@ -459,7 +459,7 @@ msgstr "Altyazı dosyaları"
 
 #: ../src/views/OpenFileDialog.qml:46
 msgid "Audio track files"
-msgstr ""
+msgstr "Ses dosyaları"
 
 #: ../src/views/OpenFileDialog.qml:66 ../src/views/OpenFileDialog.qml:76
 msgid "Playlist files"
@@ -471,7 +471,7 @@ msgstr "Farklı kaydet"
 
 #: ../src/views/OpenFolderDialog.qml:5
 msgid "Please select a folder"
-msgstr ""
+msgstr "Lütfen bir klasör seçin"
 
 #: ../src/views/Playlist.qml:252
 msgid "Play mode"
@@ -593,7 +593,7 @@ msgstr "Sonraki videoyu otomatik olarak oynat"
 
 #: ../src/views/PreferenceWindow.qml:268
 msgid "Display preview when hovering over progress bar"
-msgstr ""
+msgstr "İlerleme çubuğu üzerine geldiğinde önizleme göster"
 
 #: ../src/views/PreferenceWindow.qml:273
 msgid "Allow multiple instances"
@@ -605,19 +605,19 @@ msgstr "Küçültüldükten sonra duraklat"
 
 #: ../src/views/PreferenceWindow.qml:283
 msgid "Enable hardware acceleration"
-msgstr ""
+msgstr "Donanım hızlandırmasını etkinleştir"
 
 #: ../src/views/PreferenceWindow.qml:288
 msgid "Accept wireless push"
-msgstr ""
+msgstr "Kablosuz basmayı kabul et"
 
 #: ../src/views/PreferenceWindow.qml:311
 msgid "Forward/Backward (s)"
-msgstr ""
+msgstr "İleri/Geri (s)"
 
 #: ../src/views/PreferenceWindow.qml:331
 msgid "Save path"
-msgstr ""
+msgstr "Yolu kaydet"
 
 #: ../src/views/PreferenceWindow.qml:355 ../src/views/PreferenceWindow.qml:579
 #: ../src/views/PreferenceWindow.qml:752 ../src/views/PreferenceWindow.qml:847
@@ -669,7 +669,7 @@ msgstr "Sonrakini aç"
 #: ../src/views/PreferenceWindow.qml:853 ../src/views/ShortcutsViewer.qml:153
 #, qt-format
 msgid "Advance %1 (s)"
-msgstr ""
+msgstr "İlerleme %1 (s)"
 
 #: ../src/views/PreferenceWindow.qml:879 ../src/views/ShortcutsViewer.qml:157
 #, qt-format
@@ -686,7 +686,7 @@ msgstr "Altyazı aşağı"
 
 #: ../src/views/PreferenceWindow.qml:995
 msgid "Plot burst shooting"
-msgstr ""
+msgstr "Patlak vurmayı çizin"
 
 #: ../src/views/PreferenceWindow.qml:1033 ../src/views/ShortcutsViewer.qml:133
 msgid "Left click"
@@ -707,7 +707,7 @@ msgstr "Ses"
 
 #: ../src/views/PreferenceWindow.qml:1090
 msgid "(The setting is invalid for effect subtitles)"
-msgstr ""
+msgstr "(Bu ayar efekt alt başlığı için geçersizdir)"
 
 #: ../src/views/PreferenceWindow.qml:1095
 msgid "Subtitles loaded automatically"
@@ -747,11 +747,11 @@ msgstr "Eşleşmeyi ayarla (s)"
 
 #: ../src/views/TitleBar.qml:173
 msgid "Displayed in a proportion of 1:1"
-msgstr ""
+msgstr "1:1 orantısında görüntülendi."
 
 #: ../src/views/TitleBar.qml:185
 msgid "Displayed in 1.5 times"
-msgstr ""
+msgstr "1.5 katta gösterildi"
 
 #: ../src/views/TitleBar.qml:198
 msgid "Return to mini mode"
@@ -771,16 +771,16 @@ msgstr "Üstte"
 
 #: ../src/views/dlna/DLNAEngine.qml:34
 msgid "Switch back"
-msgstr ""
+msgstr "Geri dön"
 
 #: ../src/views/dlna/DLNAEngine.qml:59
 #, qt-format
 msgid "The movie \"%1\" is being played on \"%2\"."
-msgstr ""
+msgstr "\"%1\" filmi \"%2\"'de gösteriliyor"
 
 #: ../src/views/dlna/RendererListDialog.qml:43
 msgid "Please select the playing device"
-msgstr ""
+msgstr "Lütfen oynatma cihazını seçin"
 
 #: ../src/views/main.qml:163
 msgid "Please input the url of file played"
@@ -801,21 +801,21 @@ msgstr "Arabelleğe alınıyor..."
 #: ../src/views/toolbox/PosterEngine.qml:41
 #: ../src/views/toolbox/PosterEngine.qml:56
 msgid "Plot burst shooting, please wait..."
-msgstr ""
+msgstr "Senaryo filme çekiliyor, lütfen bekleyin..."
 
 #: ../src/views/toolbox/PosterEngine.qml:61
 msgid "Plot Burst Shooting"
-msgstr ""
+msgstr "Senaryo Filme Çekiliyor"
 
 #: ../src/views/toolbox/ScreenshotEngine.qml:26
 msgid "Movie Screenshot"
-msgstr ""
+msgstr "Film Ekran Görüntüsü"
 
 #: ../src/views/toolbox/ScreenshotEngine.qml:34
 #, qt-format
 msgid "Your screenshot has been saved to %1"
-msgstr ""
+msgstr "Ekran görüntünüz %1'e kaydedildi"
 
 #: ../src/views/toolbox/Toolbox.qml:79
 msgid "Burst"
-msgstr ""
+msgstr "Patlat"

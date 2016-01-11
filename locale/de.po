@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-14 16:54+0800\n"
-"PO-Revision-Date: 2015-08-14 13:06+0000\n"
+"PO-Revision-Date: 2015-12-22 07:48+0000\n"
 "Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German (http://www.transifex.com/linuxdeepin/deepin-movie/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -133,11 +133,11 @@ msgstr "Zurückspulen"
 
 #: ../src/controllers/menu_controller.py:95
 msgid "Movie screenshot"
-msgstr ""
+msgstr "Filmscreenshot"
 
 #: ../src/controllers/menu_controller.py:96
 msgid "Burst screenshot"
-msgstr ""
+msgstr "Serienbildaufnahmen-Screenshot"
 
 #: ../src/controllers/menu_controller.py:100 ../src/views/ControlBar.qml:413
 #: ../src/views/PreferenceWindow.qml:758 ../src/views/ShortcutsViewer.qml:83
@@ -330,7 +330,7 @@ msgstr "Pausieren"
 
 #: ../src/views/ControlBar.qml:400
 msgid "Toolkit"
-msgstr ""
+msgstr "Toolkit"
 
 #: ../src/views/HotKeyInputRow.qml:24 ../src/views/HotKeyInputRow.qml:26
 #: ../src/views/HotKeyInputRow.qml:54 ../src/views/HotKeyInputRow.qml:56
@@ -611,7 +611,7 @@ msgstr "Hardwarebeschleunigung aktivieren"
 
 #: ../src/views/PreferenceWindow.qml:288
 msgid "Accept wireless push"
-msgstr ""
+msgstr "Wireless-Push akzeptieren"
 
 #: ../src/views/PreferenceWindow.qml:311
 msgid "Forward/Backward (s)"
@@ -671,7 +671,7 @@ msgstr "Nächstes öffnen"
 #: ../src/views/PreferenceWindow.qml:853 ../src/views/ShortcutsViewer.qml:153
 #, qt-format
 msgid "Advance %1 (s)"
-msgstr ""
+msgstr "Fortschritt %1 (s)"
 
 #: ../src/views/PreferenceWindow.qml:879 ../src/views/ShortcutsViewer.qml:157
 #, qt-format
@@ -688,7 +688,7 @@ msgstr "Untertitel unten"
 
 #: ../src/views/PreferenceWindow.qml:995
 msgid "Plot burst shooting"
-msgstr ""
+msgstr "Serienbildaufnahme aufzeichnen"
 
 #: ../src/views/PreferenceWindow.qml:1033 ../src/views/ShortcutsViewer.qml:133
 msgid "Left click"
@@ -709,7 +709,7 @@ msgstr "Lautstärke"
 
 #: ../src/views/PreferenceWindow.qml:1090
 msgid "(The setting is invalid for effect subtitles)"
-msgstr ""
+msgstr "(Die Einstellung ist ungültig für Effekt-Untertitel)"
 
 #: ../src/views/PreferenceWindow.qml:1095
 msgid "Subtitles loaded automatically"
@@ -773,7 +773,7 @@ msgstr "Obendrauf"
 
 #: ../src/views/dlna/DLNAEngine.qml:34
 msgid "Switch back"
-msgstr ""
+msgstr "Zurückgehen"
 
 #: ../src/views/dlna/DLNAEngine.qml:59
 #, qt-format
@@ -803,15 +803,15 @@ msgstr "Pufferung..."
 #: ../src/views/toolbox/PosterEngine.qml:41
 #: ../src/views/toolbox/PosterEngine.qml:56
 msgid "Plot burst shooting, please wait..."
-msgstr ""
+msgstr "Serienbildaufnahme wird aufgezeichnet, bitte warten..."
 
 #: ../src/views/toolbox/PosterEngine.qml:61
 msgid "Plot Burst Shooting"
-msgstr ""
+msgstr "Serienbildaufnahme aufzeichnen"
 
 #: ../src/views/toolbox/ScreenshotEngine.qml:26
 msgid "Movie Screenshot"
-msgstr ""
+msgstr "Film-Screenshot"
 
 #: ../src/views/toolbox/ScreenshotEngine.qml:34
 #, qt-format
@@ -820,4 +820,4 @@ msgstr "Ihr Bildschirmfoto wurde in %1 gespeichert"
 
 #: ../src/views/toolbox/Toolbox.qml:79
 msgid "Burst"
-msgstr ""
+msgstr "Bruch"

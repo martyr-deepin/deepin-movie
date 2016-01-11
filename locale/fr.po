@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-14 16:54+0800\n"
-"PO-Revision-Date: 2015-09-02 11:35+0000\n"
+"PO-Revision-Date: 2015-12-21 19:24+0000\n"
 "Last-Translator: lexross <its4moi@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/linuxdeepin/deepin-movie/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -609,7 +609,7 @@ msgstr "Activer l'accélération matérielle"
 
 #: ../src/views/PreferenceWindow.qml:288
 msgid "Accept wireless push"
-msgstr ""
+msgstr "Accepter le WPS"
 
 #: ../src/views/PreferenceWindow.qml:311
 msgid "Forward/Backward (s)"
@@ -686,7 +686,7 @@ msgstr "Descendre les sous-titres"
 
 #: ../src/views/PreferenceWindow.qml:995
 msgid "Plot burst shooting"
-msgstr ""
+msgstr "Prise mode rafale"
 
 #: ../src/views/PreferenceWindow.qml:1033 ../src/views/ShortcutsViewer.qml:133
 msgid "Left click"
@@ -801,11 +801,11 @@ msgstr "Mémoire tampon ..."
 #: ../src/views/toolbox/PosterEngine.qml:41
 #: ../src/views/toolbox/PosterEngine.qml:56
 msgid "Plot burst shooting, please wait..."
-msgstr ""
+msgstr "Prise mode rafale,veuillez patienter..."
 
 #: ../src/views/toolbox/PosterEngine.qml:61
 msgid "Plot Burst Shooting"
-msgstr ""
+msgstr "Prise mode rafale"
 
 #: ../src/views/toolbox/ScreenshotEngine.qml:26
 msgid "Movie Screenshot"
@@ -818,4 +818,4 @@ msgstr "L'image a été sauvegardée dans %1"
 
 #: ../src/views/toolbox/Toolbox.qml:79
 msgid "Burst"
-msgstr ""
+msgstr "Éclat"

@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-14 16:54+0800\n"
-"PO-Revision-Date: 2015-09-11 23:50+0000\n"
+"PO-Revision-Date: 2015-12-30 17:54+0000\n"
 "Last-Translator: Xurxo Guerra Perez <xguerrap@gmail.com>\n"
 "Language-Team: Galician (Spain) (http://www.transifex.com/linuxdeepin/deepin-movie/language/gl_ES/)\n"
 "MIME-Version: 1.0\n"
@@ -126,7 +126,7 @@ msgstr "Adiantar"
 #: ../src/views/MainController.qml:550 ../src/views/PreferenceWindow.qml:412
 #: ../src/views/ShortcutsViewer.qml:54
 msgid "Backward"
-msgstr ""
+msgstr "Retroceder"
 
 #: ../src/controllers/menu_controller.py:95
 msgid "Movie screenshot"
@@ -134,7 +134,7 @@ msgstr "Captura do filme"
 
 #: ../src/controllers/menu_controller.py:96
 msgid "Burst screenshot"
-msgstr ""
+msgstr "Captura de pantalla"
 
 #: ../src/controllers/menu_controller.py:100 ../src/views/ControlBar.qml:413
 #: ../src/views/PreferenceWindow.qml:758 ../src/views/ShortcutsViewer.qml:83
@@ -272,7 +272,7 @@ msgstr "Saír do modo reducido"
 #: ../src/views/TitleBar.qml:70 ../src/views/TitleBar.qml:142
 #: ../src/views/toolbox/ScreenshotEngine.qml:34 ../src/views/window.py:64
 msgid "Deepin Movie"
-msgstr "Filmes Deepin"
+msgstr "Filmes"
 
 #: ../src/models/movie_info.py:78 ../src/views/InformationWindow.qml:23
 #: ../src/views/InformationWindow.qml:24 ../src/views/InformationWindow.qml:25
@@ -311,11 +311,11 @@ msgid ""
 "Deepin Movie is a well-designed and full-featured video player with simple "
 "borderless design. It supports local and streaming media play with multiple "
 "video formats."
-msgstr "Deepin Movie é un reprodutor de vídeo cun bo deseño e cheo de funcións, cun deseño de bordos sinxelos. É compatible con todo tipo de formatos de vídeo tanto de medios locais como de transmisión remota."
+msgstr "Filmes é un reprodutor de vídeo cun bo deseño e cheo de funcións, cun deseño de bordos sinxelos. É compatible con todo tipo de formatos de vídeo tanto de medios locais como de transmisión remota."
 
 #: ../src/views/AboutSection.qml:68
 msgid "Deepin Movie is released under GPLv3."
-msgstr "Deepin Movie distribuese baixo licenza GPLv3."
+msgstr "Filmes distribúese baixo licenza GPLv3."
 
 #: ../src/views/ControlBar.qml:266
 msgid "Stop"
@@ -327,7 +327,7 @@ msgstr "Pausar"
 
 #: ../src/views/ControlBar.qml:400
 msgid "Toolkit"
-msgstr ""
+msgstr "Ferramentas"
 
 #: ../src/views/HotKeyInputRow.qml:24 ../src/views/HotKeyInputRow.qml:26
 #: ../src/views/HotKeyInputRow.qml:54 ../src/views/HotKeyInputRow.qml:56
@@ -608,11 +608,11 @@ msgstr "Activar a aceleración por hardware"
 
 #: ../src/views/PreferenceWindow.qml:288
 msgid "Accept wireless push"
-msgstr ""
+msgstr "Aceptar push sen fíos"
 
 #: ../src/views/PreferenceWindow.qml:311
 msgid "Forward/Backward (s)"
-msgstr ""
+msgstr "Adiantar / Retroceder"
 
 #: ../src/views/PreferenceWindow.qml:331
 msgid "Save path"
@@ -685,7 +685,7 @@ msgstr "Subtítulos abaixo"
 
 #: ../src/views/PreferenceWindow.qml:995
 msgid "Plot burst shooting"
-msgstr ""
+msgstr "Trama da captura en ráfaga"
 
 #: ../src/views/PreferenceWindow.qml:1033 ../src/views/ShortcutsViewer.qml:133
 msgid "Left click"
@@ -706,7 +706,7 @@ msgstr "Volume"
 
 #: ../src/views/PreferenceWindow.qml:1090
 msgid "(The setting is invalid for effect subtitles)"
-msgstr ""
+msgstr "(O axuste non é válido para o efecto dos subtítulos)"
 
 #: ../src/views/PreferenceWindow.qml:1095
 msgid "Subtitles loaded automatically"
@@ -750,7 +750,7 @@ msgstr "Amosado en proporción 1:1"
 
 #: ../src/views/TitleBar.qml:185
 msgid "Displayed in 1.5 times"
-msgstr ""
+msgstr "Amosado en 1.5 veces"
 
 #: ../src/views/TitleBar.qml:198
 msgid "Return to mini mode"
@@ -770,7 +770,7 @@ msgstr "Sempre Visible"
 
 #: ../src/views/dlna/DLNAEngine.qml:34
 msgid "Switch back"
-msgstr ""
+msgstr "Volver atrás"
 
 #: ../src/views/dlna/DLNAEngine.qml:59
 #, qt-format
@@ -779,11 +779,11 @@ msgstr "O filme \"%1\" estase a reproducir no \"%2\"."
 
 #: ../src/views/dlna/RendererListDialog.qml:43
 msgid "Please select the playing device"
-msgstr "Por favor selecciona o dispositivo de reprodución"
+msgstr "Por favor, selecciona o dispositivo de reprodución"
 
 #: ../src/views/main.qml:163
 msgid "Please input the url of file played"
-msgstr "Por favor, introduza o url do ficheiro reproducido"
+msgstr "Por favor, introduce o url do ficheiro reproducido"
 
 #: ../src/views/main.qml:164
 msgid "Confirm"
@@ -800,15 +800,15 @@ msgstr "Enviando ao buffer..."
 #: ../src/views/toolbox/PosterEngine.qml:41
 #: ../src/views/toolbox/PosterEngine.qml:56
 msgid "Plot burst shooting, please wait..."
-msgstr ""
+msgstr "Trama da captura en ráfaga, por favor agarda..."
 
 #: ../src/views/toolbox/PosterEngine.qml:61
 msgid "Plot Burst Shooting"
-msgstr ""
+msgstr "Trama da Captura en Ráfaga"
 
 #: ../src/views/toolbox/ScreenshotEngine.qml:26
 msgid "Movie Screenshot"
-msgstr ""
+msgstr "Captura do filme"
 
 #: ../src/views/toolbox/ScreenshotEngine.qml:34
 #, qt-format
@@ -817,4 +817,4 @@ msgstr "Captura de pantalla gardada en %1"
 
 #: ../src/views/toolbox/Toolbox.qml:79
 msgid "Burst"
-msgstr ""
+msgstr "Explosión"

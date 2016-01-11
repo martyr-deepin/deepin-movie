@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-14 16:54+0800\n"
-"PO-Revision-Date: 2015-08-27 18:01+0000\n"
+"PO-Revision-Date: 2015-11-09 00:27+0000\n"
 "Last-Translator: Piotr Strębski <strebski@o2.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/linuxdeepin/deepin-movie/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -575,7 +575,7 @@ msgstr "Widok pełnego ekranu przy otwarciu pliku"
 
 #: ../src/views/PreferenceWindow.qml:247
 msgid "Apply the size last time closed"
-msgstr "Zastosuj ostatnio używany rozmiar"
+msgstr "Zapamiętaj ostatni rozmiar"
 
 #: ../src/views/PreferenceWindow.qml:253
 msgid "Clear playlist on opening new file"

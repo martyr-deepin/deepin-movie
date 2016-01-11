@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-14 16:54+0800\n"
-"PO-Revision-Date: 2015-08-14 08:59+0000\n"
+"PO-Revision-Date: 2015-12-21 14:06+0000\n"
 "Last-Translator: deepin_transifex <xiabin@linuxdeepin.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/linuxdeepin/deepin-movie/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -42,11 +42,11 @@ msgstr "Balik secara vertikal"
 
 #: ../src/controllers/menu_controller.py:53
 msgid "Audio Channels"
-msgstr ""
+msgstr "Saluran Audio"
 
 #: ../src/controllers/menu_controller.py:54
 msgid "Audio Tracks"
-msgstr ""
+msgstr "Trek Audio"
 
 #: ../src/controllers/menu_controller.py:57
 msgid "Volume Up"
@@ -63,7 +63,7 @@ msgstr "Senyap"
 
 #: ../src/controllers/menu_controller.py:63
 msgid "Stereo"
-msgstr ""
+msgstr "Stereo"
 
 #: ../src/controllers/menu_controller.py:64
 msgid "Left"
@@ -79,7 +79,7 @@ msgstr "Sembunyikan terjemahan"
 
 #: ../src/controllers/menu_controller.py:73
 msgid "Load manually"
-msgstr ""
+msgstr "Muat secara manual"
 
 #: ../src/controllers/menu_controller.py:74
 msgid "Subtitle selection"
@@ -127,15 +127,15 @@ msgstr "Maju"
 #: ../src/views/MainController.qml:550 ../src/views/PreferenceWindow.qml:412
 #: ../src/views/ShortcutsViewer.qml:54
 msgid "Backward"
-msgstr ""
+msgstr "Mundur"
 
 #: ../src/controllers/menu_controller.py:95
 msgid "Movie screenshot"
-msgstr ""
+msgstr "Cuplikan layar video"
 
 #: ../src/controllers/menu_controller.py:96
 msgid "Burst screenshot"
-msgstr ""
+msgstr "Rentetan cuplikan layar"
 
 #: ../src/controllers/menu_controller.py:100 ../src/views/ControlBar.qml:413
 #: ../src/views/PreferenceWindow.qml:758 ../src/views/ShortcutsViewer.qml:83
@@ -254,11 +254,11 @@ msgstr "Buka lokasi berkas"
 
 #: ../src/controllers/menu_controller.py:191
 msgid "Audio track"
-msgstr ""
+msgstr "Trek audio"
 
 #: ../src/controllers/menu_controller.py:200
 msgid "Load audio track"
-msgstr ""
+msgstr "Muat trek audio"
 
 #: ../src/controllers/menu_controller.py:495 ../src/views/ControlBar.qml:382
 msgid "Exit fullscreen"
@@ -328,7 +328,7 @@ msgstr "Jeda"
 
 #: ../src/views/ControlBar.qml:400
 msgid "Toolkit"
-msgstr ""
+msgstr "Perkakas"
 
 #: ../src/views/HotKeyInputRow.qml:24 ../src/views/HotKeyInputRow.qml:26
 #: ../src/views/HotKeyInputRow.qml:54 ../src/views/HotKeyInputRow.qml:56
@@ -414,7 +414,7 @@ msgstr "(Tekan %1 untuk mengembalikan)"
 #: ../src/views/MainController.qml:560 ../src/views/MainController.qml:566
 #: ../src/views/MainController.qml:571
 msgid "Playback speed: "
-msgstr ""
+msgstr "Kecepatan pemutaran:"
 
 #: ../src/views/MainController.qml:583 ../src/views/MainController.qml:592
 msgid "Volume: "
@@ -437,7 +437,7 @@ msgstr "Subtitel tertunda %1 detik"
 #: ../src/views/OpenFileDialog.qml:5 ../src/views/OpenFileDialog.qml:24
 #: ../src/views/OpenFileDialog.qml:54
 msgid "Please select one file or more"
-msgstr ""
+msgstr "Silakan pilih satu berkas atau lebih"
 
 #: ../src/views/OpenFileDialog.qml:7 ../src/views/OpenFileDialog.qml:26
 #: ../src/views/OpenFileDialog.qml:56
@@ -451,7 +451,7 @@ msgstr "Semua berkas"
 #: ../src/views/OpenFileDialog.qml:34 ../src/views/OpenFileDialog.qml:44
 #: ../src/views/OpenFileDialog.qml:64
 msgid "Please select one file"
-msgstr ""
+msgstr "Silakan pilih satu berkas"
 
 #: ../src/views/OpenFileDialog.qml:36
 msgid "Subtitle files"
@@ -459,7 +459,7 @@ msgstr "Berkas terjemahan"
 
 #: ../src/views/OpenFileDialog.qml:46
 msgid "Audio track files"
-msgstr ""
+msgstr "Berkas trek audio"
 
 #: ../src/views/OpenFileDialog.qml:66 ../src/views/OpenFileDialog.qml:76
 msgid "Playlist files"
@@ -471,7 +471,7 @@ msgstr "Simpan sebagai"
 
 #: ../src/views/OpenFolderDialog.qml:5
 msgid "Please select a folder"
-msgstr ""
+msgstr "Silakan pilih folder"
 
 #: ../src/views/Playlist.qml:252
 msgid "Play mode"
@@ -593,7 +593,7 @@ msgstr "Lanjutkan ke video berikutnya secara otomatis"
 
 #: ../src/views/PreferenceWindow.qml:268
 msgid "Display preview when hovering over progress bar"
-msgstr ""
+msgstr "Tampilkan pratinjau saat tetikus diarahkan ke atas bilah kemajuan"
 
 #: ../src/views/PreferenceWindow.qml:273
 msgid "Allow multiple instances"
@@ -605,19 +605,19 @@ msgstr "Jeda ketika diminimalkan"
 
 #: ../src/views/PreferenceWindow.qml:283
 msgid "Enable hardware acceleration"
-msgstr ""
+msgstr "Aktifkan akselerasi peranti keras"
 
 #: ../src/views/PreferenceWindow.qml:288
 msgid "Accept wireless push"
-msgstr ""
+msgstr "Terima sodoran nirkabel"
 
 #: ../src/views/PreferenceWindow.qml:311
 msgid "Forward/Backward (s)"
-msgstr ""
+msgstr "Maju/Mundur (s)"
 
 #: ../src/views/PreferenceWindow.qml:331
 msgid "Save path"
-msgstr ""
+msgstr "Tempat menyimpan"
 
 #: ../src/views/PreferenceWindow.qml:355 ../src/views/PreferenceWindow.qml:579
 #: ../src/views/PreferenceWindow.qml:752 ../src/views/PreferenceWindow.qml:847
@@ -669,7 +669,7 @@ msgstr "Buka selanjutnya"
 #: ../src/views/PreferenceWindow.qml:853 ../src/views/ShortcutsViewer.qml:153
 #, qt-format
 msgid "Advance %1 (s)"
-msgstr ""
+msgstr "Dahulukan %1 (s)"
 
 #: ../src/views/PreferenceWindow.qml:879 ../src/views/ShortcutsViewer.qml:157
 #, qt-format
@@ -686,7 +686,7 @@ msgstr "Terjemahan turun"
 
 #: ../src/views/PreferenceWindow.qml:995
 msgid "Plot burst shooting"
-msgstr ""
+msgstr "Rencanakan rentetan pengambilan gambar"
 
 #: ../src/views/PreferenceWindow.qml:1033 ../src/views/ShortcutsViewer.qml:133
 msgid "Left click"
@@ -707,7 +707,7 @@ msgstr "Volume"
 
 #: ../src/views/PreferenceWindow.qml:1090
 msgid "(The setting is invalid for effect subtitles)"
-msgstr ""
+msgstr "(Setelan ini tidak sah untuk teks efek)"
 
 #: ../src/views/PreferenceWindow.qml:1095
 msgid "Subtitles loaded automatically"
@@ -747,11 +747,11 @@ msgstr "Pengaturan Sinkronisasi (s)"
 
 #: ../src/views/TitleBar.qml:173
 msgid "Displayed in a proportion of 1:1"
-msgstr ""
+msgstr "Ditampilkan dalam perbandingan 1:1"
 
 #: ../src/views/TitleBar.qml:185
 msgid "Displayed in 1.5 times"
-msgstr ""
+msgstr "Ditampilkan dalam 1,5 kali"
 
 #: ../src/views/TitleBar.qml:198
 msgid "Return to mini mode"
@@ -771,16 +771,16 @@ msgstr "Di Atas"
 
 #: ../src/views/dlna/DLNAEngine.qml:34
 msgid "Switch back"
-msgstr ""
+msgstr "Kembalikan"
 
 #: ../src/views/dlna/DLNAEngine.qml:59
 #, qt-format
 msgid "The movie \"%1\" is being played on \"%2\"."
-msgstr ""
+msgstr "Film \"%1\" sedang diputar di \"%2\"."
 
 #: ../src/views/dlna/RendererListDialog.qml:43
 msgid "Please select the playing device"
-msgstr ""
+msgstr "Silakan pilih perangkat untuk memainkan"
 
 #: ../src/views/main.qml:163
 msgid "Please input the url of file played"
@@ -801,21 +801,21 @@ msgstr "Penyanggaan ..."
 #: ../src/views/toolbox/PosterEngine.qml:41
 #: ../src/views/toolbox/PosterEngine.qml:56
 msgid "Plot burst shooting, please wait..."
-msgstr ""
+msgstr "Merencanakan rentetan pengambilan gambar, harap tunggu..."
 
 #: ../src/views/toolbox/PosterEngine.qml:61
 msgid "Plot Burst Shooting"
-msgstr ""
+msgstr "Rencanakan Rentetan Pengambilan Gambar"
 
 #: ../src/views/toolbox/ScreenshotEngine.qml:26
 msgid "Movie Screenshot"
-msgstr ""
+msgstr "Cuplikan Layar Film"
 
 #: ../src/views/toolbox/ScreenshotEngine.qml:34
 #, qt-format
 msgid "Your screenshot has been saved to %1"
-msgstr ""
+msgstr "Cuplikan layar Anda telah tersimpan ke %1"
 
 #: ../src/views/toolbox/Toolbox.qml:79
 msgid "Burst"
-msgstr ""
+msgstr "Rentetan"

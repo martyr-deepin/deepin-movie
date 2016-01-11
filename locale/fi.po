@@ -3,151 +3,149 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Galin Iskrenov <loot270@abv.bg>, 2015
-# Kiril Kirilov <cybercop_montana@abv.bg>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-14 16:54+0800\n"
-"PO-Revision-Date: 2015-09-30 07:07+0000\n"
-"Last-Translator: Galin Iskrenov <loot270@abv.bg>\n"
-"Language-Team: Bulgarian (http://www.transifex.com/linuxdeepin/deepin-movie/language/bg/)\n"
+"PO-Revision-Date: 2015-12-24 06:04+0000\n"
+"Last-Translator: deepin_transifex <xiabin@linuxdeepin.com>\n"
+"Language-Team: Finnish (http://www.transifex.com/linuxdeepin/deepin-movie/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: bg\n"
+"Language: fi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/controllers/menu_controller.py:34
 msgid "Default"
-msgstr "По подразбиране"
+msgstr "Oletus"
 
 #: ../src/controllers/menu_controller.py:46
 msgid "Rotate 90 degree clockwise"
-msgstr "Завърти на 90 градуса по часовниковата стрелка"
+msgstr "Kierrä 90 astetta kellonmyötäisesti"
 
 #: ../src/controllers/menu_controller.py:47
 msgid "Rotate 90 degree counterclockwise"
-msgstr "Завърти на 90 градуса обратно на часовниковата стрелка"
+msgstr "Käännä 90 astetta vastapäivään"
 
 #: ../src/controllers/menu_controller.py:48
 msgid "Flip horizontally"
-msgstr "Хоризонтален флип"
+msgstr "Käännä vaakasuunnassa"
 
 #: ../src/controllers/menu_controller.py:49
 msgid "Flip vertically"
-msgstr "Вертикален флип"
+msgstr "Käännä pystysuunnassa"
 
 #: ../src/controllers/menu_controller.py:53
 msgid "Audio Channels"
-msgstr "Аудио канали"
+msgstr "Äänikanavat"
 
 #: ../src/controllers/menu_controller.py:54
 msgid "Audio Tracks"
-msgstr "Аудио писти"
+msgstr "Äänikappaleet"
 
 #: ../src/controllers/menu_controller.py:57
 msgid "Volume Up"
-msgstr "Увеличаване на звука"
+msgstr "Volyymi ylös"
 
 #: ../src/controllers/menu_controller.py:58
 msgid "Volume Down"
-msgstr "Намаляване на звука"
+msgstr "Volyymi alas"
 
 #: ../src/controllers/menu_controller.py:59
 #: ../src/views/PreferenceWindow.qml:715 ../src/views/ShortcutsViewer.qml:124
 msgid "Mute"
-msgstr "Заглушаване"
+msgstr "Mykistä"
 
 #: ../src/controllers/menu_controller.py:63
 msgid "Stereo"
-msgstr "Стерео"
+msgstr "Stereo"
 
 #: ../src/controllers/menu_controller.py:64
 msgid "Left"
-msgstr "Ляво"
+msgstr "Vasen"
 
 #: ../src/controllers/menu_controller.py:65
 msgid "Right"
-msgstr "Дясно"
+msgstr "Oikea"
 
 #: ../src/controllers/menu_controller.py:69
 msgid "Hide subtitle"
-msgstr "Скриване на субтитри"
+msgstr "Piilota tekstitys"
 
 #: ../src/controllers/menu_controller.py:73
 msgid "Load manually"
-msgstr "Ръчно зареждане"
+msgstr "Lataa manuaalisesti"
 
 #: ../src/controllers/menu_controller.py:74
 msgid "Subtitle selection"
-msgstr "Избор на субтитри"
+msgstr "Tekstitysten valinta"
 
 #: ../src/controllers/menu_controller.py:75
 msgid "Subtitle setting"
-msgstr "Настройка на субтитри"
+msgstr "Tekstitysten asetus"
 
 #: ../src/controllers/menu_controller.py:79
 msgid "Order"
-msgstr "Подреждба"
+msgstr "Tilaa"
 
 #: ../src/controllers/menu_controller.py:80
 msgid "Random"
-msgstr "Произволно"
+msgstr "Sattumanvarainen"
 
 #: ../src/controllers/menu_controller.py:81
 msgid "Single"
-msgstr "Песен"
+msgstr "Yksittäinen"
 
 #: ../src/controllers/menu_controller.py:82
 msgid "Repeat (Single)"
-msgstr "Повторение (Песен)"
+msgstr "Toista (Yksittäinen)"
 
 #: ../src/controllers/menu_controller.py:83
 msgid "Repeat (Playlist)"
-msgstr "Повторение (Списък)"
+msgstr "Toista (Soittolista)"
 
 #: ../src/controllers/menu_controller.py:87 ../src/views/ControlBar.qml:285
 msgid "Previous"
-msgstr "Предишно"
+msgstr "Edellinen"
 
 #: ../src/controllers/menu_controller.py:88 ../src/views/ControlBar.qml:322
 msgid "Next"
-msgstr "Следващ"
+msgstr "Seuraava"
 
 #: ../src/controllers/menu_controller.py:90
 #: ../src/views/MainController.qml:538 ../src/views/PreferenceWindow.qml:386
 #: ../src/views/ShortcutsViewer.qml:50
 msgid "Forward"
-msgstr "Напред"
+msgstr "Eteenpäin"
 
 #: ../src/controllers/menu_controller.py:91
 #: ../src/views/MainController.qml:550 ../src/views/PreferenceWindow.qml:412
 #: ../src/views/ShortcutsViewer.qml:54
 msgid "Backward"
-msgstr "Връщане"
+msgstr "Taaksepäin"
 
 #: ../src/controllers/menu_controller.py:95
 msgid "Movie screenshot"
-msgstr "Снимка на филма"
+msgstr "Elokuva-kuvakaappaus"
 
 #: ../src/controllers/menu_controller.py:96
 msgid "Burst screenshot"
-msgstr "Burst screenshot"
+msgstr "Purske-kuvankaappaus"
 
 #: ../src/controllers/menu_controller.py:100 ../src/views/ControlBar.qml:413
 #: ../src/views/PreferenceWindow.qml:758 ../src/views/ShortcutsViewer.qml:83
 msgid "Open a file"
-msgstr "Отваряне на файл"
+msgstr "Avaa tiedosto"
 
 #: ../src/controllers/menu_controller.py:101
 msgid "Open a folder"
-msgstr "Отваряне на папка"
+msgstr "Avaa kansio"
 
 #: ../src/controllers/menu_controller.py:102
 msgid "Open URL"
-msgstr "Отвори URL"
+msgstr "Avaa URL"
 
 #: ../src/controllers/menu_controller.py:104
 #: ../src/controllers/menu_controller.py:496 ../src/views/ControlBar.qml:382
@@ -155,46 +153,46 @@ msgstr "Отвори URL"
 #: ../src/views/PreferenceWindow.qml:1052 ../src/views/ShortcutsViewer.qml:58
 #: ../src/views/ShortcutsViewer.qml:139
 msgid "Fullscreen"
-msgstr "Цял екран"
+msgstr "Koko näytön tila"
 
 #: ../src/controllers/menu_controller.py:105
 #: ../src/controllers/menu_controller.py:498
 #: ../src/views/PreferenceWindow.qml:585 ../src/views/ShortcutsViewer.qml:104
 msgid "Mini mode"
-msgstr "Минималистичен режим"
+msgstr "Minitila"
 
 #: ../src/controllers/menu_controller.py:106
 msgid "Always on top"
-msgstr "Винаги отгоре"
+msgstr "Aina ylhäällä"
 
 #: ../src/controllers/menu_controller.py:107 ../src/views/ControlBar.qml:425
 #: ../src/views/OpenFileDialog.qml:79 ../src/views/PreferenceWindow.qml:464
 #: ../src/views/ShortcutsViewer.qml:62
 msgid "Playlist"
-msgstr "Списък"
+msgstr "Soittolista"
 
 #: ../src/controllers/menu_controller.py:109
 msgid "Play Sequence"
-msgstr "Изпълни по реда на подреждане"
+msgstr "Soittojärjestys"
 
 #: ../src/controllers/menu_controller.py:110
 #: ../src/controllers/menu_controller.py:123 ../src/views/ControlBar.qml:305
 msgid "Play"
-msgstr "Изпълнение"
+msgstr "Toista"
 
 #: ../src/controllers/menu_controller.py:111
 msgid "Frame"
-msgstr "Кадър"
+msgstr "Kehystä"
 
 #: ../src/controllers/menu_controller.py:112
 msgid "Sound"
-msgstr "Звук"
+msgstr "Ääni"
 
 #: ../src/controllers/menu_controller.py:113
 #: ../src/views/PreferenceWindow.qml:117 ../src/views/PreferenceWindow.qml:838
 #: ../src/views/ShortcutsViewer.qml:150
 msgid "Subtitles"
-msgstr "Субтитри"
+msgstr "Tekstitys"
 
 #: ../src/controllers/menu_controller.py:115
 #: ../src/views/PreferenceWindow.qml:91 ../src/views/PreferenceWindow.qml:122
@@ -202,82 +200,82 @@ msgstr "Субтитри"
 #: ../src/views/PreferenceWindow.qml:968 ../src/views/toolbox/Toolbox.qml:70
 #: ../src/views/toolbox/Toolbox.qml:99
 msgid "Screenshot"
-msgstr "Снимка на екрана"
+msgstr "Ruudunkaappaus"
 
 #: ../src/controllers/menu_controller.py:117
 msgid "Settings"
-msgstr "Настройки"
+msgstr "Asetukset"
 
 #: ../src/controllers/menu_controller.py:118
 #: ../src/controllers/menu_controller.py:136
 msgid "Information"
-msgstr "Информация"
+msgstr "Informaatio"
 
 #: ../src/controllers/menu_controller.py:119
 msgid "Help"
-msgstr "Помощ"
+msgstr "Ohje"
 
 #: ../src/controllers/menu_controller.py:124
 #: ../src/controllers/menu_controller.py:140 ../src/views/Playlist.qml:260
 msgid "Add file"
-msgstr "Добавяне на файл"
+msgstr "Lisää tiedosto"
 
 #: ../src/controllers/menu_controller.py:125
 #: ../src/controllers/menu_controller.py:141
 msgid "Add folder"
-msgstr "Добавяне на папка"
+msgstr "Lisää kansio"
 
 #: ../src/controllers/menu_controller.py:127
 msgid "Remove from playlist"
-msgstr "Премахване от списъка"
+msgstr "Poista soittolistalta"
 
 #: ../src/controllers/menu_controller.py:128
 msgid "Remove invalid file"
-msgstr "Премахване на невалиден файл"
+msgstr "Poista virheellinen tiedosto"
 
 #: ../src/controllers/menu_controller.py:129
 msgid "Export"
-msgstr "Изнасяне"
+msgstr "Vie"
 
 #: ../src/controllers/menu_controller.py:130
 msgid "Import"
-msgstr "Внасяне"
+msgstr "Tuo"
 
 #: ../src/controllers/menu_controller.py:131 ../src/views/Playlist.qml:268
 msgid "Clear playlist"
-msgstr "Изчистване на списъка"
+msgstr "Tyhjennä soittolista"
 
 #: ../src/controllers/menu_controller.py:135
 msgid "Open file location"
-msgstr "Отвори местоположението на файла"
+msgstr "Avaa tiedostosijainti"
 
 #: ../src/controllers/menu_controller.py:191
 msgid "Audio track"
-msgstr "Аудио писта"
+msgstr "Ääniraita"
 
 #: ../src/controllers/menu_controller.py:200
 msgid "Load audio track"
-msgstr "Зареждане на аудио писта"
+msgstr "Avaa ääniraita"
 
 #: ../src/controllers/menu_controller.py:495 ../src/views/ControlBar.qml:382
 msgid "Exit fullscreen"
-msgstr "Изход от цял екран"
+msgstr "Poistu koko näytön tilasta"
 
 #: ../src/controllers/menu_controller.py:497
 msgid "Exit mini mode"
-msgstr "Изход от минимален режим"
+msgstr "Poistu mini-tilasta"
 
 #: ../src/dlna/__init__.py:160 ../src/utils/constants.py:39
 #: ../src/utils/dbus_interfaces.py:99 ../src/views/AboutSection.qml:13
 #: ../src/views/TitleBar.qml:70 ../src/views/TitleBar.qml:142
 #: ../src/views/toolbox/ScreenshotEngine.qml:34 ../src/views/window.py:64
 msgid "Deepin Movie"
-msgstr "Deepin Филм"
+msgstr "Deepin Elokuva"
 
 #: ../src/models/movie_info.py:78 ../src/views/InformationWindow.qml:23
 #: ../src/views/InformationWindow.qml:24 ../src/views/InformationWindow.qml:25
 msgid "Unknown"
-msgstr "Неизвестно"
+msgstr "Tuntematon"
 
 #: ../src/utils/poster_generator.py:234 ../src/utils/poster_generator.py:244
 #: ../src/utils/poster_generator.py:254 ../src/views/AboutSection.qml:27
@@ -288,46 +286,46 @@ msgstr ":"
 
 #: ../src/utils/poster_generator.py:234
 msgid "Duration"
-msgstr "Продължителност"
+msgstr "Kesto"
 
 #: ../src/utils/poster_generator.py:244 ../src/views/InformationWindow.qml:97
 msgid "Resolution"
-msgstr "Резолюция"
+msgstr "Resoluutio"
 
 #: ../src/utils/poster_generator.py:254 ../src/views/PreferenceWindow.qml:1187
 msgid "Size"
-msgstr "Размер"
+msgstr "Koko"
 
 #: ../src/views/AboutSection.qml:6 ../src/views/PreferenceWindow.qml:139
 msgid "About"
-msgstr "Относно:"
+msgstr "Tietoja"
 
 #: ../src/views/AboutSection.qml:27
 msgid "Version"
-msgstr "Версия"
+msgstr "Version"
 
 #: ../src/views/AboutSection.qml:57
 msgid ""
 "Deepin Movie is a well-designed and full-featured video player with simple "
 "borderless design. It supports local and streaming media play with multiple "
 "video formats."
-msgstr "Deepin Видео е красив и високо-функционален видео плеър с изключително опростен дизайн. Той поддържа изпълнението на локални и интернет мултимедийни потоци, както и множество видео формати."
+msgstr "Deepin Movie on erinomaisesti suunniteltu ja kattavilla ominaisuuksilla varusteltu simppeli ja rajaton videosoitin. Se tulee useiden eri videoalustojen paikallis- ja suoratoistosoittoa."
 
 #: ../src/views/AboutSection.qml:68
 msgid "Deepin Movie is released under GPLv3."
-msgstr "Deepin Видео е реализиран под GPLv3 лиценз."
+msgstr "Deepin Movie julkaistaan GPLv3:n alla."
 
 #: ../src/views/ControlBar.qml:266
 msgid "Stop"
-msgstr "стоп"
+msgstr "Pysäytä"
 
 #: ../src/views/ControlBar.qml:305
 msgid "Pause"
-msgstr "Задържане"
+msgstr "Pysäytä"
 
 #: ../src/views/ControlBar.qml:400
 msgid "Toolkit"
-msgstr "Инструментариум"
+msgstr "Työkalupakkaus"
 
 #: ../src/views/HotKeyInputRow.qml:24 ../src/views/HotKeyInputRow.qml:26
 #: ../src/views/HotKeyInputRow.qml:54 ../src/views/HotKeyInputRow.qml:56
@@ -337,484 +335,484 @@ msgstr "Инструментариум"
 #: ../src/views/ShortcutsViewer.qml:134 ../src/views/ShortcutsViewer.qml:139
 #: ../src/views/ShortcutsViewer.qml:144
 msgid "None"
-msgstr "Нищо"
+msgstr "Ei mitään"
 
 #: ../src/views/HotKeyInputRow.qml:30
 msgid "The shortcut you set "
-msgstr "Задали сте клавишната комбинация"
+msgstr "Pikanäppäin on asetettu"
 
 #: ../src/views/HotKeyInputRow.qml:31
 #, qt-format
 msgid "conflicts with the one used for \"%2\" in the \"%1\" category. "
-msgstr "конфликт с едно от използваните за \"%2\" в категория \"%1\"."
+msgstr "on ristiriidassa sen kanssa, jota on käytetty kohteelle \"%2\" ryhmässä \"%1\". "
 
 #: ../src/views/HotKeyInputRow.qml:32
 msgid "Do you want to replace it?"
-msgstr "Искате ли да го замените?"
+msgstr "Haluatko korvata sen?"
 
 #: ../src/views/HotKeyInputRow.qml:55
 msgid "Please input a new shortcut"
-msgstr "Моля, въведете нова клавишна комбинация"
+msgstr "Syötä uusi oikopolku"
 
 #: ../src/views/HotKeyInputRow.qml:99 ../src/views/main.qml:165
 msgid "Cancel"
-msgstr "Отмяна"
+msgstr "Peruutus"
 
 #: ../src/views/HotKeyInputRow.qml:110
 msgid "Replace"
-msgstr "Замяна"
+msgstr "Korvaa"
 
 #: ../src/views/InformationWindow.qml:77
 msgid "File type"
-msgstr "Тип на файл"
+msgstr "Tiedostotyyppi"
 
 #: ../src/views/InformationWindow.qml:87
 msgid "File size"
-msgstr "Размер на файл"
+msgstr "Tiedostokoko"
 
 #: ../src/views/InformationWindow.qml:107
 msgid "Movie duration"
-msgstr "Продължителност на видеото"
+msgstr "Elokuvan kesto"
 
 #: ../src/views/InformationWindow.qml:117
 msgid "File path"
-msgstr "Път до файла"
+msgstr "Tiedostopolku"
 
 #: ../src/views/InformationWindow.qml:134
 msgid "Copy to clipboard"
-msgstr "Копиране в системния буфер"
+msgstr "Kopioi leikepöydälle"
 
 #: ../src/views/InformationWindow.qml:149
 msgid "Close"
-msgstr "Затваряне"
+msgstr "Sulje"
 
 #: ../src/views/MainController.qml:37
 #, qt-format
 msgid "%1 files unable to be parsed have been excluded"
-msgstr "%1 файла ще бъдат изключени защото не могат да бъдат проверени"
+msgstr "%1 tiedostoa, joita ei voitu jäsennellä, on jätetty pois"
 
 #: ../src/views/MainController.qml:50
 msgid "Imported"
-msgstr "Внесен"
+msgstr "Siirretty"
 
 #: ../src/views/MainController.qml:301
 msgid "Invalid file"
-msgstr "Невалиден файл"
+msgstr "Epäkelpo tiedosto"
 
 #: ../src/views/MainController.qml:505
 msgid "Play last movie played"
-msgstr "Изпълни последно гледаното видео"
+msgstr "Näytä viimeksi katsomasi elokuva"
 
 #: ../src/views/MainController.qml:558 ../src/views/MainController.qml:564
 #, qt-format
 msgid "(Press %1 to restore)"
-msgstr "(Натиснете %1 за възстановяване)"
+msgstr "(Paina %1 palauttaaksesi)"
 
 #: ../src/views/MainController.qml:560 ../src/views/MainController.qml:566
 #: ../src/views/MainController.qml:571
 msgid "Playback speed: "
-msgstr "Скорост на възпроизвеждане:"
+msgstr "Toistonopeus:"
 
 #: ../src/views/MainController.qml:583 ../src/views/MainController.qml:592
 msgid "Volume: "
-msgstr "Сила на звука:"
+msgstr "Äänenvoimakkuus:"
 
 #: ../src/views/MainController.qml:590
 msgid "Muted"
-msgstr "Заглушаване"
+msgstr "Vaiennettu"
 
 #: ../src/views/MainController.qml:751 ../src/views/MainController.qml:764
 #, qt-format
 msgid "Subtitle advanced %1 seconds"
-msgstr " Забързи субтитрите с %1 секунди"
+msgstr "Tekstityksiä pidennettiin %1 sekunnilla"
 
 #: ../src/views/MainController.qml:753 ../src/views/MainController.qml:766
 #, qt-format
 msgid "Subtitle delayed %1 seconds"
-msgstr "Забави субтитрите с %1 секунди"
+msgstr "Tekstitysten viive %1 sekuntia"
 
 #: ../src/views/OpenFileDialog.qml:5 ../src/views/OpenFileDialog.qml:24
 #: ../src/views/OpenFileDialog.qml:54
 msgid "Please select one file or more"
-msgstr "Моля изберете един или няколко файла"
+msgstr "Valitse yksi tai useampi tiedosto"
 
 #: ../src/views/OpenFileDialog.qml:7 ../src/views/OpenFileDialog.qml:26
 #: ../src/views/OpenFileDialog.qml:56
 msgid "Video files"
-msgstr "Видео файлове"
+msgstr "Videotiedostot"
 
 #: ../src/views/OpenFileDialog.qml:18
 msgid "All files"
-msgstr "Всички файлове"
+msgstr "Kaikki tiedostot"
 
 #: ../src/views/OpenFileDialog.qml:34 ../src/views/OpenFileDialog.qml:44
 #: ../src/views/OpenFileDialog.qml:64
 msgid "Please select one file"
-msgstr "Моля, изберете един файл"
+msgstr "Valitse yksi tiedosto"
 
 #: ../src/views/OpenFileDialog.qml:36
 msgid "Subtitle files"
-msgstr "Файл със субтитри"
+msgstr "Tekstitystiedostot"
 
 #: ../src/views/OpenFileDialog.qml:46
 msgid "Audio track files"
-msgstr "Файлове с аудио писти"
+msgstr "Ääniraitatiedosto"
 
 #: ../src/views/OpenFileDialog.qml:66 ../src/views/OpenFileDialog.qml:76
 msgid "Playlist files"
-msgstr "Списък с файлове"
+msgstr "Soittolistatiedostot"
 
 #: ../src/views/OpenFileDialog.qml:74
 msgid "Save as"
-msgstr "Запази като"
+msgstr "Tallenna nimellä"
 
 #: ../src/views/OpenFolderDialog.qml:5
 msgid "Please select a folder"
-msgstr "Моля, изберете папка"
+msgstr "Valitse kansio"
 
 #: ../src/views/Playlist.qml:252
 msgid "Play mode"
-msgstr "Режим на изпълнение"
+msgstr "Soittotila"
 
 #: ../src/views/PreferenceWindow.qml:15
 msgid "Black"
-msgstr "Черно"
+msgstr "Musta"
 
 #: ../src/views/PreferenceWindow.qml:16
 msgid "bleu de France"
-msgstr "bleu de France"
+msgstr "Ranskansininen"
 
 #: ../src/views/PreferenceWindow.qml:17
 msgid "Turquoise"
-msgstr "Turquoise"
+msgstr "Turkoosi"
 
 #: ../src/views/PreferenceWindow.qml:18
 msgid "UFO green"
-msgstr "UFO green"
+msgstr "UFO-vihreä"
 
 #: ../src/views/PreferenceWindow.qml:19
 msgid "Green yellow"
-msgstr "Жълто зелено"
+msgstr "Vihreä keltainen"
 
 #: ../src/views/PreferenceWindow.qml:20
 msgid "Energy yellow"
-msgstr "Енергизиращо жълто"
+msgstr "Sähkönkeltainen"
 
 #: ../src/views/PreferenceWindow.qml:21
 msgid "Orange"
-msgstr "Orange"
+msgstr "Oranssi"
 
 #: ../src/views/PreferenceWindow.qml:22
 msgid "Radical red"
-msgstr "Ярко червено"
+msgstr "Radikaalinpunainen"
 
 #: ../src/views/PreferenceWindow.qml:23
 msgid "Lavender indigo"
-msgstr "Лавандула индиго"
+msgstr "Laventeli indigonsininen"
 
 #: ../src/views/PreferenceWindow.qml:24
 msgid "Royal blue"
-msgstr "Royal blue"
+msgstr "Syvänsininen"
 
 #: ../src/views/PreferenceWindow.qml:25
 msgid "Aluminum"
-msgstr "Алуминий"
+msgstr "Alumiini"
 
 #: ../src/views/PreferenceWindow.qml:26
 msgid "Clean white"
-msgstr "Чисто бяло"
+msgstr "Puhtaan valkoinen"
 
 #: ../src/views/PreferenceWindow.qml:77 ../src/views/PreferenceWindow.qml:228
 msgid "Basic settings"
-msgstr "Основни настройки"
+msgstr "Perusasetukset"
 
 #: ../src/views/PreferenceWindow.qml:81 ../src/views/PreferenceWindow.qml:102
 #: ../src/views/PreferenceWindow.qml:232 ../src/views/PreferenceWindow.qml:346
 #: ../src/views/ShortcutsViewer.qml:43
 msgid "Playback"
-msgstr "Изпълнение"
+msgstr "Toisto"
 
 #: ../src/views/PreferenceWindow.qml:86 ../src/views/PreferenceWindow.qml:302
 msgid "Time span"
-msgstr "Времетраене"
+msgstr "Aikaväli"
 
 #: ../src/views/PreferenceWindow.qml:98 ../src/views/PreferenceWindow.qml:342
 msgid "Keyboard shortcuts"
-msgstr "Клавишни комбинации"
+msgstr "Näppäimistön oikopolut"
 
 #: ../src/views/PreferenceWindow.qml:107 ../src/views/PreferenceWindow.qml:570
 #: ../src/views/ShortcutsViewer.qml:101
 msgid "Frame/Sound"
-msgstr "Кадър/Звук"
+msgstr "Kehykset/Äänet"
 
 #: ../src/views/PreferenceWindow.qml:112 ../src/views/PreferenceWindow.qml:743
 #: ../src/views/ShortcutsViewer.qml:80
 msgid "Files"
-msgstr "Файлове"
+msgstr "Tiedostot"
 
 #: ../src/views/PreferenceWindow.qml:127
 #: ../src/views/PreferenceWindow.qml:1023 ../src/views/ShortcutsViewer.qml:130
 msgid "Other"
-msgstr "Други"
+msgstr "Muu"
 
 #: ../src/views/PreferenceWindow.qml:134
 #: ../src/views/PreferenceWindow.qml:1083
 msgid "Subtitle settings"
-msgstr "Настройка на субтитри"
+msgstr "Tekstityksen asetukset"
 
 #: ../src/views/PreferenceWindow.qml:158
 msgid "Reset shortcuts"
-msgstr "Възстановяване клавишни комбинации"
+msgstr "Aseta oikopolut uudestaan"
 
 #: ../src/views/PreferenceWindow.qml:162
 msgid "Reset subtitle settings"
-msgstr "Първоначални настройки на субтитри"
+msgstr "Palauta tekstitysasetukset"
 
 #: ../src/views/PreferenceWindow.qml:241
 msgid "Fullscreen on opening file"
-msgstr "Цял екран при отваряне на файл"
+msgstr "Koko näytön tila käytössä avaustiedostossa"
 
 #: ../src/views/PreferenceWindow.qml:247
 msgid "Apply the size last time closed"
-msgstr "Прилагане на размера при последното затваряне"
+msgstr "Käytä samaa kokoa kuin viime käyttökerralla"
 
 #: ../src/views/PreferenceWindow.qml:253
 msgid "Clear playlist on opening new file"
-msgstr "Изчистване на списъка при отваряне на нов файл"
+msgstr "Tyhjennä soittolista avaamalla uusi tiedosto"
 
 #: ../src/views/PreferenceWindow.qml:258
 msgid "Resume playback after restarting player"
-msgstr "Възобнови изпълнението след рестартирането на плеъра"
+msgstr "Jatka esittämistä käynnistettyäsi soittimen uudelleen"
 
 #: ../src/views/PreferenceWindow.qml:263
 msgid "Continue to next video automatically"
-msgstr "Продължи автоматично към следващото видео"
+msgstr "Jatka automaattisesti seuraavaan videoon"
 
 #: ../src/views/PreferenceWindow.qml:268
 msgid "Display preview when hovering over progress bar"
-msgstr "Показване на изглед при посочване на лентата с напредъка"
+msgstr "Näyttää esikatselun pitäessäsi kursoria edistyksen seurantapalkin päällä"
 
 #: ../src/views/PreferenceWindow.qml:273
 msgid "Allow multiple instances"
-msgstr "Позволи няколко копия"
+msgstr "Salli useat instanssit"
 
 #: ../src/views/PreferenceWindow.qml:278
 msgid "Pause when minimized"
-msgstr "Пауза при минимизиране"
+msgstr "Keskeytä toisto pienennettäessä"
 
 #: ../src/views/PreferenceWindow.qml:283
 msgid "Enable hardware acceleration"
-msgstr "Разреши хардуерно ускорение"
+msgstr "Salli laitteistokiihdytys"
 
 #: ../src/views/PreferenceWindow.qml:288
 msgid "Accept wireless push"
-msgstr "Приеми wireless push"
+msgstr "Hyväksy langattoman yhteyden muodostus"
 
 #: ../src/views/PreferenceWindow.qml:311
 msgid "Forward/Backward (s)"
-msgstr "Напред/Назад (s)"
+msgstr "Eteenpäin/Taaksepäin (s)"
 
 #: ../src/views/PreferenceWindow.qml:331
 msgid "Save path"
-msgstr "Запази пътя"
+msgstr "Tallenna tiedostopolku"
 
 #: ../src/views/PreferenceWindow.qml:355 ../src/views/PreferenceWindow.qml:579
 #: ../src/views/PreferenceWindow.qml:752 ../src/views/PreferenceWindow.qml:847
 msgid "Enable keyboard shortcuts"
-msgstr "Разреши клавишни комбинации"
+msgstr "Salli näppäimistön oikopolut"
 
 #: ../src/views/PreferenceWindow.qml:360
 #: ../src/views/PreferenceWindow.qml:1036 ../src/views/ShortcutsViewer.qml:46
 #: ../src/views/ShortcutsViewer.qml:134
 msgid "Pause/Play"
-msgstr "Пауза/Изпълнение"
+msgstr "Keskeytä/Soita"
 
 #: ../src/views/PreferenceWindow.qml:490 ../src/views/ShortcutsViewer.qml:66
 msgid "Accelerate playback"
-msgstr "Ускоряване на възпроизвеждането"
+msgstr "Nopeuta taustasoittoa"
 
 #: ../src/views/PreferenceWindow.qml:516 ../src/views/ShortcutsViewer.qml:70
 msgid "Decelerate playback"
-msgstr "Забавяне на възпроизвеждането"
+msgstr "Hidasta toistoa"
 
 #: ../src/views/PreferenceWindow.qml:542 ../src/views/ShortcutsViewer.qml:74
 msgid "Restore playback speed"
-msgstr "Възстановяване на скоростта на възпроизвеждане"
+msgstr "Palauta taustasoiton nopeus"
 
 #: ../src/views/PreferenceWindow.qml:611 ../src/views/ShortcutsViewer.qml:108
 msgid "Rotate counterclockwise"
-msgstr "Завъртане обратно на часовниковата стрелка"
+msgstr "Käännä kellonvastaisesti"
 
 #: ../src/views/PreferenceWindow.qml:637 ../src/views/ShortcutsViewer.qml:112
 msgid "Rotate clockwise"
-msgstr "Завъртане по часовниковата стрелка"
+msgstr "Kierrä kellonmyötäisesti"
 
 #: ../src/views/PreferenceWindow.qml:663 ../src/views/ShortcutsViewer.qml:116
 msgid "Volume up"
-msgstr "Увеличаване"
+msgstr "Volyymi ylös"
 
 #: ../src/views/PreferenceWindow.qml:689 ../src/views/ShortcutsViewer.qml:120
 msgid "Volume down"
-msgstr "Намаляване"
+msgstr "Volyymi alas"
 
 #: ../src/views/PreferenceWindow.qml:784 ../src/views/ShortcutsViewer.qml:87
 msgid "Open previous"
-msgstr "Отвори предишното"
+msgstr "Avaa edellinen"
 
 #: ../src/views/PreferenceWindow.qml:810 ../src/views/ShortcutsViewer.qml:91
 msgid "Open next"
-msgstr "Отвори следващото"
+msgstr "Avaa seuraava"
 
 #: ../src/views/PreferenceWindow.qml:853 ../src/views/ShortcutsViewer.qml:153
 #, qt-format
 msgid "Advance %1 (s)"
-msgstr "Advance %1 (s)"
+msgstr "Edistys %1 (s)"
 
 #: ../src/views/PreferenceWindow.qml:879 ../src/views/ShortcutsViewer.qml:157
 #, qt-format
 msgid "Delay %1 (s)"
-msgstr "Забавяне %1 (s)"
+msgstr "Viive %1 (s)"
 
 #: ../src/views/PreferenceWindow.qml:905 ../src/views/ShortcutsViewer.qml:161
 msgid "Subtitle up"
-msgstr "Субтитри нагоре"
+msgstr "Tekstitykset ylös"
 
 #: ../src/views/PreferenceWindow.qml:931 ../src/views/ShortcutsViewer.qml:165
 msgid "Subtitle down"
-msgstr "Субтитри надолу"
+msgstr "Tekstitykset alas"
 
 #: ../src/views/PreferenceWindow.qml:995
 msgid "Plot burst shooting"
-msgstr "Plot burst shooting"
+msgstr "Suunnittele purskekuvaus"
 
 #: ../src/views/PreferenceWindow.qml:1033 ../src/views/ShortcutsViewer.qml:133
 msgid "Left click"
-msgstr "Кликване с ляв бутон"
+msgstr "Vasen klikkaus"
 
 #: ../src/views/PreferenceWindow.qml:1049 ../src/views/ShortcutsViewer.qml:138
 msgid "Double click"
-msgstr "Двойно кликване"
+msgstr "Kaksoisklikkaus"
 
 #: ../src/views/PreferenceWindow.qml:1065 ../src/views/ShortcutsViewer.qml:143
 msgid "Scroll"
-msgstr "Превъртане"
+msgstr "Vieritä"
 
 #: ../src/views/PreferenceWindow.qml:1068 ../src/views/ShortcutsViewer.qml:144
 #: ../src/views/VolumeButton.qml:44
 msgid "Volume"
-msgstr "Сила на звука"
+msgstr "Äänenvoimakkuus"
 
 #: ../src/views/PreferenceWindow.qml:1090
 msgid "(The setting is invalid for effect subtitles)"
-msgstr "(Невалидни настройки за ефекти на субтитри)"
+msgstr "(Näitä asetuksia ei voi käyttää efektien tekstityksissä)"
 
 #: ../src/views/PreferenceWindow.qml:1095
 msgid "Subtitles loaded automatically"
-msgstr "Субтитрите се зареждат автоматично"
+msgstr "Tekstitykset ladattu automaattisesti"
 
 #: ../src/views/PreferenceWindow.qml:1109
 msgid "Font"
-msgstr "Шрифт"
+msgstr "Fontti"
 
 #: ../src/views/PreferenceWindow.qml:1169
 msgid "Font color"
-msgstr "Цвят на шрифта"
+msgstr "Fontin väri"
 
 #: ../src/views/PreferenceWindow.qml:1204
 msgid "Border width"
-msgstr "Ширина на рамката"
+msgstr "Reunojen leveys"
 
 #: ../src/views/PreferenceWindow.qml:1221
 msgid "Border color"
-msgstr "Цвят на рамката"
+msgstr "Reunojen väri"
 
 #: ../src/views/PreferenceWindow.qml:1239
 msgid "Position"
-msgstr "Позиция"
+msgstr "Asema"
 
 #: ../src/views/PreferenceWindow.qml:1244
 msgid "Bottom"
-msgstr "Отдолу"
+msgstr "Pohja"
 
 #: ../src/views/PreferenceWindow.qml:1245
 msgid "Top"
-msgstr "Отгоре"
+msgstr "Yläosa"
 
 #: ../src/views/PreferenceWindow.qml:1256
 msgid "Sync adjustment (s)"
-msgstr "Sync adjustment (s)"
+msgstr "Synkronisoinnin säätö"
 
 #: ../src/views/TitleBar.qml:173
 msgid "Displayed in a proportion of 1:1"
-msgstr "Показване в съотношение 1:1"
+msgstr "Näytetään 1:1-koossa"
 
 #: ../src/views/TitleBar.qml:185
 msgid "Displayed in 1.5 times"
-msgstr "Показване като 1.5 пъти"
+msgstr "Näytetään 1.5-ajastuksella"
 
 #: ../src/views/TitleBar.qml:198
 msgid "Return to mini mode"
-msgstr "Връщане в минимален режим"
+msgstr "Palaa minitilaan"
 
 #: ../src/views/TitleBar.qml:198
 msgid "Shown in fullscreen"
-msgstr "Покажи на цял екран"
+msgstr "Näytetään koko näytön tilassa"
 
 #: ../src/views/TitleBar.qml:213
 msgid "Cancel \"On Top\""
-msgstr "Затваряне \"Отгоре\""
+msgstr "Peruuta \"Ylimmät\""
 
 #: ../src/views/TitleBar.qml:213
 msgid "On Top"
-msgstr "Отгоре"
+msgstr "Ylhäällä:"
 
 #: ../src/views/dlna/DLNAEngine.qml:34
 msgid "Switch back"
-msgstr "Връщане"
+msgstr "Vaihda takaisin"
 
 #: ../src/views/dlna/DLNAEngine.qml:59
 #, qt-format
 msgid "The movie \"%1\" is being played on \"%2\"."
-msgstr "Филмът \"%1\" се показва на \"%2\"."
+msgstr "\"%2\" näyttää parhaillaan elokuvaa \"%1\"."
 
 #: ../src/views/dlna/RendererListDialog.qml:43
 msgid "Please select the playing device"
-msgstr "Моля, избере устройство за възпроизвеждане"
+msgstr "Ole hyvä ja valitse soittolaite"
 
 #: ../src/views/main.qml:163
 msgid "Please input the url of file played"
-msgstr "Моля, въведете адреса на изпълнявания файл"
+msgstr "Ole hyvä ja liitä soitetun tiedoston url"
 
 #: ../src/views/main.qml:164
 msgid "Confirm"
-msgstr "Потвърждение"
+msgstr "Vahvista"
 
 #: ../src/views/main.qml:181
 msgid "The parse failed"
-msgstr "Разборът е неуспешен"
+msgstr "Jäsentely epäonnistui"
 
 #: ../src/views/main.qml:502 ../src/views/main.qml:504
 msgid "Buffering..."
-msgstr "Буфериране..."
+msgstr "Puskuroidaan..."
 
 #: ../src/views/toolbox/PosterEngine.qml:41
 #: ../src/views/toolbox/PosterEngine.qml:56
 msgid "Plot burst shooting, please wait..."
-msgstr "Plot burst shooting, please wait..."
+msgstr "Purskekuvausta suunnitellaan. Ole hyvä ja odota..."
 
 #: ../src/views/toolbox/PosterEngine.qml:61
 msgid "Plot Burst Shooting"
-msgstr "Plot Burst Shooting"
+msgstr "Suunnittele purskekuvaus"
 
 #: ../src/views/toolbox/ScreenshotEngine.qml:26
 msgid "Movie Screenshot"
-msgstr "Снимка на филма"
+msgstr "Elokuvan ruudunkaappaus"
 
 #: ../src/views/toolbox/ScreenshotEngine.qml:34
 #, qt-format
 msgid "Your screenshot has been saved to %1"
-msgstr "Прихващането на екрана е записано в %1"
+msgstr "Ruudunkaappauksesi tallennettiin kohteeseen %1"
 
 #: ../src/views/toolbox/Toolbox.qml:79
 msgid "Burst"
-msgstr "Burst"
+msgstr "Purske"
