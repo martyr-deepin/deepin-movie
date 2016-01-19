@@ -755,7 +755,7 @@ DPreferenceWindow {
             }
 
             HotKeyInputRow {
-                title: dsTr("Open a file")
+                title: dsTr("Open file")
                 hotKey: config.hotkeysFilesOpenFile+""
                 actualSettingEntry: "hotkeysFilesOpenFile"
 

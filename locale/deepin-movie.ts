@@ -37,7 +37,7 @@
 <context>
     <name>ControlBar</name>
     <message>
-        <location filename="../src/views/ControlBar.qml" line="+266"/>
+        <location filename="../src/views/ControlBar.qml" line="+276"/>
         <source>Stop</source>
         <translation type="unfinished"></translation>
     </message>
@@ -78,7 +78,7 @@
     </message>
     <message>
         <location line="+13"/>
-        <source>Open a file</source>
+        <source>Open file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -256,7 +256,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+159"/>
+        <location line="+160"/>
         <location line="+13"/>
         <source>Subtitle advanced %1 seconds</source>
         <translation type="unfinished"></translation>
@@ -334,7 +334,7 @@
 <context>
     <name>Playlist</name>
     <message>
-        <location filename="../src/views/Playlist.qml" line="+252"/>
+        <location filename="../src/views/Playlist.qml" line="+254"/>
         <source>Play mode</source>
         <translation type="unfinished"></translation>
     </message>
@@ -430,12 +430,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+69"/>
-        <source>Open a file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+26"/>
+        <location line="+95"/>
         <source>Open previous</source>
         <translation type="unfinished"></translation>
     </message>
@@ -696,7 +691,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+138"/>
+        <location line="+43"/>
+        <source>Open file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+95"/>
         <source>Advance %1 (s)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -863,7 +863,7 @@
     </message>
     <message>
         <location line="+3"/>
-        <source>Open a file</source>
+        <source>Open file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

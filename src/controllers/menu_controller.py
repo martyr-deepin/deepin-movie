@@ -97,8 +97,8 @@ screenshot_sub_menu = [
 ]
 
 right_click_menu = [
-    ("_open_file", _("Open a file"), (), (), config.hotkeysFilesOpenFile),
-    ("_open_dir", _("Open a folder")),
+    ("_open_file", _("Open file"), (), (), config.hotkeysFilesOpenFile),
+    ("_open_dir", _("Open folder")),
     ("_open_url", _("Open URL")),
     None,
     ("_fullscreen_quit", _("Fullscreen"), (), (), config.hotkeysPlayToggleFullscreen),
@@ -106,7 +106,7 @@ right_click_menu = [
     CheckableMenuItem("_on_top", _("Always on top"), False),
     ("_toggle_playlist", _("Playlist"), (), (), config.hotkeysPlayTogglePlaylist),
     None,
-    ("_play_sequence", _("Play Sequence"), (), play_sequence_sub_menu),
+    ("_play_sequence", _("Play mode"), (), play_sequence_sub_menu),
     ("_play", _("Play"), (), play_sub_menu),
     ("_frame", _("Frame"), (), frame_sub_menu),
     ("_sound", _("Sound"), (), sound_sub_menu),

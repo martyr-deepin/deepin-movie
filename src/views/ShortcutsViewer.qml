@@ -80,7 +80,7 @@ DWindow {
                         title: dsTr("Files")
 
                         ShortcutsLabel {
-                            title: dsTr("Open a file")
+                            title: dsTr("Open file")
                             shortcut: config.hotkeysFilesOpenFile+""
                         }
                         ShortcutsLabel {

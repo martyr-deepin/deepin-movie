@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-14 16:54+0800\n"
+"POT-Creation-Date: 2016-01-19 10:22+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -106,11 +106,11 @@ msgstr ""
 msgid "Repeat (Playlist)"
 msgstr ""
 
-#: ../src/controllers/menu_controller.py:87 ../src/views/ControlBar.qml:285
+#: ../src/controllers/menu_controller.py:87 ../src/views/ControlBar.qml:295
 msgid "Previous"
 msgstr ""
 
-#: ../src/controllers/menu_controller.py:88 ../src/views/ControlBar.qml:322
+#: ../src/controllers/menu_controller.py:88 ../src/views/ControlBar.qml:332
 msgid "Next"
 msgstr ""
 
@@ -132,13 +132,13 @@ msgstr ""
 msgid "Burst screenshot"
 msgstr ""
 
-#: ../src/controllers/menu_controller.py:100 ../src/views/ControlBar.qml:413
+#: ../src/controllers/menu_controller.py:100 ../src/views/ControlBar.qml:423
 #: ../src/views/PreferenceWindow.qml:758 ../src/views/ShortcutsViewer.qml:83
-msgid "Open a file"
+msgid "Open file"
 msgstr ""
 
 #: ../src/controllers/menu_controller.py:101
-msgid "Open a folder"
+msgid "Open folder"
 msgstr ""
 
 #: ../src/controllers/menu_controller.py:102
@@ -146,7 +146,7 @@ msgid "Open URL"
 msgstr ""
 
 #: ../src/controllers/menu_controller.py:104
-#: ../src/controllers/menu_controller.py:496 ../src/views/ControlBar.qml:382
+#: ../src/controllers/menu_controller.py:496 ../src/views/ControlBar.qml:392
 #: ../src/views/PreferenceWindow.qml:438 ../src/views/PreferenceWindow.qml:1052
 #: ../src/views/ShortcutsViewer.qml:58 ../src/views/ShortcutsViewer.qml:139
 msgid "Fullscreen"
@@ -162,18 +162,18 @@ msgstr ""
 msgid "Always on top"
 msgstr ""
 
-#: ../src/controllers/menu_controller.py:107 ../src/views/ControlBar.qml:425
+#: ../src/controllers/menu_controller.py:107 ../src/views/ControlBar.qml:435
 #: ../src/views/OpenFileDialog.qml:79 ../src/views/PreferenceWindow.qml:464
 #: ../src/views/ShortcutsViewer.qml:62
 msgid "Playlist"
 msgstr ""
 
-#: ../src/controllers/menu_controller.py:109
-msgid "Play Sequence"
+#: ../src/controllers/menu_controller.py:109 ../src/views/Playlist.qml:254
+msgid "Play mode"
 msgstr ""
 
 #: ../src/controllers/menu_controller.py:110
-#: ../src/controllers/menu_controller.py:123 ../src/views/ControlBar.qml:305
+#: ../src/controllers/menu_controller.py:123 ../src/views/ControlBar.qml:315
 msgid "Play"
 msgstr ""
 
@@ -213,7 +213,7 @@ msgid "Help"
 msgstr ""
 
 #: ../src/controllers/menu_controller.py:124
-#: ../src/controllers/menu_controller.py:140 ../src/views/Playlist.qml:260
+#: ../src/controllers/menu_controller.py:140 ../src/views/Playlist.qml:262
 msgid "Add file"
 msgstr ""
 
@@ -238,7 +238,7 @@ msgstr ""
 msgid "Import"
 msgstr ""
 
-#: ../src/controllers/menu_controller.py:131 ../src/views/Playlist.qml:268
+#: ../src/controllers/menu_controller.py:131 ../src/views/Playlist.qml:270
 msgid "Clear playlist"
 msgstr ""
 
@@ -254,7 +254,7 @@ msgstr ""
 msgid "Load audio track"
 msgstr ""
 
-#: ../src/controllers/menu_controller.py:495 ../src/views/ControlBar.qml:382
+#: ../src/controllers/menu_controller.py:495 ../src/views/ControlBar.qml:392
 msgid "Exit fullscreen"
 msgstr ""
 
@@ -265,7 +265,7 @@ msgstr ""
 #: ../src/dlna/__init__.py:160 ../src/utils/constants.py:39
 #: ../src/utils/dbus_interfaces.py:99 ../src/views/AboutSection.qml:13
 #: ../src/views/TitleBar.qml:70 ../src/views/TitleBar.qml:142
-#: ../src/views/toolbox/ScreenshotEngine.qml:34 ../src/views/window.py:64
+#: ../src/views/toolbox/ScreenshotEngine.qml:34 ../src/views/window.py:67
 msgid "Deepin Movie"
 msgstr ""
 
@@ -274,22 +274,22 @@ msgstr ""
 msgid "Unknown"
 msgstr ""
 
-#: ../src/utils/poster_generator.py:234 ../src/utils/poster_generator.py:244
-#: ../src/utils/poster_generator.py:254 ../src/views/AboutSection.qml:27
+#: ../src/utils/poster_generator.py:237 ../src/utils/poster_generator.py:247
+#: ../src/utils/poster_generator.py:257 ../src/views/AboutSection.qml:27
 #: ../src/views/InformationLabel.qml:20 ../src/views/MainController.qml:301
 #: ../src/views/dlna/RendererListDialog.qml:43 ../src/views/main.qml:163
 msgid ":"
 msgstr ""
 
-#: ../src/utils/poster_generator.py:234
+#: ../src/utils/poster_generator.py:237
 msgid "Duration"
 msgstr ""
 
-#: ../src/utils/poster_generator.py:244 ../src/views/InformationWindow.qml:97
+#: ../src/utils/poster_generator.py:247 ../src/views/InformationWindow.qml:97
 msgid "Resolution"
 msgstr ""
 
-#: ../src/utils/poster_generator.py:254 ../src/views/PreferenceWindow.qml:1187
+#: ../src/utils/poster_generator.py:257 ../src/views/PreferenceWindow.qml:1187
 msgid "Size"
 msgstr ""
 
@@ -312,15 +312,15 @@ msgstr ""
 msgid "Deepin Movie is released under GPLv3."
 msgstr ""
 
-#: ../src/views/ControlBar.qml:266
+#: ../src/views/ControlBar.qml:276
 msgid "Stop"
 msgstr ""
 
-#: ../src/views/ControlBar.qml:305
+#: ../src/views/ControlBar.qml:315
 msgid "Pause"
 msgstr ""
 
-#: ../src/views/ControlBar.qml:400
+#: ../src/views/ControlBar.qml:410
 msgid "Toolkit"
 msgstr ""
 
@@ -418,12 +418,12 @@ msgstr ""
 msgid "Muted"
 msgstr ""
 
-#: ../src/views/MainController.qml:751 ../src/views/MainController.qml:764
+#: ../src/views/MainController.qml:752 ../src/views/MainController.qml:765
 #, qt-format
 msgid "Subtitle advanced %1 seconds"
 msgstr ""
 
-#: ../src/views/MainController.qml:753 ../src/views/MainController.qml:766
+#: ../src/views/MainController.qml:754 ../src/views/MainController.qml:767
 #, qt-format
 msgid "Subtitle delayed %1 seconds"
 msgstr ""
@@ -465,10 +465,6 @@ msgstr ""
 
 #: ../src/views/OpenFolderDialog.qml:5
 msgid "Please select a folder"
-msgstr ""
-
-#: ../src/views/Playlist.qml:252
-msgid "Play mode"
 msgstr ""
 
 #: ../src/views/PreferenceWindow.qml:15
