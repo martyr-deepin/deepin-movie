@@ -12,6 +12,7 @@ video/3gpp
 video/dv
 video/mp2t
 video/mp4
+video/x-m4v
 video/mp4v-es
 video/mpeg
 video/msvideo
@@ -32,9 +33,6 @@ video/x-ms-wmv
 video/x-nsv
 video/x-ogm+ogg
 video/x-theora+ogg
-x-content/video-dvd
-x-content/video-svcd
-x-content/video-vcd
 x-scheme-handler/mms
 x-scheme-handler/rtmp
 x-scheme-handler/rtsp

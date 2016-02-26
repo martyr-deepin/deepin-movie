@@ -1,5 +1,15 @@
+/**
+ * Copyright (C) 2014 Deepin Technology Co., Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * (at your option) any later version.
+ **/
+
 import QtQuick 2.1
 import Deepin.Widgets 1.0
+import "sources/ui_utils.js" as UIUtils
 
 Item {
     id: row
@@ -7,16 +17,19 @@ Item {
     height: Math.max(title.implicitHeight, input.height)
 
     property alias title: title.text
-    property alias homeDir: open_folder_dialog.folder
+    property alias text: input.text
+    property alias transientWindow: open_folder_dialog.transientParent
 
-    signal fileSet ()
+    signal fileSet (string path)
 
     OpenFolderDialog {
         id: open_folder_dialog
+        modality: Qt.ApplicationModal
 
         onAccepted: {
-            input.text = fileUrl
-            row.fileSet()
+            var path = UIUtils.formatFilePath(fileUrl.toString())
+            input.text = path
+            row.fileSet(path)
         }
     }
 

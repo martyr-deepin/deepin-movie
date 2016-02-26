@@ -1,7 +1,18 @@
+/**
+ * Copyright (C) 2014 Deepin Technology Co., Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * (at your option) any later version.
+ **/
+
 import QtQuick 2.1
-import QtAV 1.5
+import QtAV 1.6
 import QtGraphicalEffects 1.0
 import Deepin.Widgets 1.0
+
+import "./toolbox"
 import "sources/ui_utils.js" as UIUtils
 
 DragableArea {
@@ -19,10 +30,12 @@ DragableArea {
     property alias dragbarVisible: drag_point.visible
     property alias windowFullscreenState: toggle_fullscreen_button.checkFlag
     property alias status: buttonArea.state
+    property alias dlnaDevicesAvailable: dlna_button.visible
+    property alias toolboxVisible: toolbox.visible
 
     property int previewBottomMargin: 10
-    property int heightWithPreview: height - (main_column.y - previewBottomMargin) + videoPreview.height
     property bool previewEnabled: true
+    property bool dlnaSharing: false
 
     //TODO: remove all player related props, use videoPlayer's properties directly
     property var videoPlayer
@@ -39,18 +52,17 @@ DragableArea {
     signal previousButtonClicked ()
     signal nextButtonClicked ()
     signal toggleFullscreenClicked ()
+    signal dlnaButtonClicked ()
+    signal screenshotClicked ()
+    signal burstShootingClicked ()
 
     Behavior on opacity {
         NumberAnimation { duration: 300 }
     }
 
-    function show() {
-        visible = true
-    }
+    function show() { visible = true }
 
-    function hide() {
-        visible = false
-    }
+    function hide() { visible = false }
 
     function reset() {
         percentage = 0
@@ -58,34 +70,65 @@ DragableArea {
         videoPreview.resetRotationFlip()
     }
 
+    function hideToolbox() { toolbox.visible = false }
+
+    function toolboxContains(x, y) {
+        var point = Qt.point(x, y)
+        var toolkit_button_rect = toolkit_button.parent.mapToItem(
+            control_bar,
+            toolkit_button.x,
+            toolkit_button.y,
+            toolkit_button.width,
+            toolkit_button.height)
+        var toolbox_rect = toolbox.parent.mapToItem(
+            control_bar,
+            toolbox.x,
+            toolbox.y,
+            toolbox.width,
+            toolbox.height)
+        return UIUtils.inRectCheck(point, toolkit_button_rect)
+               || UIUtils.inRectCheck(point, toolbox_rect)
+    }
+
     function showPreview(mouseX, percentage, mode) {
-        if (previewEnabled) {
-            videoPreview.state = mode
-            if (videoPlayer.hasVideo && videoPlayer.duration != 0) {
-                videoPreview.visible = true
-                videoPreview.x = Math.min(Math.max(mouseX - videoPreview.width / 2, 0),
-                                          width - videoPreview.width)
-                videoPreview.y = -videoPreview.height - previewBottomMargin
+        mode = previewEnabled ? mode : "minimal"
+        videoPreview.state = mode
 
-                if (mouseX <= videoPreview.cornerWidth / 2) {
-                    videoPreview.cornerPos = mouseX + videoPreview.cornerWidth / 2
-                    videoPreview.cornerType = "left"
-                } else if (mouseX >= width - videoPreview.cornerWidth / 2) {
-                    videoPreview.cornerPos = mouseX - width + videoPreview.width - videoPreview.cornerWidth / 2
-                    videoPreview.cornerType = "right"
-                } else if (mouseX < videoPreview.width / 2) {
-                    videoPreview.cornerPos = mouseX
-                    videoPreview.cornerType = "center"
-                } else if (mouseX >= width - videoPreview.width / 2) {
-                    videoPreview.cornerPos = mouseX - width + videoPreview.width
-                    videoPreview.cornerType = "center"
-                } else {
-                    videoPreview.cornerPos = videoPreview.width / 2
-                    videoPreview.cornerType = "center"
-                }
+        if (videoPreview.state != "minimal") {
+            videoPreview.x = Math.min(Math.max(mouseX - videoPreview.width / 2, 0),
+                              width - videoPreview.width)
+            videoPreview.y = -videoPreview.height - previewBottomMargin
 
-                videoPreview.seek(percentage)
+            var point = videoPreview.mapToItem(root, 0, 0)
+            if (point.y < program_constants.windowGlowRadius) {
+                videoPreview.state = "minimal"
             }
+        }
+
+        if (videoPlayer.hasVideo && videoPlayer.duration != 0) {
+            videoPreview.visible = true
+            videoPreview.x = Math.min(Math.max(mouseX - videoPreview.width / 2, 0),
+                              width - videoPreview.width)
+            videoPreview.y = -videoPreview.height - previewBottomMargin
+
+            if (mouseX <= videoPreview.cornerWidth / 2) {
+                videoPreview.cornerPos = mouseX + videoPreview.cornerWidth / 2
+                videoPreview.cornerType = "left"
+            } else if (mouseX >= width - videoPreview.cornerWidth / 2) {
+                videoPreview.cornerPos = mouseX - width + videoPreview.width - videoPreview.cornerWidth / 2
+                videoPreview.cornerType = "right"
+            } else if (mouseX < videoPreview.width / 2) {
+                videoPreview.cornerPos = mouseX
+                videoPreview.cornerType = "center"
+            } else if (mouseX >= width - videoPreview.width / 2) {
+                videoPreview.cornerPos = mouseX - width + videoPreview.width
+                videoPreview.cornerType = "center"
+            } else {
+                videoPreview.cornerPos = videoPreview.width / 2
+                videoPreview.cornerType = "center"
+            }
+
+            videoPreview.seek(percentage)
         }
     }
 
@@ -119,6 +162,7 @@ DragableArea {
 
         ProgressBar {
             id: progressbar
+            enabled: !control_bar.dlnaSharing
             width: control_bar.width
 
             onWidthChanged: { progressbar.update() }
@@ -126,6 +170,16 @@ DragableArea {
             Preview {
                 id: videoPreview
                 visible: false
+            }
+
+            Toolbox {
+                id: toolbox
+                x: progressbar.width - width / 2 - 122
+                y: -height + 26
+                visible: false
+
+                onScreenshotButtonClicked: control_bar.screenshotClicked()
+                onBurstModeButtonClicked: control_bar.burstShootingClicked()
             }
 
             onMouseOver: { control_bar.showPreview(mouseX, percentage,  "normal") }
@@ -212,6 +266,7 @@ DragableArea {
 
                 Text {
                     id: playTime
+                    opacity: control_bar.dlnaSharing ? 0 : 1
                     text: UIUtils.formatTime(control_bar.percentage * controlbar.videoPlayer.duration)
                             + " / " + UIUtils.formatTime(controlbar.videoPlayer.duration)
                     color: Qt.rgba(1, 1, 1, 0.7)
@@ -226,7 +281,8 @@ DragableArea {
                 spacing: 0
 
                 ImageButton {
-                    tooltip: dsTr("Stop playing")
+                    enabled: !control_bar.dlnaSharing
+                    tooltip: dsTr("Stop")
                     tooltipItem: control_bar.tooltipItem
 
                     normal_image: "image/stop_normal.svg"
@@ -244,6 +300,7 @@ DragableArea {
                 }
 
                 ImageButton {
+                    enabled: !control_bar.dlnaSharing
                     tooltip: dsTr("Previous")
                     tooltipItem: control_bar.tooltipItem
 
@@ -263,6 +320,7 @@ DragableArea {
 
                 ImageButton {
                     id: play_pause_button
+                    enabled: !control_bar.dlnaSharing
                     tooltip: checkFlag ? dsTr("Pause") : dsTr("Play")
                     tooltipItem: control_bar.tooltipItem
 
@@ -281,6 +339,7 @@ DragableArea {
 
                 ImageButton {
                     tooltip: dsTr("Next")
+                    enabled: !control_bar.dlnaSharing
                     tooltipItem: control_bar.tooltipItem
 
                     normal_image: "image/next_normal.svg"
@@ -299,6 +358,7 @@ DragableArea {
 
                 VolumeButton {
                     id: volume_button
+                    enabled: !control_bar.dlnaSharing
                     tooltipItem: control_bar.tooltipItem
                     muted: control_bar.muted
                     showBarSwitch: control_bar.width > program_constants.hideVolumeBarTriggerWidth
@@ -322,7 +382,22 @@ DragableArea {
                 spacing: 25
 
                 ImageButton {
+                    id: dlna_button
+                    enabled: !control_bar.dlnaSharing
+                    tooltip: "DLNA"
+                    tooltipItem: control_bar.tooltipItem
+
+                    normal_image: "image/toolbox_dlna_normal.svg"
+                    hover_image: "image/toolbox_dlna_hover_press.svg"
+                    press_image: "image/toolbox_dlna_hover_press.svg"
+
+                    anchors.verticalCenter: parent.verticalCenter
+                    onClicked: control_bar.dlnaButtonClicked()
+                }
+
+                ImageButton {
                     id: toggle_fullscreen_button
+                    enabled: !control_bar.dlnaSharing
                     tooltip: checkFlag ? dsTr("Exit fullscreen") : dsTr("Fullscreen")
                     tooltipItem: control_bar.tooltipItem
 
@@ -340,7 +415,21 @@ DragableArea {
                 }
 
                 ImageButton {
-                    tooltip: dsTr("Open a file")
+                    id: toolkit_button
+                    tooltip: dsTr("Toolkit")
+                    tooltipItem: control_bar.tooltipItem
+
+                    normal_image: "image/toolbox_normal.svg"
+                    hover_image: "image/toolbox_hover_press.svg"
+                    press_image: "image/toolbox_hover_press.svg"
+
+                    anchors.verticalCenter: parent.verticalCenter
+
+                    onClicked: toolbox.visible = !toolbox.visible
+                }
+
+                ImageButton {
+                    tooltip: dsTr("Open file")
                     tooltipItem: control_bar.tooltipItem
 
                     normal_image: "image/open_file_normal.svg"

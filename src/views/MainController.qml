@@ -1,5 +1,14 @@
+/**
+ * Copyright (C) 2014 Deepin Technology Co., Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * (at your option) any later version.
+ **/
+
 import QtQuick 2.1
-import QtAV 1.5
+import QtAV 1.6
 import "../controllers"
 import "sources/ui_utils.js" as UIUtils
 
@@ -49,7 +58,11 @@ MouseArea {
 
         onImportDone: { notifybar.show(dsTr("Imported") + ": " + filename)}
 
-        onItemVInfoGot: info_window.showInfo(vinfo)
+        onItemVInfoGot: {
+            if (context == "dialog") {
+                info_window.showInfo(vinfo)
+            }
+        }
     }
 
     Connections {
@@ -58,16 +71,24 @@ MouseArea {
     }
 
     Connections {
-        target: _subtitle_parser
-        onFileNameChanged: {
-            _database.setPlaylistItemSubtitle(player.sourceString,
-                                              _subtitle_parser.file_name,
-                                              _subtitle_parser.delay)
-        }
+        target: player.subtitle
+
         onDelayChanged: {
             _database.setPlaylistItemSubtitle(player.sourceString,
-                                              _subtitle_parser.file_name,
-                                              _subtitle_parser.delay)
+                                              player.subtitle.file,
+                                              player.subtitle.delay)
+        }
+    }
+
+    Connections {
+        target: windowView
+        onWindowPressed: {
+            var point_controlbar = player.mapToItem(controlbar, x, y)
+            if (!controlbar.toolboxContains(point_controlbar.x,
+                                            point_controlbar.y))
+            {
+                controlbar.hideToolbox()
+            }
         }
     }
 
@@ -216,6 +237,11 @@ MouseArea {
 
     function removePlaylistItem(url) {
         _database.removePlaylistItem(url)
+        if ( _database.getPlaylistItemCount() == 0 ) {
+             _database.clearPlaylist()
+             _settings.lastPlayedFile = ""
+             _database.clearPlayHistory()
+             }
     }
 
     function removePlaylistCategory(name) {
@@ -244,14 +270,38 @@ MouseArea {
     }
 
     function showMainMenu() {
+        var audioTracks = []
+        var usingExternalTracks = player.externalAudioTracks.length != 0
+        for (var i = 0; i < player.internalAudioTracks.length; i++) {
+            var audioTrack = player.internalAudioTracks[i]
+            audioTracks.push({
+                "id": audioTrack.id,
+                "title": audioTrack.title,
+                "language": audioTrack.language,
+                "file": audioTrack.file,
+                "isCurrent": !usingExternalTracks && player.audioTrack == audioTrack.id
+            })
+        }
+        for (var i = 0; i < player.externalAudioTracksRecord.length; i++) {
+            var audioTrack = player.externalAudioTracksRecord[i]
+            audioTracks.push({
+                "id": audioTrack.id,
+                "title": audioTrack.title,
+                "language": audioTrack.language,
+                "file": audioTrack.file,
+                "isCurrent": player.externalAudio == Qt.resolvedUrl(audioTrack.file) && player.audioTrack == audioTrack.id
+            })
+        }
+
         var stateInfo = {
             "videoSource": player.sourceString,
             "hasVideo": player.hasVideo,
-            "subtitleFile": _subtitle_parser.file_name,
+            "subtitleFile": player.subtitle.file,
             "subtitleVisible": player.subtitleShow,
             "isFullscreen": windowView.getState() == Qt.WindowFullScreen,
             "isMiniMode": root.isMiniMode,
             "isOnTop": windowView.staysOnTop,
+            "audioTracks": audioTracks
         }
         _menu_controller.show_menu(JSON.stringify(stateInfo))
     }
@@ -266,21 +316,22 @@ MouseArea {
 
     property bool fullscreenFromMaximum: false
     property bool fullscreenFromMiniMode: false
+    property bool miniModeFlag: false
     function fullscreen() {
         if (!player.hasVideo) return
-
+        if (root.isMiniMode == true)
+           miniModeFlag = true
+        root.isMiniMode = false
         fullscreenFromMaximum = (windowView.getState() == Qt.WindowMaximized)
-        fullscreenFromMiniMode = root.isMiniMode
         windowView.showFullScreen()
         root.videoStoppedByAppFlag = false
-
-        fullscreenFromMiniMode && quitMiniMode()
     }
 
     function quitFullscreen() {
         fullscreenFromMaximum ? maximize() : windowView.showNormal()
-
-        maximizeFromMiniMode && miniMode()
+        fullscreenFromMiniMode = root.isMiniMode
+        miniModeFlag && quitMiniMode()
+        miniModeFlag = false
     }
 
     property bool maximizeFromMiniMode: false
@@ -343,12 +394,14 @@ MouseArea {
         root.isMiniMode ? quitMiniMode() : miniMode()
     }
 
+    function showManual() { _utils.showManual() }
+
     function showPreferenceWindow() {
         preference_window.flags = windowView.getState() == Qt.WindowFullScreen ? Qt.BypassWindowManagerHint : Qt.FramelessWindowHint | Qt.Dialog
         preference_window.close()
         preference_window.x = windowView.x + (windowView.width - preference_window.width) / 2
         preference_window.y = windowView.y + (windowView.height - preference_window.height) / 2
-        preference_window.scrollToTop()
+        //preference_window.scrollToTop()
         preference_window.show()
     }
 
@@ -357,7 +410,8 @@ MouseArea {
         info_window.close()
         info_window.x = windowView.x + (windowView.width - info_window.width) / 2
         info_window.y = windowView.y + (windowView.height - info_window.height) / 2
-        _database.getPlaylistItemVInfo(url)
+        var vInfo = _database.getPlaylistItemVInfo("dialog", url)
+        if (vInfo) info_window.showInfo(vInfo)
     }
 
     function setProportion(propWidth, propHeight) {
@@ -448,9 +502,9 @@ MouseArea {
     }
 
     // player control operation related
-    function play() { player.play() }
-    function pause() { player.pause() }
-    function stop() { player.stop() }
+    function play() { if (!poster_engine.running && !dlna_engine.sharing) player.play() }
+    function pause() { if (!poster_engine.running && !dlna_engine.sharing) player.pause() }
+    function stop() { if (!poster_engine.running && !dlna_engine.sharing) player.stop() }
 
     function togglePlay() {
         if (player.hasMedia && player.source != "") {
@@ -479,18 +533,18 @@ MouseArea {
     }
 
     // Player.position is not that reliable if there are multiple seek+
-    // operations performed, thus we need lastForwardToPosition to record the
+    // operations performed, thus we need logicalPosition to record the
     // position last time we sought to. seek- operations don't need this.
     function forwardByDelta(delta) {
         if (!player.hasVideo) return
 
         var tempRate = player.playbackRate
         player.playbackRate = 1.0
-        player.lastForwardToPosition = Math.min(Math.max(player.lastForwardToPosition, player.position) + delta, player.duration)
-        player.seek(player.lastForwardToPosition)
-        var percentage = Math.min(Math.floor(player.lastForwardToPosition / player.duration * 100), 100)
+        player.logicalPosition = Math.min(player.logicalPosition + delta, player.duration)
+        player.seek(player.logicalPosition)
+        var percentage = Math.min(Math.floor(player.logicalPosition / player.duration * 100), 100)
         var percentageInfo = player.duration != 0 ? " (%1%)".arg(percentage) : ""
-        notifybar.show(dsTr("Forward") + ": " + UIUtils.formatTime(player.lastForwardToPosition) + percentageInfo)
+        notifybar.show(dsTr("Forward") + ": " + UIUtils.formatTime(player.logicalPosition) + percentageInfo)
         player.playbackRate = tempRate
     }
 
@@ -502,7 +556,7 @@ MouseArea {
         player.seek(Math.max(player.position - delta), 1)
         var percentage = Math.min(Math.floor(player.position / (player.duration + 1) * 100), 100)
         var percentageInfo = player.duration != 0 ? " (%1%)".arg(percentage) : ""
-        notifybar.show(dsTr("Rewind") + ": " + UIUtils.formatTime(player.position) + percentageInfo)
+        notifybar.show(dsTr("Backward") + ": " + UIUtils.formatTime(player.position) + percentageInfo)
         player.playbackRate = tempRate
     }
 
@@ -512,18 +566,18 @@ MouseArea {
     function speedUp() {
         var restoreInfo = config.hotkeysPlayRestoreSpeed+"" ? dsTr("(Press %1 to restore)").arg(config.hotkeysPlayRestoreSpeed) : ""
         player.playbackRate = Math.min(2.0, (player.playbackRate + 0.1).toFixed(1))
-        notifybar.show(dsTr("Playback rate: ") + player.playbackRate + restoreInfo)
+        notifybar.show(dsTr("Playback speed: ") + player.playbackRate + restoreInfo)
     }
 
     function slowDown() {
         var restoreInfo = config.hotkeysPlayRestoreSpeed+"" ? dsTr("(Press %1 to restore)").arg(config.hotkeysPlayRestoreSpeed) : ""
         player.playbackRate = Math.max(0.1, (player.playbackRate - 0.1).toFixed(1))
-        notifybar.show(dsTr("Playback rate: ") + player.playbackRate + restoreInfo)
+        notifybar.show(dsTr("Playback speed: ") + player.playbackRate + restoreInfo)
     }
 
     function restoreSpeed() {
         player.playbackRate = 1
-        notifybar.show(dsTr("Playback rate: ") + player.playbackRate)
+        notifybar.show(dsTr("Playback speed: ") + player.playbackRate)
     }
 
     function increaseVolumeByDelta(delta) { setVolume(Math.min(player.volume + delta, 2.0)) }
@@ -552,16 +606,11 @@ MouseArea {
         setMute(!player.muted)
     }
 
-    function setSoundChannel(channelLayout) {
+    function setAudioChannel(channelLayout) {
+
+	console.log(channelLayout);
+
         switch(channelLayout) {
-            case "auto": {
-                player.channelLayout = MediaPlayer.ChannelLayoutAuto
-                break
-            }
-            case "mono": {
-                player.channelLayout = MediaPlayer.Mono
-                break
-            }
             case "left": {
                 player.channelLayout = MediaPlayer.Left
                 break
@@ -570,10 +619,36 @@ MouseArea {
                 player.channelLayout = MediaPlayer.Right
                 break
             }
-            case "stero": {
+            case "stereo": {
                 player.channelLayout = MediaPlayer.Stero
                 break
             }
+        }
+    }
+
+    function setAudioTrack(id, file) {
+        if (file == player.sourceString) {
+            player.externalAudio = ""
+            player.audioTrack = parseInt(id)
+        } else {
+            if (player.externalAudio != file) {
+                // this step consumes too much time, we must be careful.
+                player.externalAudio = file
+            }
+            player.audioTrack = parseInt(id)
+        }
+
+        _database.setPlaylistItemAudioTrack(player.sourceString, id, file)
+    }
+
+    function setAudioTrackFile(filename) {
+        if (filename && _utils.fileIsAudioTrack(filename)) {
+            if (player.playbackState == MediaPlayer.StoppedState) {
+                main_controller.playPath(_utils.getVideoFromAudioTrack(filename))
+            }
+
+            player.externalAudio = filename
+            _database.setPlaylistItemAudioTrack(player.sourceString, 0, filename)
         }
     }
 
@@ -583,12 +658,16 @@ MouseArea {
     function openDirForPlaylist() { open_folder_dialog.playFirst = false; open_folder_dialog.open() }
     function openFileForPlaylist() { open_file_dialog.state = "add_playlist_item"; open_file_dialog.open() }
     function openFileForSubtitle() { open_file_dialog.state = "open_subtitle_file"; open_file_dialog.open() }
+    function openFileForAudioTrack() { open_file_dialog.state = "open_audio_track_file"; open_file_dialog.open() }
 
     // To ensure that all the sources passed to player is a url other than a string.
     function playPath(path) {
         player.sourceString = path.trim()
         player.source = path[0] == "/" ? encodeURIComponent(path) : path
-        player.play()
+
+        if (dlna_engine.sharing) {
+            dlna_engine.play()
+        }
     }
 
     // playPaths is not quit perfect here, whether the play operation will
@@ -643,9 +722,10 @@ MouseArea {
 
         next ? main_controller.playPath(next) : root.reset()
     }
+    // FIXME: is playPreviousOf need?
     function playPrevious() {
-        player.resetPlayHistoryCursor = false
-        main_controller.playPath(_database.playHistoryGetPrevious())
+        var previous = playlist.getPreviousSourceCycle(_settings.lastPlayedFile)
+        previous ? main_controller.playPath(previous) : root.reset()
     }
 
     function importPlaylist() { open_file_dialog.state = "import_playlist"; open_file_dialog.open() }
@@ -672,27 +752,27 @@ MouseArea {
     function subtitleMoveDown() { setSubtitleVerticalPosition(config.subtitleVerticalPosition - 0.05)}
 
     function subtitleForward() {
-        if (_subtitle_parser.file_name) {
-            _subtitle_parser.delay = Math.max(program_constants.minSubtitleDelay * 1000,
-                                              _subtitle_parser.delay - config.subtitleDelayStep * 1000)
+        if (player.subtitle.file) {
+            player.subtitle.delay = Math.max(program_constants.minSubtitleDelay * 1000,
+                                             player.subtitle.delay - config.subtitleDelayStep * 1000)
 
-            var delay = Math.abs((_subtitle_parser.delay / 1000).toFixed(1))
-            if (_subtitle_parser.delay < 0) {
+            var delay = Math.abs((player.subtitle.delay / 1000).toFixed(1))
+            if (player.subtitle.delay < 0) {
                 notifybar.show(dsTr("Subtitle advanced %1 seconds").arg(delay))
-            } else if (_subtitle_parser.delay > 0) {
+            } else if (player.subtitle.delay > 0) {
                 notifybar.show(dsTr("Subtitle delayed %1 seconds").arg(delay))
             }
         }
     }
     function subtitleBackward() {
-        if (_subtitle_parser.file_name) {
-            _subtitle_parser.delay = Math.min(program_constants.maxSubtitleDelay * 1000,
-                                              _subtitle_parser.delay + config.subtitleDelayStep * 1000)
+        if (player.subtitle.file) {
+            player.subtitle.delay = Math.min(program_constants.maxSubtitleDelay * 1000,
+                                              player.subtitle.delay + config.subtitleDelayStep * 1000)
 
-            var delay = Math.abs((_subtitle_parser.delay / 1000).toFixed(1))
-            if (_subtitle_parser.delay < 0) {
+            var delay = Math.abs((player.subtitle.delay / 1000).toFixed(1))
+            if (player.subtitle.delay < 0) {
                 notifybar.show(dsTr("Subtitle advanced %1 seconds").arg(delay))
-            } else if (_subtitle_parser.delay > 0) {
+            } else if (player.subtitle.delay > 0) {
                 notifybar.show(dsTr("Subtitle delayed %1 seconds").arg(delay))
             }
         }
@@ -700,9 +780,24 @@ MouseArea {
 
     function setSubtitle(subtitle) {
         if (subtitle && _utils.urlIsNativeFile(subtitle)) {
-            _subtitle_parser.file_name = subtitle
+            if (player.playbackState == MediaPlayer.StoppedState) {
+                player.loadSubtitle = false
+                main_controller.playPath(_utils.getVideoFromSubtitle(subtitle))
+            }
+
+            player.subtitle.file = subtitle
+
+            // don't put below line in player.subtitle.onFileChanged,
+            // because player.subtitle.file has a delay update! you won't
+            // get the right subtitle file name in player.subtitle.onFileChanged.
+            _database.setPlaylistItemSubtitle(player.sourceString,
+                                              player.subtitle.file,
+                                              player.subtitle.delay)
         }
     }
+
+    function screenshot() { screenshot_engine.start() }
+    function burstShooting() { poster_engine.start() }
 
     function doSingleClick() {
         if (config.othersLeftClick) {
@@ -866,6 +961,8 @@ MouseArea {
                         main_controller.playPaths([file_path], true)
                     } else if (_utils.fileIsSubtitle(file_path)) {
                         main_controller.setSubtitle(file_path)
+                    } else if (_utils.fileIsAudioTrack(file_path)) {
+                        main_controller.setAudioTrackFile(file_path)
                     } else {
                         main_controller.notifyInvalidFile(file_path)
                     }

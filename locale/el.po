@@ -4,109 +4,343 @@
 # 
 # Translators:
 # Francesko Isallari <francesko1989@gmail.com>, 2014
-# Jim Spentzos <jimspentzos2000@gmail.com>, 2014
-# Jim Spentzos <jimspentzos2000@gmail.com>, 2014
-# Jim Spentzos <jimspentzos2000@gmail.com>, 2014
+# Jim Spentzos, 2014
+# Jim Spentzos, 2014
+# Jim Spentzos, 2014
+# Sklavos Informatiom Technologies <gamato.kal@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-15 17:09+0800\n"
-"PO-Revision-Date: 2015-04-15 09:11+0000\n"
+"POT-Creation-Date: 2015-08-14 16:54+0800\n"
+"PO-Revision-Date: 2015-12-23 06:07+0000\n"
 "Last-Translator: deepin_transifex <xiabin@linuxdeepin.com>\n"
-"Language-Team: Greek (http://www.transifex.com/projects/p/deepin-movie/language/el/)\n"
+"Language-Team: Greek (http://www.transifex.com/linuxdeepin/deepin-movie/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../src/views/AboutSection.qml:6 ../src/views/PreferenceWindow.qml:111
-msgid "About"
-msgstr "Σχετικά"
+#: ../src/controllers/menu_controller.py:34
+msgid "Default"
+msgstr "Προεπιλογή"
 
-#: ../src/views/AboutSection.qml:13 ../src/views/TitleBar.qml:70
-#: ../src/views/TitleBar.qml:142 ../src/views/window.py:71
+#: ../src/controllers/menu_controller.py:46
+msgid "Rotate 90 degree clockwise"
+msgstr "Περιστροφή 90 μοιρών δεξιόστροφα"
+
+#: ../src/controllers/menu_controller.py:47
+msgid "Rotate 90 degree counterclockwise"
+msgstr "Περιστροφή 90 μοιρών αριστερόστροφα"
+
+#: ../src/controllers/menu_controller.py:48
+msgid "Flip horizontally"
+msgstr "Οριζόντια αναστροφή"
+
+#: ../src/controllers/menu_controller.py:49
+msgid "Flip vertically"
+msgstr "Κάθετη αναστροφή"
+
+#: ../src/controllers/menu_controller.py:53
+msgid "Audio Channels"
+msgstr "Κανάλια Ήχου"
+
+#: ../src/controllers/menu_controller.py:54
+msgid "Audio Tracks"
+msgstr "Ηχητικά Κανάλια"
+
+#: ../src/controllers/menu_controller.py:57
+msgid "Volume Up"
+msgstr "Αύξηση Έντασης"
+
+#: ../src/controllers/menu_controller.py:58
+msgid "Volume Down"
+msgstr "Μείωση Έντασης"
+
+#: ../src/controllers/menu_controller.py:59
+#: ../src/views/PreferenceWindow.qml:715 ../src/views/ShortcutsViewer.qml:124
+msgid "Mute"
+msgstr "Σίγαση"
+
+#: ../src/controllers/menu_controller.py:63
+msgid "Stereo"
+msgstr "Στέρεο"
+
+#: ../src/controllers/menu_controller.py:64
+msgid "Left"
+msgstr "Αριστερά"
+
+#: ../src/controllers/menu_controller.py:65
+msgid "Right"
+msgstr "Δεξιά"
+
+#: ../src/controllers/menu_controller.py:69
+msgid "Hide subtitle"
+msgstr "Απόκρυψη υποτίτλων"
+
+#: ../src/controllers/menu_controller.py:73
+msgid "Load manually"
+msgstr "Χειροκίνητη φόρτωση"
+
+#: ../src/controllers/menu_controller.py:74
+msgid "Subtitle selection"
+msgstr "Επιλογή υποτίτλων"
+
+#: ../src/controllers/menu_controller.py:75
+msgid "Subtitle setting"
+msgstr "Ρύθμιση υποτίτλων"
+
+#: ../src/controllers/menu_controller.py:79
+msgid "Order"
+msgstr "Σειρά"
+
+#: ../src/controllers/menu_controller.py:80
+msgid "Random"
+msgstr "Τυχαία"
+
+#: ../src/controllers/menu_controller.py:81
+msgid "Single"
+msgstr "Ένα"
+
+#: ../src/controllers/menu_controller.py:82
+msgid "Repeat (Single)"
+msgstr "Επανάληψη (Ενός)"
+
+#: ../src/controllers/menu_controller.py:83
+msgid "Repeat (Playlist)"
+msgstr "Επανάληψη (Λίστας αναπαραγωγής)"
+
+#: ../src/controllers/menu_controller.py:87 ../src/views/ControlBar.qml:285
+msgid "Previous"
+msgstr "Προηγούμενο"
+
+#: ../src/controllers/menu_controller.py:88 ../src/views/ControlBar.qml:322
+msgid "Next"
+msgstr "Επόμενο"
+
+#: ../src/controllers/menu_controller.py:90
+#: ../src/views/MainController.qml:538 ../src/views/PreferenceWindow.qml:386
+#: ../src/views/ShortcutsViewer.qml:50
+msgid "Forward"
+msgstr "Εμπρός"
+
+#: ../src/controllers/menu_controller.py:91
+#: ../src/views/MainController.qml:550 ../src/views/PreferenceWindow.qml:412
+#: ../src/views/ShortcutsViewer.qml:54
+msgid "Backward"
+msgstr "Προς τα πίσω"
+
+#: ../src/controllers/menu_controller.py:95
+msgid "Movie screenshot"
+msgstr "Στιγμιότυπο οθόνης ταινίας"
+
+#: ../src/controllers/menu_controller.py:96
+msgid "Burst screenshot"
+msgstr "Συνεχόμενο στιγμιότυπο οθόνης "
+
+#: ../src/controllers/menu_controller.py:100 ../src/views/ControlBar.qml:413
+#: ../src/views/PreferenceWindow.qml:758 ../src/views/ShortcutsViewer.qml:83
+msgid "Open a file"
+msgstr "Άνοιγμα αρχείου"
+
+#: ../src/controllers/menu_controller.py:101
+msgid "Open a folder"
+msgstr "Άνοιγμα φακέλου"
+
+#: ../src/controllers/menu_controller.py:102
+msgid "Open URL"
+msgstr "Άνοιγμα URL"
+
+#: ../src/controllers/menu_controller.py:104
+#: ../src/controllers/menu_controller.py:496 ../src/views/ControlBar.qml:382
+#: ../src/views/PreferenceWindow.qml:438
+#: ../src/views/PreferenceWindow.qml:1052 ../src/views/ShortcutsViewer.qml:58
+#: ../src/views/ShortcutsViewer.qml:139
+msgid "Fullscreen"
+msgstr "Πλήρης οθόνη"
+
+#: ../src/controllers/menu_controller.py:105
+#: ../src/controllers/menu_controller.py:498
+#: ../src/views/PreferenceWindow.qml:585 ../src/views/ShortcutsViewer.qml:104
+msgid "Mini mode"
+msgstr "Λειτουργία mini"
+
+#: ../src/controllers/menu_controller.py:106
+msgid "Always on top"
+msgstr "Πάντα στην κορυφή"
+
+#: ../src/controllers/menu_controller.py:107 ../src/views/ControlBar.qml:425
+#: ../src/views/OpenFileDialog.qml:79 ../src/views/PreferenceWindow.qml:464
+#: ../src/views/ShortcutsViewer.qml:62
+msgid "Playlist"
+msgstr "Λίστα αναπαραγωγής"
+
+#: ../src/controllers/menu_controller.py:109
+msgid "Play Sequence"
+msgstr "Αναπαραγωγή Σκηνής"
+
+#: ../src/controllers/menu_controller.py:110
+#: ../src/controllers/menu_controller.py:123 ../src/views/ControlBar.qml:305
+msgid "Play"
+msgstr "Αναπαραγωγή"
+
+#: ../src/controllers/menu_controller.py:111
+msgid "Frame"
+msgstr "Κάδρο"
+
+#: ../src/controllers/menu_controller.py:112
+msgid "Sound"
+msgstr "Ήχος"
+
+#: ../src/controllers/menu_controller.py:113
+#: ../src/views/PreferenceWindow.qml:117 ../src/views/PreferenceWindow.qml:838
+#: ../src/views/ShortcutsViewer.qml:150
+msgid "Subtitles"
+msgstr "Υπότιτλοι"
+
+#: ../src/controllers/menu_controller.py:115
+#: ../src/views/PreferenceWindow.qml:91 ../src/views/PreferenceWindow.qml:122
+#: ../src/views/PreferenceWindow.qml:322 ../src/views/PreferenceWindow.qml:959
+#: ../src/views/PreferenceWindow.qml:968 ../src/views/toolbox/Toolbox.qml:70
+#: ../src/views/toolbox/Toolbox.qml:99
+msgid "Screenshot"
+msgstr "Στιγμιότυπο οθόνης"
+
+#: ../src/controllers/menu_controller.py:117
+msgid "Settings"
+msgstr "Ρυθμίσεις"
+
+#: ../src/controllers/menu_controller.py:118
+#: ../src/controllers/menu_controller.py:136
+msgid "Information"
+msgstr "Πληροφορίες"
+
+#: ../src/controllers/menu_controller.py:119
+msgid "Help"
+msgstr "Βοήθεια"
+
+#: ../src/controllers/menu_controller.py:124
+#: ../src/controllers/menu_controller.py:140 ../src/views/Playlist.qml:260
+msgid "Add file"
+msgstr "Προσθήκη αρχείου"
+
+#: ../src/controllers/menu_controller.py:125
+#: ../src/controllers/menu_controller.py:141
+msgid "Add folder"
+msgstr "Προσθήκη φακέλου"
+
+#: ../src/controllers/menu_controller.py:127
+msgid "Remove from playlist"
+msgstr "Αφαίρεση από τη λίστα αναπαραγωγής"
+
+#: ../src/controllers/menu_controller.py:128
+msgid "Remove invalid file"
+msgstr "Αφαίρεση μη έγκυρου αρχείου"
+
+#: ../src/controllers/menu_controller.py:129
+msgid "Export"
+msgstr "Εξαγωγή"
+
+#: ../src/controllers/menu_controller.py:130
+msgid "Import"
+msgstr "Εισαγωγή"
+
+#: ../src/controllers/menu_controller.py:131 ../src/views/Playlist.qml:268
+msgid "Clear playlist"
+msgstr "Εκκαθάριση λίστας αναπαραγωγής"
+
+#: ../src/controllers/menu_controller.py:135
+msgid "Open file location"
+msgstr "Άνοιγμα τοποθεσίας αρχείου"
+
+#: ../src/controllers/menu_controller.py:191
+msgid "Audio track"
+msgstr "Κανάλι ήχου"
+
+#: ../src/controllers/menu_controller.py:200
+msgid "Load audio track"
+msgstr "Φόρτωση ηχητικού καναλιού"
+
+#: ../src/controllers/menu_controller.py:495 ../src/views/ControlBar.qml:382
+msgid "Exit fullscreen"
+msgstr "Έξοδος από πλήρη οθόνη"
+
+#: ../src/controllers/menu_controller.py:497
+msgid "Exit mini mode"
+msgstr "Έξοδος από τη μίνι λειτουργία"
+
+#: ../src/dlna/__init__.py:160 ../src/utils/constants.py:39
+#: ../src/utils/dbus_interfaces.py:99 ../src/views/AboutSection.qml:13
+#: ../src/views/TitleBar.qml:70 ../src/views/TitleBar.qml:142
+#: ../src/views/toolbox/ScreenshotEngine.qml:34 ../src/views/window.py:64
 msgid "Deepin Movie"
 msgstr "Ταινίες Deepin"
 
-#: ../src/views/AboutSection.qml:28
-msgid "Version"
-msgstr "Έκδοση"
+#: ../src/models/movie_info.py:78 ../src/views/InformationWindow.qml:23
+#: ../src/views/InformationWindow.qml:24 ../src/views/InformationWindow.qml:25
+msgid "Unknown"
+msgstr "Άγνωστο"
 
-#: ../src/views/AboutSection.qml:28 ../src/views/InformationLabel.qml:20
-#: ../src/views/MainController.qml:252 ../src/views/main.qml:142
+#: ../src/utils/poster_generator.py:234 ../src/utils/poster_generator.py:244
+#: ../src/utils/poster_generator.py:254 ../src/views/AboutSection.qml:27
+#: ../src/views/InformationLabel.qml:20 ../src/views/MainController.qml:301
+#: ../src/views/dlna/RendererListDialog.qml:43 ../src/views/main.qml:163
 msgid ":"
 msgstr ":"
 
-#: ../src/views/AboutSection.qml:58
+#: ../src/utils/poster_generator.py:234
+msgid "Duration"
+msgstr "Διάρκεια"
+
+#: ../src/utils/poster_generator.py:244 ../src/views/InformationWindow.qml:97
+msgid "Resolution"
+msgstr "Ανάλυση"
+
+#: ../src/utils/poster_generator.py:254 ../src/views/PreferenceWindow.qml:1187
+msgid "Size"
+msgstr "Μέγεθος"
+
+#: ../src/views/AboutSection.qml:6 ../src/views/PreferenceWindow.qml:139
+msgid "About"
+msgstr "Σχετικά"
+
+#: ../src/views/AboutSection.qml:27
+msgid "Version"
+msgstr "Έκδοση"
+
+#: ../src/views/AboutSection.qml:57
 msgid ""
 "Deepin Movie is a well-designed and full-featured video player with simple "
 "borderless design. It supports local and streaming media play with multiple "
 "video formats."
 msgstr "Το Deepin Movie είναι ένα καλοσχεδιασμένο πρόγραμμα αναπαραγωγής βίντεο με πολλαπλές δυνατότητες και με απλό σχεδιασμό. Υποστηρίζει την αναπαραγωγή τοπικών πολυμέσων αλλά και πολυμέσων ροής και παίζει σε πραγματικό χρόνο αρχεία και πολλαπλές μορφές βϊντεο."
 
-#: ../src/views/AboutSection.qml:69
+#: ../src/views/AboutSection.qml:68
 msgid "Deepin Movie is released under GPLv3."
 msgstr "Το Deepin Movie εκδίδεται με την άδεια GPLv3."
 
-#: ../src/views/ControlBar.qml:229
-msgid "Stop playing"
-msgstr "Διακοπή αναπαραγωγής"
-
-#: ../src/views/ControlBar.qml:247 ../src/controllers/menu_controller.py:90
-msgid "Previous"
-msgstr "Προηγούμενο"
-
 #: ../src/views/ControlBar.qml:266
+msgid "Stop"
+msgstr "Σταμάτημα"
+
+#: ../src/views/ControlBar.qml:305
 msgid "Pause"
 msgstr "Παύση"
 
-#: ../src/views/ControlBar.qml:266 ../src/controllers/menu_controller.py:108
-#: ../src/controllers/menu_controller.py:118
-msgid "Play"
-msgstr "Αναπαραγωγή"
+#: ../src/views/ControlBar.qml:400
+msgid "Toolkit"
+msgstr "Εργαλειοθήκη"
 
-#: ../src/views/ControlBar.qml:283 ../src/controllers/menu_controller.py:91
-msgid "Next"
-msgstr "Επόμενο"
-
-#: ../src/views/ControlBar.qml:326 ../src/controllers/menu_controller.py:445
-msgid "Exit fullscreen"
-msgstr "Έξοδος από πλήρη οθόνη"
-
-#: ../src/views/ControlBar.qml:326 ../src/views/PreferenceWindow.qml:395
-#: ../src/views/PreferenceWindow.qml:945 ../src/views/ShortcutsViewer.qml:58
-#: ../src/views/ShortcutsViewer.qml:139
-#: ../src/controllers/menu_controller.py:102
-#: ../src/controllers/menu_controller.py:446
-msgid "Fullscreen"
-msgstr "Πλήρης οθόνη"
-
-#: ../src/views/ControlBar.qml:343 ../src/views/PreferenceWindow.qml:715
-#: ../src/views/ShortcutsViewer.qml:83
-#: ../src/controllers/menu_controller.py:98
-msgid "Open a file"
-msgstr "Άνοιγμα αρχείου"
-
-#: ../src/views/ControlBar.qml:355 ../src/views/OpenFileDialog.qml:66
-#: ../src/views/PreferenceWindow.qml:421 ../src/views/ShortcutsViewer.qml:62
-#: ../src/controllers/menu_controller.py:105
-msgid "Playlist"
-msgstr "Λίστα αναπαραγωγής"
-
-#: ../src/views/HotKeyInput.qml:7 ../src/views/HotKeyInput.qml:16
 #: ../src/views/HotKeyInputRow.qml:24 ../src/views/HotKeyInputRow.qml:26
-#: ../src/views/HotKeyInputRow.qml:56 ../src/views/PreferenceWindow.qml:929
-#: ../src/views/PreferenceWindow.qml:945 ../src/views/PreferenceWindow.qml:961
-#: ../src/views/ShortcutsLabel.qml:23 ../src/views/ShortcutsViewer.qml:134
-#: ../src/views/ShortcutsViewer.qml:139 ../src/views/ShortcutsViewer.qml:144
+#: ../src/views/HotKeyInputRow.qml:54 ../src/views/HotKeyInputRow.qml:56
+#: ../src/views/PreferenceWindow.qml:1036
+#: ../src/views/PreferenceWindow.qml:1052
+#: ../src/views/PreferenceWindow.qml:1068 ../src/views/ShortcutsLabel.qml:23
+#: ../src/views/ShortcutsViewer.qml:134 ../src/views/ShortcutsViewer.qml:139
+#: ../src/views/ShortcutsViewer.qml:144
 msgid "None"
 msgstr "Κανένα"
-
-#: ../src/views/HotKeyInput.qml:23
-msgid "Please input a new shortcut"
-msgstr "Παρακαλώ εισάγετε νέα συντόμευση"
 
 #: ../src/views/HotKeyInputRow.qml:30
 msgid "The shortcut you set "
@@ -121,18 +355,17 @@ msgstr "έρχεται σε αντίθεση με μια που χρησιμοπ
 msgid "Do you want to replace it?"
 msgstr "Θέλετε να το αντικαταστήσετε;"
 
-#: ../src/views/HotKeyInputRow.qml:99 ../src/views/main.qml:144
+#: ../src/views/HotKeyInputRow.qml:55
+msgid "Please input a new shortcut"
+msgstr "Παρακαλώ εισάγετε νέα συντόμευση"
+
+#: ../src/views/HotKeyInputRow.qml:99 ../src/views/main.qml:165
 msgid "Cancel"
 msgstr "Ακύρωση"
 
 #: ../src/views/HotKeyInputRow.qml:110
 msgid "Replace"
 msgstr "Αντικατάσταση"
-
-#: ../src/views/InformationWindow.qml:23 ../src/views/InformationWindow.qml:24
-#: ../src/views/InformationWindow.qml:25 ../src/models/movie_info.py:78
-msgid "Unknown"
-msgstr "Άγνωστο"
 
 #: ../src/views/InformationWindow.qml:77
 msgid "File type"
@@ -141,10 +374,6 @@ msgstr "Τύπος αρχείου"
 #: ../src/views/InformationWindow.qml:87
 msgid "File size"
 msgstr "Μέγεθος αρχείου"
-
-#: ../src/views/InformationWindow.qml:97
-msgid "Resolution"
-msgstr "Ανάλυση"
 
 #: ../src/views/InformationWindow.qml:107
 msgid "Movie duration"
@@ -162,10 +391,6 @@ msgstr "Αντιγραφή στο πρόχειρο"
 msgid "Close"
 msgstr "Κλείσιμο"
 
-#: ../src/views/MainController.qml:252
-msgid "Invalid file"
-msgstr "Μη έγκυρο αρχείο"
-
 #: ../src/views/MainController.qml:37
 #, qt-format
 msgid "%1 files unable to be parsed have been excluded"
@@ -175,226 +400,84 @@ msgstr "%1 που δεν μπόρεσαν να αναλυθούν εξαιρέθ
 msgid "Imported"
 msgstr "Εισάχθηκαν"
 
-#: ../src/views/MainController.qml:451
+#: ../src/views/MainController.qml:301
+msgid "Invalid file"
+msgstr "Μη έγκυρο αρχείο"
+
+#: ../src/views/MainController.qml:505
 msgid "Play last movie played"
 msgstr "Αναπαραγωγή τελευταίας ταινίας"
 
-#: ../src/views/MainController.qml:484 ../src/views/PreferenceWindow.qml:343
-#: ../src/views/ShortcutsViewer.qml:50
-#: ../src/controllers/menu_controller.py:93
-msgid "Forward"
-msgstr "Εμπρός"
-
-#: ../src/views/MainController.qml:496 ../src/views/PreferenceWindow.qml:369
-#: ../src/views/ShortcutsViewer.qml:54
-#: ../src/controllers/menu_controller.py:94
-msgid "Rewind"
-msgstr "Πίσω"
-
-#: ../src/views/MainController.qml:504 ../src/views/MainController.qml:510
+#: ../src/views/MainController.qml:558 ../src/views/MainController.qml:564
 #, qt-format
 msgid "(Press %1 to restore)"
 msgstr "(Πατήστε %1 για επαναφορά)"
 
-#: ../src/views/MainController.qml:506 ../src/views/MainController.qml:512
-#: ../src/views/MainController.qml:517
-msgid "Playback rate: "
-msgstr "Βαθμός αναπαραγωγής:"
+#: ../src/views/MainController.qml:560 ../src/views/MainController.qml:566
+#: ../src/views/MainController.qml:571
+msgid "Playback speed: "
+msgstr "Ταχύτητα αναπαραγωγής:"
 
-#: ../src/views/MainController.qml:529 ../src/views/MainController.qml:538
+#: ../src/views/MainController.qml:583 ../src/views/MainController.qml:592
 msgid "Volume: "
 msgstr "Ένταση:"
 
-#: ../src/views/MainController.qml:536
-#: ../src/controllers/menu_controller.py:60
+#: ../src/views/MainController.qml:590
 msgid "Muted"
 msgstr "Σε σίγαση"
 
-#: ../src/views/MainController.qml:672 ../src/views/MainController.qml:685
+#: ../src/views/MainController.qml:751 ../src/views/MainController.qml:764
 #, qt-format
 msgid "Subtitle advanced %1 seconds"
-msgstr ""
+msgstr "Επιτάχυνση υποτίτλων %1 Δευτερόλεπτα"
 
-#: ../src/views/MainController.qml:674 ../src/views/MainController.qml:687
+#: ../src/views/MainController.qml:753 ../src/views/MainController.qml:766
 #, qt-format
 msgid "Subtitle delayed %1 seconds"
-msgstr ""
+msgstr "Καθυστέρηση υποτίτλων %1 Δευτερόλεπτα"
 
-#: ../src/views/OpenFileDialog.qml:5 ../src/views/OpenFileDialog.qml:21
-#: ../src/views/OpenFileDialog.qml:41
-msgid "Please choose one file or more"
-msgstr "Παρακαλώ επιλέξτε ένα ή περισσοτερά αρχεία"
+#: ../src/views/OpenFileDialog.qml:5 ../src/views/OpenFileDialog.qml:24
+#: ../src/views/OpenFileDialog.qml:54
+msgid "Please select one file or more"
+msgstr "Παρακαλούμε επιλέξτε ένα ή περισσότερα αρχεία"
 
-#: ../src/views/OpenFileDialog.qml:7 ../src/views/OpenFileDialog.qml:23
-#: ../src/views/OpenFileDialog.qml:43
+#: ../src/views/OpenFileDialog.qml:7 ../src/views/OpenFileDialog.qml:26
+#: ../src/views/OpenFileDialog.qml:56
 msgid "Video files"
 msgstr "Αρχεία βίντεο"
 
-#: ../src/views/OpenFileDialog.qml:15
+#: ../src/views/OpenFileDialog.qml:18
 msgid "All files"
 msgstr "Όλα τα αρχεία"
 
-#: ../src/views/OpenFileDialog.qml:31 ../src/views/OpenFileDialog.qml:51
-msgid "Please choose one file"
-msgstr "Παρακαλώ επιλέξτε ένα αρχείο"
+#: ../src/views/OpenFileDialog.qml:34 ../src/views/OpenFileDialog.qml:44
+#: ../src/views/OpenFileDialog.qml:64
+msgid "Please select one file"
+msgstr "Παρακαλούμε επιλέξτε ένα φάκελο"
 
-#: ../src/views/OpenFileDialog.qml:33
+#: ../src/views/OpenFileDialog.qml:36
 msgid "Subtitle files"
 msgstr "Αρχεία υποτίτλων"
 
-#: ../src/views/OpenFileDialog.qml:53 ../src/views/OpenFileDialog.qml:63
+#: ../src/views/OpenFileDialog.qml:46
+msgid "Audio track files"
+msgstr "Αρχεία ηχητικών καναλιών"
+
+#: ../src/views/OpenFileDialog.qml:66 ../src/views/OpenFileDialog.qml:76
 msgid "Playlist files"
 msgstr "Αρχεία λιστών αναπαραγωγής"
 
-#: ../src/views/OpenFileDialog.qml:61
+#: ../src/views/OpenFileDialog.qml:74
 msgid "Save as"
 msgstr "Αποθήκευση ως"
 
 #: ../src/views/OpenFolderDialog.qml:5
-msgid "Please choose a folder"
-msgstr "Παρακαλώ επιλέξτε ένα φάκελο."
+msgid "Please select a folder"
+msgstr "Παρακαλούμε επιλέξτε ένα φάκελο"
 
 #: ../src/views/Playlist.qml:252
 msgid "Play mode"
 msgstr "Λειτουργία αναπαραγωγής"
-
-#: ../src/views/Playlist.qml:260 ../src/controllers/menu_controller.py:119
-#: ../src/controllers/menu_controller.py:135
-msgid "Add file"
-msgstr "Προσθήκη αρχείου"
-
-#: ../src/views/Playlist.qml:268 ../src/controllers/menu_controller.py:126
-msgid "Clear playlist"
-msgstr "Εκκαθάριση λίστας αναπαραγωγής"
-
-#: ../src/views/PreferenceWindow.qml:242
-msgid "Clear playlist on opening new file"
-msgstr "Εκκαθάριση λίστας αναπαραγωγής στο άνοιγμα νέου αρχείου"
-
-#: ../src/views/PreferenceWindow.qml:247
-msgid "Resume playback after restarting player"
-msgstr "Συνέχιση αναπαραγωγής μετά την επανεκκίνηση του προγράμματος αναπαραγωγής"
-
-#: ../src/views/PreferenceWindow.qml:252
-msgid "Continue to next video automatically"
-msgstr "Αυτόματη συνέχεια στο επόμενο βίντεο"
-
-#: ../src/views/PreferenceWindow.qml:257
-msgid "Show preview when hovering over progress bar"
-msgstr "Εμφάνιση προεπισκόπησης όταν περάσει το ποντίκι πάνω από τη γραμμή προόδου"
-
-#: ../src/views/PreferenceWindow.qml:290
-msgid "Forward/Rewind (s)"
-msgstr ""
-
-#: ../src/views/PreferenceWindow.qml:312 ../src/views/PreferenceWindow.qml:536
-#: ../src/views/PreferenceWindow.qml:709 ../src/views/PreferenceWindow.qml:804
-msgid "Enable keyboard shortcuts"
-msgstr "Ενεργοποίηση συντομεύσεων πληκτρολογίου"
-
-#: ../src/views/PreferenceWindow.qml:317 ../src/views/PreferenceWindow.qml:929
-#: ../src/views/ShortcutsViewer.qml:46 ../src/views/ShortcutsViewer.qml:134
-msgid "Pause/Play"
-msgstr "Παύση/Αναπαραγωγή"
-
-#: ../src/views/PreferenceWindow.qml:447 ../src/views/ShortcutsViewer.qml:66
-msgid "Accelerate playback"
-msgstr "Επιτάχυνση αναπαραγωγής"
-
-#: ../src/views/PreferenceWindow.qml:473 ../src/views/ShortcutsViewer.qml:70
-msgid "Decelerate playback"
-msgstr "Επιβράδυνση αναπαραγωγής"
-
-#: ../src/views/PreferenceWindow.qml:499 ../src/views/ShortcutsViewer.qml:74
-msgid "Restore playback speed"
-msgstr "Επαναφορά ταχύτητας αναπαραγωγής"
-
-#: ../src/views/PreferenceWindow.qml:542 ../src/views/ShortcutsViewer.qml:104
-#: ../src/controllers/menu_controller.py:103
-#: ../src/controllers/menu_controller.py:448
-msgid "Mini mode"
-msgstr "Λειτουργία mini"
-
-#: ../src/views/PreferenceWindow.qml:620 ../src/views/ShortcutsViewer.qml:116
-msgid "Volume up"
-msgstr "Αύξηση έντασης"
-
-#: ../src/views/PreferenceWindow.qml:646 ../src/views/ShortcutsViewer.qml:120
-msgid "Volume down"
-msgstr "Μείωση έντασης"
-
-#: ../src/views/PreferenceWindow.qml:741 ../src/views/ShortcutsViewer.qml:87
-msgid "Open previous"
-msgstr "Άνοιγμα προηγούμενου"
-
-#: ../src/views/PreferenceWindow.qml:767 ../src/views/ShortcutsViewer.qml:91
-msgid "Open next"
-msgstr "Άνοιγμα επόμενου"
-
-#: ../src/views/PreferenceWindow.qml:810 ../src/views/ShortcutsViewer.qml:153
-#, qt-format
-msgid "Forward %1 (s)"
-msgstr ""
-
-#: ../src/views/PreferenceWindow.qml:836 ../src/views/ShortcutsViewer.qml:157
-#, qt-format
-msgid "Delay %1 (s)"
-msgstr ""
-
-#: ../src/views/PreferenceWindow.qml:862 ../src/views/ShortcutsViewer.qml:161
-msgid "Subtitle up"
-msgstr "Υπότιτλος επάνω"
-
-#: ../src/views/PreferenceWindow.qml:888 ../src/views/ShortcutsViewer.qml:165
-msgid "Subtitle down"
-msgstr "Υπότιτλος κάτω"
-
-#: ../src/views/PreferenceWindow.qml:926 ../src/views/ShortcutsViewer.qml:133
-msgid "Left click"
-msgstr "Αριστερό κλικ"
-
-#: ../src/views/PreferenceWindow.qml:942 ../src/views/ShortcutsViewer.qml:138
-msgid "Double click"
-msgstr "Διπλό κλικ"
-
-#: ../src/views/PreferenceWindow.qml:983
-msgid "Subtitles loaded automatically"
-msgstr "Οι υπότιτλοι φορτώθηκαν αυτόματα"
-
-#: ../src/views/PreferenceWindow.qml:1075
-msgid "Border width"
-msgstr "Πλάτος πλαισίου"
-
-#: ../src/views/PreferenceWindow.qml:21
-msgid "Orange"
-msgstr ""
-
-#: ../src/views/PreferenceWindow.qml:58 ../src/views/PreferenceWindow.qml:74
-#: ../src/views/PreferenceWindow.qml:221 ../src/views/PreferenceWindow.qml:303
-#: ../src/views/ShortcutsViewer.qml:43
-msgid "Playback"
-msgstr "Αναπαραγωγή"
-
-#: ../src/views/PreferenceWindow.qml:79 ../src/views/PreferenceWindow.qml:527
-#: ../src/views/ShortcutsViewer.qml:101
-msgid "Frame/Sound"
-msgstr "Κάδρο/Ήχος"
-
-#: ../src/views/PreferenceWindow.qml:84 ../src/views/PreferenceWindow.qml:700
-#: ../src/views/ShortcutsViewer.qml:80
-msgid "Files"
-msgstr "Αρχεία"
-
-#: ../src/views/PreferenceWindow.qml:94 ../src/views/PreferenceWindow.qml:916
-#: ../src/views/ShortcutsViewer.qml:130
-msgid "Other"
-msgstr "Άλλο"
-
-#: ../src/views/PreferenceWindow.qml:89 ../src/views/PreferenceWindow.qml:795
-#: ../src/views/ShortcutsViewer.qml:150
-#: ../src/controllers/menu_controller.py:111
-msgid "Subtitles"
-msgstr "Υπότιτλοι"
 
 #: ../src/views/PreferenceWindow.qml:15
 msgid "Black"
@@ -420,6 +503,10 @@ msgstr "Κιτρινοπράσινο"
 msgid "Energy yellow"
 msgstr "Ενεργειακό κίτρινο"
 
+#: ../src/views/PreferenceWindow.qml:21
+msgid "Orange"
+msgstr "Πορτοκαλί"
+
 #: ../src/views/PreferenceWindow.qml:22
 msgid "Radical red"
 msgstr "Επαναστατικό κόκκινο"
@@ -440,105 +527,232 @@ msgstr "Αλουμίνιο"
 msgid "Clean white"
 msgstr "Καθαρό λευκό"
 
-#: ../src/views/PreferenceWindow.qml:54 ../src/views/PreferenceWindow.qml:217
+#: ../src/views/PreferenceWindow.qml:77 ../src/views/PreferenceWindow.qml:228
 msgid "Basic settings"
 msgstr "Βασικές ρυθμίσεις"
 
-#: ../src/views/PreferenceWindow.qml:63 ../src/views/PreferenceWindow.qml:281
+#: ../src/views/PreferenceWindow.qml:81 ../src/views/PreferenceWindow.qml:102
+#: ../src/views/PreferenceWindow.qml:232 ../src/views/PreferenceWindow.qml:346
+#: ../src/views/ShortcutsViewer.qml:43
+msgid "Playback"
+msgstr "Αναπαραγωγή"
+
+#: ../src/views/PreferenceWindow.qml:86 ../src/views/PreferenceWindow.qml:302
 msgid "Time span"
 msgstr "Χρονική διάρκεια"
 
-#: ../src/views/PreferenceWindow.qml:70 ../src/views/PreferenceWindow.qml:299
+#: ../src/views/PreferenceWindow.qml:98 ../src/views/PreferenceWindow.qml:342
 msgid "Keyboard shortcuts"
 msgstr "Συντομεύσεις πληκτρολογίου"
 
-#: ../src/views/PreferenceWindow.qml:101 ../src/views/PreferenceWindow.qml:976
+#: ../src/views/PreferenceWindow.qml:107 ../src/views/PreferenceWindow.qml:570
+#: ../src/views/ShortcutsViewer.qml:101
+msgid "Frame/Sound"
+msgstr "Κάδρο/Ήχος"
+
+#: ../src/views/PreferenceWindow.qml:112 ../src/views/PreferenceWindow.qml:743
+#: ../src/views/ShortcutsViewer.qml:80
+msgid "Files"
+msgstr "Αρχεία"
+
+#: ../src/views/PreferenceWindow.qml:127
+#: ../src/views/PreferenceWindow.qml:1023 ../src/views/ShortcutsViewer.qml:130
+msgid "Other"
+msgstr "Άλλο"
+
+#: ../src/views/PreferenceWindow.qml:134
+#: ../src/views/PreferenceWindow.qml:1083
 msgid "Subtitle settings"
 msgstr "Ρυθμίσεις υποτίτλων"
 
-#: ../src/views/PreferenceWindow.qml:130
+#: ../src/views/PreferenceWindow.qml:158
 msgid "Reset shortcuts"
-msgstr ""
+msgstr "Επαναφορά συντομεύσεων"
 
-#: ../src/views/PreferenceWindow.qml:134
+#: ../src/views/PreferenceWindow.qml:162
 msgid "Reset subtitle settings"
-msgstr ""
+msgstr "Επαναφορά ρυθμίσεων υποτίτλων "
 
-#: ../src/views/PreferenceWindow.qml:230
+#: ../src/views/PreferenceWindow.qml:241
 msgid "Fullscreen on opening file"
 msgstr "Άνοιγμα αρχείου σε πλήρη οθόνη"
 
-#: ../src/views/PreferenceWindow.qml:236
+#: ../src/views/PreferenceWindow.qml:247
 msgid "Apply the size last time closed"
 msgstr "Εφαρμογή μεγέθους του πρόσφατα κλεισμένου"
 
-#: ../src/views/PreferenceWindow.qml:262
+#: ../src/views/PreferenceWindow.qml:253
+msgid "Clear playlist on opening new file"
+msgstr "Εκκαθάριση λίστας αναπαραγωγής στο άνοιγμα νέου αρχείου"
+
+#: ../src/views/PreferenceWindow.qml:258
+msgid "Resume playback after restarting player"
+msgstr "Συνέχιση αναπαραγωγής μετά την επανεκκίνηση του προγράμματος αναπαραγωγής"
+
+#: ../src/views/PreferenceWindow.qml:263
+msgid "Continue to next video automatically"
+msgstr "Αυτόματη συνέχεια στο επόμενο βίντεο"
+
+#: ../src/views/PreferenceWindow.qml:268
+msgid "Display preview when hovering over progress bar"
+msgstr "Εμφάνιση προεπισκόπησης όταν βρίσκεστε πάνω από την  γραμμή προόδου"
+
+#: ../src/views/PreferenceWindow.qml:273
 msgid "Allow multiple instances"
 msgstr "Να επιτρέπονται πολλαπλές περίοδοι λειτουργίας"
 
-#: ../src/views/PreferenceWindow.qml:267
+#: ../src/views/PreferenceWindow.qml:278
 msgid "Pause when minimized"
 msgstr "Παύση κατά την ελαχιστοποίηση"
 
-#: ../src/views/PreferenceWindow.qml:568 ../src/views/ShortcutsViewer.qml:108
+#: ../src/views/PreferenceWindow.qml:283
+msgid "Enable hardware acceleration"
+msgstr "Ενεργοποιήστε επιτάχυνση υλικού"
+
+#: ../src/views/PreferenceWindow.qml:288
+msgid "Accept wireless push"
+msgstr "Αποδεχτείτε ασύρματο push"
+
+#: ../src/views/PreferenceWindow.qml:311
+msgid "Forward/Backward (s)"
+msgstr "Μπροστά/Πίσω (δ)"
+
+#: ../src/views/PreferenceWindow.qml:331
+msgid "Save path"
+msgstr "Αποθήκευση διαδρομής"
+
+#: ../src/views/PreferenceWindow.qml:355 ../src/views/PreferenceWindow.qml:579
+#: ../src/views/PreferenceWindow.qml:752 ../src/views/PreferenceWindow.qml:847
+msgid "Enable keyboard shortcuts"
+msgstr "Ενεργοποίηση συντομεύσεων πληκτρολογίου"
+
+#: ../src/views/PreferenceWindow.qml:360
+#: ../src/views/PreferenceWindow.qml:1036 ../src/views/ShortcutsViewer.qml:46
+#: ../src/views/ShortcutsViewer.qml:134
+msgid "Pause/Play"
+msgstr "Παύση/Αναπαραγωγή"
+
+#: ../src/views/PreferenceWindow.qml:490 ../src/views/ShortcutsViewer.qml:66
+msgid "Accelerate playback"
+msgstr "Επιτάχυνση αναπαραγωγής"
+
+#: ../src/views/PreferenceWindow.qml:516 ../src/views/ShortcutsViewer.qml:70
+msgid "Decelerate playback"
+msgstr "Επιβράδυνση αναπαραγωγής"
+
+#: ../src/views/PreferenceWindow.qml:542 ../src/views/ShortcutsViewer.qml:74
+msgid "Restore playback speed"
+msgstr "Επαναφορά ταχύτητας αναπαραγωγής"
+
+#: ../src/views/PreferenceWindow.qml:611 ../src/views/ShortcutsViewer.qml:108
 msgid "Rotate counterclockwise"
 msgstr "Περιστροφή αριστερόστροφα"
 
-#: ../src/views/PreferenceWindow.qml:594 ../src/views/ShortcutsViewer.qml:112
+#: ../src/views/PreferenceWindow.qml:637 ../src/views/ShortcutsViewer.qml:112
 msgid "Rotate clockwise"
 msgstr "Περιστροφή δεξιόστροφα"
 
-#: ../src/views/PreferenceWindow.qml:672 ../src/views/ShortcutsViewer.qml:124
-msgid "Mute"
-msgstr "Σίγαση"
+#: ../src/views/PreferenceWindow.qml:663 ../src/views/ShortcutsViewer.qml:116
+msgid "Volume up"
+msgstr "Αύξηση έντασης"
 
-#: ../src/views/PreferenceWindow.qml:958 ../src/views/ShortcutsViewer.qml:143
+#: ../src/views/PreferenceWindow.qml:689 ../src/views/ShortcutsViewer.qml:120
+msgid "Volume down"
+msgstr "Μείωση έντασης"
+
+#: ../src/views/PreferenceWindow.qml:784 ../src/views/ShortcutsViewer.qml:87
+msgid "Open previous"
+msgstr "Άνοιγμα προηγούμενου"
+
+#: ../src/views/PreferenceWindow.qml:810 ../src/views/ShortcutsViewer.qml:91
+msgid "Open next"
+msgstr "Άνοιγμα επόμενου"
+
+#: ../src/views/PreferenceWindow.qml:853 ../src/views/ShortcutsViewer.qml:153
+#, qt-format
+msgid "Advance %1 (s)"
+msgstr "Προχωρήστε %1 (δ)"
+
+#: ../src/views/PreferenceWindow.qml:879 ../src/views/ShortcutsViewer.qml:157
+#, qt-format
+msgid "Delay %1 (s)"
+msgstr "Kαθυστέρηση %1 (s)"
+
+#: ../src/views/PreferenceWindow.qml:905 ../src/views/ShortcutsViewer.qml:161
+msgid "Subtitle up"
+msgstr "Υπότιτλος επάνω"
+
+#: ../src/views/PreferenceWindow.qml:931 ../src/views/ShortcutsViewer.qml:165
+msgid "Subtitle down"
+msgstr "Υπότιτλος κάτω"
+
+#: ../src/views/PreferenceWindow.qml:995
+msgid "Plot burst shooting"
+msgstr "Σχεδίαση συνεχόμενης βολής"
+
+#: ../src/views/PreferenceWindow.qml:1033 ../src/views/ShortcutsViewer.qml:133
+msgid "Left click"
+msgstr "Αριστερό κλικ"
+
+#: ../src/views/PreferenceWindow.qml:1049 ../src/views/ShortcutsViewer.qml:138
+msgid "Double click"
+msgstr "Διπλό κλικ"
+
+#: ../src/views/PreferenceWindow.qml:1065 ../src/views/ShortcutsViewer.qml:143
 msgid "Scroll"
 msgstr "Κύλιση"
 
-#: ../src/views/PreferenceWindow.qml:961 ../src/views/ShortcutsViewer.qml:144
+#: ../src/views/PreferenceWindow.qml:1068 ../src/views/ShortcutsViewer.qml:144
 #: ../src/views/VolumeButton.qml:44
 msgid "Volume"
 msgstr "Ένταση"
 
-#: ../src/views/PreferenceWindow.qml:997
+#: ../src/views/PreferenceWindow.qml:1090
+msgid "(The setting is invalid for effect subtitles)"
+msgstr "(Η ρύθμιση είναι άκυρη για υπότιτλους εφέ)"
+
+#: ../src/views/PreferenceWindow.qml:1095
+msgid "Subtitles loaded automatically"
+msgstr "Οι υπότιτλοι φορτώθηκαν αυτόματα"
+
+#: ../src/views/PreferenceWindow.qml:1109
 msgid "Font"
 msgstr "Γραμματοσειρά"
 
-#: ../src/views/PreferenceWindow.qml:1040
+#: ../src/views/PreferenceWindow.qml:1169
 msgid "Font color"
 msgstr "Χρώμα γραμματοσειράς"
 
-#: ../src/views/PreferenceWindow.qml:1058
-msgid "Size"
-msgstr "Μέγεθος"
+#: ../src/views/PreferenceWindow.qml:1204
+msgid "Border width"
+msgstr "Πλάτος πλαισίου"
 
-#: ../src/views/PreferenceWindow.qml:1092
+#: ../src/views/PreferenceWindow.qml:1221
 msgid "Border color"
 msgstr "Χρώμα πλαισίου"
 
-#: ../src/views/PreferenceWindow.qml:1110
+#: ../src/views/PreferenceWindow.qml:1239
 msgid "Position"
 msgstr "Θέση"
 
-#: ../src/views/PreferenceWindow.qml:1115
+#: ../src/views/PreferenceWindow.qml:1244
 msgid "Bottom"
 msgstr "Κάτω μέρος"
 
-#: ../src/views/PreferenceWindow.qml:1116
+#: ../src/views/PreferenceWindow.qml:1245
 msgid "Top"
 msgstr "Πάνω μέρος"
 
-#: ../src/views/PreferenceWindow.qml:1127
+#: ../src/views/PreferenceWindow.qml:1256
 msgid "Sync adjustment (s)"
-msgstr ""
+msgstr "Συγχρονισμός εφαρμογών (s)"
 
 #: ../src/views/TitleBar.qml:173
-msgid "Shown in a proportion of 1:1"
-msgstr "Εμφανίζεται σε αναλογία 1:1"
+msgid "Displayed in a proportion of 1:1"
+msgstr "Εμφάνιση σε αναλογία 1:1"
 
 #: ../src/views/TitleBar.qml:185
-msgid "Shown in 1.5 times"
+msgid "Displayed in 1.5 times"
 msgstr "Εμφανίζεται σε 1,5 φορά"
 
 #: ../src/views/TitleBar.qml:198
@@ -557,164 +771,53 @@ msgstr "Ακύρωση του \"Στην Κορυφή\""
 msgid "On Top"
 msgstr "Στην Κορυφή"
 
-#: ../src/views/main.qml:142
+#: ../src/views/dlna/DLNAEngine.qml:34
+msgid "Switch back"
+msgstr "Επιστρέψτε"
+
+#: ../src/views/dlna/DLNAEngine.qml:59
+#, qt-format
+msgid "The movie \"%1\" is being played on \"%2\"."
+msgstr "Η ταινία «%1» παίζεται στο «%2»."
+
+#: ../src/views/dlna/RendererListDialog.qml:43
+msgid "Please select the playing device"
+msgstr "Παρακαλούμε επιλέξτε τη συσκευή αναπαραγωγής"
+
+#: ../src/views/main.qml:163
 msgid "Please input the url of file played"
 msgstr "Παρακαλώ εισάγετε το URL του αρχείου αναπαραγωγής"
 
-#: ../src/views/main.qml:143
+#: ../src/views/main.qml:164
 msgid "Confirm"
 msgstr "Επιβεβαίωση"
 
-#: ../src/views/main.qml:160
+#: ../src/views/main.qml:181
 msgid "The parse failed"
 msgstr "Η ανάλυση απέτυχε."
 
-#: ../src/views/main.qml:458 ../src/views/main.qml:559
+#: ../src/views/main.qml:502 ../src/views/main.qml:504
 msgid "Buffering..."
-msgstr ""
+msgstr "Φόρτωση..."
 
-#: ../src/controllers/menu_controller.py:35
-msgid "Default"
-msgstr "Προεπιλογή"
+#: ../src/views/toolbox/PosterEngine.qml:41
+#: ../src/views/toolbox/PosterEngine.qml:56
+msgid "Plot burst shooting, please wait..."
+msgstr "Σχεδίαση συνεχόμενης βολής, παρακαλούμε περιμένετε..."
 
-#: ../src/controllers/menu_controller.py:47
-msgid "Rotate 90 degree clockwise"
-msgstr "Περιστροφή 90 μοιρών δεξιόστροφα"
+#: ../src/views/toolbox/PosterEngine.qml:61
+msgid "Plot Burst Shooting"
+msgstr "Σχεδίαση Συνεχόμενης Βολής"
 
-#: ../src/controllers/menu_controller.py:48
-msgid "Rotate 90 degree counterclockwise"
-msgstr "Περιστροφή 90 μοιρών αριστερόστροφα"
+#: ../src/views/toolbox/ScreenshotEngine.qml:26
+msgid "Movie Screenshot"
+msgstr "Στιγμιότυπο οθόνης Ταινίας"
 
-#: ../src/controllers/menu_controller.py:49
-msgid "Flip horizontally"
-msgstr "Οριζόντια αναστροφή"
+#: ../src/views/toolbox/ScreenshotEngine.qml:34
+#, qt-format
+msgid "Your screenshot has been saved to %1"
+msgstr "Το στιγμιότυπο της οθόνης σας έχει αποθηκευτεί στο %1"
 
-#: ../src/controllers/menu_controller.py:50
-msgid "Flip vertically"
-msgstr "Κάθετη αναστροφή"
-
-#: ../src/controllers/menu_controller.py:58
-msgid "Volume Up"
-msgstr "Αύξηση Έντασης"
-
-#: ../src/controllers/menu_controller.py:59
-msgid "Volume Down"
-msgstr "Μείωση Έντασης"
-
-#: ../src/controllers/menu_controller.py:64
-msgid "Auto"
-msgstr "Αυτόματο"
-
-#: ../src/controllers/menu_controller.py:65
-msgid "Left"
-msgstr "Αριστερά"
-
-#: ../src/controllers/menu_controller.py:66
-msgid "Right"
-msgstr "Δεξιά"
-
-#: ../src/controllers/menu_controller.py:67
-msgid "Mono"
-msgstr "Μονοφωνικά"
-
-#: ../src/controllers/menu_controller.py:68
-msgid "Stero"
-msgstr "Στερεοφωνικά"
-
-#: ../src/controllers/menu_controller.py:72
-msgid "Hide subtitle"
-msgstr "Απόκρυψη υποτίτλων"
-
-#: ../src/controllers/menu_controller.py:76
-msgid "Open manually"
-msgstr "Χειροκίνητο άνοιγμα"
-
-#: ../src/controllers/menu_controller.py:77
-msgid "Subtitle selection"
-msgstr "Επιλογή υποτίτλων"
-
-#: ../src/controllers/menu_controller.py:78
-msgid "Subtitle setting"
-msgstr "Ρύθμιση υποτίτλων"
-
-#: ../src/controllers/menu_controller.py:82
-msgid "Order"
-msgstr "Σειρά"
-
-#: ../src/controllers/menu_controller.py:83
-msgid "Random"
-msgstr "Τυχαία"
-
-#: ../src/controllers/menu_controller.py:84
-msgid "Single"
-msgstr "Ένα"
-
-#: ../src/controllers/menu_controller.py:85
-msgid "Repeat (Single)"
-msgstr "Επανάληψη (Ενός)"
-
-#: ../src/controllers/menu_controller.py:86
-msgid "Repeat (Playlist)"
-msgstr "Επανάληψη (Λίστας αναπαραγωγής)"
-
-#: ../src/controllers/menu_controller.py:99
-msgid "Open a folder"
-msgstr "Άνοιγμα φακέλου"
-
-#: ../src/controllers/menu_controller.py:100
-msgid "Open URL"
-msgstr "Άνοιγμα URL"
-
-#: ../src/controllers/menu_controller.py:104
-msgid "Always on top"
-msgstr "Πάντα στην κορυφή"
-
-#: ../src/controllers/menu_controller.py:107
-msgid "Play Sequence"
-msgstr "Αναπαραγωγή Σκηνής"
-
-#: ../src/controllers/menu_controller.py:109
-msgid "Frame"
-msgstr "Κάδρο"
-
-#: ../src/controllers/menu_controller.py:110
-msgid "Sound"
-msgstr "Ήχος"
-
-#: ../src/controllers/menu_controller.py:113
-msgid "Settings"
-msgstr "Ρυθμίσεις"
-
-#: ../src/controllers/menu_controller.py:114
-#: ../src/controllers/menu_controller.py:131
-msgid "Information"
-msgstr "Πληροφορίες"
-
-#: ../src/controllers/menu_controller.py:120
-#: ../src/controllers/menu_controller.py:136
-msgid "Add folder"
-msgstr "Προσθήκη φακέλου"
-
-#: ../src/controllers/menu_controller.py:122
-msgid "Remove from playlist"
-msgstr "Αφαίρεση από τη λίστα αναπαραγωγής"
-
-#: ../src/controllers/menu_controller.py:123
-msgid "Remove invalid file"
-msgstr "Αφαίρεση μη έγκυρου αρχείου"
-
-#: ../src/controllers/menu_controller.py:124
-msgid "Export"
-msgstr "Εξαγωγή"
-
-#: ../src/controllers/menu_controller.py:125
-msgid "Import"
-msgstr "Εισαγωγή"
-
-#: ../src/controllers/menu_controller.py:130
-msgid "Open file location"
-msgstr "Άνοιγμα τοποθεσίας αρχείου"
-
-#: ../src/controllers/menu_controller.py:447
-msgid "Exit mini mode"
-msgstr "Έξοδος από τη μίνι λειτουργία"
+#: ../src/views/toolbox/Toolbox.qml:79
+msgid "Burst"
+msgstr "Ριπή"

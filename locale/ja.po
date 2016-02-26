@@ -1,0 +1,818 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: Deepin Movie\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-08-14 16:54+0800\n"
+"PO-Revision-Date: 2015-12-26 06:20+0000\n"
+"Last-Translator: deepin_transifex <xiabin@linuxdeepin.com>\n"
+"Language-Team: Japanese (http://www.transifex.com/linuxdeepin/deepin-movie/language/ja/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ja\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: ../src/controllers/menu_controller.py:34
+msgid "Default"
+msgstr "デフォルト"
+
+#: ../src/controllers/menu_controller.py:46
+msgid "Rotate 90 degree clockwise"
+msgstr "時計回りに90度回転"
+
+#: ../src/controllers/menu_controller.py:47
+msgid "Rotate 90 degree counterclockwise"
+msgstr "反時計回りに90度回転"
+
+#: ../src/controllers/menu_controller.py:48
+msgid "Flip horizontally"
+msgstr "水平にはじいてください。"
+
+#: ../src/controllers/menu_controller.py:49
+msgid "Flip vertically"
+msgstr "垂直にはじく"
+
+#: ../src/controllers/menu_controller.py:53
+msgid "Audio Channels"
+msgstr "オーディオチャンネル"
+
+#: ../src/controllers/menu_controller.py:54
+msgid "Audio Tracks"
+msgstr "オーディオトラック"
+
+#: ../src/controllers/menu_controller.py:57
+msgid "Volume Up"
+msgstr "ボリュームを上げます"
+
+#: ../src/controllers/menu_controller.py:58
+msgid "Volume Down"
+msgstr "ボリュームを下げる"
+
+#: ../src/controllers/menu_controller.py:59
+#: ../src/views/PreferenceWindow.qml:715 ../src/views/ShortcutsViewer.qml:124
+msgid "Mute"
+msgstr "ミュート"
+
+#: ../src/controllers/menu_controller.py:63
+msgid "Stereo"
+msgstr "ステレオ"
+
+#: ../src/controllers/menu_controller.py:64
+msgid "Left"
+msgstr "左"
+
+#: ../src/controllers/menu_controller.py:65
+msgid "Right"
+msgstr "右"
+
+#: ../src/controllers/menu_controller.py:69
+msgid "Hide subtitle"
+msgstr "字幕を隠す"
+
+#: ../src/controllers/menu_controller.py:73
+msgid "Load manually"
+msgstr "マニュアルでロードしてください。"
+
+#: ../src/controllers/menu_controller.py:74
+msgid "Subtitle selection"
+msgstr "字幕選択"
+
+#: ../src/controllers/menu_controller.py:75
+msgid "Subtitle setting"
+msgstr "サブタイトルの設定"
+
+#: ../src/controllers/menu_controller.py:79
+msgid "Order"
+msgstr "オーダー"
+
+#: ../src/controllers/menu_controller.py:80
+msgid "Random"
+msgstr "ランダム"
+
+#: ../src/controllers/menu_controller.py:81
+msgid "Single"
+msgstr "シングル"
+
+#: ../src/controllers/menu_controller.py:82
+msgid "Repeat (Single)"
+msgstr "リピート (シングル)"
+
+#: ../src/controllers/menu_controller.py:83
+msgid "Repeat (Playlist)"
+msgstr "リピート(プレイリスト)"
+
+#: ../src/controllers/menu_controller.py:87 ../src/views/ControlBar.qml:285
+msgid "Previous"
+msgstr "前へ"
+
+#: ../src/controllers/menu_controller.py:88 ../src/views/ControlBar.qml:322
+msgid "Next"
+msgstr "次へ"
+
+#: ../src/controllers/menu_controller.py:90
+#: ../src/views/MainController.qml:538 ../src/views/PreferenceWindow.qml:386
+#: ../src/views/ShortcutsViewer.qml:50
+msgid "Forward"
+msgstr "転送"
+
+#: ../src/controllers/menu_controller.py:91
+#: ../src/views/MainController.qml:550 ../src/views/PreferenceWindow.qml:412
+#: ../src/views/ShortcutsViewer.qml:54
+msgid "Backward"
+msgstr "戻る"
+
+#: ../src/controllers/menu_controller.py:95
+msgid "Movie screenshot"
+msgstr "ムービー・スクリーンショット"
+
+#: ../src/controllers/menu_controller.py:96
+msgid "Burst screenshot"
+msgstr "スクリーンショットを連続撮影"
+
+#: ../src/controllers/menu_controller.py:100 ../src/views/ControlBar.qml:413
+#: ../src/views/PreferenceWindow.qml:758 ../src/views/ShortcutsViewer.qml:83
+msgid "Open a file"
+msgstr "ファイルを開ける"
+
+#: ../src/controllers/menu_controller.py:101
+msgid "Open a folder"
+msgstr "フォルダを開く"
+
+#: ../src/controllers/menu_controller.py:102
+msgid "Open URL"
+msgstr "URLを開く"
+
+#: ../src/controllers/menu_controller.py:104
+#: ../src/controllers/menu_controller.py:496 ../src/views/ControlBar.qml:382
+#: ../src/views/PreferenceWindow.qml:438
+#: ../src/views/PreferenceWindow.qml:1052 ../src/views/ShortcutsViewer.qml:58
+#: ../src/views/ShortcutsViewer.qml:139
+msgid "Fullscreen"
+msgstr "フルスクリーン"
+
+#: ../src/controllers/menu_controller.py:105
+#: ../src/controllers/menu_controller.py:498
+#: ../src/views/PreferenceWindow.qml:585 ../src/views/ShortcutsViewer.qml:104
+msgid "Mini mode"
+msgstr "ミニモード"
+
+#: ../src/controllers/menu_controller.py:106
+msgid "Always on top"
+msgstr "つねにトップの上"
+
+#: ../src/controllers/menu_controller.py:107 ../src/views/ControlBar.qml:425
+#: ../src/views/OpenFileDialog.qml:79 ../src/views/PreferenceWindow.qml:464
+#: ../src/views/ShortcutsViewer.qml:62
+msgid "Playlist"
+msgstr "プレイリスト"
+
+#: ../src/controllers/menu_controller.py:109
+msgid "Play Sequence"
+msgstr "シークエンスをプレイ"
+
+#: ../src/controllers/menu_controller.py:110
+#: ../src/controllers/menu_controller.py:123 ../src/views/ControlBar.qml:305
+msgid "Play"
+msgstr "再生"
+
+#: ../src/controllers/menu_controller.py:111
+msgid "Frame"
+msgstr "フレーム"
+
+#: ../src/controllers/menu_controller.py:112
+msgid "Sound"
+msgstr "サウンド"
+
+#: ../src/controllers/menu_controller.py:113
+#: ../src/views/PreferenceWindow.qml:117 ../src/views/PreferenceWindow.qml:838
+#: ../src/views/ShortcutsViewer.qml:150
+msgid "Subtitles"
+msgstr "字幕"
+
+#: ../src/controllers/menu_controller.py:115
+#: ../src/views/PreferenceWindow.qml:91 ../src/views/PreferenceWindow.qml:122
+#: ../src/views/PreferenceWindow.qml:322 ../src/views/PreferenceWindow.qml:959
+#: ../src/views/PreferenceWindow.qml:968 ../src/views/toolbox/Toolbox.qml:70
+#: ../src/views/toolbox/Toolbox.qml:99
+msgid "Screenshot"
+msgstr "スクリンショート"
+
+#: ../src/controllers/menu_controller.py:117
+msgid "Settings"
+msgstr "設定"
+
+#: ../src/controllers/menu_controller.py:118
+#: ../src/controllers/menu_controller.py:136
+msgid "Information"
+msgstr "情報"
+
+#: ../src/controllers/menu_controller.py:119
+msgid "Help"
+msgstr "ヘルプ"
+
+#: ../src/controllers/menu_controller.py:124
+#: ../src/controllers/menu_controller.py:140 ../src/views/Playlist.qml:260
+msgid "Add file"
+msgstr "ファイルを加えてください"
+
+#: ../src/controllers/menu_controller.py:125
+#: ../src/controllers/menu_controller.py:141
+msgid "Add folder"
+msgstr "フォルダーを追加"
+
+#: ../src/controllers/menu_controller.py:127
+msgid "Remove from playlist"
+msgstr "プレイリストから削除"
+
+#: ../src/controllers/menu_controller.py:128
+msgid "Remove invalid file"
+msgstr "無効なファイルを削除"
+
+#: ../src/controllers/menu_controller.py:129
+msgid "Export"
+msgstr "エクスポート"
+
+#: ../src/controllers/menu_controller.py:130
+msgid "Import"
+msgstr "インポートする"
+
+#: ../src/controllers/menu_controller.py:131 ../src/views/Playlist.qml:268
+msgid "Clear playlist"
+msgstr "プレイリストをクリアしてください"
+
+#: ../src/controllers/menu_controller.py:135
+msgid "Open file location"
+msgstr "ファイル・ロケーションを開ける"
+
+#: ../src/controllers/menu_controller.py:191
+msgid "Audio track"
+msgstr "オーディオ・トラック"
+
+#: ../src/controllers/menu_controller.py:200
+msgid "Load audio track"
+msgstr "オーディオトラックを読み込む"
+
+#: ../src/controllers/menu_controller.py:495 ../src/views/ControlBar.qml:382
+msgid "Exit fullscreen"
+msgstr "フルスクリーンを中止"
+
+#: ../src/controllers/menu_controller.py:497
+msgid "Exit mini mode"
+msgstr "ミニ・モードから出る"
+
+#: ../src/dlna/__init__.py:160 ../src/utils/constants.py:39
+#: ../src/utils/dbus_interfaces.py:99 ../src/views/AboutSection.qml:13
+#: ../src/views/TitleBar.qml:70 ../src/views/TitleBar.qml:142
+#: ../src/views/toolbox/ScreenshotEngine.qml:34 ../src/views/window.py:64
+msgid "Deepin Movie"
+msgstr "Deepinビデオプレイヤー"
+
+#: ../src/models/movie_info.py:78 ../src/views/InformationWindow.qml:23
+#: ../src/views/InformationWindow.qml:24 ../src/views/InformationWindow.qml:25
+msgid "Unknown"
+msgstr "不明"
+
+#: ../src/utils/poster_generator.py:234 ../src/utils/poster_generator.py:244
+#: ../src/utils/poster_generator.py:254 ../src/views/AboutSection.qml:27
+#: ../src/views/InformationLabel.qml:20 ../src/views/MainController.qml:301
+#: ../src/views/dlna/RendererListDialog.qml:43 ../src/views/main.qml:163
+msgid ":"
+msgstr ":"
+
+#: ../src/utils/poster_generator.py:234
+msgid "Duration"
+msgstr "持続期間"
+
+#: ../src/utils/poster_generator.py:244 ../src/views/InformationWindow.qml:97
+msgid "Resolution"
+msgstr "レゾリューション"
+
+#: ../src/utils/poster_generator.py:254 ../src/views/PreferenceWindow.qml:1187
+msgid "Size"
+msgstr "サイズ"
+
+#: ../src/views/AboutSection.qml:6 ../src/views/PreferenceWindow.qml:139
+msgid "About"
+msgstr "バージョン情報"
+
+#: ../src/views/AboutSection.qml:27
+msgid "Version"
+msgstr "バージョン"
+
+#: ../src/views/AboutSection.qml:57
+msgid ""
+"Deepin Movie is a well-designed and full-featured video player with simple "
+"borderless design. It supports local and streaming media play with multiple "
+"video formats."
+msgstr "ディープイン・ムービーはシンプルでボーダレスなデザインを持つ、適切に策定されたフル装備のビデオ・プレーヤーです。それは複数のビデオ形式でローカルやストリーミングのメディア再生をサポートします。"
+
+#: ../src/views/AboutSection.qml:68
+msgid "Deepin Movie is released under GPLv3."
+msgstr "Deepin Movie はGPLv3の下、リリースされます。"
+
+#: ../src/views/ControlBar.qml:266
+msgid "Stop"
+msgstr "停止"
+
+#: ../src/views/ControlBar.qml:305
+msgid "Pause"
+msgstr "一時停止"
+
+#: ../src/views/ControlBar.qml:400
+msgid "Toolkit"
+msgstr "ツールキット"
+
+#: ../src/views/HotKeyInputRow.qml:24 ../src/views/HotKeyInputRow.qml:26
+#: ../src/views/HotKeyInputRow.qml:54 ../src/views/HotKeyInputRow.qml:56
+#: ../src/views/PreferenceWindow.qml:1036
+#: ../src/views/PreferenceWindow.qml:1052
+#: ../src/views/PreferenceWindow.qml:1068 ../src/views/ShortcutsLabel.qml:23
+#: ../src/views/ShortcutsViewer.qml:134 ../src/views/ShortcutsViewer.qml:139
+#: ../src/views/ShortcutsViewer.qml:144
+msgid "None"
+msgstr "なし"
+
+#: ../src/views/HotKeyInputRow.qml:30
+msgid "The shortcut you set "
+msgstr "あなたが設定したショートカット"
+
+#: ../src/views/HotKeyInputRow.qml:31
+#, qt-format
+msgid "conflicts with the one used for \"%2\" in the \"%1\" category. "
+msgstr "「%1」カテゴリーの「%2」に使われたものと矛盾しています。"
+
+#: ../src/views/HotKeyInputRow.qml:32
+msgid "Do you want to replace it?"
+msgstr "置き換えますか?"
+
+#: ../src/views/HotKeyInputRow.qml:55
+msgid "Please input a new shortcut"
+msgstr "新しいショートカットを入力してください"
+
+#: ../src/views/HotKeyInputRow.qml:99 ../src/views/main.qml:165
+msgid "Cancel"
+msgstr "キャンセル"
+
+#: ../src/views/HotKeyInputRow.qml:110
+msgid "Replace"
+msgstr "交換する"
+
+#: ../src/views/InformationWindow.qml:77
+msgid "File type"
+msgstr "ファイルのタイプ"
+
+#: ../src/views/InformationWindow.qml:87
+msgid "File size"
+msgstr "ファイルサイズ"
+
+#: ../src/views/InformationWindow.qml:107
+msgid "Movie duration"
+msgstr "動画の継続時間"
+
+#: ../src/views/InformationWindow.qml:117
+msgid "File path"
+msgstr "ファイルのパス"
+
+#: ../src/views/InformationWindow.qml:134
+msgid "Copy to clipboard"
+msgstr "クリップボードにコピー"
+
+#: ../src/views/InformationWindow.qml:149
+msgid "Close"
+msgstr "閉じる"
+
+#: ../src/views/MainController.qml:37
+#, qt-format
+msgid "%1 files unable to be parsed have been excluded"
+msgstr "構文解析できない%1のファイルが除外されました"
+
+#: ../src/views/MainController.qml:50
+msgid "Imported"
+msgstr "インポートされた"
+
+#: ../src/views/MainController.qml:301
+msgid "Invalid file"
+msgstr "無効なファイル"
+
+#: ../src/views/MainController.qml:505
+msgid "Play last movie played"
+msgstr "最後に見ていた映画を再生する"
+
+#: ../src/views/MainController.qml:558 ../src/views/MainController.qml:564
+#, qt-format
+msgid "(Press %1 to restore)"
+msgstr "（%1を押して復元）"
+
+#: ../src/views/MainController.qml:560 ../src/views/MainController.qml:566
+#: ../src/views/MainController.qml:571
+msgid "Playback speed: "
+msgstr "プレイバック速度："
+
+#: ../src/views/MainController.qml:583 ../src/views/MainController.qml:592
+msgid "Volume: "
+msgstr "ボリューム："
+
+#: ../src/views/MainController.qml:590
+msgid "Muted"
+msgstr "消音"
+
+#: ../src/views/MainController.qml:751 ../src/views/MainController.qml:764
+#, qt-format
+msgid "Subtitle advanced %1 seconds"
+msgstr "字幕が%1秒進みました"
+
+#: ../src/views/MainController.qml:753 ../src/views/MainController.qml:766
+#, qt-format
+msgid "Subtitle delayed %1 seconds"
+msgstr "サブタイトルが%1秒遅れました"
+
+#: ../src/views/OpenFileDialog.qml:5 ../src/views/OpenFileDialog.qml:24
+#: ../src/views/OpenFileDialog.qml:54
+msgid "Please select one file or more"
+msgstr "ファイルを1つ以上選択してください"
+
+#: ../src/views/OpenFileDialog.qml:7 ../src/views/OpenFileDialog.qml:26
+#: ../src/views/OpenFileDialog.qml:56
+msgid "Video files"
+msgstr "動画ファイル"
+
+#: ../src/views/OpenFileDialog.qml:18
+msgid "All files"
+msgstr "全てのファイル"
+
+#: ../src/views/OpenFileDialog.qml:34 ../src/views/OpenFileDialog.qml:44
+#: ../src/views/OpenFileDialog.qml:64
+msgid "Please select one file"
+msgstr "ファイルを一つ選択してください"
+
+#: ../src/views/OpenFileDialog.qml:36
+msgid "Subtitle files"
+msgstr "サブタイトル・ファイル"
+
+#: ../src/views/OpenFileDialog.qml:46
+msgid "Audio track files"
+msgstr "オーディオトラックファイル"
+
+#: ../src/views/OpenFileDialog.qml:66 ../src/views/OpenFileDialog.qml:76
+msgid "Playlist files"
+msgstr "プレイリストファイル"
+
+#: ../src/views/OpenFileDialog.qml:74
+msgid "Save as"
+msgstr "名前を付けて保存"
+
+#: ../src/views/OpenFolderDialog.qml:5
+msgid "Please select a folder"
+msgstr "フォルダを選択してください"
+
+#: ../src/views/Playlist.qml:252
+msgid "Play mode"
+msgstr "プレイモード"
+
+#: ../src/views/PreferenceWindow.qml:15
+msgid "Black"
+msgstr "ブラック"
+
+#: ../src/views/PreferenceWindow.qml:16
+msgid "bleu de France"
+msgstr "フランスの青"
+
+#: ../src/views/PreferenceWindow.qml:17
+msgid "Turquoise"
+msgstr "ターコイズ"
+
+#: ../src/views/PreferenceWindow.qml:18
+msgid "UFO green"
+msgstr "UFOグリーン"
+
+#: ../src/views/PreferenceWindow.qml:19
+msgid "Green yellow"
+msgstr "グリーン・イエロー"
+
+#: ../src/views/PreferenceWindow.qml:20
+msgid "Energy yellow"
+msgstr "エネルギーが黄色"
+
+#: ../src/views/PreferenceWindow.qml:21
+msgid "Orange"
+msgstr "オレンジ"
+
+#: ../src/views/PreferenceWindow.qml:22
+msgid "Radical red"
+msgstr "ラディカルレッド"
+
+#: ../src/views/PreferenceWindow.qml:23
+msgid "Lavender indigo"
+msgstr "ラベンダーインディゴ・カラー"
+
+#: ../src/views/PreferenceWindow.qml:24
+msgid "Royal blue"
+msgstr "ロイヤルブルー"
+
+#: ../src/views/PreferenceWindow.qml:25
+msgid "Aluminum"
+msgstr "アルミニウム"
+
+#: ../src/views/PreferenceWindow.qml:26
+msgid "Clean white"
+msgstr "クリーンホワイト"
+
+#: ../src/views/PreferenceWindow.qml:77 ../src/views/PreferenceWindow.qml:228
+msgid "Basic settings"
+msgstr "基本設定"
+
+#: ../src/views/PreferenceWindow.qml:81 ../src/views/PreferenceWindow.qml:102
+#: ../src/views/PreferenceWindow.qml:232 ../src/views/PreferenceWindow.qml:346
+#: ../src/views/ShortcutsViewer.qml:43
+msgid "Playback"
+msgstr "プレイバック"
+
+#: ../src/views/PreferenceWindow.qml:86 ../src/views/PreferenceWindow.qml:302
+msgid "Time span"
+msgstr "タイムスパン"
+
+#: ../src/views/PreferenceWindow.qml:98 ../src/views/PreferenceWindow.qml:342
+msgid "Keyboard shortcuts"
+msgstr "キーボード・ショートカット"
+
+#: ../src/views/PreferenceWindow.qml:107 ../src/views/PreferenceWindow.qml:570
+#: ../src/views/ShortcutsViewer.qml:101
+msgid "Frame/Sound"
+msgstr "フレーム/音"
+
+#: ../src/views/PreferenceWindow.qml:112 ../src/views/PreferenceWindow.qml:743
+#: ../src/views/ShortcutsViewer.qml:80
+msgid "Files"
+msgstr "ファイル"
+
+#: ../src/views/PreferenceWindow.qml:127
+#: ../src/views/PreferenceWindow.qml:1023 ../src/views/ShortcutsViewer.qml:130
+msgid "Other"
+msgstr "その他"
+
+#: ../src/views/PreferenceWindow.qml:134
+#: ../src/views/PreferenceWindow.qml:1083
+msgid "Subtitle settings"
+msgstr "サブタイトルの設定"
+
+#: ../src/views/PreferenceWindow.qml:158
+msgid "Reset shortcuts"
+msgstr "ショートカットをリセット"
+
+#: ../src/views/PreferenceWindow.qml:162
+msgid "Reset subtitle settings"
+msgstr "サブタイトル設定をやり直してください"
+
+#: ../src/views/PreferenceWindow.qml:241
+msgid "Fullscreen on opening file"
+msgstr "オープニング・ファイルのフルスクリーン"
+
+#: ../src/views/PreferenceWindow.qml:247
+msgid "Apply the size last time closed"
+msgstr "前回閉じたサイズを適用"
+
+#: ../src/views/PreferenceWindow.qml:253
+msgid "Clear playlist on opening new file"
+msgstr "新たに開くファイルではプレイリストを消去する"
+
+#: ../src/views/PreferenceWindow.qml:258
+msgid "Resume playback after restarting player"
+msgstr "プレーヤーを再起動後、再生を再開する"
+
+#: ../src/views/PreferenceWindow.qml:263
+msgid "Continue to next video automatically"
+msgstr "自動的に次のビデオに進む"
+
+#: ../src/views/PreferenceWindow.qml:268
+msgid "Display preview when hovering over progress bar"
+msgstr "進行度バーの上にかぶさる時にプレビューを表示"
+
+#: ../src/views/PreferenceWindow.qml:273
+msgid "Allow multiple instances"
+msgstr "複数インスタンスを許可します"
+
+#: ../src/views/PreferenceWindow.qml:278
+msgid "Pause when minimized"
+msgstr "最小化時に一時停止"
+
+#: ../src/views/PreferenceWindow.qml:283
+msgid "Enable hardware acceleration"
+msgstr "ハードウェアの加速を可能にします"
+
+#: ../src/views/PreferenceWindow.qml:288
+msgid "Accept wireless push"
+msgstr "ワイヤレスプッシュを承認"
+
+#: ../src/views/PreferenceWindow.qml:311
+msgid "Forward/Backward (s)"
+msgstr "フォワード／バックワード（複数）"
+
+#: ../src/views/PreferenceWindow.qml:331
+msgid "Save path"
+msgstr "パスを保存する"
+
+#: ../src/views/PreferenceWindow.qml:355 ../src/views/PreferenceWindow.qml:579
+#: ../src/views/PreferenceWindow.qml:752 ../src/views/PreferenceWindow.qml:847
+msgid "Enable keyboard shortcuts"
+msgstr "キーボードのショートカットを使用可能にする"
+
+#: ../src/views/PreferenceWindow.qml:360
+#: ../src/views/PreferenceWindow.qml:1036 ../src/views/ShortcutsViewer.qml:46
+#: ../src/views/ShortcutsViewer.qml:134
+msgid "Pause/Play"
+msgstr "一時停止/再生"
+
+#: ../src/views/PreferenceWindow.qml:490 ../src/views/ShortcutsViewer.qml:66
+msgid "Accelerate playback"
+msgstr "プレイバックを加速する"
+
+#: ../src/views/PreferenceWindow.qml:516 ../src/views/ShortcutsViewer.qml:70
+msgid "Decelerate playback"
+msgstr "再生を減速する"
+
+#: ../src/views/PreferenceWindow.qml:542 ../src/views/ShortcutsViewer.qml:74
+msgid "Restore playback speed"
+msgstr "再生スピードを復元する"
+
+#: ../src/views/PreferenceWindow.qml:611 ../src/views/ShortcutsViewer.qml:108
+msgid "Rotate counterclockwise"
+msgstr "反対回りに回す"
+
+#: ../src/views/PreferenceWindow.qml:637 ../src/views/ShortcutsViewer.qml:112
+msgid "Rotate clockwise"
+msgstr "時計回りに回転する"
+
+#: ../src/views/PreferenceWindow.qml:663 ../src/views/ShortcutsViewer.qml:116
+msgid "Volume up"
+msgstr "音量を上げる"
+
+#: ../src/views/PreferenceWindow.qml:689 ../src/views/ShortcutsViewer.qml:120
+msgid "Volume down"
+msgstr "ボリュームを下げます"
+
+#: ../src/views/PreferenceWindow.qml:784 ../src/views/ShortcutsViewer.qml:87
+msgid "Open previous"
+msgstr "前を開いてください"
+
+#: ../src/views/PreferenceWindow.qml:810 ../src/views/ShortcutsViewer.qml:91
+msgid "Open next"
+msgstr "次を開く"
+
+#: ../src/views/PreferenceWindow.qml:853 ../src/views/ShortcutsViewer.qml:153
+#, qt-format
+msgid "Advance %1 (s)"
+msgstr "%1（秒）進める"
+
+#: ../src/views/PreferenceWindow.qml:879 ../src/views/ShortcutsViewer.qml:157
+#, qt-format
+msgid "Delay %1 (s)"
+msgstr "%1 (秒) の遅れ"
+
+#: ../src/views/PreferenceWindow.qml:905 ../src/views/ShortcutsViewer.qml:161
+msgid "Subtitle up"
+msgstr "字幕アップ"
+
+#: ../src/views/PreferenceWindow.qml:931 ../src/views/ShortcutsViewer.qml:165
+msgid "Subtitle down"
+msgstr "サブタイトルを下ろします"
+
+#: ../src/views/PreferenceWindow.qml:995
+msgid "Plot burst shooting"
+msgstr "バーストシューティングのプロット"
+
+#: ../src/views/PreferenceWindow.qml:1033 ../src/views/ShortcutsViewer.qml:133
+msgid "Left click"
+msgstr "左クリック"
+
+#: ../src/views/PreferenceWindow.qml:1049 ../src/views/ShortcutsViewer.qml:138
+msgid "Double click"
+msgstr "ダブルクリック"
+
+#: ../src/views/PreferenceWindow.qml:1065 ../src/views/ShortcutsViewer.qml:143
+msgid "Scroll"
+msgstr "スクロール"
+
+#: ../src/views/PreferenceWindow.qml:1068 ../src/views/ShortcutsViewer.qml:144
+#: ../src/views/VolumeButton.qml:44
+msgid "Volume"
+msgstr "音量"
+
+#: ../src/views/PreferenceWindow.qml:1090
+msgid "(The setting is invalid for effect subtitles)"
+msgstr "（この設定はエフェクトの字幕では無効です）"
+
+#: ../src/views/PreferenceWindow.qml:1095
+msgid "Subtitles loaded automatically"
+msgstr "サブタイトルが自動的に読み込まれました"
+
+#: ../src/views/PreferenceWindow.qml:1109
+msgid "Font"
+msgstr "フロント"
+
+#: ../src/views/PreferenceWindow.qml:1169
+msgid "Font color"
+msgstr "フォントの色"
+
+#: ../src/views/PreferenceWindow.qml:1204
+msgid "Border width"
+msgstr "境界の幅"
+
+#: ../src/views/PreferenceWindow.qml:1221
+msgid "Border color"
+msgstr "ボーダーカラー"
+
+#: ../src/views/PreferenceWindow.qml:1239
+msgid "Position"
+msgstr "ポジション"
+
+#: ../src/views/PreferenceWindow.qml:1244
+msgid "Bottom"
+msgstr "最低部"
+
+#: ../src/views/PreferenceWindow.qml:1245
+msgid "Top"
+msgstr "トップ"
+
+#: ../src/views/PreferenceWindow.qml:1256
+msgid "Sync adjustment (s)"
+msgstr "同期調整(s)"
+
+#: ../src/views/TitleBar.qml:173
+msgid "Displayed in a proportion of 1:1"
+msgstr "1:1の割合で表示される"
+
+#: ../src/views/TitleBar.qml:185
+msgid "Displayed in 1.5 times"
+msgstr "1.5倍に表示"
+
+#: ../src/views/TitleBar.qml:198
+msgid "Return to mini mode"
+msgstr "ミニモードに戻る"
+
+#: ../src/views/TitleBar.qml:198
+msgid "Shown in fullscreen"
+msgstr "フルスクリーンで表示"
+
+#: ../src/views/TitleBar.qml:213
+msgid "Cancel \"On Top\""
+msgstr "「上に」をキャンセル"
+
+#: ../src/views/TitleBar.qml:213
+msgid "On Top"
+msgstr "上に"
+
+#: ../src/views/dlna/DLNAEngine.qml:34
+msgid "Switch back"
+msgstr "スイッチバック"
+
+#: ../src/views/dlna/DLNAEngine.qml:59
+#, qt-format
+msgid "The movie \"%1\" is being played on \"%2\"."
+msgstr "映画の「%1」が「%2」で再生されています。"
+
+#: ../src/views/dlna/RendererListDialog.qml:43
+msgid "Please select the playing device"
+msgstr "再生機器を選択して下さい"
+
+#: ../src/views/main.qml:163
+msgid "Please input the url of file played"
+msgstr "再生したファイルのURLを入力してください"
+
+#: ../src/views/main.qml:164
+msgid "Confirm"
+msgstr "確認"
+
+#: ../src/views/main.qml:181
+msgid "The parse failed"
+msgstr "解析に失敗しました"
+
+#: ../src/views/main.qml:502 ../src/views/main.qml:504
+msgid "Buffering..."
+msgstr "バファリング"
+
+#: ../src/views/toolbox/PosterEngine.qml:41
+#: ../src/views/toolbox/PosterEngine.qml:56
+msgid "Plot burst shooting, please wait..."
+msgstr "プロット・バースト・シューティング中です。お待ちください。"
+
+#: ../src/views/toolbox/PosterEngine.qml:61
+msgid "Plot Burst Shooting"
+msgstr "プロット・バースト・シューティング"
+
+#: ../src/views/toolbox/ScreenshotEngine.qml:26
+msgid "Movie Screenshot"
+msgstr "映画のスクリーンショット"
+
+#: ../src/views/toolbox/ScreenshotEngine.qml:34
+#, qt-format
+msgid "Your screenshot has been saved to %1"
+msgstr "スクリーンショットが%1に保存されました"
+
+#: ../src/views/toolbox/Toolbox.qml:79
+msgid "Burst"
+msgstr "バースト"

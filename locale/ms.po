@@ -1,0 +1,819 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# abuyop <abuyop@gmail.com>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: Deepin Movie\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-08-14 16:54+0800\n"
+"PO-Revision-Date: 2015-11-02 05:53+0000\n"
+"Last-Translator: abuyop <abuyop@gmail.com>\n"
+"Language-Team: Malay (http://www.transifex.com/linuxdeepin/deepin-movie/language/ms/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ms\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: ../src/controllers/menu_controller.py:34
+msgid "Default"
+msgstr "Lalai"
+
+#: ../src/controllers/menu_controller.py:46
+msgid "Rotate 90 degree clockwise"
+msgstr "Putar 90 darjah ikut jam"
+
+#: ../src/controllers/menu_controller.py:47
+msgid "Rotate 90 degree counterclockwise"
+msgstr "Putar 90 darjah lawan jam"
+
+#: ../src/controllers/menu_controller.py:48
+msgid "Flip horizontally"
+msgstr "Kalih secara mengufuk"
+
+#: ../src/controllers/menu_controller.py:49
+msgid "Flip vertically"
+msgstr "Kalih secara menegak"
+
+#: ../src/controllers/menu_controller.py:53
+msgid "Audio Channels"
+msgstr "Saluran Audio"
+
+#: ../src/controllers/menu_controller.py:54
+msgid "Audio Tracks"
+msgstr "Trek Audio"
+
+#: ../src/controllers/menu_controller.py:57
+msgid "Volume Up"
+msgstr "Volum Naik"
+
+#: ../src/controllers/menu_controller.py:58
+msgid "Volume Down"
+msgstr "Volum Turun"
+
+#: ../src/controllers/menu_controller.py:59
+#: ../src/views/PreferenceWindow.qml:715 ../src/views/ShortcutsViewer.qml:124
+msgid "Mute"
+msgstr "Senyap"
+
+#: ../src/controllers/menu_controller.py:63
+msgid "Stereo"
+msgstr "Stereo"
+
+#: ../src/controllers/menu_controller.py:64
+msgid "Left"
+msgstr "Kiri"
+
+#: ../src/controllers/menu_controller.py:65
+msgid "Right"
+msgstr "Kanan"
+
+#: ../src/controllers/menu_controller.py:69
+msgid "Hide subtitle"
+msgstr "Sembunyi sarikata"
+
+#: ../src/controllers/menu_controller.py:73
+msgid "Load manually"
+msgstr "Muat secara manual"
+
+#: ../src/controllers/menu_controller.py:74
+msgid "Subtitle selection"
+msgstr "Pemilihan sarikata"
+
+#: ../src/controllers/menu_controller.py:75
+msgid "Subtitle setting"
+msgstr "Tetapan sarikata"
+
+#: ../src/controllers/menu_controller.py:79
+msgid "Order"
+msgstr "Tertib"
+
+#: ../src/controllers/menu_controller.py:80
+msgid "Random"
+msgstr "Rawak"
+
+#: ../src/controllers/menu_controller.py:81
+msgid "Single"
+msgstr "Tunggal"
+
+#: ../src/controllers/menu_controller.py:82
+msgid "Repeat (Single)"
+msgstr "Ulang (Sekali)"
+
+#: ../src/controllers/menu_controller.py:83
+msgid "Repeat (Playlist)"
+msgstr "Ulang (Senarai Main)"
+
+#: ../src/controllers/menu_controller.py:87 ../src/views/ControlBar.qml:285
+msgid "Previous"
+msgstr "Terdahulu"
+
+#: ../src/controllers/menu_controller.py:88 ../src/views/ControlBar.qml:322
+msgid "Next"
+msgstr "Berikutnya"
+
+#: ../src/controllers/menu_controller.py:90
+#: ../src/views/MainController.qml:538 ../src/views/PreferenceWindow.qml:386
+#: ../src/views/ShortcutsViewer.qml:50
+msgid "Forward"
+msgstr "Maju"
+
+#: ../src/controllers/menu_controller.py:91
+#: ../src/views/MainController.qml:550 ../src/views/PreferenceWindow.qml:412
+#: ../src/views/ShortcutsViewer.qml:54
+msgid "Backward"
+msgstr "Undur"
+
+#: ../src/controllers/menu_controller.py:95
+msgid "Movie screenshot"
+msgstr "Cekupan skrin cereka"
+
+#: ../src/controllers/menu_controller.py:96
+msgid "Burst screenshot"
+msgstr "Cekupan skrin ledakan"
+
+#: ../src/controllers/menu_controller.py:100 ../src/views/ControlBar.qml:413
+#: ../src/views/PreferenceWindow.qml:758 ../src/views/ShortcutsViewer.qml:83
+msgid "Open a file"
+msgstr "Buka satu fail"
+
+#: ../src/controllers/menu_controller.py:101
+msgid "Open a folder"
+msgstr "Buka satu folder"
+
+#: ../src/controllers/menu_controller.py:102
+msgid "Open URL"
+msgstr "Buka URL"
+
+#: ../src/controllers/menu_controller.py:104
+#: ../src/controllers/menu_controller.py:496 ../src/views/ControlBar.qml:382
+#: ../src/views/PreferenceWindow.qml:438
+#: ../src/views/PreferenceWindow.qml:1052 ../src/views/ShortcutsViewer.qml:58
+#: ../src/views/ShortcutsViewer.qml:139
+msgid "Fullscreen"
+msgstr "Skrin Penuh"
+
+#: ../src/controllers/menu_controller.py:105
+#: ../src/controllers/menu_controller.py:498
+#: ../src/views/PreferenceWindow.qml:585 ../src/views/ShortcutsViewer.qml:104
+msgid "Mini mode"
+msgstr "Mod mini"
+
+#: ../src/controllers/menu_controller.py:106
+msgid "Always on top"
+msgstr "Sentiasa di atas"
+
+#: ../src/controllers/menu_controller.py:107 ../src/views/ControlBar.qml:425
+#: ../src/views/OpenFileDialog.qml:79 ../src/views/PreferenceWindow.qml:464
+#: ../src/views/ShortcutsViewer.qml:62
+msgid "Playlist"
+msgstr "Senarai Main"
+
+#: ../src/controllers/menu_controller.py:109
+msgid "Play Sequence"
+msgstr "Main Jujukan"
+
+#: ../src/controllers/menu_controller.py:110
+#: ../src/controllers/menu_controller.py:123 ../src/views/ControlBar.qml:305
+msgid "Play"
+msgstr "Main"
+
+#: ../src/controllers/menu_controller.py:111
+msgid "Frame"
+msgstr "Bingkai"
+
+#: ../src/controllers/menu_controller.py:112
+msgid "Sound"
+msgstr "Bunyi"
+
+#: ../src/controllers/menu_controller.py:113
+#: ../src/views/PreferenceWindow.qml:117 ../src/views/PreferenceWindow.qml:838
+#: ../src/views/ShortcutsViewer.qml:150
+msgid "Subtitles"
+msgstr "Sarikata"
+
+#: ../src/controllers/menu_controller.py:115
+#: ../src/views/PreferenceWindow.qml:91 ../src/views/PreferenceWindow.qml:122
+#: ../src/views/PreferenceWindow.qml:322 ../src/views/PreferenceWindow.qml:959
+#: ../src/views/PreferenceWindow.qml:968 ../src/views/toolbox/Toolbox.qml:70
+#: ../src/views/toolbox/Toolbox.qml:99
+msgid "Screenshot"
+msgstr "Cekupan skrin"
+
+#: ../src/controllers/menu_controller.py:117
+msgid "Settings"
+msgstr "Tetapan"
+
+#: ../src/controllers/menu_controller.py:118
+#: ../src/controllers/menu_controller.py:136
+msgid "Information"
+msgstr "Maklumat"
+
+#: ../src/controllers/menu_controller.py:119
+msgid "Help"
+msgstr "Bantuan"
+
+#: ../src/controllers/menu_controller.py:124
+#: ../src/controllers/menu_controller.py:140 ../src/views/Playlist.qml:260
+msgid "Add file"
+msgstr "Tambah fail"
+
+#: ../src/controllers/menu_controller.py:125
+#: ../src/controllers/menu_controller.py:141
+msgid "Add folder"
+msgstr "Tambah folder"
+
+#: ../src/controllers/menu_controller.py:127
+msgid "Remove from playlist"
+msgstr "Buang dari senarai main"
+
+#: ../src/controllers/menu_controller.py:128
+msgid "Remove invalid file"
+msgstr "Buang fail tidak sah"
+
+#: ../src/controllers/menu_controller.py:129
+msgid "Export"
+msgstr "Eksport"
+
+#: ../src/controllers/menu_controller.py:130
+msgid "Import"
+msgstr "import"
+
+#: ../src/controllers/menu_controller.py:131 ../src/views/Playlist.qml:268
+msgid "Clear playlist"
+msgstr "Kosongkan senarai main"
+
+#: ../src/controllers/menu_controller.py:135
+msgid "Open file location"
+msgstr "Buka lokasi fail"
+
+#: ../src/controllers/menu_controller.py:191
+msgid "Audio track"
+msgstr "Trek audio"
+
+#: ../src/controllers/menu_controller.py:200
+msgid "Load audio track"
+msgstr "Muat trek audio"
+
+#: ../src/controllers/menu_controller.py:495 ../src/views/ControlBar.qml:382
+msgid "Exit fullscreen"
+msgstr "Keluar dari skrin penuh"
+
+#: ../src/controllers/menu_controller.py:497
+msgid "Exit mini mode"
+msgstr "Keluar dari mod mini"
+
+#: ../src/dlna/__init__.py:160 ../src/utils/constants.py:39
+#: ../src/utils/dbus_interfaces.py:99 ../src/views/AboutSection.qml:13
+#: ../src/views/TitleBar.qml:70 ../src/views/TitleBar.qml:142
+#: ../src/views/toolbox/ScreenshotEngine.qml:34 ../src/views/window.py:64
+msgid "Deepin Movie"
+msgstr "Cereka Deepin"
+
+#: ../src/models/movie_info.py:78 ../src/views/InformationWindow.qml:23
+#: ../src/views/InformationWindow.qml:24 ../src/views/InformationWindow.qml:25
+msgid "Unknown"
+msgstr "Tidak diketahui"
+
+#: ../src/utils/poster_generator.py:234 ../src/utils/poster_generator.py:244
+#: ../src/utils/poster_generator.py:254 ../src/views/AboutSection.qml:27
+#: ../src/views/InformationLabel.qml:20 ../src/views/MainController.qml:301
+#: ../src/views/dlna/RendererListDialog.qml:43 ../src/views/main.qml:163
+msgid ":"
+msgstr ":"
+
+#: ../src/utils/poster_generator.py:234
+msgid "Duration"
+msgstr "Tempoh"
+
+#: ../src/utils/poster_generator.py:244 ../src/views/InformationWindow.qml:97
+msgid "Resolution"
+msgstr "Resolusi"
+
+#: ../src/utils/poster_generator.py:254 ../src/views/PreferenceWindow.qml:1187
+msgid "Size"
+msgstr "Saiz"
+
+#: ../src/views/AboutSection.qml:6 ../src/views/PreferenceWindow.qml:139
+msgid "About"
+msgstr "Perihal"
+
+#: ../src/views/AboutSection.qml:27
+msgid "Version"
+msgstr "Versi"
+
+#: ../src/views/AboutSection.qml:57
+msgid ""
+"Deepin Movie is a well-designed and full-featured video player with simple "
+"borderless design. It supports local and streaming media play with multiple "
+"video formats."
+msgstr "Cereka Deepin adalah pemain video berfitur-penuh dengan rekabentuk tanpa-sempadan yang ringkas dan menarik. Ia dapat memainkan media setempat dan strim dengan sokongan format video berbilang."
+
+#: ../src/views/AboutSection.qml:68
+msgid "Deepin Movie is released under GPLv3."
+msgstr "Cereka Deepin dikeluar di bawah GPLv3."
+
+#: ../src/views/ControlBar.qml:266
+msgid "Stop"
+msgstr "Henti"
+
+#: ../src/views/ControlBar.qml:305
+msgid "Pause"
+msgstr "Jeda"
+
+#: ../src/views/ControlBar.qml:400
+msgid "Toolkit"
+msgstr "Kit Alat"
+
+#: ../src/views/HotKeyInputRow.qml:24 ../src/views/HotKeyInputRow.qml:26
+#: ../src/views/HotKeyInputRow.qml:54 ../src/views/HotKeyInputRow.qml:56
+#: ../src/views/PreferenceWindow.qml:1036
+#: ../src/views/PreferenceWindow.qml:1052
+#: ../src/views/PreferenceWindow.qml:1068 ../src/views/ShortcutsLabel.qml:23
+#: ../src/views/ShortcutsViewer.qml:134 ../src/views/ShortcutsViewer.qml:139
+#: ../src/views/ShortcutsViewer.qml:144
+msgid "None"
+msgstr "Tiada"
+
+#: ../src/views/HotKeyInputRow.qml:30
+msgid "The shortcut you set "
+msgstr "Pintasan yang anda tetapkan"
+
+#: ../src/views/HotKeyInputRow.qml:31
+#, qt-format
+msgid "conflicts with the one used for \"%2\" in the \"%1\" category. "
+msgstr "berkonflik dengan salah satu digunakan untuk \"%2\" dalam kategori \"%1\"."
+
+#: ../src/views/HotKeyInputRow.qml:32
+msgid "Do you want to replace it?"
+msgstr "Anda mahu gantikannya?"
+
+#: ../src/views/HotKeyInputRow.qml:55
+msgid "Please input a new shortcut"
+msgstr "Sila masukkan pintasan baharu"
+
+#: ../src/views/HotKeyInputRow.qml:99 ../src/views/main.qml:165
+msgid "Cancel"
+msgstr "Batal"
+
+#: ../src/views/HotKeyInputRow.qml:110
+msgid "Replace"
+msgstr "Ganti"
+
+#: ../src/views/InformationWindow.qml:77
+msgid "File type"
+msgstr "Jenis fail"
+
+#: ../src/views/InformationWindow.qml:87
+msgid "File size"
+msgstr "Saiz fail"
+
+#: ../src/views/InformationWindow.qml:107
+msgid "Movie duration"
+msgstr "Jangkamasa cereka"
+
+#: ../src/views/InformationWindow.qml:117
+msgid "File path"
+msgstr "Laluan fail"
+
+#: ../src/views/InformationWindow.qml:134
+msgid "Copy to clipboard"
+msgstr "Salin ke papan keratan"
+
+#: ../src/views/InformationWindow.qml:149
+msgid "Close"
+msgstr "Tutup"
+
+#: ../src/views/MainController.qml:37
+#, qt-format
+msgid "%1 files unable to be parsed have been excluded"
+msgstr "Fail %1 tidak dapat dihurai dan diasingkan"
+
+#: ../src/views/MainController.qml:50
+msgid "Imported"
+msgstr "Diimport"
+
+#: ../src/views/MainController.qml:301
+msgid "Invalid file"
+msgstr "Fail tidak sah"
+
+#: ../src/views/MainController.qml:505
+msgid "Play last movie played"
+msgstr "Main cereka terakhir dimainkan"
+
+#: ../src/views/MainController.qml:558 ../src/views/MainController.qml:564
+#, qt-format
+msgid "(Press %1 to restore)"
+msgstr "(Tekan %1 untuk pulihkan)"
+
+#: ../src/views/MainController.qml:560 ../src/views/MainController.qml:566
+#: ../src/views/MainController.qml:571
+msgid "Playback speed: "
+msgstr "Kelajuan main balik:"
+
+#: ../src/views/MainController.qml:583 ../src/views/MainController.qml:592
+msgid "Volume: "
+msgstr "Volum:"
+
+#: ../src/views/MainController.qml:590
+msgid "Muted"
+msgstr "Disenyapkan"
+
+#: ../src/views/MainController.qml:751 ../src/views/MainController.qml:764
+#, qt-format
+msgid "Subtitle advanced %1 seconds"
+msgstr "Sarikata dicepatkan %1 saat"
+
+#: ../src/views/MainController.qml:753 ../src/views/MainController.qml:766
+#, qt-format
+msgid "Subtitle delayed %1 seconds"
+msgstr "Sarikata dilambatkan %1 saat"
+
+#: ../src/views/OpenFileDialog.qml:5 ../src/views/OpenFileDialog.qml:24
+#: ../src/views/OpenFileDialog.qml:54
+msgid "Please select one file or more"
+msgstr "Sila pilih  satu atau lebih fail"
+
+#: ../src/views/OpenFileDialog.qml:7 ../src/views/OpenFileDialog.qml:26
+#: ../src/views/OpenFileDialog.qml:56
+msgid "Video files"
+msgstr "Fail video"
+
+#: ../src/views/OpenFileDialog.qml:18
+msgid "All files"
+msgstr "Semua fail"
+
+#: ../src/views/OpenFileDialog.qml:34 ../src/views/OpenFileDialog.qml:44
+#: ../src/views/OpenFileDialog.qml:64
+msgid "Please select one file"
+msgstr "Sila pilih salah satu fail"
+
+#: ../src/views/OpenFileDialog.qml:36
+msgid "Subtitle files"
+msgstr "Fail sarikata"
+
+#: ../src/views/OpenFileDialog.qml:46
+msgid "Audio track files"
+msgstr "Fail trek audio"
+
+#: ../src/views/OpenFileDialog.qml:66 ../src/views/OpenFileDialog.qml:76
+msgid "Playlist files"
+msgstr "Fail senarai main"
+
+#: ../src/views/OpenFileDialog.qml:74
+msgid "Save as"
+msgstr "Simpan sebagai"
+
+#: ../src/views/OpenFolderDialog.qml:5
+msgid "Please select a folder"
+msgstr "Sila pilih salah satu folder"
+
+#: ../src/views/Playlist.qml:252
+msgid "Play mode"
+msgstr "Mod main"
+
+#: ../src/views/PreferenceWindow.qml:15
+msgid "Black"
+msgstr "Hitam"
+
+#: ../src/views/PreferenceWindow.qml:16
+msgid "bleu de France"
+msgstr "bleu de France"
+
+#: ../src/views/PreferenceWindow.qml:17
+msgid "Turquoise"
+msgstr "Hijau pirus"
+
+#: ../src/views/PreferenceWindow.qml:18
+msgid "UFO green"
+msgstr "Hijau UFO"
+
+#: ../src/views/PreferenceWindow.qml:19
+msgid "Green yellow"
+msgstr "Kuning hijau"
+
+#: ../src/views/PreferenceWindow.qml:20
+msgid "Energy yellow"
+msgstr "Kuning bertenaga"
+
+#: ../src/views/PreferenceWindow.qml:21
+msgid "Orange"
+msgstr "Jingga"
+
+#: ../src/views/PreferenceWindow.qml:22
+msgid "Radical red"
+msgstr "Merah radikal"
+
+#: ../src/views/PreferenceWindow.qml:23
+msgid "Lavender indigo"
+msgstr "Indigo lavender"
+
+#: ../src/views/PreferenceWindow.qml:24
+msgid "Royal blue"
+msgstr "Biru diraja"
+
+#: ../src/views/PreferenceWindow.qml:25
+msgid "Aluminum"
+msgstr "Aluminum"
+
+#: ../src/views/PreferenceWindow.qml:26
+msgid "Clean white"
+msgstr "Putih bersih"
+
+#: ../src/views/PreferenceWindow.qml:77 ../src/views/PreferenceWindow.qml:228
+msgid "Basic settings"
+msgstr "Tetapan asas"
+
+#: ../src/views/PreferenceWindow.qml:81 ../src/views/PreferenceWindow.qml:102
+#: ../src/views/PreferenceWindow.qml:232 ../src/views/PreferenceWindow.qml:346
+#: ../src/views/ShortcutsViewer.qml:43
+msgid "Playback"
+msgstr "Main balik"
+
+#: ../src/views/PreferenceWindow.qml:86 ../src/views/PreferenceWindow.qml:302
+msgid "Time span"
+msgstr "Retang masa"
+
+#: ../src/views/PreferenceWindow.qml:98 ../src/views/PreferenceWindow.qml:342
+msgid "Keyboard shortcuts"
+msgstr "Pintasan papan kekunci"
+
+#: ../src/views/PreferenceWindow.qml:107 ../src/views/PreferenceWindow.qml:570
+#: ../src/views/ShortcutsViewer.qml:101
+msgid "Frame/Sound"
+msgstr "Bingkai/Bunyi"
+
+#: ../src/views/PreferenceWindow.qml:112 ../src/views/PreferenceWindow.qml:743
+#: ../src/views/ShortcutsViewer.qml:80
+msgid "Files"
+msgstr "Fail"
+
+#: ../src/views/PreferenceWindow.qml:127
+#: ../src/views/PreferenceWindow.qml:1023 ../src/views/ShortcutsViewer.qml:130
+msgid "Other"
+msgstr "Lain-lain"
+
+#: ../src/views/PreferenceWindow.qml:134
+#: ../src/views/PreferenceWindow.qml:1083
+msgid "Subtitle settings"
+msgstr "Tetapan sarikata"
+
+#: ../src/views/PreferenceWindow.qml:158
+msgid "Reset shortcuts"
+msgstr "Tetap semula pintasan"
+
+#: ../src/views/PreferenceWindow.qml:162
+msgid "Reset subtitle settings"
+msgstr "Tetap semula tetapan sarikata"
+
+#: ../src/views/PreferenceWindow.qml:241
+msgid "Fullscreen on opening file"
+msgstr "Berskrin penuh bila membuka fail"
+
+#: ../src/views/PreferenceWindow.qml:247
+msgid "Apply the size last time closed"
+msgstr "Laksana saiz kali terakhir ditutup"
+
+#: ../src/views/PreferenceWindow.qml:253
+msgid "Clear playlist on opening new file"
+msgstr "Kosongkan senarai main bila membuka fail baharu"
+
+#: ../src/views/PreferenceWindow.qml:258
+msgid "Resume playback after restarting player"
+msgstr "Sambung semula main balik selepas memulakan semula pemain"
+
+#: ../src/views/PreferenceWindow.qml:263
+msgid "Continue to next video automatically"
+msgstr "Terus ke video berikutnya secara automatik"
+
+#: ../src/views/PreferenceWindow.qml:268
+msgid "Display preview when hovering over progress bar"
+msgstr "Papar pratonton bila penuding berada diatas palang kemajuan"
+
+#: ../src/views/PreferenceWindow.qml:273
+msgid "Allow multiple instances"
+msgstr "Benarkan kejadian berbilang"
+
+#: ../src/views/PreferenceWindow.qml:278
+msgid "Pause when minimized"
+msgstr "Jeda bila diminimumkan"
+
+#: ../src/views/PreferenceWindow.qml:283
+msgid "Enable hardware acceleration"
+msgstr "Benarkan pemecutan perkakasan"
+
+#: ../src/views/PreferenceWindow.qml:288
+msgid "Accept wireless push"
+msgstr "Terima tolakan tanpa wayar"
+
+#: ../src/views/PreferenceWindow.qml:311
+msgid "Forward/Backward (s)"
+msgstr "Maju/Undur (s)"
+
+#: ../src/views/PreferenceWindow.qml:331
+msgid "Save path"
+msgstr "Simpan laluan"
+
+#: ../src/views/PreferenceWindow.qml:355 ../src/views/PreferenceWindow.qml:579
+#: ../src/views/PreferenceWindow.qml:752 ../src/views/PreferenceWindow.qml:847
+msgid "Enable keyboard shortcuts"
+msgstr "Benarkan pintasan papan kekunci"
+
+#: ../src/views/PreferenceWindow.qml:360
+#: ../src/views/PreferenceWindow.qml:1036 ../src/views/ShortcutsViewer.qml:46
+#: ../src/views/ShortcutsViewer.qml:134
+msgid "Pause/Play"
+msgstr "Jeda/Main"
+
+#: ../src/views/PreferenceWindow.qml:490 ../src/views/ShortcutsViewer.qml:66
+msgid "Accelerate playback"
+msgstr "Pecut main balik"
+
+#: ../src/views/PreferenceWindow.qml:516 ../src/views/ShortcutsViewer.qml:70
+msgid "Decelerate playback"
+msgstr "Nyahpecut main balik"
+
+#: ../src/views/PreferenceWindow.qml:542 ../src/views/ShortcutsViewer.qml:74
+msgid "Restore playback speed"
+msgstr "Pulih kelajuan main balik"
+
+#: ../src/views/PreferenceWindow.qml:611 ../src/views/ShortcutsViewer.qml:108
+msgid "Rotate counterclockwise"
+msgstr "Putar melawan jam"
+
+#: ../src/views/PreferenceWindow.qml:637 ../src/views/ShortcutsViewer.qml:112
+msgid "Rotate clockwise"
+msgstr "Putar mengikut jam"
+
+#: ../src/views/PreferenceWindow.qml:663 ../src/views/ShortcutsViewer.qml:116
+msgid "Volume up"
+msgstr "Volum naik"
+
+#: ../src/views/PreferenceWindow.qml:689 ../src/views/ShortcutsViewer.qml:120
+msgid "Volume down"
+msgstr "Volum turun"
+
+#: ../src/views/PreferenceWindow.qml:784 ../src/views/ShortcutsViewer.qml:87
+msgid "Open previous"
+msgstr "Buka terdahulu"
+
+#: ../src/views/PreferenceWindow.qml:810 ../src/views/ShortcutsViewer.qml:91
+msgid "Open next"
+msgstr "Buka berikutnya"
+
+#: ../src/views/PreferenceWindow.qml:853 ../src/views/ShortcutsViewer.qml:153
+#, qt-format
+msgid "Advance %1 (s)"
+msgstr "Maju %1 (s)"
+
+#: ../src/views/PreferenceWindow.qml:879 ../src/views/ShortcutsViewer.qml:157
+#, qt-format
+msgid "Delay %1 (s)"
+msgstr "Lengah %1 (s)"
+
+#: ../src/views/PreferenceWindow.qml:905 ../src/views/ShortcutsViewer.qml:161
+msgid "Subtitle up"
+msgstr "Sarikata naik"
+
+#: ../src/views/PreferenceWindow.qml:931 ../src/views/ShortcutsViewer.qml:165
+msgid "Subtitle down"
+msgstr "Sarikata turun"
+
+#: ../src/views/PreferenceWindow.qml:995
+msgid "Plot burst shooting"
+msgstr "Cekupan ledakan plot"
+
+#: ../src/views/PreferenceWindow.qml:1033 ../src/views/ShortcutsViewer.qml:133
+msgid "Left click"
+msgstr "Klik kiri"
+
+#: ../src/views/PreferenceWindow.qml:1049 ../src/views/ShortcutsViewer.qml:138
+msgid "Double click"
+msgstr "Dwi-klik"
+
+#: ../src/views/PreferenceWindow.qml:1065 ../src/views/ShortcutsViewer.qml:143
+msgid "Scroll"
+msgstr "Tatal"
+
+#: ../src/views/PreferenceWindow.qml:1068 ../src/views/ShortcutsViewer.qml:144
+#: ../src/views/VolumeButton.qml:44
+msgid "Volume"
+msgstr "Volum"
+
+#: ../src/views/PreferenceWindow.qml:1090
+msgid "(The setting is invalid for effect subtitles)"
+msgstr "(Tetapan tidak sah bagi kesan sarikata)"
+
+#: ../src/views/PreferenceWindow.qml:1095
+msgid "Subtitles loaded automatically"
+msgstr "Sarikata dimuatkan secara automatik"
+
+#: ../src/views/PreferenceWindow.qml:1109
+msgid "Font"
+msgstr "Fon"
+
+#: ../src/views/PreferenceWindow.qml:1169
+msgid "Font color"
+msgstr "Warna fon"
+
+#: ../src/views/PreferenceWindow.qml:1204
+msgid "Border width"
+msgstr "Lebar sempadan"
+
+#: ../src/views/PreferenceWindow.qml:1221
+msgid "Border color"
+msgstr "Warna sempadan"
+
+#: ../src/views/PreferenceWindow.qml:1239
+msgid "Position"
+msgstr "Kedudukan"
+
+#: ../src/views/PreferenceWindow.qml:1244
+msgid "Bottom"
+msgstr "Bawah"
+
+#: ../src/views/PreferenceWindow.qml:1245
+msgid "Top"
+msgstr "Atas"
+
+#: ../src/views/PreferenceWindow.qml:1256
+msgid "Sync adjustment (s)"
+msgstr "Pelarasan segerak (s)"
+
+#: ../src/views/TitleBar.qml:173
+msgid "Displayed in a proportion of 1:1"
+msgstr "Dipaparkan dalam nisbah 1:1"
+
+#: ../src/views/TitleBar.qml:185
+msgid "Displayed in 1.5 times"
+msgstr "Dipaparkan dengan nisbah 1.5 kali ganda"
+
+#: ../src/views/TitleBar.qml:198
+msgid "Return to mini mode"
+msgstr "Kembali ke mod mini"
+
+#: ../src/views/TitleBar.qml:198
+msgid "Shown in fullscreen"
+msgstr "Tunjuk dalam skrin penuh"
+
+#: ../src/views/TitleBar.qml:213
+msgid "Cancel \"On Top\""
+msgstr "Batal \"Di Atas\""
+
+#: ../src/views/TitleBar.qml:213
+msgid "On Top"
+msgstr "Di Atas"
+
+#: ../src/views/dlna/DLNAEngine.qml:34
+msgid "Switch back"
+msgstr "Tukar balik"
+
+#: ../src/views/dlna/DLNAEngine.qml:59
+#, qt-format
+msgid "The movie \"%1\" is being played on \"%2\"."
+msgstr "Cereka \"%1\" sedang dimainkan pada \"%2\"."
+
+#: ../src/views/dlna/RendererListDialog.qml:43
+msgid "Please select the playing device"
+msgstr "Sila pilih peranti yang dimainkan"
+
+#: ../src/views/main.qml:163
+msgid "Please input the url of file played"
+msgstr "Sila masukkan url fail yang dimainkan"
+
+#: ../src/views/main.qml:164
+msgid "Confirm"
+msgstr "Sahkan"
+
+#: ../src/views/main.qml:181
+msgid "The parse failed"
+msgstr "Penghuraian gagal"
+
+#: ../src/views/main.qml:502 ../src/views/main.qml:504
+msgid "Buffering..."
+msgstr "Menimbal..."
+
+#: ../src/views/toolbox/PosterEngine.qml:41
+#: ../src/views/toolbox/PosterEngine.qml:56
+msgid "Plot burst shooting, please wait..."
+msgstr "Cekupan ledakan plot, tunggu sebentar..."
+
+#: ../src/views/toolbox/PosterEngine.qml:61
+msgid "Plot Burst Shooting"
+msgstr "Cekupan Ledakan Plot"
+
+#: ../src/views/toolbox/ScreenshotEngine.qml:26
+msgid "Movie Screenshot"
+msgstr "Cekupan Skrin Cereka"
+
+#: ../src/views/toolbox/ScreenshotEngine.qml:34
+#, qt-format
+msgid "Your screenshot has been saved to %1"
+msgstr "Cekupan skrin anda telah disimpan ke %1"
+
+#: ../src/views/toolbox/Toolbox.qml:79
+msgid "Burst"
+msgstr "Ledak"

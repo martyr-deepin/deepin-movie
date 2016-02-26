@@ -1,3 +1,12 @@
+/**
+ * Copyright (C) 2014 Deepin Technology Co., Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * (at your option) any later version.
+ **/
+
 import QtQuick 2.1
 import QtGraphicalEffects 1.0
 import Deepin.Widgets 1.0
@@ -170,7 +179,7 @@ DragableArea {
             anchors.topMargin: 10
 
             ImageButton {
-                tooltip: dsTr("Shown in a proportion of 1:1")
+                tooltip: dsTr("Displayed in a proportion of 1:1")
                 tooltipItem: titlebar.tooltipItem
 
                 normal_image: "image/quick_1_1_normal.svg"
@@ -182,7 +191,7 @@ DragableArea {
                 onClicked: titlebar.quickNormalSize()
             }
             ImageButton {
-                tooltip: dsTr("Shown in 1.5 times")
+                tooltip: dsTr("Displayed in 1.5 times")
                 tooltipItem: titlebar.tooltipItem
 
                 normal_image: "image/quick_1_5_normal.svg"

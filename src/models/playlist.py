@@ -1,24 +1,12 @@
-#!/usr/bin/env python
+#! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# Copyright (C) 2014 Deepin, Inc.
-#               2014 Wang Yaohua
+# Copyright (C) 2014 Deepin Technology Co., Ltd.
 #
-# Author:     Wang Yaohua <mr.asianwang@gmail.com>
-# Maintainer: Wang Yaohua <mr.asianwang@gmail.com>
-#
-# This program is free software: you can redistribute it and/or modify
+# This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
 
 import os
 import json
@@ -34,6 +22,11 @@ TAG_CATEGORY = "Category"
 TAG_ITEM = "Item"
 _database_file = SqliteDatabase(DATABASE_FILE)
 _database_file.connect()
+
+# FIXME: a work-around here, if we manually called Database.begin and
+# didn't end it with Database.commit, Database.transation and Database.atomic
+# will throw an OperationError exception.
+_database_in_transaction = False
 
 class DMPlaylistCategory(Element):
     def __init__(self, ownerDocument, name=""):
@@ -185,7 +178,8 @@ class Database(QObject):
     playlistItemAdded = pyqtSignal(str, str, str,
         arguments=["name", "url", "category"])
     importDone = pyqtSignal(str, arguments=["filename"])
-    itemVInfoGot = pyqtSignal(str, str, arguments=["url", "vinfo"])
+    itemVInfoGot = pyqtSignal(str, str, str,
+        arguments=["context", "url", "vinfo"])
 
     def __init__(self):
         super(Database, self).__init__()
@@ -193,21 +187,47 @@ class Database(QObject):
         self._playHistoryCursor = len(self._getPlayHistory()) - 1
 
         self._initDelayTimer()
+
+        self._crawlerActions = {}
         self._crawlerManager.infoGot.connect(self.crawlerGotInfo)
+        self._crawlAllPlaylistItems()
 
     def _initDelayTimer(self):
         self._delayCommitTimer = QTimer()
         self._delayCommitTimer.setSingleShot(True)
         self._delayCommitTimer.setInterval(500)
-        self._delayCommitTimer.timeout.connect(lambda: _database_file.commit())
+        self._delayCommitTimer.timeout.connect(self._delayCommitOver)
 
     @contextmanager
     def _delayCommit(self):
+        global _database_in_transaction
+
         _database_file.set_autocommit(False)
-        _database_file.begin()
+        if not _database_in_transaction:
+            _database_file.begin()
+            _database_in_transaction = True
         yield
         _database_file.set_autocommit(True)
         self._delayCommitTimer.start()
+
+    def _delayCommitOver(self):
+        global _database_in_transaction
+
+        _database_file.commit()
+        _database_in_transaction = False
+
+    @contextmanager
+    def _commitOnSuccess(self):
+        global _database_in_transaction
+
+        _database_file.set_autocommit(False)
+        if not _database_in_transaction:
+            _database_file.begin()
+            _database_in_transaction = True
+        yield
+        _database_file.commit()
+        _database_in_transaction = False
+        _database_file.set_autocommit(True)
 
     # internal helper functions
     def _getPlayHistory(self):
@@ -233,10 +253,30 @@ class Database(QObject):
 
         return item
 
+    def _getPlaylistItemVInfo(self, itemUrl):
+        try:
+            item = PlaylistItemModel.get(
+                PlaylistItemModel.url == itemUrl)
+            info = json.loads(item.info) if item.info else {}
+            if info.get("video_info"):
+                return info.get("video_info")
+            else:
+                return None
+        except DoesNotExist:
+            return None
+
+    def _crawlAllPlaylistItems(self):
+        for item in PlaylistItemModel.select():
+            vInfo = self._getPlaylistItemVInfo(item.url)
+            if not vInfo:
+                self._crawlerActions[item.url] = "normal"
+                self._crawlerManager.crawl(item.url, False)
+
     @pyqtSlot(str, str)
     def crawlerGotInfo(self, url, result):
-        self.itemVInfoGot.emit(url, result)
         self.setPlaylistItemVInfo(url, result)
+        context = self._crawlerActions.pop(url)
+        self.itemVInfoGot.emit(context, url, result)
 
     # Playlist operations
     @pyqtSlot(result=str)
@@ -296,23 +336,26 @@ class Database(QObject):
                 item.save()
             self.playlistItemAdded.emit(itemName, itemUrl, categoryName)
 
+            self._crawlerActions[itemUrl] = "normal"
+            self._crawlerManager.crawl(itemUrl)
+
     @pyqtSlot(str)
     def addPlaylistCategory(self, categoryName):
         self._getOrNewPlaylistCategory(categoryName)
 
     @pyqtSlot(str)
-    @_database_file.commit_on_success
     def addPlaylistCITuples(self, tuples):
-        tuples = json.loads(tuples)
-        for tuple in tuples:
-            category = tuple[0]
-            url = tuple[1]
-            urlIsNativeFile = utils.urlIsNativeFile(url)
+        with self._commitOnSuccess():
+            tuples = json.loads(tuples)
+            for tuple in tuples:
+                category = tuple[0]
+                url = tuple[1]
+                urlIsNativeFile = utils.urlIsNativeFile(url)
 
-            result = os.path.basename(url)
-            itemName =  result if urlIsNativeFile else url
+                result = os.path.basename(url)
+                itemName =  result if urlIsNativeFile else url
 
-            self.addPlaylistItem(itemName, url, category)
+                self.addPlaylistItem(itemName, url, category)
 
     @pyqtSlot(str)
     def removePlaylistItem(self, itemUrl):
@@ -324,22 +367,26 @@ class Database(QObject):
         except DoesNotExist:
             pass
 
-    @pyqtSlot(str)
-    @_database_file.commit_on_success
-    def removePlaylistCategory(self, categoryName):
-        try:
-            itemsInCategory = PlaylistItemModel \
-            .select(PlaylistItemModel, PlaylistCategoryModel) \
-            .join(PlaylistCategoryModel, JOIN_LEFT_OUTER) \
-            .where(PlaylistCategoryModel.name == categoryName)
-            for item in itemsInCategory:
-                item.delete_instance()
+    @pyqtSlot(result=int)
+    def getPlaylistItemCount(self):
+        return PlaylistItemModel.select().count()
 
-            target = PlaylistCategoryModel.get(
-                PlaylistCategoryModel.name == categoryName)
-            target.delete_instance()
-        except DoesNotExist:
-            pass
+    @pyqtSlot(str)
+    def removePlaylistCategory(self, categoryName):
+        with self._commitOnSuccess():
+            try:
+                itemsInCategory = PlaylistItemModel \
+                .select(PlaylistItemModel, PlaylistCategoryModel) \
+                .join(PlaylistCategoryModel, JOIN_LEFT_OUTER) \
+                .where(PlaylistCategoryModel.name == categoryName)
+                for item in itemsInCategory:
+                    item.delete_instance()
+
+                target = PlaylistCategoryModel.get(
+                    PlaylistCategoryModel.name == categoryName)
+                target.delete_instance()
+            except DoesNotExist:
+                pass
 
     @pyqtSlot()
     def clearPlaylist(self):
@@ -371,17 +418,17 @@ class Database(QObject):
         playlist.writeTo(filename)
 
     @pyqtSlot(str)
-    @_database_file.commit_on_success
     def importPlaylist(self, filename):
-        playlist = DMPlaylist.readFrom(filename)
-        for category in playlist.getAllCategories():
-            for item in category.getAllItems():
-                self.addPlaylistCategory(category.name)
-                self.addPlaylistItem(item.name, item.source, category.name)
+        with self._commitOnSuccess:
+            playlist = DMPlaylist.readFrom(filename)
+            for category in playlist.getAllCategories():
+                for item in category.getAllItems():
+                    self.addPlaylistCategory(category.name)
+                    self.addPlaylistItem(item.name, item.source, category.name)
+                    self.setPlaylistItemPlayed(item.source, item.played)
+            for item in playlist.getAllItems():
+                self.addPlaylistItem(item.name, item.source, "")
                 self.setPlaylistItemPlayed(item.source, item.played)
-        for item in playlist.getAllItems():
-            self.addPlaylistItem(item.name, item.source, "")
-            self.setPlaylistItemPlayed(item.source, item.played)
 
         self.importDone.emit(filename)
 
@@ -443,6 +490,36 @@ class Database(QObject):
         except DoesNotExist:
             return ""
 
+    @pyqtSlot(str, str, str)
+    def setPlaylistItemAudioTrack(self, itemUrl, audioTrackId, audioTrackFile):
+        try:
+            with self._delayCommit():
+                item = PlaylistItemModel.get(
+                    PlaylistItemModel.url == itemUrl)
+                info = json.loads(item.info) if item.info else {}
+                info["audioTrack"] = json.dumps({
+                    "id": audioTrackId,
+                    "file": audioTrackFile
+                })
+                item.info = json.dumps(info)
+                item.save()
+        except DoesNotExist:
+            pass
+
+    @pyqtSlot(str, result=str)
+    def getPlaylistItemAudioTrack(self, itemUrl):
+        try:
+            item = PlaylistItemModel.get(
+                PlaylistItemModel.url == itemUrl)
+            info = json.loads(item.info) if item.info else {}
+            audioTrack = info.get("audioTrack") or ""
+            if audioTrack:
+                return audioTrack
+            else:
+                return json.dumps({"id": 0, "file": ""})
+        except DoesNotExist:
+            return ""
+
     @pyqtSlot(str, str, int)
     def setPlaylistItemSubtitle(self, itemUrl, subtitle, delay):
         try:
@@ -456,30 +533,32 @@ class Database(QObject):
         except DoesNotExist:
             pass
 
-    # this getter is asynchronized because there's maybe some items that has no
+    # This getter is asynchronized because there's maybe some items that has no
     # video_info stored, so you need connect to the itemVInfoGot signal to
-    # respond to this getter.
-    @pyqtSlot(str)
-    def getPlaylistItemVInfo(self, itemUrl):
-        try:
-            item = PlaylistItemModel.get(
-                PlaylistItemModel.url == itemUrl)
-            info = json.loads(item.info) if item.info else {}
-            if info.get("video_info"):
-                self.itemVInfoGot.emit(itemUrl, info.get("video_info"))
-            else:
-                self._crawlerManager.crawl(itemUrl, True)
-        except DoesNotExist:
+    # respond to this method.
+    # Because this method is asychronized, I add the context parameter to
+    # distinguish every calls to this method, the context will be emitted
+    # in itemVInfoGot signal along with itemUrl and the crawling result,
+    # Use it properly.
+    @pyqtSlot(str, str, result=str)
+    def getPlaylistItemVInfo(self, context, itemUrl):
+        vInfo = self._getPlaylistItemVInfo(itemUrl)
+        if not vInfo:
+            self._crawlerActions[itemUrl] = context
             self._crawlerManager.crawl(itemUrl, True)
+            return ""
+        else:
+            return vInfo
 
     def setPlaylistItemVInfo(self, itemUrl, videoInfo):
         try:
-            item = PlaylistItemModel.get(
-                PlaylistItemModel.url == itemUrl)
-            info = json.loads(item.info) if item.info else {}
-            info["video_info"] = videoInfo
-            item.info = json.dumps(info)
-            item.save()
+            with self._delayCommit():
+                item = PlaylistItemModel.get(
+                    PlaylistItemModel.url == itemUrl)
+                info = json.loads(item.info) if item.info else {}
+                info["video_info"] = videoInfo
+                item.info = json.dumps(info)
+                item.save()
         except DoesNotExist:
             pass
 

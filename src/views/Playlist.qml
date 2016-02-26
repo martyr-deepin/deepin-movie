@@ -1,3 +1,12 @@
+/**
+ * Copyright (C) 2014 Deepin Technology Co., Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * (at your option) any later version.
+ **/
+
 import QtQuick 2.1
 import Deepin.Widgets 1.0
 import "sources/ui_utils.js" as UIUtils
@@ -98,6 +107,8 @@ Rectangle {
     function getRandom() { return playlist.getRandom() }
     function getNextSource(source) { return playlist.getNextSource(source) }
     function getNextSourceCycle(source) { return playlist.getNextSourceCycle(source) }
+    function getPreviousSource(source) { return playlist.getPreviousSource(source) }
+    function getPreviousSourceCycle(source) { return playlist.getPreviousSourceCycle(source) }
 
     function changeFileExistence(file, exists) { exists ? playlist.fileBack(file) : playlist.fileMissing(file) }
 
