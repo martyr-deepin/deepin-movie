@@ -47,7 +47,7 @@ You can zoom in or out the video play window in equal proportion by manually dra
 
 You will do more with less subsequent operations if you can firstly view the shortcuts configuration before playing the video.
 
-1. On Deepin Movie interface, press ![Ctrl](icon/Ctrl.svg)+![Shift](icon/Shift.svg)+![？](icon/？.svg) on keyboard to open shortcuts preview interface.
+1. On Deepin Movie interface, press ![Ctrl](icon/Ctrl.svg)+![Shift](icon/Shift.svg)+![QM](icon/QM.svg) on keyboard to open shortcuts preview interface.
 2. In the shortcuts preview interface, you can view all the shortcuts.
 
   ![0|Shortcuts](png/shortcut.png)
