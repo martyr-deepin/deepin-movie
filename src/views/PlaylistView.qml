@@ -1,12 +1,3 @@
-/**
- * Copyright (C) 2014 Deepin Technology Co., Ltd.
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
- * (at your option) any later version.
- **/
-
 import QtQuick 2.1
 import "sources/ui_utils.js" as UIUtils
 
@@ -56,27 +47,6 @@ ListView {
 
     function _getNextSource(source, cycle) {
         var flatList = _flattenList()
-        return _doGetSource(flatList, source, cycle)
-    }
-
-    function getPreviousSource(source) { return _getPreviousSource(source, false) }
-
-    function getPreviousSourceCycle(source) { return _getPreviousSource(source, true) }
-
-    function _getPreviousSource(source, cycle) {
-        // transform [a, b, c, d] to [a, d, c, b] which make sure
-        // the 1st file in playlist will be selected if source is invalid
-        var flatList = _flattenList().reverse()
-
-        // pop: remove the last element in array and return it.
-        // unshift: insert an element before the first element in array.
-        // these two operations are inplace operation.
-        flatList.unshift(flatList.pop())
-
-        return _doGetSource(flatList, source, cycle)
-    }
-
-    function _doGetSource(flatList, source, cycle) {
         for (var i = 0; i < flatList.length; i++) {
             if (playlist._urlEqual(flatList[i], (currentPlayingSource || source))) {
                 if (cycle) {
@@ -334,15 +304,7 @@ ListView {
                     interval: 1000
                     onTriggered: {
                         if (mouse_area.containsMouse) {
-                            var tip = itemName
-
-                            var vInfo = _database.getPlaylistItemVInfo("playlist", itemUrl, false)
-                            if (vInfo) {
-                                var vInfoObject = JSON.parse(vInfo)
-                                var duration = UIUtils.formatTime(vInfoObject["movie_duration"])
-                                tip = tip + "  <font color='#B2FFFFFF'>" + duration + "</font>"
-                            }
-                            tooltip.showTip(tip)
+                            tooltip.showTip(itemName)
                         }
                     }
                 }

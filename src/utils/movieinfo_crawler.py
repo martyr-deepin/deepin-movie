@@ -1,12 +1,24 @@
-#! /usr/bin/env python
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# Copyright (C) 2014 Deepin Technology Co., Ltd.
+# Copyright (C) 2013 ~ 2014 Deepin, Inc.
+#               2013 ~ 2014 Wang Yaohua
 #
-# This program is free software; you can redistribute it and/or modify
+# Author:     Wang Yaohua <mr.asianwang@gmail.com>
+# Maintainer: Wang Yaohua <mr.asianwang@gmail.com>
+#
+# This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 3 of the License, or
-# (at your option) any later version.
+# the Free Software Foundation, either version 3 of the License, or
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import json
 from collections import deque
@@ -22,8 +34,6 @@ class _MovieInfoCrawler(QThread):
 		self.url = url
 
 	def run(self):
-		self.setPriority(QThread.LowestPriority)
-
 		self._movieInfo = MovieInfo(self.url)
 		result = {
 		    "movie_title": self._movieInfo.movie_title,
@@ -59,7 +69,7 @@ class CrawlerManager(QThread):
 				crawler.start()
 
 	def crawl(self, url, highPriority=False):
-		if len(self._crawlers) < 3 or highPriority:
+		if len(self._crawlers) < 5 or highPriority:
 			crawler = _MovieInfoCrawler(url)
 			crawler.died.connect(self.crawlerDied)
 			crawler.start()

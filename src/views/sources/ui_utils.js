@@ -1,12 +1,3 @@
-/**
- * Copyright (C) 2014 Deepin Technology Co., Ltd.
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
- * (at your option) any later version.
- **/
-
 function inRectCheck(point, rect) {
     return rect.x <= point.x && point.x <= rect.x + rect.width &&
     rect.y <= point.y && point.y <= rect.y + rect.height
@@ -26,14 +17,6 @@ function formatTime(millseconds) {
     return hr + ':' + min + ':' + sec;
 }
 
-// with milliseconds
-function formatTime2(millseconds) {
-    if (millseconds <= 0) return "00:00:00"
-
-    var spareMillis = millseconds % 1000
-    return formatTime(millseconds) + "." + spareMillis
-}
-
 function formatSize(capacity) {
     var teras = capacity / (1024 * 1024 * 1024 * 1024)
     capacity = capacity % (1024 * 1024 * 1024 * 1024)
@@ -50,6 +33,5 @@ function formatSize(capacity) {
 }
 
 function formatFilePath(file_path) {
-    var path = file_path.replace("file://", "")
-    return path
+    return file_path.indexOf("file://") != -1 ? file_path.substring(7) : file_path
 }

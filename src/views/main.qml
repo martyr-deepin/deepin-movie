@@ -1,27 +1,16 @@
-/**
- * Copyright (C) 2014 Deepin Technology Co., Ltd.
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
- * (at your option) any later version.
- **/
-
 import QtQuick 2.1
-import QtAV 1.6
+import QtAV 1.5
 import QtGraphicalEffects 1.0
 import QtQuick.Window 2.1
 import Deepin.Locale 1.0
 import Deepin.Widgets 1.0
-
-import "./dlna"
-import "./toolbox"
 import "../controllers"
 import "sources/ui_utils.js" as UIUtils
 
-Item {
+Rectangle {
     id: root
     state: "normal"
+    color: "transparent"
 
     // this property will be set when the window's initializing its size,
     // and will be changed only when the resolution of the player changes.
@@ -33,10 +22,7 @@ Item {
     property bool shouldAutoPlayNextOnInvalidFile: false
 
     property rect primaryRect: {
-        return Qt.rect(
-            0, 0,
-            Screen.desktopAvailableWidth,
-            Screen.desktopAvailableHeight)
+        return Qt.rect(0, 0, Screen.desktopAvailableWidth, Screen.desktopAvailableHeight)
     }
 
     // Used to check wether the player is stopped by the app or by the user,
@@ -101,13 +87,7 @@ Item {
 
                 if (state == "open_video_file") {
                     _settings.lastOpenedPath = folder
-                    // Open Vedio File has the same name of subtitle
-                    if (1 == filePaths.length && _utils.fileIsSubtitle(filePaths[0]) ) {
-                        var videoFile = _utils.getVideoFromSubtitle(filePaths[0])
-                        main_controller.playPaths([videoFile], true)
-                    } else {
-                        main_controller.playPaths(filePaths, true)
-                    }
+                    main_controller.playPaths(filePaths, true)
                 } else if (state == "open_subtitle_file") {
                     _settings.lastOpenedPath = folder
                     var filename = filePaths[0]
@@ -134,16 +114,6 @@ Item {
                         filename = filename + ".dmpl"
                     }
                     main_controller.exportPlaylistImpl(filename)
-                } else if (state = "open_audio_track_file") {
-                    _settings.lastOpenedPath = folder
-
-                    var filename = filePaths[0]
-
-                    if (_utils.fileIsAudioTrack(filename)) {
-                        main_controller.setAudioTrackFile(filename)
-                    } else {
-                        main_controller.notifyInvalidFile(filename)
-                    }
                 }
             }
         }
@@ -248,9 +218,7 @@ Item {
 
     function initWindowSize() {
         resetWindowSize()
-        var _width = windowView.width - windowView.windowGlowRadius * 2
-        var _height = windowView.height - windowView.windowGlowRadius * 2
-        root.widthHeightScale = _width / _height
+        root.widthHeightScale = (windowView.width - windowView.windowGlowRadius * 2) / (windowView.height - windowView.windowGlowRadius * 2)
 
         if (config.playerApplyLastClosedSize) {
             hasResized = true
@@ -300,8 +268,8 @@ Item {
 
     // handle transient windows state
     function hideTransientWindows() {
-        shortcuts_viewer && shortcuts_viewer.hide()
-        resize_visual && resize_visual.hide()
+        shortcuts_viewer.hide()
+        resize_visual.hide()
     }
 
     function subtitleVisible() {
@@ -342,6 +310,7 @@ Item {
         bg.visible = true
         root.state = "normal"
         root.resetWindowSize()
+        _subtitle_parser.file_name = ""
 
         player.reset()
         titlebar.reset()
@@ -390,21 +359,6 @@ Item {
         player.sourceString && (_settings.lastPlayedFile = player.sourceString)
     }
 
-    // dbus exported functions
-    function setUri(uri) { main_controller.playPath(uri) }
-    function setNextUri(uri) { }
-    function play() { main_controller.play() }
-    function pause() { main_controller.pause() }
-    function stop() { reset() }
-    function seek(value) { player.seek(value) }
-    function getDuration() { return player.duration }
-    function getPosition() { return player.position }
-    function setPosition(value) { player.seek(value) }
-    function getVolume() { return player.volume }
-    function setVolume(value) { main_controller.setVolume(value) }
-    function getMute() { return player.muted }
-    function setMute(value) { main_controller.setMute(value) }
-
     Timer {
         id: auto_play_next_on_invalid_timer
         interval: 1000 * 2
@@ -427,15 +381,10 @@ Item {
         interval: 1500
 
         onTriggered: {
-            if (!mouseInControlsArea()
-                && player.source
-                && player.hasVideo
-                && !controlbar.toolboxVisible) {
+            if (!mouseInControlsArea() && player.source && player.hasVideo) {
                 hideControls()
 
-                if (player.playbackState == MediaPlayer.PlayingState
-                    && windowView.active)
-                {
+                if (player.playbackState == MediaPlayer.PlayingState && windowView.active) {
                     windowView.setCursorVisible(false)
                 }
             } else {
@@ -501,21 +450,16 @@ Item {
         property string lastVideoSource: ""
         property int lastVideoPosition: 0
         property int lastVideoDuration: 0
-        property int logicalPosition: 0
+        property int lastForwardToPosition: 0
         property bool playerInit: true
-        property bool loadSubtitle: true
 
         onStatusChanged: {
             if (status == MediaPlayer.Buffering) {
-                if (!notifybar.visible) {
-                    notifybar.showPermanently(dsTr("Buffering..."))
-                }
+                notifybar.showPermanently(dsTr("Buffering..."))
             } else if (notifybar.text == dsTr("Buffering...")) {
                 notifybar.hide()
             }
         }
-
-        onVolumeChanged:main_controller.setVolume(volume)
 
         onResolutionChanged: main_controller.handleResolutionChanged()
 
@@ -531,11 +475,10 @@ Item {
                 }
             }
 
-            var title = _utils.getVideoTitleFromUri(player.sourceString)
             playerInit = false
             notifybar.hide()
             auto_play_next_on_invalid_timer.stop()
-            main_controller.setWindowTitle(title)
+            main_controller.setWindowTitle(_utils.getTitleFromUrl(player.sourceString))
 
             _utils.screenSaverInhibit()
 
@@ -544,7 +487,7 @@ Item {
         }
 
         onStopped: {
-            logicalPosition = 0
+            lastForwardToPosition = 0
             resetRotationFlip()
             _utils.screenSaverUninhibit()
             main_controller.recordVideoPosition(lastVideoSource, lastVideoPosition)
@@ -561,8 +504,8 @@ Item {
         }
 
         onPositionChanged: {
-            (position != 0) && (lastVideoPosition = position)
-            logicalPosition = position
+            position != 0 && (lastVideoPosition = position)
+            subtitleContent = _subtitle_parser.get_subtitle_at(position)
             controlbar.percentage = position / player.duration
         }
 
@@ -580,7 +523,7 @@ Item {
                 _menu_controller.reset()
                 main_controller.seekToLastPlayed()
 
-                if (loadSubtitle && config.subtitleAutoLoad) {
+                if (config.subtitleAutoLoad) {
                     var subtitleInfo = _database.getPlaylistItemSubtitle(player.sourceString)
                     var path = ""
                     var delay = 0
@@ -589,32 +532,18 @@ Item {
                         var subtitleObj = JSON.parse(subtitleInfo)
                         path = subtitleObj["path"]
                         delay = subtitleObj["delay"]
-                    } catch(e) {}
 
-
-                    if (path) {
-                        player.subtitle.file = path
-                        if (delay) player.subtitle.delay = delay
-                    } else {
-                        path = _utils.getSubtitlesFromVideo(player.sourceString)[0]
-                        if (path) player.subtitle.file = path
+                        if (path) {
+                            main_controller.setSubtitle(path)
+                            if (delay) _subtitle_parser.delay = delay
+                        } else {
+                            _subtitle_parser.set_subtitle_from_movie(player.sourceString)
+                        }
+                    } catch(e) {
+                        _subtitle_parser.set_subtitle_from_movie(player.sourceString)
                     }
-                }
-                loadSubtitle = true
-
-                // restore the audio track last time we saved
-                var audioTrackInfo = _database.getPlaylistItemAudioTrack(player.sourceString)
-                var id = 0
-                var file = ""
-
-                try {
-                    var audioTrack = JSON.parse(audioTrackInfo)
-                    id = audioTrack["id"]
-                    file = audioTrack["file"]
-
-                    main_controller.setAudioTrack(id, file)
-                } catch(e) {
-                    // do nothing here
+                } else {
+                    _subtitle_parser.file_name = ""
                 }
 
                 var rotation = main_controller.fetchVideoRotation(source)
@@ -623,10 +552,6 @@ Item {
                     main_controller.rotateClockwise()
                 }
             }
-        }
-
-        onLoadTrackError: {
-            main_controller.notifyInvalidFile(trackFile)
         }
 
         onErrorChanged: {
@@ -648,23 +573,6 @@ Item {
                 break
             }
         }
-
-        function _setHardwareAcceleration() {
-            if (config.playerHardwareAcceleration) {
-                player.enabledHardwareAcceleration()
-            } else {
-                player.disableHardwareAcceleration()
-            }
-        }
-
-        Connections {
-            target: config
-            onPlayerHardwareAccelerationChanged: {
-                player._setHardwareAcceleration()
-            }
-        }
-
-        Component.onCompleted: player._setHardwareAcceleration()
     }
 
     TimeIndicator {
@@ -680,18 +588,9 @@ Item {
         anchors.rightMargin: 10
     }
 
-    MainController { id: main_controller; window: root }
-
-    PosterEngine { id: poster_engine; saveDir: config.playerScreenshotSavePath }
-    ScreenshotEngine { id: screenshot_engine; saveDir: config.playerScreenshotSavePath }
-    DLNAEngine { id: dlna_engine; anchors.fill: parent }
-
-    PicturePreview {
-        id: picture_preview
-
-        onShareButtonClicked: {
-            _utils.socialShare("", picture)
-        }
+    MainController {
+        id: main_controller
+        window: root
     }
 
     Notifybar {
@@ -765,8 +664,7 @@ Item {
         timeInfoVisible: player.source != "" && player.hasMedia && player.duration != 0
         tooltipItem: tooltip
         videoSource: player.sourceString
-        previewEnabled: config.playerShowPreview
-        dlnaDevicesAvailable: dlna_engine.hasDevices && player.hasVideo
+        previewEnabled: config.playerShowPreview && heightWithPreview < main_window.height
 
         anchors.horizontalCenter: main_window.horizontalCenter
 
@@ -796,9 +694,6 @@ Item {
                 delay_seek_timer.restart()
             }
         }
-        onDlnaButtonClicked: dlna_engine.showDevices()
-        onScreenshotClicked: { if (player.hasVideo) screenshot_engine.start() }
-        onBurstShootingClicked: { if (player.hasVideo) poster_engine.start() }
     }
 
     ResizeEdge { id: resize_edge }

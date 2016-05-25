@@ -1,12 +1,3 @@
-/**
- * Copyright (C) 2014 Deepin Technology Co., Ltd.
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
- * (at your option) any later version.
- **/
-
 import QtQuick 2.1
 import Deepin.Widgets 1.0
 
@@ -18,7 +9,7 @@ Item {
 
     property alias title: title.text
     property alias text: input.text
-    property alias hotKey: input.shortcut
+    property alias hotKey: input.hotKey
     property alias inputEnabled: input.enabled
 
     property var actualSettingEntry
@@ -32,7 +23,7 @@ Item {
     function setShortcut(shortcut) {
         hotKey = Qt.binding(function() { return config[actualSettingEntry]+"" || dsTr("None") })
         config[actualSettingEntry] = shortcut
-        text = Qt.binding(function() { return KeysUtils.getOverriddenShortcut(shortcut) || dsTr("None") })
+        text = Qt.binding(function() { return _utils.getOverrideKeyNames(shortcut) || dsTr("None") })
     }
 
     function warning(shortcutsEntry, shortcutsCategory) {
@@ -57,17 +48,15 @@ Item {
             anchors.verticalCenter: parent.verticalCenter
         }
 
-        DShortcutInput {
+        HotKeyInput {
             id: input
             width: 200
-            noneString: dsTr("None")
-            promoteString: dsTr("Please input a new shortcut")
-            text: KeysUtils.getOverriddenShortcut(shortcut) || dsTr("None")
+            text: _utils.getOverrideKeyNames(hotKey) || dsTr("None")
             anchors.right: parent.right
             anchors.verticalCenter: parent.verticalCenter
 
-            onShortcutSet: hotkey_input_row.hotkeySet()
-            onShortcutDisabled: hotkey_input_row.disableShortcut()
+            onHotkeySet: hotkey_input_row.hotkeySet()
+            onHotkeyDisabled: hotkey_input_row.disableShortcut()
         }
     }
 

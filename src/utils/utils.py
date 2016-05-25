@@ -1,47 +1,61 @@
-#! /usr/bin/env python
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# Copyright (C) 2014 Deepin Technology Co., Ltd.
+# Copyright (C) 2011 ~ 2012 Deepin, Inc.
+#               2011 ~ 2012 Wang Yong
 #
-# This program is free software; you can redistribute it and/or modify
+# Author:     Wang Yong <lazycat.manatee@gmail.com>
+# Maintainer: Wang Yong <lazycat.manatee@gmail.com>
+#
+# This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 3 of the License, or
-# (at your option) any later version.
+# the Free Software Foundation, either version 3 of the License, or
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY"," without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import re
 import os
 import json
 import subprocess
 
-import gio
 import magic
 md = magic.open(magic.MAGIC_MIME_TYPE)
 md.load()
 
 from PyQt5.QtWidgets import QApplication
+from PyQt5.QtGui import QKeySequence
 from PyQt5.QtCore import QObject, QThread, pyqtSignal, pyqtSlot, pyqtProperty
 
 import font_utils
-import pic_utils
-from sub_utils import FILE_TYPE_ASS, FILE_TYPE_SRT
-from sub_utils import get_file_type, get_subtitle_from_movie
-from dbus_interfaces import socialSharingInterface
-from dbus_interfaces import screenSaverInterface, notificationsInterface
+from views.subtitles import *
+from dbus_interfaces import screenSaverInterface
 
-all_supported_video_exts = ["3g2","3gp","3gp2","3gpp","amv",
-                            "asf","avi","bin","divx","drc",
-                            "dv","f4v","flv","gvi","gxf","iso",
-                            "m1v","m2v","m2t","m2ts","m4v","mkv",
-                            "mov","mp2","mp2v","mp4","mp4v","mpe",
-                            "mpeg","mpeg1","mpeg2","mpeg4","mpg",
-                            "mpv2","mts","mtv","mxf","mxg","nsv",
-                            "nuv","ogg","ogm","ogv","ogx","ps",
-                            "rec","rm","rmvb","tod","ts","tts",
-                            "vob","vro","webm","wm","wmv","wtv",
-                            "xesc"]
+all_supported_video_exts = [ "*.3g2","*.3gp","*.3gp2","*.3gpp","*.amv",
+                            "*.asf","*.avi","*.bin","*.divx","*.drc",
+                            "*.dv","*.f4v","*.flv","*.gvi","*.gxf","*.iso",
+                            "*.m1v","*.m2v","*.m2t","*.m2ts","*.m4v","*.mkv",
+                            "*.mov","*.mp2","*.mp2v","*.mp4","*.mp4v","*.mpe",
+                            "*.mpeg","*.mpeg1","*.mpeg2","*.mpeg4","*.mpg",
+                            "*.mpv2","*.mts","*.mtv","*.mxf","*.mxg","*.nsv",
+                            "*.nuv","*.ogg","*.ogm","*.ogv","*.ogx","*.ps",
+                            "*.rec","*.rm","*.rmvb","*.tod","*.ts","*.tts",
+                            "*.vob","*.vro","*.webm","*.wm","*.wmv","*.wtv",
+                            "*.xesc"]
 
 all_supported_mime_types = []
 sep_chars = ("-", "_", ".", " ")
+override_key_names = {
+    "PgUp": "PageUp",
+    "PgDown": "PageDown",
+    "Meta": "Super"
+}
 
 src_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 mimetypes_file_path = os.path.join(src_root, "data/mimetypes")
@@ -100,18 +114,6 @@ def getFileMimeType(filename):
                 pass
     return result
 
-def getFileMimeTypeGIO(filename):
-    f = None
-    try:
-        f = gio.File(filename)
-    except Exception:
-        try:
-            f = gio.File(filename.encode("utf-8"))
-        except Exception:
-            return None
-    info = f.query_info("standard::content-type") if f else None
-    return info.get_content_type() if info else None
-
 class FindVideoThread(QThread):
     firstVideoFound = pyqtSignal(str, arguments=["path"])
     findVideoDone = pyqtSignal(str, str, int, int,
@@ -119,17 +121,7 @@ class FindVideoThread(QThread):
 
     def __init__(self, pathList, findSerie):
         super(FindVideoThread, self).__init__()
-        # Urgent workaround: API changes in Qt5.4
-        try:
-            # pathList is QJSValue type
-            self._pathList = pathList.toVariant()
-        except:
-            try:
-                # pathList is list type
-                self._pathList = pathList
-            except:
-                self._pathList = []
-
+        self._pathList = pathList
         self._findSerie = findSerie
 
         self._first_video = None
@@ -222,15 +214,10 @@ class Utils(QObject):
         return os.path.exists(url.replace("file://", ""))
 
     @pyqtSlot(str, result=str)
-    def getFileNameFromUri(self, uri):
-        uri = uri.replace("file://", "")
-        return os.path.basename(uri) \
-            if self.urlIsNativeFile(uri) else uri
-
-    @pyqtSlot(str, result=str)
-    def getVideoTitleFromUri(self, uri):
-        filename = self.getFileNameFromUri(uri)
-        return os.path.splitext(filename)[0]
+    def getTitleFromUrl(self, url):
+        url = url.replace("file://", "")
+        return os.path.basename(url) \
+            if self.urlIsNativeFile(url) else url
 
     # all files here include dirs
     @pyqtSlot(str, result="QVariant")
@@ -301,16 +288,29 @@ class Utils(QObject):
             else:
                 return json.dumps({"name":"", "items":(name,)})
 
+    @pyqtSlot(str, result=str)
+    def getOverrideKeyNames(self, keyname):
+        for key in override_key_names:
+            if key in keyname:
+                return keyname.replace(key, override_key_names[key])
+        return keyname
+
+    @pyqtSlot(int, int, str, result=bool)
+    def checkKeySequenceEqual(self, modifier, key, targetKeySequence):
+        keySequence = QKeySequence(modifier + key).toString()
+        return self.getOverrideKeyNames(keySequence) == \
+               self.getOverrideKeyNames(targetKeySequence)
+
+    @pyqtSlot(int, int, result=str)
+    def keyEventToQKeySequenceString(self, modifier, key):
+        keySequence = QKeySequence(modifier + key).toString()
+        return self.getOverrideKeyNames(keySequence)
+
     @pyqtSlot(str)
     def copyToClipboard(self, text):
         clipboard = QApplication.clipboard()
         clipboard.clear(mode=clipboard.Clipboard)
         clipboard.setText(text, mode=clipboard.Clipboard)
-
-    @pyqtSlot(str, result=bool)
-    def fileIsAudioTrack(self, file_path):
-        mimetype = getFileMimeTypeGIO(file_path)
-        return mimetype in ("audio/ac3", "audio/vnd.dts")
 
     @pyqtSlot(str,result=bool)
     def fileIsPlaylist(self, file_path):
@@ -365,40 +365,6 @@ class Utils(QObject):
     def getSystemFonts(self):
         return font_utils.getSystemFonts()
 
-    @pyqtSlot(str, result="QVariant")
-    def getSubtitlesFromVideo(self, video):
-        return get_subtitle_from_movie(video)
-
-    @pyqtSlot(str, result=str)
-    def getVideoFromSubtitle(self, subtitle):
-        subtitle = subtitle.replace("file://", "")
-        f_name_without_ext = lambda x: x.rpartition(".")[0]
-
-        dir_name = os.path.dirname(subtitle)
-        name_without_ext = f_name_without_ext(subtitle)
-        if name_without_ext == "": return ""
-
-        videos = self.getAllVideoFilesInDir(dir_name)
-        video_relative = lambda x: f_name_without_ext(x) in name_without_ext
-        relative_videos = filter(video_relative, videos)
-
-        return relative_videos[0] if relative_videos else ""
-
-    @pyqtSlot(str, result=str)
-    def getVideoFromAudioTrack(self, filename):
-        filename = filename.replace("file://", "")
-        f_name_without_ext = lambda x: x.rpartition(".")[0]
-
-        dir_name = os.path.dirname(filename)
-        name_without_ext = f_name_without_ext(filename)
-        if name_without_ext == "": return ""
-
-        videos = self.getAllVideoFilesInDir(dir_name)
-        video_relative = lambda x: f_name_without_ext(x) in name_without_ext
-        relative_videos = filter(video_relative, videos)
-
-        return relative_videos[0] if relative_videos else ""
-
     @pyqtSlot()
     def showManual(self):
         try:
@@ -413,22 +379,6 @@ class Utils(QObject):
     @pyqtSlot()
     def screenSaverUninhibit(self):
         screenSaverInterface.uninhibit()
-
-    @pyqtSlot(str, str)
-    def notify(self, summary, body):
-        notificationsInterface.notify(summary, body)
-
-    @pyqtSlot(str, str)
-    def socialShare(self, text, picture):
-        socialSharingInterface.share(text, picture)
-
-    @pyqtSlot(str, int, str)
-    def rotatePicture(self, src, rotation, dest):
-        pic_utils.rotatePicture(src, rotation, dest)
-
-    @pyqtSlot(str, bool, bool, str)
-    def flipPicture(self, src, flipHorizontal, flipVertical, dest):
-        pic_utils.flipPicture(src, flipHorizontal, flipVertical, dest)
 
 utils = Utils()
 

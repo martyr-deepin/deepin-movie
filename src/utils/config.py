@@ -1,17 +1,29 @@
-#! /usr/bin/env python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# Copyright (C) 2014 Deepin Technology Co., Ltd.
+# Copyright (C) 2014 Deepin, Inc.
+#               2014 Wang Yaohua
 #
-# This program is free software; you can redistribute it and/or modify
+# Author:     Wang Yaohua <mr.asianwang@gmail.com>
+# Maintainer: Wang Yaohua <mr.asianwang@gmail.com>
+#
+# This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 3 of the License, or
-# (at your option) any later version.
+# the Free Software Foundation, either version 3 of the License, or
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
 import pickle
 from deepin_utils import config
-from constants import CONFIG_DIR, DEFAULT_SCREENSHOT_DIR
+from constants import CONFIG_DIR
 from PyQt5.QtCore import pyqtSlot, pyqtProperty, pyqtSignal, QObject
 from ConfigParser import ConfigParser
 
@@ -41,10 +53,7 @@ DEFAULT_CONFIG = [
     ("forwardRewindStep", 5.0, float),
     ("multipleProgramsAllowed", False, bool),
     ("notificationsEnabled", True, bool),
-    ("pauseOnMinimized", True, bool),
-    ("acceptWirelessPush", False, bool),
-    ("screenshotSavePath", DEFAULT_SCREENSHOT_DIR.encode("utf-8"), str),
-    ("hardwareAcceleration", True, bool),]),
+    ("pauseOnMinimized", True, bool),]),
 ("HotkeysPlay", [("hotkeyEnabled", True, bool),
     ("togglePlay", "Space", str),
     ("forward", "Right", str),
@@ -70,9 +79,6 @@ DEFAULT_CONFIG = [
     ("openFile", "Ctrl+O", str),
     ("playPrevious", "PgUp", str),
     ("playNext", "PgDown", str),]),
-("HotkeysScreenshot", [("hotkeyEnabled", True, bool),
-    ("screenshot", "Alt+A", str),
-    ("burstShooting", "Alt+S", str),]),
 ("Subtitle", [("autoLoad", True, bool),
     ("fontSize", 20, float),
     ("fontFamily", "", str),
@@ -85,6 +91,7 @@ DEFAULT_CONFIG = [
     ("doubleClick", True, bool),
     ("wheel", True, bool)]),
 ]
+
 
 
 def getDefault(section, key):
@@ -149,17 +156,10 @@ class Config(QObject):
         self.save("Player", "volume", min(1.0, volume))
 
         # add new keys here
-        self._addNewEntry("Subtitle", "delayStep")
-        self._addNewEntry("Player", "hardwareAcceleration")
-        self._addNewEntry("Player", "acceptWirelessPush")
-        self._addNewEntry("Player", "screenshotSavePath")
-        self._addNewEntry("HotkeysScreenshot", "screenshot")
-        self._addNewEntry("HotkeysScreenshot", "burstShooting")
-
-    def _addNewEntry(self, section, key):
-        value = self.fetch(section, key)
-        if not value:
-            self.save(section, key, getDefault(section, key))
+        subtitleDelayStep = self.fetch("Subtitle", "delayStep")
+        if not subtitleDelayStep:
+            self.save("Subtitle", "delayStep", \
+                      getDefault("Subtitle", "delayStep"))
 
     def _getConfigDefaults(self):
         result = []
@@ -238,13 +238,6 @@ class Config(QObject):
         return result
 
     @pyqtProperty("QVariant")
-    def hotkeysScreenshot(self):
-        result = []
-        for item in self.config.items("HotkeysScreenshot"):
-            result.append({"command": item[0], "key": item[1]})
-        return result
-
-    @pyqtProperty("QVariant")
     def hotKeysOthers(self):
         result = []
         for item in self.config.items("HotkeysOthers"):
@@ -308,7 +301,8 @@ class Config(QObject):
                     result = self.fetch(section, key)
                     # take care of the entries that takes unicode as their
                     # values
-                    if (section == "Subtitle" and key == "fontFamily") \
+                    if section == "Subtitle" \
+                    and key == "fontFamily" \
                     and result:
                         return pickle.loads(result)
 
@@ -327,7 +321,8 @@ class Config(QObject):
                 def f(self, value):
                     # take care of the entries that takes unicode as their
                     # values
-                    if (section == "Subtitle" and key == "fontFamily") \
+                    if section == "Subtitle" \
+                    and key == "fontFamily"\
                     and value:
                         value = pickle.dumps(value)
                     self.save(section, key, value)

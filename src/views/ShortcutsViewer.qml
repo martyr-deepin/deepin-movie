@@ -1,12 +1,3 @@
-/**
- * Copyright (C) 2014 Deepin Technology Co., Ltd.
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
- * (at your option) any later version.
- **/
-
 import QtQuick 2.1
 import QtGraphicalEffects 1.0
 import Deepin.Widgets 1.0
@@ -60,7 +51,7 @@ DWindow {
                             shortcut: config.hotkeysPlayForward+""
                         }
                         ShortcutsLabel {
-                            title: dsTr("Backward")
+                            title: dsTr("Rewind")
                             shortcut: config.hotkeysPlayBackward+""
                         }
                         ShortcutsLabel {
@@ -89,7 +80,7 @@ DWindow {
                         title: dsTr("Files")
 
                         ShortcutsLabel {
-                            title: dsTr("Open file")
+                            title: dsTr("Open a file")
                             shortcut: config.hotkeysFilesOpenFile+""
                         }
                         ShortcutsLabel {
@@ -159,7 +150,7 @@ DWindow {
                     title: dsTr("Subtitles")
 
                     ShortcutsLabel {
-                        title: dsTr("Advance %1 (s)").arg(config.subtitleDelayStep)
+                        title: dsTr("Forward %1 (s)").arg(config.subtitleDelayStep)
                         shortcut: config.hotkeysSubtitlesSubtitleForward+""
                     }
                     ShortcutsLabel {

@@ -1,12 +1,3 @@
-/**
- * Copyright (C) 2014 Deepin Technology Co., Ltd.
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
- * (at your option) any later version.
- **/
-
 import QtQuick 2.1
 import QtQuick.Controls 1.1
 import Deepin.Widgets 1.0
@@ -39,7 +30,7 @@ DPreferenceWindow {
         scroll_to_timer.schedule(sectionId)
     }
 
-    function scrollToTop() { scrollTo("basic_settings"); }
+    function scrollToTop() { scrollTo("basic_settings") }
     function scrollToSubtitle() { scrollTo("subtitle_settings") }
 
     function indexOfColor(color) {
@@ -49,11 +40,6 @@ DPreferenceWindow {
             }
         }
         return -1
-    }
-
-    onVisibleChanged: {
-        if (visible == false)
-            scrollToTop();
     }
 
     Item {
@@ -94,11 +80,6 @@ DPreferenceWindow {
                         "sectionId": "basic_time_span",
                         "sectionName": dsTr("Time span"),
                         "subSections": []
-                    },
-                    {
-                        "sectionId": "basic_screenshot",
-                        "sectionName": dsTr("Screenshot"),
-                        "subSections": []
                     }
                 ]
             },
@@ -127,11 +108,6 @@ DPreferenceWindow {
                         "subSections": []
                     },
                     {
-                        "sectionId": "keyboard_screenshot",
-                        "sectionName": dsTr("Screenshot"),
-                        "subSections": []
-                    },
-                    {
                         "sectionId": "keyboard_other",
                         "sectionName": dsTr("Other"),
                         "subSections": []
@@ -143,6 +119,11 @@ DPreferenceWindow {
                 "sectionName": dsTr("Subtitle settings"),
                 "subSections": []
             },
+            // {
+            //     "sectionId": "screenshot",
+            //     "sectionName": "Screenshot",
+            //     "subSections": []
+            // },
             {
                 "sectionId": "about",
                 "sectionName": dsTr("About"),
@@ -175,9 +156,7 @@ DPreferenceWindow {
         }
 
         function checkShortcutsDuplication(entryName, shortcut) {
-            var keyboard_sections = [keyboard_playback, keyboard_frame_sound,
-                                     keyboard_files, keyboard_subtitle,
-                                     keyboard_screenshot]
+            var keyboard_sections = [keyboard_playback, keyboard_frame_sound, keyboard_files, keyboard_subtitle]
             for (var i = 0; i < keyboard_sections.length; i++) {
                 for (var j = 0; j < keyboard_sections[i].content.length; j++) {
                     var entry = keyboard_sections[i].content[j]
@@ -191,9 +170,7 @@ DPreferenceWindow {
         }
 
         function disableShortcut(entryName, shortcut) {
-            var keyboard_sections = [keyboard_playback, keyboard_frame_sound,
-                                     keyboard_files, keyboard_subtitle,
-                                     keyboard_screenshot]
+            var keyboard_sections = [keyboard_playback, keyboard_frame_sound, keyboard_files, keyboard_subtitle]
             for (var i = 0; i < keyboard_sections.length; i++) {
                 for (var j = 0; j < keyboard_sections[i].content.length; j++) {
                     var entry = keyboard_sections[i].content[j]
@@ -210,7 +187,6 @@ DPreferenceWindow {
                 target: config
                 onCanResetHotkeysChanged: preference_view.updateActionButton()
                 onCanResetSubtitleSettingsChanged: preference_view.updateActionButton()
-                onPlayerAcceptWirelessPushChanged: _dlna_controller.setAsRenderer(config.playerAcceptWirelessPush)
             }
         }
 
@@ -274,7 +250,7 @@ DPreferenceWindow {
                 onClicked: config.playerAutoPlaySeries = checked
             }
             DCheckBox {
-                text: dsTr("Display preview when hovering over progress bar")
+                text: dsTr("Show preview when hovering over progress bar")
                 checked: config.playerShowPreview
                 onClicked: config.playerShowPreview = checked
             }
@@ -287,16 +263,6 @@ DPreferenceWindow {
                 text: dsTr("Pause when minimized")
                 checked: config.playerPauseOnMinimized
                 onClicked: config.playerPauseOnMinimized = checked
-            }
-            DCheckBox {
-                text: dsTr("Enable hardware acceleration")
-                checked: config.playerHardwareAcceleration
-                onClicked: config.playerHardwareAcceleration = checked
-            }
-            DCheckBox {
-                text: dsTr("Accept wireless push")
-                checked: config.playerAcceptWirelessPush
-                onClicked: config.playerAcceptWirelessPush = checked
             }
             // DCheckBox {
             //     text: dsTr("Enable system popup notification")
@@ -317,34 +283,12 @@ DPreferenceWindow {
             anchors.leftMargin: 5
 
             SpinnerRow {
-                title: dsTr("Forward/Backward (s)")
+                title: dsTr("Forward/Rewind (s)")
                 min: 1.0
                 max: 30.0
                 text: config.playerForwardRewindStep
 
                 onValueChanged: config.playerForwardRewindStep = value + 0.0
-            }
-        }
-
-        SectionContent {
-            id: basic_screenshot
-            title: dsTr("Screenshot")
-            sectionId: "basic_screenshot"
-            showSep: false
-            topSpaceHeight: 10
-            bottomSpaceHeight: 10
-            anchors.left: parent.left
-            anchors.leftMargin: 5
-
-            FileInputRow {
-                title: dsTr("Save path")
-                text: config.playerScreenshotSavePath
-                transientWindow: window
-
-                onFileSet: {
-                    _settings.lastOpenedPath = path
-                    config.playerScreenshotSavePath = path
-                }
             }
         }
 
@@ -418,7 +362,7 @@ DPreferenceWindow {
                 }
             }
             HotKeyInputRow {
-                title: dsTr("Backward")
+                title: dsTr("Rewind")
                 hotKey: config.hotkeysPlayBackward+""
                 actualSettingEntry: "hotkeysPlayBackward"
 
@@ -764,7 +708,7 @@ DPreferenceWindow {
             }
 
             HotKeyInputRow {
-                title: dsTr("Open file")
+                title: dsTr("Open a file")
                 hotKey: config.hotkeysFilesOpenFile+""
                 actualSettingEntry: "hotkeysFilesOpenFile"
 
@@ -859,7 +803,7 @@ DPreferenceWindow {
             }
 
             HotKeyInputRow {
-                title: dsTr("Advance %1 (s)").arg(config.subtitleDelayStep)
+                title: dsTr("Forward %1 (s)").arg(config.subtitleDelayStep)
                 hotKey: config.hotkeysSubtitlesSubtitleForward+""
                 actualSettingEntry: "hotkeysSubtitlesSubtitleForward"
 
@@ -964,70 +908,6 @@ DPreferenceWindow {
             }
         }
         SectionContent {
-            id: keyboard_screenshot
-            title: dsTr("Screenshot")
-            sectionId: "keyboard_screenshot"
-            showSep: false
-            topSpaceHeight: 10
-            bottomSpaceHeight: 10
-            anchors.left: parent.left
-            anchors.leftMargin: 5
-
-            HotKeyInputRow {
-                title: dsTr("Screenshot")
-                hotKey: config.hotkeysScreenshotScreenshot+""
-                actualSettingEntry: "hotkeysScreenshotScreenshot"
-
-                onHotkeySet: {
-                    var checkResult = preference_view.checkShortcutsDuplication(title, text)
-                    if (checkResult != null) {
-                        warning(checkResult[0], checkResult[1])
-                        preference_view.disableShortcutInputs()
-                    } else {
-                        setShortcut(text)
-                    }
-                }
-
-                onHotkeyReplaced: {
-                    preference_view.disableShortcut(title, text)
-                    setShortcut(text)
-                    preference_view.enableShortcutInputs()
-                }
-
-                onHotkeyCancelled: {
-                    setShortcut(config.hotkeysScreenshotScreenshot)
-                    preference_view.enableShortcutInputs()
-                }
-            }
-
-            HotKeyInputRow {
-                title: dsTr("Plot burst shooting")
-                hotKey: config.hotkeysScreenshotBurstShooting+""
-                actualSettingEntry: "hotkeysScreenshotBurstShooting"
-
-                onHotkeySet: {
-                    var checkResult = preference_view.checkShortcutsDuplication(title, text)
-                    if (checkResult != null) {
-                        warning(checkResult[0], checkResult[1])
-                        preference_view.disableShortcutInputs()
-                    } else {
-                        setShortcut(text)
-                    }
-                }
-
-                onHotkeyReplaced: {
-                    preference_view.disableShortcut(title, text)
-                    setShortcut(text)
-                    preference_view.enableShortcutInputs()
-                }
-
-                onHotkeyCancelled: {
-                    setShortcut(config.hotkeysScreenshotBurstShooting)
-                    preference_view.enableShortcutInputs()
-                }
-            }
-        }
-        SectionContent {
             id: keyboard_other
             title: dsTr("Other")
             sectionId: "keyboard_other"
@@ -1093,11 +973,6 @@ DPreferenceWindow {
             sectionId: "subtitle_settings"
             topSpaceHeight: 10
             bottomSpaceHeight: 10
-
-            LabelRow {
-                visible: player.subtitle.canRender
-                title: dsTr("(The setting is invalid for effect subtitles)")
-            }
 
             DCheckBox {
                 id: subtitle_auto_load_checkbox

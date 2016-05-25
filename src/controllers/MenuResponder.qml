@@ -1,12 +1,3 @@
-/**
- * Copyright (C) 2014 Deepin Technology Co., Ltd.
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
- * (at your option) any later version.
- **/
-
 import QtQuick 2.1
 
 // After some digging you will find that this file is somehow twisted with
@@ -36,8 +27,9 @@ Connections {
     onToggleMiniMode: {
         main_controller.toggleMiniMode()
     }
-    onBasicScreenshot: screenshot_engine.start()
-    onBurstScreenshot: poster_engine.start()
+    onScreenShot: {
+        windowView.screenShot()
+    }
     onProportionChanged: main_controller.setProportion(propWidth, propHeight)
     onScaleChanged: main_controller.setScale(scale)
     onStaysOnTop: {
@@ -74,9 +66,7 @@ Connections {
     onVolumeUp: { main_controller.increaseVolume() }
     onVolumeDown: { main_controller.decreaseVolume() }
     onVolumeMuted: { main_controller.setMute(muted) }
-    onAudioChannelChanged: { main_controller.setAudioChannel(channelLayout) }
-    onAudioTrackChanged: { main_controller.setAudioTrack(id, file) }
-    onLoadAudioTrack: { main_controller.openFileForAudioTrack() }
+    onSoundChannelChanged: { main_controller.setSoundChannel(channelLayout) }
 
     onShowSubtitleSettings: { main_controller.showPreferenceWindow(); preference_window.scrollToSubtitle() }
 

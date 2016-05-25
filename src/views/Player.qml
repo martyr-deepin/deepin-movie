@@ -1,15 +1,5 @@
-/**
- * Copyright (C) 2014 Deepin Technology Co., Ltd.
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
- * (at your option) any later version.
- **/
-
 import QtQuick 2.1
-import QtAV 1.6
-import QtGraphicalEffects 1.0
+import QtAV 1.5
 
 Video {
     id: video
@@ -19,100 +9,29 @@ Video {
     abortOnTimeout: false
     visible: playbackState != MediaPlayer.StoppedState
 
-    subtitle.autoLoad: false
-    subtitleText.z: glow.z + 1
-    subtitleText.style: Text.Normal
-    subtitleText.font.bold: false
-    subtitleText.anchors.leftMargin: 20
-    subtitleText.anchors.rightMargin: 20
-    subtitleText.anchors.bottomMargin: subtitleVerticalPosition>0.5 ? subtitleVerticalPosition*height-subtitleFontSize*1.5:subtitleVerticalPosition*height+30
-    videoCodecPriority: ["VAAPI", "FFmpeg"]
+    subtitle.enabled: false
+    // videoCodecPriority: ["VAAPI", "FFmpeg"]
 
     property string sourceString: ""
     property size resolution: _getResolution()
-    property int storageSize: metaData["size"] || 0
     property bool hasMedia: hasVideo || hasAudio
     property string title: metaData.title ? metaData.title : ""
 
-    property int subtitleFontSize
-    property color subtitleFontColor
-    property string subtitleFontFamily
-    property alias subtitleFontBorderSize: glow.radius
-    property alias subtitleFontBorderColor: glow.color
-    property bool subtitleShow: true
+    property alias subtitleContent: subtitle.text
+    property alias subtitleFontSize: subtitle.fontSize
+    property alias subtitleFontColor: subtitle.fontColor
+    property alias subtitleFontFamily: subtitle.fontFamily
+    property alias subtitleFontBorderSize: subtitle.fontBorderSize
+    property alias subtitleFontBorderColor: subtitle.fontBorderColor
+    property alias subtitleShow: subtitle.visible
     property real subtitleVerticalPosition: 0.2
 
-    subtitle.enabled: subtitleShow
-    subtitleText.font.pixelSize: subtitleFontSize
-    subtitleText.color: subtitleFontColor
-    subtitleText.font.family: subtitleFontFamily
-
-    property bool verticallyFlipped: flip.axis.x == 1
-    property bool horizontallyFlipped: flip.axis.y == 1
-    property var externalAudioTracksRecord: []
-
-    property int __reopenPosition: 0
-
-    signal loadTrackError(string trackFile)
-
-    onSourceChanged: {
-        __reopenPosition = 0
-
-        externalAudio = ""
-        externalAudioTracksRecord = []
-    }
-
-    onExternalAudioTracksChanged: {
-        if (externalAudio && externalAudioTracks.length == 0) {
-            video.loadTrackError(externalAudio)
-            return
-        }
-
-        for (var i = 0; i < externalAudioTracks.length; i++) {
-            var target = externalAudioTracks[i]
-            var equalFlag = false
-
-            for (var j = 0; j < externalAudioTracksRecord.length; j++) {
-                var compareTo = externalAudioTracksRecord[j]
-                if (target.id == compareTo.id
-                    && target.file == compareTo.file) {
-                    equalFlag = true
-                    break
-                }
-            }
-
-            if (!equalFlag) {
-                externalAudioTracksRecord.push(target)
-            }
-        }
-    }
-
-    Timer {
-        id: reopen_seek_timer
-        interval: 500
-        onTriggered: seek(__reopenPosition)
-    }
+    property bool isPreview: false
 
     function reset() {
         source = ""
         sourceString = ""
-        subtitle.file = ""
         resetRotationFlip()
-    }
-
-    function _reopen() {
-        __reopenPosition = position
-        player.stop()
-        player.play()
-        reopen_seek_timer.start()
-    }
-
-    function enabledHardwareAcceleration() {
-        player.videoCodecPriority = ["VAAPI", "FFmpeg"]
-    }
-
-    function disableHardwareAcceleration() {
-        player.videoCodecPriority = ["FFmpeg"]
     }
 
     function flipHorizontal() {
@@ -183,12 +102,14 @@ Video {
         angle: 180
     }
 
-    Glow {
-        id: glow
-        anchors.fill: subtitleText
-        spread: 1
-        samples: 16
-        source: subtitleText
-        visible: radius != 0 && video.subtitleShow
+    DSubtitle {
+        id: subtitle
+
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        anchors.leftMargin: 20
+        anchors.rightMargin: 20
+        anchors.bottomMargin: parent.subtitleVerticalPosition * (parent.height - subtitle.height - 30)
     }
 }

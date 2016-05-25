@@ -1,12 +1,24 @@
-#! /usr/bin/env python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# Copyright (C) 2014 Deepin Technology Co., Ltd.
+# Copyright (C) 2011 ~ 2014 Deepin, Inc.
+#               2011 ~ 2014 Wang YaoHua
 #
-# This program is free software; you can redistribute it and/or modify
+# Author:     Wang YaoHua <mr.asianwang@gmail.com>
+# Maintainer: Wang YaoHua <mr.asianwang@gmail.com>
+#
+# This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 3 of the License, or
-# (at your option) any later version.
+# the Free Software Foundation, either version 3 of the License, or
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
 import json
@@ -14,6 +26,7 @@ from PyQt5.QtCore import QObject, pyqtSlot, pyqtSignal, pyqtProperty
 from PyQt5.QtGui import QCursor
 from deepin_menu.menu import Menu, CheckableMenuItem
 
+from views.subtitles import get_subtitle_from_movie
 from utils.config import *
 from utils.i18n import _
 from utils.utils import utils
@@ -38,19 +51,21 @@ frame_sub_menu = [
 ]
 
 sound_sub_menu = [
-    ("_audio_channel", _("Audio Channels")),
-    ("_audio_track", _("Audio Tracks")),
+    # ("_sound_channel", _("Sound Channels")),
+    # ("_sound_channel", _("Sound Tracks")),
     # ("_sound_output_mode", _("Output Mode")),
-    None,
+    # None,
     ("_sound_increase", _("Volume Up"), (), (), config.hotkeysFrameSoundIncreaseVolume),
     ("_sound_decrease", _("Volume Down"), (), (), config.hotkeysFrameSoundDecreaseVolume),
-    CheckableMenuItem("_sound_muted", _("Mute"), extra=config.hotkeysFrameSoundToggleMute)
+    CheckableMenuItem("_sound_muted", _("Muted"), extra=config.hotkeysFrameSoundToggleMute)
 ]
 
-audio_channel_sub_menu = [
-    CheckableMenuItem("audio_channel:radio:stereo", _("Stereo")),
-    CheckableMenuItem("audio_channel:radio:left", _("Left")),
-    CheckableMenuItem("audio_channel:radio:right", _("Right"))
+sound_channel_sub_menu = [
+    CheckableMenuItem("sound_channel:radio:auto", _("Auto")),
+    CheckableMenuItem("sound_channel:radio:left", _("Left")),
+    CheckableMenuItem("sound_channel:radio:right", _("Right")),
+    CheckableMenuItem("sound_channel:radio:mono", _("Mono")),
+    CheckableMenuItem("sound_channel:radio:stero", _("Stero"))
 ]
 
 subtitle_sub_menu = [
@@ -58,7 +73,7 @@ subtitle_sub_menu = [
     None,
     # ("_subtitle_online_match", "自动在线匹配"),
     # ("_subtitle_online_search", "在线查找"),
-    ("_subtitle_manual", _("Load manually")),
+    ("_subtitle_manual", _("Open manually")),
     ("_subtitle_choose", _("Subtitle selection")),
     ("_subtitle_settings", _("Subtitle setting"))
 ]
@@ -76,17 +91,12 @@ play_sub_menu = [
     ("_play_operation_next", _("Next"), (), (), config.hotkeysFilesPlayNext),
     None,
     ("_play_operation_forward", _("Forward"), (), (), config.hotkeysPlayForward),
-    ("_play_operation_backward", _("Backward"), (), (), config.hotkeysPlayBackward),
-]
-
-screenshot_sub_menu = [
-    ("_screenshot_basic_screenshot", _("Movie screenshot")),
-    ("_screenshot_burst_screenshot", _("Burst screenshot"))
+    ("_play_operation_backward", _("Rewind"), (), (), config.hotkeysPlayBackward),
 ]
 
 right_click_menu = [
-    ("_open_file", _("Open file"), (), (), config.hotkeysFilesOpenFile),
-    ("_open_dir", _("Open folder")),
+    ("_open_file", _("Open a file"), (), (), config.hotkeysFilesOpenFile),
+    ("_open_dir", _("Open a folder")),
     ("_open_url", _("Open URL")),
     None,
     ("_fullscreen_quit", _("Fullscreen"), (), (), config.hotkeysPlayToggleFullscreen),
@@ -94,13 +104,11 @@ right_click_menu = [
     CheckableMenuItem("_on_top", _("Always on top"), False),
     ("_toggle_playlist", _("Playlist"), (), (), config.hotkeysPlayTogglePlaylist),
     None,
-    ("_play_sequence", _("Play mode"), (), play_sequence_sub_menu),
+    ("_play_sequence", _("Play Sequence"), (), play_sequence_sub_menu),
     ("_play", _("Play"), (), play_sub_menu),
     ("_frame", _("Frame"), (), frame_sub_menu),
     ("_sound", _("Sound"), (), sound_sub_menu),
     ("_subtitle", _("Subtitles"), (), subtitle_sub_menu),
-    None,
-    ("_screenshot", _("Screenshot"), (), screenshot_sub_menu),
     None,
     ("_preferences", _("Settings")),
     ("_information", _("Information")),
@@ -162,37 +170,6 @@ def _subtitle_file_from_menu_item_id(id):
     return id[id.index(FILE_START_TAG) + len(FILE_START_TAG):
                                         id.index(FILE_END_TAG)]
 
-ID_FILE_SEP = "||||||"
-def _audio_track_menu_items_from_data(data):
-    items = []
-    index = 1
-
-    for _item in data:
-        _id = _item.get("id", "")
-        _file = _item.get("file", "")
-        _title = _item.get("title", "")
-        _language = _item.get("language", "")
-
-        if _title and _language:
-            _itemName = "%s-%s" % (_title, _language)
-        else:
-            _itemName = _("Audio track") + " " + str(index)
-            index += 1
-
-        items.append(CheckableMenuItem(
-            "_audio_tracks:radio:%s%s%s" % (_id, ID_FILE_SEP, _file),
-            _itemName,
-            _item["isCurrent"]))
-
-    if items: items.append(None)
-    items.append(("_load_audio_track", _("Load audio track")))
-
-    return items
-
-def _audio_track_from_menu_item_id(id):
-    id_file = id.split(":")[-1]
-    return id_file.split(ID_FILE_SEP)
-
 class MenuController(QObject):
 
     clockwiseRotate = pyqtSignal()
@@ -218,13 +195,8 @@ class MenuController(QObject):
     volumeUp = pyqtSignal()
     volumeDown = pyqtSignal()
     volumeMuted = pyqtSignal(bool, arguments=["muted"])
-    audioChannelChanged = pyqtSignal(str, arguments=["channelLayout"])
-    audioTrackChanged = pyqtSignal(str, str, arguments=["id", "file"])
-    loadAudioTrack = pyqtSignal()
+    soundChannelChanged = pyqtSignal(str, arguments=["channelLayout"])
     showSubtitleSettings = pyqtSignal()
-
-    basicScreenshot = pyqtSignal()
-    burstScreenshot = pyqtSignal()
 
     playlistPlay = pyqtSignal()
     addItemToPlaylist = pyqtSignal()
@@ -249,7 +221,7 @@ class MenuController(QObject):
     def reset(self):
         self._proportion = "proportion:radio:_p_default"
         self._scale = None
-        self._audio_channel = "audio_channel:radio:stereo"
+        self._sound_channel = "sound_channel:radio:auto"
 
     @pyqtProperty(str)
     def videoScale(self):
@@ -328,19 +300,21 @@ class MenuController(QObject):
             config.playerPlayOrderType = ORDER_TYPE_SINGLE_CYCLE
         elif _id == "mode_group:radio:playlist_cycle":
             config.playerPlayOrderType = ORDER_TYPE_PLAYLIST_CYCLE
-        elif _id == "audio_channel:radio:left":
-            self._audio_channel = "audio_channel:radio:left"
-            self.audioChannelChanged.emit("left")
-        elif _id == "audio_channel:radio:right":
-            self._audio_channel = "audio_channel:radio:right"
-            self.audioChannelChanged.emit("right")
-        elif _id == "audio_channel:radio:stereo":
-            self._audio_channel = "audio_channel:radio:stereo"
-            self.audioChannelChanged.emit("stereo")
-        elif _id.startswith("_audio_tracks:radio"):
-            self.audioTrackChanged.emit(*_audio_track_from_menu_item_id(_id))
-        elif _id == "_load_audio_track":
-            self.loadAudioTrack.emit()
+        elif _id == "sound_channel:radio:auto":
+            self._sound_channel = "sound_channel:radio:auto"
+            self.soundChannelChanged.emit("auto")
+        elif _id == "sound_channel:radio:mono":
+            self._sound_channel = "sound_channel:radio:mono"
+            self.soundChannelChanged.emit("mono")
+        elif _id == "sound_channel:radio:left":
+            self._sound_channel = "sound_channel:radio:left"
+            self.soundChannelChanged.emit("left")
+        elif _id == "sound_channel:radio:right":
+            self._sound_channel = "sound_channel:radio:right"
+            self.soundChannelChanged.emit("right")
+        elif _id == "sound_channel:radio:stero":
+            self._sound_channel = "sound_channel:radio:stero"
+            self.soundChannelChanged.emit("stero")
         elif _id == "_subtitle_hide":
             self.subtitleVisibleSet.emit(not _checked)
         elif _id == "_subtitle_manual":
@@ -361,10 +335,6 @@ class MenuController(QObject):
             self.volumeDown.emit()
         elif _id == "_sound_muted":
             self.volumeMuted.emit(_checked)
-        elif _id == "_screenshot_basic_screenshot":
-            self.basicScreenshot.emit()
-        elif _id == "_screenshot_burst_screenshot":
-            self.burstScreenshot.emit()
         elif _id == "_subtitle_settings":
             self.showSubtitleSettings.emit()
         elif _id == "_preferences":
@@ -406,7 +376,6 @@ class MenuController(QObject):
         isFullscreen = info["isFullscreen"]
         isMiniMode = info["isMiniMode"]
         isOnTop = info["isOnTop"]
-        audioTracks = info["audioTracks"]
 
         self.menu = Menu(right_click_menu)
 
@@ -454,31 +423,28 @@ class MenuController(QObject):
         self.menu.getItemById("scale:radio:_s_2").checked = \
             self._scale == "scale:radio:_s_2"
 
-        self.menu.getItemById("_audio_channel").isActive = hasVideo
-        self.menu.getItemById("_audio_channel").setSubMenu(
-            Menu(audio_channel_sub_menu))
-        self.menu.getItemById("audio_channel:radio:left").checked = \
-            self._audio_channel == "audio_channel:radio:left"
-        self.menu.getItemById("audio_channel:radio:right").checked = \
-            self._audio_channel == "audio_channel:radio:right"
-        self.menu.getItemById("audio_channel:radio:stereo").checked = \
-            self._audio_channel == "audio_channel:radio:stereo"
-
-        self.menu.getItemById("_audio_track").isActive = hasVideo
-        self.menu.getItemById("_audio_track").setSubMenu(
-            Menu(_audio_track_menu_items_from_data(audioTracks)))
-
+        # self.menu.getItemById("_sound_channel").isActive = hasVideo
+        # self.menu.getItemById("_sound_channel").setSubMenu(
+        #     Menu(sound_channel_sub_menu))
+        # self.menu.getItemById("sound_channel:radio:auto").checked = \
+        #     self._sound_channel == "sound_channel:radio:auto"
+        # self.menu.getItemById("sound_channel:radio:mono").checked = \
+        #     self._sound_channel == "sound_channel:radio:mono"
+        # self.menu.getItemById("sound_channel:radio:left").checked = \
+        #     self._sound_channel == "sound_channel:radio:left"
+        # self.menu.getItemById("sound_channel:radio:right").checked = \
+        #     self._sound_channel == "sound_channel:radio:right"
+        # self.menu.getItemById("sound_channel:radio:stero").checked = \
+        #     self._sound_channel == "sound_channel:radio:stero"
         self.menu.getItemById("_sound_muted").checked = bool(config.playerMuted)
 
         self.menu.getItemById("_subtitle_hide").checked = not subtitleVisible
-        subtitles = utils.getSubtitlesFromVideo(videoSource)
+        subtitles = get_subtitle_from_movie(videoSource)
         subtitles = _subtitle_menu_items_from_files(subtitles, subtitleFile, \
             videoSource)
         self.menu.getItemById("_subtitle_choose").isActive = \
             len(subtitles) != 0
         self.menu.getItemById("_subtitle_choose").setSubMenu(Menu(subtitles))
-
-        self.menu.getItemById("_screenshot").isActive = hasVideo
 
         self.menu.getItemById("_fullscreen_quit").text = _("Exit fullscreen") if \
             isFullscreen else _("Fullscreen")
@@ -505,9 +471,7 @@ class MenuController(QObject):
             config.playerPlayOrderType == ORDER_TYPE_PLAYLIST_CYCLE
 
         self.menu.getItemById("_playlist_play").isActive = url != ""
-        self.menu.getItemById("_playlist_remove_item").isActive = not playlistEmpty \
-            and url != ""
-        #print(playlistEmpty, url)
+        self.menu.getItemById("_playlist_remove_item").isActive = not playlistEmpty
         self.menu.getItemById("_playlist_open_position").isActive = url != "" \
             and utils.urlIsNativeFile(url)
         self.menu.getItemById("_playlist_information").isActive = url != "" \

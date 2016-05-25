@@ -1,42 +1,58 @@
-#! /usr/bin/env python
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# Copyright (C) 2014 Deepin Technology Co., Ltd.
+# Copyright (C) 2011 ~ 2012 Deepin, Inc.
+#               2011 ~ 2012 Wang Yong
 #
-# This program is free software; you can redistribute it and/or modify
+# Author:     Wang Yong <lazycat.manatee@gmail.com>
+# Maintainer: Wang Yong <lazycat.manatee@gmail.com>
+#
+# This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 3 of the License, or
-# (at your option) any later version.
+# the Free Software Foundation, either version 3 of the License, or
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
+import time
 import json
 from random import randint
 
-try:
-    from xcb.xproto import PropMode
-except ImportError:
-    from xcffib.xproto import PropMode
+import xcb
 from xpybutil.icccm import State
 from xpybutil.ewmh import (c, atom, request_wm_state_checked,
     request_active_window_checked, revent_checked )
 
-from PyQt5.QtCore import Qt, QSize, QPoint
+from PyQt5.QtCore import Qt, QSize
 from PyQt5.QtQuick import QQuickView
-from PyQt5.QtCore import pyqtSlot, pyqtProperty, pyqtSignal
-from PyQt5.QtGui import QSurfaceFormat, QColor, QCursor
+from PyQt5.QtCore import pyqtSlot, pyqtProperty, pyqtSignal, QDir
+from PyQt5.QtGui import QSurfaceFormat, QColor, QPixmap, QIcon, QCursor
+from utils.dbus_interfaces import notificationsInterface
 from utils.constants import (DEFAULT_WIDTH, DEFAULT_HEIGHT, WINDOW_GLOW_RADIUS,
     MINIMIZE_WIDTH, MINIMIZE_HEIGHT)
 from utils.i18n import _
-from utils.pic_utils import icon_from_theme
 
+HOME_DIR = os.path.expanduser("~")
+def icon_from_theme(theme_name, icon_name):
+    QIcon.setThemeSearchPaths([os.path.join(HOME_DIR, ".icons"),
+        os.path.join(HOME_DIR, ".local/share/icons"),
+        "/usr/local/share/icons",
+        "/usr/share/icons",
+        ":/icons"])
+    QIcon.setThemeName(theme_name)
+    return QIcon.fromTheme(icon_name)
 
 class Window(QQuickView):
 
     staysOnTopChanged = pyqtSignal()
     centerRequestCountChanged = pyqtSignal()
-
-    windowPressed = pyqtSignal(int, int, arguments=["x", "y"])
-    windowReleased = pyqtSignal(int, int, arguments=["x", "y"])
 
     def __init__(self, center=False):
         QQuickView.__init__(self)
@@ -109,7 +125,7 @@ class Window(QQuickView):
     def setDeepinWindowShadowHint(self, width):
         width = str(width)
         window = self.winId().__int__()
-        return c.core.ChangeProperty(PropMode.Replace, window,
+        return c.core.ChangeProperty(xcb.xproto.PropMode.Replace, window,
                                      atom('DEEPIN_WINDOW_SHADOW'),
                                      atom('STRING'), 8, len(width), width)
 
@@ -178,10 +194,13 @@ class Window(QQuickView):
     def focusWindowChangedSlot(self, win):
         if not win: self.rootObject().hideTransientWindows()
 
-    def mousePressEvent(self, mouseEvent):
-        self.windowPressed.emit(mouseEvent.x(), mouseEvent.y())
-        super(Window, self).mousePressEvent(mouseEvent)
+    @pyqtSlot()
+    def screenShot(self):
+        self.rootObject().hideControls()
 
-    def mouseReleaseEvent(self, mouseEvent):
-        self.windowReleased.emit(mouseEvent.x(), mouseEvent.y())
-        super(Window, self).mouseReleaseEvent(mouseEvent)
+        name = "%s-%s" % (self.title(), time.strftime("%y-%m-%d-%H-%M-%S", time.localtime()))
+        path = QDir.homePath() +"/%s.jpg" % name
+        p = QPixmap.fromImage(self.grabWindow())
+        p.save(path, "jpg")
+
+        notificationsInterface.notify(u"截图成功", u"文件已保存到%s" % path)
