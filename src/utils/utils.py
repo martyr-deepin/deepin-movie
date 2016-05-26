@@ -37,17 +37,17 @@ import font_utils
 from views.subtitles import *
 from dbus_interfaces import screenSaverInterface
 
-all_supported_video_exts = [ "*.3g2","*.3gp","*.3gp2","*.3gpp","*.amv",
-                            "*.asf","*.avi","*.bin","*.divx","*.drc",
-                            "*.dv","*.f4v","*.flv","*.gvi","*.gxf","*.iso",
-                            "*.m1v","*.m2v","*.m2t","*.m2ts","*.m4v","*.mkv",
-                            "*.mov","*.mp2","*.mp2v","*.mp4","*.mp4v","*.mpe",
-                            "*.mpeg","*.mpeg1","*.mpeg2","*.mpeg4","*.mpg",
-                            "*.mpv2","*.mts","*.mtv","*.mxf","*.mxg","*.nsv",
-                            "*.nuv","*.ogg","*.ogm","*.ogv","*.ogx","*.ps",
-                            "*.rec","*.rm","*.rmvb","*.tod","*.ts","*.tts",
-                            "*.vob","*.vro","*.webm","*.wm","*.wmv","*.wtv",
-                            "*.xesc"]
+all_supported_video_exts = ["3g2","3gp","3gp2","3gpp","amv",
+                            "asf","avi","bin","divx","drc",
+                            "dv","f4v","flv","gvi","gxf","iso",
+                            "m1v","m2v","m2t","m2ts","m4v","mkv",
+                            "mov","mp2","mp2v","mp4","mp4v","mpe",
+                            "mpeg","mpeg1","mpeg2","mpeg4","mpg",
+                            "mpv2","mts","mtv","mxf","mxg","nsv",
+                            "nuv","ogg","ogm","ogv","ogx","ps",
+                            "rec","rm","rmvb","tod","ts","tts",
+                            "vob","vro","webm","wm","wmv","wtv",
+                            "xesc"]
 
 all_supported_mime_types = []
 sep_chars = ("-", "_", ".", " ")
@@ -121,7 +121,17 @@ class FindVideoThread(QThread):
 
     def __init__(self, pathList, findSerie):
         super(FindVideoThread, self).__init__()
-        self._pathList = pathList
+        # Urgent workaround: API changes in Qt5.4
+        try:
+            # pathList is QJSValue type
+            self._pathList = pathList.toVariant()
+        except:
+            try:
+                # pathList is list type
+                self._pathList = pathList
+            except:
+                self._pathList = []
+
         self._findSerie = findSerie
 
         self._first_video = None

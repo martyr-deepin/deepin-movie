@@ -4,6 +4,8 @@ import Deepin.Widgets 1.0
 
 DComboBox {
     id: root
+
+    DConstants { id: dconstants }
     delegate: Component {
         Item {
             height: 26
@@ -20,7 +22,7 @@ DComboBox {
             DssH2 {
                 id: label
                 text: root.value["label"]
-                color: DConstants.fgColor
+                color: dconstants.fgColor
 
                 anchors.left: color_block.right
                 anchors.leftMargin: 6
@@ -60,7 +62,7 @@ DComboBox {
             DssH2 {
                 id: label
                 text: parent.value["label"]
-                color: itemOnHover ? DConstants.activeColor : DConstants.fgColor
+                color: itemOnHover ? dconstants.activeColor : dconstants.fgColor
 
                 anchors.left: color_block.right
                 anchors.leftMargin: 6
