@@ -22,7 +22,7 @@
 
 import os
 import pickle
-from deepin_utils import config
+import misc
 from constants import CONFIG_DIR
 from PyQt5.QtCore import pyqtSlot, pyqtProperty, pyqtSignal, QObject
 from ConfigParser import ConfigParser
@@ -137,9 +137,9 @@ class Config(QObject):
                 self._initContent(initMode=Config.LoadDefault)
 
     def _initContent(self, initMode=LoadDefault):
-        self.config = config.Config(self.config_path)
+        self.config = misc.Config(self.config_path)
         self.config.config_parser.optionxform=str
-        self.backup = config.Config(self.backup_path)
+        self.backup = misc.Config(self.backup_path)
         self.backup.config_parser = self.config.config_parser
         if initMode == Config.LoadDefault:
             self.config.default_config = self._getConfigDefaults()

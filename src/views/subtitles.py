@@ -29,7 +29,7 @@ import pysrt
 import tempfile
 from datetime import timedelta
 from chardet.universaldetector import UniversalDetector
-from deepin_utils.process import get_command_output_first_line
+from utils.misc import get_command_output_first_line
 
 from PyQt5.QtCore import QObject, pyqtProperty, pyqtSlot, pyqtSignal
 
