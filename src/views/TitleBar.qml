@@ -224,11 +224,8 @@ DragableArea {
             }
         }
 
-        // the -1 operation is all because that there's only 28x24 pics while
-        // they demanding the 27 spacing.
         Row {
             id: windowButtonArea
-            spacing: -1
             anchors.top: parent.top
             anchors.right: parent.right
             anchors.topMargin: 5
@@ -236,14 +233,18 @@ DragableArea {
 
             ImageButton {
                 id: menuButton
-                normal_image: "image/window_menu_normal.png"
-                hover_image: "image/window_menu_hover.png"
-                press_image: "image/window_menu_press.png"
+                width: 27
+                height: 23
+                normal_image: "image/window_option_normal.png"
+                hover_image: "image/window_option_hover.png"
+                press_image: "image/window_option_press.png"
                 onClicked: { titlebar.menuButtonClicked() }
             }
 
             ImageButton {
                 id: minButton
+                width: 27
+                height: 23
                 normal_image: "image/window_min_normal.png"
                 hover_image: "image/window_min_hover.png"
                 press_image: "image/window_min_press.png"
@@ -252,6 +253,8 @@ DragableArea {
 
             ImageButton {
                 id: maxButton
+                width: 27
+                height: 23
                 normal_image: windowNormalState ? "image/window_max_normal.png" : "image/window_unmax_normal.png"
                 hover_image: windowNormalState ? "image/window_max_hover.png" : "image/window_unmax_hover.png"
                 press_image: windowNormalState ? "image/window_max_press.png" : "image/window_unmax_press.png"
@@ -260,6 +263,8 @@ DragableArea {
 
             ImageButton {
                 id: closeButton
+                width: 27
+                height: 23
                 normal_image: "image/window_close_normal.png"
                 hover_image: "image/window_close_hover.png"
                 press_image: "image/window_close_press.png"
