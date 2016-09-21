@@ -190,7 +190,9 @@ class Window(QQuickView):
     def setCursorVisible(self, visible):
         self.setCursor(QCursor(Qt.ArrowCursor if visible else Qt.BlankCursor))
 
-    @pyqtSlot("QVariant")
+    # no need to add this annotation on Qt 5.6 any more, and it causes
+    # the application to crash.
+    # @pyqtSlot("QVariant")
     def focusWindowChangedSlot(self, win):
         if not win: self.rootObject().hideTransientWindows()
 
