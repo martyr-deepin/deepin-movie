@@ -16,9 +16,9 @@ SectionContent {
     }
 
     DIcon {
-    	width: 64
-    	height: 64
-    	theme: "Deepin"
+        width: 64
+        height: 64
+        theme: "Deepin"
         icon: "deepin-movie"
 
         anchors.horizontalCenter: parent.horizontalCenter
@@ -32,6 +32,13 @@ SectionContent {
     DLinkText {
         text: "www.deepin.org"
         refLink: "http://www.deepin.org"
+        font.pixelSize: 10
+        anchors.horizontalCenter: parent.horizontalCenter
+    }
+
+    DLinkText {
+        text: dsTr("Acknowledgements")
+        refLink: "https://www.deepin.org/acknowledgments/deepin-movie"
         font.pixelSize: 10
         anchors.horizontalCenter: parent.horizontalCenter
     }
