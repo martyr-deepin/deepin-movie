@@ -134,7 +134,7 @@ class FindVideoThread(QThread):
 
         self._findSerie = findSerie
 
-        self._first_video = None
+        self._first_video = ""
         self._valid_files_count = 0
         self._invalid_files_count = 0
 
