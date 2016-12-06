@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Vasilii Rusu <basil_russu@hotmail.com>, 2014
+# Vasilii Rusu <basil_russu@hotmail.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-11 11:21+0800\n"
-"PO-Revision-Date: 2015-05-11 09:07+0000\n"
+"PO-Revision-Date: 2016-12-06 01:36+0000\n"
 "Last-Translator: deepin_transifex <xiabin@linuxdeepin.com>\n"
-"Language-Team: Romanian (http://www.transifex.com/projects/p/deepin-movie/language/ro/)\n"
+"Language-Team: Romanian (http://www.transifex.com/linuxdeepin/deepin-movie/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,6 +21,10 @@ msgstr ""
 #: ../src/views/AboutSection.qml:6 ../src/views/PreferenceWindow.qml:129
 msgid "About"
 msgstr "Despre"
+
+#: ../src/views/AboutSection.qml:15
+msgid "Acknowledgements"
+msgstr ""
 
 #: ../src/views/AboutSection.qml:13 ../src/views/TitleBar.qml:70
 #: ../src/views/TitleBar.qml:142 ../src/views/window.py:71
@@ -41,11 +45,11 @@ msgid ""
 "Deepin Movie is a well-designed and full-featured video player with simple "
 "borderless design. It supports local and streaming media play with multiple "
 "video formats."
-msgstr "Film Deepin este un player video bine construit şi complet echipat, cu un design simplu fără margini. Suportă redarea media locală şi în flux online cu multiple formate video."
+msgstr "Player-ul video Deepin este un player video bine gândit, cu un design simplu fără margini împrejur. Suportă redarea fişierelor media atât locale cât  şi cele on-line  de diferite formate video."
 
 #: ../src/views/AboutSection.qml:69
 msgid "Deepin Movie is released under GPLv3."
-msgstr "Film Deepin este lansat sub GPLv3"
+msgstr "Player-ul video Deepin este realizat sub licenţa GPLv3"
 
 #: ../src/views/ControlBar.qml:229
 msgid "Stop playing"
@@ -62,7 +66,7 @@ msgstr "Pauză"
 #: ../src/views/ControlBar.qml:266 ../src/controllers/menu_controller.py:108
 #: ../src/controllers/menu_controller.py:119
 msgid "Play"
-msgstr "Redă"
+msgstr "Redare"
 
 #: ../src/views/ControlBar.qml:283 ../src/controllers/menu_controller.py:91
 msgid "Next"
@@ -103,11 +107,11 @@ msgstr "Nici un"
 
 #: ../src/views/HotKeyInput.qml:23
 msgid "Please input a new shortcut"
-msgstr "Introduceți o comanda rapidă nouă"
+msgstr "Introduceți o nouă comandă rapidă "
 
 #: ../src/views/HotKeyInputRow.qml:30
 msgid "The shortcut you set "
-msgstr "Comandă rapidă introdusă"
+msgstr "Comandă rapidă setată"
 
 #: ../src/views/HotKeyInputRow.qml:31
 #, qt-format
@@ -124,7 +128,7 @@ msgstr "Anulare"
 
 #: ../src/views/HotKeyInputRow.qml:110
 msgid "Replace"
-msgstr "Înlocuiește"
+msgstr "Înlocuire"
 
 #: ../src/views/InformationWindow.qml:23 ../src/views/InformationWindow.qml:24
 #: ../src/views/InformationWindow.qml:25 ../src/models/movie_info.py:78
@@ -145,7 +149,7 @@ msgstr "Rezoluția"
 
 #: ../src/views/InformationWindow.qml:107
 msgid "Movie duration"
-msgstr "Durata fișierului video"
+msgstr "Durata video"
 
 #: ../src/views/InformationWindow.qml:117
 msgid "File path"
@@ -161,12 +165,12 @@ msgstr "Închide"
 
 #: ../src/views/MainController.qml:260
 msgid "Invalid file"
-msgstr "Fișier invalid"
+msgstr "Fișier nevalabil"
 
 #: ../src/views/MainController.qml:37
 #, qt-format
 msgid "%1 files unable to be parsed have been excluded"
-msgstr "%1 Imposibil de a analiza  fișiere, ultimele fiind excluse"
+msgstr "%1 fişiere imposibil de a le analiza, ultimele fiind excluse"
 
 #: ../src/views/MainController.qml:50
 msgid "Imported"
@@ -210,12 +214,12 @@ msgstr "Mut:"
 #: ../src/views/MainController.qml:683 ../src/views/MainController.qml:696
 #, qt-format
 msgid "Subtitle advanced %1 seconds"
-msgstr ""
+msgstr "Subtitrare, avansat, %1 secunde"
 
 #: ../src/views/MainController.qml:685 ../src/views/MainController.qml:698
 #, qt-format
 msgid "Subtitle delayed %1 seconds"
-msgstr ""
+msgstr "Stopare subtitrare %1 secunde"
 
 #: ../src/views/OpenFileDialog.qml:5 ../src/views/OpenFileDialog.qml:21
 #: ../src/views/OpenFileDialog.qml:41
@@ -229,19 +233,19 @@ msgstr "Fișiere video"
 
 #: ../src/views/OpenFileDialog.qml:15
 msgid "All files"
-msgstr "Toate fișiere"
+msgstr "Toate fișierele"
 
 #: ../src/views/OpenFileDialog.qml:31 ../src/views/OpenFileDialog.qml:51
 msgid "Please choose one file"
-msgstr "Alege un fișier"
+msgstr "Alegeţi un fișier"
 
 #: ../src/views/OpenFileDialog.qml:33
 msgid "Subtitle files"
-msgstr "Fișiere cu subtitrări"
+msgstr "Fișiere subtitrările"
 
 #: ../src/views/OpenFileDialog.qml:53 ../src/views/OpenFileDialog.qml:63
 msgid "Playlist files"
-msgstr "Fișiere cu liste de redare"
+msgstr "Fișierele din listele de redare"
 
 #: ../src/views/OpenFileDialog.qml:61
 msgid "Save as"
@@ -249,7 +253,7 @@ msgstr "Salvare ca"
 
 #: ../src/views/OpenFolderDialog.qml:5
 msgid "Please choose a folder"
-msgstr "Selectați folder"
+msgstr "Selectați directorul"
 
 #: ../src/views/Playlist.qml:252
 msgid "Play mode"
@@ -282,7 +286,7 @@ msgstr "Funcție de previzualizare pe bară de progres"
 
 #: ../src/views/PreferenceWindow.qml:286
 msgid "Forward/Rewind (s)"
-msgstr ""
+msgstr "Înainte / Înapoi (mai multe operaţiuni)"
 
 #: ../src/views/PreferenceWindow.qml:308 ../src/views/PreferenceWindow.qml:532
 #: ../src/views/PreferenceWindow.qml:705 ../src/views/PreferenceWindow.qml:800
@@ -322,21 +326,21 @@ msgstr "Micşorarea volumului"
 
 #: ../src/views/PreferenceWindow.qml:737 ../src/views/ShortcutsViewer.qml:87
 msgid "Open previous"
-msgstr "Deschide precedentul"
+msgstr "Deschide precedent"
 
 #: ../src/views/PreferenceWindow.qml:763 ../src/views/ShortcutsViewer.qml:91
 msgid "Open next"
-msgstr "Deschide următorul"
+msgstr "Deschide următor"
 
 #: ../src/views/PreferenceWindow.qml:806 ../src/views/ShortcutsViewer.qml:153
 #, qt-format
 msgid "Forward %1 (s)"
-msgstr ""
+msgstr "Înainte %1  (s)"
 
 #: ../src/views/PreferenceWindow.qml:832 ../src/views/ShortcutsViewer.qml:157
 #, qt-format
 msgid "Delay %1 (s)"
-msgstr ""
+msgstr "Amânare %1 (s)"
 
 #: ../src/views/PreferenceWindow.qml:858 ../src/views/ShortcutsViewer.qml:161
 msgid "Subtitle up"
@@ -364,7 +368,7 @@ msgstr "Lățimea marginii"
 
 #: ../src/views/PreferenceWindow.qml:21
 msgid "Orange"
-msgstr ""
+msgstr "Orange"
 
 #: ../src/views/PreferenceWindow.qml:76 ../src/views/PreferenceWindow.qml:92
 #: ../src/views/PreferenceWindow.qml:217 ../src/views/PreferenceWindow.qml:299
@@ -415,7 +419,7 @@ msgstr " Galben Verde"
 
 #: ../src/views/PreferenceWindow.qml:20
 msgid "Energy yellow"
-msgstr "Galben energic"
+msgstr "Galben "
 
 #: ../src/views/PreferenceWindow.qml:22
 msgid "Radical red"
@@ -427,7 +431,7 @@ msgstr "Lavender indigo"
 
 #: ../src/views/PreferenceWindow.qml:24
 msgid "Royal blue"
-msgstr "Albastru Regal"
+msgstr "Albastru Curat"
 
 #: ../src/views/PreferenceWindow.qml:25
 msgid "Aluminum"
@@ -455,11 +459,11 @@ msgstr "Setări subtitluri"
 
 #: ../src/views/PreferenceWindow.qml:148
 msgid "Reset shortcuts"
-msgstr ""
+msgstr "Resetare comenzi rapide"
 
 #: ../src/views/PreferenceWindow.qml:152
 msgid "Reset subtitle settings"
-msgstr ""
+msgstr "Resetare setări subtitluri"
 
 #: ../src/views/PreferenceWindow.qml:226
 msgid "Fullscreen on opening file"
@@ -471,7 +475,7 @@ msgstr "Aplică mărimea utilizată anterior"
 
 #: ../src/views/PreferenceWindow.qml:258
 msgid "Allow multiple instances"
-msgstr "Permite  exemple multiple"
+msgstr "Permite  multiple setări"
 
 #: ../src/views/PreferenceWindow.qml:263
 msgid "Pause when minimized"
@@ -500,7 +504,7 @@ msgstr "Volum"
 
 #: ../src/views/PreferenceWindow.qml:993
 msgid "Font"
-msgstr "Font"
+msgstr "Fontul"
 
 #: ../src/views/PreferenceWindow.qml:1053
 msgid "Font color"
@@ -508,7 +512,7 @@ msgstr "Culoarea fontului"
 
 #: ../src/views/PreferenceWindow.qml:1071
 msgid "Size"
-msgstr "Mărime"
+msgstr "Dimensiune"
 
 #: ../src/views/PreferenceWindow.qml:1105
 msgid "Border color"
@@ -528,7 +532,7 @@ msgstr "Sus"
 
 #: ../src/views/PreferenceWindow.qml:1140
 msgid "Sync adjustment (s)"
-msgstr ""
+msgstr "Ajustare (tările) sincronizată"
 
 #: ../src/views/TitleBar.qml:173
 msgid "Shown in a proportion of 1:1"
@@ -544,15 +548,15 @@ msgstr "Înapoi la fereastra minimizată"
 
 #: ../src/views/TitleBar.qml:198
 msgid "Shown in fullscreen"
-msgstr "Ecran complet"
+msgstr "Arată pe ecran complet"
 
 #: ../src/views/TitleBar.qml:213
 msgid "Cancel \"On Top\""
-msgstr "Anulare ”În Sus”"
+msgstr "Anulare ”Sus”"
 
 #: ../src/views/TitleBar.qml:213
 msgid "On Top"
-msgstr "În Sus"
+msgstr "Sus"
 
 #: ../src/views/main.qml:142
 msgid "Please input the url of file played"
@@ -568,11 +572,11 @@ msgstr "Proces de analiză eșuat"
 
 #: ../src/views/main.qml:458 ../src/views/main.qml:459
 msgid "Buffering..."
-msgstr ""
+msgstr "Buferizare..."
 
 #: ../src/controllers/menu_controller.py:35
 msgid "Default"
-msgstr "Prestabilit"
+msgstr "Implicit"
 
 #: ../src/controllers/menu_controller.py:47
 msgid "Rotate 90 degree clockwise"
@@ -588,7 +592,7 @@ msgstr "Inversare orizontală"
 
 #: ../src/controllers/menu_controller.py:50
 msgid "Flip vertically"
-msgstr "click  vertical"
+msgstr "Inversare verticală"
 
 #: ../src/controllers/menu_controller.py:58
 msgid "Volume Up"
@@ -616,7 +620,7 @@ msgstr "Mono"
 
 #: ../src/controllers/menu_controller.py:68
 msgid "Stero"
-msgstr "Stero"
+msgstr "Stereo"
 
 #: ../src/controllers/menu_controller.py:72
 msgid "Hide subtitle"
@@ -628,7 +632,7 @@ msgstr "Deschide manual"
 
 #: ../src/controllers/menu_controller.py:77
 msgid "Subtitle selection"
-msgstr "Secțiunea subtitluri"
+msgstr "Selecţie subtitluri"
 
 #: ../src/controllers/menu_controller.py:78
 msgid "Subtitle setting"
@@ -680,7 +684,7 @@ msgstr "Sunet"
 
 #: ../src/controllers/menu_controller.py:113
 msgid "Settings"
-msgstr "Setari"
+msgstr "Setări"
 
 #: ../src/controllers/menu_controller.py:114
 #: ../src/controllers/menu_controller.py:132
@@ -689,12 +693,12 @@ msgstr "Informație"
 
 #: ../src/controllers/menu_controller.py:115
 msgid "Help"
-msgstr ""
+msgstr "Ajutor"
 
 #: ../src/controllers/menu_controller.py:121
 #: ../src/controllers/menu_controller.py:137
 msgid "Add folder"
-msgstr "Adaugă folder"
+msgstr "Adaugă director"
 
 #: ../src/controllers/menu_controller.py:123
 msgid "Remove from playlist"
@@ -702,7 +706,7 @@ msgstr "Scoate de pe lista de redare"
 
 #: ../src/controllers/menu_controller.py:124
 msgid "Remove invalid file"
-msgstr "Scoatere fișier invalid"
+msgstr "Scoatere fișier nevalabil"
 
 #: ../src/controllers/menu_controller.py:125
 msgid "Export"

@@ -4,17 +4,18 @@
 # 
 # Translators:
 # Automatically generated, 2014
-# cxbii <chenxiangbang@linuxdeepin.com>, 2015
+# cxbii <mycxbii@gmail.com>, 2015
 # Catherinelin <linhongxia@linuxdeepin.com>, 2015
-# szd_liufei <liufei@linuxdeepin.com>, 2014
+# szd_liufei <liufei@deepin.com>, 2014-2016
+# hualet <mr.asianwang@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-11 11:21+0800\n"
-"PO-Revision-Date: 2015-05-12 02:56+0000\n"
-"Last-Translator: Catherinelin <linhongxia@linuxdeepin.com>\n"
-"Language-Team: Chinese (China) (http://www.transifex.com/projects/p/deepin-movie/language/zh_CN/)\n"
+"PO-Revision-Date: 2016-12-06 01:41+0000\n"
+"Last-Translator: hualet <mr.asianwang@gmail.com>\n"
+"Language-Team: Chinese (China) (http://www.transifex.com/linuxdeepin/deepin-movie/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,6 +25,10 @@ msgstr ""
 #: ../src/views/AboutSection.qml:6 ../src/views/PreferenceWindow.qml:129
 msgid "About"
 msgstr "关于"
+
+#: ../src/views/AboutSection.qml:15
+msgid "Acknowledgements"
+msgstr "鸣谢"
 
 #: ../src/views/AboutSection.qml:13 ../src/views/TitleBar.qml:70
 #: ../src/views/TitleBar.qml:142 ../src/views/window.py:71
@@ -189,7 +194,7 @@ msgstr "快进"
 #: ../src/views/ShortcutsViewer.qml:54
 #: ../src/controllers/menu_controller.py:94
 msgid "Rewind"
-msgstr "快退"
+msgstr "后退"
 
 #: ../src/views/MainController.qml:515 ../src/views/MainController.qml:521
 #, qt-format

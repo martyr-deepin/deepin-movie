@@ -4,15 +4,15 @@
 # 
 # Translators:
 # Rubén <feiticeiro2010@hotmail.es>, 2015
-# Xurxo Guerra Perez <xguerrap@gmail.com>, 2015
+# Xurxo Guerra Perez <xguerrap@gmail.com>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-11 11:21+0800\n"
-"PO-Revision-Date: 2015-05-11 09:07+0000\n"
+"PO-Revision-Date: 2016-12-06 01:36+0000\n"
 "Last-Translator: deepin_transifex <xiabin@linuxdeepin.com>\n"
-"Language-Team: Galician (Spain) (http://www.transifex.com/projects/p/deepin-movie/language/gl_ES/)\n"
+"Language-Team: Galician (Spain) (http://www.transifex.com/linuxdeepin/deepin-movie/language/gl_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,10 +23,14 @@ msgstr ""
 msgid "About"
 msgstr "Sobre"
 
+#: ../src/views/AboutSection.qml:15
+msgid "Acknowledgements"
+msgstr ""
+
 #: ../src/views/AboutSection.qml:13 ../src/views/TitleBar.qml:70
 #: ../src/views/TitleBar.qml:142 ../src/views/window.py:71
 msgid "Deepin Movie"
-msgstr "Filmes Deepin"
+msgstr "Filmes"
 
 #: ../src/views/AboutSection.qml:28
 msgid "Version"
@@ -42,11 +46,11 @@ msgid ""
 "Deepin Movie is a well-designed and full-featured video player with simple "
 "borderless design. It supports local and streaming media play with multiple "
 "video formats."
-msgstr "Deepin Movie é un reprodutor de vídeo ben deseñado e con tódalas funcións cun sinxelo deseño sen bordos. É compatible coa reprodución de medios locais e transferibles con múltiples formatos de vídeo."
+msgstr "Filmes é un reprodutor de vídeo cun bo deseño e cheo de funcións, cun deseño de bordos sinxelos. É compatible con todo tipo de formatos de vídeo tanto de medios locais como de transmisión remota."
 
 #: ../src/views/AboutSection.qml:69
 msgid "Deepin Movie is released under GPLv3."
-msgstr "Deepin Movie distribuese baixo licenza GPLv3."
+msgstr "Filmes distribúese baixo licenza GPLv3."
 
 #: ../src/views/ControlBar.qml:229
 msgid "Stop playing"
@@ -91,7 +95,7 @@ msgstr "Abrir ficheiro"
 #: ../src/views/PreferenceWindow.qml:417 ../src/views/ShortcutsViewer.qml:62
 #: ../src/controllers/menu_controller.py:105
 msgid "Playlist"
-msgstr "Listaxe de reprodución"
+msgstr "Lista de reprodución"
 
 #: ../src/views/HotKeyInput.qml:7 ../src/views/HotKeyInput.qml:16
 #: ../src/views/HotKeyInputRow.qml:24 ../src/views/HotKeyInputRow.qml:26
@@ -113,7 +117,7 @@ msgstr "O atallo que se establece"
 #: ../src/views/HotKeyInputRow.qml:31
 #, qt-format
 msgid "conflicts with the one used for \"%2\" in the \"%1\" category. "
-msgstr "conflictos co que se usa para \"%2\" na categoría \"%1\"."
+msgstr "conflitos co empregado para \"%2\" na categoría \"%1\"."
 
 #: ../src/views/HotKeyInputRow.qml:32
 msgid "Do you want to replace it?"
@@ -167,7 +171,7 @@ msgstr "O ficheiro non é válido"
 #: ../src/views/MainController.qml:37
 #, qt-format
 msgid "%1 files unable to be parsed have been excluded"
-msgstr "%1 ficheiros imposibles de analizar foron excluídos"
+msgstr "excluíronse %1 ficheiros imposibles de analizar"
 
 #: ../src/views/MainController.qml:50
 msgid "Imported"
@@ -211,12 +215,12 @@ msgstr "Silenciar"
 #: ../src/views/MainController.qml:683 ../src/views/MainController.qml:696
 #, qt-format
 msgid "Subtitle advanced %1 seconds"
-msgstr ""
+msgstr "Avanzar subtítulos %1 segundos"
 
 #: ../src/views/MainController.qml:685 ../src/views/MainController.qml:698
 #, qt-format
 msgid "Subtitle delayed %1 seconds"
-msgstr ""
+msgstr "Atrasar subtítulos %1 segundos"
 
 #: ../src/views/OpenFileDialog.qml:5 ../src/views/OpenFileDialog.qml:21
 #: ../src/views/OpenFileDialog.qml:41
@@ -242,7 +246,7 @@ msgstr "Ficheiros de subtítulos"
 
 #: ../src/views/OpenFileDialog.qml:53 ../src/views/OpenFileDialog.qml:63
 msgid "Playlist files"
-msgstr "Ficheiros de listas de reprodución."
+msgstr "Ficheiros de listas de reprodución"
 
 #: ../src/views/OpenFileDialog.qml:61
 msgid "Save as"
@@ -283,7 +287,7 @@ msgstr "Amosar vista preliminar cando se pase por enriba da barra de progreso"
 
 #: ../src/views/PreferenceWindow.qml:286
 msgid "Forward/Rewind (s)"
-msgstr ""
+msgstr "Adiantar/Atrasar (seg)"
 
 #: ../src/views/PreferenceWindow.qml:308 ../src/views/PreferenceWindow.qml:532
 #: ../src/views/PreferenceWindow.qml:705 ../src/views/PreferenceWindow.qml:800
@@ -332,12 +336,12 @@ msgstr "Abrir seguinte"
 #: ../src/views/PreferenceWindow.qml:806 ../src/views/ShortcutsViewer.qml:153
 #, qt-format
 msgid "Forward %1 (s)"
-msgstr ""
+msgstr "Adiantar %1 (seg)"
 
 #: ../src/views/PreferenceWindow.qml:832 ../src/views/ShortcutsViewer.qml:157
 #, qt-format
 msgid "Delay %1 (s)"
-msgstr ""
+msgstr "Atrasar %1 (seg)"
 
 #: ../src/views/PreferenceWindow.qml:858 ../src/views/ShortcutsViewer.qml:161
 msgid "Subtitle up"
@@ -365,7 +369,7 @@ msgstr "Ancho do bordo"
 
 #: ../src/views/PreferenceWindow.qml:21
 msgid "Orange"
-msgstr ""
+msgstr "Laranxa"
 
 #: ../src/views/PreferenceWindow.qml:76 ../src/views/PreferenceWindow.qml:92
 #: ../src/views/PreferenceWindow.qml:217 ../src/views/PreferenceWindow.qml:299
@@ -456,15 +460,15 @@ msgstr "Configuración dos subtítulos"
 
 #: ../src/views/PreferenceWindow.qml:148
 msgid "Reset shortcuts"
-msgstr ""
+msgstr "Restabelecer atallos"
 
 #: ../src/views/PreferenceWindow.qml:152
 msgid "Reset subtitle settings"
-msgstr ""
+msgstr "Restabelecer os axustes dos subtítulos"
 
 #: ../src/views/PreferenceWindow.qml:226
 msgid "Fullscreen on opening file"
-msgstr "Pantalla completa no ficheiro aberto"
+msgstr "Pantalla completa ao abrir o ficheiro"
 
 #: ../src/views/PreferenceWindow.qml:232
 msgid "Apply the size last time closed"
@@ -476,7 +480,7 @@ msgstr "Permitir múltiples instancias"
 
 #: ../src/views/PreferenceWindow.qml:263
 msgid "Pause when minimized"
-msgstr "Pausa cando se minimiza"
+msgstr "Pausar cando está minimizado"
 
 #: ../src/views/PreferenceWindow.qml:564 ../src/views/ShortcutsViewer.qml:108
 msgid "Rotate counterclockwise"
@@ -501,7 +505,7 @@ msgstr "Volume"
 
 #: ../src/views/PreferenceWindow.qml:993
 msgid "Font"
-msgstr ""
+msgstr "Fonte"
 
 #: ../src/views/PreferenceWindow.qml:1053
 msgid "Font color"
@@ -529,7 +533,7 @@ msgstr "Arriba"
 
 #: ../src/views/PreferenceWindow.qml:1140
 msgid "Sync adjustment (s)"
-msgstr ""
+msgstr "Axustes da sincronización (seg)"
 
 #: ../src/views/TitleBar.qml:173
 msgid "Shown in a proportion of 1:1"
@@ -537,11 +541,11 @@ msgstr "Amosado en proporción 1:1"
 
 #: ../src/views/TitleBar.qml:185
 msgid "Shown in 1.5 times"
-msgstr "Acelerado por 1.5"
+msgstr "Acelerado 1.5 veces"
 
 #: ../src/views/TitleBar.qml:198
 msgid "Return to mini mode"
-msgstr "Volver ao modo miniatura"
+msgstr "Volver ao modo reducido"
 
 #: ../src/views/TitleBar.qml:198
 msgid "Shown in fullscreen"
@@ -557,7 +561,7 @@ msgstr "Sempre Visible"
 
 #: ../src/views/main.qml:142
 msgid "Please input the url of file played"
-msgstr "Por favor, introduza o url do ficheiro reproducido"
+msgstr "Por favor, introduce o url do ficheiro reproducido"
 
 #: ../src/views/main.qml:143
 msgid "Confirm"
@@ -569,7 +573,7 @@ msgstr "A análise fallou"
 
 #: ../src/views/main.qml:458 ../src/views/main.qml:459
 msgid "Buffering..."
-msgstr ""
+msgstr "Enviando ao buffer..."
 
 #: ../src/controllers/menu_controller.py:35
 msgid "Default"
@@ -645,7 +649,7 @@ msgstr "Ao chou"
 
 #: ../src/controllers/menu_controller.py:84
 msgid "Single"
-msgstr "Sinxelo"
+msgstr "Unha vez"
 
 #: ../src/controllers/menu_controller.py:85
 msgid "Repeat (Single)"
@@ -665,7 +669,7 @@ msgstr "Abrir URL"
 
 #: ../src/controllers/menu_controller.py:104
 msgid "Always on top"
-msgstr "Sempre enriba"
+msgstr "Sempre visible"
 
 #: ../src/controllers/menu_controller.py:107
 msgid "Play Sequence"
@@ -690,7 +694,7 @@ msgstr "Información"
 
 #: ../src/controllers/menu_controller.py:115
 msgid "Help"
-msgstr ""
+msgstr "Axuda"
 
 #: ../src/controllers/menu_controller.py:121
 #: ../src/controllers/menu_controller.py:137
@@ -699,7 +703,7 @@ msgstr "Engadir cartafol"
 
 #: ../src/controllers/menu_controller.py:123
 msgid "Remove from playlist"
-msgstr "Eliminar da listaxe de reprodución"
+msgstr "Eliminar da lista de reprodución"
 
 #: ../src/controllers/menu_controller.py:124
 msgid "Remove invalid file"

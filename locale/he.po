@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-11 11:21+0800\n"
-"PO-Revision-Date: 2015-05-11 09:07+0000\n"
+"PO-Revision-Date: 2016-12-06 01:36+0000\n"
 "Last-Translator: deepin_transifex <xiabin@linuxdeepin.com>\n"
-"Language-Team: Hebrew (http://www.transifex.com/projects/p/deepin-movie/language/he/)\n"
+"Language-Team: Hebrew (http://www.transifex.com/linuxdeepin/deepin-movie/language/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -22,10 +22,14 @@ msgstr ""
 msgid "About"
 msgstr "אודות"
 
+#: ../src/views/AboutSection.qml:15
+msgid "Acknowledgements"
+msgstr ""
+
 #: ../src/views/AboutSection.qml:13 ../src/views/TitleBar.qml:70
 #: ../src/views/TitleBar.qml:142 ../src/views/window.py:71
 msgid "Deepin Movie"
-msgstr "Deepin Movie"
+msgstr ""
 
 #: ../src/views/AboutSection.qml:28
 msgid "Version"
@@ -133,27 +137,27 @@ msgstr "לא ידוע"
 
 #: ../src/views/InformationWindow.qml:77
 msgid "File type"
-msgstr "סוג קובץ"
+msgstr ""
 
 #: ../src/views/InformationWindow.qml:87
 msgid "File size"
-msgstr "גודל הקובץ"
+msgstr ""
 
 #: ../src/views/InformationWindow.qml:97
 msgid "Resolution"
-msgstr "רזולוציה"
+msgstr ""
 
 #: ../src/views/InformationWindow.qml:107
 msgid "Movie duration"
-msgstr "משך הסרט"
+msgstr ""
 
 #: ../src/views/InformationWindow.qml:117
 msgid "File path"
-msgstr "נתיב קובץ"
+msgstr ""
 
 #: ../src/views/InformationWindow.qml:134
 msgid "Copy to clipboard"
-msgstr "העתק ל-clipboard"
+msgstr ""
 
 #: ../src/views/InformationWindow.qml:149
 msgid "Close"
@@ -174,7 +178,7 @@ msgstr "יובאו"
 
 #: ../src/views/MainController.qml:462
 msgid "Play last movie played"
-msgstr "נגן קטע אחרון שנוגן"
+msgstr ""
 
 #: ../src/views/MainController.qml:495 ../src/views/PreferenceWindow.qml:339
 #: ../src/views/ShortcutsViewer.qml:50
@@ -191,7 +195,7 @@ msgstr "אחורה"
 #: ../src/views/MainController.qml:515 ../src/views/MainController.qml:521
 #, qt-format
 msgid "(Press %1 to restore)"
-msgstr "(הקש %1 על מנת לשחזר)"
+msgstr ""
 
 #: ../src/views/MainController.qml:517 ../src/views/MainController.qml:523
 #: ../src/views/MainController.qml:528
@@ -287,12 +291,12 @@ msgstr ""
 #: ../src/views/PreferenceWindow.qml:308 ../src/views/PreferenceWindow.qml:532
 #: ../src/views/PreferenceWindow.qml:705 ../src/views/PreferenceWindow.qml:800
 msgid "Enable keyboard shortcuts"
-msgstr "אפשר קיצורי מקלדת"
+msgstr ""
 
 #: ../src/views/PreferenceWindow.qml:313 ../src/views/PreferenceWindow.qml:925
 #: ../src/views/ShortcutsViewer.qml:46 ../src/views/ShortcutsViewer.qml:134
 msgid "Pause/Play"
-msgstr "השהה/נגן"
+msgstr ""
 
 #: ../src/views/PreferenceWindow.qml:443 ../src/views/ShortcutsViewer.qml:66
 msgid "Accelerate playback"
@@ -310,11 +314,11 @@ msgstr "שחזר מהירות ניגון"
 #: ../src/controllers/menu_controller.py:103
 #: ../src/controllers/menu_controller.py:452
 msgid "Mini mode"
-msgstr "מצב מוקטן"
+msgstr ""
 
 #: ../src/views/PreferenceWindow.qml:616 ../src/views/ShortcutsViewer.qml:116
 msgid "Volume up"
-msgstr "הגבר"
+msgstr ""
 
 #: ../src/views/PreferenceWindow.qml:642 ../src/views/ShortcutsViewer.qml:120
 msgid "Volume down"
@@ -560,7 +564,7 @@ msgstr "אנא הכנס את הכתובת של הקובץ המנוגן"
 
 #: ../src/views/main.qml:143
 msgid "Confirm"
-msgstr "אישור"
+msgstr ""
 
 #: ../src/views/main.qml:160
 msgid "The parse failed"
@@ -689,7 +693,7 @@ msgstr "מידע"
 
 #: ../src/controllers/menu_controller.py:115
 msgid "Help"
-msgstr ""
+msgstr "עזרה"
 
 #: ../src/controllers/menu_controller.py:121
 #: ../src/controllers/menu_controller.py:137

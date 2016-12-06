@@ -4,14 +4,15 @@
 # 
 # Translators:
 # alibacha19 <alibacha19@gmail.com>, 2015
+# MUHAAB SHAAM <muhaab.org@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-11 11:21+0800\n"
-"PO-Revision-Date: 2015-05-11 09:07+0000\n"
+"PO-Revision-Date: 2016-12-06 01:36+0000\n"
 "Last-Translator: deepin_transifex <xiabin@linuxdeepin.com>\n"
-"Language-Team: Arabic (http://www.transifex.com/projects/p/deepin-movie/language/ar/)\n"
+"Language-Team: Arabic (http://www.transifex.com/linuxdeepin/deepin-movie/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,7 +21,11 @@ msgstr ""
 
 #: ../src/views/AboutSection.qml:6 ../src/views/PreferenceWindow.qml:129
 msgid "About"
-msgstr "عن"
+msgstr "حول"
+
+#: ../src/views/AboutSection.qml:15
+msgid "Acknowledgements"
+msgstr ""
 
 #: ../src/views/AboutSection.qml:13 ../src/views/TitleBar.qml:70
 #: ../src/views/TitleBar.qml:142 ../src/views/window.py:71
@@ -41,15 +46,15 @@ msgid ""
 "Deepin Movie is a well-designed and full-featured video player with simple "
 "borderless design. It supports local and streaming media play with multiple "
 "video formats."
-msgstr "فيلم deepin  هو مشغل فيديو مصمم بشكل جيد وكامل المواصفات مع تصميم بسيط بلا حدود. وهو يدعم تشغيل الوسائط المتعددة المحلية مع صيغ الفيديو المتنوعة."
+msgstr "مشغل أفلام ديبين : مشغل فيديو مصمم بشكل جيد وكامل المواصفات مع تصميم بسيط بلا حدود. وهو يدعم تشغيل الوسائط المتعددة المحلية والمتدفقة مع صيغ الفيديو المتنوعة."
 
 #: ../src/views/AboutSection.qml:69
 msgid "Deepin Movie is released under GPLv3."
-msgstr "يتم توزيع الفيلم Deepin تحت رخصة GLPv3 ."
+msgstr "يتم توزيع مشغل أفلام \"Deepin Movie\" تحت رخصة GLPv3 ."
 
 #: ../src/views/ControlBar.qml:229
 msgid "Stop playing"
-msgstr "التوقف عن اللعب."
+msgstr "إيقاف التشغيل"
 
 #: ../src/views/ControlBar.qml:247 ../src/controllers/menu_controller.py:90
 msgid "Previous"
@@ -57,7 +62,7 @@ msgstr "السابق"
 
 #: ../src/views/ControlBar.qml:266
 msgid "Pause"
-msgstr "وقوف مؤقت"
+msgstr "إيقاف مؤقت"
 
 #: ../src/views/ControlBar.qml:266 ../src/controllers/menu_controller.py:108
 #: ../src/controllers/menu_controller.py:119
@@ -84,7 +89,7 @@ msgstr "ملء الشاشة"
 #: ../src/views/ShortcutsViewer.qml:83
 #: ../src/controllers/menu_controller.py:98
 msgid "Open a file"
-msgstr "فتح الملف"
+msgstr "فتح ملف"
 
 #: ../src/views/ControlBar.qml:355 ../src/views/OpenFileDialog.qml:66
 #: ../src/views/PreferenceWindow.qml:417 ../src/views/ShortcutsViewer.qml:62
@@ -103,16 +108,16 @@ msgstr "لا شيء"
 
 #: ../src/views/HotKeyInput.qml:23
 msgid "Please input a new shortcut"
-msgstr "أدخل اختصارا آخر رجاء"
+msgstr "يرجى إدخال اختصار جديد"
 
 #: ../src/views/HotKeyInputRow.qml:30
 msgid "The shortcut you set "
-msgstr "الاختصار الذي قمت بضبطه"
+msgstr "الاختصار الذي أعددته"
 
 #: ../src/views/HotKeyInputRow.qml:31
 #, qt-format
 msgid "conflicts with the one used for \"%2\" in the \"%1\" category. "
-msgstr "تضارب الوجود مع \\ \"٪ 2 \\\" في فئة \\ \"٪ 1 \\\" \"."
+msgstr "تضارب الوجود مع \\ \"%2 \\\" في فئة \\ \"%1 \\\" \"."
 
 #: ../src/views/HotKeyInputRow.qml:32
 msgid "Do you want to replace it?"
@@ -124,7 +129,7 @@ msgstr "إلغاء"
 
 #: ../src/views/HotKeyInputRow.qml:110
 msgid "Replace"
-msgstr "إستبدل"
+msgstr "استبدال"
 
 #: ../src/views/InformationWindow.qml:23 ../src/views/InformationWindow.qml:24
 #: ../src/views/InformationWindow.qml:25 ../src/models/movie_info.py:78
@@ -141,7 +146,7 @@ msgstr "حجم الملف"
 
 #: ../src/views/InformationWindow.qml:97
 msgid "Resolution"
-msgstr "الحل"
+msgstr "الدقة"
 
 #: ../src/views/InformationWindow.qml:107
 msgid "Movie duration"
@@ -153,11 +158,11 @@ msgstr "مسار الملف"
 
 #: ../src/views/InformationWindow.qml:134
 msgid "Copy to clipboard"
-msgstr "انسخ الى الحافظة"
+msgstr "نسخ الى الحافظة"
 
 #: ../src/views/InformationWindow.qml:149
 msgid "Close"
-msgstr "غلق"
+msgstr "إغلاق"
 
 #: ../src/views/MainController.qml:260
 msgid "Invalid file"
@@ -166,7 +171,7 @@ msgstr "ملف غير صالح"
 #: ../src/views/MainController.qml:37
 #, qt-format
 msgid "%1 files unable to be parsed have been excluded"
-msgstr "٪ 1من الملفات لا يمكن تحليلها استبعدت"
+msgstr "%1 ملفات غير قادرة على تحليلها تم استبعادها"
 
 #: ../src/views/MainController.qml:50
 msgid "Imported"
@@ -174,7 +179,7 @@ msgstr "مستورد"
 
 #: ../src/views/MainController.qml:462
 msgid "Play last movie played"
-msgstr "شغل الفيلم الأخير الذي لعب"
+msgstr "تشغيل آخر فيلم تم تشغيله"
 
 #: ../src/views/MainController.qml:495 ../src/views/PreferenceWindow.qml:339
 #: ../src/views/ShortcutsViewer.qml:50
@@ -191,7 +196,7 @@ msgstr "رجوع"
 #: ../src/views/MainController.qml:515 ../src/views/MainController.qml:521
 #, qt-format
 msgid "(Press %1 to restore)"
-msgstr "(اضغط على٪ 1 لاستعادة)"
+msgstr "(انقر على %1 للاستعادة)"
 
 #: ../src/views/MainController.qml:517 ../src/views/MainController.qml:523
 #: ../src/views/MainController.qml:528
@@ -205,17 +210,17 @@ msgstr "حجم"
 #: ../src/views/MainController.qml:547
 #: ../src/controllers/menu_controller.py:60
 msgid "Muted"
-msgstr "صامتة"
+msgstr "صامت"
 
 #: ../src/views/MainController.qml:683 ../src/views/MainController.qml:696
 #, qt-format
 msgid "Subtitle advanced %1 seconds"
-msgstr ""
+msgstr "الترجمة مقدمة  %1 ثانية /ثوان "
 
 #: ../src/views/MainController.qml:685 ../src/views/MainController.qml:698
 #, qt-format
 msgid "Subtitle delayed %1 seconds"
-msgstr ""
+msgstr "الترجمة مؤخرة  %1 ثانية /ثوان "
 
 #: ../src/views/OpenFileDialog.qml:5 ../src/views/OpenFileDialog.qml:21
 #: ../src/views/OpenFileDialog.qml:41
@@ -233,11 +238,11 @@ msgstr "كل الملفات"
 
 #: ../src/views/OpenFileDialog.qml:31 ../src/views/OpenFileDialog.qml:51
 msgid "Please choose one file"
-msgstr "الرجاء اختيار ملفا واحدا"
+msgstr "الرجاء اختيار ملف واحد"
 
 #: ../src/views/OpenFileDialog.qml:33
 msgid "Subtitle files"
-msgstr "ملفات العناوان الفرعي"
+msgstr "ملفات الترجمة"
 
 #: ../src/views/OpenFileDialog.qml:53 ../src/views/OpenFileDialog.qml:63
 msgid "Playlist files"
@@ -253,12 +258,12 @@ msgstr "الرجاء اختيار مجلد"
 
 #: ../src/views/Playlist.qml:252
 msgid "Play mode"
-msgstr "طريقة اللعب"
+msgstr "وضغ التشغيل"
 
 #: ../src/views/Playlist.qml:260 ../src/controllers/menu_controller.py:120
 #: ../src/controllers/menu_controller.py:136
 msgid "Add file"
-msgstr "اظافة ملف"
+msgstr "إضافة ملف"
 
 #: ../src/views/Playlist.qml:268 ../src/controllers/menu_controller.py:127
 msgid "Clear playlist"
@@ -270,19 +275,19 @@ msgstr "مسح قائمة التشغيل عند فتح ملف جديد"
 
 #: ../src/views/PreferenceWindow.qml:243
 msgid "Resume playback after restarting player"
-msgstr "أكمل التشغيل بعد إعادة تشغيل المشغل"
+msgstr "إكمال التشغيل بعد إعادة تشغيل المشغل"
 
 #: ../src/views/PreferenceWindow.qml:248
 msgid "Continue to next video automatically"
-msgstr "أنتقل إلى الفيديو التالي بشكل تلقائي"
+msgstr "الانتقال إلى الفيديو التالي بشكل تلقائي"
 
 #: ../src/views/PreferenceWindow.qml:253
 msgid "Show preview when hovering over progress bar"
-msgstr "أظهر المعاينة عند المرور فوق شريط التقدم"
+msgstr "إظهار المعاينة عند المرور فوق شريط التقدم"
 
 #: ../src/views/PreferenceWindow.qml:286
 msgid "Forward/Rewind (s)"
-msgstr ""
+msgstr "تقديم/تأخير (بالثانية)"
 
 #: ../src/views/PreferenceWindow.qml:308 ../src/views/PreferenceWindow.qml:532
 #: ../src/views/PreferenceWindow.qml:705 ../src/views/PreferenceWindow.qml:800
@@ -331,24 +336,24 @@ msgstr "فتح التالي"
 #: ../src/views/PreferenceWindow.qml:806 ../src/views/ShortcutsViewer.qml:153
 #, qt-format
 msgid "Forward %1 (s)"
-msgstr ""
+msgstr "تقديم %1 (ثانية)"
 
 #: ../src/views/PreferenceWindow.qml:832 ../src/views/ShortcutsViewer.qml:157
 #, qt-format
 msgid "Delay %1 (s)"
-msgstr ""
+msgstr "تأخير %1 (ثانية)"
 
 #: ../src/views/PreferenceWindow.qml:858 ../src/views/ShortcutsViewer.qml:161
 msgid "Subtitle up"
-msgstr "العنوان الفرعي اعلى"
+msgstr "الترجمة في اﻷعلى"
 
 #: ../src/views/PreferenceWindow.qml:884 ../src/views/ShortcutsViewer.qml:165
 msgid "Subtitle down"
-msgstr "العنوان الفرعي أسفل"
+msgstr "الترجمة في اﻷسفل"
 
 #: ../src/views/PreferenceWindow.qml:922 ../src/views/ShortcutsViewer.qml:133
 msgid "Left click"
-msgstr "نقر يسار"
+msgstr "الزر الأيسر"
 
 #: ../src/views/PreferenceWindow.qml:938 ../src/views/ShortcutsViewer.qml:138
 msgid "Double click"
@@ -356,7 +361,7 @@ msgstr "نقر مزدوج"
 
 #: ../src/views/PreferenceWindow.qml:979
 msgid "Subtitles loaded automatically"
-msgstr "تحميل تلقائي للعناوين الفرعية"
+msgstr "الترجمات محملة تلقائياً"
 
 #: ../src/views/PreferenceWindow.qml:1088
 msgid "Border width"
@@ -364,18 +369,18 @@ msgstr "عرض الحدود"
 
 #: ../src/views/PreferenceWindow.qml:21
 msgid "Orange"
-msgstr ""
+msgstr "برتقالي"
 
 #: ../src/views/PreferenceWindow.qml:76 ../src/views/PreferenceWindow.qml:92
 #: ../src/views/PreferenceWindow.qml:217 ../src/views/PreferenceWindow.qml:299
 #: ../src/views/ShortcutsViewer.qml:43
 msgid "Playback"
-msgstr "أعد التشغيل"
+msgstr "التشغيل"
 
 #: ../src/views/PreferenceWindow.qml:97 ../src/views/PreferenceWindow.qml:523
 #: ../src/views/ShortcutsViewer.qml:101
 msgid "Frame/Sound"
-msgstr "إطار / الصوت"
+msgstr "الإطار / الصوت"
 
 #: ../src/views/PreferenceWindow.qml:102 ../src/views/PreferenceWindow.qml:696
 #: ../src/views/ShortcutsViewer.qml:80
@@ -395,31 +400,31 @@ msgstr "الترجمات"
 
 #: ../src/views/PreferenceWindow.qml:15
 msgid "Black"
-msgstr "اسود"
+msgstr "أسود"
 
 #: ../src/views/PreferenceWindow.qml:16
 msgid "bleu de France"
-msgstr "ازرق فرنسي"
+msgstr "سماوي"
 
 #: ../src/views/PreferenceWindow.qml:17
 msgid "Turquoise"
-msgstr "لون تركي"
+msgstr "تركوازي"
 
 #: ../src/views/PreferenceWindow.qml:18
 msgid "UFO green"
-msgstr "اخضر لون طائر مجهول UFO"
+msgstr " الأخضر UFO"
 
 #: ../src/views/PreferenceWindow.qml:19
 msgid "Green yellow"
-msgstr "اخضر مصفر"
+msgstr "أخضر مصفر"
 
 #: ../src/views/PreferenceWindow.qml:20
 msgid "Energy yellow"
-msgstr "اصفر طاقة"
+msgstr "أصفر طاقة"
 
 #: ../src/views/PreferenceWindow.qml:22
 msgid "Radical red"
-msgstr "احمر اساسي"
+msgstr "أحمر أساسي"
 
 #: ../src/views/PreferenceWindow.qml:23
 msgid "Lavender indigo"
@@ -431,11 +436,11 @@ msgstr "الأزرق الملكي"
 
 #: ../src/views/PreferenceWindow.qml:25
 msgid "Aluminum"
-msgstr "الومنيوم"
+msgstr "ألومنيوم"
 
 #: ../src/views/PreferenceWindow.qml:26
 msgid "Clean white"
-msgstr "ابيض نظيف"
+msgstr "أبيض نظيف"
 
 #: ../src/views/PreferenceWindow.qml:72 ../src/views/PreferenceWindow.qml:213
 msgid "Basic settings"
@@ -451,15 +456,15 @@ msgstr "اختصارات لوحة المفاتيح"
 
 #: ../src/views/PreferenceWindow.qml:119 ../src/views/PreferenceWindow.qml:972
 msgid "Subtitle settings"
-msgstr "اعدادات العناوين الفرعية"
+msgstr "إعدادات الترجمة"
 
 #: ../src/views/PreferenceWindow.qml:148
 msgid "Reset shortcuts"
-msgstr ""
+msgstr "إعادة تعيين الاختصارت"
 
 #: ../src/views/PreferenceWindow.qml:152
 msgid "Reset subtitle settings"
-msgstr ""
+msgstr "إعادة تعيين إعدادات الترجمة"
 
 #: ../src/views/PreferenceWindow.qml:226
 msgid "Fullscreen on opening file"
@@ -467,7 +472,7 @@ msgstr "ملء الشاشة عند فتح الملف"
 
 #: ../src/views/PreferenceWindow.qml:232
 msgid "Apply the size last time closed"
-msgstr "تطبيق الحجم عند الاغلاق  الاخير"
+msgstr "تطبيق الحجم عند آخر إغلاق"
 
 #: ../src/views/PreferenceWindow.qml:258
 msgid "Allow multiple instances"
@@ -475,7 +480,7 @@ msgstr "السماح لحالات متعددة"
 
 #: ../src/views/PreferenceWindow.qml:263
 msgid "Pause when minimized"
-msgstr "وقفة عند التصغير"
+msgstr "إيقاف مؤقت عند التصغير"
 
 #: ../src/views/PreferenceWindow.qml:564 ../src/views/ShortcutsViewer.qml:108
 msgid "Rotate counterclockwise"
@@ -516,27 +521,27 @@ msgstr "لون الحدود"
 
 #: ../src/views/PreferenceWindow.qml:1123
 msgid "Position"
-msgstr "موضع"
+msgstr "الموضع"
 
 #: ../src/views/PreferenceWindow.qml:1128
 msgid "Bottom"
-msgstr "قاع"
+msgstr "اﻷسفل"
 
 #: ../src/views/PreferenceWindow.qml:1129
 msgid "Top"
-msgstr "أعلى"
+msgstr "الأعلى"
 
 #: ../src/views/PreferenceWindow.qml:1140
 msgid "Sync adjustment (s)"
-msgstr ""
+msgstr "تعديل المزامنة (بالثانية)"
 
 #: ../src/views/TitleBar.qml:173
 msgid "Shown in a proportion of 1:1"
-msgstr "أظهر  بنسبة 1: 1"
+msgstr "إظهار  بنسبة 1: 1"
 
 #: ../src/views/TitleBar.qml:185
 msgid "Shown in 1.5 times"
-msgstr "عرض في 1.5 مرة"
+msgstr "عرض بزيادة 1.5 مرة"
 
 #: ../src/views/TitleBar.qml:198
 msgid "Return to mini mode"
@@ -544,35 +549,35 @@ msgstr "عودة إلى وضع مصغر"
 
 #: ../src/views/TitleBar.qml:198
 msgid "Shown in fullscreen"
-msgstr "عرض في وضع ملء الشاشة"
+msgstr "عرض ملء الشاشة"
 
 #: ../src/views/TitleBar.qml:213
 msgid "Cancel \"On Top\""
-msgstr "إلغاء \"في الأعلى\""
+msgstr "إلغاء \"في المقدمة\""
 
 #: ../src/views/TitleBar.qml:213
 msgid "On Top"
-msgstr "في الاعلى"
+msgstr "في المقدمة"
 
 #: ../src/views/main.qml:142
 msgid "Please input the url of file played"
-msgstr "الرجاء إدخال عنوان موقع الملف المقروء"
+msgstr "يرجى وضع رابط الملف المراد تشغيله"
 
 #: ../src/views/main.qml:143
 msgid "Confirm"
-msgstr "ثبت"
+msgstr "تأكيد"
 
 #: ../src/views/main.qml:160
 msgid "The parse failed"
-msgstr "فشل تحليل"
+msgstr "تعذر التحليل"
 
 #: ../src/views/main.qml:458 ../src/views/main.qml:459
 msgid "Buffering..."
-msgstr ""
+msgstr "تدفق ..."
 
 #: ../src/controllers/menu_controller.py:35
 msgid "Default"
-msgstr "الأفتراضي"
+msgstr "افتراضي"
 
 #: ../src/controllers/menu_controller.py:47
 msgid "Rotate 90 degree clockwise"
@@ -600,7 +605,7 @@ msgstr "خفض الصوت"
 
 #: ../src/controllers/menu_controller.py:64
 msgid "Auto"
-msgstr "ذاتي"
+msgstr "تلقائي"
 
 #: ../src/controllers/menu_controller.py:65
 msgid "Left"
@@ -620,23 +625,23 @@ msgstr "ستيريو"
 
 #: ../src/controllers/menu_controller.py:72
 msgid "Hide subtitle"
-msgstr "إخفاء العنوان الفرعي"
+msgstr "إخفاء الترجمة"
 
 #: ../src/controllers/menu_controller.py:76
 msgid "Open manually"
-msgstr "فتح يدوي"
+msgstr "فتح بشكل يدوي"
 
 #: ../src/controllers/menu_controller.py:77
 msgid "Subtitle selection"
-msgstr "اختيار العنوان الفرعي"
+msgstr "اختيار ترجمة"
 
 #: ../src/controllers/menu_controller.py:78
 msgid "Subtitle setting"
-msgstr "اعدادات العنوان الفرعي"
+msgstr "إعدادات الترجمة"
 
 #: ../src/controllers/menu_controller.py:82
 msgid "Order"
-msgstr "أمر"
+msgstr "ترتيب"
 
 #: ../src/controllers/menu_controller.py:83
 msgid "Random"
@@ -648,11 +653,11 @@ msgstr "مفرد"
 
 #: ../src/controllers/menu_controller.py:85
 msgid "Repeat (Single)"
-msgstr "إعادة ( مفرد )"
+msgstr "تكرار ( إفرادي )"
 
 #: ../src/controllers/menu_controller.py:86
 msgid "Repeat (Playlist)"
-msgstr "كرر (التشغيل)"
+msgstr "تكرار (قائمة التشغيل)"
 
 #: ../src/controllers/menu_controller.py:99
 msgid "Open a folder"
@@ -660,19 +665,19 @@ msgstr "فتح مجلد"
 
 #: ../src/controllers/menu_controller.py:100
 msgid "Open URL"
-msgstr "فتح URL"
+msgstr "فتح رابط"
 
 #: ../src/controllers/menu_controller.py:104
 msgid "Always on top"
-msgstr "دائما في الاعلى"
+msgstr "دائماً في المقدمة"
 
 #: ../src/controllers/menu_controller.py:107
 msgid "Play Sequence"
-msgstr "قراءة مقطع"
+msgstr "تسلسل التشغيل"
 
 #: ../src/controllers/menu_controller.py:109
 msgid "Frame"
-msgstr "اطار"
+msgstr "إطار"
 
 #: ../src/controllers/menu_controller.py:110
 msgid "Sound"
@@ -689,7 +694,7 @@ msgstr "معلومات"
 
 #: ../src/controllers/menu_controller.py:115
 msgid "Help"
-msgstr ""
+msgstr "مساعدة"
 
 #: ../src/controllers/menu_controller.py:121
 #: ../src/controllers/menu_controller.py:137
@@ -710,7 +715,7 @@ msgstr "تصدير"
 
 #: ../src/controllers/menu_controller.py:126
 msgid "Import"
-msgstr "إسترد"
+msgstr "إستيراد"
 
 #: ../src/controllers/menu_controller.py:131
 msgid "Open file location"

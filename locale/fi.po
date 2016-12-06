@@ -3,9 +3,6 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Chi-Hsun Tsai <chihsun.tsai@gmail.com>, 2016
-# Philip CHEUNG, 2016
-# Philip CHEUNG, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
@@ -13,16 +10,16 @@ msgstr ""
 "POT-Creation-Date: 2015-05-11 11:21+0800\n"
 "PO-Revision-Date: 2016-12-06 01:36+0000\n"
 "Last-Translator: deepin_transifex <xiabin@linuxdeepin.com>\n"
-"Language-Team: Chinese (Hong Kong) (http://www.transifex.com/linuxdeepin/deepin-movie/language/zh_HK/)\n"
+"Language-Team: Finnish (http://www.transifex.com/linuxdeepin/deepin-movie/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: zh_HK\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: fi\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/views/AboutSection.qml:6 ../src/views/PreferenceWindow.qml:129
 msgid "About"
-msgstr "關於"
+msgstr "Tietoja"
 
 #: ../src/views/AboutSection.qml:15
 msgid "Acknowledgements"
@@ -31,11 +28,11 @@ msgstr ""
 #: ../src/views/AboutSection.qml:13 ../src/views/TitleBar.qml:70
 #: ../src/views/TitleBar.qml:142 ../src/views/window.py:71
 msgid "Deepin Movie"
-msgstr "Depein 電影"
+msgstr "Deepin Elokuva"
 
 #: ../src/views/AboutSection.qml:28
 msgid "Version"
-msgstr "版本"
+msgstr "Version"
 
 #: ../src/views/AboutSection.qml:28 ../src/views/InformationLabel.qml:20
 #: ../src/views/MainController.qml:260 ../src/views/main.qml:142
@@ -47,11 +44,11 @@ msgid ""
 "Deepin Movie is a well-designed and full-featured video player with simple "
 "borderless design. It supports local and streaming media play with multiple "
 "video formats."
-msgstr ""
+msgstr "Deepin Movie on erinomaisesti suunniteltu ja kattavilla ominaisuuksilla varusteltu simppeli ja rajaton videosoitin. Se tulee useiden eri videoalustojen paikallis- ja suoratoistosoittoa."
 
 #: ../src/views/AboutSection.qml:69
 msgid "Deepin Movie is released under GPLv3."
-msgstr "Deepin Movie　依 GPLv3授權條件發佈."
+msgstr "Deepin Movie julkaistaan GPLv3:n alla."
 
 #: ../src/views/ControlBar.qml:229
 msgid "Stop playing"
@@ -59,24 +56,24 @@ msgstr ""
 
 #: ../src/views/ControlBar.qml:247 ../src/controllers/menu_controller.py:90
 msgid "Previous"
-msgstr "上一首"
+msgstr "Edellinen"
 
 #: ../src/views/ControlBar.qml:266
 msgid "Pause"
-msgstr "暫停"
+msgstr "Pysäytä"
 
 #: ../src/views/ControlBar.qml:266 ../src/controllers/menu_controller.py:108
 #: ../src/controllers/menu_controller.py:119
 msgid "Play"
-msgstr "播放"
+msgstr "Toista"
 
 #: ../src/views/ControlBar.qml:283 ../src/controllers/menu_controller.py:91
 msgid "Next"
-msgstr "下一首"
+msgstr "Seuraava"
 
 #: ../src/views/ControlBar.qml:326 ../src/controllers/menu_controller.py:449
 msgid "Exit fullscreen"
-msgstr "離開全螢幕"
+msgstr "Poistu koko näytön tilasta"
 
 #: ../src/views/ControlBar.qml:326 ../src/views/PreferenceWindow.qml:391
 #: ../src/views/PreferenceWindow.qml:941 ../src/views/ShortcutsViewer.qml:58
@@ -84,19 +81,19 @@ msgstr "離開全螢幕"
 #: ../src/controllers/menu_controller.py:102
 #: ../src/controllers/menu_controller.py:450
 msgid "Fullscreen"
-msgstr "全螢幕"
+msgstr "Koko näytön tila"
 
 #: ../src/views/ControlBar.qml:343 ../src/views/PreferenceWindow.qml:711
 #: ../src/views/ShortcutsViewer.qml:83
 #: ../src/controllers/menu_controller.py:98
 msgid "Open a file"
-msgstr ""
+msgstr "Avaa tiedosto"
 
 #: ../src/views/ControlBar.qml:355 ../src/views/OpenFileDialog.qml:66
 #: ../src/views/PreferenceWindow.qml:417 ../src/views/ShortcutsViewer.qml:62
 #: ../src/controllers/menu_controller.py:105
 msgid "Playlist"
-msgstr "播放清單"
+msgstr "Soittolista"
 
 #: ../src/views/HotKeyInput.qml:7 ../src/views/HotKeyInput.qml:16
 #: ../src/views/HotKeyInputRow.qml:24 ../src/views/HotKeyInputRow.qml:26
@@ -105,99 +102,99 @@ msgstr "播放清單"
 #: ../src/views/ShortcutsLabel.qml:23 ../src/views/ShortcutsViewer.qml:134
 #: ../src/views/ShortcutsViewer.qml:139 ../src/views/ShortcutsViewer.qml:144
 msgid "None"
-msgstr "沒有"
+msgstr "Ei mitään"
 
 #: ../src/views/HotKeyInput.qml:23
 msgid "Please input a new shortcut"
-msgstr "請輸入新的捷徑"
+msgstr "Syötä uusi oikopolku"
 
 #: ../src/views/HotKeyInputRow.qml:30
 msgid "The shortcut you set "
-msgstr "你設置的捷徑"
+msgstr "Pikanäppäin on asetettu"
 
 #: ../src/views/HotKeyInputRow.qml:31
 #, qt-format
 msgid "conflicts with the one used for \"%2\" in the \"%1\" category. "
-msgstr ""
+msgstr "on ristiriidassa sen kanssa, jota on käytetty kohteelle \"%2\" ryhmässä \"%1\". "
 
 #: ../src/views/HotKeyInputRow.qml:32
 msgid "Do you want to replace it?"
-msgstr "你想取代它嗎？"
+msgstr "Haluatko korvata sen?"
 
 #: ../src/views/HotKeyInputRow.qml:99 ../src/views/main.qml:144
 msgid "Cancel"
-msgstr "取消"
+msgstr "Peruutus"
 
 #: ../src/views/HotKeyInputRow.qml:110
 msgid "Replace"
-msgstr "取代"
+msgstr "Korvaa"
 
 #: ../src/views/InformationWindow.qml:23 ../src/views/InformationWindow.qml:24
 #: ../src/views/InformationWindow.qml:25 ../src/models/movie_info.py:78
 msgid "Unknown"
-msgstr "未知"
+msgstr "Tuntematon"
 
 #: ../src/views/InformationWindow.qml:77
 msgid "File type"
-msgstr "檔案類型"
+msgstr "Tiedostotyyppi"
 
 #: ../src/views/InformationWindow.qml:87
 msgid "File size"
-msgstr "檔案大小"
+msgstr "Tiedostokoko"
 
 #: ../src/views/InformationWindow.qml:97
 msgid "Resolution"
-msgstr "解析度"
+msgstr "Resoluutio"
 
 #: ../src/views/InformationWindow.qml:107
 msgid "Movie duration"
-msgstr "電影長度"
+msgstr "Elokuvan kesto"
 
 #: ../src/views/InformationWindow.qml:117
 msgid "File path"
-msgstr "檔案路徑"
+msgstr "Tiedostopolku"
 
 #: ../src/views/InformationWindow.qml:134
 msgid "Copy to clipboard"
-msgstr "儲存至剪貼簿"
+msgstr "Kopioi leikepöydälle"
 
 #: ../src/views/InformationWindow.qml:149
 msgid "Close"
-msgstr "關閉"
+msgstr "Sulje"
 
 #: ../src/views/MainController.qml:260
 msgid "Invalid file"
-msgstr "無效檔案"
+msgstr "Epäkelpo tiedosto"
 
 #: ../src/views/MainController.qml:37
 #, qt-format
 msgid "%1 files unable to be parsed have been excluded"
-msgstr "%1 無法被解析的檔案已排除"
+msgstr "%1 tiedostoa, joita ei voitu jäsennellä, on jätetty pois"
 
 #: ../src/views/MainController.qml:50
 msgid "Imported"
-msgstr "匯入"
+msgstr "Siirretty"
 
 #: ../src/views/MainController.qml:462
 msgid "Play last movie played"
-msgstr "播放上次播過的電影"
+msgstr "Näytä viimeksi katsomasi elokuva"
 
 #: ../src/views/MainController.qml:495 ../src/views/PreferenceWindow.qml:339
 #: ../src/views/ShortcutsViewer.qml:50
 #: ../src/controllers/menu_controller.py:93
 msgid "Forward"
-msgstr "快進"
+msgstr "Eteenpäin"
 
 #: ../src/views/MainController.qml:507 ../src/views/PreferenceWindow.qml:365
 #: ../src/views/ShortcutsViewer.qml:54
 #: ../src/controllers/menu_controller.py:94
 msgid "Rewind"
-msgstr "後退"
+msgstr "Kelaa taaksepäin"
 
 #: ../src/views/MainController.qml:515 ../src/views/MainController.qml:521
 #, qt-format
 msgid "(Press %1 to restore)"
-msgstr "(按 %1 來恢復)"
+msgstr "(Paina %1 palauttaaksesi)"
 
 #: ../src/views/MainController.qml:517 ../src/views/MainController.qml:523
 #: ../src/views/MainController.qml:528
@@ -206,22 +203,22 @@ msgstr ""
 
 #: ../src/views/MainController.qml:540 ../src/views/MainController.qml:549
 msgid "Volume: "
-msgstr "音量:"
+msgstr "Äänenvoimakkuus:"
 
 #: ../src/views/MainController.qml:547
 #: ../src/controllers/menu_controller.py:60
 msgid "Muted"
-msgstr "已靜音"
+msgstr "Vaiennettu"
 
 #: ../src/views/MainController.qml:683 ../src/views/MainController.qml:696
 #, qt-format
 msgid "Subtitle advanced %1 seconds"
-msgstr "字幕快了 %1 秒"
+msgstr "Tekstityksiä pidennettiin %1 sekunnilla"
 
 #: ../src/views/MainController.qml:685 ../src/views/MainController.qml:698
 #, qt-format
 msgid "Subtitle delayed %1 seconds"
-msgstr "字幕遲了 %1 秒"
+msgstr "Tekstitysten viive %1 sekuntia"
 
 #: ../src/views/OpenFileDialog.qml:5 ../src/views/OpenFileDialog.qml:21
 #: ../src/views/OpenFileDialog.qml:41
@@ -231,11 +228,11 @@ msgstr ""
 #: ../src/views/OpenFileDialog.qml:7 ../src/views/OpenFileDialog.qml:23
 #: ../src/views/OpenFileDialog.qml:43
 msgid "Video files"
-msgstr "影片檔案"
+msgstr "Videotiedostot"
 
 #: ../src/views/OpenFileDialog.qml:15
 msgid "All files"
-msgstr "所有檔案"
+msgstr "Kaikki tiedostot"
 
 #: ../src/views/OpenFileDialog.qml:31 ../src/views/OpenFileDialog.qml:51
 msgid "Please choose one file"
@@ -243,15 +240,15 @@ msgstr ""
 
 #: ../src/views/OpenFileDialog.qml:33
 msgid "Subtitle files"
-msgstr "字幕檔案"
+msgstr "Tekstitystiedostot"
 
 #: ../src/views/OpenFileDialog.qml:53 ../src/views/OpenFileDialog.qml:63
 msgid "Playlist files"
-msgstr "播放清單檔案"
+msgstr "Soittolistatiedostot"
 
 #: ../src/views/OpenFileDialog.qml:61
 msgid "Save as"
-msgstr "保存到指定目錄"
+msgstr "Tallenna nimellä"
 
 #: ../src/views/OpenFolderDialog.qml:5
 msgid "Please choose a folder"
@@ -259,28 +256,28 @@ msgstr ""
 
 #: ../src/views/Playlist.qml:252
 msgid "Play mode"
-msgstr "播放模式"
+msgstr "Soittotila"
 
 #: ../src/views/Playlist.qml:260 ../src/controllers/menu_controller.py:120
 #: ../src/controllers/menu_controller.py:136
 msgid "Add file"
-msgstr "新增檔案"
+msgstr "Lisää tiedosto"
 
 #: ../src/views/Playlist.qml:268 ../src/controllers/menu_controller.py:127
 msgid "Clear playlist"
-msgstr "清除播放清單"
+msgstr "Tyhjennä soittolista"
 
 #: ../src/views/PreferenceWindow.qml:238
 msgid "Clear playlist on opening new file"
-msgstr "開啟新檔案時清除播放清單"
+msgstr "Tyhjennä soittolista avaamalla uusi tiedosto"
 
 #: ../src/views/PreferenceWindow.qml:243
 msgid "Resume playback after restarting player"
-msgstr "重啟播放器後繼續播放"
+msgstr "Jatka esittämistä käynnistettyäsi soittimen uudelleen"
 
 #: ../src/views/PreferenceWindow.qml:248
 msgid "Continue to next video automatically"
-msgstr "自動播放下一段影片"
+msgstr "Jatka automaattisesti seuraavaan videoon"
 
 #: ../src/views/PreferenceWindow.qml:253
 msgid "Show preview when hovering over progress bar"
@@ -293,46 +290,46 @@ msgstr ""
 #: ../src/views/PreferenceWindow.qml:308 ../src/views/PreferenceWindow.qml:532
 #: ../src/views/PreferenceWindow.qml:705 ../src/views/PreferenceWindow.qml:800
 msgid "Enable keyboard shortcuts"
-msgstr "啟動快速鍵"
+msgstr "Salli näppäimistön oikopolut"
 
 #: ../src/views/PreferenceWindow.qml:313 ../src/views/PreferenceWindow.qml:925
 #: ../src/views/ShortcutsViewer.qml:46 ../src/views/ShortcutsViewer.qml:134
 msgid "Pause/Play"
-msgstr "暫停/播放"
+msgstr "Keskeytä/Soita"
 
 #: ../src/views/PreferenceWindow.qml:443 ../src/views/ShortcutsViewer.qml:66
 msgid "Accelerate playback"
-msgstr "加快播放速度"
+msgstr "Nopeuta taustasoittoa"
 
 #: ../src/views/PreferenceWindow.qml:469 ../src/views/ShortcutsViewer.qml:70
 msgid "Decelerate playback"
-msgstr "減慢播放速度"
+msgstr "Hidasta toistoa"
 
 #: ../src/views/PreferenceWindow.qml:495 ../src/views/ShortcutsViewer.qml:74
 msgid "Restore playback speed"
-msgstr "回復播放速度"
+msgstr "Palauta taustasoiton nopeus"
 
 #: ../src/views/PreferenceWindow.qml:538 ../src/views/ShortcutsViewer.qml:104
 #: ../src/controllers/menu_controller.py:103
 #: ../src/controllers/menu_controller.py:452
 msgid "Mini mode"
-msgstr "精簡模式"
+msgstr "Minitila"
 
 #: ../src/views/PreferenceWindow.qml:616 ../src/views/ShortcutsViewer.qml:116
 msgid "Volume up"
-msgstr "調高音量"
+msgstr "Volyymi ylös"
 
 #: ../src/views/PreferenceWindow.qml:642 ../src/views/ShortcutsViewer.qml:120
 msgid "Volume down"
-msgstr "調低音量"
+msgstr "Volyymi alas"
 
 #: ../src/views/PreferenceWindow.qml:737 ../src/views/ShortcutsViewer.qml:87
 msgid "Open previous"
-msgstr "開啟上一個"
+msgstr "Avaa edellinen"
 
 #: ../src/views/PreferenceWindow.qml:763 ../src/views/ShortcutsViewer.qml:91
 msgid "Open next"
-msgstr "開啟下一個"
+msgstr "Avaa seuraava"
 
 #: ../src/views/PreferenceWindow.qml:806 ../src/views/ShortcutsViewer.qml:153
 #, qt-format
@@ -342,199 +339,199 @@ msgstr ""
 #: ../src/views/PreferenceWindow.qml:832 ../src/views/ShortcutsViewer.qml:157
 #, qt-format
 msgid "Delay %1 (s)"
-msgstr "延遲 %1 (s)"
+msgstr "Viive %1 (s)"
 
 #: ../src/views/PreferenceWindow.qml:858 ../src/views/ShortcutsViewer.qml:161
 msgid "Subtitle up"
-msgstr "字幕向上"
+msgstr "Tekstitykset ylös"
 
 #: ../src/views/PreferenceWindow.qml:884 ../src/views/ShortcutsViewer.qml:165
 msgid "Subtitle down"
-msgstr "字幕往下"
+msgstr "Tekstitykset alas"
 
 #: ../src/views/PreferenceWindow.qml:922 ../src/views/ShortcutsViewer.qml:133
 msgid "Left click"
-msgstr "單擊滑鼠左鍵"
+msgstr "Vasen klikkaus"
 
 #: ../src/views/PreferenceWindow.qml:938 ../src/views/ShortcutsViewer.qml:138
 msgid "Double click"
-msgstr "雙擊滑鼠左鍵"
+msgstr "Kaksoisklikkaus"
 
 #: ../src/views/PreferenceWindow.qml:979
 msgid "Subtitles loaded automatically"
-msgstr "自動載入字幕"
+msgstr "Tekstitykset ladattu automaattisesti"
 
 #: ../src/views/PreferenceWindow.qml:1088
 msgid "Border width"
-msgstr "邊框闊度"
+msgstr "Reunojen leveys"
 
 #: ../src/views/PreferenceWindow.qml:21
 msgid "Orange"
-msgstr "橙"
+msgstr "Oranssi"
 
 #: ../src/views/PreferenceWindow.qml:76 ../src/views/PreferenceWindow.qml:92
 #: ../src/views/PreferenceWindow.qml:217 ../src/views/PreferenceWindow.qml:299
 #: ../src/views/ShortcutsViewer.qml:43
 msgid "Playback"
-msgstr "播放設定"
+msgstr "Toisto"
 
 #: ../src/views/PreferenceWindow.qml:97 ../src/views/PreferenceWindow.qml:523
 #: ../src/views/ShortcutsViewer.qml:101
 msgid "Frame/Sound"
-msgstr "影格/聲音"
+msgstr "Kehykset/Äänet"
 
 #: ../src/views/PreferenceWindow.qml:102 ../src/views/PreferenceWindow.qml:696
 #: ../src/views/ShortcutsViewer.qml:80
 msgid "Files"
-msgstr "檔案"
+msgstr "Tiedostot"
 
 #: ../src/views/PreferenceWindow.qml:112 ../src/views/PreferenceWindow.qml:912
 #: ../src/views/ShortcutsViewer.qml:130
 msgid "Other"
-msgstr "其它"
+msgstr "Muu"
 
 #: ../src/views/PreferenceWindow.qml:107 ../src/views/PreferenceWindow.qml:791
 #: ../src/views/ShortcutsViewer.qml:150
 #: ../src/controllers/menu_controller.py:111
 msgid "Subtitles"
-msgstr "字幕"
+msgstr "Tekstitys"
 
 #: ../src/views/PreferenceWindow.qml:15
 msgid "Black"
-msgstr "黑"
+msgstr "Musta"
 
 #: ../src/views/PreferenceWindow.qml:16
 msgid "bleu de France"
-msgstr "法國藍"
+msgstr "Ranskansininen"
 
 #: ../src/views/PreferenceWindow.qml:17
 msgid "Turquoise"
-msgstr "綠寶石"
+msgstr "Turkoosi"
 
 #: ../src/views/PreferenceWindow.qml:18
 msgid "UFO green"
-msgstr "外星綠"
+msgstr "UFO-vihreä"
 
 #: ../src/views/PreferenceWindow.qml:19
 msgid "Green yellow"
-msgstr "綠黃色"
+msgstr "Vihreä keltainen"
 
 #: ../src/views/PreferenceWindow.qml:20
 msgid "Energy yellow"
-msgstr "能量黃"
+msgstr "Sähkönkeltainen"
 
 #: ../src/views/PreferenceWindow.qml:22
 msgid "Radical red"
-msgstr "火熱紅"
+msgstr "Radikaalinpunainen"
 
 #: ../src/views/PreferenceWindow.qml:23
 msgid "Lavender indigo"
-msgstr "薰衣草紫"
+msgstr "Laventeli indigonsininen"
 
 #: ../src/views/PreferenceWindow.qml:24
 msgid "Royal blue"
-msgstr "寶藍色"
+msgstr "Syvänsininen"
 
 #: ../src/views/PreferenceWindow.qml:25
 msgid "Aluminum"
-msgstr "鋁銀色"
+msgstr "Alumiini"
 
 #: ../src/views/PreferenceWindow.qml:26
 msgid "Clean white"
-msgstr "白淨"
+msgstr "Puhtaan valkoinen"
 
 #: ../src/views/PreferenceWindow.qml:72 ../src/views/PreferenceWindow.qml:213
 msgid "Basic settings"
-msgstr "基本設定"
+msgstr "Perusasetukset"
 
 #: ../src/views/PreferenceWindow.qml:81 ../src/views/PreferenceWindow.qml:277
 msgid "Time span"
-msgstr "時間距"
+msgstr "Aikaväli"
 
 #: ../src/views/PreferenceWindow.qml:88 ../src/views/PreferenceWindow.qml:295
 msgid "Keyboard shortcuts"
-msgstr "鍵盤快捷鍵"
+msgstr "Näppäimistön oikopolut"
 
 #: ../src/views/PreferenceWindow.qml:119 ../src/views/PreferenceWindow.qml:972
 msgid "Subtitle settings"
-msgstr "字幕設定"
+msgstr "Tekstityksen asetukset"
 
 #: ../src/views/PreferenceWindow.qml:148
 msgid "Reset shortcuts"
-msgstr "重設捷徑"
+msgstr "Aseta oikopolut uudestaan"
 
 #: ../src/views/PreferenceWindow.qml:152
 msgid "Reset subtitle settings"
-msgstr "重設字幕設定"
+msgstr "Palauta tekstitysasetukset"
 
 #: ../src/views/PreferenceWindow.qml:226
 msgid "Fullscreen on opening file"
-msgstr "全螢幕模式開啟檔案"
+msgstr "Koko näytön tila käytössä avaustiedostossa"
 
 #: ../src/views/PreferenceWindow.qml:232
 msgid "Apply the size last time closed"
-msgstr "套用上次關閉時的大小"
+msgstr "Käytä samaa kokoa kuin viime käyttökerralla"
 
 #: ../src/views/PreferenceWindow.qml:258
 msgid "Allow multiple instances"
-msgstr ""
+msgstr "Salli useat instanssit"
 
 #: ../src/views/PreferenceWindow.qml:263
 msgid "Pause when minimized"
-msgstr "最小化時暫停"
+msgstr "Keskeytä toisto pienennettäessä"
 
 #: ../src/views/PreferenceWindow.qml:564 ../src/views/ShortcutsViewer.qml:108
 msgid "Rotate counterclockwise"
-msgstr " 逆時針方向旋轉"
+msgstr "Käännä kellonvastaisesti"
 
 #: ../src/views/PreferenceWindow.qml:590 ../src/views/ShortcutsViewer.qml:112
 msgid "Rotate clockwise"
-msgstr "順時針旋轉"
+msgstr "Kierrä kellonmyötäisesti"
 
 #: ../src/views/PreferenceWindow.qml:668 ../src/views/ShortcutsViewer.qml:124
 msgid "Mute"
-msgstr "靜音"
+msgstr "Mykistä"
 
 #: ../src/views/PreferenceWindow.qml:954 ../src/views/ShortcutsViewer.qml:143
 msgid "Scroll"
-msgstr "滑鼠滾輪"
+msgstr "Vieritä"
 
 #: ../src/views/PreferenceWindow.qml:957 ../src/views/ShortcutsViewer.qml:144
 #: ../src/views/VolumeButton.qml:44
 msgid "Volume"
-msgstr "音量"
+msgstr "Äänenvoimakkuus"
 
 #: ../src/views/PreferenceWindow.qml:993
 msgid "Font"
-msgstr "字體"
+msgstr "Fontti"
 
 #: ../src/views/PreferenceWindow.qml:1053
 msgid "Font color"
-msgstr "字體顏色"
+msgstr "Fontin väri"
 
 #: ../src/views/PreferenceWindow.qml:1071
 msgid "Size"
-msgstr "大小"
+msgstr "Koko"
 
 #: ../src/views/PreferenceWindow.qml:1105
 msgid "Border color"
-msgstr "邊框顏色"
+msgstr "Reunojen väri"
 
 #: ../src/views/PreferenceWindow.qml:1123
 msgid "Position"
-msgstr "姿勢"
+msgstr "Asema"
 
 #: ../src/views/PreferenceWindow.qml:1128
 msgid "Bottom"
-msgstr "底"
+msgstr "Pohja"
 
 #: ../src/views/PreferenceWindow.qml:1129
 msgid "Top"
-msgstr "頂"
+msgstr "Yläosa"
 
 #: ../src/views/PreferenceWindow.qml:1140
 msgid "Sync adjustment (s)"
-msgstr "同步調節"
+msgstr "Synkronisoinnin säätö"
 
 #: ../src/views/TitleBar.qml:173
 msgid "Shown in a proportion of 1:1"
@@ -546,75 +543,75 @@ msgstr ""
 
 #: ../src/views/TitleBar.qml:198
 msgid "Return to mini mode"
-msgstr "返回最小模式"
+msgstr "Palaa minitilaan"
 
 #: ../src/views/TitleBar.qml:198
 msgid "Shown in fullscreen"
-msgstr "全螢幕顯示"
+msgstr "Näytetään koko näytön tilassa"
 
 #: ../src/views/TitleBar.qml:213
 msgid "Cancel \"On Top\""
-msgstr "取消上方"
+msgstr "Peruuta \"Ylimmät\""
 
 #: ../src/views/TitleBar.qml:213
 msgid "On Top"
-msgstr "上方"
+msgstr "Ylhäällä:"
 
 #: ../src/views/main.qml:142
 msgid "Please input the url of file played"
-msgstr "請輸入播放的檔案網址"
+msgstr "Ole hyvä ja liitä soitetun tiedoston url"
 
 #: ../src/views/main.qml:143
 msgid "Confirm"
-msgstr "確認"
+msgstr "Vahvista"
 
 #: ../src/views/main.qml:160
 msgid "The parse failed"
-msgstr "解析失敗"
+msgstr "Jäsentely epäonnistui"
 
 #: ../src/views/main.qml:458 ../src/views/main.qml:459
 msgid "Buffering..."
-msgstr "緩衝中..."
+msgstr "Puskuroidaan..."
 
 #: ../src/controllers/menu_controller.py:35
 msgid "Default"
-msgstr "預設"
+msgstr "Oletus"
 
 #: ../src/controllers/menu_controller.py:47
 msgid "Rotate 90 degree clockwise"
-msgstr "順時針旋轉90度"
+msgstr "Kierrä 90 astetta kellonmyötäisesti"
 
 #: ../src/controllers/menu_controller.py:48
 msgid "Rotate 90 degree counterclockwise"
-msgstr "逆時針旋轉90度"
+msgstr "Käännä 90 astetta vastapäivään"
 
 #: ../src/controllers/menu_controller.py:49
 msgid "Flip horizontally"
-msgstr "水平翻轉"
+msgstr "Käännä vaakasuunnassa"
 
 #: ../src/controllers/menu_controller.py:50
 msgid "Flip vertically"
-msgstr "垂直翻轉"
+msgstr "Käännä pystysuunnassa"
 
 #: ../src/controllers/menu_controller.py:58
 msgid "Volume Up"
-msgstr "調高音量"
+msgstr "Volyymi ylös"
 
 #: ../src/controllers/menu_controller.py:59
 msgid "Volume Down"
-msgstr "調低音量"
+msgstr "Volyymi alas"
 
 #: ../src/controllers/menu_controller.py:64
 msgid "Auto"
-msgstr "自動"
+msgstr "Automaattinen"
 
 #: ../src/controllers/menu_controller.py:65
 msgid "Left"
-msgstr "左"
+msgstr "Vasen"
 
 #: ../src/controllers/menu_controller.py:66
 msgid "Right"
-msgstr "右"
+msgstr "Oikea"
 
 #: ../src/controllers/menu_controller.py:67
 msgid "Mono"
@@ -626,7 +623,7 @@ msgstr ""
 
 #: ../src/controllers/menu_controller.py:72
 msgid "Hide subtitle"
-msgstr "隱藏字幕"
+msgstr "Piilota tekstitys"
 
 #: ../src/controllers/menu_controller.py:76
 msgid "Open manually"
@@ -634,94 +631,94 @@ msgstr ""
 
 #: ../src/controllers/menu_controller.py:77
 msgid "Subtitle selection"
-msgstr "字幕選擇"
+msgstr "Tekstitysten valinta"
 
 #: ../src/controllers/menu_controller.py:78
 msgid "Subtitle setting"
-msgstr "字幕設定"
+msgstr "Tekstitysten asetus"
 
 #: ../src/controllers/menu_controller.py:82
 msgid "Order"
-msgstr "次序"
+msgstr "Tilaa"
 
 #: ../src/controllers/menu_controller.py:83
 msgid "Random"
-msgstr "隨機"
+msgstr "Sattumanvarainen"
 
 #: ../src/controllers/menu_controller.py:84
 msgid "Single"
-msgstr "單次播放"
+msgstr "Yksittäinen"
 
 #: ../src/controllers/menu_controller.py:85
 msgid "Repeat (Single)"
-msgstr "重覆 (單次)"
+msgstr "Toista (Yksittäinen)"
 
 #: ../src/controllers/menu_controller.py:86
 msgid "Repeat (Playlist)"
-msgstr "重覆 (清單)"
+msgstr "Toista (Soittolista)"
 
 #: ../src/controllers/menu_controller.py:99
 msgid "Open a folder"
-msgstr ""
+msgstr "Avaa kansio"
 
 #: ../src/controllers/menu_controller.py:100
 msgid "Open URL"
-msgstr "打開網址"
+msgstr "Avaa URL"
 
 #: ../src/controllers/menu_controller.py:104
 msgid "Always on top"
-msgstr "永遠在最上層"
+msgstr "Aina ylhäällä"
 
 #: ../src/controllers/menu_controller.py:107
 msgid "Play Sequence"
-msgstr ""
+msgstr "Soittojärjestys"
 
 #: ../src/controllers/menu_controller.py:109
 msgid "Frame"
-msgstr "影格"
+msgstr "Kehystä"
 
 #: ../src/controllers/menu_controller.py:110
 msgid "Sound"
-msgstr "音效"
+msgstr "Ääni"
 
 #: ../src/controllers/menu_controller.py:113
 msgid "Settings"
-msgstr "設置"
+msgstr "Asetukset"
 
 #: ../src/controllers/menu_controller.py:114
 #: ../src/controllers/menu_controller.py:132
 msgid "Information"
-msgstr "資訊"
+msgstr "Informaatio"
 
 #: ../src/controllers/menu_controller.py:115
 msgid "Help"
-msgstr "協助"
+msgstr "Ohje"
 
 #: ../src/controllers/menu_controller.py:121
 #: ../src/controllers/menu_controller.py:137
 msgid "Add folder"
-msgstr "新增資料夾"
+msgstr "Lisää kansio"
 
 #: ../src/controllers/menu_controller.py:123
 msgid "Remove from playlist"
-msgstr "從播放清單中移除"
+msgstr "Poista soittolistalta"
 
 #: ../src/controllers/menu_controller.py:124
 msgid "Remove invalid file"
-msgstr "移除無效檔案"
+msgstr "Poista virheellinen tiedosto"
 
 #: ../src/controllers/menu_controller.py:125
 msgid "Export"
-msgstr "導出皮膚"
+msgstr "Vie"
 
 #: ../src/controllers/menu_controller.py:126
 msgid "Import"
-msgstr "匯入"
+msgstr "Tuo"
 
 #: ../src/controllers/menu_controller.py:131
 msgid "Open file location"
-msgstr "開啟檔案位置"
+msgstr "Avaa tiedostosijainti"
 
 #: ../src/controllers/menu_controller.py:451
 msgid "Exit mini mode"
-msgstr "離開迷你模式"
+msgstr "Poistu mini-tilasta"

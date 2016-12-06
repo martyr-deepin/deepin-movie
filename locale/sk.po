@@ -4,14 +4,15 @@
 # 
 # Translators:
 # Microtus <hrabosmartin@gmail.com>, 2014
+# Marek Bujko <marek.bujko@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-11 11:21+0800\n"
-"PO-Revision-Date: 2015-05-11 09:07+0000\n"
+"PO-Revision-Date: 2016-12-06 01:36+0000\n"
 "Last-Translator: deepin_transifex <xiabin@linuxdeepin.com>\n"
-"Language-Team: Slovak (http://www.transifex.com/projects/p/deepin-movie/language/sk/)\n"
+"Language-Team: Slovak (http://www.transifex.com/linuxdeepin/deepin-movie/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,6 +22,10 @@ msgstr ""
 #: ../src/views/AboutSection.qml:6 ../src/views/PreferenceWindow.qml:129
 msgid "About"
 msgstr "O programe"
+
+#: ../src/views/AboutSection.qml:15
+msgid "Acknowledgements"
+msgstr ""
 
 #: ../src/views/AboutSection.qml:13 ../src/views/TitleBar.qml:70
 #: ../src/views/TitleBar.qml:142 ../src/views/window.py:71
@@ -210,12 +215,12 @@ msgstr "Stlmené"
 #: ../src/views/MainController.qml:683 ../src/views/MainController.qml:696
 #, qt-format
 msgid "Subtitle advanced %1 seconds"
-msgstr ""
+msgstr "Titulky posunuté dopredu o %1 sekúnd"
 
 #: ../src/views/MainController.qml:685 ../src/views/MainController.qml:698
 #, qt-format
 msgid "Subtitle delayed %1 seconds"
-msgstr ""
+msgstr "Titulky oneskorené o %1 sekúnd"
 
 #: ../src/views/OpenFileDialog.qml:5 ../src/views/OpenFileDialog.qml:21
 #: ../src/views/OpenFileDialog.qml:41
@@ -282,7 +287,7 @@ msgstr "Zobraziť náhľad pri prejdení myšou ponad ukazovateľ priebehu"
 
 #: ../src/views/PreferenceWindow.qml:286
 msgid "Forward/Rewind (s)"
-msgstr ""
+msgstr "Pretočiť vpred/Pretočiť späť (s)"
 
 #: ../src/views/PreferenceWindow.qml:308 ../src/views/PreferenceWindow.qml:532
 #: ../src/views/PreferenceWindow.qml:705 ../src/views/PreferenceWindow.qml:800
@@ -331,12 +336,12 @@ msgstr "Otvoriť ďalšie"
 #: ../src/views/PreferenceWindow.qml:806 ../src/views/ShortcutsViewer.qml:153
 #, qt-format
 msgid "Forward %1 (s)"
-msgstr ""
+msgstr "Vpred %1 (s)"
 
 #: ../src/views/PreferenceWindow.qml:832 ../src/views/ShortcutsViewer.qml:157
 #, qt-format
 msgid "Delay %1 (s)"
-msgstr ""
+msgstr "Oneskorenie %1 (s)"
 
 #: ../src/views/PreferenceWindow.qml:858 ../src/views/ShortcutsViewer.qml:161
 msgid "Subtitle up"
@@ -364,7 +369,7 @@ msgstr "Šírka rámu"
 
 #: ../src/views/PreferenceWindow.qml:21
 msgid "Orange"
-msgstr ""
+msgstr "Oranžový"
 
 #: ../src/views/PreferenceWindow.qml:76 ../src/views/PreferenceWindow.qml:92
 #: ../src/views/PreferenceWindow.qml:217 ../src/views/PreferenceWindow.qml:299
@@ -399,43 +404,43 @@ msgstr "Čierny"
 
 #: ../src/views/PreferenceWindow.qml:16
 msgid "bleu de France"
-msgstr "bleu de France"
+msgstr "Francúzska modrá"
 
 #: ../src/views/PreferenceWindow.qml:17
 msgid "Turquoise"
-msgstr "Turquoise"
+msgstr "Tyrkysovo modrá"
 
 #: ../src/views/PreferenceWindow.qml:18
 msgid "UFO green"
-msgstr "UFO green"
+msgstr "UFO zelená"
 
 #: ../src/views/PreferenceWindow.qml:19
 msgid "Green yellow"
-msgstr "Green yellow"
+msgstr "Žltozelená"
 
 #: ../src/views/PreferenceWindow.qml:20
 msgid "Energy yellow"
-msgstr "Energy yellow"
+msgstr "Žltá je dobrá"
 
 #: ../src/views/PreferenceWindow.qml:22
 msgid "Radical red"
-msgstr "Radical red"
+msgstr "Výrazná červená"
 
 #: ../src/views/PreferenceWindow.qml:23
 msgid "Lavender indigo"
-msgstr "Lavender indigo"
+msgstr "Svetle fialovo modrá"
 
 #: ../src/views/PreferenceWindow.qml:24
 msgid "Royal blue"
-msgstr "Royal blue"
+msgstr "Kráľovská modrá"
 
 #: ../src/views/PreferenceWindow.qml:25
 msgid "Aluminum"
-msgstr "Aluminum"
+msgstr "Hliníková"
 
 #: ../src/views/PreferenceWindow.qml:26
 msgid "Clean white"
-msgstr "Clean white"
+msgstr "Čistá biela"
 
 #: ../src/views/PreferenceWindow.qml:72 ../src/views/PreferenceWindow.qml:213
 msgid "Basic settings"
@@ -455,11 +460,11 @@ msgstr "Nastavenia titulkov"
 
 #: ../src/views/PreferenceWindow.qml:148
 msgid "Reset shortcuts"
-msgstr ""
+msgstr "Nastaviť klávesové skratky znova"
 
 #: ../src/views/PreferenceWindow.qml:152
 msgid "Reset subtitle settings"
-msgstr ""
+msgstr "Nastaviť nastavenia titulkov znova"
 
 #: ../src/views/PreferenceWindow.qml:226
 msgid "Fullscreen on opening file"
@@ -528,7 +533,7 @@ msgstr "Hore"
 
 #: ../src/views/PreferenceWindow.qml:1140
 msgid "Sync adjustment (s)"
-msgstr ""
+msgstr "Úprava nastavenia (s)"
 
 #: ../src/views/TitleBar.qml:173
 msgid "Shown in a proportion of 1:1"
@@ -568,7 +573,7 @@ msgstr "Spracovanie zlyhalo"
 
 #: ../src/views/main.qml:458 ../src/views/main.qml:459
 msgid "Buffering..."
-msgstr ""
+msgstr "Ukladá sa do vyrovnávacej pamäte..."
 
 #: ../src/controllers/menu_controller.py:35
 msgid "Default"
@@ -689,7 +694,7 @@ msgstr "Informácie"
 
 #: ../src/controllers/menu_controller.py:115
 msgid "Help"
-msgstr ""
+msgstr "Nápoveda"
 
 #: ../src/controllers/menu_controller.py:121
 #: ../src/controllers/menu_controller.py:137

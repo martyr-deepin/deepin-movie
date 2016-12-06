@@ -3,9 +3,6 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Chi-Hsun Tsai <chihsun.tsai@gmail.com>, 2016
-# Philip CHEUNG, 2016
-# Philip CHEUNG, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
@@ -13,16 +10,16 @@ msgstr ""
 "POT-Creation-Date: 2015-05-11 11:21+0800\n"
 "PO-Revision-Date: 2016-12-06 01:36+0000\n"
 "Last-Translator: deepin_transifex <xiabin@linuxdeepin.com>\n"
-"Language-Team: Chinese (Hong Kong) (http://www.transifex.com/linuxdeepin/deepin-movie/language/zh_HK/)\n"
+"Language-Team: Korean (http://www.transifex.com/linuxdeepin/deepin-movie/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: zh_HK\n"
+"Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../src/views/AboutSection.qml:6 ../src/views/PreferenceWindow.qml:129
 msgid "About"
-msgstr "關於"
+msgstr "소개"
 
 #: ../src/views/AboutSection.qml:15
 msgid "Acknowledgements"
@@ -31,11 +28,11 @@ msgstr ""
 #: ../src/views/AboutSection.qml:13 ../src/views/TitleBar.qml:70
 #: ../src/views/TitleBar.qml:142 ../src/views/window.py:71
 msgid "Deepin Movie"
-msgstr "Depein 電影"
+msgstr "Deepin 영화"
 
 #: ../src/views/AboutSection.qml:28
 msgid "Version"
-msgstr "版本"
+msgstr "버전"
 
 #: ../src/views/AboutSection.qml:28 ../src/views/InformationLabel.qml:20
 #: ../src/views/MainController.qml:260 ../src/views/main.qml:142
@@ -47,11 +44,11 @@ msgid ""
 "Deepin Movie is a well-designed and full-featured video player with simple "
 "borderless design. It supports local and streaming media play with multiple "
 "video formats."
-msgstr ""
+msgstr "Deepin Movie는 경계 없는 간단한 디자인을 자랑하는 최고의 비디오 플레이어입니다. 본 플레이어는 다양한 비디오 포맷의 로컬 및 스트리밍 미디어 플레이를 지원합니다."
 
 #: ../src/views/AboutSection.qml:69
 msgid "Deepin Movie is released under GPLv3."
-msgstr "Deepin Movie　依 GPLv3授權條件發佈."
+msgstr "Deepin 영화는 GPLv3로 릴리즈됩니다."
 
 #: ../src/views/ControlBar.qml:229
 msgid "Stop playing"
@@ -59,24 +56,24 @@ msgstr ""
 
 #: ../src/views/ControlBar.qml:247 ../src/controllers/menu_controller.py:90
 msgid "Previous"
-msgstr "上一首"
+msgstr "ㅇㅣㅈㅓㄴ"
 
 #: ../src/views/ControlBar.qml:266
 msgid "Pause"
-msgstr "暫停"
+msgstr "멈춤"
 
 #: ../src/views/ControlBar.qml:266 ../src/controllers/menu_controller.py:108
 #: ../src/controllers/menu_controller.py:119
 msgid "Play"
-msgstr "播放"
+msgstr "재생"
 
 #: ../src/views/ControlBar.qml:283 ../src/controllers/menu_controller.py:91
 msgid "Next"
-msgstr "下一首"
+msgstr "다음"
 
 #: ../src/views/ControlBar.qml:326 ../src/controllers/menu_controller.py:449
 msgid "Exit fullscreen"
-msgstr "離開全螢幕"
+msgstr "전체화면에서 나가기 "
 
 #: ../src/views/ControlBar.qml:326 ../src/views/PreferenceWindow.qml:391
 #: ../src/views/PreferenceWindow.qml:941 ../src/views/ShortcutsViewer.qml:58
@@ -84,19 +81,19 @@ msgstr "離開全螢幕"
 #: ../src/controllers/menu_controller.py:102
 #: ../src/controllers/menu_controller.py:450
 msgid "Fullscreen"
-msgstr "全螢幕"
+msgstr "전체 화면"
 
 #: ../src/views/ControlBar.qml:343 ../src/views/PreferenceWindow.qml:711
 #: ../src/views/ShortcutsViewer.qml:83
 #: ../src/controllers/menu_controller.py:98
 msgid "Open a file"
-msgstr ""
+msgstr "파일 열기"
 
 #: ../src/views/ControlBar.qml:355 ../src/views/OpenFileDialog.qml:66
 #: ../src/views/PreferenceWindow.qml:417 ../src/views/ShortcutsViewer.qml:62
 #: ../src/controllers/menu_controller.py:105
 msgid "Playlist"
-msgstr "播放清單"
+msgstr "재생목록"
 
 #: ../src/views/HotKeyInput.qml:7 ../src/views/HotKeyInput.qml:16
 #: ../src/views/HotKeyInputRow.qml:24 ../src/views/HotKeyInputRow.qml:26
@@ -105,99 +102,99 @@ msgstr "播放清單"
 #: ../src/views/ShortcutsLabel.qml:23 ../src/views/ShortcutsViewer.qml:134
 #: ../src/views/ShortcutsViewer.qml:139 ../src/views/ShortcutsViewer.qml:144
 msgid "None"
-msgstr "沒有"
+msgstr "없음"
 
 #: ../src/views/HotKeyInput.qml:23
 msgid "Please input a new shortcut"
-msgstr "請輸入新的捷徑"
+msgstr "새 바로가기를 입력하세요"
 
 #: ../src/views/HotKeyInputRow.qml:30
 msgid "The shortcut you set "
-msgstr "你設置的捷徑"
+msgstr "바로가기 설정"
 
 #: ../src/views/HotKeyInputRow.qml:31
 #, qt-format
 msgid "conflicts with the one used for \"%2\" in the \"%1\" category. "
-msgstr ""
+msgstr " \"%1\"  카테고리에서 \"%2\"를 사용자와 충돌합니다. "
 
 #: ../src/views/HotKeyInputRow.qml:32
 msgid "Do you want to replace it?"
-msgstr "你想取代它嗎？"
+msgstr "그것을 변경하시겠습니까?"
 
 #: ../src/views/HotKeyInputRow.qml:99 ../src/views/main.qml:144
 msgid "Cancel"
-msgstr "取消"
+msgstr "취소"
 
 #: ../src/views/HotKeyInputRow.qml:110
 msgid "Replace"
-msgstr "取代"
+msgstr "교체"
 
 #: ../src/views/InformationWindow.qml:23 ../src/views/InformationWindow.qml:24
 #: ../src/views/InformationWindow.qml:25 ../src/models/movie_info.py:78
 msgid "Unknown"
-msgstr "未知"
+msgstr "알 수 없음"
 
 #: ../src/views/InformationWindow.qml:77
 msgid "File type"
-msgstr "檔案類型"
+msgstr "파일 유형 "
 
 #: ../src/views/InformationWindow.qml:87
 msgid "File size"
-msgstr "檔案大小"
+msgstr "파일 크기"
 
 #: ../src/views/InformationWindow.qml:97
 msgid "Resolution"
-msgstr "解析度"
+msgstr "해상도"
 
 #: ../src/views/InformationWindow.qml:107
 msgid "Movie duration"
-msgstr "電影長度"
+msgstr "영화 지속 시간"
 
 #: ../src/views/InformationWindow.qml:117
 msgid "File path"
-msgstr "檔案路徑"
+msgstr "파일 경로"
 
 #: ../src/views/InformationWindow.qml:134
 msgid "Copy to clipboard"
-msgstr "儲存至剪貼簿"
+msgstr "클립보드 복사 "
 
 #: ../src/views/InformationWindow.qml:149
 msgid "Close"
-msgstr "關閉"
+msgstr "닫기"
 
 #: ../src/views/MainController.qml:260
 msgid "Invalid file"
-msgstr "無效檔案"
+msgstr "무효한 파일"
 
 #: ../src/views/MainController.qml:37
 #, qt-format
 msgid "%1 files unable to be parsed have been excluded"
-msgstr "%1 無法被解析的檔案已排除"
+msgstr "분석되지 않는 1% 파일은 제외되었습니다"
 
 #: ../src/views/MainController.qml:50
 msgid "Imported"
-msgstr "匯入"
+msgstr "불러옴"
 
 #: ../src/views/MainController.qml:462
 msgid "Play last movie played"
-msgstr "播放上次播過的電影"
+msgstr "마지막으로 재생한 영상 재생"
 
 #: ../src/views/MainController.qml:495 ../src/views/PreferenceWindow.qml:339
 #: ../src/views/ShortcutsViewer.qml:50
 #: ../src/controllers/menu_controller.py:93
 msgid "Forward"
-msgstr "快進"
+msgstr "전달"
 
 #: ../src/views/MainController.qml:507 ../src/views/PreferenceWindow.qml:365
 #: ../src/views/ShortcutsViewer.qml:54
 #: ../src/controllers/menu_controller.py:94
 msgid "Rewind"
-msgstr "後退"
+msgstr "되감기"
 
 #: ../src/views/MainController.qml:515 ../src/views/MainController.qml:521
 #, qt-format
 msgid "(Press %1 to restore)"
-msgstr "(按 %1 來恢復)"
+msgstr "(복구하려면 %1을(를) 누르세요)"
 
 #: ../src/views/MainController.qml:517 ../src/views/MainController.qml:523
 #: ../src/views/MainController.qml:528
@@ -206,22 +203,22 @@ msgstr ""
 
 #: ../src/views/MainController.qml:540 ../src/views/MainController.qml:549
 msgid "Volume: "
-msgstr "音量:"
+msgstr "음량:"
 
 #: ../src/views/MainController.qml:547
 #: ../src/controllers/menu_controller.py:60
 msgid "Muted"
-msgstr "已靜音"
+msgstr "조용히 상태"
 
 #: ../src/views/MainController.qml:683 ../src/views/MainController.qml:696
 #, qt-format
 msgid "Subtitle advanced %1 seconds"
-msgstr "字幕快了 %1 秒"
+msgstr "%1초 앞선 자막 "
 
 #: ../src/views/MainController.qml:685 ../src/views/MainController.qml:698
 #, qt-format
 msgid "Subtitle delayed %1 seconds"
-msgstr "字幕遲了 %1 秒"
+msgstr "자막이 %1 초 지연됨"
 
 #: ../src/views/OpenFileDialog.qml:5 ../src/views/OpenFileDialog.qml:21
 #: ../src/views/OpenFileDialog.qml:41
@@ -231,11 +228,11 @@ msgstr ""
 #: ../src/views/OpenFileDialog.qml:7 ../src/views/OpenFileDialog.qml:23
 #: ../src/views/OpenFileDialog.qml:43
 msgid "Video files"
-msgstr "影片檔案"
+msgstr "비디오 파일"
 
 #: ../src/views/OpenFileDialog.qml:15
 msgid "All files"
-msgstr "所有檔案"
+msgstr "모든 파일"
 
 #: ../src/views/OpenFileDialog.qml:31 ../src/views/OpenFileDialog.qml:51
 msgid "Please choose one file"
@@ -243,15 +240,15 @@ msgstr ""
 
 #: ../src/views/OpenFileDialog.qml:33
 msgid "Subtitle files"
-msgstr "字幕檔案"
+msgstr "자막 파일"
 
 #: ../src/views/OpenFileDialog.qml:53 ../src/views/OpenFileDialog.qml:63
 msgid "Playlist files"
-msgstr "播放清單檔案"
+msgstr "재생목록 파일"
 
 #: ../src/views/OpenFileDialog.qml:61
 msgid "Save as"
-msgstr "保存到指定目錄"
+msgstr "다음으로 저장"
 
 #: ../src/views/OpenFolderDialog.qml:5
 msgid "Please choose a folder"
@@ -259,28 +256,28 @@ msgstr ""
 
 #: ../src/views/Playlist.qml:252
 msgid "Play mode"
-msgstr "播放模式"
+msgstr "연주 모드"
 
 #: ../src/views/Playlist.qml:260 ../src/controllers/menu_controller.py:120
 #: ../src/controllers/menu_controller.py:136
 msgid "Add file"
-msgstr "新增檔案"
+msgstr "파일 추가"
 
 #: ../src/views/Playlist.qml:268 ../src/controllers/menu_controller.py:127
 msgid "Clear playlist"
-msgstr "清除播放清單"
+msgstr "재생목록 지우기"
 
 #: ../src/views/PreferenceWindow.qml:238
 msgid "Clear playlist on opening new file"
-msgstr "開啟新檔案時清除播放清單"
+msgstr "새 파일을 열 때 재생목록 지우기"
 
 #: ../src/views/PreferenceWindow.qml:243
 msgid "Resume playback after restarting player"
-msgstr "重啟播放器後繼續播放"
+msgstr "플레이어를 다시 시작한 뒤에 플레이백 계속 재생"
 
 #: ../src/views/PreferenceWindow.qml:248
 msgid "Continue to next video automatically"
-msgstr "自動播放下一段影片"
+msgstr "자동으로 다음 동영상 재생"
 
 #: ../src/views/PreferenceWindow.qml:253
 msgid "Show preview when hovering over progress bar"
@@ -293,46 +290,46 @@ msgstr ""
 #: ../src/views/PreferenceWindow.qml:308 ../src/views/PreferenceWindow.qml:532
 #: ../src/views/PreferenceWindow.qml:705 ../src/views/PreferenceWindow.qml:800
 msgid "Enable keyboard shortcuts"
-msgstr "啟動快速鍵"
+msgstr "키보드 쇼트컷 활성화"
 
 #: ../src/views/PreferenceWindow.qml:313 ../src/views/PreferenceWindow.qml:925
 #: ../src/views/ShortcutsViewer.qml:46 ../src/views/ShortcutsViewer.qml:134
 msgid "Pause/Play"
-msgstr "暫停/播放"
+msgstr "멈춤/재생"
 
 #: ../src/views/PreferenceWindow.qml:443 ../src/views/ShortcutsViewer.qml:66
 msgid "Accelerate playback"
-msgstr "加快播放速度"
+msgstr "재생 속도 빠르게"
 
 #: ../src/views/PreferenceWindow.qml:469 ../src/views/ShortcutsViewer.qml:70
 msgid "Decelerate playback"
-msgstr "減慢播放速度"
+msgstr "재생 속도 느리게"
 
 #: ../src/views/PreferenceWindow.qml:495 ../src/views/ShortcutsViewer.qml:74
 msgid "Restore playback speed"
-msgstr "回復播放速度"
+msgstr "재생 속도 복원"
 
 #: ../src/views/PreferenceWindow.qml:538 ../src/views/ShortcutsViewer.qml:104
 #: ../src/controllers/menu_controller.py:103
 #: ../src/controllers/menu_controller.py:452
 msgid "Mini mode"
-msgstr "精簡模式"
+msgstr "미니 모드 "
 
 #: ../src/views/PreferenceWindow.qml:616 ../src/views/ShortcutsViewer.qml:116
 msgid "Volume up"
-msgstr "調高音量"
+msgstr "볼륨 키우기"
 
 #: ../src/views/PreferenceWindow.qml:642 ../src/views/ShortcutsViewer.qml:120
 msgid "Volume down"
-msgstr "調低音量"
+msgstr "음량 작게"
 
 #: ../src/views/PreferenceWindow.qml:737 ../src/views/ShortcutsViewer.qml:87
 msgid "Open previous"
-msgstr "開啟上一個"
+msgstr "이전 열기"
 
 #: ../src/views/PreferenceWindow.qml:763 ../src/views/ShortcutsViewer.qml:91
 msgid "Open next"
-msgstr "開啟下一個"
+msgstr "다음 열기"
 
 #: ../src/views/PreferenceWindow.qml:806 ../src/views/ShortcutsViewer.qml:153
 #, qt-format
@@ -342,199 +339,199 @@ msgstr ""
 #: ../src/views/PreferenceWindow.qml:832 ../src/views/ShortcutsViewer.qml:157
 #, qt-format
 msgid "Delay %1 (s)"
-msgstr "延遲 %1 (s)"
+msgstr "지연 %1 (s)"
 
 #: ../src/views/PreferenceWindow.qml:858 ../src/views/ShortcutsViewer.qml:161
 msgid "Subtitle up"
-msgstr "字幕向上"
+msgstr "자막 올리기"
 
 #: ../src/views/PreferenceWindow.qml:884 ../src/views/ShortcutsViewer.qml:165
 msgid "Subtitle down"
-msgstr "字幕往下"
+msgstr "자막 내리기"
 
 #: ../src/views/PreferenceWindow.qml:922 ../src/views/ShortcutsViewer.qml:133
 msgid "Left click"
-msgstr "單擊滑鼠左鍵"
+msgstr "마우스 왼쪽 클릭"
 
 #: ../src/views/PreferenceWindow.qml:938 ../src/views/ShortcutsViewer.qml:138
 msgid "Double click"
-msgstr "雙擊滑鼠左鍵"
+msgstr "더블 클릭"
 
 #: ../src/views/PreferenceWindow.qml:979
 msgid "Subtitles loaded automatically"
-msgstr "自動載入字幕"
+msgstr "자막이 자동으로 로드됨"
 
 #: ../src/views/PreferenceWindow.qml:1088
 msgid "Border width"
-msgstr "邊框闊度"
+msgstr "경계 너비"
 
 #: ../src/views/PreferenceWindow.qml:21
 msgid "Orange"
-msgstr "橙"
+msgstr "오렌지"
 
 #: ../src/views/PreferenceWindow.qml:76 ../src/views/PreferenceWindow.qml:92
 #: ../src/views/PreferenceWindow.qml:217 ../src/views/PreferenceWindow.qml:299
 #: ../src/views/ShortcutsViewer.qml:43
 msgid "Playback"
-msgstr "播放設定"
+msgstr "재생"
 
 #: ../src/views/PreferenceWindow.qml:97 ../src/views/PreferenceWindow.qml:523
 #: ../src/views/ShortcutsViewer.qml:101
 msgid "Frame/Sound"
-msgstr "影格/聲音"
+msgstr "프레임/사운드"
 
 #: ../src/views/PreferenceWindow.qml:102 ../src/views/PreferenceWindow.qml:696
 #: ../src/views/ShortcutsViewer.qml:80
 msgid "Files"
-msgstr "檔案"
+msgstr "파일"
 
 #: ../src/views/PreferenceWindow.qml:112 ../src/views/PreferenceWindow.qml:912
 #: ../src/views/ShortcutsViewer.qml:130
 msgid "Other"
-msgstr "其它"
+msgstr "기타"
 
 #: ../src/views/PreferenceWindow.qml:107 ../src/views/PreferenceWindow.qml:791
 #: ../src/views/ShortcutsViewer.qml:150
 #: ../src/controllers/menu_controller.py:111
 msgid "Subtitles"
-msgstr "字幕"
+msgstr "자막"
 
 #: ../src/views/PreferenceWindow.qml:15
 msgid "Black"
-msgstr "黑"
+msgstr "검정 "
 
 #: ../src/views/PreferenceWindow.qml:16
 msgid "bleu de France"
-msgstr "法國藍"
+msgstr "블루 드 프랑스"
 
 #: ../src/views/PreferenceWindow.qml:17
 msgid "Turquoise"
-msgstr "綠寶石"
+msgstr "터키석"
 
 #: ../src/views/PreferenceWindow.qml:18
 msgid "UFO green"
-msgstr "外星綠"
+msgstr "UFO 그린"
 
 #: ../src/views/PreferenceWindow.qml:19
 msgid "Green yellow"
-msgstr "綠黃色"
+msgstr "그린 옐로우"
 
 #: ../src/views/PreferenceWindow.qml:20
 msgid "Energy yellow"
-msgstr "能量黃"
+msgstr "힘이 넘치는 노랑 "
 
 #: ../src/views/PreferenceWindow.qml:22
 msgid "Radical red"
-msgstr "火熱紅"
+msgstr "진한 빨강"
 
 #: ../src/views/PreferenceWindow.qml:23
 msgid "Lavender indigo"
-msgstr "薰衣草紫"
+msgstr "라벤더 인디고"
 
 #: ../src/views/PreferenceWindow.qml:24
 msgid "Royal blue"
-msgstr "寶藍色"
+msgstr "감청색"
 
 #: ../src/views/PreferenceWindow.qml:25
 msgid "Aluminum"
-msgstr "鋁銀色"
+msgstr "알류미늄"
 
 #: ../src/views/PreferenceWindow.qml:26
 msgid "Clean white"
-msgstr "白淨"
+msgstr "깨끗한 흰색 "
 
 #: ../src/views/PreferenceWindow.qml:72 ../src/views/PreferenceWindow.qml:213
 msgid "Basic settings"
-msgstr "基本設定"
+msgstr "기본 설정"
 
 #: ../src/views/PreferenceWindow.qml:81 ../src/views/PreferenceWindow.qml:277
 msgid "Time span"
-msgstr "時間距"
+msgstr "기간"
 
 #: ../src/views/PreferenceWindow.qml:88 ../src/views/PreferenceWindow.qml:295
 msgid "Keyboard shortcuts"
-msgstr "鍵盤快捷鍵"
+msgstr "키보드 단축키"
 
 #: ../src/views/PreferenceWindow.qml:119 ../src/views/PreferenceWindow.qml:972
 msgid "Subtitle settings"
-msgstr "字幕設定"
+msgstr "자막 설정:"
 
 #: ../src/views/PreferenceWindow.qml:148
 msgid "Reset shortcuts"
-msgstr "重設捷徑"
+msgstr "단축키 리셋 "
 
 #: ../src/views/PreferenceWindow.qml:152
 msgid "Reset subtitle settings"
-msgstr "重設字幕設定"
+msgstr "자막 설정 리셋"
 
 #: ../src/views/PreferenceWindow.qml:226
 msgid "Fullscreen on opening file"
-msgstr "全螢幕模式開啟檔案"
+msgstr "파일을 열 때 전체화면 설정"
 
 #: ../src/views/PreferenceWindow.qml:232
 msgid "Apply the size last time closed"
-msgstr "套用上次關閉時的大小"
+msgstr "마지막에 닫힌 크기 적용"
 
 #: ../src/views/PreferenceWindow.qml:258
 msgid "Allow multiple instances"
-msgstr ""
+msgstr "다중 인스턴스 허용"
 
 #: ../src/views/PreferenceWindow.qml:263
 msgid "Pause when minimized"
-msgstr "最小化時暫停"
+msgstr "최소화됐을 때 일시정지"
 
 #: ../src/views/PreferenceWindow.qml:564 ../src/views/ShortcutsViewer.qml:108
 msgid "Rotate counterclockwise"
-msgstr " 逆時針方向旋轉"
+msgstr "시계방향으로 회전"
 
 #: ../src/views/PreferenceWindow.qml:590 ../src/views/ShortcutsViewer.qml:112
 msgid "Rotate clockwise"
-msgstr "順時針旋轉"
+msgstr "시계방향 회전"
 
 #: ../src/views/PreferenceWindow.qml:668 ../src/views/ShortcutsViewer.qml:124
 msgid "Mute"
-msgstr "靜音"
+msgstr "음소거"
 
 #: ../src/views/PreferenceWindow.qml:954 ../src/views/ShortcutsViewer.qml:143
 msgid "Scroll"
-msgstr "滑鼠滾輪"
+msgstr "스크롤"
 
 #: ../src/views/PreferenceWindow.qml:957 ../src/views/ShortcutsViewer.qml:144
 #: ../src/views/VolumeButton.qml:44
 msgid "Volume"
-msgstr "音量"
+msgstr "음량"
 
 #: ../src/views/PreferenceWindow.qml:993
 msgid "Font"
-msgstr "字體"
+msgstr "폰트"
 
 #: ../src/views/PreferenceWindow.qml:1053
 msgid "Font color"
-msgstr "字體顏色"
+msgstr "글자 색상"
 
 #: ../src/views/PreferenceWindow.qml:1071
 msgid "Size"
-msgstr "大小"
+msgstr "크기"
 
 #: ../src/views/PreferenceWindow.qml:1105
 msgid "Border color"
-msgstr "邊框顏色"
+msgstr "테두리 색상 "
 
 #: ../src/views/PreferenceWindow.qml:1123
 msgid "Position"
-msgstr "姿勢"
+msgstr "위치"
 
 #: ../src/views/PreferenceWindow.qml:1128
 msgid "Bottom"
-msgstr "底"
+msgstr "하단"
 
 #: ../src/views/PreferenceWindow.qml:1129
 msgid "Top"
-msgstr "頂"
+msgstr "맨 위"
 
 #: ../src/views/PreferenceWindow.qml:1140
 msgid "Sync adjustment (s)"
-msgstr "同步調節"
+msgstr "싱크 조정"
 
 #: ../src/views/TitleBar.qml:173
 msgid "Shown in a proportion of 1:1"
@@ -546,75 +543,75 @@ msgstr ""
 
 #: ../src/views/TitleBar.qml:198
 msgid "Return to mini mode"
-msgstr "返回最小模式"
+msgstr "미니 모드로 돌아가기"
 
 #: ../src/views/TitleBar.qml:198
 msgid "Shown in fullscreen"
-msgstr "全螢幕顯示"
+msgstr "전체화면으로 표시"
 
 #: ../src/views/TitleBar.qml:213
 msgid "Cancel \"On Top\""
-msgstr "取消上方"
+msgstr "\"위로\" 취소"
 
 #: ../src/views/TitleBar.qml:213
 msgid "On Top"
-msgstr "上方"
+msgstr "맨 위 항목 "
 
 #: ../src/views/main.qml:142
 msgid "Please input the url of file played"
-msgstr "請輸入播放的檔案網址"
+msgstr "재생된 파일의 url을 입력하세요"
 
 #: ../src/views/main.qml:143
 msgid "Confirm"
-msgstr "確認"
+msgstr "확인"
 
 #: ../src/views/main.qml:160
 msgid "The parse failed"
-msgstr "解析失敗"
+msgstr "구분 분석에 실패했습니다"
 
 #: ../src/views/main.qml:458 ../src/views/main.qml:459
 msgid "Buffering..."
-msgstr "緩衝中..."
+msgstr "버퍼링..."
 
 #: ../src/controllers/menu_controller.py:35
 msgid "Default"
-msgstr "預設"
+msgstr "ㄷㅣ폴트."
 
 #: ../src/controllers/menu_controller.py:47
 msgid "Rotate 90 degree clockwise"
-msgstr "順時針旋轉90度"
+msgstr "시계 방향으로 90도 회전"
 
 #: ../src/controllers/menu_controller.py:48
 msgid "Rotate 90 degree counterclockwise"
-msgstr "逆時針旋轉90度"
+msgstr "반시계 방향으로 90도 회전 "
 
 #: ../src/controllers/menu_controller.py:49
 msgid "Flip horizontally"
-msgstr "水平翻轉"
+msgstr "가로로 튀기기."
 
 #: ../src/controllers/menu_controller.py:50
 msgid "Flip vertically"
-msgstr "垂直翻轉"
+msgstr "수직으로 젖히기"
 
 #: ../src/controllers/menu_controller.py:58
 msgid "Volume Up"
-msgstr "調高音量"
+msgstr "음량 크게"
 
 #: ../src/controllers/menu_controller.py:59
 msgid "Volume Down"
-msgstr "調低音量"
+msgstr "음량 작게"
 
 #: ../src/controllers/menu_controller.py:64
 msgid "Auto"
-msgstr "自動"
+msgstr "자동"
 
 #: ../src/controllers/menu_controller.py:65
 msgid "Left"
-msgstr "左"
+msgstr "왼쪽"
 
 #: ../src/controllers/menu_controller.py:66
 msgid "Right"
-msgstr "右"
+msgstr "오른쪽"
 
 #: ../src/controllers/menu_controller.py:67
 msgid "Mono"
@@ -626,7 +623,7 @@ msgstr ""
 
 #: ../src/controllers/menu_controller.py:72
 msgid "Hide subtitle"
-msgstr "隱藏字幕"
+msgstr "자막"
 
 #: ../src/controllers/menu_controller.py:76
 msgid "Open manually"
@@ -634,94 +631,94 @@ msgstr ""
 
 #: ../src/controllers/menu_controller.py:77
 msgid "Subtitle selection"
-msgstr "字幕選擇"
+msgstr "자막 선택"
 
 #: ../src/controllers/menu_controller.py:78
 msgid "Subtitle setting"
-msgstr "字幕設定"
+msgstr "자막 설정"
 
 #: ../src/controllers/menu_controller.py:82
 msgid "Order"
-msgstr "次序"
+msgstr "주문"
 
 #: ../src/controllers/menu_controller.py:83
 msgid "Random"
-msgstr "隨機"
+msgstr "무작위"
 
 #: ../src/controllers/menu_controller.py:84
 msgid "Single"
-msgstr "單次播放"
+msgstr "싱글"
 
 #: ../src/controllers/menu_controller.py:85
 msgid "Repeat (Single)"
-msgstr "重覆 (單次)"
+msgstr "반복하기(싱글)"
 
 #: ../src/controllers/menu_controller.py:86
 msgid "Repeat (Playlist)"
-msgstr "重覆 (清單)"
+msgstr "반복 (재생목록)"
 
 #: ../src/controllers/menu_controller.py:99
 msgid "Open a folder"
-msgstr ""
+msgstr "폴더 열기"
 
 #: ../src/controllers/menu_controller.py:100
 msgid "Open URL"
-msgstr "打開網址"
+msgstr "URL 열기"
 
 #: ../src/controllers/menu_controller.py:104
 msgid "Always on top"
-msgstr "永遠在最上層"
+msgstr "항상 위에"
 
 #: ../src/controllers/menu_controller.py:107
 msgid "Play Sequence"
-msgstr ""
+msgstr "순차 재생 "
 
 #: ../src/controllers/menu_controller.py:109
 msgid "Frame"
-msgstr "影格"
+msgstr "프레임"
 
 #: ../src/controllers/menu_controller.py:110
 msgid "Sound"
-msgstr "音效"
+msgstr "소리"
 
 #: ../src/controllers/menu_controller.py:113
 msgid "Settings"
-msgstr "設置"
+msgstr "설정"
 
 #: ../src/controllers/menu_controller.py:114
 #: ../src/controllers/menu_controller.py:132
 msgid "Information"
-msgstr "資訊"
+msgstr "정보"
 
 #: ../src/controllers/menu_controller.py:115
 msgid "Help"
-msgstr "協助"
+msgstr "도움말"
 
 #: ../src/controllers/menu_controller.py:121
 #: ../src/controllers/menu_controller.py:137
 msgid "Add folder"
-msgstr "新增資料夾"
+msgstr "폴더 추가"
 
 #: ../src/controllers/menu_controller.py:123
 msgid "Remove from playlist"
-msgstr "從播放清單中移除"
+msgstr "플레이리스트에서 제거"
 
 #: ../src/controllers/menu_controller.py:124
 msgid "Remove invalid file"
-msgstr "移除無效檔案"
+msgstr "잘못된 파일 제거"
 
 #: ../src/controllers/menu_controller.py:125
 msgid "Export"
-msgstr "導出皮膚"
+msgstr "보내기"
 
 #: ../src/controllers/menu_controller.py:126
 msgid "Import"
-msgstr "匯入"
+msgstr "들여오기"
 
 #: ../src/controllers/menu_controller.py:131
 msgid "Open file location"
-msgstr "開啟檔案位置"
+msgstr "파일 위치 열기"
 
 #: ../src/controllers/menu_controller.py:451
 msgid "Exit mini mode"
-msgstr "離開迷你模式"
+msgstr "미니 모드 퇴장"

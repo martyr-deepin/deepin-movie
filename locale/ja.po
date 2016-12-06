@@ -3,9 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Chi-Hsun Tsai <chihsun.tsai@gmail.com>, 2016
-# Philip CHEUNG, 2016
-# Philip CHEUNG, 2016
+# ふうせん Fu-sen. | BALLOON a.k.a. Fu-sen., 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
@@ -13,16 +11,16 @@ msgstr ""
 "POT-Creation-Date: 2015-05-11 11:21+0800\n"
 "PO-Revision-Date: 2016-12-06 01:36+0000\n"
 "Last-Translator: deepin_transifex <xiabin@linuxdeepin.com>\n"
-"Language-Team: Chinese (Hong Kong) (http://www.transifex.com/linuxdeepin/deepin-movie/language/zh_HK/)\n"
+"Language-Team: Japanese (http://www.transifex.com/linuxdeepin/deepin-movie/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: zh_HK\n"
+"Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../src/views/AboutSection.qml:6 ../src/views/PreferenceWindow.qml:129
 msgid "About"
-msgstr "關於"
+msgstr "バージョン情報"
 
 #: ../src/views/AboutSection.qml:15
 msgid "Acknowledgements"
@@ -31,11 +29,11 @@ msgstr ""
 #: ../src/views/AboutSection.qml:13 ../src/views/TitleBar.qml:70
 #: ../src/views/TitleBar.qml:142 ../src/views/window.py:71
 msgid "Deepin Movie"
-msgstr "Depein 電影"
+msgstr "Deepin Movie"
 
 #: ../src/views/AboutSection.qml:28
 msgid "Version"
-msgstr "版本"
+msgstr "バージョン"
 
 #: ../src/views/AboutSection.qml:28 ../src/views/InformationLabel.qml:20
 #: ../src/views/MainController.qml:260 ../src/views/main.qml:142
@@ -47,36 +45,36 @@ msgid ""
 "Deepin Movie is a well-designed and full-featured video player with simple "
 "borderless design. It supports local and streaming media play with multiple "
 "video formats."
-msgstr ""
+msgstr "Deepin Movie はシンプルでボーダレスなデザインを持つ、適切に策定されたフル装備のビデオプレーヤーです。それは複数のビデオ形式でローカルやストリーミングのメディア再生をサポートします。"
 
 #: ../src/views/AboutSection.qml:69
 msgid "Deepin Movie is released under GPLv3."
-msgstr "Deepin Movie　依 GPLv3授權條件發佈."
+msgstr "Deepin Movie はGPLv3の下、リリースされます。"
 
 #: ../src/views/ControlBar.qml:229
 msgid "Stop playing"
-msgstr ""
+msgstr "再生を停止"
 
 #: ../src/views/ControlBar.qml:247 ../src/controllers/menu_controller.py:90
 msgid "Previous"
-msgstr "上一首"
+msgstr "前へ"
 
 #: ../src/views/ControlBar.qml:266
 msgid "Pause"
-msgstr "暫停"
+msgstr "一時停止"
 
 #: ../src/views/ControlBar.qml:266 ../src/controllers/menu_controller.py:108
 #: ../src/controllers/menu_controller.py:119
 msgid "Play"
-msgstr "播放"
+msgstr "再生"
 
 #: ../src/views/ControlBar.qml:283 ../src/controllers/menu_controller.py:91
 msgid "Next"
-msgstr "下一首"
+msgstr "次へ"
 
 #: ../src/views/ControlBar.qml:326 ../src/controllers/menu_controller.py:449
 msgid "Exit fullscreen"
-msgstr "離開全螢幕"
+msgstr "フルスクリーンの終了"
 
 #: ../src/views/ControlBar.qml:326 ../src/views/PreferenceWindow.qml:391
 #: ../src/views/PreferenceWindow.qml:941 ../src/views/ShortcutsViewer.qml:58
@@ -84,19 +82,19 @@ msgstr "離開全螢幕"
 #: ../src/controllers/menu_controller.py:102
 #: ../src/controllers/menu_controller.py:450
 msgid "Fullscreen"
-msgstr "全螢幕"
+msgstr "フルスクリーン"
 
 #: ../src/views/ControlBar.qml:343 ../src/views/PreferenceWindow.qml:711
 #: ../src/views/ShortcutsViewer.qml:83
 #: ../src/controllers/menu_controller.py:98
 msgid "Open a file"
-msgstr ""
+msgstr "ファイルを開く"
 
 #: ../src/views/ControlBar.qml:355 ../src/views/OpenFileDialog.qml:66
 #: ../src/views/PreferenceWindow.qml:417 ../src/views/ShortcutsViewer.qml:62
 #: ../src/controllers/menu_controller.py:105
 msgid "Playlist"
-msgstr "播放清單"
+msgstr "プレイリスト"
 
 #: ../src/views/HotKeyInput.qml:7 ../src/views/HotKeyInput.qml:16
 #: ../src/views/HotKeyInputRow.qml:24 ../src/views/HotKeyInputRow.qml:26
@@ -105,293 +103,293 @@ msgstr "播放清單"
 #: ../src/views/ShortcutsLabel.qml:23 ../src/views/ShortcutsViewer.qml:134
 #: ../src/views/ShortcutsViewer.qml:139 ../src/views/ShortcutsViewer.qml:144
 msgid "None"
-msgstr "沒有"
+msgstr "なし"
 
 #: ../src/views/HotKeyInput.qml:23
 msgid "Please input a new shortcut"
-msgstr "請輸入新的捷徑"
+msgstr "新しいショートカットを入力してください"
 
 #: ../src/views/HotKeyInputRow.qml:30
 msgid "The shortcut you set "
-msgstr "你設置的捷徑"
+msgstr "設定したショートカット"
 
 #: ../src/views/HotKeyInputRow.qml:31
 #, qt-format
 msgid "conflicts with the one used for \"%2\" in the \"%1\" category. "
-msgstr ""
+msgstr "カテゴリー \"%1\" は \"%2\" に使われたものと競合しています。"
 
 #: ../src/views/HotKeyInputRow.qml:32
 msgid "Do you want to replace it?"
-msgstr "你想取代它嗎？"
+msgstr "置き換えてもよろしいですか？"
 
 #: ../src/views/HotKeyInputRow.qml:99 ../src/views/main.qml:144
 msgid "Cancel"
-msgstr "取消"
+msgstr "キャンセル"
 
 #: ../src/views/HotKeyInputRow.qml:110
 msgid "Replace"
-msgstr "取代"
+msgstr "置き換える"
 
 #: ../src/views/InformationWindow.qml:23 ../src/views/InformationWindow.qml:24
 #: ../src/views/InformationWindow.qml:25 ../src/models/movie_info.py:78
 msgid "Unknown"
-msgstr "未知"
+msgstr "不明"
 
 #: ../src/views/InformationWindow.qml:77
 msgid "File type"
-msgstr "檔案類型"
+msgstr "ファイルの種類"
 
 #: ../src/views/InformationWindow.qml:87
 msgid "File size"
-msgstr "檔案大小"
+msgstr "ファイルサイズ"
 
 #: ../src/views/InformationWindow.qml:97
 msgid "Resolution"
-msgstr "解析度"
+msgstr "レゾリューション"
 
 #: ../src/views/InformationWindow.qml:107
 msgid "Movie duration"
-msgstr "電影長度"
+msgstr "動画の時間"
 
 #: ../src/views/InformationWindow.qml:117
 msgid "File path"
-msgstr "檔案路徑"
+msgstr "ファイルパス"
 
 #: ../src/views/InformationWindow.qml:134
 msgid "Copy to clipboard"
-msgstr "儲存至剪貼簿"
+msgstr "クリップボードへコピー"
 
 #: ../src/views/InformationWindow.qml:149
 msgid "Close"
-msgstr "關閉"
+msgstr "閉じる"
 
 #: ../src/views/MainController.qml:260
 msgid "Invalid file"
-msgstr "無效檔案"
+msgstr "無効なファイル"
 
 #: ../src/views/MainController.qml:37
 #, qt-format
 msgid "%1 files unable to be parsed have been excluded"
-msgstr "%1 無法被解析的檔案已排除"
+msgstr "構文解析できない %1 ファイルが除外されました"
 
 #: ../src/views/MainController.qml:50
 msgid "Imported"
-msgstr "匯入"
+msgstr "インポート済"
 
 #: ../src/views/MainController.qml:462
 msgid "Play last movie played"
-msgstr "播放上次播過的電影"
+msgstr "最後に再生した映画を再生する"
 
 #: ../src/views/MainController.qml:495 ../src/views/PreferenceWindow.qml:339
 #: ../src/views/ShortcutsViewer.qml:50
 #: ../src/controllers/menu_controller.py:93
 msgid "Forward"
-msgstr "快進"
+msgstr "転送"
 
 #: ../src/views/MainController.qml:507 ../src/views/PreferenceWindow.qml:365
 #: ../src/views/ShortcutsViewer.qml:54
 #: ../src/controllers/menu_controller.py:94
 msgid "Rewind"
-msgstr "後退"
+msgstr "巻き戻し"
 
 #: ../src/views/MainController.qml:515 ../src/views/MainController.qml:521
 #, qt-format
 msgid "(Press %1 to restore)"
-msgstr "(按 %1 來恢復)"
+msgstr "(%1 を押して元に戻す)"
 
 #: ../src/views/MainController.qml:517 ../src/views/MainController.qml:523
 #: ../src/views/MainController.qml:528
 msgid "Playback rate: "
-msgstr ""
+msgstr "プレイパックレート: "
 
 #: ../src/views/MainController.qml:540 ../src/views/MainController.qml:549
 msgid "Volume: "
-msgstr "音量:"
+msgstr "ボリューム："
 
 #: ../src/views/MainController.qml:547
 #: ../src/controllers/menu_controller.py:60
 msgid "Muted"
-msgstr "已靜音"
+msgstr "消音"
 
 #: ../src/views/MainController.qml:683 ../src/views/MainController.qml:696
 #, qt-format
 msgid "Subtitle advanced %1 seconds"
-msgstr "字幕快了 %1 秒"
+msgstr "字幕が %1 秒進みました"
 
 #: ../src/views/MainController.qml:685 ../src/views/MainController.qml:698
 #, qt-format
 msgid "Subtitle delayed %1 seconds"
-msgstr "字幕遲了 %1 秒"
+msgstr "サブタイトルが %1 秒遅れました"
 
 #: ../src/views/OpenFileDialog.qml:5 ../src/views/OpenFileDialog.qml:21
 #: ../src/views/OpenFileDialog.qml:41
 msgid "Please choose one file or more"
-msgstr ""
+msgstr "ファイルを選択してください"
 
 #: ../src/views/OpenFileDialog.qml:7 ../src/views/OpenFileDialog.qml:23
 #: ../src/views/OpenFileDialog.qml:43
 msgid "Video files"
-msgstr "影片檔案"
+msgstr "動画ファイル"
 
 #: ../src/views/OpenFileDialog.qml:15
 msgid "All files"
-msgstr "所有檔案"
+msgstr "すべてのファイル"
 
 #: ../src/views/OpenFileDialog.qml:31 ../src/views/OpenFileDialog.qml:51
 msgid "Please choose one file"
-msgstr ""
+msgstr "1 ファイルを選択してください"
 
 #: ../src/views/OpenFileDialog.qml:33
 msgid "Subtitle files"
-msgstr "字幕檔案"
+msgstr "サブタイトルファイル"
 
 #: ../src/views/OpenFileDialog.qml:53 ../src/views/OpenFileDialog.qml:63
 msgid "Playlist files"
-msgstr "播放清單檔案"
+msgstr "プレイリストファイル"
 
 #: ../src/views/OpenFileDialog.qml:61
 msgid "Save as"
-msgstr "保存到指定目錄"
+msgstr "名前を付けて保存"
 
 #: ../src/views/OpenFolderDialog.qml:5
 msgid "Please choose a folder"
-msgstr ""
+msgstr "フォルダを選択してください"
 
 #: ../src/views/Playlist.qml:252
 msgid "Play mode"
-msgstr "播放模式"
+msgstr "再生モード"
 
 #: ../src/views/Playlist.qml:260 ../src/controllers/menu_controller.py:120
 #: ../src/controllers/menu_controller.py:136
 msgid "Add file"
-msgstr "新增檔案"
+msgstr "ファイルの追加"
 
 #: ../src/views/Playlist.qml:268 ../src/controllers/menu_controller.py:127
 msgid "Clear playlist"
-msgstr "清除播放清單"
+msgstr "プレイリストのクリア"
 
 #: ../src/views/PreferenceWindow.qml:238
 msgid "Clear playlist on opening new file"
-msgstr "開啟新檔案時清除播放清單"
+msgstr "新たに開くファイルではプレイリストを消去する"
 
 #: ../src/views/PreferenceWindow.qml:243
 msgid "Resume playback after restarting player"
-msgstr "重啟播放器後繼續播放"
+msgstr "プレーヤーを再起動後、再生を再開する"
 
 #: ../src/views/PreferenceWindow.qml:248
 msgid "Continue to next video automatically"
-msgstr "自動播放下一段影片"
+msgstr "自動的に次のビデオに進む"
 
 #: ../src/views/PreferenceWindow.qml:253
 msgid "Show preview when hovering over progress bar"
-msgstr ""
+msgstr "プログレスバー上にマウスを移動した時プレビューを表示"
 
 #: ../src/views/PreferenceWindow.qml:286
 msgid "Forward/Rewind (s)"
-msgstr ""
+msgstr "早送り・巻き戻し"
 
 #: ../src/views/PreferenceWindow.qml:308 ../src/views/PreferenceWindow.qml:532
 #: ../src/views/PreferenceWindow.qml:705 ../src/views/PreferenceWindow.qml:800
 msgid "Enable keyboard shortcuts"
-msgstr "啟動快速鍵"
+msgstr "キーボードのショートカットを使用可能にする"
 
 #: ../src/views/PreferenceWindow.qml:313 ../src/views/PreferenceWindow.qml:925
 #: ../src/views/ShortcutsViewer.qml:46 ../src/views/ShortcutsViewer.qml:134
 msgid "Pause/Play"
-msgstr "暫停/播放"
+msgstr "一時停止・再生"
 
 #: ../src/views/PreferenceWindow.qml:443 ../src/views/ShortcutsViewer.qml:66
 msgid "Accelerate playback"
-msgstr "加快播放速度"
+msgstr "プレイバックを加速する"
 
 #: ../src/views/PreferenceWindow.qml:469 ../src/views/ShortcutsViewer.qml:70
 msgid "Decelerate playback"
-msgstr "減慢播放速度"
+msgstr "再生を減速する"
 
 #: ../src/views/PreferenceWindow.qml:495 ../src/views/ShortcutsViewer.qml:74
 msgid "Restore playback speed"
-msgstr "回復播放速度"
+msgstr "再生スピードを復元する"
 
 #: ../src/views/PreferenceWindow.qml:538 ../src/views/ShortcutsViewer.qml:104
 #: ../src/controllers/menu_controller.py:103
 #: ../src/controllers/menu_controller.py:452
 msgid "Mini mode"
-msgstr "精簡模式"
+msgstr "ミニモード"
 
 #: ../src/views/PreferenceWindow.qml:616 ../src/views/ShortcutsViewer.qml:116
 msgid "Volume up"
-msgstr "調高音量"
+msgstr "音量を上げる"
 
 #: ../src/views/PreferenceWindow.qml:642 ../src/views/ShortcutsViewer.qml:120
 msgid "Volume down"
-msgstr "調低音量"
+msgstr "音量を下げる"
 
 #: ../src/views/PreferenceWindow.qml:737 ../src/views/ShortcutsViewer.qml:87
 msgid "Open previous"
-msgstr "開啟上一個"
+msgstr "前を開く"
 
 #: ../src/views/PreferenceWindow.qml:763 ../src/views/ShortcutsViewer.qml:91
 msgid "Open next"
-msgstr "開啟下一個"
+msgstr "次を開く"
 
 #: ../src/views/PreferenceWindow.qml:806 ../src/views/ShortcutsViewer.qml:153
 #, qt-format
 msgid "Forward %1 (s)"
-msgstr ""
+msgstr "加速 %1"
 
 #: ../src/views/PreferenceWindow.qml:832 ../src/views/ShortcutsViewer.qml:157
 #, qt-format
 msgid "Delay %1 (s)"
-msgstr "延遲 %1 (s)"
+msgstr "遅延 %1 "
 
 #: ../src/views/PreferenceWindow.qml:858 ../src/views/ShortcutsViewer.qml:161
 msgid "Subtitle up"
-msgstr "字幕向上"
+msgstr "字幕を上げる"
 
 #: ../src/views/PreferenceWindow.qml:884 ../src/views/ShortcutsViewer.qml:165
 msgid "Subtitle down"
-msgstr "字幕往下"
+msgstr "字幕を下げる"
 
 #: ../src/views/PreferenceWindow.qml:922 ../src/views/ShortcutsViewer.qml:133
 msgid "Left click"
-msgstr "單擊滑鼠左鍵"
+msgstr "左クリック"
 
 #: ../src/views/PreferenceWindow.qml:938 ../src/views/ShortcutsViewer.qml:138
 msgid "Double click"
-msgstr "雙擊滑鼠左鍵"
+msgstr "ダブルクリック"
 
 #: ../src/views/PreferenceWindow.qml:979
 msgid "Subtitles loaded automatically"
-msgstr "自動載入字幕"
+msgstr "字幕が自動的に読み込まれました"
 
 #: ../src/views/PreferenceWindow.qml:1088
 msgid "Border width"
-msgstr "邊框闊度"
+msgstr "境界の幅"
 
 #: ../src/views/PreferenceWindow.qml:21
 msgid "Orange"
-msgstr "橙"
+msgstr "オレンジ"
 
 #: ../src/views/PreferenceWindow.qml:76 ../src/views/PreferenceWindow.qml:92
 #: ../src/views/PreferenceWindow.qml:217 ../src/views/PreferenceWindow.qml:299
 #: ../src/views/ShortcutsViewer.qml:43
 msgid "Playback"
-msgstr "播放設定"
+msgstr "プレイバック"
 
 #: ../src/views/PreferenceWindow.qml:97 ../src/views/PreferenceWindow.qml:523
 #: ../src/views/ShortcutsViewer.qml:101
 msgid "Frame/Sound"
-msgstr "影格/聲音"
+msgstr "フレーム/音"
 
 #: ../src/views/PreferenceWindow.qml:102 ../src/views/PreferenceWindow.qml:696
 #: ../src/views/ShortcutsViewer.qml:80
 msgid "Files"
-msgstr "檔案"
+msgstr "ファイル"
 
 #: ../src/views/PreferenceWindow.qml:112 ../src/views/PreferenceWindow.qml:912
 #: ../src/views/ShortcutsViewer.qml:130
 msgid "Other"
-msgstr "其它"
+msgstr "その他"
 
 #: ../src/views/PreferenceWindow.qml:107 ../src/views/PreferenceWindow.qml:791
 #: ../src/views/ShortcutsViewer.qml:150
@@ -401,47 +399,47 @@ msgstr "字幕"
 
 #: ../src/views/PreferenceWindow.qml:15
 msgid "Black"
-msgstr "黑"
+msgstr "ブラック"
 
 #: ../src/views/PreferenceWindow.qml:16
 msgid "bleu de France"
-msgstr "法國藍"
+msgstr "フランスの青"
 
 #: ../src/views/PreferenceWindow.qml:17
 msgid "Turquoise"
-msgstr "綠寶石"
+msgstr "ターコイズ"
 
 #: ../src/views/PreferenceWindow.qml:18
 msgid "UFO green"
-msgstr "外星綠"
+msgstr "UFO グリーン"
 
 #: ../src/views/PreferenceWindow.qml:19
 msgid "Green yellow"
-msgstr "綠黃色"
+msgstr "黄緑"
 
 #: ../src/views/PreferenceWindow.qml:20
 msgid "Energy yellow"
-msgstr "能量黃"
+msgstr "エネルギーイエロー"
 
 #: ../src/views/PreferenceWindow.qml:22
 msgid "Radical red"
-msgstr "火熱紅"
+msgstr "ラディカルレッド"
 
 #: ../src/views/PreferenceWindow.qml:23
 msgid "Lavender indigo"
-msgstr "薰衣草紫"
+msgstr "ラベンダーインディゴ"
 
 #: ../src/views/PreferenceWindow.qml:24
 msgid "Royal blue"
-msgstr "寶藍色"
+msgstr "ロイヤルブルー"
 
 #: ../src/views/PreferenceWindow.qml:25
 msgid "Aluminum"
-msgstr "鋁銀色"
+msgstr "アルミニウム"
 
 #: ../src/views/PreferenceWindow.qml:26
 msgid "Clean white"
-msgstr "白淨"
+msgstr "クリーンホワイト"
 
 #: ../src/views/PreferenceWindow.qml:72 ../src/views/PreferenceWindow.qml:213
 msgid "Basic settings"
@@ -449,55 +447,55 @@ msgstr "基本設定"
 
 #: ../src/views/PreferenceWindow.qml:81 ../src/views/PreferenceWindow.qml:277
 msgid "Time span"
-msgstr "時間距"
+msgstr "タイムスパン"
 
 #: ../src/views/PreferenceWindow.qml:88 ../src/views/PreferenceWindow.qml:295
 msgid "Keyboard shortcuts"
-msgstr "鍵盤快捷鍵"
+msgstr "キーボードショートカット"
 
 #: ../src/views/PreferenceWindow.qml:119 ../src/views/PreferenceWindow.qml:972
 msgid "Subtitle settings"
-msgstr "字幕設定"
+msgstr "字幕の設定"
 
 #: ../src/views/PreferenceWindow.qml:148
 msgid "Reset shortcuts"
-msgstr "重設捷徑"
+msgstr "ショートカットをリセット"
 
 #: ../src/views/PreferenceWindow.qml:152
 msgid "Reset subtitle settings"
-msgstr "重設字幕設定"
+msgstr "字幕設定をやり直してください"
 
 #: ../src/views/PreferenceWindow.qml:226
 msgid "Fullscreen on opening file"
-msgstr "全螢幕模式開啟檔案"
+msgstr "オープニング・ファイルのフルスクリーン"
 
 #: ../src/views/PreferenceWindow.qml:232
 msgid "Apply the size last time closed"
-msgstr "套用上次關閉時的大小"
+msgstr "前回閉じたサイズを適用"
 
 #: ../src/views/PreferenceWindow.qml:258
 msgid "Allow multiple instances"
-msgstr ""
+msgstr "複数インスタンスを許可"
 
 #: ../src/views/PreferenceWindow.qml:263
 msgid "Pause when minimized"
-msgstr "最小化時暫停"
+msgstr "最小化時に一時停止"
 
 #: ../src/views/PreferenceWindow.qml:564 ../src/views/ShortcutsViewer.qml:108
 msgid "Rotate counterclockwise"
-msgstr " 逆時針方向旋轉"
+msgstr "反時計回りに回転"
 
 #: ../src/views/PreferenceWindow.qml:590 ../src/views/ShortcutsViewer.qml:112
 msgid "Rotate clockwise"
-msgstr "順時針旋轉"
+msgstr "時計回りに回転"
 
 #: ../src/views/PreferenceWindow.qml:668 ../src/views/ShortcutsViewer.qml:124
 msgid "Mute"
-msgstr "靜音"
+msgstr "消音"
 
 #: ../src/views/PreferenceWindow.qml:954 ../src/views/ShortcutsViewer.qml:143
 msgid "Scroll"
-msgstr "滑鼠滾輪"
+msgstr "スクロール"
 
 #: ../src/views/PreferenceWindow.qml:957 ../src/views/ShortcutsViewer.qml:144
 #: ../src/views/VolumeButton.qml:44
@@ -506,63 +504,63 @@ msgstr "音量"
 
 #: ../src/views/PreferenceWindow.qml:993
 msgid "Font"
-msgstr "字體"
+msgstr "フォント"
 
 #: ../src/views/PreferenceWindow.qml:1053
 msgid "Font color"
-msgstr "字體顏色"
+msgstr "フォントの色"
 
 #: ../src/views/PreferenceWindow.qml:1071
 msgid "Size"
-msgstr "大小"
+msgstr "サイズ"
 
 #: ../src/views/PreferenceWindow.qml:1105
 msgid "Border color"
-msgstr "邊框顏色"
+msgstr "強調のカラー"
 
 #: ../src/views/PreferenceWindow.qml:1123
 msgid "Position"
-msgstr "姿勢"
+msgstr "位置"
 
 #: ../src/views/PreferenceWindow.qml:1128
 msgid "Bottom"
-msgstr "底"
+msgstr "下"
 
 #: ../src/views/PreferenceWindow.qml:1129
 msgid "Top"
-msgstr "頂"
+msgstr "上"
 
 #: ../src/views/PreferenceWindow.qml:1140
 msgid "Sync adjustment (s)"
-msgstr "同步調節"
+msgstr "同期の調整"
 
 #: ../src/views/TitleBar.qml:173
 msgid "Shown in a proportion of 1:1"
-msgstr ""
+msgstr "割合 1:1 で表示"
 
 #: ../src/views/TitleBar.qml:185
 msgid "Shown in 1.5 times"
-msgstr ""
+msgstr "1.5 倍で表示"
 
 #: ../src/views/TitleBar.qml:198
 msgid "Return to mini mode"
-msgstr "返回最小模式"
+msgstr "ミニモードに戻る"
 
 #: ../src/views/TitleBar.qml:198
 msgid "Shown in fullscreen"
-msgstr "全螢幕顯示"
+msgstr "フルスクリーンで表示"
 
 #: ../src/views/TitleBar.qml:213
 msgid "Cancel \"On Top\""
-msgstr "取消上方"
+msgstr "\"上に\" をキャンセル"
 
 #: ../src/views/TitleBar.qml:213
 msgid "On Top"
-msgstr "上方"
+msgstr "上に"
 
 #: ../src/views/main.qml:142
 msgid "Please input the url of file played"
-msgstr "請輸入播放的檔案網址"
+msgstr "再生ファイルの URL を入力してください"
 
 #: ../src/views/main.qml:143
 msgid "Confirm"
@@ -570,39 +568,39 @@ msgstr "確認"
 
 #: ../src/views/main.qml:160
 msgid "The parse failed"
-msgstr "解析失敗"
+msgstr "解析に失敗しました"
 
 #: ../src/views/main.qml:458 ../src/views/main.qml:459
 msgid "Buffering..."
-msgstr "緩衝中..."
+msgstr "バッファ中..."
 
 #: ../src/controllers/menu_controller.py:35
 msgid "Default"
-msgstr "預設"
+msgstr "デフォルト"
 
 #: ../src/controllers/menu_controller.py:47
 msgid "Rotate 90 degree clockwise"
-msgstr "順時針旋轉90度"
+msgstr "時計回りに 90 度回転"
 
 #: ../src/controllers/menu_controller.py:48
 msgid "Rotate 90 degree counterclockwise"
-msgstr "逆時針旋轉90度"
+msgstr "反時計回りに 90 度回転"
 
 #: ../src/controllers/menu_controller.py:49
 msgid "Flip horizontally"
-msgstr "水平翻轉"
+msgstr "左右反転"
 
 #: ../src/controllers/menu_controller.py:50
 msgid "Flip vertically"
-msgstr "垂直翻轉"
+msgstr "上下反転"
 
 #: ../src/controllers/menu_controller.py:58
 msgid "Volume Up"
-msgstr "調高音量"
+msgstr "音量を上げる"
 
 #: ../src/controllers/menu_controller.py:59
 msgid "Volume Down"
-msgstr "調低音量"
+msgstr "音量を下げる"
 
 #: ../src/controllers/menu_controller.py:64
 msgid "Auto"
@@ -618,110 +616,110 @@ msgstr "右"
 
 #: ../src/controllers/menu_controller.py:67
 msgid "Mono"
-msgstr ""
+msgstr "モノ"
 
 #: ../src/controllers/menu_controller.py:68
 msgid "Stero"
-msgstr ""
+msgstr "ステレオ"
 
 #: ../src/controllers/menu_controller.py:72
 msgid "Hide subtitle"
-msgstr "隱藏字幕"
+msgstr "字幕を隠す"
 
 #: ../src/controllers/menu_controller.py:76
 msgid "Open manually"
-msgstr ""
+msgstr "手動で開く"
 
 #: ../src/controllers/menu_controller.py:77
 msgid "Subtitle selection"
-msgstr "字幕選擇"
+msgstr "字幕の選択"
 
 #: ../src/controllers/menu_controller.py:78
 msgid "Subtitle setting"
-msgstr "字幕設定"
+msgstr "字幕の設定"
 
 #: ../src/controllers/menu_controller.py:82
 msgid "Order"
-msgstr "次序"
+msgstr "順番"
 
 #: ../src/controllers/menu_controller.py:83
 msgid "Random"
-msgstr "隨機"
+msgstr "ランダム"
 
 #: ../src/controllers/menu_controller.py:84
 msgid "Single"
-msgstr "單次播放"
+msgstr "1 つ"
 
 #: ../src/controllers/menu_controller.py:85
 msgid "Repeat (Single)"
-msgstr "重覆 (單次)"
+msgstr "リピート (1 つ)"
 
 #: ../src/controllers/menu_controller.py:86
 msgid "Repeat (Playlist)"
-msgstr "重覆 (清單)"
+msgstr "リピート (プレイリスト)"
 
 #: ../src/controllers/menu_controller.py:99
 msgid "Open a folder"
-msgstr ""
+msgstr "フォルダを開く"
 
 #: ../src/controllers/menu_controller.py:100
 msgid "Open URL"
-msgstr "打開網址"
+msgstr "URL を開く"
 
 #: ../src/controllers/menu_controller.py:104
 msgid "Always on top"
-msgstr "永遠在最上層"
+msgstr "常に上で"
 
 #: ../src/controllers/menu_controller.py:107
 msgid "Play Sequence"
-msgstr ""
+msgstr "シーケンスの再生"
 
 #: ../src/controllers/menu_controller.py:109
 msgid "Frame"
-msgstr "影格"
+msgstr "フレーム"
 
 #: ../src/controllers/menu_controller.py:110
 msgid "Sound"
-msgstr "音效"
+msgstr "サウンド"
 
 #: ../src/controllers/menu_controller.py:113
 msgid "Settings"
-msgstr "設置"
+msgstr "設定"
 
 #: ../src/controllers/menu_controller.py:114
 #: ../src/controllers/menu_controller.py:132
 msgid "Information"
-msgstr "資訊"
+msgstr "情報"
 
 #: ../src/controllers/menu_controller.py:115
 msgid "Help"
-msgstr "協助"
+msgstr "ヘルプ"
 
 #: ../src/controllers/menu_controller.py:121
 #: ../src/controllers/menu_controller.py:137
 msgid "Add folder"
-msgstr "新增資料夾"
+msgstr "フォルダーを追加"
 
 #: ../src/controllers/menu_controller.py:123
 msgid "Remove from playlist"
-msgstr "從播放清單中移除"
+msgstr "プレイリストから削除"
 
 #: ../src/controllers/menu_controller.py:124
 msgid "Remove invalid file"
-msgstr "移除無效檔案"
+msgstr "無効なファイルを削除"
 
 #: ../src/controllers/menu_controller.py:125
 msgid "Export"
-msgstr "導出皮膚"
+msgstr "エクスポート"
 
 #: ../src/controllers/menu_controller.py:126
 msgid "Import"
-msgstr "匯入"
+msgstr "インポート"
 
 #: ../src/controllers/menu_controller.py:131
 msgid "Open file location"
-msgstr "開啟檔案位置"
+msgstr "ファイルの場所を開く"
 
 #: ../src/controllers/menu_controller.py:451
 msgid "Exit mini mode"
-msgstr "離開迷你模式"
+msgstr "ミニモードの終了"

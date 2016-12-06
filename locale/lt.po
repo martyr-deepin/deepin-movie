@@ -3,9 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Chi-Hsun Tsai <chihsun.tsai@gmail.com>, 2016
-# Philip CHEUNG, 2016
-# Philip CHEUNG, 2016
+# Moo, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
@@ -13,16 +11,16 @@ msgstr ""
 "POT-Creation-Date: 2015-05-11 11:21+0800\n"
 "PO-Revision-Date: 2016-12-06 01:36+0000\n"
 "Last-Translator: deepin_transifex <xiabin@linuxdeepin.com>\n"
-"Language-Team: Chinese (Hong Kong) (http://www.transifex.com/linuxdeepin/deepin-movie/language/zh_HK/)\n"
+"Language-Team: Lithuanian (http://www.transifex.com/linuxdeepin/deepin-movie/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: zh_HK\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: lt\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../src/views/AboutSection.qml:6 ../src/views/PreferenceWindow.qml:129
 msgid "About"
-msgstr "關於"
+msgstr "Apie"
 
 #: ../src/views/AboutSection.qml:15
 msgid "Acknowledgements"
@@ -31,11 +29,11 @@ msgstr ""
 #: ../src/views/AboutSection.qml:13 ../src/views/TitleBar.qml:70
 #: ../src/views/TitleBar.qml:142 ../src/views/window.py:71
 msgid "Deepin Movie"
-msgstr "Depein 電影"
+msgstr "Deepin filmas"
 
 #: ../src/views/AboutSection.qml:28
 msgid "Version"
-msgstr "版本"
+msgstr "Versija"
 
 #: ../src/views/AboutSection.qml:28 ../src/views/InformationLabel.qml:20
 #: ../src/views/MainController.qml:260 ../src/views/main.qml:142
@@ -47,36 +45,36 @@ msgid ""
 "Deepin Movie is a well-designed and full-featured video player with simple "
 "borderless design. It supports local and streaming media play with multiple "
 "video formats."
-msgstr ""
+msgstr "Deepin filmas yra protingai sukurtas ir visiškai parengtas vaizdo įrašų grotuvas su paprastu dizainu be rėmelio. Jis palaiko vietinį ir transliuojamą medijos atkūrimą bei daugelį vaizdo formatų."
 
 #: ../src/views/AboutSection.qml:69
 msgid "Deepin Movie is released under GPLv3."
-msgstr "Deepin Movie　依 GPLv3授權條件發佈."
+msgstr "Deepin filmas programa yra išleista pagal GPLv3."
 
 #: ../src/views/ControlBar.qml:229
 msgid "Stop playing"
-msgstr ""
+msgstr "Stabdyti grojimą"
 
 #: ../src/views/ControlBar.qml:247 ../src/controllers/menu_controller.py:90
 msgid "Previous"
-msgstr "上一首"
+msgstr "Ankstesnis"
 
 #: ../src/views/ControlBar.qml:266
 msgid "Pause"
-msgstr "暫停"
+msgstr "Pristabdyti"
 
 #: ../src/views/ControlBar.qml:266 ../src/controllers/menu_controller.py:108
 #: ../src/controllers/menu_controller.py:119
 msgid "Play"
-msgstr "播放"
+msgstr "Groti"
 
 #: ../src/views/ControlBar.qml:283 ../src/controllers/menu_controller.py:91
 msgid "Next"
-msgstr "下一首"
+msgstr "Kitas"
 
 #: ../src/views/ControlBar.qml:326 ../src/controllers/menu_controller.py:449
 msgid "Exit fullscreen"
-msgstr "離開全螢幕"
+msgstr "Išeiti iš viso ekrano"
 
 #: ../src/views/ControlBar.qml:326 ../src/views/PreferenceWindow.qml:391
 #: ../src/views/PreferenceWindow.qml:941 ../src/views/ShortcutsViewer.qml:58
@@ -84,19 +82,19 @@ msgstr "離開全螢幕"
 #: ../src/controllers/menu_controller.py:102
 #: ../src/controllers/menu_controller.py:450
 msgid "Fullscreen"
-msgstr "全螢幕"
+msgstr "Visas ekranas"
 
 #: ../src/views/ControlBar.qml:343 ../src/views/PreferenceWindow.qml:711
 #: ../src/views/ShortcutsViewer.qml:83
 #: ../src/controllers/menu_controller.py:98
 msgid "Open a file"
-msgstr ""
+msgstr "Atverti failą"
 
 #: ../src/views/ControlBar.qml:355 ../src/views/OpenFileDialog.qml:66
 #: ../src/views/PreferenceWindow.qml:417 ../src/views/ShortcutsViewer.qml:62
 #: ../src/controllers/menu_controller.py:105
 msgid "Playlist"
-msgstr "播放清單"
+msgstr "Grojaraštis"
 
 #: ../src/views/HotKeyInput.qml:7 ../src/views/HotKeyInput.qml:16
 #: ../src/views/HotKeyInputRow.qml:24 ../src/views/HotKeyInputRow.qml:26
@@ -105,623 +103,623 @@ msgstr "播放清單"
 #: ../src/views/ShortcutsLabel.qml:23 ../src/views/ShortcutsViewer.qml:134
 #: ../src/views/ShortcutsViewer.qml:139 ../src/views/ShortcutsViewer.qml:144
 msgid "None"
-msgstr "沒有"
+msgstr "Nėra"
 
 #: ../src/views/HotKeyInput.qml:23
 msgid "Please input a new shortcut"
-msgstr "請輸入新的捷徑"
+msgstr "Įveskite naują spartųjį klavišą"
 
 #: ../src/views/HotKeyInputRow.qml:30
 msgid "The shortcut you set "
-msgstr "你設置的捷徑"
+msgstr "Jūsų nustatytas spartusis klavišas "
 
 #: ../src/views/HotKeyInputRow.qml:31
 #, qt-format
 msgid "conflicts with the one used for \"%2\" in the \"%1\" category. "
-msgstr ""
+msgstr "konfliktuoja su tuo, kuris naudojamas veiksmui \"%2\", kategorijoje \"%1\". "
 
 #: ../src/views/HotKeyInputRow.qml:32
 msgid "Do you want to replace it?"
-msgstr "你想取代它嗎？"
+msgstr "Ar norite jį pakeisti?"
 
 #: ../src/views/HotKeyInputRow.qml:99 ../src/views/main.qml:144
 msgid "Cancel"
-msgstr "取消"
+msgstr "Atsisakyti"
 
 #: ../src/views/HotKeyInputRow.qml:110
 msgid "Replace"
-msgstr "取代"
+msgstr "Pakeisti"
 
 #: ../src/views/InformationWindow.qml:23 ../src/views/InformationWindow.qml:24
 #: ../src/views/InformationWindow.qml:25 ../src/models/movie_info.py:78
 msgid "Unknown"
-msgstr "未知"
+msgstr "Nežinoma"
 
 #: ../src/views/InformationWindow.qml:77
 msgid "File type"
-msgstr "檔案類型"
+msgstr "Failo tipas"
 
 #: ../src/views/InformationWindow.qml:87
 msgid "File size"
-msgstr "檔案大小"
+msgstr "Failo dydis"
 
 #: ../src/views/InformationWindow.qml:97
 msgid "Resolution"
-msgstr "解析度"
+msgstr "Raiška"
 
 #: ../src/views/InformationWindow.qml:107
 msgid "Movie duration"
-msgstr "電影長度"
+msgstr "Filmo trukmė"
 
 #: ../src/views/InformationWindow.qml:117
 msgid "File path"
-msgstr "檔案路徑"
+msgstr "Failo kelias"
 
 #: ../src/views/InformationWindow.qml:134
 msgid "Copy to clipboard"
-msgstr "儲存至剪貼簿"
+msgstr "Kopijuoti į iškarpinę"
 
 #: ../src/views/InformationWindow.qml:149
 msgid "Close"
-msgstr "關閉"
+msgstr "Užverti"
 
 #: ../src/views/MainController.qml:260
 msgid "Invalid file"
-msgstr "無效檔案"
+msgstr "Neteisingas failas"
 
 #: ../src/views/MainController.qml:37
 #, qt-format
 msgid "%1 files unable to be parsed have been excluded"
-msgstr "%1 無法被解析的檔案已排除"
+msgstr "%1 failų, kurių nepavyko išanalizuoti, buvo išskirti"
 
 #: ../src/views/MainController.qml:50
 msgid "Imported"
-msgstr "匯入"
+msgstr "Importuota"
 
 #: ../src/views/MainController.qml:462
 msgid "Play last movie played"
-msgstr "播放上次播過的電影"
+msgstr "Atkurti paskiausią grotą filmą"
 
 #: ../src/views/MainController.qml:495 ../src/views/PreferenceWindow.qml:339
 #: ../src/views/ShortcutsViewer.qml:50
 #: ../src/controllers/menu_controller.py:93
 msgid "Forward"
-msgstr "快進"
+msgstr "Pirmyn"
 
 #: ../src/views/MainController.qml:507 ../src/views/PreferenceWindow.qml:365
 #: ../src/views/ShortcutsViewer.qml:54
 #: ../src/controllers/menu_controller.py:94
 msgid "Rewind"
-msgstr "後退"
+msgstr "Atsukti"
 
 #: ../src/views/MainController.qml:515 ../src/views/MainController.qml:521
 #, qt-format
 msgid "(Press %1 to restore)"
-msgstr "(按 %1 來恢復)"
+msgstr "(Spustelėkite %1, kad atkurtumėte)"
 
 #: ../src/views/MainController.qml:517 ../src/views/MainController.qml:523
 #: ../src/views/MainController.qml:528
 msgid "Playback rate: "
-msgstr ""
+msgstr "Atkūrimo sparta: "
 
 #: ../src/views/MainController.qml:540 ../src/views/MainController.qml:549
 msgid "Volume: "
-msgstr "音量:"
+msgstr "Garsis: "
 
 #: ../src/views/MainController.qml:547
 #: ../src/controllers/menu_controller.py:60
 msgid "Muted"
-msgstr "已靜音"
+msgstr "Nutildyta"
 
 #: ../src/views/MainController.qml:683 ../src/views/MainController.qml:696
 #, qt-format
 msgid "Subtitle advanced %1 seconds"
-msgstr "字幕快了 %1 秒"
+msgstr "Subtitrai skuba į priekį %1 sekundes"
 
 #: ../src/views/MainController.qml:685 ../src/views/MainController.qml:698
 #, qt-format
 msgid "Subtitle delayed %1 seconds"
-msgstr "字幕遲了 %1 秒"
+msgstr "Subtitrai atsilieka %1 sekundes"
 
 #: ../src/views/OpenFileDialog.qml:5 ../src/views/OpenFileDialog.qml:21
 #: ../src/views/OpenFileDialog.qml:41
 msgid "Please choose one file or more"
-msgstr ""
+msgstr "Pasirinkite vieną ar daugiau failų"
 
 #: ../src/views/OpenFileDialog.qml:7 ../src/views/OpenFileDialog.qml:23
 #: ../src/views/OpenFileDialog.qml:43
 msgid "Video files"
-msgstr "影片檔案"
+msgstr "Vaizdo failai"
 
 #: ../src/views/OpenFileDialog.qml:15
 msgid "All files"
-msgstr "所有檔案"
+msgstr "Visi failai"
 
 #: ../src/views/OpenFileDialog.qml:31 ../src/views/OpenFileDialog.qml:51
 msgid "Please choose one file"
-msgstr ""
+msgstr "Pasirinkite vieną failą"
 
 #: ../src/views/OpenFileDialog.qml:33
 msgid "Subtitle files"
-msgstr "字幕檔案"
+msgstr "Subtitrų failai"
 
 #: ../src/views/OpenFileDialog.qml:53 ../src/views/OpenFileDialog.qml:63
 msgid "Playlist files"
-msgstr "播放清單檔案"
+msgstr "Grojaraščio failai"
 
 #: ../src/views/OpenFileDialog.qml:61
 msgid "Save as"
-msgstr "保存到指定目錄"
+msgstr "Įrašyti kaip"
 
 #: ../src/views/OpenFolderDialog.qml:5
 msgid "Please choose a folder"
-msgstr ""
+msgstr "Pasirinkite aplanką"
 
 #: ../src/views/Playlist.qml:252
 msgid "Play mode"
-msgstr "播放模式"
+msgstr "Atkūrimo veiksena"
 
 #: ../src/views/Playlist.qml:260 ../src/controllers/menu_controller.py:120
 #: ../src/controllers/menu_controller.py:136
 msgid "Add file"
-msgstr "新增檔案"
+msgstr "Pridėti failą"
 
 #: ../src/views/Playlist.qml:268 ../src/controllers/menu_controller.py:127
 msgid "Clear playlist"
-msgstr "清除播放清單"
+msgstr "Išvalyti grojaraštį"
 
 #: ../src/views/PreferenceWindow.qml:238
 msgid "Clear playlist on opening new file"
-msgstr "開啟新檔案時清除播放清單"
+msgstr "Išvalyti grojaraštį, atveriant naują failą"
 
 #: ../src/views/PreferenceWindow.qml:243
 msgid "Resume playback after restarting player"
-msgstr "重啟播放器後繼續播放"
+msgstr "Iš naujo paleidus grotuvą, tęsti atkūrimą"
 
 #: ../src/views/PreferenceWindow.qml:248
 msgid "Continue to next video automatically"
-msgstr "自動播放下一段影片"
+msgstr "Automatiškai pereiti prie kito vaizdo įrašo"
 
 #: ../src/views/PreferenceWindow.qml:253
 msgid "Show preview when hovering over progress bar"
-msgstr ""
+msgstr "Rodyti peržiūrą, užvedus pelę ant eigos juostos"
 
 #: ../src/views/PreferenceWindow.qml:286
 msgid "Forward/Rewind (s)"
-msgstr ""
+msgstr "Pervynioti pirmyn/atgal (sek.)"
 
 #: ../src/views/PreferenceWindow.qml:308 ../src/views/PreferenceWindow.qml:532
 #: ../src/views/PreferenceWindow.qml:705 ../src/views/PreferenceWindow.qml:800
 msgid "Enable keyboard shortcuts"
-msgstr "啟動快速鍵"
+msgstr "Įjungti sparčiuosius klavišus"
 
 #: ../src/views/PreferenceWindow.qml:313 ../src/views/PreferenceWindow.qml:925
 #: ../src/views/ShortcutsViewer.qml:46 ../src/views/ShortcutsViewer.qml:134
 msgid "Pause/Play"
-msgstr "暫停/播放"
+msgstr "Groti/Pristabdyti"
 
 #: ../src/views/PreferenceWindow.qml:443 ../src/views/ShortcutsViewer.qml:66
 msgid "Accelerate playback"
-msgstr "加快播放速度"
+msgstr "Pagreitinti atkūrimą"
 
 #: ../src/views/PreferenceWindow.qml:469 ../src/views/ShortcutsViewer.qml:70
 msgid "Decelerate playback"
-msgstr "減慢播放速度"
+msgstr "Sulėtinti atkūrimą"
 
 #: ../src/views/PreferenceWindow.qml:495 ../src/views/ShortcutsViewer.qml:74
 msgid "Restore playback speed"
-msgstr "回復播放速度"
+msgstr "Atkurti atkūrimo greitį"
 
 #: ../src/views/PreferenceWindow.qml:538 ../src/views/ShortcutsViewer.qml:104
 #: ../src/controllers/menu_controller.py:103
 #: ../src/controllers/menu_controller.py:452
 msgid "Mini mode"
-msgstr "精簡模式"
+msgstr "Minimali veiksena"
 
 #: ../src/views/PreferenceWindow.qml:616 ../src/views/ShortcutsViewer.qml:116
 msgid "Volume up"
-msgstr "調高音量"
+msgstr "Garsinti"
 
 #: ../src/views/PreferenceWindow.qml:642 ../src/views/ShortcutsViewer.qml:120
 msgid "Volume down"
-msgstr "調低音量"
+msgstr "Tildyti"
 
 #: ../src/views/PreferenceWindow.qml:737 ../src/views/ShortcutsViewer.qml:87
 msgid "Open previous"
-msgstr "開啟上一個"
+msgstr "Atverti ankstesnį"
 
 #: ../src/views/PreferenceWindow.qml:763 ../src/views/ShortcutsViewer.qml:91
 msgid "Open next"
-msgstr "開啟下一個"
+msgstr "Atverti kitą"
 
 #: ../src/views/PreferenceWindow.qml:806 ../src/views/ShortcutsViewer.qml:153
 #, qt-format
 msgid "Forward %1 (s)"
-msgstr ""
+msgstr "Pirmyn %1 (sek.)"
 
 #: ../src/views/PreferenceWindow.qml:832 ../src/views/ShortcutsViewer.qml:157
 #, qt-format
 msgid "Delay %1 (s)"
-msgstr "延遲 %1 (s)"
+msgstr "Uždelsti %1 (sek.)"
 
 #: ../src/views/PreferenceWindow.qml:858 ../src/views/ShortcutsViewer.qml:161
 msgid "Subtitle up"
-msgstr "字幕向上"
+msgstr "Subtitrai aukščiau"
 
 #: ../src/views/PreferenceWindow.qml:884 ../src/views/ShortcutsViewer.qml:165
 msgid "Subtitle down"
-msgstr "字幕往下"
+msgstr "Subtitrai žemiau"
 
 #: ../src/views/PreferenceWindow.qml:922 ../src/views/ShortcutsViewer.qml:133
 msgid "Left click"
-msgstr "單擊滑鼠左鍵"
+msgstr "Kairysis spustelėjimas"
 
 #: ../src/views/PreferenceWindow.qml:938 ../src/views/ShortcutsViewer.qml:138
 msgid "Double click"
-msgstr "雙擊滑鼠左鍵"
+msgstr "Dvikartis spustelėjimas"
 
 #: ../src/views/PreferenceWindow.qml:979
 msgid "Subtitles loaded automatically"
-msgstr "自動載入字幕"
+msgstr "Subtitrai įkeliami automatiškai"
 
 #: ../src/views/PreferenceWindow.qml:1088
 msgid "Border width"
-msgstr "邊框闊度"
+msgstr "Kraštų plotis"
 
 #: ../src/views/PreferenceWindow.qml:21
 msgid "Orange"
-msgstr "橙"
+msgstr "Oranžinė"
 
 #: ../src/views/PreferenceWindow.qml:76 ../src/views/PreferenceWindow.qml:92
 #: ../src/views/PreferenceWindow.qml:217 ../src/views/PreferenceWindow.qml:299
 #: ../src/views/ShortcutsViewer.qml:43
 msgid "Playback"
-msgstr "播放設定"
+msgstr "Atkūrimas"
 
 #: ../src/views/PreferenceWindow.qml:97 ../src/views/PreferenceWindow.qml:523
 #: ../src/views/ShortcutsViewer.qml:101
 msgid "Frame/Sound"
-msgstr "影格/聲音"
+msgstr "Kadras/Garsas"
 
 #: ../src/views/PreferenceWindow.qml:102 ../src/views/PreferenceWindow.qml:696
 #: ../src/views/ShortcutsViewer.qml:80
 msgid "Files"
-msgstr "檔案"
+msgstr "Failai"
 
 #: ../src/views/PreferenceWindow.qml:112 ../src/views/PreferenceWindow.qml:912
 #: ../src/views/ShortcutsViewer.qml:130
 msgid "Other"
-msgstr "其它"
+msgstr "Kita"
 
 #: ../src/views/PreferenceWindow.qml:107 ../src/views/PreferenceWindow.qml:791
 #: ../src/views/ShortcutsViewer.qml:150
 #: ../src/controllers/menu_controller.py:111
 msgid "Subtitles"
-msgstr "字幕"
+msgstr "Subtitrai"
 
 #: ../src/views/PreferenceWindow.qml:15
 msgid "Black"
-msgstr "黑"
+msgstr "Juoda"
 
 #: ../src/views/PreferenceWindow.qml:16
 msgid "bleu de France"
-msgstr "法國藍"
+msgstr "bleu de France"
 
 #: ../src/views/PreferenceWindow.qml:17
 msgid "Turquoise"
-msgstr "綠寶石"
+msgstr "Žalsvai melsva"
 
 #: ../src/views/PreferenceWindow.qml:18
 msgid "UFO green"
-msgstr "外星綠"
+msgstr "NSO žalia"
 
 #: ../src/views/PreferenceWindow.qml:19
 msgid "Green yellow"
-msgstr "綠黃色"
+msgstr "Žaliai geltona"
 
 #: ../src/views/PreferenceWindow.qml:20
 msgid "Energy yellow"
-msgstr "能量黃"
+msgstr "Energetinė geltona"
 
 #: ../src/views/PreferenceWindow.qml:22
 msgid "Radical red"
-msgstr "火熱紅"
+msgstr "Radikali raudona"
 
 #: ../src/views/PreferenceWindow.qml:23
 msgid "Lavender indigo"
-msgstr "薰衣草紫"
+msgstr "Levandų indigo"
 
 #: ../src/views/PreferenceWindow.qml:24
 msgid "Royal blue"
-msgstr "寶藍色"
+msgstr "Ryškiai mėlyna"
 
 #: ../src/views/PreferenceWindow.qml:25
 msgid "Aluminum"
-msgstr "鋁銀色"
+msgstr "Aliuminis"
 
 #: ../src/views/PreferenceWindow.qml:26
 msgid "Clean white"
-msgstr "白淨"
+msgstr "Švariai balta"
 
 #: ../src/views/PreferenceWindow.qml:72 ../src/views/PreferenceWindow.qml:213
 msgid "Basic settings"
-msgstr "基本設定"
+msgstr "Pagrindiniai nustatymai"
 
 #: ../src/views/PreferenceWindow.qml:81 ../src/views/PreferenceWindow.qml:277
 msgid "Time span"
-msgstr "時間距"
+msgstr "Laiko tarpas"
 
 #: ../src/views/PreferenceWindow.qml:88 ../src/views/PreferenceWindow.qml:295
 msgid "Keyboard shortcuts"
-msgstr "鍵盤快捷鍵"
+msgstr "Spartieji klavišai"
 
 #: ../src/views/PreferenceWindow.qml:119 ../src/views/PreferenceWindow.qml:972
 msgid "Subtitle settings"
-msgstr "字幕設定"
+msgstr "Subtitrų nustatymai"
 
 #: ../src/views/PreferenceWindow.qml:148
 msgid "Reset shortcuts"
-msgstr "重設捷徑"
+msgstr "Atstatyti sparčiuosius klavišus"
 
 #: ../src/views/PreferenceWindow.qml:152
 msgid "Reset subtitle settings"
-msgstr "重設字幕設定"
+msgstr "Atstatyti subtitrų nustatymus"
 
 #: ../src/views/PreferenceWindow.qml:226
 msgid "Fullscreen on opening file"
-msgstr "全螢幕模式開啟檔案"
+msgstr "Atveriant failą, rodyti visame ekrane"
 
 #: ../src/views/PreferenceWindow.qml:232
 msgid "Apply the size last time closed"
-msgstr "套用上次關閉時的大小"
+msgstr "Taikyti dydį, kuris buvo užvėrus programą"
 
 #: ../src/views/PreferenceWindow.qml:258
 msgid "Allow multiple instances"
-msgstr ""
+msgstr "Leisti kelis programos egzempliorius"
 
 #: ../src/views/PreferenceWindow.qml:263
 msgid "Pause when minimized"
-msgstr "最小化時暫停"
+msgstr "Pristabdyti, kai suskleidžiama"
 
 #: ../src/views/PreferenceWindow.qml:564 ../src/views/ShortcutsViewer.qml:108
 msgid "Rotate counterclockwise"
-msgstr " 逆時針方向旋轉"
+msgstr "Pasukti prieš laikrodžio rodyklę"
 
 #: ../src/views/PreferenceWindow.qml:590 ../src/views/ShortcutsViewer.qml:112
 msgid "Rotate clockwise"
-msgstr "順時針旋轉"
+msgstr "Pasukti pagal laikrodžio rodyklę"
 
 #: ../src/views/PreferenceWindow.qml:668 ../src/views/ShortcutsViewer.qml:124
 msgid "Mute"
-msgstr "靜音"
+msgstr "Nutildyti"
 
 #: ../src/views/PreferenceWindow.qml:954 ../src/views/ShortcutsViewer.qml:143
 msgid "Scroll"
-msgstr "滑鼠滾輪"
+msgstr "Slinkimas"
 
 #: ../src/views/PreferenceWindow.qml:957 ../src/views/ShortcutsViewer.qml:144
 #: ../src/views/VolumeButton.qml:44
 msgid "Volume"
-msgstr "音量"
+msgstr "Garsis"
 
 #: ../src/views/PreferenceWindow.qml:993
 msgid "Font"
-msgstr "字體"
+msgstr "Šriftas"
 
 #: ../src/views/PreferenceWindow.qml:1053
 msgid "Font color"
-msgstr "字體顏色"
+msgstr "Šrifto spalva"
 
 #: ../src/views/PreferenceWindow.qml:1071
 msgid "Size"
-msgstr "大小"
+msgstr "Dydis"
 
 #: ../src/views/PreferenceWindow.qml:1105
 msgid "Border color"
-msgstr "邊框顏色"
+msgstr "Kraštų spalva"
 
 #: ../src/views/PreferenceWindow.qml:1123
 msgid "Position"
-msgstr "姿勢"
+msgstr "Vieta"
 
 #: ../src/views/PreferenceWindow.qml:1128
 msgid "Bottom"
-msgstr "底"
+msgstr "Apačia"
 
 #: ../src/views/PreferenceWindow.qml:1129
 msgid "Top"
-msgstr "頂"
+msgstr "Viršus"
 
 #: ../src/views/PreferenceWindow.qml:1140
 msgid "Sync adjustment (s)"
-msgstr "同步調節"
+msgstr "Sinchronizavimo reguliavimas (sek.)"
 
 #: ../src/views/TitleBar.qml:173
 msgid "Shown in a proportion of 1:1"
-msgstr ""
+msgstr "Rodoma santykiu 1:1"
 
 #: ../src/views/TitleBar.qml:185
 msgid "Shown in 1.5 times"
-msgstr ""
+msgstr "Rodoma 1.5 karto"
 
 #: ../src/views/TitleBar.qml:198
 msgid "Return to mini mode"
-msgstr "返回最小模式"
+msgstr "Grįžti į minimalią veikseną"
 
 #: ../src/views/TitleBar.qml:198
 msgid "Shown in fullscreen"
-msgstr "全螢幕顯示"
+msgstr "Rodoma visame ekrane"
 
 #: ../src/views/TitleBar.qml:213
 msgid "Cancel \"On Top\""
-msgstr "取消上方"
+msgstr "Atsisakyti \"Viršuje\""
 
 #: ../src/views/TitleBar.qml:213
 msgid "On Top"
-msgstr "上方"
+msgstr "Viršuje"
 
 #: ../src/views/main.qml:142
 msgid "Please input the url of file played"
-msgstr "請輸入播放的檔案網址"
+msgstr "Prašome įterpti atkuriamo failo url"
 
 #: ../src/views/main.qml:143
 msgid "Confirm"
-msgstr "確認"
+msgstr "Patvirtinti"
 
 #: ../src/views/main.qml:160
 msgid "The parse failed"
-msgstr "解析失敗"
+msgstr "Analizavimas nepavyko"
 
 #: ../src/views/main.qml:458 ../src/views/main.qml:459
 msgid "Buffering..."
-msgstr "緩衝中..."
+msgstr "Buferizacija..."
 
 #: ../src/controllers/menu_controller.py:35
 msgid "Default"
-msgstr "預設"
+msgstr "Numatytasis"
 
 #: ../src/controllers/menu_controller.py:47
 msgid "Rotate 90 degree clockwise"
-msgstr "順時針旋轉90度"
+msgstr "Pasukti 90 laipsnių pagal laikrodžio rodyklę"
 
 #: ../src/controllers/menu_controller.py:48
 msgid "Rotate 90 degree counterclockwise"
-msgstr "逆時針旋轉90度"
+msgstr "Pasukti 90 laipsnių prieš laikrodžio rodyklę"
 
 #: ../src/controllers/menu_controller.py:49
 msgid "Flip horizontally"
-msgstr "水平翻轉"
+msgstr "Apversti horizontaliai"
 
 #: ../src/controllers/menu_controller.py:50
 msgid "Flip vertically"
-msgstr "垂直翻轉"
+msgstr "Apversti vertikaliai"
 
 #: ../src/controllers/menu_controller.py:58
 msgid "Volume Up"
-msgstr "調高音量"
+msgstr "Garsinti"
 
 #: ../src/controllers/menu_controller.py:59
 msgid "Volume Down"
-msgstr "調低音量"
+msgstr "Tildyti"
 
 #: ../src/controllers/menu_controller.py:64
 msgid "Auto"
-msgstr "自動"
+msgstr "Automatinis"
 
 #: ../src/controllers/menu_controller.py:65
 msgid "Left"
-msgstr "左"
+msgstr "Kairė"
 
 #: ../src/controllers/menu_controller.py:66
 msgid "Right"
-msgstr "右"
+msgstr "Dešinė"
 
 #: ../src/controllers/menu_controller.py:67
 msgid "Mono"
-msgstr ""
+msgstr "Mono"
 
 #: ../src/controllers/menu_controller.py:68
 msgid "Stero"
-msgstr ""
+msgstr "Stereo"
 
 #: ../src/controllers/menu_controller.py:72
 msgid "Hide subtitle"
-msgstr "隱藏字幕"
+msgstr "Slėpti subtitrus"
 
 #: ../src/controllers/menu_controller.py:76
 msgid "Open manually"
-msgstr ""
+msgstr "Atverti rankiniu būdu"
 
 #: ../src/controllers/menu_controller.py:77
 msgid "Subtitle selection"
-msgstr "字幕選擇"
+msgstr "Subtitrų pasirinkimas"
 
 #: ../src/controllers/menu_controller.py:78
 msgid "Subtitle setting"
-msgstr "字幕設定"
+msgstr "Subtitrų nustatymai"
 
 #: ../src/controllers/menu_controller.py:82
 msgid "Order"
-msgstr "次序"
+msgstr "Tvarka"
 
 #: ../src/controllers/menu_controller.py:83
 msgid "Random"
-msgstr "隨機"
+msgstr "Atsitiktinai"
 
 #: ../src/controllers/menu_controller.py:84
 msgid "Single"
-msgstr "單次播放"
+msgstr "Pavieniui"
 
 #: ../src/controllers/menu_controller.py:85
 msgid "Repeat (Single)"
-msgstr "重覆 (單次)"
+msgstr "Kartoti (Pavienis)"
 
 #: ../src/controllers/menu_controller.py:86
 msgid "Repeat (Playlist)"
-msgstr "重覆 (清單)"
+msgstr "Kartoti (Grojaraštis)"
 
 #: ../src/controllers/menu_controller.py:99
 msgid "Open a folder"
-msgstr ""
+msgstr "Atverti aplanką"
 
 #: ../src/controllers/menu_controller.py:100
 msgid "Open URL"
-msgstr "打開網址"
+msgstr "Atverti URL"
 
 #: ../src/controllers/menu_controller.py:104
 msgid "Always on top"
-msgstr "永遠在最上層"
+msgstr "Visada viršuje"
 
 #: ../src/controllers/menu_controller.py:107
 msgid "Play Sequence"
-msgstr ""
+msgstr "Groti seką"
 
 #: ../src/controllers/menu_controller.py:109
 msgid "Frame"
-msgstr "影格"
+msgstr "Kadras"
 
 #: ../src/controllers/menu_controller.py:110
 msgid "Sound"
-msgstr "音效"
+msgstr "Garsas"
 
 #: ../src/controllers/menu_controller.py:113
 msgid "Settings"
-msgstr "設置"
+msgstr "Nustatymai"
 
 #: ../src/controllers/menu_controller.py:114
 #: ../src/controllers/menu_controller.py:132
 msgid "Information"
-msgstr "資訊"
+msgstr "Informacija"
 
 #: ../src/controllers/menu_controller.py:115
 msgid "Help"
-msgstr "協助"
+msgstr "Pagalba"
 
 #: ../src/controllers/menu_controller.py:121
 #: ../src/controllers/menu_controller.py:137
 msgid "Add folder"
-msgstr "新增資料夾"
+msgstr "Pridėti aplanką"
 
 #: ../src/controllers/menu_controller.py:123
 msgid "Remove from playlist"
-msgstr "從播放清單中移除"
+msgstr "Šalinti iš grojaraščio"
 
 #: ../src/controllers/menu_controller.py:124
 msgid "Remove invalid file"
-msgstr "移除無效檔案"
+msgstr "Šalinti neteisingą failą"
 
 #: ../src/controllers/menu_controller.py:125
 msgid "Export"
-msgstr "導出皮膚"
+msgstr "Eksportuoti"
 
 #: ../src/controllers/menu_controller.py:126
 msgid "Import"
-msgstr "匯入"
+msgstr "Importuoti"
 
 #: ../src/controllers/menu_controller.py:131
 msgid "Open file location"
-msgstr "開啟檔案位置"
+msgstr "Atverti failo vietą"
 
 #: ../src/controllers/menu_controller.py:451
 msgid "Exit mini mode"
-msgstr "離開迷你模式"
+msgstr "Išeiti iš minimalios veiksenos"

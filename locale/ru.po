@@ -5,15 +5,17 @@
 # Translators:
 # Анатолий Валерианович <ffox909@mail.ru>, 2014
 # Serge Kukharski, 2014
-# Анатолий Валерианович <ffox909@mail.ru>, 2014-2015
+# Vasilii Rusu <basil_russu@hotmail.com>, 2015
+# Анатолий Валерианович <ffox909@mail.ru>, 2014-2016
+# Валерий Владимирович, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-11 11:21+0800\n"
-"PO-Revision-Date: 2015-05-11 09:07+0000\n"
+"PO-Revision-Date: 2016-12-06 01:36+0000\n"
 "Last-Translator: deepin_transifex <xiabin@linuxdeepin.com>\n"
-"Language-Team: Russian (http://www.transifex.com/projects/p/deepin-movie/language/ru/)\n"
+"Language-Team: Russian (http://www.transifex.com/linuxdeepin/deepin-movie/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,10 +26,14 @@ msgstr ""
 msgid "About"
 msgstr "О программе"
 
+#: ../src/views/AboutSection.qml:15
+msgid "Acknowledgements"
+msgstr ""
+
 #: ../src/views/AboutSection.qml:13 ../src/views/TitleBar.qml:70
 #: ../src/views/TitleBar.qml:142 ../src/views/window.py:71
 msgid "Deepin Movie"
-msgstr "Видеоплеер Deepin"
+msgstr "Видеопроигрыватель Deepin "
 
 #: ../src/views/AboutSection.qml:28
 msgid "Version"
@@ -43,11 +49,11 @@ msgid ""
 "Deepin Movie is a well-designed and full-featured video player with simple "
 "borderless design. It supports local and streaming media play with multiple "
 "video formats."
-msgstr "Deepin Movie это полнофункциональный и хорошо продуманный видео-плеер с невероятно простым дизайном. Он поддерживает локальное и потоковое воспроизведение многих форматов."
+msgstr "Видеопроигрыватель Deepin  это полнофункциональный и хорошо продуманный видео-плеер с невероятно простым дизайном. Он поддерживает локальное и потоковое воспроизведение многих видео форматов."
 
 #: ../src/views/AboutSection.qml:69
 msgid "Deepin Movie is released under GPLv3."
-msgstr "Deepin Movie выпущен под GPLv3."
+msgstr "Видеопроигрыватель Deepin выпущен под GPLv3."
 
 #: ../src/views/ControlBar.qml:229
 msgid "Stop playing"
@@ -64,7 +70,7 @@ msgstr "Пауза"
 #: ../src/views/ControlBar.qml:266 ../src/controllers/menu_controller.py:108
 #: ../src/controllers/menu_controller.py:119
 msgid "Play"
-msgstr "Играть"
+msgstr "Воспроизведение"
 
 #: ../src/views/ControlBar.qml:283 ../src/controllers/menu_controller.py:91
 msgid "Next"
@@ -72,7 +78,7 @@ msgstr "Следующий"
 
 #: ../src/views/ControlBar.qml:326 ../src/controllers/menu_controller.py:449
 msgid "Exit fullscreen"
-msgstr "Выйти из полного экрана"
+msgstr "Выйти из полноэкранного режима"
 
 #: ../src/views/ControlBar.qml:326 ../src/views/PreferenceWindow.qml:391
 #: ../src/views/PreferenceWindow.qml:941 ../src/views/ShortcutsViewer.qml:58
@@ -80,7 +86,7 @@ msgstr "Выйти из полного экрана"
 #: ../src/controllers/menu_controller.py:102
 #: ../src/controllers/menu_controller.py:450
 msgid "Fullscreen"
-msgstr "Полный экран"
+msgstr "Полноэкранный режим"
 
 #: ../src/views/ControlBar.qml:343 ../src/views/PreferenceWindow.qml:711
 #: ../src/views/ShortcutsViewer.qml:83
@@ -92,7 +98,7 @@ msgstr "Открыть файл"
 #: ../src/views/PreferenceWindow.qml:417 ../src/views/ShortcutsViewer.qml:62
 #: ../src/controllers/menu_controller.py:105
 msgid "Playlist"
-msgstr "Плейлист"
+msgstr "Список воспроизведения"
 
 #: ../src/views/HotKeyInput.qml:7 ../src/views/HotKeyInput.qml:16
 #: ../src/views/HotKeyInputRow.qml:24 ../src/views/HotKeyInputRow.qml:26
@@ -109,7 +115,7 @@ msgstr "Введите новое сочетание клавиш"
 
 #: ../src/views/HotKeyInputRow.qml:30
 msgid "The shortcut you set "
-msgstr "Установленные вами сочетания"
+msgstr "Установленное Вами сочетание клавиш"
 
 #: ../src/views/HotKeyInputRow.qml:31
 #, qt-format
@@ -176,7 +182,7 @@ msgstr "Импортирован"
 
 #: ../src/views/MainController.qml:462
 msgid "Play last movie played"
-msgstr "Играть последний проигранный фильм"
+msgstr "Посмотреть последний воспроизведенный фильм"
 
 #: ../src/views/MainController.qml:495 ../src/views/PreferenceWindow.qml:339
 #: ../src/views/ShortcutsViewer.qml:50
@@ -217,12 +223,12 @@ msgstr "Субтитры, дополнительно %1 секунд"
 #: ../src/views/MainController.qml:685 ../src/views/MainController.qml:698
 #, qt-format
 msgid "Subtitle delayed %1 seconds"
-msgstr "Субтитры, задержка %1 секунд"
+msgstr "Задержка субтитров %1 секунд"
 
 #: ../src/views/OpenFileDialog.qml:5 ../src/views/OpenFileDialog.qml:21
 #: ../src/views/OpenFileDialog.qml:41
 msgid "Please choose one file or more"
-msgstr "Пожалуйста, выберите один или несколько файлов"
+msgstr "Выберите один или несколько файлов"
 
 #: ../src/views/OpenFileDialog.qml:7 ../src/views/OpenFileDialog.qml:23
 #: ../src/views/OpenFileDialog.qml:43
@@ -243,7 +249,7 @@ msgstr "Файлы субтитров"
 
 #: ../src/views/OpenFileDialog.qml:53 ../src/views/OpenFileDialog.qml:63
 msgid "Playlist files"
-msgstr "Файлы плейлистов"
+msgstr "Файлы списка воспроизведения"
 
 #: ../src/views/OpenFileDialog.qml:61
 msgid "Save as"
@@ -264,15 +270,15 @@ msgstr "Добавить файл"
 
 #: ../src/views/Playlist.qml:268 ../src/controllers/menu_controller.py:127
 msgid "Clear playlist"
-msgstr "Очистить плейлист"
+msgstr "Очистить список воспроизведения"
 
 #: ../src/views/PreferenceWindow.qml:238
 msgid "Clear playlist on opening new file"
-msgstr "Очистить плейлист при открытии нового файла"
+msgstr "Очистить список воспроизведения при открытии нового файла"
 
 #: ../src/views/PreferenceWindow.qml:243
 msgid "Resume playback after restarting player"
-msgstr "Возобновить воспроизведение после перезапуска плеера"
+msgstr "Возобновить воспроизведение при повторном запуске видеопроигрывателя"
 
 #: ../src/views/PreferenceWindow.qml:248
 msgid "Continue to next video automatically"
@@ -401,7 +407,7 @@ msgstr "Чёрный"
 
 #: ../src/views/PreferenceWindow.qml:16
 msgid "bleu de France"
-msgstr "блю-де-франс"
+msgstr "блё де-франс"
 
 #: ../src/views/PreferenceWindow.qml:17
 msgid "Turquoise"
@@ -449,7 +455,7 @@ msgstr "Промежуток времени"
 
 #: ../src/views/PreferenceWindow.qml:88 ../src/views/PreferenceWindow.qml:295
 msgid "Keyboard shortcuts"
-msgstr "Клавиатурные сокращения"
+msgstr "Сочетания клавиш"
 
 #: ../src/views/PreferenceWindow.qml:119 ../src/views/PreferenceWindow.qml:972
 msgid "Subtitle settings"
@@ -457,23 +463,23 @@ msgstr "Настройки субтитров"
 
 #: ../src/views/PreferenceWindow.qml:148
 msgid "Reset shortcuts"
-msgstr "Сбросить сочетания"
+msgstr "Сброс  настроек сочетаний клавиш"
 
 #: ../src/views/PreferenceWindow.qml:152
 msgid "Reset subtitle settings"
-msgstr "Сбросить настройки субтитров"
+msgstr "Сброс настроек субтитров"
 
 #: ../src/views/PreferenceWindow.qml:226
 msgid "Fullscreen on opening file"
-msgstr "Полноэкранное открытие файла"
+msgstr "Открыть файл в полноэкранном режиме"
 
 #: ../src/views/PreferenceWindow.qml:232
 msgid "Apply the size last time closed"
-msgstr "Применить размер, как был при последнем закрытии"
+msgstr "Применить размер  при последнем закрытии файла"
 
 #: ../src/views/PreferenceWindow.qml:258
 msgid "Allow multiple instances"
-msgstr "Разрешить несколько экземпляров"
+msgstr "Разрешить несколько настроек"
 
 #: ../src/views/PreferenceWindow.qml:263
 msgid "Pause when minimized"
@@ -538,7 +544,7 @@ msgstr "Показывать в соотношении 1:1"
 
 #: ../src/views/TitleBar.qml:185
 msgid "Shown in 1.5 times"
-msgstr "Показывать в 1.5 раза"
+msgstr "Ускорить в 1.5 раза"
 
 #: ../src/views/TitleBar.qml:198
 msgid "Return to mini mode"
@@ -546,7 +552,7 @@ msgstr "Вернуть в режим мини"
 
 #: ../src/views/TitleBar.qml:198
 msgid "Shown in fullscreen"
-msgstr "Показывать полный экран"
+msgstr "Показывать в полноэкранном режиме"
 
 #: ../src/views/TitleBar.qml:213
 msgid "Cancel \"On Top\""
@@ -558,7 +564,7 @@ msgstr "Поверх окон"
 
 #: ../src/views/main.qml:142
 msgid "Please input the url of file played"
-msgstr "Введите URL проигрываемого файла"
+msgstr "Введите URL воспроизводимого файла"
 
 #: ../src/views/main.qml:143
 msgid "Confirm"
@@ -566,7 +572,7 @@ msgstr "Подтвердить"
 
 #: ../src/views/main.qml:160
 msgid "The parse failed"
-msgstr "Анализ не удался"
+msgstr "Ошибка анализа"
 
 #: ../src/views/main.qml:458 ../src/views/main.qml:459
 msgid "Buffering..."
@@ -602,7 +608,7 @@ msgstr "Тише"
 
 #: ../src/controllers/menu_controller.py:64
 msgid "Auto"
-msgstr "Авто"
+msgstr "Автоматически"
 
 #: ../src/controllers/menu_controller.py:65
 msgid "Left"
@@ -642,7 +648,7 @@ msgstr "Порядок"
 
 #: ../src/controllers/menu_controller.py:83
 msgid "Random"
-msgstr "Случайно"
+msgstr "В случайном порядке"
 
 #: ../src/controllers/menu_controller.py:84
 msgid "Single"
@@ -654,7 +660,7 @@ msgstr "Повтор (один файл)"
 
 #: ../src/controllers/menu_controller.py:86
 msgid "Repeat (Playlist)"
-msgstr "Повтор (плейлист)"
+msgstr "Повтор (список воспроизведения)"
 
 #: ../src/controllers/menu_controller.py:99
 msgid "Open a folder"
@@ -691,7 +697,7 @@ msgstr "Информация"
 
 #: ../src/controllers/menu_controller.py:115
 msgid "Help"
-msgstr ""
+msgstr "Помощь"
 
 #: ../src/controllers/menu_controller.py:121
 #: ../src/controllers/menu_controller.py:137
@@ -700,7 +706,7 @@ msgstr "Добавить папку"
 
 #: ../src/controllers/menu_controller.py:123
 msgid "Remove from playlist"
-msgstr "Удалить из плейлиста"
+msgstr "Удалить из списка воспроизведения"
 
 #: ../src/controllers/menu_controller.py:124
 msgid "Remove invalid file"

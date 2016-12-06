@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Piotr Strębski <strebski@o2.pl>, 2014-2015
+# Piotr Strębski <strebski@o2.pl>, 2014-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-11 11:21+0800\n"
-"PO-Revision-Date: 2015-05-11 10:01+0000\n"
-"Last-Translator: Piotr Strębski <strebski@o2.pl>\n"
-"Language-Team: Polish (http://www.transifex.com/projects/p/deepin-movie/language/pl/)\n"
+"PO-Revision-Date: 2016-12-06 01:36+0000\n"
+"Last-Translator: deepin_transifex <xiabin@linuxdeepin.com>\n"
+"Language-Team: Polish (http://www.transifex.com/linuxdeepin/deepin-movie/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,6 +21,10 @@ msgstr ""
 #: ../src/views/AboutSection.qml:6 ../src/views/PreferenceWindow.qml:129
 msgid "About"
 msgstr "O programie"
+
+#: ../src/views/AboutSection.qml:15
+msgid "Acknowledgements"
+msgstr ""
 
 #: ../src/views/AboutSection.qml:13 ../src/views/TitleBar.qml:70
 #: ../src/views/TitleBar.qml:142 ../src/views/window.py:71
@@ -467,7 +471,7 @@ msgstr "Widok pełnego ekranu przy otwarciu pliku"
 
 #: ../src/views/PreferenceWindow.qml:232
 msgid "Apply the size last time closed"
-msgstr "Zastosuj ostatnio używany rozmiar"
+msgstr "Zapamiętaj ostatni rozmiar"
 
 #: ../src/views/PreferenceWindow.qml:258
 msgid "Allow multiple instances"
@@ -616,7 +620,7 @@ msgstr "Monofonia"
 
 #: ../src/controllers/menu_controller.py:68
 msgid "Stero"
-msgstr "Stereo"
+msgstr "Stereofonia"
 
 #: ../src/controllers/menu_controller.py:72
 msgid "Hide subtitle"

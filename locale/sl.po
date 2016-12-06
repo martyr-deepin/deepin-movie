@@ -5,15 +5,16 @@
 # Translators:
 # andrej55 <andrej.marsetic@gmail.com>, 2014
 # Erik Ušaj <erikusaj@gmail.com>, 2015
+# Gorzy Gorup <gorupgorazd@gmail.com>, 2016
 # Sasa Batistic <sasa.batistic@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-11 11:21+0800\n"
-"PO-Revision-Date: 2015-05-11 09:07+0000\n"
+"PO-Revision-Date: 2016-12-06 01:36+0000\n"
 "Last-Translator: deepin_transifex <xiabin@linuxdeepin.com>\n"
-"Language-Team: Slovenian (http://www.transifex.com/projects/p/deepin-movie/language/sl/)\n"
+"Language-Team: Slovenian (http://www.transifex.com/linuxdeepin/deepin-movie/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,10 +25,14 @@ msgstr ""
 msgid "About"
 msgstr "O programu"
 
+#: ../src/views/AboutSection.qml:15
+msgid "Acknowledgements"
+msgstr ""
+
 #: ../src/views/AboutSection.qml:13 ../src/views/TitleBar.qml:70
 #: ../src/views/TitleBar.qml:142 ../src/views/window.py:71
 msgid "Deepin Movie"
-msgstr "Deepin Filmi"
+msgstr "Filmi Deepin"
 
 #: ../src/views/AboutSection.qml:28
 msgid "Version"
@@ -43,11 +48,11 @@ msgid ""
 "Deepin Movie is a well-designed and full-featured video player with simple "
 "borderless design. It supports local and streaming media play with multiple "
 "video formats."
-msgstr ""
+msgstr "Filmi Deepin je natančno oblikovan in dopolnjen video predvajalnik s preprostim, a močnim dizajnom. Podpira predvajanje lokalne in pretočne vsebine različnih video formatov."
 
 #: ../src/views/AboutSection.qml:69
 msgid "Deepin Movie is released under GPLv3."
-msgstr "Deepin Filmi je izdana z licenco GPLv3."
+msgstr "Program Filmi Deepin je izdan z licenco GPLv3."
 
 #: ../src/views/ControlBar.qml:229
 msgid "Stop playing"
@@ -55,7 +60,7 @@ msgstr "Ustavi predvajanje"
 
 #: ../src/views/ControlBar.qml:247 ../src/controllers/menu_controller.py:90
 msgid "Previous"
-msgstr "Predhodnja"
+msgstr "Predhodna"
 
 #: ../src/views/ControlBar.qml:266
 msgid "Pause"
@@ -92,7 +97,7 @@ msgstr "Odpri datoteko"
 #: ../src/views/PreferenceWindow.qml:417 ../src/views/ShortcutsViewer.qml:62
 #: ../src/controllers/menu_controller.py:105
 msgid "Playlist"
-msgstr "Predvajalni seznam"
+msgstr "Seznam predvajanja"
 
 #: ../src/views/HotKeyInput.qml:7 ../src/views/HotKeyInput.qml:16
 #: ../src/views/HotKeyInputRow.qml:24 ../src/views/HotKeyInputRow.qml:26
@@ -101,7 +106,7 @@ msgstr "Predvajalni seznam"
 #: ../src/views/ShortcutsLabel.qml:23 ../src/views/ShortcutsViewer.qml:134
 #: ../src/views/ShortcutsViewer.qml:139 ../src/views/ShortcutsViewer.qml:144
 msgid "None"
-msgstr "Nihče"
+msgstr "Nič"
 
 #: ../src/views/HotKeyInput.qml:23
 msgid "Please input a new shortcut"
@@ -109,12 +114,12 @@ msgstr "Vnesite novo bližnjico"
 
 #: ../src/views/HotKeyInputRow.qml:30
 msgid "The shortcut you set "
-msgstr "Bljižnica nastavljena"
+msgstr "Nastavljena bližnjica"
 
 #: ../src/views/HotKeyInputRow.qml:31
 #, qt-format
 msgid "conflicts with the one used for \"%2\" in the \"%1\" category. "
-msgstr ""
+msgstr "je enaka, kot bližnjica za \"%2\" v kategoriji \"%1\"."
 
 #: ../src/views/HotKeyInputRow.qml:32
 msgid "Do you want to replace it?"
@@ -131,7 +136,7 @@ msgstr "Zamenjaj"
 #: ../src/views/InformationWindow.qml:23 ../src/views/InformationWindow.qml:24
 #: ../src/views/InformationWindow.qml:25 ../src/models/movie_info.py:78
 msgid "Unknown"
-msgstr "Neznan"
+msgstr "Neznano"
 
 #: ../src/views/InformationWindow.qml:77
 msgid "File type"
@@ -151,7 +156,7 @@ msgstr "Trajanje filma"
 
 #: ../src/views/InformationWindow.qml:117
 msgid "File path"
-msgstr "Datotečna pot"
+msgstr "Pot do datoteke"
 
 #: ../src/views/InformationWindow.qml:134
 msgid "Copy to clipboard"
@@ -168,7 +173,7 @@ msgstr "Neveljavna datoteka"
 #: ../src/views/MainController.qml:37
 #, qt-format
 msgid "%1 files unable to be parsed have been excluded"
-msgstr ""
+msgstr "%1 datotek sem preskočil, ker jih ni mogoče prebrati"
 
 #: ../src/views/MainController.qml:50
 msgid "Imported"
@@ -176,13 +181,13 @@ msgstr "Uvoženo"
 
 #: ../src/views/MainController.qml:462
 msgid "Play last movie played"
-msgstr "Predvajaj zadnji predvajan film"
+msgstr "Predvajaj zadnji ogledani film"
 
 #: ../src/views/MainController.qml:495 ../src/views/PreferenceWindow.qml:339
 #: ../src/views/ShortcutsViewer.qml:50
 #: ../src/controllers/menu_controller.py:93
 msgid "Forward"
-msgstr "Prevrti naprej"
+msgstr "Previj naprej"
 
 #: ../src/views/MainController.qml:507 ../src/views/PreferenceWindow.qml:365
 #: ../src/views/ShortcutsViewer.qml:54
@@ -207,17 +212,17 @@ msgstr "Glasnost:"
 #: ../src/views/MainController.qml:547
 #: ../src/controllers/menu_controller.py:60
 msgid "Muted"
-msgstr "Tišina"
+msgstr "Utišano"
 
 #: ../src/views/MainController.qml:683 ../src/views/MainController.qml:696
 #, qt-format
 msgid "Subtitle advanced %1 seconds"
-msgstr ""
+msgstr "Podnapisi premaknjeni naprej za %1 sekund"
 
 #: ../src/views/MainController.qml:685 ../src/views/MainController.qml:698
 #, qt-format
 msgid "Subtitle delayed %1 seconds"
-msgstr ""
+msgstr "Podnapisi zakasnjeni za %1 sekund"
 
 #: ../src/views/OpenFileDialog.qml:5 ../src/views/OpenFileDialog.qml:21
 #: ../src/views/OpenFileDialog.qml:41
@@ -239,7 +244,7 @@ msgstr "Izberite eno datoteko"
 
 #: ../src/views/OpenFileDialog.qml:33
 msgid "Subtitle files"
-msgstr "Podnaslovljene datoteke"
+msgstr "Datoteke s podnapisi"
 
 #: ../src/views/OpenFileDialog.qml:53 ../src/views/OpenFileDialog.qml:63
 msgid "Playlist files"
@@ -268,7 +273,7 @@ msgstr "Počisti seznam predvajanja"
 
 #: ../src/views/PreferenceWindow.qml:238
 msgid "Clear playlist on opening new file"
-msgstr "Izbriši predvajalni seznam ob odprtju nove datoteke"
+msgstr "Izbriši seznam predvajanja ob odprtju nove datoteke"
 
 #: ../src/views/PreferenceWindow.qml:243
 msgid "Resume playback after restarting player"
@@ -280,11 +285,11 @@ msgstr "Samodejno nadaljuj na naslednji posnetek"
 
 #: ../src/views/PreferenceWindow.qml:253
 msgid "Show preview when hovering over progress bar"
-msgstr ""
+msgstr "Prikaži predogled, ko grem s kazalcem na vrstico časa"
 
 #: ../src/views/PreferenceWindow.qml:286
 msgid "Forward/Rewind (s)"
-msgstr ""
+msgstr "Naprej/nazaj (v sekundah)"
 
 #: ../src/views/PreferenceWindow.qml:308 ../src/views/PreferenceWindow.qml:532
 #: ../src/views/PreferenceWindow.qml:705 ../src/views/PreferenceWindow.qml:800
@@ -294,25 +299,25 @@ msgstr "Omogoči bližnjice na tipkovnici"
 #: ../src/views/PreferenceWindow.qml:313 ../src/views/PreferenceWindow.qml:925
 #: ../src/views/ShortcutsViewer.qml:46 ../src/views/ShortcutsViewer.qml:134
 msgid "Pause/Play"
-msgstr "Premor/Predvajaj"
+msgstr "Premor/predvajaj"
 
 #: ../src/views/PreferenceWindow.qml:443 ../src/views/ShortcutsViewer.qml:66
 msgid "Accelerate playback"
-msgstr ""
+msgstr "Pospeši predvajanje"
 
 #: ../src/views/PreferenceWindow.qml:469 ../src/views/ShortcutsViewer.qml:70
 msgid "Decelerate playback"
-msgstr ""
+msgstr "Upočasni predvajanje"
 
 #: ../src/views/PreferenceWindow.qml:495 ../src/views/ShortcutsViewer.qml:74
 msgid "Restore playback speed"
-msgstr ""
+msgstr "Obnovi hitrost predvajanja"
 
 #: ../src/views/PreferenceWindow.qml:538 ../src/views/ShortcutsViewer.qml:104
 #: ../src/controllers/menu_controller.py:103
 #: ../src/controllers/menu_controller.py:452
 msgid "Mini mode"
-msgstr "Mini način"
+msgstr "Pomanjšano"
 
 #: ../src/views/PreferenceWindow.qml:616 ../src/views/ShortcutsViewer.qml:116
 msgid "Volume up"
@@ -324,29 +329,29 @@ msgstr "Tišje"
 
 #: ../src/views/PreferenceWindow.qml:737 ../src/views/ShortcutsViewer.qml:87
 msgid "Open previous"
-msgstr "Odpri predhodnje"
+msgstr "Odpri prejšnje"
 
 #: ../src/views/PreferenceWindow.qml:763 ../src/views/ShortcutsViewer.qml:91
 msgid "Open next"
-msgstr "Odpri naslednjo"
+msgstr "Odpri naslednje"
 
 #: ../src/views/PreferenceWindow.qml:806 ../src/views/ShortcutsViewer.qml:153
 #, qt-format
 msgid "Forward %1 (s)"
-msgstr ""
+msgstr "Naprej %1 (sekunde)"
 
 #: ../src/views/PreferenceWindow.qml:832 ../src/views/ShortcutsViewer.qml:157
 #, qt-format
 msgid "Delay %1 (s)"
-msgstr ""
+msgstr "Zakasni za %1 (sekunde)"
 
 #: ../src/views/PreferenceWindow.qml:858 ../src/views/ShortcutsViewer.qml:161
 msgid "Subtitle up"
-msgstr "Podnaslovi gor"
+msgstr "Podnapis gor"
 
 #: ../src/views/PreferenceWindow.qml:884 ../src/views/ShortcutsViewer.qml:165
 msgid "Subtitle down"
-msgstr "Podnapisi dol"
+msgstr "Podnapis dol"
 
 #: ../src/views/PreferenceWindow.qml:922 ../src/views/ShortcutsViewer.qml:133
 msgid "Left click"
@@ -366,7 +371,7 @@ msgstr "Širina roba"
 
 #: ../src/views/PreferenceWindow.qml:21
 msgid "Orange"
-msgstr ""
+msgstr "Oranžna"
 
 #: ../src/views/PreferenceWindow.qml:76 ../src/views/PreferenceWindow.qml:92
 #: ../src/views/PreferenceWindow.qml:217 ../src/views/PreferenceWindow.qml:299
@@ -377,7 +382,7 @@ msgstr "Predvajanje"
 #: ../src/views/PreferenceWindow.qml:97 ../src/views/PreferenceWindow.qml:523
 #: ../src/views/ShortcutsViewer.qml:101
 msgid "Frame/Sound"
-msgstr "Frame/Zvok"
+msgstr "Slika/zvok"
 
 #: ../src/views/PreferenceWindow.qml:102 ../src/views/PreferenceWindow.qml:696
 #: ../src/views/ShortcutsViewer.qml:80
@@ -401,7 +406,7 @@ msgstr "Črna"
 
 #: ../src/views/PreferenceWindow.qml:16
 msgid "bleu de France"
-msgstr "Modra Francija"
+msgstr "Bleu de France - modra"
 
 #: ../src/views/PreferenceWindow.qml:17
 msgid "Turquoise"
@@ -413,7 +418,7 @@ msgstr "NLP zelena"
 
 #: ../src/views/PreferenceWindow.qml:19
 msgid "Green yellow"
-msgstr "Zeleno rumena"
+msgstr "Zeleno-rumena"
 
 #: ../src/views/PreferenceWindow.qml:20
 msgid "Energy yellow"
@@ -421,7 +426,7 @@ msgstr "Energijsko rumena"
 
 #: ../src/views/PreferenceWindow.qml:22
 msgid "Radical red"
-msgstr "Radikana rdeča"
+msgstr "Korenita rdeča"
 
 #: ../src/views/PreferenceWindow.qml:23
 msgid "Lavender indigo"
@@ -457,11 +462,11 @@ msgstr "Nastavitve podnapisov "
 
 #: ../src/views/PreferenceWindow.qml:148
 msgid "Reset shortcuts"
-msgstr ""
+msgstr "Ponastavi bližnjice"
 
 #: ../src/views/PreferenceWindow.qml:152
 msgid "Reset subtitle settings"
-msgstr ""
+msgstr "Ponastavi nastavitve podnapisov"
 
 #: ../src/views/PreferenceWindow.qml:226
 msgid "Fullscreen on opening file"
@@ -469,7 +474,7 @@ msgstr "Celozaslonski način ob odpiranju datoteke"
 
 #: ../src/views/PreferenceWindow.qml:232
 msgid "Apply the size last time closed"
-msgstr ""
+msgstr "Uporabi velikost ob zadnjem zaprtju"
 
 #: ../src/views/PreferenceWindow.qml:258
 msgid "Allow multiple instances"
@@ -477,15 +482,15 @@ msgstr "Dovoli več primerkov"
 
 #: ../src/views/PreferenceWindow.qml:263
 msgid "Pause when minimized"
-msgstr "Premor,ko je pomanjšan "
+msgstr "Ustavi, ko se pomanjša"
 
 #: ../src/views/PreferenceWindow.qml:564 ../src/views/ShortcutsViewer.qml:108
 msgid "Rotate counterclockwise"
-msgstr "Vrti v nasprotni smeri urinega kazalca"
+msgstr "Zasukaj v nasprotno smer urinega kazalca"
 
 #: ../src/views/PreferenceWindow.qml:590 ../src/views/ShortcutsViewer.qml:112
 msgid "Rotate clockwise"
-msgstr "Zavrti v smer urinega kazalca"
+msgstr "Zasukaj v smer urinega kazalca"
 
 #: ../src/views/PreferenceWindow.qml:668 ../src/views/ShortcutsViewer.qml:124
 msgid "Mute"
@@ -493,7 +498,7 @@ msgstr "Utišaj"
 
 #: ../src/views/PreferenceWindow.qml:954 ../src/views/ShortcutsViewer.qml:143
 msgid "Scroll"
-msgstr "Zavrti miškin kolešček"
+msgstr "Miškin kolešček"
 
 #: ../src/views/PreferenceWindow.qml:957 ../src/views/ShortcutsViewer.qml:144
 #: ../src/views/VolumeButton.qml:44
@@ -526,11 +531,11 @@ msgstr "Dno"
 
 #: ../src/views/PreferenceWindow.qml:1129
 msgid "Top"
-msgstr "Na vrhu"
+msgstr "Vrh"
 
 #: ../src/views/PreferenceWindow.qml:1140
 msgid "Sync adjustment (s)"
-msgstr ""
+msgstr "Usklajevanje (v sekundah)"
 
 #: ../src/views/TitleBar.qml:173
 msgid "Shown in a proportion of 1:1"
@@ -546,7 +551,7 @@ msgstr "Nazaj v skrčen način"
 
 #: ../src/views/TitleBar.qml:198
 msgid "Shown in fullscreen"
-msgstr "Prikazano celozaslonsko"
+msgstr "Prikazano v celozaslonskem načinu"
 
 #: ../src/views/TitleBar.qml:213
 msgid "Cancel \"On Top\""
@@ -558,7 +563,7 @@ msgstr "Na vrhu"
 
 #: ../src/views/main.qml:142
 msgid "Please input the url of file played"
-msgstr ""
+msgstr "Prosim, vpišite URL naslov predvajane datoteke"
 
 #: ../src/views/main.qml:143
 msgid "Confirm"
@@ -566,11 +571,11 @@ msgstr "Potrdi"
 
 #: ../src/views/main.qml:160
 msgid "The parse failed"
-msgstr ""
+msgstr "Razčlenjevanje ni uspelo"
 
 #: ../src/views/main.qml:458 ../src/views/main.qml:459
 msgid "Buffering..."
-msgstr ""
+msgstr "Nabiram podatke..."
 
 #: ../src/controllers/menu_controller.py:35
 msgid "Default"
@@ -578,19 +583,19 @@ msgstr "Privzeto"
 
 #: ../src/controllers/menu_controller.py:47
 msgid "Rotate 90 degree clockwise"
-msgstr "Zasukati za 90 stopinj v smeri urinega kazalca"
+msgstr "Zasukaj za 90 stopinj v smeri urinega kazalca"
 
 #: ../src/controllers/menu_controller.py:48
 msgid "Rotate 90 degree counterclockwise"
-msgstr "Zasukati 90 stopinj v nasprotni smeri urinega kazalca"
+msgstr "Zasukaj 90 stopinj v nasprotni smeri urinega kazalca"
 
 #: ../src/controllers/menu_controller.py:49
 msgid "Flip horizontally"
-msgstr "Flip vodoravno"
+msgstr "Obrni vodoravno"
 
 #: ../src/controllers/menu_controller.py:50
 msgid "Flip vertically"
-msgstr "Flip vertikalno"
+msgstr "Obrni navpično"
 
 #: ../src/controllers/menu_controller.py:58
 msgid "Volume Up"
@@ -602,7 +607,7 @@ msgstr "Zmanjšaj glasnost "
 
 #: ../src/controllers/menu_controller.py:64
 msgid "Auto"
-msgstr "Avtomatsko "
+msgstr "Samodejno"
 
 #: ../src/controllers/menu_controller.py:65
 msgid "Left"
@@ -614,15 +619,15 @@ msgstr "Desno"
 
 #: ../src/controllers/menu_controller.py:67
 msgid "Mono"
-msgstr ""
+msgstr "Mono"
 
 #: ../src/controllers/menu_controller.py:68
 msgid "Stero"
-msgstr ""
+msgstr "Stereo"
 
 #: ../src/controllers/menu_controller.py:72
 msgid "Hide subtitle"
-msgstr "skrij podnapise"
+msgstr "Skrij podnapise"
 
 #: ../src/controllers/menu_controller.py:76
 msgid "Open manually"
@@ -630,7 +635,7 @@ msgstr "Odprite ročno"
 
 #: ../src/controllers/menu_controller.py:77
 msgid "Subtitle selection"
-msgstr ""
+msgstr "Izbira podnapisov"
 
 #: ../src/controllers/menu_controller.py:78
 msgid "Subtitle setting"
@@ -638,7 +643,7 @@ msgstr "Nastavitev podnapisov"
 
 #: ../src/controllers/menu_controller.py:82
 msgid "Order"
-msgstr "Način predvajanja"
+msgstr "Vrstni red"
 
 #: ../src/controllers/menu_controller.py:83
 msgid "Random"
@@ -650,15 +655,15 @@ msgstr "Enojna"
 
 #: ../src/controllers/menu_controller.py:85
 msgid "Repeat (Single)"
-msgstr "Ponavljanje (Single)"
+msgstr "Ponovi (enojno)"
 
 #: ../src/controllers/menu_controller.py:86
 msgid "Repeat (Playlist)"
-msgstr "Ponavljanje (Seznam predvajanja)"
+msgstr "Ponovi (seznam predvajanja)"
 
 #: ../src/controllers/menu_controller.py:99
 msgid "Open a folder"
-msgstr ""
+msgstr "Odpri mapo"
 
 #: ../src/controllers/menu_controller.py:100
 msgid "Open URL"
@@ -674,7 +679,7 @@ msgstr "Predvajaj sekvenco"
 
 #: ../src/controllers/menu_controller.py:109
 msgid "Frame"
-msgstr "Okvir"
+msgstr "Slika"
 
 #: ../src/controllers/menu_controller.py:110
 msgid "Sound"
@@ -691,7 +696,7 @@ msgstr "Informacije"
 
 #: ../src/controllers/menu_controller.py:115
 msgid "Help"
-msgstr ""
+msgstr "Pomoč"
 
 #: ../src/controllers/menu_controller.py:121
 #: ../src/controllers/menu_controller.py:137
@@ -704,7 +709,7 @@ msgstr "Odstrani s seznama predvajanja"
 
 #: ../src/controllers/menu_controller.py:124
 msgid "Remove invalid file"
-msgstr "Odstranim neveljavno datoteko"
+msgstr "Odstrani neveljavno datoteko"
 
 #: ../src/controllers/menu_controller.py:125
 msgid "Export"
@@ -720,4 +725,4 @@ msgstr "Odpri mesto datoteke"
 
 #: ../src/controllers/menu_controller.py:451
 msgid "Exit mini mode"
-msgstr "Izhod iz skrčenega načina"
+msgstr "Izhod iz pomanjšanega"
