@@ -25,7 +25,7 @@ Rectangle {
         return Qt.rect(0, 0, Screen.desktopAvailableWidth, Screen.desktopAvailableHeight)
     }
 
-    // Used to check wether the player is stopped by the app or by the user,
+    // Used to check whether the player is stopped by the app or by the user,
     // if it is the user that stopped the player, we'll not play it automatically.
     property bool videoStoppedByAppFlag: false
     property bool videoFullscreenByAppFlag: false
