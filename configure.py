@@ -22,15 +22,23 @@
 
 from ConfigParser import ConfigParser
 
-with open("./src/data/mimetypes") as mimetypes_file:
-	mimetypes = map(lambda x: x.strip(), mimetypes_file.readlines())
-	mimetype_line = ";".join(mimetypes)
+class EqualsSpaceRemover:
+    output_file = None
+    def __init__( self, new_output_file ):
+        self.output_file = new_output_file
 
-	with open("deepin-movie.desktop", "r+") as desktop_file:
-	    cp = ConfigParser()
-	    cp.optionxform = str
-	    cp.readfp(desktop_file)
-	    cp.set("Desktop Entry", "MimeType", mimetype_line)
-	    desktop_file.seek(0)
-	    desktop_file.truncate()
-	    cp.write(desktop_file)
+    def write( self, what ):
+        self.output_file.write( what.replace( " = ", "=", 1 ) )
+
+with open("./src/data/mimetypes") as mimetypes_file:
+    mimetypes = map(lambda x: x.strip(), mimetypes_file.readlines())
+    mimetype_line = ";".join(mimetypes)
+
+    with open("deepin-movie.desktop", "r+") as desktop_file:
+        cp = ConfigParser()
+        cp.optionxform = str
+        cp.readfp(desktop_file)
+        cp.set("Desktop Entry", "MimeType", mimetype_line)
+        desktop_file.seek(0)
+        desktop_file.truncate()
+        cp.write(EqualsSpaceRemover(desktop_file))
