@@ -3,15 +3,17 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Carl Andersen <carl@freeos.dk>, 2017
 # Carl Andersen <carl@freeos.dk>, 2014-2015
 # enderleit <enderleit@gmail.com>, 2014
+# scootergrisen, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-11 11:21+0800\n"
-"PO-Revision-Date: 2016-12-06 01:36+0000\n"
-"Last-Translator: deepin_transifex <xiabin@linuxdeepin.com>\n"
+"PO-Revision-Date: 2017-03-17 18:59+0000\n"
+"Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/linuxdeepin/deepin-movie/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,12 +27,12 @@ msgstr "Om"
 
 #: ../src/views/AboutSection.qml:15
 msgid "Acknowledgements"
-msgstr ""
+msgstr "Tilkendegivelse"
 
 #: ../src/views/AboutSection.qml:13 ../src/views/TitleBar.qml:70
 #: ../src/views/TitleBar.qml:142 ../src/views/window.py:71
 msgid "Deepin Movie"
-msgstr "Deepin Film"
+msgstr "Deepin-Film"
 
 #: ../src/views/AboutSection.qml:28
 msgid "Version"
@@ -46,11 +48,11 @@ msgid ""
 "Deepin Movie is a well-designed and full-featured video player with simple "
 "borderless design. It supports local and streaming media play with multiple "
 "video formats."
-msgstr "Deepin Movie er veldesignet og har alle funktioner der kræves af en videoafspiller med et enkelt design uden rammer. Det understøtter lokal og streaming media spil med flere videoformater."
+msgstr "Deepin-Film er veldesignet og har alle funktioner der kræves af en videoafspiller med et enkelt design uden rammer. Det understøtter lokal og strømning medieafspilning med flere videoformater."
 
 #: ../src/views/AboutSection.qml:69
 msgid "Deepin Movie is released under GPLv3."
-msgstr "Deepin Movie er frigivet under GPLv3."
+msgstr "Deepin-Film er udgivet under GPLv3."
 
 #: ../src/views/ControlBar.qml:229
 msgid "Stop playing"
@@ -75,7 +77,7 @@ msgstr "Næste"
 
 #: ../src/views/ControlBar.qml:326 ../src/controllers/menu_controller.py:449
 msgid "Exit fullscreen"
-msgstr "Forlad Fuldskærmsvisning  "
+msgstr "Forlad fuldskærm"
 
 #: ../src/views/ControlBar.qml:326 ../src/views/PreferenceWindow.qml:391
 #: ../src/views/PreferenceWindow.qml:941 ../src/views/ShortcutsViewer.qml:58
@@ -83,7 +85,7 @@ msgstr "Forlad Fuldskærmsvisning  "
 #: ../src/controllers/menu_controller.py:102
 #: ../src/controllers/menu_controller.py:450
 msgid "Fullscreen"
-msgstr "Fuldskærmsvisning  "
+msgstr "Fuldskærm"
 
 #: ../src/views/ControlBar.qml:343 ../src/views/PreferenceWindow.qml:711
 #: ../src/views/ShortcutsViewer.qml:83
@@ -112,20 +114,20 @@ msgstr "Indtast venligst en ny genvej"
 
 #: ../src/views/HotKeyInputRow.qml:30
 msgid "The shortcut you set "
-msgstr "Genvejen du har sat"
+msgstr "Genvejen du har sat "
 
 #: ../src/views/HotKeyInputRow.qml:31
 #, qt-format
 msgid "conflicts with the one used for \"%2\" in the \"%1\" category. "
-msgstr "er i konflikt med den, der bruges til \"%2\" i \"%1\" kategorien."
+msgstr "er i konflikt med den, der bruges til \"%2\" i \"%1\"-kategorien."
 
 #: ../src/views/HotKeyInputRow.qml:32
 msgid "Do you want to replace it?"
-msgstr "Ønsker du at erstatte den?"
+msgstr "Vil du at erstatte den?"
 
 #: ../src/views/HotKeyInputRow.qml:99 ../src/views/main.qml:144
 msgid "Cancel"
-msgstr "Anullér"
+msgstr "Annuller"
 
 #: ../src/views/HotKeyInputRow.qml:110
 msgid "Replace"
@@ -150,7 +152,7 @@ msgstr "Opløsning"
 
 #: ../src/views/InformationWindow.qml:107
 msgid "Movie duration"
-msgstr "Film varighed"
+msgstr "Filmvarighed"
 
 #: ../src/views/InformationWindow.qml:117
 msgid "File path"
@@ -158,7 +160,7 @@ msgstr "Filsti"
 
 #: ../src/views/InformationWindow.qml:134
 msgid "Copy to clipboard"
-msgstr "Kopier til udklipsholder"
+msgstr "Kopiér til udklipsholder"
 
 #: ../src/views/InformationWindow.qml:149
 msgid "Close"
@@ -166,12 +168,12 @@ msgstr "Luk"
 
 #: ../src/views/MainController.qml:260
 msgid "Invalid file"
-msgstr "Forkert filtype"
+msgstr "Ugyldig fil"
 
 #: ../src/views/MainController.qml:37
 #, qt-format
 msgid "%1 files unable to be parsed have been excluded"
-msgstr "%1 filer kan ikke parses er blevet udelukket"
+msgstr "%1 filer som ikke kunne parses er blevet udelukket"
 
 #: ../src/views/MainController.qml:50
 msgid "Imported"
@@ -191,21 +193,21 @@ msgstr "Fremad"
 #: ../src/views/ShortcutsViewer.qml:54
 #: ../src/controllers/menu_controller.py:94
 msgid "Rewind"
-msgstr "Tilbagespol"
+msgstr "Tilbage"
 
 #: ../src/views/MainController.qml:515 ../src/views/MainController.qml:521
 #, qt-format
 msgid "(Press %1 to restore)"
-msgstr "(Tast %1 for at gendanne)"
+msgstr "(tryk på %1 for at gendanne)"
 
 #: ../src/views/MainController.qml:517 ../src/views/MainController.qml:523
 #: ../src/views/MainController.qml:528
 msgid "Playback rate: "
-msgstr "Playback rate: "
+msgstr "Afspilningshastighed: "
 
 #: ../src/views/MainController.qml:540 ../src/views/MainController.qml:549
 msgid "Volume: "
-msgstr "Lydstyrke:"
+msgstr "Lydstyrke: "
 
 #: ../src/views/MainController.qml:547
 #: ../src/controllers/menu_controller.py:60
@@ -215,17 +217,17 @@ msgstr "Dæmpet"
 #: ../src/views/MainController.qml:683 ../src/views/MainController.qml:696
 #, qt-format
 msgid "Subtitle advanced %1 seconds"
-msgstr "Undertekst avanceret %1 sekunder"
+msgstr "Undertekst fremskredet %1 sekunder"
 
 #: ../src/views/MainController.qml:685 ../src/views/MainController.qml:698
 #, qt-format
 msgid "Subtitle delayed %1 seconds"
-msgstr "Undertekst forsinkelse %1 sekunder"
+msgstr "Undertekst forsinket %1 sekunder"
 
 #: ../src/views/OpenFileDialog.qml:5 ../src/views/OpenFileDialog.qml:21
 #: ../src/views/OpenFileDialog.qml:41
 msgid "Please choose one file or more"
-msgstr "Vælg venligst en fil eller flere"
+msgstr "Vælg venligst en eller flere filer"
 
 #: ../src/views/OpenFileDialog.qml:7 ../src/views/OpenFileDialog.qml:23
 #: ../src/views/OpenFileDialog.qml:43
@@ -242,11 +244,11 @@ msgstr "Vælg venligst en fil"
 
 #: ../src/views/OpenFileDialog.qml:33
 msgid "Subtitle files"
-msgstr "Undertekstfiler "
+msgstr "Undertekstfiler"
 
 #: ../src/views/OpenFileDialog.qml:53 ../src/views/OpenFileDialog.qml:63
 msgid "Playlist files"
-msgstr "Afspilningsfiler"
+msgstr "Afspilningslistefiler"
 
 #: ../src/views/OpenFileDialog.qml:61
 msgid "Save as"
@@ -254,7 +256,7 @@ msgstr "Gem som"
 
 #: ../src/views/OpenFolderDialog.qml:5
 msgid "Please choose a folder"
-msgstr "Vælg en mappe"
+msgstr "Vælg venligst en mappe"
 
 #: ../src/views/Playlist.qml:252
 msgid "Play mode"
@@ -267,63 +269,63 @@ msgstr "Tilføj fil"
 
 #: ../src/views/Playlist.qml:268 ../src/controllers/menu_controller.py:127
 msgid "Clear playlist"
-msgstr "Ryd spilleliste"
+msgstr "Ryd afspilningsliste"
 
 #: ../src/views/PreferenceWindow.qml:238
 msgid "Clear playlist on opening new file"
-msgstr "Slet spilleliste ved åbning af ny fil"
+msgstr "Ryd afspilningsliste ved åbning af ny fil"
 
 #: ../src/views/PreferenceWindow.qml:243
 msgid "Resume playback after restarting player"
-msgstr "Resumeafspilning efter at have genstartet afspiller"
+msgstr "Genoptag afspilning efter afspilleren er blevet genstartet"
 
 #: ../src/views/PreferenceWindow.qml:248
 msgid "Continue to next video automatically"
-msgstr "Fortsæt til næste video automatisk"
+msgstr "Fortsæt automatisk til næste video"
 
 #: ../src/views/PreferenceWindow.qml:253
 msgid "Show preview when hovering over progress bar"
-msgstr "Vis preview, når musen føres over statusbar"
+msgstr "Vis forhåndsvisning, når markøren føres over forløbsbjælken"
 
 #: ../src/views/PreferenceWindow.qml:286
 msgid "Forward/Rewind (s)"
-msgstr "Fremad / tilbage"
+msgstr "Fremad/tilbage (s)"
 
 #: ../src/views/PreferenceWindow.qml:308 ../src/views/PreferenceWindow.qml:532
 #: ../src/views/PreferenceWindow.qml:705 ../src/views/PreferenceWindow.qml:800
 msgid "Enable keyboard shortcuts"
-msgstr "Aktiver tastaturgenveje"
+msgstr "Aktivér tastaturgenveje"
 
 #: ../src/views/PreferenceWindow.qml:313 ../src/views/PreferenceWindow.qml:925
 #: ../src/views/ShortcutsViewer.qml:46 ../src/views/ShortcutsViewer.qml:134
 msgid "Pause/Play"
-msgstr "Pause/Spil"
+msgstr "Pause/afspil"
 
 #: ../src/views/PreferenceWindow.qml:443 ../src/views/ShortcutsViewer.qml:66
 msgid "Accelerate playback"
-msgstr "Forøg afspilning"
+msgstr "Hurtigere afspilning"
 
 #: ../src/views/PreferenceWindow.qml:469 ../src/views/ShortcutsViewer.qml:70
 msgid "Decelerate playback"
-msgstr "Formindsk afspilning"
+msgstr "Langsommere afspilning"
 
 #: ../src/views/PreferenceWindow.qml:495 ../src/views/ShortcutsViewer.qml:74
 msgid "Restore playback speed"
-msgstr "Genskab afsilningshastighed"
+msgstr "Gendan afspilningshastighed"
 
 #: ../src/views/PreferenceWindow.qml:538 ../src/views/ShortcutsViewer.qml:104
 #: ../src/controllers/menu_controller.py:103
 #: ../src/controllers/menu_controller.py:452
 msgid "Mini mode"
-msgstr "Mini tilstand"
+msgstr "Minitilstand"
 
 #: ../src/views/PreferenceWindow.qml:616 ../src/views/ShortcutsViewer.qml:116
 msgid "Volume up"
-msgstr "Lydstyrke op"
+msgstr "Højere"
 
 #: ../src/views/PreferenceWindow.qml:642 ../src/views/ShortcutsViewer.qml:120
 msgid "Volume down"
-msgstr "Lydstyrke ned"
+msgstr "Lavere"
 
 #: ../src/views/PreferenceWindow.qml:737 ../src/views/ShortcutsViewer.qml:87
 msgid "Open previous"
@@ -341,19 +343,19 @@ msgstr "Fremad %1 (s)"
 #: ../src/views/PreferenceWindow.qml:832 ../src/views/ShortcutsViewer.qml:157
 #, qt-format
 msgid "Delay %1 (s)"
-msgstr "Forsinkelse %1 (s)"
+msgstr "Forsink %1 (s)"
 
 #: ../src/views/PreferenceWindow.qml:858 ../src/views/ShortcutsViewer.qml:161
 msgid "Subtitle up"
-msgstr "Undertekst foroven"
+msgstr "Undertekst op"
 
 #: ../src/views/PreferenceWindow.qml:884 ../src/views/ShortcutsViewer.qml:165
 msgid "Subtitle down"
-msgstr "Undertekst forneden"
+msgstr "Undertekst ned"
 
 #: ../src/views/PreferenceWindow.qml:922 ../src/views/ShortcutsViewer.qml:133
 msgid "Left click"
-msgstr "Venstre klik"
+msgstr "Venstreklik"
 
 #: ../src/views/PreferenceWindow.qml:938 ../src/views/ShortcutsViewer.qml:138
 msgid "Double click"
@@ -380,7 +382,7 @@ msgstr "Afspilning"
 #: ../src/views/PreferenceWindow.qml:97 ../src/views/PreferenceWindow.qml:523
 #: ../src/views/ShortcutsViewer.qml:101
 msgid "Frame/Sound"
-msgstr "Ramme/lyd"
+msgstr "Billede/lyd"
 
 #: ../src/views/PreferenceWindow.qml:102 ../src/views/PreferenceWindow.qml:696
 #: ../src/views/ShortcutsViewer.qml:80
@@ -396,7 +398,7 @@ msgstr "Andre"
 #: ../src/views/ShortcutsViewer.qml:150
 #: ../src/controllers/menu_controller.py:111
 msgid "Subtitles"
-msgstr "Undertitler"
+msgstr "Undertekster"
 
 #: ../src/views/PreferenceWindow.qml:15
 msgid "Black"
@@ -412,7 +414,7 @@ msgstr "Turkis"
 
 #: ../src/views/PreferenceWindow.qml:18
 msgid "UFO green"
-msgstr "UFO grøn"
+msgstr "UFO-grøn"
 
 #: ../src/views/PreferenceWindow.qml:19
 msgid "Green yellow"
@@ -420,7 +422,7 @@ msgstr "Grøngul"
 
 #: ../src/views/PreferenceWindow.qml:20
 msgid "Energy yellow"
-msgstr "Energi gul"
+msgstr "Energisk gul"
 
 #: ../src/views/PreferenceWindow.qml:22
 msgid "Radical red"
@@ -428,7 +430,7 @@ msgstr "Radikal rød"
 
 #: ../src/views/PreferenceWindow.qml:23
 msgid "Lavender indigo"
-msgstr "Lavendel"
+msgstr "Lavendel indigo"
 
 #: ../src/views/PreferenceWindow.qml:24
 msgid "Royal blue"
@@ -436,7 +438,7 @@ msgstr "Kongeblå"
 
 #: ../src/views/PreferenceWindow.qml:25
 msgid "Aluminum"
-msgstr "Aluminum"
+msgstr "Aluminium"
 
 #: ../src/views/PreferenceWindow.qml:26
 msgid "Clean white"
@@ -448,7 +450,7 @@ msgstr "Grundlæggende indstillinger"
 
 #: ../src/views/PreferenceWindow.qml:81 ../src/views/PreferenceWindow.qml:277
 msgid "Time span"
-msgstr "Tidsindstilling"
+msgstr "Tidsspænd"
 
 #: ../src/views/PreferenceWindow.qml:88 ../src/views/PreferenceWindow.qml:295
 msgid "Keyboard shortcuts"
@@ -460,7 +462,7 @@ msgstr "Undertekstindstillinger"
 
 #: ../src/views/PreferenceWindow.qml:148
 msgid "Reset shortcuts"
-msgstr "Nulstil tastatur genveje"
+msgstr "Nulstil tastaturgenveje"
 
 #: ../src/views/PreferenceWindow.qml:152
 msgid "Reset subtitle settings"
@@ -468,11 +470,11 @@ msgstr "Nulstil undertekstindstillinger"
 
 #: ../src/views/PreferenceWindow.qml:226
 msgid "Fullscreen on opening file"
-msgstr "Fuldskrærm ved åbne filer"
+msgstr "Fuldskærm når filer åbnes"
 
 #: ../src/views/PreferenceWindow.qml:232
 msgid "Apply the size last time closed"
-msgstr "Brug størrelsen sidste gang programmet blev lukket"
+msgstr "Anvend størrelsen fra sidst programmet blev lukket"
 
 #: ../src/views/PreferenceWindow.qml:258
 msgid "Allow multiple instances"
@@ -480,7 +482,7 @@ msgstr "Tillad flere forekomster"
 
 #: ../src/views/PreferenceWindow.qml:263
 msgid "Pause when minimized"
-msgstr "Pause når den er minimeret"
+msgstr "Pause når minimeret"
 
 #: ../src/views/PreferenceWindow.qml:564 ../src/views/ShortcutsViewer.qml:108
 msgid "Rotate counterclockwise"
@@ -505,7 +507,7 @@ msgstr "Lydstyrke"
 
 #: ../src/views/PreferenceWindow.qml:993
 msgid "Font"
-msgstr "Font"
+msgstr "Skrifttype"
 
 #: ../src/views/PreferenceWindow.qml:1053
 msgid "Font color"
@@ -525,19 +527,19 @@ msgstr "Position"
 
 #: ../src/views/PreferenceWindow.qml:1128
 msgid "Bottom"
-msgstr "Knap"
+msgstr "Nederst"
 
 #: ../src/views/PreferenceWindow.qml:1129
 msgid "Top"
-msgstr "Top"
+msgstr "Øverst"
 
 #: ../src/views/PreferenceWindow.qml:1140
 msgid "Sync adjustment (s)"
-msgstr "Sykoniser justering (er)"
+msgstr "Synkronisér justering(er)"
 
 #: ../src/views/TitleBar.qml:173
 msgid "Shown in a proportion of 1:1"
-msgstr "Vist i et forhold på 1: 1"
+msgstr "Vist i et forhold på 1:1"
 
 #: ../src/views/TitleBar.qml:185
 msgid "Shown in 1.5 times"
@@ -545,7 +547,7 @@ msgstr "Vist i 1,5 gange"
 
 #: ../src/views/TitleBar.qml:198
 msgid "Return to mini mode"
-msgstr "Retur til mini-tilstand"
+msgstr "Tilbage til minitilstand"
 
 #: ../src/views/TitleBar.qml:198
 msgid "Shown in fullscreen"
@@ -553,15 +555,15 @@ msgstr "Vist i fuldskærm"
 
 #: ../src/views/TitleBar.qml:213
 msgid "Cancel \"On Top\""
-msgstr "Annuller \"Foroven\""
+msgstr "Annuller \"Øverst\""
 
 #: ../src/views/TitleBar.qml:213
 msgid "On Top"
-msgstr "Foroven"
+msgstr "Øverst"
 
 #: ../src/views/main.qml:142
 msgid "Please input the url of file played"
-msgstr "Indtast venligst url fil til afspilning"
+msgstr "Indtast venligst URL'en på filen som afspilles"
 
 #: ../src/views/main.qml:143
 msgid "Confirm"
@@ -573,7 +575,7 @@ msgstr "Analysering mislykkedes"
 
 #: ../src/views/main.qml:458 ../src/views/main.qml:459
 msgid "Buffering..."
-msgstr "Buffering..."
+msgstr "Mellemlagre..."
 
 #: ../src/controllers/menu_controller.py:35
 msgid "Default"
@@ -597,11 +599,11 @@ msgstr "Spejlvend lodret"
 
 #: ../src/controllers/menu_controller.py:58
 msgid "Volume Up"
-msgstr "Lydstyrke op"
+msgstr "Højere"
 
 #: ../src/controllers/menu_controller.py:59
 msgid "Volume Down"
-msgstr "Lydstyrke ned"
+msgstr "Lavere"
 
 #: ../src/controllers/menu_controller.py:64
 msgid "Auto"
@@ -633,11 +635,11 @@ msgstr "Åbn manuelt"
 
 #: ../src/controllers/menu_controller.py:77
 msgid "Subtitle selection"
-msgstr "Valg af undertekster"
+msgstr "Valg af undertekst"
 
 #: ../src/controllers/menu_controller.py:78
 msgid "Subtitle setting"
-msgstr "Undertekst indstilling"
+msgstr "Undertekstindstilling"
 
 #: ../src/controllers/menu_controller.py:82
 msgid "Order"
@@ -649,15 +651,15 @@ msgstr "Tilfældig"
 
 #: ../src/controllers/menu_controller.py:84
 msgid "Single"
-msgstr "Enkelt"
+msgstr "Én"
 
 #: ../src/controllers/menu_controller.py:85
 msgid "Repeat (Single)"
-msgstr "Gentag (Enkelt)"
+msgstr "Gentag (én)"
 
 #: ../src/controllers/menu_controller.py:86
 msgid "Repeat (Playlist)"
-msgstr "Gentag (Afspilningsliste)"
+msgstr "Gentag (afspilningsliste)"
 
 #: ../src/controllers/menu_controller.py:99
 msgid "Open a folder"
@@ -673,11 +675,11 @@ msgstr "Altid øverst"
 
 #: ../src/controllers/menu_controller.py:107
 msgid "Play Sequence"
-msgstr "Afsiplningssekvens"
+msgstr "Afspilningssekvens"
 
 #: ../src/controllers/menu_controller.py:109
 msgid "Frame"
-msgstr "Ramme"
+msgstr "Billede"
 
 #: ../src/controllers/menu_controller.py:110
 msgid "Sound"
@@ -711,11 +713,11 @@ msgstr "Fjern ugyldig fil"
 
 #: ../src/controllers/menu_controller.py:125
 msgid "Export"
-msgstr "Eksporter"
+msgstr "Eksportér"
 
 #: ../src/controllers/menu_controller.py:126
 msgid "Import"
-msgstr "Importer"
+msgstr "Importér"
 
 #: ../src/controllers/menu_controller.py:131
 msgid "Open file location"
@@ -723,4 +725,4 @@ msgstr "Åbn filplacering"
 
 #: ../src/controllers/menu_controller.py:451
 msgid "Exit mini mode"
-msgstr "Forlad mini-tilstand"
+msgstr "Forlad minitilstand"

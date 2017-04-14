@@ -6,14 +6,14 @@
 # Automatically generated, 2014
 # cxbii <mycxbii@gmail.com>, 2015
 # Catherinelin <linhongxia@linuxdeepin.com>, 2015
-# szd_liufei <liufei@deepin.com>, 2014-2016
+# szd_liufei <maggie.liufei@gmail.com>, 2014-2016
 # hualet <mr.asianwang@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-11 11:21+0800\n"
-"PO-Revision-Date: 2016-12-06 01:41+0000\n"
+"PO-Revision-Date: 2017-04-14 06:20+0000\n"
 "Last-Translator: hualet <mr.asianwang@gmail.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/linuxdeepin/deepin-movie/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"

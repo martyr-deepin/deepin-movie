@@ -3,82 +3,78 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# 鄭子凡（凡凡不想平凡） <freddy4212@gmail.com>, 2014-2016
-# szd_liufei <maggie.liufei@gmail.com>, 2014
-# 鄭子凡（凡凡不想平凡） <freddy4212@gmail.com>, 2017
-# 鄭子凡（凡凡不想平凡） <freddy4212@gmail.com>, 2017
-# 鄭子凡（凡凡不想平凡） <freddy4212@gmail.com>, 2017
+# samson <sambelet@yahoo.com>, 2014,2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-11 11:21+0800\n"
-"PO-Revision-Date: 2017-04-14 06:20+0000\n"
-"Last-Translator: 鄭子凡（凡凡不想平凡） <freddy4212@gmail.com>\n"
-"Language-Team: Chinese (Taiwan) (http://www.transifex.com/linuxdeepin/deepin-movie/language/zh_TW/)\n"
+"PO-Revision-Date: 2017-01-17 03:04+0000\n"
+"Last-Translator: samson <sambelet@yahoo.com>\n"
+"Language-Team: Amharic (Ethiopia) (http://www.transifex.com/linuxdeepin/deepin-movie/language/am_ET/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: zh_TW\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: am_ET\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/views/AboutSection.qml:6 ../src/views/PreferenceWindow.qml:129
 msgid "About"
-msgstr "關於"
+msgstr "ስለ"
 
 #: ../src/views/AboutSection.qml:15
 msgid "Acknowledgements"
-msgstr "鳴謝"
+msgstr "ማረጋገጫ"
 
 #: ../src/views/AboutSection.qml:13 ../src/views/TitleBar.qml:70
 #: ../src/views/TitleBar.qml:142 ../src/views/window.py:71
 msgid "Deepin Movie"
-msgstr "Deepin 電影"
+msgstr "ሙቪ"
 
 #: ../src/views/AboutSection.qml:28
 msgid "Version"
-msgstr "版本"
+msgstr "እትም"
 
 #: ../src/views/AboutSection.qml:28 ../src/views/InformationLabel.qml:20
 #: ../src/views/MainController.qml:260 ../src/views/main.qml:142
 msgid ":"
-msgstr "："
+msgstr ":"
 
 #: ../src/views/AboutSection.qml:58
 msgid ""
 "Deepin Movie is a well-designed and full-featured video player with simple "
 "borderless design. It supports local and streaming media play with multiple "
 "video formats."
-msgstr "Deepin 電影採用無邊框設計，設計精美、功能全面。完整支援多種影片格式以及本機和線上的媒體。"
+msgstr "ዲፕኢን ሙቪ በ ጥሩ-የ ተዘጋጀ እና የ ሙሉ-ገጽታ ቪዲዮ ማጫወቻ ነው: ድንበሮቹ በ ቀላሉ የ ተዘጋጁ ናቸው: የ አካባቢ እና በርካታ የ ቪዲዮ አቀራረቦችን ይደግፋል"
 
 #: ../src/views/AboutSection.qml:69
 msgid "Deepin Movie is released under GPLv3."
-msgstr "Deepin 劇院遵循 GNU 通用公共授權條款第三版發佈。"
+msgstr "የ ዲፕኢን ሙቪዎች የ ተለቀቁት በ GPLv3. ነው"
 
 #: ../src/views/ControlBar.qml:229
 msgid "Stop playing"
-msgstr "停止播放"
+msgstr "ማጫወቻውን ማስቆሚያ"
 
 #: ../src/views/ControlBar.qml:247 ../src/controllers/menu_controller.py:90
 msgid "Previous"
-msgstr "上一部"
+msgstr "ቀደም ያለው"
 
 #: ../src/views/ControlBar.qml:266
 msgid "Pause"
-msgstr "暫停"
+msgstr "ማስቆሚያ"
 
 #: ../src/views/ControlBar.qml:266 ../src/controllers/menu_controller.py:108
 #: ../src/controllers/menu_controller.py:119
 msgid "Play"
-msgstr "播放"
+msgstr "ማጫወቻ"
 
 #: ../src/views/ControlBar.qml:283 ../src/controllers/menu_controller.py:91
 msgid "Next"
-msgstr "下一部"
+msgstr "ይቀጥሉ"
 
 #: ../src/views/ControlBar.qml:326 ../src/controllers/menu_controller.py:449
 msgid "Exit fullscreen"
-msgstr "結束全螢幕"
+msgstr "ከ ሙሉ መመልከቻው ዘዴ መውጫ"
 
 #: ../src/views/ControlBar.qml:326 ../src/views/PreferenceWindow.qml:391
 #: ../src/views/PreferenceWindow.qml:941 ../src/views/ShortcutsViewer.qml:58
@@ -86,19 +82,19 @@ msgstr "結束全螢幕"
 #: ../src/controllers/menu_controller.py:102
 #: ../src/controllers/menu_controller.py:450
 msgid "Fullscreen"
-msgstr "全螢幕"
+msgstr "በሙሉ መመልከቻ ዘዴ"
 
 #: ../src/views/ControlBar.qml:343 ../src/views/PreferenceWindow.qml:711
 #: ../src/views/ShortcutsViewer.qml:83
 #: ../src/controllers/menu_controller.py:98
 msgid "Open a file"
-msgstr "開啟檔案"
+msgstr "ፋይል መክፈቻ"
 
 #: ../src/views/ControlBar.qml:355 ../src/views/OpenFileDialog.qml:66
 #: ../src/views/PreferenceWindow.qml:417 ../src/views/ShortcutsViewer.qml:62
 #: ../src/controllers/menu_controller.py:105
 msgid "Playlist"
-msgstr "播放列表"
+msgstr "የማጫወቻ ዝርዝር"
 
 #: ../src/views/HotKeyInput.qml:7 ../src/views/HotKeyInput.qml:16
 #: ../src/views/HotKeyInputRow.qml:24 ../src/views/HotKeyInputRow.qml:26
@@ -107,623 +103,623 @@ msgstr "播放列表"
 #: ../src/views/ShortcutsLabel.qml:23 ../src/views/ShortcutsViewer.qml:134
 #: ../src/views/ShortcutsViewer.qml:139 ../src/views/ShortcutsViewer.qml:144
 msgid "None"
-msgstr "無"
+msgstr "ምንም"
 
 #: ../src/views/HotKeyInput.qml:23
 msgid "Please input a new shortcut"
-msgstr "請輸入新快速鍵"
+msgstr "እባክዎን አቋራ ያስገቡ"
 
 #: ../src/views/HotKeyInputRow.qml:30
 msgid "The shortcut you set "
-msgstr "自訂的快速鍵"
+msgstr "እርስዎ ያሰናዱት አቋራጭ"
 
 #: ../src/views/HotKeyInputRow.qml:31
 #, qt-format
 msgid "conflicts with the one used for \"%2\" in the \"%1\" category. "
-msgstr "與「%1」類別下的「%2」的快速鍵衝突。"
+msgstr "ይጋጫል አሁን ከሚጠቀሙት ጋር \"%2\" በ \"%1\" ምድብ ውስጥ "
 
 #: ../src/views/HotKeyInputRow.qml:32
 msgid "Do you want to replace it?"
-msgstr "是否取代？"
+msgstr "መቀየር ይፈልጋሉ?"
 
 #: ../src/views/HotKeyInputRow.qml:99 ../src/views/main.qml:144
 msgid "Cancel"
-msgstr "取消"
+msgstr "መሰረዣ"
 
 #: ../src/views/HotKeyInputRow.qml:110
 msgid "Replace"
-msgstr "取代"
+msgstr "መቀየሪያ"
 
 #: ../src/views/InformationWindow.qml:23 ../src/views/InformationWindow.qml:24
 #: ../src/views/InformationWindow.qml:25 ../src/models/movie_info.py:78
 msgid "Unknown"
-msgstr "未知"
+msgstr "ያልታወቀ"
 
 #: ../src/views/InformationWindow.qml:77
 msgid "File type"
-msgstr "檔案類型"
+msgstr "የፋይል አይነት"
 
 #: ../src/views/InformationWindow.qml:87
 msgid "File size"
-msgstr "檔案大小"
+msgstr "የፋይል መጠን"
 
 #: ../src/views/InformationWindow.qml:97
 msgid "Resolution"
-msgstr "解析度"
+msgstr "ሪዞሊሽን"
 
 #: ../src/views/InformationWindow.qml:107
 msgid "Movie duration"
-msgstr "影片長度"
+msgstr "ሙቪው የሚፈጀው ጊዜ"
 
 #: ../src/views/InformationWindow.qml:117
 msgid "File path"
-msgstr "檔案路徑"
+msgstr "የፋይል መንገድ"
 
 #: ../src/views/InformationWindow.qml:134
 msgid "Copy to clipboard"
-msgstr "複製到剪貼板"
+msgstr "ወደ ቁራጭ ሰሌዳ ኮፒ ማድረጊያ"
 
 #: ../src/views/InformationWindow.qml:149
 msgid "Close"
-msgstr "關閉"
+msgstr "መዝጊያ"
 
 #: ../src/views/MainController.qml:260
 msgid "Invalid file"
-msgstr "無效檔案"
+msgstr "ዋጋ የሌለው ፋይል"
 
 #: ../src/views/MainController.qml:37
 #, qt-format
 msgid "%1 files unable to be parsed have been excluded"
-msgstr "已略過 %1 個無效檔案"
+msgstr "%1 ፋይሎች መተንተን ያልተችለው አብረው ተካተዋል"
 
 #: ../src/views/MainController.qml:50
 msgid "Imported"
-msgstr "已匯入"
+msgstr "መጥቷል"
 
 #: ../src/views/MainController.qml:462
 msgid "Play last movie played"
-msgstr "播放上次的影片"
+msgstr "መጨረሻ የተጫወተውን ሙቪ ማጫወቻ"
 
 #: ../src/views/MainController.qml:495 ../src/views/PreferenceWindow.qml:339
 #: ../src/views/ShortcutsViewer.qml:50
 #: ../src/controllers/menu_controller.py:93
 msgid "Forward"
-msgstr "前進"
+msgstr "ወደ ፊት"
 
 #: ../src/views/MainController.qml:507 ../src/views/PreferenceWindow.qml:365
 #: ../src/views/ShortcutsViewer.qml:54
 #: ../src/controllers/menu_controller.py:94
 msgid "Rewind"
-msgstr "後退"
+msgstr "ወደ ኋላ ማጠንጠኛ"
 
 #: ../src/views/MainController.qml:515 ../src/views/MainController.qml:521
 #, qt-format
 msgid "(Press %1 to restore)"
-msgstr "（按 %1 可還原原始播放速度）"
+msgstr "(ይጫኑ %1 እንደ ነበር ለመመለስ)"
 
 #: ../src/views/MainController.qml:517 ../src/views/MainController.qml:523
 #: ../src/views/MainController.qml:528
 msgid "Playback rate: "
-msgstr "播放速度："
+msgstr "በ ድጋሚ ማጫወቻ መጠን"
 
 #: ../src/views/MainController.qml:540 ../src/views/MainController.qml:549
 msgid "Volume: "
-msgstr "音量："
+msgstr "መጠን:"
 
 #: ../src/views/MainController.qml:547
 #: ../src/controllers/menu_controller.py:60
 msgid "Muted"
-msgstr "靜音"
+msgstr "መቀነሻ"
 
 #: ../src/views/MainController.qml:683 ../src/views/MainController.qml:696
 #, qt-format
 msgid "Subtitle advanced %1 seconds"
-msgstr "字幕提前 %1 秒"
+msgstr "ንዑስ አርእስት %1 ሰከንዶች"
 
 #: ../src/views/MainController.qml:685 ../src/views/MainController.qml:698
 #, qt-format
 msgid "Subtitle delayed %1 seconds"
-msgstr "字幕延後 %1 秒"
+msgstr "ንዑስ አርእስት ዘግይቷል በ %1 ሰከንዶች"
 
 #: ../src/views/OpenFileDialog.qml:5 ../src/views/OpenFileDialog.qml:21
 #: ../src/views/OpenFileDialog.qml:41
 msgid "Please choose one file or more"
-msgstr "請選擇一或多個檔案"
+msgstr "እባክዎን አንድ ወይንም ተጨማሪ ፋይል ይምረጡ"
 
 #: ../src/views/OpenFileDialog.qml:7 ../src/views/OpenFileDialog.qml:23
 #: ../src/views/OpenFileDialog.qml:43
 msgid "Video files"
-msgstr "影片檔案"
+msgstr "የ ቪዲዮ ፋይሎች"
 
 #: ../src/views/OpenFileDialog.qml:15
 msgid "All files"
-msgstr "所有檔案"
+msgstr "ሁሉንም ፋይሎች"
 
 #: ../src/views/OpenFileDialog.qml:31 ../src/views/OpenFileDialog.qml:51
 msgid "Please choose one file"
-msgstr "請選擇一個檔案"
+msgstr "እባክዎን አንድ ፋይል ይምረጡ"
 
 #: ../src/views/OpenFileDialog.qml:33
 msgid "Subtitle files"
-msgstr "字幕檔案"
+msgstr "የ ንዑስ አርእስት ፋይሎች"
 
 #: ../src/views/OpenFileDialog.qml:53 ../src/views/OpenFileDialog.qml:63
 msgid "Playlist files"
-msgstr "播放列表檔案"
+msgstr "የ ማጫወቻ ዝርዝር ፋይሎች"
 
 #: ../src/views/OpenFileDialog.qml:61
 msgid "Save as"
-msgstr "另存新檔"
+msgstr "ማስቀመጫ እንደ"
 
 #: ../src/views/OpenFolderDialog.qml:5
 msgid "Please choose a folder"
-msgstr "請選擇資料夾"
+msgstr "እባዎን ፎልደር ይምረጡ"
 
 #: ../src/views/Playlist.qml:252
 msgid "Play mode"
-msgstr "播放模式"
+msgstr "ማጫወቻ ዘዴ"
 
 #: ../src/views/Playlist.qml:260 ../src/controllers/menu_controller.py:120
 #: ../src/controllers/menu_controller.py:136
 msgid "Add file"
-msgstr "加入檔案"
+msgstr "ፋይል መጨመሪያ"
 
 #: ../src/views/Playlist.qml:268 ../src/controllers/menu_controller.py:127
 msgid "Clear playlist"
-msgstr "清除播放列表"
+msgstr "ዝርዝር ማጫወቻ ማጽጃ"
 
 #: ../src/views/PreferenceWindow.qml:238
 msgid "Clear playlist on opening new file"
-msgstr "檔案開啟後清除播放列表"
+msgstr "አዲስ ፋይል በሚከፈትበት ጊዜ የማጫወቻውን ዝርዝር ማጽጃ"
 
 #: ../src/views/PreferenceWindow.qml:243
 msgid "Resume playback after restarting player"
-msgstr "恢復前次播放位置"
+msgstr "ማጫወቻው እንደገና ሲጀምር በድጋሚ ማጫወቱን መቀጠያ"
 
 #: ../src/views/PreferenceWindow.qml:248
 msgid "Continue to next video automatically"
-msgstr "自動播放下個檔案"
+msgstr "ወደሚቀጥለው ቪዲዮ ራስ በራሱ መቀጠያ"
 
 #: ../src/views/PreferenceWindow.qml:253
 msgid "Show preview when hovering over progress bar"
-msgstr "滑鼠停留在進度條時顯示預覽"
+msgstr "በ ቅድመ እይታ ማሳያ በ ሂደት መደርደሪያ ላይ ሲንሳፈፍ"
 
 #: ../src/views/PreferenceWindow.qml:286
 msgid "Forward/Rewind (s)"
-msgstr "前進╱後退（秒）"
+msgstr "ወደ ፊት/ማጠንጠኛ(ዎች)"
 
 #: ../src/views/PreferenceWindow.qml:308 ../src/views/PreferenceWindow.qml:532
 #: ../src/views/PreferenceWindow.qml:705 ../src/views/PreferenceWindow.qml:800
 msgid "Enable keyboard shortcuts"
-msgstr "開啟快速鍵"
+msgstr "የ ፊደል ገበታ አቋራጮች ማስቻያ"
 
 #: ../src/views/PreferenceWindow.qml:313 ../src/views/PreferenceWindow.qml:925
 #: ../src/views/ShortcutsViewer.qml:46 ../src/views/ShortcutsViewer.qml:134
 msgid "Pause/Play"
-msgstr "暫停╱播放"
+msgstr "ማጫወቻ/ማስቆሚያ"
 
 #: ../src/views/PreferenceWindow.qml:443 ../src/views/ShortcutsViewer.qml:66
 msgid "Accelerate playback"
-msgstr "加速播放"
+msgstr "መልሶ ማጫወቻ ማፍጠኛ"
 
 #: ../src/views/PreferenceWindow.qml:469 ../src/views/ShortcutsViewer.qml:70
 msgid "Decelerate playback"
-msgstr "減速播放"
+msgstr "መልሶ ማጫወቻ ማዘግያ"
 
 #: ../src/views/PreferenceWindow.qml:495 ../src/views/ShortcutsViewer.qml:74
 msgid "Restore playback speed"
-msgstr "原始速度播放"
+msgstr "መልሶ ማጫወቻ እንደ ነበር መመለሻ"
 
 #: ../src/views/PreferenceWindow.qml:538 ../src/views/ShortcutsViewer.qml:104
 #: ../src/controllers/menu_controller.py:103
 #: ../src/controllers/menu_controller.py:452
 msgid "Mini mode"
-msgstr "精簡模式"
+msgstr "በትንሽ ዘዴ"
 
 #: ../src/views/PreferenceWindow.qml:616 ../src/views/ShortcutsViewer.qml:116
 msgid "Volume up"
-msgstr "音量增"
+msgstr "መጠን መጨመሪያ"
 
 #: ../src/views/PreferenceWindow.qml:642 ../src/views/ShortcutsViewer.qml:120
 msgid "Volume down"
-msgstr "音量減"
+msgstr "መጠን መቀነሻ"
 
 #: ../src/views/PreferenceWindow.qml:737 ../src/views/ShortcutsViewer.qml:87
 msgid "Open previous"
-msgstr "開啟上一部"
+msgstr "ቀደም ያለውን መክፈቻ"
 
 #: ../src/views/PreferenceWindow.qml:763 ../src/views/ShortcutsViewer.qml:91
 msgid "Open next"
-msgstr "開啟下一部"
+msgstr "የሚቀጥለውን መክፈቻ"
 
 #: ../src/views/PreferenceWindow.qml:806 ../src/views/ShortcutsViewer.qml:153
 #, qt-format
 msgid "Forward %1 (s)"
-msgstr "前進 %1（秒）"
+msgstr "ወደ ፊት %1 (s)"
 
 #: ../src/views/PreferenceWindow.qml:832 ../src/views/ShortcutsViewer.qml:157
 #, qt-format
 msgid "Delay %1 (s)"
-msgstr "後退 %1（秒）"
+msgstr "ማዘግያ %1 (s)"
 
 #: ../src/views/PreferenceWindow.qml:858 ../src/views/ShortcutsViewer.qml:161
 msgid "Subtitle up"
-msgstr "字幕上移"
+msgstr "ንዑስ አርእስት ከ ላይ"
 
 #: ../src/views/PreferenceWindow.qml:884 ../src/views/ShortcutsViewer.qml:165
 msgid "Subtitle down"
-msgstr "字幕下移"
+msgstr "ንዑስ አርእስት ከ ታች"
 
 #: ../src/views/PreferenceWindow.qml:922 ../src/views/ShortcutsViewer.qml:133
 msgid "Left click"
-msgstr "點擊滑鼠左鍵"
+msgstr "የ ግራ መጫኛ"
 
 #: ../src/views/PreferenceWindow.qml:938 ../src/views/ShortcutsViewer.qml:138
 msgid "Double click"
-msgstr "滑鼠連按兩下"
+msgstr "ሁለት ጊዜ መጫኛ"
 
 #: ../src/views/PreferenceWindow.qml:979
 msgid "Subtitles loaded automatically"
-msgstr "自動載入字幕"
+msgstr "ንዑስ አርእስቶችን ራሱ በራሱ መጫኛ"
 
 #: ../src/views/PreferenceWindow.qml:1088
 msgid "Border width"
-msgstr "邊框寬度"
+msgstr "የ ድንበር ስፋት"
 
 #: ../src/views/PreferenceWindow.qml:21
 msgid "Orange"
-msgstr "橙色"
+msgstr "ብርቱካን"
 
 #: ../src/views/PreferenceWindow.qml:76 ../src/views/PreferenceWindow.qml:92
 #: ../src/views/PreferenceWindow.qml:217 ../src/views/PreferenceWindow.qml:299
 #: ../src/views/ShortcutsViewer.qml:43
 msgid "Playback"
-msgstr "播放設定"
+msgstr "በድጋሚ ማጫወቻ"
 
 #: ../src/views/PreferenceWindow.qml:97 ../src/views/PreferenceWindow.qml:523
 #: ../src/views/ShortcutsViewer.qml:101
 msgid "Frame/Sound"
-msgstr "畫面╱聲音"
+msgstr "ክፈፍ/ዽምፅ"
 
 #: ../src/views/PreferenceWindow.qml:102 ../src/views/PreferenceWindow.qml:696
 #: ../src/views/ShortcutsViewer.qml:80
 msgid "Files"
-msgstr "檔案"
+msgstr "ፋይሎች"
 
 #: ../src/views/PreferenceWindow.qml:112 ../src/views/PreferenceWindow.qml:912
 #: ../src/views/ShortcutsViewer.qml:130
 msgid "Other"
-msgstr "其它"
+msgstr "ለላ"
 
 #: ../src/views/PreferenceWindow.qml:107 ../src/views/PreferenceWindow.qml:791
 #: ../src/views/ShortcutsViewer.qml:150
 #: ../src/controllers/menu_controller.py:111
 msgid "Subtitles"
-msgstr "字幕"
+msgstr "ንዑስ አርእስቶች"
 
 #: ../src/views/PreferenceWindow.qml:15
 msgid "Black"
-msgstr "典雅黑"
+msgstr "ጥቁር"
 
 #: ../src/views/PreferenceWindow.qml:16
 msgid "bleu de France"
-msgstr "法國藍"
+msgstr "ሰማያዊ"
 
 #: ../src/views/PreferenceWindow.qml:17
 msgid "Turquoise"
-msgstr "綠松色"
+msgstr "አረንጓዴ ሰማያዊ"
 
 #: ../src/views/PreferenceWindow.qml:18
 msgid "UFO green"
-msgstr "神秘綠"
+msgstr "ቢጫ አረንጓዴ"
 
 #: ../src/views/PreferenceWindow.qml:19
 msgid "Green yellow"
-msgstr "黃綠色"
+msgstr "አረንጓዴ ቢጫ"
 
 #: ../src/views/PreferenceWindow.qml:20
 msgid "Energy yellow"
-msgstr "活力黃"
+msgstr "ቢጫ"
 
 #: ../src/views/PreferenceWindow.qml:22
 msgid "Radical red"
-msgstr "激昂紅"
+msgstr "መሰረታዊ ቀይ"
 
 #: ../src/views/PreferenceWindow.qml:23
 msgid "Lavender indigo"
-msgstr "薰衣草色"
+msgstr "ወይን ጠጅ"
 
 #: ../src/views/PreferenceWindow.qml:24
 msgid "Royal blue"
-msgstr "皇家藍"
+msgstr "ሰማያዊ"
 
 #: ../src/views/PreferenceWindow.qml:25
 msgid "Aluminum"
-msgstr "鋁鐵灰"
+msgstr "አሉሚኒየም"
 
 #: ../src/views/PreferenceWindow.qml:26
 msgid "Clean white"
-msgstr "純淨白"
+msgstr "ንጹህ ነጭ"
 
 #: ../src/views/PreferenceWindow.qml:72 ../src/views/PreferenceWindow.qml:213
 msgid "Basic settings"
-msgstr "基本設定"
+msgstr "መሰረታዊ ማሰናጃ"
 
 #: ../src/views/PreferenceWindow.qml:81 ../src/views/PreferenceWindow.qml:277
 msgid "Time span"
-msgstr "時間間隔"
+msgstr "የሚፈጀው ጊዜ "
 
 #: ../src/views/PreferenceWindow.qml:88 ../src/views/PreferenceWindow.qml:295
 msgid "Keyboard shortcuts"
-msgstr "快速鍵"
+msgstr "የፊደል ገበታ አቋራጮች"
 
 #: ../src/views/PreferenceWindow.qml:119 ../src/views/PreferenceWindow.qml:972
 msgid "Subtitle settings"
-msgstr "字幕設定"
+msgstr "ንዑስ አርእስት ማሰናጃ"
 
 #: ../src/views/PreferenceWindow.qml:148
 msgid "Reset shortcuts"
-msgstr "重設快速鍵"
+msgstr "አቋራጭ እንደ ነበር መመለሻ"
 
 #: ../src/views/PreferenceWindow.qml:152
 msgid "Reset subtitle settings"
-msgstr "重設字幕"
+msgstr "ንዑስ አርእስት እንደ ነበር መመለሻ ማሰናጃ"
 
 #: ../src/views/PreferenceWindow.qml:226
 msgid "Fullscreen on opening file"
-msgstr "開啟檔案時進入全螢幕"
+msgstr "ፋይሉ በሚከፈት ጊዜ በሙሉ መመልከቻ ዘዴ"
 
 #: ../src/views/PreferenceWindow.qml:232
 msgid "Apply the size last time closed"
-msgstr "使用上次關閉時的尺寸"
+msgstr "መጨረሻ ጊዜ ሲዘጋ የነበረውን መጠን መጠቀሚያ "
 
 #: ../src/views/PreferenceWindow.qml:258
 msgid "Allow multiple instances"
-msgstr "允許同時執行多個 Deepin 電影"
+msgstr "በርካታ ሁኔታዎችን ማስቻያ"
 
 #: ../src/views/PreferenceWindow.qml:263
 msgid "Pause when minimized"
-msgstr "最小化時暫停播放"
+msgstr "በሚያንስ ጊዜ ማስቆሚያ"
 
 #: ../src/views/PreferenceWindow.qml:564 ../src/views/ShortcutsViewer.qml:108
 msgid "Rotate counterclockwise"
-msgstr "逆時針旋轉"
+msgstr "ማዞሪያ ከ ቀኝ ወደ ግራ"
 
 #: ../src/views/PreferenceWindow.qml:590 ../src/views/ShortcutsViewer.qml:112
 msgid "Rotate clockwise"
-msgstr "順時針旋轉"
+msgstr "ማዞሪያ ከ ግራ ወደ ቀኝ"
 
 #: ../src/views/PreferenceWindow.qml:668 ../src/views/ShortcutsViewer.qml:124
 msgid "Mute"
-msgstr "靜音"
+msgstr "መቀነሻ"
 
 #: ../src/views/PreferenceWindow.qml:954 ../src/views/ShortcutsViewer.qml:143
 msgid "Scroll"
-msgstr "滑鼠滾輪"
+msgstr "መሸብለያ"
 
 #: ../src/views/PreferenceWindow.qml:957 ../src/views/ShortcutsViewer.qml:144
 #: ../src/views/VolumeButton.qml:44
 msgid "Volume"
-msgstr "音量"
+msgstr "መጠን"
 
 #: ../src/views/PreferenceWindow.qml:993
 msgid "Font"
-msgstr "字型"
+msgstr "ፊደል"
 
 #: ../src/views/PreferenceWindow.qml:1053
 msgid "Font color"
-msgstr "字型色彩"
+msgstr "የ ፊደል ቀለም"
 
 #: ../src/views/PreferenceWindow.qml:1071
 msgid "Size"
-msgstr "大小"
+msgstr "መጠን"
 
 #: ../src/views/PreferenceWindow.qml:1105
 msgid "Border color"
-msgstr "邊框顏色"
+msgstr "የ ድንበር ቀለም"
 
 #: ../src/views/PreferenceWindow.qml:1123
 msgid "Position"
-msgstr "字幕位置"
+msgstr "ቦታ"
 
 #: ../src/views/PreferenceWindow.qml:1128
 msgid "Bottom"
-msgstr "底部"
+msgstr "ከ ታች"
 
 #: ../src/views/PreferenceWindow.qml:1129
 msgid "Top"
-msgstr "頂部"
+msgstr "ከ ላይ"
 
 #: ../src/views/PreferenceWindow.qml:1140
 msgid "Sync adjustment (s)"
-msgstr "同步調整（秒）"
+msgstr "ማስማሚያ ማስተካከያ (ዎች)"
 
 #: ../src/views/TitleBar.qml:173
 msgid "Shown in a proportion of 1:1"
-msgstr "1：1 比例顯示"
+msgstr "ታይቷል በ ተመጣጣኝ በ 1:1"
 
 #: ../src/views/TitleBar.qml:185
 msgid "Shown in 1.5 times"
-msgstr "1．5 倍顯示"
+msgstr "ታይቷል በ 1.5 ጊዜ"
 
 #: ../src/views/TitleBar.qml:198
 msgid "Return to mini mode"
-msgstr "回到精簡模式"
+msgstr "ወደ ትንሽ ዘዴ መመለሻ"
 
 #: ../src/views/TitleBar.qml:198
 msgid "Shown in fullscreen"
-msgstr "全螢幕顯示"
+msgstr "በ ሙሉ መመልከቻ ዘዴ ታይቷል"
 
 #: ../src/views/TitleBar.qml:213
 msgid "Cancel \"On Top\""
-msgstr "取消「永遠在畫面最上層」"
+msgstr "መሰረዣ \"ከ ላይ\""
 
 #: ../src/views/TitleBar.qml:213
 msgid "On Top"
-msgstr "永遠在畫面最上層"
+msgstr "ከ ላይ"
 
 #: ../src/views/main.qml:142
 msgid "Please input the url of file played"
-msgstr "請輸入播放檔案的網址"
+msgstr "እባክዎን ያስገቡ url ለ ተጫወተው ፋይል"
 
 #: ../src/views/main.qml:143
 msgid "Confirm"
-msgstr "確定"
+msgstr "ማረጋገጫ"
 
 #: ../src/views/main.qml:160
 msgid "The parse failed"
-msgstr "無法解析"
+msgstr "መተንተን አልተቻለም"
 
 #: ../src/views/main.qml:458 ../src/views/main.qml:459
 msgid "Buffering..."
-msgstr "正在緩衝…"
+msgstr "በ መጠበቅ ላይ..."
 
 #: ../src/controllers/menu_controller.py:35
 msgid "Default"
-msgstr "預設"
+msgstr "ነባር"
 
 #: ../src/controllers/menu_controller.py:47
 msgid "Rotate 90 degree clockwise"
-msgstr "順時針旋轉 90 度"
+msgstr "ማዞሪያ 90 ዲግሪ ከ ግራ ወደ ቀኝ"
 
 #: ../src/controllers/menu_controller.py:48
 msgid "Rotate 90 degree counterclockwise"
-msgstr "逆時針旋轉 90 度"
+msgstr "ማዞሪያ 90 ዲግሪ ከ ቀኝ ወደ ግራ"
 
 #: ../src/controllers/menu_controller.py:49
 msgid "Flip horizontally"
-msgstr "水平翻轉"
+msgstr "በ አግድም መገልበጫ"
 
 #: ../src/controllers/menu_controller.py:50
 msgid "Flip vertically"
-msgstr "垂直翻轉"
+msgstr "በ ቁመት መገልበጫ"
 
 #: ../src/controllers/menu_controller.py:58
 msgid "Volume Up"
-msgstr "音量增"
+msgstr "መጠን መጨመሪያ"
 
 #: ../src/controllers/menu_controller.py:59
 msgid "Volume Down"
-msgstr "音量減"
+msgstr "መጠን መቀነሻ"
 
 #: ../src/controllers/menu_controller.py:64
 msgid "Auto"
-msgstr "自動"
+msgstr "በራሱ"
 
 #: ../src/controllers/menu_controller.py:65
 msgid "Left"
-msgstr "靠左對齊"
+msgstr "የ ግራ"
 
 #: ../src/controllers/menu_controller.py:66
 msgid "Right"
-msgstr "靠右對齊"
+msgstr "የ ቀኝ"
 
 #: ../src/controllers/menu_controller.py:67
 msgid "Mono"
-msgstr "單聲道"
+msgstr "ነጠላ"
 
 #: ../src/controllers/menu_controller.py:68
 msgid "Stero"
-msgstr "立體聲"
+msgstr "ስቴሪዮ"
 
 #: ../src/controllers/menu_controller.py:72
 msgid "Hide subtitle"
-msgstr "隱藏字幕"
+msgstr "ንዑስ አርእስት መደበቂያ"
 
 #: ../src/controllers/menu_controller.py:76
 msgid "Open manually"
-msgstr "手動載入"
+msgstr "በ እጅ መክፈቻ"
 
 #: ../src/controllers/menu_controller.py:77
 msgid "Subtitle selection"
-msgstr "選擇字幕"
+msgstr "ንዑስ አርእስት መምረጫ"
 
 #: ../src/controllers/menu_controller.py:78
 msgid "Subtitle setting"
-msgstr "字幕設定"
+msgstr "ንዑስ አርእስት ማሰናጃ"
 
 #: ../src/controllers/menu_controller.py:82
 msgid "Order"
-msgstr "順序播放"
+msgstr "ቅደም ተከተል"
 
 #: ../src/controllers/menu_controller.py:83
 msgid "Random"
-msgstr "隨機播放"
+msgstr "በደፈናው"
 
 #: ../src/controllers/menu_controller.py:84
 msgid "Single"
-msgstr "單檔案播放"
+msgstr "ነጠላ"
 
 #: ../src/controllers/menu_controller.py:85
 msgid "Repeat (Single)"
-msgstr "單檔案重複"
+msgstr "መድገሚያ (ነጠላ)"
 
 #: ../src/controllers/menu_controller.py:86
 msgid "Repeat (Playlist)"
-msgstr "列表重複"
+msgstr "መድገሚያ (የማጫወቻ ዝርዝር)"
 
 #: ../src/controllers/menu_controller.py:99
 msgid "Open a folder"
-msgstr "開啟資料夾"
+msgstr "ፎልደር መክፈቻ"
 
 #: ../src/controllers/menu_controller.py:100
 msgid "Open URL"
-msgstr "開啟網址"
+msgstr "URL መክፈቻ"
 
 #: ../src/controllers/menu_controller.py:104
 msgid "Always on top"
-msgstr "永遠在畫面最上層"
+msgstr "ሁል ጊዜ ከ ላይ"
 
 #: ../src/controllers/menu_controller.py:107
 msgid "Play Sequence"
-msgstr "播放模式"
+msgstr "የማጫወቻ ቅደም ተከተል"
 
 #: ../src/controllers/menu_controller.py:109
 msgid "Frame"
-msgstr "畫面"
+msgstr "ክፈፍ"
 
 #: ../src/controllers/menu_controller.py:110
 msgid "Sound"
-msgstr "音效"
+msgstr "ድምፅ"
 
 #: ../src/controllers/menu_controller.py:113
 msgid "Settings"
-msgstr "設定"
+msgstr "ማሰናጃዎች"
 
 #: ../src/controllers/menu_controller.py:114
 #: ../src/controllers/menu_controller.py:132
 msgid "Information"
-msgstr "詳細資訊"
+msgstr "መረጃ"
 
 #: ../src/controllers/menu_controller.py:115
 msgid "Help"
-msgstr "說明"
+msgstr "እርዳታ"
 
 #: ../src/controllers/menu_controller.py:121
 #: ../src/controllers/menu_controller.py:137
 msgid "Add folder"
-msgstr "加入資料夾"
+msgstr "ፎልደር መጨመሪያ"
 
 #: ../src/controllers/menu_controller.py:123
 msgid "Remove from playlist"
-msgstr "從播放列表移除檔案"
+msgstr "ከ ዝርዝር ማጫወቻ ማስወገጃ"
 
 #: ../src/controllers/menu_controller.py:124
 msgid "Remove invalid file"
-msgstr "移除無效檔案"
+msgstr "ዋጋ የሌለውን ፋይል ማስወገጃ "
 
 #: ../src/controllers/menu_controller.py:125
 msgid "Export"
-msgstr "匯出"
+msgstr "መላኪያ"
 
 #: ../src/controllers/menu_controller.py:126
 msgid "Import"
-msgstr "匯入"
+msgstr "ማምጫ"
 
 #: ../src/controllers/menu_controller.py:131
 msgid "Open file location"
-msgstr "開啟檔案管理器"
+msgstr "የፋይሉን አካባቢ መክፈቻ"
 
 #: ../src/controllers/menu_controller.py:451
 msgid "Exit mini mode"
-msgstr "結束精簡模式"
+msgstr "ከ ሚንት ዘዴ መውጫ"

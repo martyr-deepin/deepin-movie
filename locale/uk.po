@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Roman Sytnyk <dejitaru.tiger@gmail.com>, 2017
 # zubr139, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-11 11:21+0800\n"
-"PO-Revision-Date: 2016-12-06 01:36+0000\n"
-"Last-Translator: deepin_transifex <xiabin@linuxdeepin.com>\n"
+"PO-Revision-Date: 2017-04-12 09:48+0000\n"
+"Last-Translator: Roman Sytnyk <dejitaru.tiger@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/linuxdeepin/deepin-movie/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,7 +25,7 @@ msgstr "Інформація"
 
 #: ../src/views/AboutSection.qml:15
 msgid "Acknowledgements"
-msgstr ""
+msgstr "Підтвердження"
 
 #: ../src/views/AboutSection.qml:13 ../src/views/TitleBar.qml:70
 #: ../src/views/TitleBar.qml:142 ../src/views/window.py:71
@@ -53,7 +54,7 @@ msgstr "Програма Deepin Movie випущена згідно з Унів�
 
 #: ../src/views/ControlBar.qml:229
 msgid "Stop playing"
-msgstr ""
+msgstr "Стоп"
 
 #: ../src/views/ControlBar.qml:247 ../src/controllers/menu_controller.py:90
 msgid "Previous"
@@ -224,7 +225,7 @@ msgstr "Затримка субтитрів %1 секунд"
 #: ../src/views/OpenFileDialog.qml:5 ../src/views/OpenFileDialog.qml:21
 #: ../src/views/OpenFileDialog.qml:41
 msgid "Please choose one file or more"
-msgstr ""
+msgstr "Будь ласка, оберіть один або більше файлів"
 
 #: ../src/views/OpenFileDialog.qml:7 ../src/views/OpenFileDialog.qml:23
 #: ../src/views/OpenFileDialog.qml:43
@@ -237,7 +238,7 @@ msgstr "Всі файли"
 
 #: ../src/views/OpenFileDialog.qml:31 ../src/views/OpenFileDialog.qml:51
 msgid "Please choose one file"
-msgstr ""
+msgstr "Будь ласка, оберіть один файл"
 
 #: ../src/views/OpenFileDialog.qml:33
 msgid "Subtitle files"
@@ -253,7 +254,7 @@ msgstr "Зберегти як"
 
 #: ../src/views/OpenFolderDialog.qml:5
 msgid "Please choose a folder"
-msgstr ""
+msgstr "Будь ласка, оберіть папку"
 
 #: ../src/views/Playlist.qml:252
 msgid "Play mode"
@@ -282,11 +283,11 @@ msgstr "Автоматично переходити до наступного в
 
 #: ../src/views/PreferenceWindow.qml:253
 msgid "Show preview when hovering over progress bar"
-msgstr ""
+msgstr "Відображати попередній перегляд у разі наведення курсора на панель перебігу"
 
 #: ../src/views/PreferenceWindow.qml:286
 msgid "Forward/Rewind (s)"
-msgstr ""
+msgstr "Уперед/Перемотати (с)"
 
 #: ../src/views/PreferenceWindow.qml:308 ../src/views/PreferenceWindow.qml:532
 #: ../src/views/PreferenceWindow.qml:705 ../src/views/PreferenceWindow.qml:800
@@ -335,7 +336,7 @@ msgstr "Відкрити наступним"
 #: ../src/views/PreferenceWindow.qml:806 ../src/views/ShortcutsViewer.qml:153
 #, qt-format
 msgid "Forward %1 (s)"
-msgstr ""
+msgstr "Уперед %1 (с)"
 
 #: ../src/views/PreferenceWindow.qml:832 ../src/views/ShortcutsViewer.qml:157
 #, qt-format
@@ -536,11 +537,11 @@ msgstr "Синхронізувати коригування"
 
 #: ../src/views/TitleBar.qml:173
 msgid "Shown in a proportion of 1:1"
-msgstr ""
+msgstr "Відображено у співвідношенні 1:1"
 
 #: ../src/views/TitleBar.qml:185
 msgid "Shown in 1.5 times"
-msgstr ""
+msgstr "Показано у 1,5 рази"
 
 #: ../src/views/TitleBar.qml:198
 msgid "Return to mini mode"
@@ -616,11 +617,11 @@ msgstr "Вправо"
 
 #: ../src/controllers/menu_controller.py:67
 msgid "Mono"
-msgstr ""
+msgstr "Моно"
 
 #: ../src/controllers/menu_controller.py:68
 msgid "Stero"
-msgstr ""
+msgstr "Стерео"
 
 #: ../src/controllers/menu_controller.py:72
 msgid "Hide subtitle"
@@ -628,7 +629,7 @@ msgstr "Приховати субтитри"
 
 #: ../src/controllers/menu_controller.py:76
 msgid "Open manually"
-msgstr ""
+msgstr "Завантажити вручну"
 
 #: ../src/controllers/menu_controller.py:77
 msgid "Subtitle selection"

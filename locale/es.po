@@ -7,16 +7,17 @@
 # ICesarI <icesari@msn.com>, 2014
 # Jonathan Ponce <jyv0708@gmail.com>, 2014
 # jorgel21 <jorgecarabali21@gmail.com>, 2014
-# jose manuel <josemdance@outlook.com>, 2014-2015
-# szd_liufei <liufei@deepin.com>, 2015
+# jose luis <josemdance@outlook.com>, 2014-2015
+# szd_liufei <maggie.liufei@gmail.com>, 2015
 # Luis Castillo <castilloluis2005@gmail.com>, 2014
+# roberto lopez <riscogordo@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-11 11:21+0800\n"
-"PO-Revision-Date: 2016-12-06 01:36+0000\n"
-"Last-Translator: deepin_transifex <xiabin@linuxdeepin.com>\n"
+"PO-Revision-Date: 2017-03-27 09:32+0000\n"
+"Last-Translator: Chema Ramirez <josemrf1996@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/linuxdeepin/deepin-movie/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,7 +31,7 @@ msgstr "Acerca de"
 
 #: ../src/views/AboutSection.qml:15
 msgid "Acknowledgements"
-msgstr ""
+msgstr "Agradecimientos"
 
 #: ../src/views/AboutSection.qml:13 ../src/views/TitleBar.qml:70
 #: ../src/views/TitleBar.qml:142 ../src/views/window.py:71
