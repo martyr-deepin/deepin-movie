@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Emin Tufan <etcetin@gmail.com>, 2017
+# Ömer GÖK <omergok@outlook.com>, 2017
 # Sinan Eldem, 2014
 # yakup <mutouk@yandex.ru>, 2014-2015
 # iron_man <yunus_bakir92@hotmail.com>, 2014
@@ -12,8 +13,8 @@ msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-11 11:21+0800\n"
-"PO-Revision-Date: 2017-02-23 07:30+0000\n"
-"Last-Translator: Emin Tufan <etcetin@gmail.com>\n"
+"PO-Revision-Date: 2017-04-23 08:23+0000\n"
+"Last-Translator: Ömer GÖK <omergok@outlook.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/linuxdeepin/deepin-movie/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,7 +28,7 @@ msgstr "Hakkında"
 
 #: ../src/views/AboutSection.qml:15
 msgid "Acknowledgements"
-msgstr ""
+msgstr "Teşekkürler"
 
 #: ../src/views/AboutSection.qml:13 ../src/views/TitleBar.qml:70
 #: ../src/views/TitleBar.qml:142 ../src/views/window.py:71
@@ -446,7 +447,7 @@ msgstr "Temiz beyaz"
 
 #: ../src/views/PreferenceWindow.qml:72 ../src/views/PreferenceWindow.qml:213
 msgid "Basic settings"
-msgstr "Basit ayarlar"
+msgstr "Temel ayarlar"
 
 #: ../src/views/PreferenceWindow.qml:81 ../src/views/PreferenceWindow.qml:277
 msgid "Time span"
@@ -531,7 +532,7 @@ msgstr "Alt"
 
 #: ../src/views/PreferenceWindow.qml:1129
 msgid "Top"
-msgstr "En yüksek"
+msgstr "Üst"
 
 #: ../src/views/PreferenceWindow.qml:1140
 msgid "Sync adjustment (s)"

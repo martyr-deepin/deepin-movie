@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-11 11:21+0800\n"
-"PO-Revision-Date: 2017-04-12 09:48+0000\n"
+"PO-Revision-Date: 2017-04-15 17:47+0000\n"
 "Last-Translator: Roman Sytnyk <dejitaru.tiger@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/linuxdeepin/deepin-movie/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -201,7 +201,7 @@ msgstr "(Натисніть %1, щоб відновити)"
 #: ../src/views/MainController.qml:517 ../src/views/MainController.qml:523
 #: ../src/views/MainController.qml:528
 msgid "Playback rate: "
-msgstr ""
+msgstr "Швидкість відтворення:"
 
 #: ../src/views/MainController.qml:540 ../src/views/MainController.qml:549
 msgid "Volume: "
