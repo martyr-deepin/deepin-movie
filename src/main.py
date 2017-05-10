@@ -39,6 +39,7 @@ import signal
 import weakref
 # this will hopefully fix all the issues about QML interfaces
 os.environ["bo_reuse"] = "0"
+os.environ["QT_QPA_PLATFORM"] = "dxcb"
 
 from OpenGL import GL
 from PyQt5 import QtCore

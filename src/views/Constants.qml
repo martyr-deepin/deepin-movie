@@ -1,4 +1,5 @@
 import QtQuick 2.1
+import Deepin.Widgets 1.0
 
 Item {
     property int videoEndsThreshold: 5 * 1000
@@ -18,8 +19,8 @@ Item {
 
     property int miniModeWidth: 400 + 2 * windowGlowRadius
 
-    property int windowRadius: 3
-    property int windowGlowRadius: windowView.windowGlowRadius
+    property int windowRadius: DWindowManagerHelper.hasComposite ? 3 : 0
+    property int windowGlowRadius: windowRadius
 
     property color normalColor: "#B4B4B4"
     property color hoverColor: "#FFFFFF"
