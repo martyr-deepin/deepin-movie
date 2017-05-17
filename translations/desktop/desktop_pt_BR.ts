@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="pt_BR">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="pt_BR" version="2.1">
     <context>
         <name>desktop</name>
         <message>
@@ -11,7 +9,7 @@
         <message>
             <location filename="Desktop Entry]GenericName" line="0"/>
             <source>Media Player</source>
-            <translation>Reprodutor de Mídia</translation>
+            <translation>Reprodutor de mídia</translation>
         </message>
         <message>
             <location filename="Desktop Entry]Comment" line="0"/>

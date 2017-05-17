@@ -4,7 +4,7 @@
 # 
 # Translators:
 # 凡凡不想平凡 <freddy4212@gmail.com>, 2014-2016
-# szd_liufei <maggie.liufei@gmail.com>, 2014
+# Maggie Liu <maggie.liufei@gmail.com>, 2014
 # 凡凡不想平凡 <freddy4212@gmail.com>, 2017
 # 凡凡不想平凡 <freddy4212@gmail.com>, 2017
 # 凡凡不想平凡 <freddy4212@gmail.com>, 2017
@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-11 11:21+0800\n"
-"PO-Revision-Date: 2017-04-14 06:20+0000\n"
+"PO-Revision-Date: 2017-11-03 14:11+0000\n"
 "Last-Translator: 凡凡不想平凡 <freddy4212@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/linuxdeepin/deepin-movie/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -53,7 +53,7 @@ msgstr "Deepin 電影採用無邊框設計，設計精美、功能全面。完�
 
 #: ../src/views/AboutSection.qml:69
 msgid "Deepin Movie is released under GPLv3."
-msgstr "Deepin 劇院遵循 GNU 通用公共授權條款第三版發佈。"
+msgstr "Deepin 電影遵循 GNU 通用公共授權條款第三版發布。"
 
 #: ../src/views/ControlBar.qml:229
 msgid "Stop playing"
@@ -722,7 +722,7 @@ msgstr "匯入"
 
 #: ../src/controllers/menu_controller.py:131
 msgid "Open file location"
-msgstr "開啟檔案管理器"
+msgstr "開啟檔案位置"
 
 #: ../src/controllers/menu_controller.py:451
 msgid "Exit mini mode"

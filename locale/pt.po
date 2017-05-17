@@ -7,14 +7,15 @@
 # Luis Neves <luisjneves@gmail.com>, 2014
 # Luís Lima <geral@liqensoft.com>, 2016
 # Luis Neves <luisjneves@gmail.com>, 2015-2016
+# Manuela Silva <manuela.silva@sky.com>, 2017
 # Ricardo Simões <xmcorporation@gmail.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-11 11:21+0800\n"
-"PO-Revision-Date: 2017-04-10 12:41+0000\n"
-"Last-Translator: Luís Lima <geral@liqensoft.com>\n"
+"PO-Revision-Date: 2018-01-05 20:39+0000\n"
+"Last-Translator: Manuela Silva <manuela.silva@sky.com>\n"
 "Language-Team: Portuguese (http://www.transifex.com/linuxdeepin/deepin-movie/language/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -57,7 +58,7 @@ msgstr "Deepin Movie é lançado sob GPLv3."
 
 #: ../src/views/ControlBar.qml:229
 msgid "Stop playing"
-msgstr "Parar Reprodução"
+msgstr "Parar reprodução"
 
 #: ../src/views/ControlBar.qml:247 ../src/controllers/menu_controller.py:90
 msgid "Previous"
@@ -92,7 +93,7 @@ msgstr "Ecrã inteiro"
 #: ../src/views/ShortcutsViewer.qml:83
 #: ../src/controllers/menu_controller.py:98
 msgid "Open a file"
-msgstr "Abrir ficheiro"
+msgstr "Abrir um ficheiro"
 
 #: ../src/views/ControlBar.qml:355 ../src/views/OpenFileDialog.qml:66
 #: ../src/views/PreferenceWindow.qml:417 ../src/views/ShortcutsViewer.qml:62
@@ -228,7 +229,7 @@ msgstr "Atrasar Legenda %1 segundos"
 #: ../src/views/OpenFileDialog.qml:5 ../src/views/OpenFileDialog.qml:21
 #: ../src/views/OpenFileDialog.qml:41
 msgid "Please choose one file or more"
-msgstr "Por favor escolha um ficheiro ou mais"
+msgstr "Por favor, escolha um ficheiro ou mais"
 
 #: ../src/views/OpenFileDialog.qml:7 ../src/views/OpenFileDialog.qml:23
 #: ../src/views/OpenFileDialog.qml:43
@@ -241,7 +242,7 @@ msgstr "Todos os ficheiros"
 
 #: ../src/views/OpenFileDialog.qml:31 ../src/views/OpenFileDialog.qml:51
 msgid "Please choose one file"
-msgstr "Por favor escolha um ficheiro"
+msgstr "Por favor, escolha um ficheiro"
 
 #: ../src/views/OpenFileDialog.qml:33
 msgid "Subtitle files"
@@ -257,7 +258,7 @@ msgstr "Guardar como"
 
 #: ../src/views/OpenFolderDialog.qml:5
 msgid "Please choose a folder"
-msgstr "Por Favor escolha uma pasta"
+msgstr "Por favor, escolha uma pasta"
 
 #: ../src/views/Playlist.qml:252
 msgid "Play mode"
@@ -286,7 +287,7 @@ msgstr "Continuar automaticamente para vídeo seguinte"
 
 #: ../src/views/PreferenceWindow.qml:253
 msgid "Show preview when hovering over progress bar"
-msgstr "Mostrar pré-visualização quando pairar sobre barra de progresso"
+msgstr "Mostrar pré-visualização quando passar ponteiro do rato sobre a barra de progresso"
 
 #: ../src/views/PreferenceWindow.qml:286
 msgid "Forward/Rewind (s)"
@@ -608,7 +609,7 @@ msgstr "Diminuir Volume"
 
 #: ../src/controllers/menu_controller.py:64
 msgid "Auto"
-msgstr "Auto"
+msgstr "Automático"
 
 #: ../src/controllers/menu_controller.py:65
 msgid "Left"

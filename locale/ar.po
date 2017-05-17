@@ -4,13 +4,13 @@
 # 
 # Translators:
 # alibacha19 <alibacha19@gmail.com>, 2015
-# MUHAAB SHAAM <muhaab.org@gmail.com>, 2016
+# MUHAAB SHAAM <muhaab.org@gmail.com>, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-11 11:21+0800\n"
-"PO-Revision-Date: 2017-03-22 21:48+0000\n"
+"PO-Revision-Date: 2017-12-09 17:13+0000\n"
 "Last-Translator: MUHAAB SHAAM <muhaab.org@gmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/linuxdeepin/deepin-movie/language/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -75,7 +75,7 @@ msgstr "التالي"
 
 #: ../src/views/ControlBar.qml:326 ../src/controllers/menu_controller.py:449
 msgid "Exit fullscreen"
-msgstr "خروج من وضع ملء الشاشة"
+msgstr "خروج من ملء الشاشة"
 
 #: ../src/views/ControlBar.qml:326 ../src/views/PreferenceWindow.qml:391
 #: ../src/views/PreferenceWindow.qml:941 ../src/views/ShortcutsViewer.qml:58
@@ -117,7 +117,7 @@ msgstr "الاختصار الذي أعددته"
 #: ../src/views/HotKeyInputRow.qml:31
 #, qt-format
 msgid "conflicts with the one used for \"%2\" in the \"%1\" category. "
-msgstr "تضارب الوجود مع \\ \"%2 \\\" في فئة \\ \"%1 \\\" \"."
+msgstr "تعارض وجود مع \\ \"%2 \\\" في المجموعة \\ \"%1 \\\" \"."
 
 #: ../src/views/HotKeyInputRow.qml:32
 msgid "Do you want to replace it?"

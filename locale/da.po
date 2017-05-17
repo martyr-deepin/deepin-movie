@@ -3,16 +3,18 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Carl Andersen <carl@freeos.dk>, 2017
-# Carl Andersen <carl@freeos.dk>, 2014-2015
+# Carl Andersen <carl@black-pearl.dk>, 2017
+# Carl Andersen <carl@black-pearl.dk>, 2014-2015
 # enderleit <enderleit@gmail.com>, 2014
+# enderleit <enderleit@gmail.com>, 2014
+# scootergrisen, 2017
 # scootergrisen, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-11 11:21+0800\n"
-"PO-Revision-Date: 2017-03-17 18:59+0000\n"
+"PO-Revision-Date: 2017-12-03 18:04+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/linuxdeepin/deepin-movie/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +34,7 @@ msgstr "Tilkendegivelse"
 #: ../src/views/AboutSection.qml:13 ../src/views/TitleBar.qml:70
 #: ../src/views/TitleBar.qml:142 ../src/views/window.py:71
 msgid "Deepin Movie"
-msgstr "Deepin-Film"
+msgstr "Deepin film"
 
 #: ../src/views/AboutSection.qml:28
 msgid "Version"
@@ -48,11 +50,11 @@ msgid ""
 "Deepin Movie is a well-designed and full-featured video player with simple "
 "borderless design. It supports local and streaming media play with multiple "
 "video formats."
-msgstr "Deepin-Film er veldesignet og har alle funktioner der kræves af en videoafspiller med et enkelt design uden rammer. Det understøtter lokal og strømning medieafspilning med flere videoformater."
+msgstr "Deepin film er veldesignet og har alle funktioner der kræves af en videoafspiller med et enkelt design uden rammer. Det understøtter lokal og strømning medieafspilning med flere videoformater."
 
 #: ../src/views/AboutSection.qml:69
 msgid "Deepin Movie is released under GPLv3."
-msgstr "Deepin-Film er udgivet under GPLv3."
+msgstr "Deepin film er udgivet under GPLv3."
 
 #: ../src/views/ControlBar.qml:229
 msgid "Stop playing"

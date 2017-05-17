@@ -11,6 +11,7 @@
 # Raphael Miquelis <raphaelmiquelis@gmail.com>, 2015-2017
 # Rubens de Almeida Medeiros <rubens.cejovem@gmail.com>, 2014
 # Ruy Sabino <ruysabino@gmail.com>, 2014
+# Uziel Almeida Oliveira <uzielweb@gmail.com>, 2017
 # viniciusarl <vinniciusal@outlook.com>, 2014
 # William Silva <williamsilvajdf@gmail.com>, 2015
 msgid ""
@@ -18,8 +19,8 @@ msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-11 11:21+0800\n"
-"PO-Revision-Date: 2017-03-23 21:26+0000\n"
-"Last-Translator: Raphael Miquelis <raphaelmiquelis@gmail.com>\n"
+"PO-Revision-Date: 2017-11-03 12:33+0000\n"
+"Last-Translator: Uziel Almeida Oliveira <uzielweb@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/linuxdeepin/deepin-movie/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,7 +39,7 @@ msgstr "Agradecimentos"
 #: ../src/views/AboutSection.qml:13 ../src/views/TitleBar.qml:70
 #: ../src/views/TitleBar.qml:142 ../src/views/window.py:71
 msgid "Deepin Movie"
-msgstr "Player de Vídeo"
+msgstr "Deepin Movie"
 
 #: ../src/views/AboutSection.qml:28
 msgid "Version"
@@ -54,15 +55,15 @@ msgid ""
 "Deepin Movie is a well-designed and full-featured video player with simple "
 "borderless design. It supports local and streaming media play with multiple "
 "video formats."
-msgstr "Player de Vídeo é um tocador de vídeo bem desenhado cheio de recursos com um design simples sem bordas. Ele suporta a reprodução de mídia local e via streaming para vários formatos de vídeo."
+msgstr "Deepin Movie é um reprodutor de vídeo bem desenhado cheio de recursos com um design simples sem bordas. Ele suporta a reprodução de mídia local e via streaming para vários formatos de vídeo."
 
 #: ../src/views/AboutSection.qml:69
 msgid "Deepin Movie is released under GPLv3."
-msgstr "Player de Vídeo  é distribuído sobre a licença GPL v3."
+msgstr "Deepin Movie é distribuído sobre a licença GPLv3."
 
 #: ../src/views/ControlBar.qml:229
 msgid "Stop playing"
-msgstr "Parar reprodução"
+msgstr "Parar"
 
 #: ../src/views/ControlBar.qml:247 ../src/controllers/menu_controller.py:90
 msgid "Previous"
@@ -70,7 +71,7 @@ msgstr "Anterior"
 
 #: ../src/views/ControlBar.qml:266
 msgid "Pause"
-msgstr "Pausar"
+msgstr "Pause"
 
 #: ../src/views/ControlBar.qml:266 ../src/controllers/menu_controller.py:108
 #: ../src/controllers/menu_controller.py:119
@@ -91,19 +92,19 @@ msgstr "Sair da tela cheia "
 #: ../src/controllers/menu_controller.py:102
 #: ../src/controllers/menu_controller.py:450
 msgid "Fullscreen"
-msgstr "Tela Cheia "
+msgstr "Tela cheia "
 
 #: ../src/views/ControlBar.qml:343 ../src/views/PreferenceWindow.qml:711
 #: ../src/views/ShortcutsViewer.qml:83
 #: ../src/controllers/menu_controller.py:98
 msgid "Open a file"
-msgstr "Abrir um arquivo"
+msgstr "Abrir arquivo"
 
 #: ../src/views/ControlBar.qml:355 ../src/views/OpenFileDialog.qml:66
 #: ../src/views/PreferenceWindow.qml:417 ../src/views/ShortcutsViewer.qml:62
 #: ../src/controllers/menu_controller.py:105
 msgid "Playlist"
-msgstr "Playlist"
+msgstr "Lista de reprodução"
 
 #: ../src/views/HotKeyInput.qml:7 ../src/views/HotKeyInput.qml:16
 #: ../src/views/HotKeyInputRow.qml:24 ../src/views/HotKeyInputRow.qml:26
@@ -116,7 +117,7 @@ msgstr "Nenhum"
 
 #: ../src/views/HotKeyInput.qml:23
 msgid "Please input a new shortcut"
-msgstr "Por favor insira um novo atalho"
+msgstr "Por favor insira novo atalho"
 
 #: ../src/views/HotKeyInputRow.qml:30
 msgid "The shortcut you set "
@@ -129,7 +130,7 @@ msgstr "Conflita com o usado para \"%2\" na categoria \"%1\"."
 
 #: ../src/views/HotKeyInputRow.qml:32
 msgid "Do you want to replace it?"
-msgstr "Você deseja substituir isso?"
+msgstr "Você deseja substituir?"
 
 #: ../src/views/HotKeyInputRow.qml:99 ../src/views/main.qml:144
 msgid "Cancel"
@@ -158,7 +159,7 @@ msgstr "Resolução"
 
 #: ../src/views/InformationWindow.qml:107
 msgid "Movie duration"
-msgstr "Duração do filme"
+msgstr "Duração do vídeo"
 
 #: ../src/views/InformationWindow.qml:117
 msgid "File path"
@@ -183,7 +184,7 @@ msgstr "%1 arquivos não puderam ser analisados e foram excluídos"
 
 #: ../src/views/MainController.qml:50
 msgid "Imported"
-msgstr "importado"
+msgstr "Importado"
 
 #: ../src/views/MainController.qml:462
 msgid "Play last movie played"
@@ -250,11 +251,11 @@ msgstr "Por favor escolha um arquivo"
 
 #: ../src/views/OpenFileDialog.qml:33
 msgid "Subtitle files"
-msgstr "Arquivos de legendas"
+msgstr "Arquivos de legenda"
 
 #: ../src/views/OpenFileDialog.qml:53 ../src/views/OpenFileDialog.qml:63
 msgid "Playlist files"
-msgstr "Arquivos da playlists"
+msgstr "Arquivos da lista de reprodução"
 
 #: ../src/views/OpenFileDialog.qml:61
 msgid "Save as"
@@ -266,12 +267,12 @@ msgstr "Por favor escolha um diretório"
 
 #: ../src/views/Playlist.qml:252
 msgid "Play mode"
-msgstr "Modo reprodução"
+msgstr "Modo de reprodução"
 
 #: ../src/views/Playlist.qml:260 ../src/controllers/menu_controller.py:120
 #: ../src/controllers/menu_controller.py:136
 msgid "Add file"
-msgstr "Adicionar Arquivo"
+msgstr "Adicionar arquivo"
 
 #: ../src/views/Playlist.qml:268 ../src/controllers/menu_controller.py:127
 msgid "Clear playlist"
@@ -353,11 +354,11 @@ msgstr "Atrasar %1 (s)"
 
 #: ../src/views/PreferenceWindow.qml:858 ../src/views/ShortcutsViewer.qml:161
 msgid "Subtitle up"
-msgstr "Levantar legenda"
+msgstr "Legenda acima"
 
 #: ../src/views/PreferenceWindow.qml:884 ../src/views/ShortcutsViewer.qml:165
 msgid "Subtitle down"
-msgstr "Abaixar legenda"
+msgstr "Legenda abaixo"
 
 #: ../src/views/PreferenceWindow.qml:922 ../src/views/ShortcutsViewer.qml:133
 msgid "Left click"
@@ -633,11 +634,11 @@ msgstr "Estéreo"
 
 #: ../src/controllers/menu_controller.py:72
 msgid "Hide subtitle"
-msgstr "Esconder legenda"
+msgstr "Ocultar legenda"
 
 #: ../src/controllers/menu_controller.py:76
 msgid "Open manually"
-msgstr "Abrir manualmente"
+msgstr "Adicionar legenda"
 
 #: ../src/controllers/menu_controller.py:77
 msgid "Subtitle selection"
@@ -661,15 +662,15 @@ msgstr "Singular"
 
 #: ../src/controllers/menu_controller.py:85
 msgid "Repeat (Single)"
-msgstr "Repetir (Único)"
+msgstr "Repetir"
 
 #: ../src/controllers/menu_controller.py:86
 msgid "Repeat (Playlist)"
-msgstr "Repetir (lista de reprodução)"
+msgstr "Repetir lista de reprodução"
 
 #: ../src/controllers/menu_controller.py:99
 msgid "Open a folder"
-msgstr "Abra uma pasta"
+msgstr "Abrir pasta"
 
 #: ../src/controllers/menu_controller.py:100
 msgid "Open URL"
@@ -681,7 +682,7 @@ msgstr "Sempre em cima"
 
 #: ../src/controllers/menu_controller.py:107
 msgid "Play Sequence"
-msgstr "Reproduzir Sequência"
+msgstr "Reproduzir sequência"
 
 #: ../src/controllers/menu_controller.py:109
 msgid "Frame"

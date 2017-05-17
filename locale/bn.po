@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-11 11:21+0800\n"
-"PO-Revision-Date: 2016-12-06 01:36+0000\n"
+"PO-Revision-Date: 2018-01-16 15:20+0000\n"
 "Last-Translator: deepin_transifex <xiabin@linuxdeepin.com>\n"
 "Language-Team: Bengali (http://www.transifex.com/linuxdeepin/deepin-movie/language/bn/)\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr "ডিপিন মুভি"
 
 #: ../src/views/AboutSection.qml:28
 msgid "Version"
-msgstr ""
+msgstr "সংস্করণ"
 
 #: ../src/views/AboutSection.qml:28 ../src/views/InformationLabel.qml:20
 #: ../src/views/MainController.qml:260 ../src/views/main.qml:142
@@ -44,7 +44,7 @@ msgid ""
 "Deepin Movie is a well-designed and full-featured video player with simple "
 "borderless design. It supports local and streaming media play with multiple "
 "video formats."
-msgstr ""
+msgstr "ডিপিন মুভি একটি বর্ডার বিহীন সুন্দর ডিজাইনের এবং পরিপূর্ণ বৈশিষ্টযুক্ত ভিডিও প্লেয়ার। এটা দিয়ে বিভিন্ন ফরম্যাটের ভিডিও স্থানীয়ভাবে এবং স্ট্রিমিং করে চালানো যায়। "
 
 #: ../src/views/AboutSection.qml:69
 msgid "Deepin Movie is released under GPLv3."
@@ -102,7 +102,7 @@ msgstr ""
 #: ../src/views/ShortcutsLabel.qml:23 ../src/views/ShortcutsViewer.qml:134
 #: ../src/views/ShortcutsViewer.qml:139 ../src/views/ShortcutsViewer.qml:144
 msgid "None"
-msgstr ""
+msgstr "না"
 
 #: ../src/views/HotKeyInput.qml:23
 msgid "Please input a new shortcut"
@@ -478,7 +478,7 @@ msgstr ""
 
 #: ../src/views/PreferenceWindow.qml:263
 msgid "Pause when minimized"
-msgstr ""
+msgstr "মিনিমাইজ করলে বিরতি দিন"
 
 #: ../src/views/PreferenceWindow.qml:564 ../src/views/ShortcutsViewer.qml:108
 msgid "Rotate counterclockwise"
@@ -575,7 +575,7 @@ msgstr ""
 
 #: ../src/controllers/menu_controller.py:35
 msgid "Default"
-msgstr ""
+msgstr "Default"
 
 #: ../src/controllers/menu_controller.py:47
 msgid "Rotate 90 degree clockwise"
@@ -603,7 +603,7 @@ msgstr ""
 
 #: ../src/controllers/menu_controller.py:64
 msgid "Auto"
-msgstr ""
+msgstr "অটো"
 
 #: ../src/controllers/menu_controller.py:65
 msgid "Left"

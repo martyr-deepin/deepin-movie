@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-11 11:21+0800\n"
-"PO-Revision-Date: 2017-03-12 11:18+0000\n"
+"PO-Revision-Date: 2017-12-19 16:55+0000\n"
 "Last-Translator: deepin_transifex <xiabin@linuxdeepin.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/linuxdeepin/deepin-movie/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../src/views/AboutSection.qml:6 ../src/views/PreferenceWindow.qml:129
 msgid "About"
-msgstr ""
+msgstr "Quant a"
 
 #: ../src/views/AboutSection.qml:15
 msgid "Acknowledgements"
@@ -28,7 +28,7 @@ msgstr ""
 #: ../src/views/AboutSection.qml:13 ../src/views/TitleBar.qml:70
 #: ../src/views/TitleBar.qml:142 ../src/views/window.py:71
 msgid "Deepin Movie"
-msgstr ""
+msgstr "Pel·lícula del Deepin"
 
 #: ../src/views/AboutSection.qml:28
 msgid "Version"
@@ -44,7 +44,7 @@ msgid ""
 "Deepin Movie is a well-designed and full-featured video player with simple "
 "borderless design. It supports local and streaming media play with multiple "
 "video formats."
-msgstr ""
+msgstr "La Pel·lícula del Deepin és un reproductor de vídeo ben dissenyat i ple de funcionalitats amb un disseny simple sense vores. Admet la reproducció local i remota de diversos formats de vídeo."
 
 #: ../src/views/AboutSection.qml:69
 msgid "Deepin Movie is released under GPLv3."
@@ -56,7 +56,7 @@ msgstr ""
 
 #: ../src/views/ControlBar.qml:247 ../src/controllers/menu_controller.py:90
 msgid "Previous"
-msgstr ""
+msgstr "Anterior"
 
 #: ../src/views/ControlBar.qml:266
 msgid "Pause"
@@ -73,7 +73,7 @@ msgstr "Següent"
 
 #: ../src/views/ControlBar.qml:326 ../src/controllers/menu_controller.py:449
 msgid "Exit fullscreen"
-msgstr ""
+msgstr "Surt de la pantalla completa"
 
 #: ../src/views/ControlBar.qml:326 ../src/views/PreferenceWindow.qml:391
 #: ../src/views/PreferenceWindow.qml:941 ../src/views/ShortcutsViewer.qml:58
@@ -81,7 +81,7 @@ msgstr ""
 #: ../src/controllers/menu_controller.py:102
 #: ../src/controllers/menu_controller.py:450
 msgid "Fullscreen"
-msgstr ""
+msgstr "Pantalla completa"
 
 #: ../src/views/ControlBar.qml:343 ../src/views/PreferenceWindow.qml:711
 #: ../src/views/ShortcutsViewer.qml:83
@@ -93,7 +93,7 @@ msgstr ""
 #: ../src/views/PreferenceWindow.qml:417 ../src/views/ShortcutsViewer.qml:62
 #: ../src/controllers/menu_controller.py:105
 msgid "Playlist"
-msgstr ""
+msgstr "Llista de reproducció"
 
 #: ../src/views/HotKeyInput.qml:7 ../src/views/HotKeyInput.qml:16
 #: ../src/views/HotKeyInputRow.qml:24 ../src/views/HotKeyInputRow.qml:26
@@ -156,7 +156,7 @@ msgstr ""
 
 #: ../src/views/InformationWindow.qml:134
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Copia al porta-retalls"
 
 #: ../src/views/InformationWindow.qml:149
 msgid "Close"
@@ -183,13 +183,13 @@ msgstr ""
 #: ../src/views/ShortcutsViewer.qml:50
 #: ../src/controllers/menu_controller.py:93
 msgid "Forward"
-msgstr ""
+msgstr "Avança"
 
 #: ../src/views/MainController.qml:507 ../src/views/PreferenceWindow.qml:365
 #: ../src/views/ShortcutsViewer.qml:54
 #: ../src/controllers/menu_controller.py:94
 msgid "Rewind"
-msgstr ""
+msgstr "Rebobina"
 
 #: ../src/views/MainController.qml:515 ../src/views/MainController.qml:521
 #, qt-format
@@ -208,7 +208,7 @@ msgstr ""
 #: ../src/views/MainController.qml:547
 #: ../src/controllers/menu_controller.py:60
 msgid "Muted"
-msgstr ""
+msgstr "Silenciat"
 
 #: ../src/views/MainController.qml:683 ../src/views/MainController.qml:696
 #, qt-format
@@ -261,11 +261,11 @@ msgstr ""
 #: ../src/views/Playlist.qml:260 ../src/controllers/menu_controller.py:120
 #: ../src/controllers/menu_controller.py:136
 msgid "Add file"
-msgstr ""
+msgstr "Afegeix un fitxer"
 
 #: ../src/views/Playlist.qml:268 ../src/controllers/menu_controller.py:127
 msgid "Clear playlist"
-msgstr ""
+msgstr "Neteja la llista de reproducció"
 
 #: ../src/views/PreferenceWindow.qml:238
 msgid "Clear playlist on opening new file"
@@ -295,7 +295,7 @@ msgstr ""
 #: ../src/views/PreferenceWindow.qml:313 ../src/views/PreferenceWindow.qml:925
 #: ../src/views/ShortcutsViewer.qml:46 ../src/views/ShortcutsViewer.qml:134
 msgid "Pause/Play"
-msgstr ""
+msgstr "Pausa / Reprodueix"
 
 #: ../src/views/PreferenceWindow.qml:443 ../src/views/ShortcutsViewer.qml:66
 msgid "Accelerate playback"
@@ -313,23 +313,23 @@ msgstr ""
 #: ../src/controllers/menu_controller.py:103
 #: ../src/controllers/menu_controller.py:452
 msgid "Mini mode"
-msgstr ""
+msgstr "Mode mini"
 
 #: ../src/views/PreferenceWindow.qml:616 ../src/views/ShortcutsViewer.qml:116
 msgid "Volume up"
-msgstr ""
+msgstr "Volum amunt"
 
 #: ../src/views/PreferenceWindow.qml:642 ../src/views/ShortcutsViewer.qml:120
 msgid "Volume down"
-msgstr ""
+msgstr "Volum avall"
 
 #: ../src/views/PreferenceWindow.qml:737 ../src/views/ShortcutsViewer.qml:87
 msgid "Open previous"
-msgstr ""
+msgstr "Obre l'anterior"
 
 #: ../src/views/PreferenceWindow.qml:763 ../src/views/ShortcutsViewer.qml:91
 msgid "Open next"
-msgstr ""
+msgstr "Obre el següent"
 
 #: ../src/views/PreferenceWindow.qml:806 ../src/views/ShortcutsViewer.qml:153
 #, qt-format
@@ -373,12 +373,12 @@ msgstr ""
 #: ../src/views/PreferenceWindow.qml:217 ../src/views/PreferenceWindow.qml:299
 #: ../src/views/ShortcutsViewer.qml:43
 msgid "Playback"
-msgstr ""
+msgstr "Reproducció"
 
 #: ../src/views/PreferenceWindow.qml:97 ../src/views/PreferenceWindow.qml:523
 #: ../src/views/ShortcutsViewer.qml:101
 msgid "Frame/Sound"
-msgstr ""
+msgstr "Fotograma / So"
 
 #: ../src/views/PreferenceWindow.qml:102 ../src/views/PreferenceWindow.qml:696
 #: ../src/views/ShortcutsViewer.qml:80
@@ -394,7 +394,7 @@ msgstr ""
 #: ../src/views/ShortcutsViewer.qml:150
 #: ../src/controllers/menu_controller.py:111
 msgid "Subtitles"
-msgstr ""
+msgstr "Subtítols"
 
 #: ../src/views/PreferenceWindow.qml:15
 msgid "Black"
@@ -478,7 +478,7 @@ msgstr ""
 
 #: ../src/views/PreferenceWindow.qml:263
 msgid "Pause when minimized"
-msgstr ""
+msgstr "Pausa quan estigui minimitzat."
 
 #: ../src/views/PreferenceWindow.qml:564 ../src/views/ShortcutsViewer.qml:108
 msgid "Rotate counterclockwise"
@@ -490,11 +490,11 @@ msgstr ""
 
 #: ../src/views/PreferenceWindow.qml:668 ../src/views/ShortcutsViewer.qml:124
 msgid "Mute"
-msgstr ""
+msgstr "Silencia"
 
 #: ../src/views/PreferenceWindow.qml:954 ../src/views/ShortcutsViewer.qml:143
 msgid "Scroll"
-msgstr ""
+msgstr "Desplaçament"
 
 #: ../src/views/PreferenceWindow.qml:957 ../src/views/ShortcutsViewer.qml:144
 #: ../src/views/VolumeButton.qml:44
@@ -503,7 +503,7 @@ msgstr ""
 
 #: ../src/views/PreferenceWindow.qml:993
 msgid "Font"
-msgstr ""
+msgstr "Lletra"
 
 #: ../src/views/PreferenceWindow.qml:1053
 msgid "Font color"
@@ -523,11 +523,11 @@ msgstr ""
 
 #: ../src/views/PreferenceWindow.qml:1128
 msgid "Bottom"
-msgstr ""
+msgstr "A baix"
 
 #: ../src/views/PreferenceWindow.qml:1129
 msgid "Top"
-msgstr ""
+msgstr "A dalt"
 
 #: ../src/views/PreferenceWindow.qml:1140
 msgid "Sync adjustment (s)"
@@ -575,7 +575,7 @@ msgstr ""
 
 #: ../src/controllers/menu_controller.py:35
 msgid "Default"
-msgstr ""
+msgstr "Per defecte"
 
 #: ../src/controllers/menu_controller.py:47
 msgid "Rotate 90 degree clockwise"
@@ -663,7 +663,7 @@ msgstr ""
 
 #: ../src/controllers/menu_controller.py:100
 msgid "Open URL"
-msgstr ""
+msgstr "Obre un URL"
 
 #: ../src/controllers/menu_controller.py:104
 msgid "Always on top"
@@ -675,7 +675,7 @@ msgstr ""
 
 #: ../src/controllers/menu_controller.py:109
 msgid "Frame"
-msgstr ""
+msgstr "Fotograma"
 
 #: ../src/controllers/menu_controller.py:110
 msgid "Sound"
@@ -683,7 +683,7 @@ msgstr "So"
 
 #: ../src/controllers/menu_controller.py:113
 msgid "Settings"
-msgstr ""
+msgstr "Configuració"
 
 #: ../src/controllers/menu_controller.py:114
 #: ../src/controllers/menu_controller.py:132
@@ -692,16 +692,16 @@ msgstr ""
 
 #: ../src/controllers/menu_controller.py:115
 msgid "Help"
-msgstr ""
+msgstr "Ajuda"
 
 #: ../src/controllers/menu_controller.py:121
 #: ../src/controllers/menu_controller.py:137
 msgid "Add folder"
-msgstr ""
+msgstr "Afegeix una carpeta"
 
 #: ../src/controllers/menu_controller.py:123
 msgid "Remove from playlist"
-msgstr ""
+msgstr "Elimina de la llista de reproducció"
 
 #: ../src/controllers/menu_controller.py:124
 msgid "Remove invalid file"
@@ -709,7 +709,7 @@ msgstr ""
 
 #: ../src/controllers/menu_controller.py:125
 msgid "Export"
-msgstr ""
+msgstr "Exporta"
 
 #: ../src/controllers/menu_controller.py:126
 msgid "Import"

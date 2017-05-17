@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="pl">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="pl" version="2.1">
     <context>
         <name>desktop</name>
         <message>
@@ -16,7 +14,7 @@
         <message>
             <location filename="Desktop Entry]Comment" line="0"/>
             <source>Play your video collection</source>
-            <translation>Odtwórz kolekcję wideo</translation>
+            <translation>Odtwórz kolekcję filmów</translation>
         </message>
     </context>
 </TS>

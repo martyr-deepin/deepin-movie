@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-11 11:21+0800\n"
-"PO-Revision-Date: 2017-04-09 20:18+0000\n"
+"PO-Revision-Date: 2018-01-14 15:29+0000\n"
 "Last-Translator: deepin_transifex <xiabin@linuxdeepin.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/linuxdeepin/deepin-movie/language/sr/)\n"
 "MIME-Version: 1.0\n"
@@ -66,7 +66,7 @@ msgstr "Паузирај"
 #: ../src/views/ControlBar.qml:266 ../src/controllers/menu_controller.py:108
 #: ../src/controllers/menu_controller.py:119
 msgid "Play"
-msgstr ""
+msgstr "Пусти"
 
 #: ../src/views/ControlBar.qml:283 ../src/controllers/menu_controller.py:91
 msgid "Next"
@@ -94,7 +94,7 @@ msgstr ""
 #: ../src/views/PreferenceWindow.qml:417 ../src/views/ShortcutsViewer.qml:62
 #: ../src/controllers/menu_controller.py:105
 msgid "Playlist"
-msgstr ""
+msgstr "Плејлиста"
 
 #: ../src/views/HotKeyInput.qml:7 ../src/views/HotKeyInput.qml:16
 #: ../src/views/HotKeyInputRow.qml:24 ../src/views/HotKeyInputRow.qml:26
@@ -262,7 +262,7 @@ msgstr ""
 #: ../src/views/Playlist.qml:260 ../src/controllers/menu_controller.py:120
 #: ../src/controllers/menu_controller.py:136
 msgid "Add file"
-msgstr ""
+msgstr "Додај фајл"
 
 #: ../src/views/Playlist.qml:268 ../src/controllers/menu_controller.py:127
 msgid "Clear playlist"
@@ -693,16 +693,16 @@ msgstr "Информације"
 
 #: ../src/controllers/menu_controller.py:115
 msgid "Help"
-msgstr ""
+msgstr "Помоћ"
 
 #: ../src/controllers/menu_controller.py:121
 #: ../src/controllers/menu_controller.py:137
 msgid "Add folder"
-msgstr ""
+msgstr "Додај директоријум"
 
 #: ../src/controllers/menu_controller.py:123
 msgid "Remove from playlist"
-msgstr ""
+msgstr "Уклони из плејлисте"
 
 #: ../src/controllers/menu_controller.py:124
 msgid "Remove invalid file"
@@ -710,7 +710,7 @@ msgstr ""
 
 #: ../src/controllers/menu_controller.py:125
 msgid "Export"
-msgstr ""
+msgstr "Извоз"
 
 #: ../src/controllers/menu_controller.py:126
 msgid "Import"

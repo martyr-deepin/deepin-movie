@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# enolp <enolp@softastur.org>, 2016
+# enolp <enolp@softastur.org>, 2016-2017
 # Ḷḷumex03 <tornes@opmbx.org>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-11 11:21+0800\n"
-"PO-Revision-Date: 2016-12-06 01:36+0000\n"
-"Last-Translator: deepin_transifex <xiabin@linuxdeepin.com>\n"
+"PO-Revision-Date: 2017-09-21 21:29+0000\n"
+"Last-Translator: enolp <enolp@softastur.org>\n"
 "Language-Team: Asturian (http://www.transifex.com/linuxdeepin/deepin-movie/language/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +25,7 @@ msgstr "Tocante a"
 
 #: ../src/views/AboutSection.qml:15
 msgid "Acknowledgements"
-msgstr ""
+msgstr "Agradecimientos"
 
 #: ../src/views/AboutSection.qml:13 ../src/views/TitleBar.qml:70
 #: ../src/views/TitleBar.qml:142 ../src/views/window.py:71
@@ -246,7 +246,7 @@ msgstr "Ficheros de sotitulaxe"
 
 #: ../src/views/OpenFileDialog.qml:53 ../src/views/OpenFileDialog.qml:63
 msgid "Playlist files"
-msgstr ""
+msgstr "Ficheros de llistes"
 
 #: ../src/views/OpenFileDialog.qml:61
 msgid "Save as"
@@ -380,7 +380,7 @@ msgstr "Reproducción"
 #: ../src/views/PreferenceWindow.qml:97 ../src/views/PreferenceWindow.qml:523
 #: ../src/views/ShortcutsViewer.qml:101
 msgid "Frame/Sound"
-msgstr ""
+msgstr "Cuadros/Soníu"
 
 #: ../src/views/PreferenceWindow.qml:102 ../src/views/PreferenceWindow.qml:696
 #: ../src/views/ShortcutsViewer.qml:80
@@ -428,7 +428,7 @@ msgstr "Bermeyu radical"
 
 #: ../src/views/PreferenceWindow.qml:23
 msgid "Lavender indigo"
-msgstr ""
+msgstr "Añil lavanda"
 
 #: ../src/views/PreferenceWindow.qml:24
 msgid "Royal blue"
@@ -440,7 +440,7 @@ msgstr "Aluminiu"
 
 #: ../src/views/PreferenceWindow.qml:26
 msgid "Clean white"
-msgstr ""
+msgstr "Blancu llimpio"
 
 #: ../src/views/PreferenceWindow.qml:72 ../src/views/PreferenceWindow.qml:213
 msgid "Basic settings"
@@ -448,7 +448,7 @@ msgstr "Axustes básicos"
 
 #: ../src/views/PreferenceWindow.qml:81 ../src/views/PreferenceWindow.qml:277
 msgid "Time span"
-msgstr ""
+msgstr "Lapsu de tiempu"
 
 #: ../src/views/PreferenceWindow.qml:88 ../src/views/PreferenceWindow.qml:295
 msgid "Keyboard shortcuts"
@@ -472,7 +472,7 @@ msgstr "Pantalla completa al abrir ficheros"
 
 #: ../src/views/PreferenceWindow.qml:232
 msgid "Apply the size last time closed"
-msgstr ""
+msgstr "Aplicar el tamañu de la última vegada"
 
 #: ../src/views/PreferenceWindow.qml:258
 msgid "Allow multiple instances"
@@ -496,7 +496,7 @@ msgstr "Silenciar"
 
 #: ../src/views/PreferenceWindow.qml:954 ../src/views/ShortcutsViewer.qml:143
 msgid "Scroll"
-msgstr ""
+msgstr "Desplazamientu"
 
 #: ../src/views/PreferenceWindow.qml:957 ../src/views/ShortcutsViewer.qml:144
 #: ../src/views/VolumeButton.qml:44
@@ -537,11 +537,11 @@ msgstr "Axustes de sincronización (s)"
 
 #: ../src/views/TitleBar.qml:173
 msgid "Shown in a proportion of 1:1"
-msgstr ""
+msgstr "Amosada nuna proporción de 1:1"
 
 #: ../src/views/TitleBar.qml:185
 msgid "Shown in 1.5 times"
-msgstr ""
+msgstr "Amosada en 1,5 vegaes"
 
 #: ../src/views/TitleBar.qml:198
 msgid "Return to mini mode"
@@ -549,7 +549,7 @@ msgstr "Volver al mou mini"
 
 #: ../src/views/TitleBar.qml:198
 msgid "Shown in fullscreen"
-msgstr ""
+msgstr "Amosada en pantalla compelta"
 
 #: ../src/views/TitleBar.qml:213
 msgid "Cancel \"On Top\""
@@ -581,11 +581,11 @@ msgstr "Por defeutu"
 
 #: ../src/controllers/menu_controller.py:47
 msgid "Rotate 90 degree clockwise"
-msgstr ""
+msgstr "Rotar 90º a la drecha"
 
 #: ../src/controllers/menu_controller.py:48
 msgid "Rotate 90 degree counterclockwise"
-msgstr ""
+msgstr "Rotar 90º a la esquierda"
 
 #: ../src/controllers/menu_controller.py:49
 msgid "Flip horizontally"
@@ -641,7 +641,7 @@ msgstr "Axustes de sotitulaxe"
 
 #: ../src/controllers/menu_controller.py:82
 msgid "Order"
-msgstr ""
+msgstr "Orde"
 
 #: ../src/controllers/menu_controller.py:83
 msgid "Random"
@@ -649,15 +649,15 @@ msgstr "Al debalu"
 
 #: ../src/controllers/menu_controller.py:84
 msgid "Single"
-msgstr ""
+msgstr "Una"
 
 #: ../src/controllers/menu_controller.py:85
 msgid "Repeat (Single)"
-msgstr ""
+msgstr "Repitir (una)"
 
 #: ../src/controllers/menu_controller.py:86
 msgid "Repeat (Playlist)"
-msgstr ""
+msgstr "Ripitir (llista)"
 
 #: ../src/controllers/menu_controller.py:99
 msgid "Open a folder"
@@ -677,7 +677,7 @@ msgstr "Reproducir secuencia"
 
 #: ../src/controllers/menu_controller.py:109
 msgid "Frame"
-msgstr ""
+msgstr "Marcu"
 
 #: ../src/controllers/menu_controller.py:110
 msgid "Sound"

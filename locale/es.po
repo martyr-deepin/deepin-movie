@@ -3,12 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Diego Sanguinetti, 2017
 # Francisco B.G. <inactive+franchulo@transifex.com>, 2015
 # ICesarI <icesari@msn.com>, 2014
+# jhalo <jhalo@protonmail.com>, 2017
 # Jonathan Ponce <jyv0708@gmail.com>, 2014
 # jorgel21 <jorgecarabali21@gmail.com>, 2014
 # jose luis <josemdance@outlook.com>, 2014-2015
-# szd_liufei <maggie.liufei@gmail.com>, 2015
+# Maggie Liu <maggie.liufei@gmail.com>, 2015
 # Luis Castillo <castilloluis2005@gmail.com>, 2014
 # roberto lopez <riscogordo@gmail.com>, 2017
 msgid ""
@@ -16,8 +18,8 @@ msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-11 11:21+0800\n"
-"PO-Revision-Date: 2017-03-27 09:32+0000\n"
-"Last-Translator: Chema Ramirez <josemrf1996@gmail.com>\n"
+"PO-Revision-Date: 2017-11-07 00:36+0000\n"
+"Last-Translator: jhalo <jhalo@protonmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/linuxdeepin/deepin-movie/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,7 +38,7 @@ msgstr "Agradecimientos"
 #: ../src/views/AboutSection.qml:13 ../src/views/TitleBar.qml:70
 #: ../src/views/TitleBar.qml:142 ../src/views/window.py:71
 msgid "Deepin Movie"
-msgstr "Película Deepin "
+msgstr "Películas Deepin"
 
 #: ../src/views/AboutSection.qml:28
 msgid "Version"
@@ -52,11 +54,11 @@ msgid ""
 "Deepin Movie is a well-designed and full-featured video player with simple "
 "borderless design. It supports local and streaming media play with multiple "
 "video formats."
-msgstr "Deepin Movie es un reproductor de vídeo bien diseñado y con todas las funciones con un  simple diseño sin bordes. Es compatible con la reproducción de medios locales y transferibles con múltiples formatos de vídeo."
+msgstr "Películas Deepin es un reproductor de vídeo de alta gama de diseño y funciones con un simple diseño sin bordes. Soporta la reproducción de medios locales y en transmisión con múltiples formatos de vídeo."
 
 #: ../src/views/AboutSection.qml:69
 msgid "Deepin Movie is released under GPLv3."
-msgstr "Deepin Movie se distribuye bajo licencia GPLv3."
+msgstr "Películas Deepin se distribuye bajo licencia GPLv3."
 
 #: ../src/views/ControlBar.qml:229
 msgid "Stop playing"
@@ -64,7 +66,7 @@ msgstr "Detener reproducción"
 
 #: ../src/views/ControlBar.qml:247 ../src/controllers/menu_controller.py:90
 msgid "Previous"
-msgstr "Previo"
+msgstr "Anterior"
 
 #: ../src/views/ControlBar.qml:266
 msgid "Pause"
@@ -81,7 +83,7 @@ msgstr "Siguiente"
 
 #: ../src/views/ControlBar.qml:326 ../src/controllers/menu_controller.py:449
 msgid "Exit fullscreen"
-msgstr "Salir de Pantalla Completa"
+msgstr "Salir de pantalla completa"
 
 #: ../src/views/ControlBar.qml:326 ../src/views/PreferenceWindow.qml:391
 #: ../src/views/PreferenceWindow.qml:941 ../src/views/ShortcutsViewer.qml:58
@@ -89,7 +91,7 @@ msgstr "Salir de Pantalla Completa"
 #: ../src/controllers/menu_controller.py:102
 #: ../src/controllers/menu_controller.py:450
 msgid "Fullscreen"
-msgstr "Pantalla Completa"
+msgstr "Pantalla completa"
 
 #: ../src/views/ControlBar.qml:343 ../src/views/PreferenceWindow.qml:711
 #: ../src/views/ShortcutsViewer.qml:83
@@ -101,7 +103,7 @@ msgstr "Abrir un archivo"
 #: ../src/views/PreferenceWindow.qml:417 ../src/views/ShortcutsViewer.qml:62
 #: ../src/controllers/menu_controller.py:105
 msgid "Playlist"
-msgstr "Lista de Reproducción"
+msgstr "Lista de reproducción"
 
 #: ../src/views/HotKeyInput.qml:7 ../src/views/HotKeyInput.qml:16
 #: ../src/views/HotKeyInputRow.qml:24 ../src/views/HotKeyInputRow.qml:26
@@ -118,7 +120,7 @@ msgstr "Por favor, ingrese un nuevo atajo"
 
 #: ../src/views/HotKeyInputRow.qml:30
 msgid "The shortcut you set "
-msgstr "El atajo que se establece"
+msgstr "Estableció este atajo"
 
 #: ../src/views/HotKeyInputRow.qml:31
 #, qt-format
@@ -144,11 +146,11 @@ msgstr "Desconocido"
 
 #: ../src/views/InformationWindow.qml:77
 msgid "File type"
-msgstr "Tipo de Archivo"
+msgstr "Tipo de archivo"
 
 #: ../src/views/InformationWindow.qml:87
 msgid "File size"
-msgstr "Tamaño del Archivo"
+msgstr "Tamaño del archivo"
 
 #: ../src/views/InformationWindow.qml:97
 msgid "Resolution"
@@ -160,11 +162,11 @@ msgstr "Duración de la película"
 
 #: ../src/views/InformationWindow.qml:117
 msgid "File path"
-msgstr "Ruta del Archivo"
+msgstr "Ruta del archivo"
 
 #: ../src/views/InformationWindow.qml:134
 msgid "Copy to clipboard"
-msgstr "Copiar al Portapapeles"
+msgstr "Copiar al portapapeles"
 
 #: ../src/views/InformationWindow.qml:149
 msgid "Close"
@@ -172,7 +174,7 @@ msgstr "Cerrar"
 
 #: ../src/views/MainController.qml:260
 msgid "Invalid file"
-msgstr "Archivo no válido"
+msgstr "Archivo invalido"
 
 #: ../src/views/MainController.qml:37
 #, qt-format
@@ -185,7 +187,7 @@ msgstr "Importado"
 
 #: ../src/views/MainController.qml:462
 msgid "Play last movie played"
-msgstr "Reproduce ultima pelicula reproducida"
+msgstr "Reproducir última película proyectada"
 
 #: ../src/views/MainController.qml:495 ../src/views/PreferenceWindow.qml:339
 #: ../src/views/ShortcutsViewer.qml:50
@@ -211,17 +213,17 @@ msgstr "Tasa de reproducción:"
 
 #: ../src/views/MainController.qml:540 ../src/views/MainController.qml:549
 msgid "Volume: "
-msgstr "Volumen"
+msgstr "Volumen:"
 
 #: ../src/views/MainController.qml:547
 #: ../src/controllers/menu_controller.py:60
 msgid "Muted"
-msgstr "Silenciar"
+msgstr "Silenciado"
 
 #: ../src/views/MainController.qml:683 ../src/views/MainController.qml:696
 #, qt-format
 msgid "Subtitle advanced %1 seconds"
-msgstr "Subtítulo avanzada %1 segundos"
+msgstr "Subtítulo adelantado %1 segundos"
 
 #: ../src/views/MainController.qml:685 ../src/views/MainController.qml:698
 #, qt-format
@@ -256,7 +258,7 @@ msgstr "Archivos de listas de reproducción."
 
 #: ../src/views/OpenFileDialog.qml:61
 msgid "Save as"
-msgstr "Guardar Como"
+msgstr "Guardar como"
 
 #: ../src/views/OpenFolderDialog.qml:5
 msgid "Please choose a folder"
@@ -269,7 +271,7 @@ msgstr "Modo reproducción"
 #: ../src/views/Playlist.qml:260 ../src/controllers/menu_controller.py:120
 #: ../src/controllers/menu_controller.py:136
 msgid "Add file"
-msgstr "Añadir Archivo"
+msgstr "Añadir archivo"
 
 #: ../src/views/Playlist.qml:268 ../src/controllers/menu_controller.py:127
 msgid "Clear playlist"
@@ -321,7 +323,7 @@ msgstr "Restaurar velocidad de reproducción"
 #: ../src/controllers/menu_controller.py:103
 #: ../src/controllers/menu_controller.py:452
 msgid "Mini mode"
-msgstr "Modo Miniatura"
+msgstr "Modo miniatura"
 
 #: ../src/views/PreferenceWindow.qml:616 ../src/views/ShortcutsViewer.qml:116
 msgid "Volume up"
@@ -342,32 +344,32 @@ msgstr "Abrir siguiente"
 #: ../src/views/PreferenceWindow.qml:806 ../src/views/ShortcutsViewer.qml:153
 #, qt-format
 msgid "Forward %1 (s)"
-msgstr "Avance %1 (s)"
+msgstr "Avanzar %1 (s)"
 
 #: ../src/views/PreferenceWindow.qml:832 ../src/views/ShortcutsViewer.qml:157
 #, qt-format
 msgid "Delay %1 (s)"
-msgstr "Retardo de %1 (s)"
+msgstr "Retrasar %1 (s)"
 
 #: ../src/views/PreferenceWindow.qml:858 ../src/views/ShortcutsViewer.qml:161
 msgid "Subtitle up"
-msgstr "Subtitulo Encendido"
+msgstr "Subtitulo activado"
 
 #: ../src/views/PreferenceWindow.qml:884 ../src/views/ShortcutsViewer.qml:165
 msgid "Subtitle down"
-msgstr "Subtitulo Apagado"
+msgstr "Subtitulo desactivado"
 
 #: ../src/views/PreferenceWindow.qml:922 ../src/views/ShortcutsViewer.qml:133
 msgid "Left click"
-msgstr "Clic Izquierdo"
+msgstr "Clic izquierdo"
 
 #: ../src/views/PreferenceWindow.qml:938 ../src/views/ShortcutsViewer.qml:138
 msgid "Double click"
-msgstr "Doble Clic"
+msgstr "Doble clic"
 
 #: ../src/views/PreferenceWindow.qml:979
 msgid "Subtitles loaded automatically"
-msgstr "Cargar Subtitulos Automáticamente"
+msgstr "Subtítulos cargados automáticamente"
 
 #: ../src/views/PreferenceWindow.qml:1088
 msgid "Border width"
@@ -410,11 +412,11 @@ msgstr "Negro"
 
 #: ../src/views/PreferenceWindow.qml:16
 msgid "bleu de France"
-msgstr "bleu de France"
+msgstr "Azul Francia"
 
 #: ../src/views/PreferenceWindow.qml:17
 msgid "Turquoise"
-msgstr "turquesa"
+msgstr "Turquesa"
 
 #: ../src/views/PreferenceWindow.qml:18
 msgid "UFO green"
@@ -426,11 +428,11 @@ msgstr "Verde amarillo"
 
 #: ../src/views/PreferenceWindow.qml:20
 msgid "Energy yellow"
-msgstr "amarillo Energía"
+msgstr "Amarillo energético"
 
 #: ../src/views/PreferenceWindow.qml:22
 msgid "Radical red"
-msgstr "rojo Radical"
+msgstr "Rojo radical"
 
 #: ../src/views/PreferenceWindow.qml:23
 msgid "Lavender indigo"
@@ -559,11 +561,11 @@ msgstr "Mostrado en pantalla completa"
 
 #: ../src/views/TitleBar.qml:213
 msgid "Cancel \"On Top\""
-msgstr "Cancelar \"siempre visible\""
+msgstr "Quitar «siempre visible»"
 
 #: ../src/views/TitleBar.qml:213
 msgid "On Top"
-msgstr "Siempre Visible"
+msgstr "Siempre visible"
 
 #: ../src/views/main.qml:142
 msgid "Please input the url of file played"
@@ -579,11 +581,11 @@ msgstr "El análisis falló"
 
 #: ../src/views/main.qml:458 ../src/views/main.qml:459
 msgid "Buffering..."
-msgstr "almacenamiento..."
+msgstr "Almacenando..."
 
 #: ../src/controllers/menu_controller.py:35
 msgid "Default"
-msgstr "Por Defecto"
+msgstr "Predeterminado"
 
 #: ../src/controllers/menu_controller.py:47
 msgid "Rotate 90 degree clockwise"
@@ -595,11 +597,11 @@ msgstr "Rotar 90 grados en sentido antihorario "
 
 #: ../src/controllers/menu_controller.py:49
 msgid "Flip horizontally"
-msgstr "voltear horizontalmente"
+msgstr "Voltear horizontalmente"
 
 #: ../src/controllers/menu_controller.py:50
 msgid "Flip vertically"
-msgstr "voltear verticalmente"
+msgstr "Voltear verticalmente"
 
 #: ../src/controllers/menu_controller.py:58
 msgid "Volume Up"
@@ -627,7 +629,7 @@ msgstr "Mono"
 
 #: ../src/controllers/menu_controller.py:68
 msgid "Stero"
-msgstr "Stereo"
+msgstr "Estéreo"
 
 #: ../src/controllers/menu_controller.py:72
 msgid "Hide subtitle"
@@ -705,7 +707,7 @@ msgstr "Ayuda"
 #: ../src/controllers/menu_controller.py:121
 #: ../src/controllers/menu_controller.py:137
 msgid "Add folder"
-msgstr "Agregar carpeta"
+msgstr "Añadir carpeta"
 
 #: ../src/controllers/menu_controller.py:123
 msgid "Remove from playlist"

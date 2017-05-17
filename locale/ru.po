@@ -5,7 +5,7 @@
 # Translators:
 # Анатолий Валерианович <ffox909@mail.ru>, 2014
 # Serge Kukharski, 2014
-# Vasilii Rusu <basil_russu@hotmail.com>, 2015
+# Vasile Rusu <basil_russu@hotmail.com>, 2015
 # Анатолий Валерианович <ffox909@mail.ru>, 2014-2016
 # Валерий Владимирович, 2016
 msgid ""
@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-11 11:21+0800\n"
-"PO-Revision-Date: 2016-12-06 21:32+0000\n"
+"PO-Revision-Date: 2017-11-03 12:15+0000\n"
 "Last-Translator: Валерий Владимирович\n"
 "Language-Team: Russian (http://www.transifex.com/linuxdeepin/deepin-movie/language/ru/)\n"
 "MIME-Version: 1.0\n"

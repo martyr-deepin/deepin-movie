@@ -3,18 +3,19 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Adem Çalışkan <ademcal@yahoo.com>, 2017
 # Emin Tufan <etcetin@gmail.com>, 2017
 # Ömer GÖK <omergok@outlook.com>, 2017
 # Sinan Eldem, 2014
 # yakup <mutouk@yandex.ru>, 2014-2015
-# iron_man <yunus_bakir92@hotmail.com>, 2014
+# iron_man <inactive+iron_man@transifex.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Deepin Movie\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-11 11:21+0800\n"
-"PO-Revision-Date: 2017-04-23 08:23+0000\n"
-"Last-Translator: Ömer GÖK <omergok@outlook.com>\n"
+"PO-Revision-Date: 2017-12-12 07:48+0000\n"
+"Last-Translator: Adem Çalışkan <ademcal@yahoo.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/linuxdeepin/deepin-movie/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -49,11 +50,11 @@ msgid ""
 "Deepin Movie is a well-designed and full-featured video player with simple "
 "borderless design. It supports local and streaming media play with multiple "
 "video formats."
-msgstr "Deepin Movie basit çerçevesiz tasarımı ile iyi tasarlanmış ve tam özellikli bir video oynatıcısıdır. Yerel ve çoklu video biçimleriyle veri akışı ortamı oynatmayı destekler."
+msgstr "Deepin Film basit çerçevesiz tasarımı ile iyi tasarlanmış ve tam özellikli bir video oynatıcısıdır. Yerel ve çoklu video biçimleriyle veri akışı ortamı oynatmayı destekler."
 
 #: ../src/views/AboutSection.qml:69
 msgid "Deepin Movie is released under GPLv3."
-msgstr "Deepin Movie GPLv3 altında yayımlandı."
+msgstr "Deepin Film GPLv3 altında yayımlandı."
 
 #: ../src/views/ControlBar.qml:229
 msgid "Stop playing"
@@ -107,11 +108,11 @@ msgstr "Oynatma listesi"
 #: ../src/views/ShortcutsLabel.qml:23 ../src/views/ShortcutsViewer.qml:134
 #: ../src/views/ShortcutsViewer.qml:139 ../src/views/ShortcutsViewer.qml:144
 msgid "None"
-msgstr "Yok"
+msgstr "Hiçbiri"
 
 #: ../src/views/HotKeyInput.qml:23
 msgid "Please input a new shortcut"
-msgstr "Lütfen yeni kısayol girin"
+msgstr "Lütfen yeni kısayol giriniz"
 
 #: ../src/views/HotKeyInputRow.qml:30
 msgid "The shortcut you set "
@@ -128,7 +129,7 @@ msgstr "Değiştirmek istiyor musunuz?"
 
 #: ../src/views/HotKeyInputRow.qml:99 ../src/views/main.qml:144
 msgid "Cancel"
-msgstr "Vazgeç"
+msgstr "İptal Et"
 
 #: ../src/views/HotKeyInputRow.qml:110
 msgid "Replace"
@@ -174,7 +175,7 @@ msgstr "Geçersiz dosya"
 #: ../src/views/MainController.qml:37
 #, qt-format
 msgid "%1 files unable to be parsed have been excluded"
-msgstr "%1 çözümlenmemiş dosyalar hariç tutulmuştur"
+msgstr "%1 çözümlenmemiş dosyalar hariç tutuldu"
 
 #: ../src/views/MainController.qml:50
 msgid "Imported"
@@ -182,7 +183,7 @@ msgstr "İçeri aktarılan"
 
 #: ../src/views/MainController.qml:462
 msgid "Play last movie played"
-msgstr "Son oynatılan videoyu oynat"
+msgstr "Son oynatılan filmi oynat"
 
 #: ../src/views/MainController.qml:495 ../src/views/PreferenceWindow.qml:339
 #: ../src/views/ShortcutsViewer.qml:50
@@ -199,12 +200,12 @@ msgstr "Geri sar"
 #: ../src/views/MainController.qml:515 ../src/views/MainController.qml:521
 #, qt-format
 msgid "(Press %1 to restore)"
-msgstr "(Geri yüklemek için %1 e basın)"
+msgstr "(Geri yüklemek için %1 'e basın)"
 
 #: ../src/views/MainController.qml:517 ../src/views/MainController.qml:523
 #: ../src/views/MainController.qml:528
 msgid "Playback rate: "
-msgstr "Çalma oranı:"
+msgstr "Oynatma oranı:"
 
 #: ../src/views/MainController.qml:540 ../src/views/MainController.qml:549
 msgid "Volume: "
@@ -228,7 +229,7 @@ msgstr "Altyazı %1 saniye gecikiyor"
 #: ../src/views/OpenFileDialog.qml:5 ../src/views/OpenFileDialog.qml:21
 #: ../src/views/OpenFileDialog.qml:41
 msgid "Please choose one file or more"
-msgstr "Lütfen bir veya daha fazla dosya seçin"
+msgstr "Lütfen bir veya daha fazla dosya seçiniz"
 
 #: ../src/views/OpenFileDialog.qml:7 ../src/views/OpenFileDialog.qml:23
 #: ../src/views/OpenFileDialog.qml:43
@@ -241,7 +242,7 @@ msgstr "Tüm dosyalar"
 
 #: ../src/views/OpenFileDialog.qml:31 ../src/views/OpenFileDialog.qml:51
 msgid "Please choose one file"
-msgstr "Lütfen bir dosya seçin"
+msgstr "Lütfen bir dosya seçiniz"
 
 #: ../src/views/OpenFileDialog.qml:33
 msgid "Subtitle files"
@@ -326,7 +327,7 @@ msgstr "Sesi yükselt"
 
 #: ../src/views/PreferenceWindow.qml:642 ../src/views/ShortcutsViewer.qml:120
 msgid "Volume down"
-msgstr "Sesi kıs"
+msgstr "Sesi azalt"
 
 #: ../src/views/PreferenceWindow.qml:737 ../src/views/ShortcutsViewer.qml:87
 msgid "Open previous"
@@ -364,7 +365,7 @@ msgstr "Çift tıklama"
 
 #: ../src/views/PreferenceWindow.qml:979
 msgid "Subtitles loaded automatically"
-msgstr "Altyazı kendiliğinden yüklendi"
+msgstr "Altyazılar otomatik olarak yüklendi"
 
 #: ../src/views/PreferenceWindow.qml:1088
 msgid "Border width"
@@ -383,7 +384,7 @@ msgstr "Oynatma"
 #: ../src/views/PreferenceWindow.qml:97 ../src/views/PreferenceWindow.qml:523
 #: ../src/views/ShortcutsViewer.qml:101
 msgid "Frame/Sound"
-msgstr "Çerçeve/Ses"
+msgstr "Resim Karesi/Ses"
 
 #: ../src/views/PreferenceWindow.qml:102 ../src/views/PreferenceWindow.qml:696
 #: ../src/views/ShortcutsViewer.qml:80
@@ -411,11 +412,11 @@ msgstr "Fransız mavisi"
 
 #: ../src/views/PreferenceWindow.qml:17
 msgid "Turquoise"
-msgstr "Turkuvaz"
+msgstr "Turkuaz"
 
 #: ../src/views/PreferenceWindow.qml:18
 msgid "UFO green"
-msgstr "UFO yeşil"
+msgstr "UFO yeşili"
 
 #: ../src/views/PreferenceWindow.qml:19
 msgid "Green yellow"
@@ -475,7 +476,7 @@ msgstr "Tam ekran açılış dosyası"
 
 #: ../src/views/PreferenceWindow.qml:232
 msgid "Apply the size last time closed"
-msgstr "Son kapatıldığı zamandaki boyutu uygula"
+msgstr "Son kapatılan boyu uygula"
 
 #: ../src/views/PreferenceWindow.qml:258
 msgid "Allow multiple instances"
@@ -564,7 +565,7 @@ msgstr "Üstte"
 
 #: ../src/views/main.qml:142
 msgid "Please input the url of file played"
-msgstr "Lütfen oynatılan dosyanın url adresini girin"
+msgstr "Lütfen oynatılan dosyanın url adresini giriniz"
 
 #: ../src/views/main.qml:143
 msgid "Confirm"
@@ -604,7 +605,7 @@ msgstr "Sesi Yükselt"
 
 #: ../src/controllers/menu_controller.py:59
 msgid "Volume Down"
-msgstr "Sesi Kıs"
+msgstr "Sesi Azalt"
 
 #: ../src/controllers/menu_controller.py:64
 msgid "Auto"
@@ -620,11 +621,11 @@ msgstr "Sağ"
 
 #: ../src/controllers/menu_controller.py:67
 msgid "Mono"
-msgstr "Mono"
+msgstr "Tekli"
 
 #: ../src/controllers/menu_controller.py:68
 msgid "Stero"
-msgstr "Stero"
+msgstr "Çiftli"
 
 #: ../src/controllers/menu_controller.py:72
 msgid "Hide subtitle"
@@ -656,15 +657,15 @@ msgstr "Tek"
 
 #: ../src/controllers/menu_controller.py:85
 msgid "Repeat (Single)"
-msgstr "Tekrar (Tek)"
+msgstr "Tekrarla (Tek)"
 
 #: ../src/controllers/menu_controller.py:86
 msgid "Repeat (Playlist)"
-msgstr "Tekrar (Oynatma listesi)"
+msgstr "Tekrarla (Oynatma listesi)"
 
 #: ../src/controllers/menu_controller.py:99
 msgid "Open a folder"
-msgstr "Klasör aç"
+msgstr "Bir klasör aç"
 
 #: ../src/controllers/menu_controller.py:100
 msgid "Open URL"
@@ -680,7 +681,7 @@ msgstr "Sıralayıcıyı Oynat"
 
 #: ../src/controllers/menu_controller.py:109
 msgid "Frame"
-msgstr "Çerçeve"
+msgstr "Resim Karesi"
 
 #: ../src/controllers/menu_controller.py:110
 msgid "Sound"
