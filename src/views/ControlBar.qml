@@ -8,6 +8,7 @@ DragableArea {
     id: control_bar
     // make sure the 15 pixels upon the controlbar hasn't the ability to play or pause the video
     height: program_constants.controlbarHeight + 15
+    cursorShape: main_controller.cursorShape
 
     property alias timeInfoVisible: playTime.visible
     property alias volume: volume_button.volume

@@ -10,7 +10,9 @@ MouseArea {
 
     property bool shouldPerformClick
 
-	onPressed: { 
+	onPressed: {
+        mouse.accepted = false
+
         shouldPerformClick = true
 
         var pos = window.getCursorPos()
@@ -21,6 +23,8 @@ MouseArea {
         dragStartY = pos.y 
     }
 	onPositionChanged: { 
+        mouse.accepted = false
+
         if (pressed && window.getState() != Qt.WindowFullScreen) {
             shouldPerformClick = false
 

@@ -6,6 +6,7 @@ DragableArea {
     id: titlebar
     state: "normal"
     height: program_constants.titlebarHeight
+    cursorShape: main_controller.cursorShape
 
     property bool windowNormalState: true
     property alias windowFullscreenState: quick_fullscreen_button.checkFlag

@@ -13,7 +13,7 @@ MouseArea {
     property var window
     property int resizeEdge
     property int triggerThreshold: 10  // threshold for resizing the window
-    property int cornerTriggerThreshold: 20
+    property int cornerTriggerThreshold: 10
 
     property int dragStartX
     property int dragStartY
@@ -743,7 +743,6 @@ MouseArea {
         resizeEdge = getEdge(mouse)
         if (resizeEdge != resize_edge.resizeNone) {
             resize_visual.resizeEdge = resizeEdge
-            resize_visual.show()
         } else {
             var pos = windowView.getCursorPos()
 
@@ -789,6 +788,15 @@ MouseArea {
                 }
                 resize_visual.intelligentlyResize(mouse.x, mouse.y)
                 _menu_controller.videoScale = ""
+
+                hasResized = true
+                // do the actual resize action
+                if (resizeEdge == resize_edge.resizeLeft || resizeEdge == resize_edge.resizeTop || resizeEdge == resize_edge.resizeTopLeft) {
+                    windowView.setX(resize_visual.frameX)
+                    windowView.setY(resize_visual.frameY)
+                }
+                setSizeForRootWindowWithWidth(resize_visual.frameWidth)
+                root.actualScale = (windowView.width - program_constants.windowGlowRadius * 2) / player.resolution.width
             }
             else if (windowView.getState() != Qt.WindowFullScreen){
                 var pos = windowView.getCursorPos()
@@ -804,16 +812,6 @@ MouseArea {
 
     onReleased: {
         resizeEdge = resize_edge.resizeNone
-
-        if (resize_visual.visible) {
-            hasResized = true
-            resize_visual.hide()
-            // do the actual resize action
-            windowView.setX(resize_visual.frameX)
-            windowView.setY(resize_visual.frameY)
-            setSizeForRootWindowWithWidth(resize_visual.frameWidth)
-            root.actualScale = (windowView.width - program_constants.windowGlowRadius * 2) / player.resolution.width
-        }
     }
 
     onClicked: {
