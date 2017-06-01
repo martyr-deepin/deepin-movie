@@ -276,9 +276,12 @@ class Database(QObject):
 
         contentCache = []
         if os.path.exists(PLAYLIST_CACHE_FILE):
-            with open(PLAYLIST_CACHE_FILE) as _file:
+           with open(PLAYLIST_CACHE_FILE, "r+") as _file:
                 _cache = _file.read()
-                contentCache = json.loads(_cache)
+                try:
+                    contentCache = json.loads(_cache)
+                except ValueError:
+                    _file.truncate()
 
         if len(contentCache) == queryResults.count():
             return json.dumps(contentCache)
