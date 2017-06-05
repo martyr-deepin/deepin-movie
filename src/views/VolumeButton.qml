@@ -13,8 +13,8 @@ Row {
     property alias muted: toggle_button.checkFlag
     property alias tooltipItem: toggle_button.tooltipItem
 
-    property bool showBarFlag: false // for internal useage
-    property bool showBarSwitch: true // for external useage
+    property bool showBarFlag: false // for internal usage
+    property bool showBarSwitch: true // for external usage
 
     signal changeVolume (double volume)
     signal mutedSet (bool muted)
