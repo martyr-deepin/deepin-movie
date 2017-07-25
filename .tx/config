@@ -9,7 +9,8 @@ source_file = locale/deepin-movie.pot
 source_lang = en
 type = PO
 
-[deepin-movie.desktop]
-source_file = deepin-movie.desktop
+[deepin-movie.desktop-ts]
+file_filter = translations/desktop/desktop_<lang>.ts
+source_file = translations/desktop/desktop.ts
 source_lang = en
-type = DESKTOP
+type = TS

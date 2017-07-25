@@ -1,0 +1,10 @@
+[Desktop Entry]
+Categories=AudioVideo;Player;
+Comment=Play your video collection
+Exec=deepin-movie %U
+GenericName=Media Player
+Icon=deepin-movie
+MimeType=
+Name=Deepin Movie
+StartupNotify=true
+Type=Application
